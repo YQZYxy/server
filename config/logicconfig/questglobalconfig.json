@@ -1,0 +1,7 @@
+[
+  {
+    "max_active_quests": 25,
+    "max_daily_quests": 10,
+    "repeat_quest_cooldown": 86400
+  }
+]

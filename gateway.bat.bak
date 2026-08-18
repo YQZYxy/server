@@ -1,0 +1,47 @@
+@echo off
+chcp 65001 >nul
+
+set "ROOT=%~dp0"
+set "ROOT=%ROOT:~0,-1%"
+set "EXE_DIR=%ROOT%\bin"
+
+echo [gateway] Frontend: Vite Dev Server (:5173)
+echo [gateway] Gateway:  gatewayserver.exe (:5000)
+echo.
+
+if not exist "%EXE_DIR%\config" (
+    mklink /J "%EXE_DIR%\config" "%ROOT%\config" >nul
+    echo [link] config
+)
+if not exist "%EXE_DIR%\luascript" (
+    mklink /J "%EXE_DIR%\luascript" "%ROOT%\luascript" >nul
+    echo [link] luascript
+)
+if not exist "%EXE_DIR%\dist" (
+    if exist "%ROOT%\client\webui\dist" (
+        mklink /J "%EXE_DIR%\dist" "%ROOT%\client\webui\dist" >nul
+        echo [link] dist
+    ) else (
+        mkdir "%EXE_DIR%\dist" >nul
+        echo [mkdir] dist (empty, run npm run build first)
+    )
+)
+
+echo.
+echo [gateway] 启动全部服务器 ...
+echo [gateway] 关闭本窗口将停止所有服务器
+start /b "globalserver" cmd /c "cd /d "%EXE_DIR%" && globalserver.exe >nul 2>&1"
+start /b "dbserver" cmd /c "cd /d "%EXE_DIR%" && dbserver.exe >nul 2>&1"
+start /b "logicserver" cmd /c "cd /d "%EXE_DIR%" && logicserver.exe"
+
+start /b "battleserver" cmd /c "cd /d "%EXE_DIR%" && battleserver.exe 8888 >nul 2>&1"
+
+:: 等待逻辑服
+timeout /t 3 /nobreak >nul
+
+start /b "gatewayserver" cmd /c "cd /d "%EXE_DIR%" && gatewayserver.exe >nul 2>&1"
+start /b "webui" cmd /c "cd /d "%~dp0client\webui" && npm run dev >nul 2>&1"
+
+:: 保持窗口以显示 logicserver 日志
+pause >nul
+

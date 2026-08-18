@@ -1,0 +1,294 @@
+// 字段必须加 optional 关键字 
+syntax = "proto3";
+
+import "data.proto";
+
+// ==================== 战斗基础类型枚举 ====================
+
+// 属性ID常量
+enum PB_Attr
+{
+    ATTR_MAX_NONE         = 0;      //负值是系统属性
+
+    ATTR_MAX_MANA          = -2;    // 最大生命值
+    ATTR_MAX_HEALTH        = -1;    // 最大法力值
+
+    // === 上面是系统属性  ===
+
+	ATTR_HEALTH            = 1;     // 生命值
+	ATTR_MANA              = 2;     // 法力值
+	ATTR_STRENGTH          = 3;     // 力量
+	ATTR_AGILITY           = 4;     // 敏捷
+	ATTR_INTELLIGENCE      = 5;     // 智力
+	ATTR_VITALITY          = 6;     // 体质
+	ATTR_LUCK              = 7;     // 幸运
+	ATTR_ARMOR             = 8;     // 护甲
+
+    // === 百分比属性 (100-1000) ===
+	ATTR_CRIT_CHANCE       = 100;   // 暴击率
+	ATTR_CRIT_DAMAGE       = 101;   // 暴击伤害
+	ATTR_ATTACK_SPEED      = 102;   // 攻击速度
+	ATTR_DODGE_CHANCE      = 103;   // 闪避率
+	ATTR_BLOCK_CHANCE      = 104;   // 格挡率
+    ATTR_DAMAGE_MULTIPLIER = 105;   // 伤害加成
+};
+
+enum BattleEventType
+{
+    BATTLE_EVENT_TYPE_NONE = 0;                 // 无事件
+    BATTLE_EVENT_TYPE_BATTLE = 1;               // 战斗开始/结束: type(0=开始 1=结束) battle_type victory max_turns seed result_type winner_team_id total_turns duration
+    BATTLE_EVENT_TYPE_TURN = 10;                // 回合开始/结束: type(0=开始 1=结束) turn
+    BATTLE_EVENT_TYPE_ABILITY_ACTIVATE = 20;    // 能力激活: source target ability_id success
+    BATTLE_EVENT_TYPE_DAMAGE = 30;              // 伤害事件: source target damage damage_type is_crit hp_before hp_after
+    BATTLE_EVENT_TYPE_HEAL = 31;                // 治疗事件: source target amount hp_before hp_after
+    BATTLE_EVENT_TYPE_EFFECT_APPLIED = 40;      // 效果应用: target effect_name(str) duration stack
+    BATTLE_EVENT_TYPE_EFFECT_REMOVED = 41;      // 效果移除: target effect_name(str)
+    BATTLE_EVENT_TYPE_EFFECT_TICK = 42;         // 效果周期触发: target effect_name(str) value
+    BATTLE_EVENT_TYPE_DEATH = 50;               // 死亡事件: victim killer
+    BATTLE_EVENT_TYPE_STATUS_CHANGE = 60;       // 状态变化: pid status_name(str) added
+    BATTLE_EVENT_TYPE_ATTR_CHANGE = 61;         // 属性变化: pid attr_id old new
+    BATTLE_EVENT_TYPE_CUSTOM = 100;             // 自定义事件: ext_type(str) data
+};
+
+// 战斗模式
+enum PB_BattleMode
+{
+    BATTLE_MODE_NONE        = 0;
+    BATTLE_MODE_TURN_BASED  = 1;   // 回合制
+    BATTLE_MODE_REALTIME    = 2;   // 实时
+}
+
+// 实体类型
+enum PB_PlayerType
+{
+    PLAYER_TYPE_NONE    = 0;
+    PLAYER_TYPE_HERO    = 1;   // 英雄(玩家)
+    PLAYER_TYPE_MONSTER = 2;   // 怪物(NPC)
+}
+
+// 战斗阶段
+enum PB_BattlePhase
+{
+    BATTLE_PHASE_NONE       = 0;
+    BATTLE_PHASE_PREPARING  = 1;    // 准备阶段 
+    BATTLE_PHASE_STARTED    = 2;    // 开始阶段
+    BATTLE_PHASE_ENDING     = 3;    // 结束阶段
+    BATTLE_PHASE_FINISHED   = 4;    // 完成阶段
+}
+
+// 阵营
+enum PB_TeamSide
+{
+    TEAM_SIDE_NONE   = 0;
+    TEAM_SIDE_ATTACKER  = 1;        // 攻击
+    TEAM_SIDE_DEFENDER  = 2;        // 防守
+    TEAM_SIDE_NEUTRAL   = 3;        // 中立
+}
+
+// 胜利条件
+enum PB_VictoryCondition
+{
+    VICTORY_COND_NONE           = 0;    // 胜利条件
+    VICTORY_COND_DEFENDER_DEATH = 1;    // 防守方全灭
+    VICTORY_COND_ATTACKER_DEATH = 2;    // 进攻方全灭
+    VICTORY_COND_ELIMINATE_ALL  = 3;    // 只剩一方存活
+    VICTORY_COND_SURVIVE_TIME   = 4;    // 防守方存活到时间结束
+    VICTORY_COND_KILL_TARGET    = 5;    // 击杀指定目标
+    VICTORY_COND_SCORE_LIMIT    = 6;    // 分数达到上限
+    VICTORY_COND_CUSTOM         = 99;   // 自定义条件
+}
+
+// 战斗结果类型
+enum PB_BattleResultType
+{
+    BATTLE_RESULT_NONE      = 0;    // 无结果
+    BATTLE_RESULT_VICTORY   = 1;    // 胜利
+    BATTLE_RESULT_DEFEAT    = 2;    // 失败
+    BATTLE_RESULT_TIME_OUT  = 3;    // 超时
+    BATTLE_RESULT_DRAW      = 4;    // 平局
+    BATTLE_RESULT_CANCELLED = 5;    // 取消
+}
+
+// 能力目标类型
+enum PB_AbilityTargetType
+{
+    ABILITY_TARGET_NONE             = 0;   // 无效
+    ABILITY_TARGET_SELF             = 1;   // 自身
+    ABILITY_TARGET_ENEMY_SINGLE     = 2;   // 敌方单体
+    ABILITY_TARGET_FRIEND_SINGLE    = 3;   // 友方单体
+    ABILITY_TARGET_ENEMY_AOE        = 4;   // 敌方范围
+    ABILITY_TARGET_FRIEND_AOE       = 5;   // 友方范围
+    ABILITY_TARGET_ALL              = 6;   // 全体
+    ABILITY_TARGET_LOCATION_AOE     = 7;   // 位置范围(实时战斗)
+}
+
+// 能力类型
+enum PB_AbilityType
+{
+    ABILITY_TYPE_NONE                   = 0;   // 无效
+    ABILITY_TYPE_PHYSICAL_ATTACK        = 1;   // 物理攻击
+    ABILITY_TYPE_MAGIC_ATTACK           = 2;   // 魔法攻击
+    ABILITY_TYPE_LIFESTEAL_ATTACK       = 3;   // 吸血攻击
+    ABILITY_TYPE_HEAL                   = 4;   // 治疗
+    ABILITY_TYPE_SELF_BUFF              = 5;   // 自身增益
+    ABILITY_TYPE_TARGET_BUFF            = 6;   // 目标增益
+    ABILITY_TYPE_MAGIC_ATTACK_WITH_BUFF = 7;   // 魔法攻击+Debuff
+    ABILITY_TYPE_CUSTOM                 = 99;  // 自定义
+}
+
+// 伤害类型
+enum PB_DamageType
+{
+    DAMAGE_TYPE_NONE        = 0;    // 无
+    DAMAGE_TYPE_ATTACK      = 1;    // 普通攻击
+    DAMAGE_TYPE_SKILL       = 2;    // 技能伤害
+    DAMAGE_TYPE_BUFF        = 3;    // 效果伤害
+}
+
+// 效果持续策略
+enum PB_DurationPolicy
+{
+    DURATION_POLICY_NONE       = 0; // 无效
+    DURATION_POLICY_INSTANT    = 1; // 即时(立即应用后销毁)
+    DURATION_POLICY_DURATION   = 2; // 持续时间效果
+    DURATION_POLICY_INFINITE   = 3; // 无限效果(手动移除)
+}
+
+// 堆叠策略
+enum PB_StackingPolicy
+{
+	STACKING_POLICY_NONE                    = 0;    // 不堆叠(刷新持续时间) 同名 + 同源
+	STACKING_POLICY_AGGREGATE_BY_SOURCE     = 1;    // 按源堆叠  同名 + 同源
+	STACKING_POLICY_AGGREGATE_BY_TARGET     = 2;    // 按目标堆叠 仅同名(不管来源) 多个不同源可以叠加到同一个效果
+};
+
+// 堆叠时持续时间刷新策略
+enum PB_StackDurationRefreshPolicy
+{
+	STACK_DURATION_REFRESH_POLICY_NONE                   = 0;    // 不刷新持续时间
+	STACK_DURATION_REFRESH_POLICY_REFRESH_ON_APPLICATION = 1;    // 每次应用都刷新 (默认策略)
+	STACK_DURATION_REFRESH_POLICY_NEVER_REFRESH          = 2;    // 永不刷新
+	STACK_DURATION_REFRESH_POLICY_REFRESH_ON_MAX_STACK   = 3;    // 达到最大层数时刷新
+};
+
+// 周期执行策略
+enum PB_PeriodicPolicy
+{
+	PERIODIC_POLICY_NONE                    = 0;     // 不周期执行
+	PERIODIC_POLICY_EXECUTE_ON_APPLICATION  = 1;     // 应用时立即执行一次
+    PERIODIC_POLICY_EXECUTE_ON_INTERVAL     = 2;     // 只在间隔时执行
+};
+
+// 修改器操作类型
+enum PB_ModifierOperation
+{
+    MODIFIER_OPERATION_NONE        = 0;   // 无效
+    MODIFIER_OPERATION_ADD         = 1;   // 加法
+    MODIFIER_OPERATION_MULTIPLY    = 2;   // 乘法(百分比)
+    MODIFIER_OPERATION_OVERRIDE    = 3;   // 覆盖
+}
+
+// 能力激活策略
+enum PB_AbilityActivationPolicy 
+{
+    ABILITY_ACTIVATION_POLICY_NONE = 0;
+    ABILITY_ACTIVATION_POLICY_ON_INPUT_TRIGGERED = 1;  // 输入触发时激活
+    ABILITY_ACTIVATION_POLICY_WHILE_INPUT_ACTIVE = 2;  // 输入持续时持续激活
+    ABILITY_ACTIVATION_POLICY_ON_SPAWN = 3;            // 生成时自动激活
+}
+
+// 能力网络策略
+enum PB_AbilityNetPolicy
+{
+    ABILITY_NET_POLICY_NONE = 0;
+    ABILITY_NET_POLICY_LOCAL_PREDICTED = 1;     // 本地预测
+    ABILITY_NET_POLICY_LOCAL_ONLY = 2;          // 仅本地
+    ABILITY_NET_POLICY_SERVER_INITIATED = 3;    // 服务器发起
+    ABILITY_NET_POLICY_SERVER_ONLY = 4;         // 仅服务器
+}
+
+// 能力取消策略
+enum PB_CancelAbilityPolicy 
+{
+    CANCEL_ABILITY_POLICY_NONE = 0;
+    CANCEL_ABILITY_POLICY_CANCEL_ABILITY = 1;      // 取消能力
+    CANCEL_ABILITY_POLICY_IGNORE_ABILITY = 2;      // 忽略新能力
+}
+
+// ==================== 能力授予信息 ====================
+
+message PB_AbilitySpec
+{
+    optional int32 ability_id    = 1;   // 能力ID(对应 abilityconfig.json)
+    optional int32 level         = 2;   // 能力等级(默认1)
+}
+
+// ==================== 战斗参与者 ====================
+// 外部填充每个参战实体的初始数据,战斗引擎解析生成 BattleEntity
+
+message PB_BattleParticipant
+{
+    optional int32 player_id                 = 1;   // ID(英雄对应 hero_id,怪物对应 monster_id)
+    optional PB_PlayerType player_type       = 2;   // 实体类型(英雄/怪物)
+    optional string name                     = 3;   // 显示名称(pvp为对手名/pve为怪物名)
+    optional int32 level                     = 4;   // 等级(默认1)
+    optional int32 team_id                   = 5;   // 队伍ID(玩家=uid,怪物=负值自增)
+    optional string team_name                = 6;   // 队伍名称(pvp对手名/pve怪物组名)
+    optional PB_TeamSide side                = 7;   // 阵营(攻击方/防守方)
+    repeated PB_AttrPair initial_attrs = 8; // 初始属性集合(复用 data.proto)
+    repeated PB_AbilitySpec abilities  = 9; // 能力集合(带等级)
+    repeated string init_tags       = 10;  // 初始标签(可选)
+}
+
+// ==================== 战斗队伍 ====================
+
+message PB_BattleTeam
+{
+    optional int32 team_id                       = 1;   // 队伍ID
+    optional string team_name                    = 2;   // 队伍名称
+    optional PB_TeamSide side                    = 3;   // 阵营
+    repeated PB_BattleParticipant members = 4; // 成员列表
+}
+
+// ==================== 战斗规则 ====================
+
+message PB_BattleRules
+{
+    optional PB_VictoryCondition victory_condition = 1; // 胜利条件
+    optional int32 max_turns         = 2;   // 最大回合数(0=无限制)
+    optional int32 max_duration      = 3;   // 最大战斗时长秒(0=无限制)
+    optional bool allow_flee         = 4;   // 是否允许逃跑
+    optional int32 score_limit       = 5;   // 分数上限
+    optional int32 target_member_id  = 6;   // 击杀目标实例ID
+}
+
+// ==================== 战斗请求 ====================
+
+message PB_BattleReq
+{
+    optional int32 battle_id                 = 1;   // 战斗ID
+    optional PB_BattleMode mode              = 2;   // 战斗模式
+    optional int32 battle_type               = 3;   // 战斗类型
+    optional int32 random_seed               = 4;   // 随机种子
+    optional PB_BattleRules rules            = 5;   // 战斗规则
+    repeated PB_BattleTeam teams    = 6;            // 参战队伍列表
+    optional int32 req_type                  = 7;   // 请求类型(透传)
+    optional int32 req_id                    = 8;   // 请求子ID(透传)
+}
+
+// ==================== 战斗结果 ====================
+
+message PB_BattleResult
+{
+    optional int32 battle_id                         = 1;   // 战斗ID
+    optional PB_BattleResultType result_type         = 2;   // 结果类型
+    optional int32 winner_team_id                    = 3;   // 胜利队伍ID
+    optional int32 total_turns                       = 4;   // 总回合数
+    optional int32 duration_ms                       = 5;   // 持续时间(毫秒)
+    optional string replay_text                      = 6;   // 战报文本
+    repeated PB_BattleParticipant final_participants = 7;   // 参战实体最终状态
+    optional int32 req_type                          = 8;   // 透传:请求类型
+    optional int32 req_id                            = 9;   // 透传:请求子ID
+    optional string report_key                       = 10;  // 战报文件key(用于历史查询)
+    optional int32 battle_type                       = 11;  // 战斗类型
+}

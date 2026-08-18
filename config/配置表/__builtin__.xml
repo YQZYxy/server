@@ -1,0 +1,32 @@
+<module name="">
+    <bean name="vector2" valueType="1" sep=",">
+        <var name="x" type="float"/>
+        <var name="y" type="float"/>
+    </bean>
+    <bean name="vector3" valueType="1" sep=",">
+        <var name="x" type="float"/>
+        <var name="y" type="float"/>
+        <var name="z" type="float"/>
+    </bean>
+    <bean name="vector4" valueType="1" sep=",">
+        <var name="x" type="float"/>
+        <var name="y" type="float"/>
+        <var name="z" type="float"/>
+        <var name="w" type="float"/>
+    </bean>
+    <bean name="ItemType" sep=",">
+        <var name="id" type="int"/>
+        <var name="num" type="int"/>
+    </bean>
+    <bean name="AttrModifierType" sep=",">
+        <var name="attr_id" type="int"/>
+        <var name="op" type="int"/>
+        <var name="value" type="double"/>
+    </bean>
+    <bean name="MonsterGroupEntry" sep=",">
+        <var name="monster_id" type="int"/>
+        <var name="count" type="int"/>
+        <var name="level" type="int"/>
+        <var name="attr_scale" type="float"/>
+    </bean>
+</module>

@@ -1,0 +1,207 @@
+[
+  {
+    "id": 1,
+    "name": "战士",
+    "description": "近战物理职业,擅长使用武器和重甲",
+    "job": 1,
+    "max_level": 100,
+    "base_exp": 100,
+    "exp_multiplier": 1.5,
+    "starting_abilities": [
+      1,
+      2,
+      1002
+    ],
+    "equip_types": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "base_attr": [
+      [
+        1,
+        100
+      ],
+      [
+        2,
+        50
+      ],
+      [
+        3,
+        15
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        30
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        3,
+        3
+      ]
+    ]
+  },
+  {
+    "id": 2,
+    "name": "法师",
+    "description": "远程魔法职业,擅长使用元素魔法",
+    "job": 2,
+    "max_level": 100,
+    "base_exp": 100,
+    "exp_multiplier": 1.5,
+    "starting_abilities": [
+      1,
+      3001,
+      3002,
+      1001
+    ],
+    "equip_types": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "base_attr": [
+      [
+        1,
+        80
+      ],
+      [
+        2,
+        100
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        20
+      ],
+      [
+        2,
+        30
+      ],
+      [
+        3,
+        1
+      ]
+    ]
+  },
+  {
+    "id": 3,
+    "name": "盗贼",
+    "description": "敏捷刺客,擅长快速攻击和暴击",
+    "job": 3,
+    "max_level": 100,
+    "base_exp": 100,
+    "exp_multiplier": 1.5,
+    "starting_abilities": [
+      1,
+      3
+    ],
+    "equip_types": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "base_attr": [
+      [
+        1,
+        100
+      ],
+      [
+        2,
+        50
+      ],
+      [
+        3,
+        10
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        25
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        2
+      ]
+    ]
+  },
+  {
+    "id": 4,
+    "name": "牧师",
+    "description": "治疗辅助职业,擅长恢复和增益",
+    "job": 4,
+    "max_level": 100,
+    "base_exp": 100,
+    "exp_multiplier": 1.5,
+    "starting_abilities": [
+      1,
+      1001,
+      1003,
+      3001
+    ],
+    "equip_types": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "base_attr": [
+      [
+        1,
+        100
+      ],
+      [
+        2,
+        80
+      ],
+      [
+        3,
+        6
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        25
+      ],
+      [
+        2,
+        20
+      ],
+      [
+        3,
+        1
+      ]
+    ]
+  }
+]

@@ -1,0 +1,113 @@
+{
+    // 在资源管理器中隐藏文件或文件夹
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/build": true,
+        "**/.vs": true,
+        "**/*.pdb": true,
+        "**/*.lib": true,
+        "**/*.dll": true,
+        "**/*.obj": true,
+        "**/*.tlog": true,
+        "**/lib": true,
+        "**/debug/**": true,
+        "**/release/": true,
+        "**/llama/": true,
+        "**/node_modules/": true,
+        "**/dist/": true,
+        "include/": true,
+        "luban-4.5.0/": true,
+    },
+    // 在全局搜索时排除指定文件或文件夹
+    "search.exclude": {
+        "**/build/**": true,
+        "**/release/**": true,
+        "**/debug/**": true,
+        "**/lib/**": true,
+        "**/.git/**": true,
+        "**/.vs/**": true,
+        "**/node_modules/": true,
+        "**/dist/": true,
+        "luban-4.5.0/": true,
+    },
+    // 让 VSCode 停止监控指定目录的文件变更
+    "files.watcherExclude": {
+        "**/build/**": true,
+        "**/release/**": true,
+        "**/debug/**": true,
+        "**/lib/**": true,
+        "**/.git/**": true,
+        "**/.vs/**": true,
+        "**/node_modules/": true,
+        "**/dist/": true,
+        "luban-4.5.0/": true,
+    },
+    // 不检查警告
+    "C_Cpp.files.exclude": {
+        "**/build/**": true,
+    },
+    // 所有文件默认使用 UTF-8 编码打开，不自动猜测编码
+    "files.encoding": "utf8",
+    "files.autoGuessEncoding": false,
+   
+    "editor.minimap.enabled": true,     // 右侧代码小地图
+    "workbench.startupEditor": "none",  // 启动时不打开欢迎页
+
+    // 设置终端默认使用 UTF-8 编码
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+    // TypeScript 屏蔽 node_modules 中第三方库 target=ES5 弃用警告
+    "js/ts.tsserver.experimental.enableProjectDiagnostics": false,
+
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "args": [
+                "-NoExit",
+                "-Command",
+                "chcp 65001 | Out-Null; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $PSDefaultParameterValues['*:Encoding'] = 'utf8'"
+            ]
+        },
+        "Windows Terminal": {
+            "path": "wt.exe",
+            "args": []
+        }
+    },
+    "terminal.integrated.fontFamily": "Consolas",
+
+    // 设置环境变量，确保输出和调试控制台使用 UTF-8
+    "terminal.integrated.env.windows": {
+        "PYTHONIOENCODING": "utf-8"
+    },
+    "Lua.diagnostics.globals": [
+        "LOG_ERROR",
+        "LOG_INFO",
+        "LOG_WARN",
+        "cpp_LoadProtoFiles",
+        "cpp_SendDBMsg",
+        "cpp_SendMsg",
+        "LOG_I",
+        "cpp_GetServerTime",
+        "RegisterEvent",
+        "TriggerEvent",
+        "UnregisterEvent",
+        "cpp_GetRoleData",
+        "cpp_SaveRoleData",
+        "GLO",
+        "TimerCreate",
+        "TimerRemove",
+        "ProtoGetBodyType",
+        "ProtoEncodeBody",
+        "ProtoDecodeBody",
+        "ProtoEncode",
+        "ProtoDecode",
+        "ProtoListTypes",
+        "ProtoListFields",
+        "cpp_FastSerialize",
+        "cpp_SendBattleMsg"
+    ],
+    "C_Cpp.default.compilerPath": "cl.exe",
+
+    // CMake Tools 不使用 CMakePresets.json (该文件仅供 build_vs.bat 和 VS 使用)
+    "cmake.useCMakePresets": "never",
+}

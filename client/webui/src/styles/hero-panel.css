@@ -1,0 +1,158 @@
+/* ============================================================
+   英雄面板 - Hero Panel
+   ============================================================ */
+
+.hero-panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+}
+.hero-display-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0;
+}
+.hero-main-avatar {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #7c5cfc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(79,110,247,0.3);
+}
+.hero-main-icon { font-size: 40px; }
+.hero-main-name { font-size: 20px; font-weight: 600; }
+
+.hero-level-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 8px;
+}
+.hero-level-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hero-level-text { font-size: 18px; font-weight: 600; color: var(--accent); }
+.hero-detail-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity .2s;
+  font-family: inherit;
+}
+.hero-detail-btn:hover { opacity: .85; }
+
+.hero-exp-bar { display: flex; flex-direction: column; gap: 4px; }
+.exp-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.exp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4F6EF7, #7c5cfc);
+  border-radius: 4px;
+  transition: width .3s;
+}
+.hero-exp-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.hero-power-area {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+}
+
+.hero-list-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero-list-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 0 4px;
+}
+.hero-list-icons {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+.hero-list-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all .2s;
+  min-width: 60px;
+}
+.hero-list-icon.active {
+  background: var(--primary);
+  box-shadow: 0 2px 10px rgba(79,110,247,0.3);
+}
+.hero-list-icon:hover { background: rgba(255,255,255,0.1); }
+.hero-list-emoji { font-size: 24px; }
+.hero-list-level { font-size: 11px; color: var(--text-secondary); }
+.hero-list-icon.active .hero-list-level { color: rgba(255,255,255,0.8); }
+
+/* ---- 英雄详情 ---- */
+.hero-detail-overlay .panel-container {
+  max-width: 420px;
+  max-height: 80vh;
+}
+.hero-detail-avatar {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+.hero-detail-icon { font-size: 60px; }
+
+.hero-detail-section { margin-bottom: 16px; }
+.hero-detail-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.hero-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.hero-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+}
+.detail-label { font-size: 13px; color: var(--text-secondary); }
+.detail-value { font-size: 13px; color: var(--text); font-weight: 500; }

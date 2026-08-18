@@ -1,0 +1,603 @@
+/* ============================================================
+   竞技场 - Arena Page
+   ============================================================ */
+
+.arena-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(180deg, #0a0a1a 0%, #1a1a3a 100%);
+}
+
+/* ---- 顶部栏 ---- */
+.arena-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.arena-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arena-topbar-center h2 {
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b35, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.arena-topbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.arena-back-btn {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.arena-back-btn:hover {
+  background: rgba(79, 110, 247, 0.15);
+  border-color: var(--primary);
+  color: var(--primary-light);
+}
+
+/* 分数显示 */
+.arena-score-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 215, 0, 0.1));
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+}
+
+.arena-score-icon {
+  font-size: 18px;
+}
+
+.arena-score-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffd700;
+}
+
+/* ---- 主体区域 ---- */
+.arena-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* 侧边栏按钮区 */
+.arena-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 8px;
+  gap: 12px;
+  min-width: 64px;
+}
+
+.arena-side-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  width: 56px;
+}
+
+.arena-side-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.arena-side-btn-icon {
+  font-size: 24px;
+}
+
+.arena-side-btn-label {
+  font-size: 11px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* 信息显示(右侧) */
+.arena-info-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.arena-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-secondary);
+  min-width: 56px;
+}
+
+.arena-info-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-light);
+}
+
+/* ---- 中间区域 ---- */
+.arena-center-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.arena-opponents-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* 对手列表 */
+.arena-opponents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* 对手卡片 */
+.arena-opponent-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.arena-opponent-card:hover {
+  background: rgba(79, 110, 247, 0.08);
+  border-color: var(--primary);
+}
+
+.arena-opponent-empty {
+  opacity: 0.45;
+  cursor: default;
+  border-style: dashed;
+}
+
+.arena-opponent-empty:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border);
+  cursor: default;
+}
+
+.arena-opponent-avatar {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.arena-opponent-hero-icon {
+  font-size: 24px;
+}
+
+.arena-opponent-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.arena-opponent-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.arena-opponent-detail {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* 刷新区域 */
+.arena-refresh-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.arena-refresh-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.arena-refresh-btn {
+  padding: 10px 32px;
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(79, 110, 247, 0.2), rgba(79, 110, 247, 0.1));
+  color: var(--primary-light);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.arena-refresh-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(79, 110, 247, 0.35), rgba(79, 110, 247, 0.2));
+  box-shadow: 0 0 16px rgba(79, 110, 247, 0.3);
+}
+
+.arena-refresh-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---- 对手详情 ---- */
+.arena-detail-content {
+  padding: 16px;
+}
+
+.arena-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.arena-detail-avatar {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  font-size: 32px;
+}
+
+.arena-detail-basic {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.arena-detail-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.arena-detail-score {
+  font-size: 14px;
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.arena-detail-power {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.arena-detail-section {
+  margin-bottom: 16px;
+}
+
+.arena-detail-section h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* 英雄卡片列表 */
+.arena-detail-heroes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 对手英雄头像行(横排) */
+.arena-opponent-heroes-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.arena-opponent-hero-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 80px;
+}
+
+.arena-opponent-hero-avatar:hover {
+  background: rgba(79, 110, 247, 0.1);
+  border-color: var(--primary);
+}
+
+.arena-opponent-hero-icon {
+  font-size: 28px;
+}
+
+.arena-opponent-hero-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.arena-opponent-hero-lv {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.arena-detail-hero-card {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.arena-detail-hero-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.arena-detail-hero-icon {
+  font-size: 20px;
+}
+
+.arena-detail-hero-id {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.arena-detail-hero-level {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+.arena-detail-hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+}
+
+.arena-stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.arena-stat-row span:first-child {
+  color: var(--text-secondary);
+}
+
+.arena-stat-row span:last-child {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.arena-detail-hero-abilities {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.arena-ability-tag {
+  padding: 2px 6px;
+  background: rgba(79, 110, 247, 0.15);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--primary-light);
+}
+
+/* 挑战按钮 */
+.arena-detail-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 16px 0;
+}
+
+.arena-challenge-btn {
+  padding: 12px 48px;
+  border: 2px solid #ff6b35;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 215, 0, 0.1));
+  color: #ffd700;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.arena-challenge-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.35), rgba(255, 215, 0, 0.2));
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  transform: scale(1.05);
+}
+
+/* ---- 战斗记录 ---- */
+.arena-log-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+/* ---- 竞技场排行榜战力 ---- */
+.arena-rank-power {
+  font-size: 12px;
+  color: var(--text-secondary);
+  min-width: 60px;
+  text-align: right;
+}
+
+/* ---- 战斗日志 ---- */
+.arena-log-list {
+  padding: 8px 0;
+}
+
+.arena-log-item {
+  margin: 6px 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.arena-log-win {
+  border-left: 3px solid var(--success);
+}
+
+.arena-log-lose {
+  border-left: 3px solid var(--danger);
+}
+
+.arena-log-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.arena-log-time {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.arena-log-result {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.arena-log-result.win {
+  color: var(--success);
+}
+
+.arena-log-result.lose {
+  color: var(--danger);
+}
+
+.arena-log-body {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.arena-log-opponent {
+  color: var(--text);
+}
+
+.arena-log-score {
+  font-weight: 600;
+}
+
+.arena-log-score.positive {
+  color: var(--success);
+}
+
+.arena-log-score.negative {
+  color: var(--danger);
+}
+
+.arena-log-score-after {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.arena-log-replay-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 11px;
+  padding: 2px 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.arena-log-replay-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ---- 通用 ---- */
+.arena-empty-hint {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}

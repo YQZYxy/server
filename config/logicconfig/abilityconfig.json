@@ -1,0 +1,498 @@
+[
+  {
+    "id": 1,
+    "name": "普通攻击",
+    "description": "基础物理攻击",
+    "ability_type": 1,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 0,
+    "cooldown_tags": [],
+    "cost_attrs": [],
+    "targeting_type": 2,
+    "range": 0,
+    "can_crit": true,
+    "base_value": 15,
+    "attr_adds": [
+      [
+        3,
+        0.5
+      ]
+    ],
+    "effect_ids": [],
+    "extra_params": [],
+    "damage_tags": [
+      "Damage.Physical"
+    ],
+    "ability_tags": [
+      "Ability.Attack.Melee"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [
+      "State.Control.Stun"
+    ],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 2,
+    "name": "重击",
+    "description": "强力一击,造成高额伤害",
+    "ability_type": 1,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 3,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        5
+      ]
+    ],
+    "targeting_type": 2,
+    "range": 0,
+    "can_crit": true,
+    "base_value": 35,
+    "attr_adds": [
+      [
+        3,
+        1.5
+      ]
+    ],
+    "effect_ids": [],
+    "extra_params": [],
+    "damage_tags": [
+      "Damage.Physical"
+    ],
+    "ability_tags": [
+      "Ability.Attack.Melee"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [
+      "State.Control.Stun"
+    ],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 3,
+    "name": "快速打击",
+    "description": "敏捷的快速攻击",
+    "ability_type": 1,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 2,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        10
+      ]
+    ],
+    "targeting_type": 2,
+    "range": 0,
+    "can_crit": true,
+    "base_value": 20,
+    "attr_adds": [
+      [
+        4,
+        0.8
+      ]
+    ],
+    "effect_ids": [],
+    "extra_params": [],
+    "damage_tags": [
+      "Damage.Physical"
+    ],
+    "ability_tags": [
+      "Ability.Attack.Melee"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 1001,
+    "name": "治疗术",
+    "description": "恢复生命值",
+    "ability_type": 4,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 5,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        30
+      ]
+    ],
+    "targeting_type": 3,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 80,
+    "attr_adds": [
+      [
+        5,
+        2
+      ]
+    ],
+    "effect_ids": [],
+    "extra_params": [],
+    "damage_tags": [],
+    "ability_tags": [
+      "Ability.Support.Heal"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [
+      "State.Combat.Casting"
+    ],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [
+      "State.Control.Silence"
+    ],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 1002,
+    "name": "战吼",
+    "description": "提升自身力量",
+    "ability_type": 5,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 8,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        1
+      ]
+    ],
+    "targeting_type": 1,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 0,
+    "attr_adds": [],
+    "effect_ids": [
+      1
+    ],
+    "extra_params": [],
+    "damage_tags": [],
+    "ability_tags": [
+      "Ability.Support.Buff"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 1003,
+    "name": "力量祝福",
+    "description": "提升力量",
+    "ability_type": 5,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 20,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        25
+      ]
+    ],
+    "targeting_type": 1,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 0,
+    "attr_adds": [],
+    "effect_ids": [
+      2
+    ],
+    "extra_params": [],
+    "damage_tags": [],
+    "ability_tags": [
+      "Ability.Support.Buff"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 2001,
+    "name": "生命汲取",
+    "description": "吸取目标生命值",
+    "ability_type": 3,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 8,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        35
+      ]
+    ],
+    "targeting_type": 2,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 40,
+    "attr_adds": [
+      [
+        5,
+        1.2
+      ]
+    ],
+    "effect_ids": [],
+    "extra_params": [
+      0.5
+    ],
+    "damage_tags": [
+      "Damage.Shadow"
+    ],
+    "ability_tags": [
+      "Ability.Attack.Magic"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 2002,
+    "name": "暗影箭",
+    "description": "发射暗影能量",
+    "ability_type": 2,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 4,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        25
+      ]
+    ],
+    "targeting_type": 2,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 30,
+    "attr_adds": [
+      [
+        5,
+        1
+      ],
+      [
+        7,
+        0.5
+      ]
+    ],
+    "effect_ids": [],
+    "extra_params": [],
+    "damage_tags": [
+      "Damage.Shadow"
+    ],
+    "ability_tags": [
+      "Ability.Attack.Magic"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 2003,
+    "name": "暗影护盾",
+    "description": "召唤暗影护盾保护自己",
+    "ability_type": 5,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 20,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        40
+      ]
+    ],
+    "targeting_type": 1,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 0,
+    "attr_adds": [],
+    "effect_ids": [
+      3
+    ],
+    "extra_params": [],
+    "damage_tags": [],
+    "ability_tags": [
+      "Ability.Support.Buff"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 3001,
+    "name": "冰霜箭",
+    "description": "发射冰霜能量,减速目标",
+    "ability_type": 7,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 3,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        20
+      ]
+    ],
+    "targeting_type": 2,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 25,
+    "attr_adds": [
+      [
+        5,
+        1.2
+      ]
+    ],
+    "effect_ids": [
+      4
+    ],
+    "extra_params": [],
+    "damage_tags": [
+      "Damage.Ice"
+    ],
+    "ability_tags": [
+      "Ability.Attack.Magic"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 3002,
+    "name": "冰盾",
+    "description": "冰霜护盾",
+    "ability_type": 5,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 12,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        30
+      ]
+    ],
+    "targeting_type": 1,
+    "range": 0,
+    "can_crit": false,
+    "base_value": 0,
+    "attr_adds": [],
+    "effect_ids": [
+      5
+    ],
+    "extra_params": [],
+    "damage_tags": [],
+    "ability_tags": [
+      "Ability.Support.Buff"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  },
+  {
+    "id": 3003,
+    "name": "暴风雪",
+    "description": "大范围冰霜伤害",
+    "ability_type": 2,
+    "level": 0,
+    "activation_policy": 0,
+    "net_execution_policy": 0,
+    "cooldown_duration": 15,
+    "cooldown_tags": [],
+    "cost_attrs": [
+      [
+        2,
+        50
+      ]
+    ],
+    "targeting_type": 4,
+    "range": 3,
+    "can_crit": false,
+    "base_value": 50,
+    "attr_adds": [
+      [
+        5,
+        1.2
+      ]
+    ],
+    "effect_ids": [
+      4
+    ],
+    "extra_params": [],
+    "damage_tags": [
+      "Damage.Ice"
+    ],
+    "ability_tags": [
+      "Ability.Attack.Magic",
+      "Ability.Attack.AOE"
+    ],
+    "cancel_abilities_with_tags": [],
+    "block_abilities_with_tags": [],
+    "activation_owned_tags": [],
+    "activation_required_tags": [],
+    "activation_blocked_tags": [],
+    "target_required_tags": [],
+    "target_blocked_tags": []
+  }
+]

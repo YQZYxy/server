@@ -1,0 +1,171 @@
+/* ============================================================
+   阵容面板 - Lineup Panel
+   ============================================================ */
+
+.lineup-type-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.lineup-type-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.05);
+  transition: all .2s;
+}
+.lineup-type-tab.active { background: var(--primary) !important; }
+.lineup-type-tab:hover { background: rgba(255,255,255,0.1); }
+.lineup-type-icon { font-size: 18px; }
+.lineup-type-label { font-size: 14px; font-weight: 500; }
+
+.lineup-slots-area {
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px;
+}
+.lineup-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.lineup-slot {
+  aspect-ratio: 3/4;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+  min-height: 80px;
+}
+.lineup-slot.empty {
+  border: 2px dashed rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.03);
+}
+.lineup-slot.empty:hover {
+  border-color: var(--primary);
+  background: rgba(79,110,247,0.08);
+}
+.lineup-slot.filled {
+  background: linear-gradient(135deg, rgba(79,110,247,0.2), rgba(124,92,252,0.15));
+  border: 2px solid rgba(79,110,247,0.3);
+}
+.lineup-slot.drag-over {
+  border-color: var(--primary) !important;
+  background: rgba(79,110,247,0.2) !important;
+  box-shadow: 0 0 16px rgba(79,110,247,0.4);
+  transform: scale(1.05);
+}
+.lineup-slot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 8px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.lineup-slot-icon { font-size: 28px; }
+.lineup-slot-name { font-size: 12px; color: var(--text); }
+.lineup-slot-remove {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(255,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+.lineup-slot-remove:hover { background: rgba(255,0,0,0.6); }
+.lineup-slot-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lineup-slot-number {
+  font-size: 20px;
+  color: rgba(255,255,255,0.15);
+  font-weight: 600;
+}
+
+.lineup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.lineup-action-btn {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+}
+.lineup-action-btn:disabled { opacity: .4; cursor: not-allowed; }
+.lineup-action-btn.primary {
+  background: var(--primary);
+  color: #fff;
+}
+.lineup-action-btn.primary:hover:not(:disabled) { opacity: .85; }
+
+.lineup-hero-list { padding: 0 16px 16px; }
+.lineup-hero-list-title {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.lineup-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+}
+.lineup-hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+  touch-action: none;
+}
+.lineup-hero-card:hover { background: rgba(255,255,255,0.1); }
+.lineup-hero-card.in-lineup { opacity: .5; }
+.lineup-hero-card.selectable {
+  border: 1px dashed var(--primary);
+  background: rgba(79,110,247,0.08);
+}
+.lineup-hero-icon { font-size: 24px; }
+.lineup-hero-name { font-size: 11px; color: var(--text); }
+.lineup-hero-level { font-size: 10px; color: var(--text-secondary); }
+.lineup-hero-badge {
+  position: absolute;
+  top: 2px; right: 2px;
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--primary);
+  color: #fff;
+}

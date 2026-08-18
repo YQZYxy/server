@@ -1,0 +1,363 @@
+[
+  {
+    "id": 1001,
+    "name": "哥布林",
+    "level": 1,
+    "monster_type": 1,
+    "base_attr": [
+      [
+        1,
+        50
+      ],
+      [
+        2,
+        50
+      ],
+      [
+        3,
+        8
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        25
+      ],
+      [
+        2,
+        20
+      ]
+    ],
+    "abilities": [
+      1,
+      2
+    ],
+    "ability_weights": [
+      [
+        1,
+        60
+      ],
+      [
+        2,
+        40
+      ]
+    ],
+    "ai_behavior": [
+      [
+        "aggressive",
+        70
+      ],
+      [
+        "defensive",
+        20
+      ],
+      [
+        "balanced",
+        10
+      ]
+    ],
+    "loot_table": [
+      {
+        "id": 2,
+        "num": 100
+      },
+      {
+        "id": 3001,
+        "num": 1
+      },
+      {
+        "id": 3003,
+        "num": 1
+      }
+    ],
+    "phase_triggers": []
+  },
+  {
+    "id": 1002,
+    "name": "巨魔",
+    "level": 5,
+    "monster_type": 2,
+    "base_attr": [
+      [
+        1,
+        100
+      ],
+      [
+        2,
+        50
+      ],
+      [
+        3,
+        20
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        25
+      ],
+      [
+        2,
+        20
+      ]
+    ],
+    "abilities": [
+      1,
+      2,
+      2002,
+      2003
+    ],
+    "ability_weights": [
+      [
+        1,
+        25
+      ],
+      [
+        2,
+        25
+      ],
+      [
+        2002,
+        20
+      ],
+      [
+        2003,
+        10
+      ]
+    ],
+    "ai_behavior": [
+      [
+        "aggressive",
+        80
+      ],
+      [
+        "defensive",
+        15
+      ],
+      [
+        "balanced",
+        5
+      ]
+    ],
+    "loot_table": [
+      {
+        "id": 2,
+        "num": 50
+      },
+      {
+        "id": 3001,
+        "num": 1
+      },
+      {
+        "id": 3003,
+        "num": 1
+      }
+    ],
+    "phase_triggers": []
+  },
+  {
+    "id": 1003,
+    "name": "暗影领主",
+    "level": 10,
+    "monster_type": 3,
+    "base_attr": [
+      [
+        1,
+        100
+      ],
+      [
+        2,
+        50
+      ],
+      [
+        3,
+        30
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        50
+      ],
+      [
+        2,
+        30
+      ]
+    ],
+    "abilities": [
+      1,
+      2,
+      1001,
+      2002,
+      2003
+    ],
+    "ability_weights": [
+      [
+        1,
+        25
+      ],
+      [
+        2,
+        25
+      ],
+      [
+        1001,
+        20
+      ],
+      [
+        2002,
+        10
+      ],
+      [
+        2003,
+        10
+      ]
+    ],
+    "ai_behavior": [
+      [
+        "aggressive",
+        60
+      ],
+      [
+        "defensive",
+        25
+      ],
+      [
+        "balanced",
+        15
+      ]
+    ],
+    "loot_table": [
+      {
+        "id": 2,
+        "num": 200
+      },
+      {
+        "id": 3001,
+        "num": 1
+      },
+      {
+        "id": 3003,
+        "num": 1
+      }
+    ],
+    "phase_triggers": [
+      [
+        [
+          "health_percent",
+          "50"
+        ],
+        [
+          "ability_id",
+          "2003"
+        ],
+        [
+          "message",
+          "\uD83D\uDD25 暗影领主进入狂暴状态!"
+        ]
+      ],
+      [
+        [
+          "health_percent",
+          "25"
+        ],
+        [
+          "ability_id",
+          "2001"
+        ],
+        [
+          "message",
+          "\uD83D\uDC80 暗影领主陷入绝望,开始吸取生命!"
+        ]
+      ]
+    ]
+  },
+  {
+    "id": 1004,
+    "name": "冰霜元素",
+    "level": 7,
+    "monster_type": 2,
+    "base_attr": [
+      [
+        1,
+        100
+      ],
+      [
+        2,
+        50
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "attr_growth": [
+      [
+        1,
+        30
+      ],
+      [
+        2,
+        25
+      ]
+    ],
+    "abilities": [
+      1,
+      2,
+      3001,
+      3002,
+      3003
+    ],
+    "ability_weights": [
+      [
+        1,
+        25
+      ],
+      [
+        2,
+        25
+      ],
+      [
+        3001,
+        10
+      ],
+      [
+        3002,
+        20
+      ],
+      [
+        3003,
+        10
+      ]
+    ],
+    "ai_behavior": [
+      [
+        "aggressive",
+        70
+      ],
+      [
+        "defensive",
+        20
+      ],
+      [
+        "balanced",
+        10
+      ]
+    ],
+    "loot_table": [
+      {
+        "id": 2,
+        "num": 80
+      },
+      {
+        "id": 3001,
+        "num": 1
+      },
+      {
+        "id": 3003,
+        "num": 1
+      }
+    ],
+    "phase_triggers": []
+  }
+]

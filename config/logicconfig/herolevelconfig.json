@@ -1,0 +1,42 @@
+[
+  {
+    "id": 5,
+    "level_rewards": [
+      {
+        "id": 3001,
+        "num": 1
+      },
+      {
+        "id": 3003,
+        "num": 1
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "level_rewards": [
+      {
+        "id": 3003,
+        "num": 1
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "level_rewards": [
+      {
+        "id": 3005,
+        "num": 1
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "level_rewards": [
+      {
+        "id": 3005,
+        "num": 2
+      }
+    ]
+  }
+]

@@ -1,0 +1,74 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    // "version": "0.2.0",
+    // "configurations": [
+    //     {
+    //         "name": "Run with Node.js",
+    //         "type": "node",
+    //         "request": "launch",
+    //         "program": "${file}",
+    //         "runtimeExecutable": "${execPath}",
+    //         "console": "integratedTerminal",
+    //         "internalConsoleOptions": "neverOpen",
+    //         "skipFiles": [
+    //             "<node_internals>/**"
+    //         ],
+    //         "preLaunchTask": "npm: npm install"
+    //     }
+    // ]
+
+    "version": "0.2.0",
+    "configurations": [
+    {
+      "name": "agent",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/client/agent/server.py",
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "justMyCode": false,
+      "env": {
+        "WEBUI_MEMORY_DIR": "D:/YQZY/agent_memory"
+      }
+    },
+    {
+      "name": "gatewayserver",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/debug/gatewayserver.exe",
+      "args": [],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "webui",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client/webui/src",
+      "sourceMapPathOverrides": {
+        "/@fs/*": "${workspaceFolder}/*",
+        "/src/*": "${workspaceFolder}/client/webui/src/*"
+      }
+    },
+  ],
+  "compounds": [
+    {
+      "name": "前端+agent调试",
+      "configurations": [
+        "agent",
+        "gatewayserver",
+        "webui",
+      ]
+    },
+    {
+      "name": "前端调试",
+      "configurations": [
+        "gatewayserver",
+        "webui",
+      ]
+    },
+  ]
+}

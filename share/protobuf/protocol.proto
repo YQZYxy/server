@@ -1,0 +1,725 @@
+// 字段必须加 optional 关键字 
+// 结构命名加 PB_ 
+// 协议命名加 P_
+syntax = "proto3";
+
+import "data.proto";
+import "battledata.proto";
+
+// 消息头
+message PB_MessageHead
+{
+	optional int32 msg_type	= 1;	
+	repeated int32 param 	= 2;	
+	optional string token	= 3;	//外部才需要
+}
+
+// ================================================================================ 
+// =============================网关控制协议======================================
+// ================================================================================ 
+
+// 网关→前端: 服务器连接结果 / 断线通知
+// MHT_SERVER_CONNECT_RESULT = 1
+message P_ServerConnectResult
+{
+	optional bool success		= 1;	// TCP 连接是否成功
+	optional string error		= 2;	// 失败原因
+	optional bool disconnect	= 3;	// TCP 断线标记
+}
+
+// ================================================================================ 
+// =============================内部协议=========================================== 
+// ================================================================================ 
+
+// 服务器心跳
+// MHT_HEARTBEAT = 100
+message P_DBHeartbeat
+{
+	optional int32 server_id	= 1;	
+	optional int64 time 		= 2;	
+}
+
+// 服务器基础数据请求
+// MHT_SERVER_GLOBAL_DATA_C = 101
+message P_ServerlDataDb_C			
+{
+	optional int32 req_type					= 1;
+	optional PB_ServerGlobalData server_global_data = 2;	 
+}
+
+// 服务器基础数据返回
+// MHT_SERVER_GLOBAL_DATA_S = 102
+message P_ServerlDataDb_S			
+{
+	optional int32 req_type					= 1;
+	optional int32 save_ret					= 2;
+	optional PB_ServerGlobalData server_global_data = 3;	 
+}
+
+// ============================lua全局数据数据库=======================================
+
+message PB_GlobalDataDbNode
+{
+	optional string id						= 1;
+	optional string data						= 2;
+} 
+
+// lua全局数据请求
+// MHT_GLOBAL_DATA_DB_C = 103
+message P_GlobalDataDb_C 			
+{
+	optional int32 req_type						= 1;
+	repeated PB_GlobalDataDbNode datas	= 2;
+}
+
+// lua全局数据返回
+// MHT_GLOBAL_DATA_DB_S = 104
+message P_GlobalDataDb_S 			
+{
+	optional int32 req_type						= 1;
+	repeated PB_GlobalDataDbNode datas	= 2;
+}
+
+// ============================竞技场数据库=======================================
+
+// 竞技场数据库节点
+message PB_ArenaDbNode
+{
+	optional int64 uid						= 1;	// 用户uid
+	optional int32 score						= 2;	// 积分
+	optional string data						= 3;	// 序列化的lua数据
+}
+
+// 竞技场数据库请求
+// MHT_ARENA_DB_C = 105
+message P_ArenaDb_C
+{
+	optional int32 req_type					= 1;	// 1=加载所有 2=保存所有 3=保存单个
+	repeated PB_ArenaDbNode datas		= 2;	// 数据列表
+}
+
+// 竞技场数据库返回
+// MHT_ARENA_DB_S = 106
+message P_ArenaDb_S
+{
+	optional int32 req_type					= 1;	
+	optional int32 save_ret					= 2;	// 保存结果
+	repeated PB_ArenaDbNode datas		= 3;	// 数据列表
+}
+
+// ============================排行榜数据库=======================================
+
+// 排行榜数据库节点
+message PB_RankDbNode
+{
+	optional int64 uid						= 1;	// 用户uid
+	optional string name						= 2;	// 名字
+	optional int64 value					    = 3;	// 排行榜主值(用于排序)
+	optional string data						= 4;	// 序列化的lua数据
+}
+
+// 排行榜数据库请求
+// MHT_RANK_DB_C = 107
+message P_RankDb_C
+{
+	optional int32 req_type					= 1;	// 1=按类型加载 2=按类型保存 3=保存单个
+	optional int32 rank_type					= 2;	// 排行榜类型
+	repeated PB_RankDbNode datas		= 3;	// 数据列表
+}
+
+// 排行榜数据库返回
+// MHT_RANK_DB_S = 108
+message P_RankDb_S
+{
+	optional int32 req_type					= 1;
+	optional int32 save_ret					= 2;	// 保存结果
+	optional int32 rank_type					= 3;	// 排行榜类型
+	repeated PB_RankDbNode datas		= 4;	// 数据列表
+}
+
+// ============================LLM 聊天协议========================================
+
+// LLM 聊天请求 (Gateway → Global)
+// MHT_LLM_CHAT_REQ = 110
+message P_LlmChatReq
+{
+	optional string messages_json		= 1;	// 消息列表 JSON (OpenAI 格式)
+	optional string tools_json			= 2;	// 工具列表 JSON
+	optional int32 max_tokens			= 3;	// 最大生成 token 数
+	optional float temperature			= 4;	// 温度
+	optional bool stream				= 5;	// 是否流式
+	optional string model				= 6;	// 模型名
+	optional string grammar				= 7;	// 语法约束
+	optional string json_schema			= 8;	// JSON Schema
+	optional bool enable_thinking		= 9;	// 启用思考
+	optional bool use_jinja				= 10;	// 使用 Jinja 模版
+	optional string session_key			= 11;	// 会话标识
+	optional string media_datas_json	= 12;	// 多模态媒体数据 JSON
+	optional int64 req_id				= 13;	// 请求 ID (匹配响应)
+	optional bool add_generation_prompt	= 14;	// 添加生成 prompt
+	optional float response_format_type	= 15;	// response_format type
+}
+
+// LLM 聊天流式响应 (Global → Gateway)
+// MHT_LLM_CHAT_RESPONSE = 111
+message P_LlmChatResponse
+{
+	optional string content_delta		= 1;	// 文本 token 增量
+	optional string reasoning_delta		= 2;	// 思考 token 增量
+	optional int32 index				= 3;	// choice index
+	optional int64 req_id				= 4;	// 请求 ID (匹配请求)
+	optional string tool_call_json		= 5;	// 工具调用 delta JSON
+	optional int32 tool_call_index		= 6;	// 工具调用索引 (-1 表示非工具调用)
+	optional string tool_call_id		= 7;	// 工具调用 ID
+	optional string tool_call_name		= 8;	// 工具调用名
+}
+
+// LLM 聊天完成通知 (Global → Gateway)
+// MHT_LLM_CHAT_DONE = 112
+message P_LlmChatDone
+{
+	optional int64 req_id				= 1;	// 请求 ID (匹配请求)
+	optional string finish_reason		= 2;	// 完成原因: "stop", "length", "tool_calls"
+	optional int32 prompt_tokens		= 3;	// 提示 token 数
+	optional int32 completion_tokens	= 4;	// 生成 token 数
+	optional string full_text			= 5;	// 完整文本(用于工具调用回退检测)
+	optional bool has_tool_calls		= 6;	// 是否包含工具调用
+}
+
+// LLM 模型列表请求 (Gateway → Global)
+// MHT_LLM_MODELS_REQ = 113
+message P_LlmModelsReq
+{
+	optional int64 req_id			= 1;
+}
+
+// LLM 模型列表响应 (Global → Gateway)
+// MHT_LLM_MODELS_RES = 114
+message P_LlmModelsRes
+{
+	optional int64 req_id			= 1;
+	optional string models_json			= 2;	// 模型列表 JSON
+}
+
+// LLM 健康检查请求 (Gateway → Global)
+// MHT_LLM_HEALTH_REQ = 115
+message P_LlmHealthReq
+{
+	optional int64 req_id			= 1;
+}
+
+// LLM 健康检查响应 (Global → Gateway)
+// MHT_LLM_HEALTH_RES = 116
+message P_LlmHealthRes
+{
+	optional int64 req_id			= 1;
+	optional string status				= 2;
+	optional bool running				= 3;
+}
+
+// ============================角色相关数据库=======================================
+
+enum PSAVEROLEDATA_C{
+	PE_SAVE_TYPE_CREATE = 0;		// 创建
+	PE_SAVE_TYPE_UPDATE = 1;		// 保存更新
+	PE_SAVE_TYPE_UPDATE_CACHE = 2;	// 保存更新缓存
+}
+
+// 保存角色信息请求
+// MHT_SAVE_ROLE_DATA_C = 1000
+message P_SaveRoleData_C			
+{
+	optional int32 req_type = 1;
+	optional int32 netid				= 2;
+	optional PB_RoleData role_data		= 3;	
+	optional int32 server_id			= 4;
+}
+// 保存角色信息返回
+// MHT_SAVE_ROLE_DATA_S = 1001
+message P_SaveRoleData_S			
+{
+	optional int32 req_type = 1;
+	optional int32 netid					= 2;
+	optional int32 ret						= 3;	//1成功 0失败
+	optional PB_RoleData create_role_data	= 4;	//创角下发
+}
+
+
+enum PINITROLEDATA_C{
+	PE_INIT_TYPE_INIT = 0;		// 初始化 根据uid查找
+	PE_INIT_TYPE_LOGIN = 1;		// 登录 根据username查找
+	PE_INIT_TYPE_FIND = 2;		// 查找 根据uid查找 不存储到角色管理器
+}
+
+// 初始化角色信息请求
+// MHT_INIT_ROLE_DATA_C = 1002
+message P_InitRoleData_C			
+{
+	optional int32 req_type = 1;
+	optional int32 uid					= 2;
+	
+	// 登录专用
+	optional string user_name				= 3;
+	optional int32 netid				= 4;
+}
+
+// 初始化角色信息返回
+// MHT_INIT_ROLE_DATA_S = 1003
+message P_InitRoleData_S
+{
+	optional int32 req_type = 1;
+	optional PB_RoleData role_data		= 2;
+	optional string user_name				= 3;
+	optional int32 netid				= 4;
+	optional int32 ret					= 5;	//1成功 0失败
+}
+
+
+// 保存角色信息请求 PSAVEROLEDATA_C
+// MHT_SAVE_MULTIPLE_ROLE_DATA_C = 1004
+message P_SaveMultipleRoleData_C			
+{
+	optional int32 req_type = 1;
+	repeated P_SaveRoleData_C	datas	= 2;
+}
+// 保存角色信息返回 PSAVEROLEDATA_C
+// MHT_SAVE_MULTIPLE_ROLE_DATA_S = 1005
+message P_SaveMultipleRoleData_S			
+{
+	optional int32 req_type = 1;
+	repeated P_SaveRoleData_S	datas	= 2;
+}
+
+
+// 初始化角色信息请求 PINITROLEDATA_C
+// MHT_INIT_MULTIPLE_ROLE_DATA_C = 1006
+message P_InitMultipleRoleData_C			
+{
+	optional int32 req_type = 1;
+	repeated P_InitRoleData_C	datas	= 2;
+}
+
+// 初始化角色信息返回 PINITROLEDATA_C
+// MHT_INIT_MULTIPLE_ROLE_DATA_S = 1007
+message P_InitMultipleRoleData_S
+{
+	optional int32 req_type = 1;
+	repeated P_InitRoleData_S	datas	= 2;
+}
+
+// ============================聊天数据库=======================================
+
+message PB_InnerChatMap {
+  map<int64, PB_ChatData> chats = 1;
+}
+
+// 聊天数据库请求
+// MHT_CHAT_DB_C = 1008
+message P_ChatDb_C			
+{
+	optional int32 req_type					= 1;
+	map<int32,PB_InnerChatMap> types  	= 2;
+}
+
+// 聊天数据库返回
+// MHT_CHAT_DB_S = 1009
+message P_ChatDb_S			
+{
+	optional int32 req_type					= 1;
+	map<int32,PB_InnerChatMap> types  	= 2;
+	optional int32 save_ret					= 3;
+}
+
+
+
+
+// ================================================================================ 
+// ============================战斗服协议==========================================
+// ================================================================================ 
+
+// 战斗服注册
+// MHT_BATTLE_SERVER_REGISTER = 20001
+message P_BattleServerRegister
+{
+    optional int32 id					= 1;		// 战斗服id
+    optional string ip					= 2;
+    optional int32 port					= 3;
+    optional int32 weight				= 4;
+}
+
+// 战斗服心跳
+// MHT_BATTLE_SERVER_HEARTBEAT = 20002
+message P_BattleServerHeartbeat
+{
+    optional int32 id						= 1;	// 战斗服id
+    optional int32 player_count				= 2;
+    optional double cpu_usage				= 3;
+}
+
+// 战斗服cmd
+// MHT_BATTLE_SERVER_COMMAND = 20003
+message P_BattleServerCommand
+{
+    optional int32 id				= 1;		// 战斗服id
+    optional string command			= 2;
+}
+
+// 战斗服状态
+// MHT_BATTLE_SERVER_STATUS = 20004
+message P_BattleServerStatus
+{
+    optional int32 id				= 1;		// 战斗服id
+    optional bool alive				= 2;
+    optional int32 player_count		= 3;
+    optional double cpu_usage		= 4;
+}
+
+// 向战斗服注册角色信息
+// MHT_BATTLE_SERVER_REGISTER_TOKEN_AND_ROLE_DATA = 20005
+message P_BattleServerRegisterTokenAndRoleData
+{
+	optional int32 id					= 1;	// 战斗服id
+	optional PB_RoleData role_data		= 2;	// 角色数据
+	optional string token	= 3;
+}
+
+// 战斗服保存角色信息
+// MHT_BATTLE_SAVE_ROLE_DATA = 20006
+message P_BattleServerSaveRoleData
+{
+	optional PB_RoleData role_data		= 1;	// 角色数据
+	optional string token	= 2;
+}
+
+// 战斗服提出玩家
+// MHT_BATTLE_KICK_OUT_ROLE = 20007
+message P_BattleServerKickOutRole
+{
+	optional int32 uid		= 1;	// 角色数据
+	optional string token		= 2; // 角色令牌
+}
+
+// ========================================上面是UE实时战斗的协议跟battle没有关系=====================================================
+
+// 战斗执行请求 / 战报查询(设置 report_key 时为查询)
+// MHT_BATTLE_EXECUTE_REQ = 20008
+message P_BattleExecuteReq
+{
+    optional int32 req_id                    = 1;   // 请求序列号
+    optional PB_BattleReq battle_req 		= 2;   // 战斗请求数据(执行战斗时设置)
+    optional string report_key      = 3;   // 战报key(查询战报时设置,优先级高于 battle_req)
+    optional int32 uid              = 4;   // 发起战斗的角色uid
+}
+
+// 战斗执行返回
+// MHT_BATTLE_EXECUTE_RES = 20009
+message P_BattleExecuteRes
+{
+    optional int32 req_id                    = 1;   // 请求序列号
+    optional int32 ret                       = 2;   // 0=失败 1=成功
+    optional PB_BattleResult battle_result   = 3;   // 战斗结果
+}
+
+// 战斗取消请求
+// MHT_BATTLE_CANCEL_REQ = 20010
+message P_BattleCancelReq
+{
+    optional int32 battle_id = 1;
+}
+
+// 战斗查询请求
+// MHT_BATTLE_QUERY_REQ = 20011
+message P_BattleQueryReq
+{
+    optional int32 req_id    = 1;
+    optional int32 battle_id = 2;
+}
+
+// 战斗查询返回
+// MHT_BATTLE_QUERY_RES = 20012
+message P_BattleQueryRes
+{
+    optional int32 req_id            = 1;
+    optional int32 battle_id         = 2;
+    optional PB_BattlePhase phase    = 3;
+    optional bool is_active          = 4;
+}
+
+// C++战斗服注册
+// MHT_BATTLE_CS_SERVER_REGISTER = 20013
+message P_BattleCsServerRegister
+{
+    optional int32 id					= 1;
+    optional int32 weight				= 2;
+}
+
+// ================================================================================ 
+// ============================外部协议============================================
+// ================================================================================ 
+
+// ============================登录=======================================
+
+// 角色登录请求
+// MHT_LOGIN_CS = 30001
+message P_LoginReq_CS			
+{
+	optional string login_user_name			= 1;
+}
+
+// 角色登录返回
+// MHT_LOGIN_SC=30002
+message P_LoginReq_SC			
+{
+	optional string error_message			= 1;
+	optional string token					= 2;
+}
+
+// ============================GM=======================================
+
+// GM指令请求
+// MHT_GM_CS = 30003
+message P_GM_CS			
+{
+	optional string params					= 1;
+}
+// GM指令返回
+// MHT_GM_SC = 30004
+message P_GM_SC			
+{
+	optional string params					= 1;
+	optional int32 ret						= 2;
+}
+
+// ============================UE战斗=======================================
+
+// ue战斗服请求
+// MHT_BATTLE_SERVER_CS = 30005
+message P_BattleServer_CS			
+{
+	repeated int32 param					= 1;
+}
+
+// ue战斗服返回
+// MHT_BATTLE_SERVER_SC = 30006
+message P_BattleServer_SC			
+{
+	optional int32 ret						= 1;
+	optional string server_ip						= 2;	// battle server ip
+	optional int32 server_port						= 3;	// battle server port
+}
+
+// ============================角色=======================================
+
+// 角色心跳
+// MHT_USER_HEARTBEAT = 30007
+message P_UserHeartbeat
+{
+	optional int64 time 		= 1;	
+}
+
+
+// 角色数据请求
+// MHT_SYNC_ROLE_INFO_REQ_CS = 30008
+message P_SyncRoleInfoReq_CS			
+{
+	optional int32 req_type				= 1;
+	optional int32 token					= 2;
+	optional string user_name			= 3;
+}
+
+// 角色登录返回
+// MHT_SYNC_ROLE_INFO_RET_SC = 30009
+message P_SyncRoleInfoRet_SC		
+{
+	optional PB_RoleBaseInfo role_base_info		= 1;
+	optional int32 server_id						= 2;
+}
+
+// ============================聊天=======================================
+
+// 聊天请求
+// MHT_CHAT_CS = 30010
+message P_Chat_CS			
+{
+	optional int32 req_type					= 1;	// 0:set 1:get
+	optional int32 type						= 2;
+	optional string chat_msg					= 3;
+	optional uint64 begin_id					= 4;	// 从那条id开始获取旧数据
+	optional uint64 get_count				= 5;	// 从id开始获取多少条
+}
+
+// 聊天返回
+// MHT_CHAT_SC = 30011
+message P_Chat_SC			
+{
+	optional int32 type				= 1;
+	optional uint64 begin_id		= 2;	// begin_id == end_id 表示单条新信息
+	optional uint64 end_id			= 3;
+	repeated PB_ChatData chat_msgs	= 4;		
+}
+
+// ============================战斗=======================================
+
+// gas战斗cmd请求
+// MHT_GAS_BATTLE_CS = 30012
+message P_GasBattle_CS
+{
+	optional int32 req_type 		= 1;	// 0=战斗 1=获取战报
+	optional int32 battle_type	= 2;
+	optional int32 id			= 3;	// battle_type 为pve时为关卡id,pvp时为uid
+	optional string battle_report_key	= 4;	// req_type=1时,指定要获取的战报key
+	// 测试的参数
+	optional string params			= 10;
+}
+
+// gas战斗cmd返回
+// MHT_GAS_BATTLE_SC = 30013
+message P_GasBattle_SC
+{
+	optional int32 ret_type 			= 1;		// 对应 P_GasBattle_CS 的 req_type
+	optional string battle_report_key	= 2;	// 战报唯一key
+	optional string battle_report		= 3;	// 战报事件
+	optional int32 battle_type			= 4;	// 战斗类型
+	optional int32 id					= 5;	// 关联id(主线为关卡id,竞技场为对手uid)
+	optional int32 result_type			= 6;	// 战斗结果(对应Const.BattleResultType: 0=无 1=胜利 2=失败 3=超时 4=平局)
+
+	optional int32 score_change			= 7;	// 积分变化(竞技场专用,正为加负为减)
+	optional int32 score_after			= 8;	// 战斗后积分(竞技场专用)
+}
+
+// 背包数据同步
+// MHT_SYNC_INVENTORY_DATA_SC = 30014
+message P_SyncInventoryData_SC
+{
+	optional PB_InventoryData inventory_data		= 1;	// 背包数据
+}
+
+// 角色额外数据同步
+// MHT_SYNC_ROLE_EXTRA_DATA_SC = 30015
+message P_SyncRoleExtraData_SC
+{
+
+}
+
+// ============================任务=======================================
+
+// 任务数据同步
+// MHT_SYNC_QUEST_DATA_SC = 30016
+message P_SyncQuestData_SC
+{
+	optional PB_QuestData quest_data				= 1;	// 任务数据
+}
+
+// ============================英雄信息=======================================
+
+// 英雄数据同步
+// MHT_SYNC_HERO_DATA_SC = 30017
+message P_SyncHeroData_SC
+{
+	optional PB_HeroListData hero_data			= 1;	// 英雄列表数据
+}
+
+// ============================阵容=======================================
+
+// 阵容数据同步
+// MHT_SYNC_LINEUP_DATA_SC = 30018
+message P_SyncLineupData_SC
+{
+	optional PB_LineupListData lineup_data		= 1;	// 阵容列表数据
+}
+
+// 阵容变更请求
+// MHT_SYNC_LINEUP_UPDATE_CS = 30019
+message P_SyncLineupUpdate_CS
+{
+	optional int32 battle_type			= 1;	// 战斗类型
+	repeated int32 hero_ids				= 2;	// 新阵容英雄id列表
+}
+
+// ============================通用排行榜协议=======================================
+
+// 通用排行榜请求
+// MHT_RANK_CS = 30020
+message P_Rank_CS
+{
+	optional int32 rank_type					= 1;	// 排行榜类型
+	optional int32 rank_offset				= 2;	// 偏移(0表示第一页)
+}
+
+// 通用排行榜返回
+// MHT_RANK_SC = 30021
+message P_Rank_SC
+{
+	optional int32 rank_type					= 1;	// 排行榜类型
+	optional int32 ret						= 2;	// 1成功 0失败
+	repeated PB_RankNode rank_list	= 3;	// 排行榜列表
+	optional bool has_more					= 4;	// 是否有更多
+	optional int32 total						= 5;	// 总人数
+}
+
+// ============================竞技场协议==========================================
+
+// 竞技场对手信息
+message PB_ArenaOpponentInfo
+{
+	optional int32 uid						= 1;	// 对手uid
+	optional string name						= 2;	// 对手名字
+	optional string user_name				= 3;	// 对手用户名
+	optional int32 score						= 4;	// 对手分数
+	repeated PB_HeroData heroes		= 5;	// 对手阵容英雄信息
+}
+
+// 竞技场战斗记录
+message PB_ArenaBattleLog
+{
+	optional int64 time						= 1;	// 战斗时间
+	optional string report_key				= 2;	// 战报key
+	repeated PB_HeroData my_heroes	= 3;	// 我方阵容
+	optional int32 opponent_uid				= 4;	// 对方uid
+	optional string opponent_name			= 5;	// 对方名字
+	repeated PB_HeroData opponent_heroes = 6;	// 对方阵容
+	optional bool is_win						= 7;	// 是否胜利
+	optional int32 score_change				= 8;	// 积分变化(正为加,负为减)
+	optional int32 score_after				= 9;	// 战斗后积分
+}
+
+// 竞技场请求
+// MHT_ARENA_CS = 30022
+message P_Arena_CS
+{
+	optional int32 req_type					= 1;	// 1=注册/进入 2=刷新对手 3=请求战斗日志
+}
+
+// 竞技场返回
+// MHT_ARENA_SC = 30023
+message P_Arena_SC
+{
+	optional int32 req_type					= 1;	// 对应请求类型
+	optional int32 ret						= 2;	// 1成功 0失败
+	optional int32 score						= 3;	// 当前分数
+	optional int32 daily_challenge_count		= 4;	// 每日剩余挑战次数
+	optional int32 daily_refresh_count		= 5;	// 每日剩余免费刷新次数
+	repeated PB_ArenaOpponentInfo opponents	= 6;	// 对手列表(req_type=1/2)
+}
+
+// ============================竞技场战斗日志协议===================================
+
+// 竞技场战斗日志返回
+// MHT_ARENA_BATTLE_LOG_SC = 30024
+message P_ArenaBattleLog_SC
+{
+	optional int32 ret						= 1;	// 1成功 0失败
+	repeated PB_ArenaBattleLog battle_logs	= 2;	// 战斗日志列表
+}
+
+// ============================竞技场排行榜协议=====================================
+
+// 竞技场排行榜返回
+// MHT_ARENA_RANK_SC = 30025
+message P_ArenaRank_SC
+{
+	optional int32 ret						= 1;	// 1成功 0失败
+	repeated PB_ArenaRankNode rank_list	= 2;	// 排行榜列表
+	optional bool has_more					= 3;	// 是否有更多
+	optional int32 total						= 4;	// 总人数
+}

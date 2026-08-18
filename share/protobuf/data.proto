@@ -1,0 +1,164 @@
+// 字段必须加 optional 关键字 
+syntax = "proto3";
+
+message PB_ServerGlobalData
+{
+	optional int64 server_begin_timestamp 		= 1;
+	optional int64 next_month_timestamp			= 2;
+	optional int64 next_week_timestamp			= 3;
+	optional int64 last_update_dayid			= 4;
+}
+
+// ==================== 聊天数据 ====================
+
+message PB_ChatData			
+{
+	optional uint64 id			= 1;
+	optional string chat_msg		= 2;
+	optional string user_name	= 3;
+	optional string name			= 4;
+	optional int32 uid			= 5;
+	optional uint64 time			= 6;
+}
+
+message PB_Item
+{
+	optional int32 id				= 1;	// 道具id
+	optional int32 num 				= 2;
+	map<string, int32> stat_tags	= 3;
+}
+
+message PB_RoleBagItem
+{
+	optional int32 bag_type			= 1;
+	repeated PB_Item items			= 2;
+}
+
+message PB_RoleBag
+{
+	map<int32, PB_RoleBagItem> bag		= 1;	
+	repeated PB_Item weare_item			= 2;	// 当前装备的道具
+}
+
+// 角色基础数据
+
+message PB_RoleBaseInfo
+{
+	optional int32 uid			= 1;
+	optional string name 		= 2;	
+	optional string user_name	= 3;
+}
+
+message PB_RoleData {
+	optional string lua_role_data = 1;					// lua角色二进制数据结构
+	optional PB_RoleBaseInfo base_info = 2;	// 角色基础信息
+	optional PB_RoleBag role_bag = 3;			// 角色背包数据 当前测试用
+}
+
+// ==================== 背包协议数据 ====================
+
+message PB_InventorySlot
+{
+	optional int32 slot_index		= 1;	// 槽位索引
+	optional int32 id				= 2;	// 物品id
+	optional int32 num				= 3;	// 数量
+}
+
+message PB_InventoryData
+{
+	optional int32 max_slots				= 1;	// 最大槽位数
+	repeated PB_InventorySlot slots			= 2;	// 已使用的槽位列表
+}
+
+// ==================== 属性协议数据 ====================
+
+message PB_AttrPair
+{
+	optional int32 attr_id			= 1;	// 属性id
+	optional double value			= 2;	// 属性值
+}
+
+message PB_AttrData
+{
+	repeated PB_AttrPair attrs		= 1;	// 属性列表
+}
+
+// ==================== 技能协议数据 ====================
+
+message PB_AbilitiesData
+{
+	repeated int32 ability_ids		= 1;	// 已学习能力id列表
+}
+
+// ==================== 任务协议数据 ====================
+
+message PB_QuestObjectiveData
+{
+	optional int32 current_count	= 1;	// 当前进度计数
+	optional bool completed			= 2;	// 是否已完成
+}
+
+message PB_QuestSaveData
+{
+	optional int32 status						= 1;	// 任务状态
+	optional int64 start_time					= 2;	// 开始时间戳
+	optional int64 complete_time				= 3;	// 完成时间戳
+	repeated PB_QuestObjectiveData objectives	= 4;	// 子目标进度列表
+}
+
+message PB_QuestData
+{
+	optional int32 max_active							= 1;	// 最大活跃任务数
+	map<int32, PB_QuestSaveData> active_quests			= 2;	// 活跃任务列表
+	repeated int32 completed_quests						= 3;	// 已完成任务id列表
+}
+
+// ==================== 英雄协议数据 ====================
+
+message PB_HeroData
+{
+	optional int32 hero_id			= 1;	// 英雄id(原role_id)
+	optional int32 level			= 2;	// 英雄等级
+	optional int64 exp				= 3;	// 英雄经验
+	optional PB_AbilitiesData abilities	= 4;	// 已学习能力
+	optional PB_AttrData attrs			= 5;	// 属性数据
+	optional int64 combat_power		= 6;	// 战力(服务器计算)
+}
+
+message PB_HeroListData
+{
+	repeated PB_HeroData heroes		= 1;	// 英雄列表
+}
+
+// ==================== 阵容协议数据 ====================
+
+message PB_LineupData
+{
+	optional int32 battle_type		= 1;	// 战斗类型
+	repeated int32 hero_ids			= 2;	// 上阵英雄id列表(不可重复,上限5个)
+	optional int64 combat_power		= 3;	// 阵容总战力
+}
+
+message PB_LineupListData
+{
+	repeated PB_LineupData lineups	= 1;	// 阵容列表
+}
+
+// ==================== 排行榜节点 ====================
+
+message PB_RankNode
+{
+	optional int32 rank						= 1;	// 排名
+	optional int32 uid						= 2;	// 用户uid
+	optional string name						= 3;	// 名字
+	optional int32 value						= 4;	// 排行榜主值(如分数)
+	optional int32 power						= 5;	// 战力
+	repeated PB_HeroData heroes		= 6;	// 阵容英雄
+}
+
+message PB_ArenaRankNode
+{
+	optional PB_RankNode base					= 1;	
+}
+
+

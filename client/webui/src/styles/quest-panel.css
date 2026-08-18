@@ -1,0 +1,119 @@
+/* ============================================================
+   任务面板 - Quest Panel
+   ============================================================ */
+
+.quest-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 20px;
+  flex-shrink: 0;
+}
+.quest-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.quest-stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary-light);
+}
+.quest-stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.quest-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px 12px;
+  flex-shrink: 0;
+}
+.quest-tab {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-weight: 500;
+}
+.quest-tab:hover {
+  background: var(--bg-card-hover);
+  color: var(--text);
+}
+.quest-tab.active {
+  background: rgba(79,110,247,0.15);
+  border-color: var(--primary);
+  color: var(--primary-light);
+}
+
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.quest-card {
+  padding: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.quest-card:hover { background: var(--bg-card-hover); }
+.quest-card.completed { opacity: 0.65; }
+.quest-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.quest-name { font-size: 14px; font-weight: 600; }
+.quest-badge { font-size: 11px; font-weight: 500; }
+.quest-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.quest-progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.quest-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.quest-progress-text {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.quest-obj-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.quest-obj {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.quest-obj.done {
+  color: var(--success);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.quest-obj-icon { font-size: 12px; }

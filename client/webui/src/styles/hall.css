@@ -1,0 +1,215 @@
+/* ============================================================
+   大厅页 - Hall Page
+   ============================================================ */
+
+.hall-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---- 顶部栏 ---- */
+.hall-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(79,110,247,0.08), transparent);
+}
+.hall-topbar-left h2 {
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hall-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.hall-top-crosswise {
+  display: flex;
+  gap: 6px;
+  padding: 4px 8px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.status-badge {
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  background: var(--danger);
+  color: white;
+  font-weight: 600;
+}
+.status-badge.connected { background: var(--success); }
+
+/* ---- 侧边栏按钮 ---- */
+.side-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  min-width: 68px;
+}
+.side-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text);
+  border-color: var(--border);
+}
+.side-btn.active {
+  background: linear-gradient(135deg, rgba(79,110,247,0.15), rgba(79,110,247,0.05));
+  border-color: var(--primary);
+  color: var(--primary-light);
+  box-shadow: 0 0 20px rgba(79,110,247,0.1);
+}
+.side-btn-icon { font-size: 24px; }
+.side-btn-label { font-size: 11px; white-space: nowrap; font-weight: 500; }
+
+.btn-top {
+  padding: 6px 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(79,110,247,0.3);
+}
+.btn-top:hover {
+  box-shadow: 0 4px 16px rgba(79,110,247,0.5);
+  transform: translateY(-1px);
+}
+.btn-top.active {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  box-shadow: 0 0 20px rgba(79,110,247,0.5), inset 0 0 12px rgba(255,255,255,0.1);
+}
+
+/* ---- 更多按钮 ---- */
+.btn-more {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.btn-more:hover {
+  border-color: var(--primary);
+  background: var(--bg-card-hover);
+}
+
+/* ---- 气泡弹窗 ---- */
+.bubble-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+}
+.bubble-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  z-index: 200;
+  min-width: 160px;
+  overflow: hidden;
+  animation: fadeIn 0.15s ease;
+}
+.bubble-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 14px;
+  color: var(--text);
+}
+.bubble-item:hover {
+  background: var(--bg-card-hover);
+  color: var(--primary-light);
+}
+.bubble-icon { font-size: 18px; }
+
+/* ---- 主体区域 ---- */
+.hall-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.hall-body-row {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.hall-sidebar-crosswise {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.hall-sidebar-lengthways {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 8px;
+  flex-shrink: 0;
+}
+.hall-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hall-standee { position: relative; }
+.standee-placeholder {
+  width: 180px;
+  height: 240px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.standee-icon {
+  font-size: 64px;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 20px rgba(79,110,247,0.3));
+}
+.standee-hint {
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  color: var(--text-secondary);
+}

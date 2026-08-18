@@ -1,0 +1,200 @@
+{
+    "configurations": [
+        {
+            "name": "luaserver",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/luaserver/**",
+                "${workspaceFolder}/luaserver/lua-5.5",
+                "${workspaceFolder}/luaserver/lua-protobuf",
+                "${workspaceFolder}/share",
+                "${workspaceFolder}/include"
+            ],
+            "defines": [
+                "WIN32",
+                "_WIN32",
+                "_WINDOWS",
+                "_CONSOLE",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "_SCL_SECURE_NO_WARNINGS",
+                "_CRT_SECURE_NO_WARNINGS"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "gatewayserver",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/share",
+                "${workspaceFolder}/include"
+            ],
+            "defines": [
+                "WIN32",
+                "_WIN32",
+                "_WINDOWS",
+                "_CONSOLE",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "_SCL_SECURE_NO_WARNINGS",
+                "_CRT_SECURE_NO_WARNINGS"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "battleserver",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/share",
+                "${workspaceFolder}/include"
+            ],
+            "defines": [
+                "WIN32",
+                "_WIN32",
+                "_WINDOWS",
+                "_CONSOLE",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "_SCL_SECURE_NO_WARNINGS",
+                "_CRT_SECURE_NO_WARNINGS"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "globalserver",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/globalserver/**",
+                "${workspaceFolder}/llama/include",
+                "${workspaceFolder}/llama/src",
+                "${workspaceFolder}/llama/common",
+                "${workspaceFolder}/llama/ggml/include",
+                "${workspaceFolder}/llama/tools/mtmd",
+                "${workspaceFolder}/share",
+                "${workspaceFolder}/include",
+                "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3/include"
+            ],
+            "defines": [
+                "WIN32",
+                "_WIN32",
+                "_WINDOWS",
+                "_CONSOLE",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "_SCL_SECURE_NO_WARNINGS",
+                "_CRT_SECURE_NO_WARNINGS",
+                "GGML_AVX2",
+                "GGML_AVX512"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "dbserver",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/dbserver/**",
+                "${workspaceFolder}/share",
+                "${workspaceFolder}/share/mysqlconnector",
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/include/db"
+            ],
+            "defines": [
+                "WIN32",
+                "_WIN32",
+                "_WINDOWS",
+                "_CONSOLE",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "_SCL_SECURE_NO_WARNINGS",
+                "_CRT_SECURE_NO_WARNINGS"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "allserver",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/luaserver/**",
+                "${workspaceFolder}/luaserver/lua-5.5",
+                "${workspaceFolder}/luaserver/lua-protobuf",
+                "${workspaceFolder}/globalserver/**",
+                "${workspaceFolder}/dbserver/**",
+                "${workspaceFolder}/llama/include",
+                "${workspaceFolder}/llama/src",
+                "${workspaceFolder}/llama/common",
+                "${workspaceFolder}/llama/ggml/include",
+                "${workspaceFolder}/llama/tools/mtmd",
+                "${workspaceFolder}/share",
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/include/db",
+                "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3/include"
+            ],
+            "defines": [
+                "WIN32", "_WIN32", "_WINDOWS", "_CONSOLE", "_DEBUG",
+                "UNICODE", "_UNICODE",
+                "_SCL_SECURE_NO_WARNINGS", "_CRT_SECURE_NO_WARNINGS"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}

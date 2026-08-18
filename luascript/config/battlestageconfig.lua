@@ -1,0 +1,159 @@
+-- ====================================================================
+-- 自动生成配置 :主线关卡配置
+-- ====================================================================
+
+--[[
+字段结构说明:
+
+  id - 关卡ID (int)
+  name - 关卡名称 (string)
+  desc - 描述 (string)
+  monster_group_ids - 怪物组ID列表(引用battlemonstergroup) ((array#sep=,),int)
+--]]
+
+local M = {
+    [1] = {
+        id = 1,
+        name = "第1关",
+        desc = "初出茅庐 - 1只哥布林",
+        monster_group_ids = { 1, },
+    },
+
+    [2] = {
+        id = 2,
+        name = "第2关",
+        desc = "哥布林兄弟 - 2只哥布林",
+        monster_group_ids = { 2, },
+    },
+
+    [3] = {
+        id = 3,
+        name = "第3关",
+        desc = "哥布林小队 - 3只哥布林",
+        monster_group_ids = { 9, },
+    },
+
+    [4] = {
+        id = 4,
+        name = "第4关",
+        desc = "巨魔来袭 - 1只巨魔",
+        monster_group_ids = { 3, },
+    },
+
+    [5] = {
+        id = 5,
+        name = "第5关",
+        desc = "混编前锋 - 哥布林+巨魔",
+        monster_group_ids = { 10, },
+    },
+
+    [6] = {
+        id = 6,
+        name = "第6关",
+        desc = "双巨魔 - 2只巨魔",
+        monster_group_ids = { 7, },
+    },
+
+    [7] = {
+        id = 7,
+        name = "第7关",
+        desc = "冰霜初现 - 冰霜元素",
+        monster_group_ids = { 4, },
+    },
+
+    [8] = {
+        id = 8,
+        name = "第8关",
+        desc = "冰火交融 - 哥布林+冰霜",
+        monster_group_ids = { 8, },
+    },
+
+    [9] = {
+        id = 9,
+        name = "第9关",
+        desc = "霜巨魔 - 冰霜+巨魔",
+        monster_group_ids = { 11, },
+    },
+
+    [10] = {
+        id = 10,
+        name = "第10关",
+        desc = "哥布林精英班 - 强化哥布林x3",
+        monster_group_ids = { 12, },
+    },
+
+    [11] = {
+        id = 11,
+        name = "第11关",
+        desc = "三巨魔 - 3只强化巨魔",
+        monster_group_ids = { 14, },
+    },
+
+    [12] = {
+        id = 12,
+        name = "第12关",
+        desc = "元素之力 - 冰霜元素x3",
+        monster_group_ids = { 18, },
+    },
+
+    [13] = {
+        id = 13,
+        name = "第13关",
+        desc = "精英哥布林大军x5",
+        monster_group_ids = { 17, },
+    },
+
+    [14] = {
+        id = 14,
+        name = "第14关",
+        desc = "强化巨魔+冰霜",
+        monster_group_ids = { 6, },
+    },
+
+    [15] = {
+        id = 15,
+        name = "第15关",
+        desc = "暗影领主现身",
+        monster_group_ids = { 5, },
+    },
+
+    [16] = {
+        id = 16,
+        name = "第16关",
+        desc = "暗影+巨魔",
+        monster_group_ids = { 13, },
+    },
+
+    [17] = {
+        id = 17,
+        name = "第17关",
+        desc = "冰霜+暗影领主",
+        monster_group_ids = { 15, },
+    },
+
+    [18] = {
+        id = 18,
+        name = "第18关",
+        desc = "混合军团 - 哥布林+巨魔+冰霜",
+        monster_group_ids = { 16, },
+    },
+
+    [19] = {
+        id = 19,
+        name = "第19关",
+        desc = "暗影护卫队 - 巨魔护卫+暗影领主",
+        monster_group_ids = { 19, },
+    },
+
+    [20] = {
+        id = 20,
+        name = "第20关",
+        desc = "最终Boss战 - 暗影领主军团",
+        monster_group_ids = { 20, },
+    },
+
+}
+
+LOG_INFO(" 加载完成")
+
+return M

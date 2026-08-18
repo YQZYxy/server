@@ -1,0 +1,428 @@
+-- ====================================================================
+-- 自动生成配置 :
+-- ====================================================================
+
+--[[
+字段结构说明:
+
+  id - 能力ID (int)
+  name - 名称 (string)
+  description - 描述 (string)
+  ability_type - 能力类型 (int)
+  level - 等级 (int)
+  activation_policy - 能力激活策略 (int)
+  net_execution_policy - 能力网络策略 (int)
+  cooldown_duration - 冷却时间 (double)
+  cooldown_tags - 冷却标签 ((array#sep=,),string)
+  cost_attrs - 消耗 ((map#sep=,;),int,double)
+  targeting_type - 目标类型 (int)
+  range - 范围 (int)
+  can_crit - 可暴击 (bool)
+  base_value - 基础值 (double)
+  attr_adds - 属性加成 ((map#sep=,;),int,double)
+  effect_ids - 效果id ((array#sep=,),int)
+  extra_params - 额外参数 ((array#sep=,),double)
+  damage_tags - 伤害标签 ((array#sep=,),string)
+  ability_tags - 能力标签 ((array#sep=,),string)
+  cancel_abilities_with_tags - 取消带这些标签的能力 ((array#sep=,),string)
+  block_abilities_with_tags - 阻塞带这些标签的能力 ((array#sep=,),string)
+  activation_owned_tags - 激活时授予的标签 ((array#sep=,),string)
+  activation_required_tags - 激活需要的标签 ((array#sep=,),string)
+  activation_blocked_tags - 激活阻塞的标签 ((array#sep=,),string)
+  target_required_tags - 目标需求标签 ((array#sep=,),string)
+  target_blocked_tags - 目标阻止标签 ((array#sep=,),string)
+--]]
+
+local M = {
+    [1] = {
+        id = 1,
+        name = "普通攻击",
+        description = "基础物理攻击",
+        ability_type = 1,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 0.0,
+        cooldown_tags = {},
+        cost_attrs = {},
+        targeting_type = 2,
+        range = 0,
+        can_crit = true,
+        base_value = 15.0,
+        attr_adds = {
+            [3] = 0.5,
+        },
+        effect_ids = {},
+        extra_params = {},
+        damage_tags = { "Damage.Physical", },
+        ability_tags = { "Ability.Attack.Melee", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = { "State.Control.Stun", },
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [2] = {
+        id = 2,
+        name = "重击",
+        description = "强力一击,造成高额伤害",
+        ability_type = 1,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 3.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 5.0,
+        },
+        targeting_type = 2,
+        range = 0,
+        can_crit = true,
+        base_value = 35.0,
+        attr_adds = {
+            [3] = 1.5,
+        },
+        effect_ids = {},
+        extra_params = {},
+        damage_tags = { "Damage.Physical", },
+        ability_tags = { "Ability.Attack.Melee", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = { "State.Control.Stun", },
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [3] = {
+        id = 3,
+        name = "快速打击",
+        description = "敏捷的快速攻击",
+        ability_type = 1,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 2.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 10.0,
+        },
+        targeting_type = 2,
+        range = 0,
+        can_crit = true,
+        base_value = 20.0,
+        attr_adds = {
+            [4] = 0.8,
+        },
+        effect_ids = {},
+        extra_params = {},
+        damage_tags = { "Damage.Physical", },
+        ability_tags = { "Ability.Attack.Melee", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [1001] = {
+        id = 1001,
+        name = "治疗术",
+        description = "恢复生命值",
+        ability_type = 4,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 5.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 30.0,
+        },
+        targeting_type = 3,
+        range = 0,
+        can_crit = false,
+        base_value = 80.0,
+        attr_adds = {
+            [5] = 2.0,
+        },
+        effect_ids = {},
+        extra_params = {},
+        damage_tags = {},
+        ability_tags = { "Ability.Support.Heal", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = { "State.Combat.Casting", },
+        activation_required_tags = {},
+        activation_blocked_tags = { "State.Control.Silence", },
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [1002] = {
+        id = 1002,
+        name = "战吼",
+        description = "提升自身力量",
+        ability_type = 5,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 8.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 1.0,
+        },
+        targeting_type = 1,
+        range = 0,
+        can_crit = false,
+        base_value = 0.0,
+        attr_adds = {},
+        effect_ids = { 1, },
+        extra_params = {},
+        damage_tags = {},
+        ability_tags = { "Ability.Support.Buff", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [1003] = {
+        id = 1003,
+        name = "力量祝福",
+        description = "提升力量",
+        ability_type = 5,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 20.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 25.0,
+        },
+        targeting_type = 1,
+        range = 0,
+        can_crit = false,
+        base_value = 0.0,
+        attr_adds = {},
+        effect_ids = { 2, },
+        extra_params = {},
+        damage_tags = {},
+        ability_tags = { "Ability.Support.Buff", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [2001] = {
+        id = 2001,
+        name = "生命汲取",
+        description = "吸取目标生命值",
+        ability_type = 3,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 8.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 35.0,
+        },
+        targeting_type = 2,
+        range = 0,
+        can_crit = false,
+        base_value = 40.0,
+        attr_adds = {
+            [5] = 1.2,
+        },
+        effect_ids = {},
+        extra_params = { 0.5, },
+        damage_tags = { "Damage.Shadow", },
+        ability_tags = { "Ability.Attack.Magic", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [2002] = {
+        id = 2002,
+        name = "暗影箭",
+        description = "发射暗影能量",
+        ability_type = 2,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 4.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 25.0,
+        },
+        targeting_type = 2,
+        range = 0,
+        can_crit = false,
+        base_value = 30.0,
+        attr_adds = {
+            [5] = 1.0,
+            [7] = 0.5,
+        },
+        effect_ids = {},
+        extra_params = {},
+        damage_tags = { "Damage.Shadow", },
+        ability_tags = { "Ability.Attack.Magic", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [2003] = {
+        id = 2003,
+        name = "暗影护盾",
+        description = "召唤暗影护盾保护自己",
+        ability_type = 5,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 20.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 40.0,
+        },
+        targeting_type = 1,
+        range = 0,
+        can_crit = false,
+        base_value = 0.0,
+        attr_adds = {},
+        effect_ids = { 3, },
+        extra_params = {},
+        damage_tags = {},
+        ability_tags = { "Ability.Support.Buff", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [3001] = {
+        id = 3001,
+        name = "冰霜箭",
+        description = "发射冰霜能量,减速目标",
+        ability_type = 7,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 3.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 20.0,
+        },
+        targeting_type = 2,
+        range = 0,
+        can_crit = false,
+        base_value = 25.0,
+        attr_adds = {
+            [5] = 1.2,
+        },
+        effect_ids = { 4, },
+        extra_params = {},
+        damage_tags = { "Damage.Ice", },
+        ability_tags = { "Ability.Attack.Magic", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [3002] = {
+        id = 3002,
+        name = "冰盾",
+        description = "冰霜护盾",
+        ability_type = 5,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 12.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 30.0,
+        },
+        targeting_type = 1,
+        range = 0,
+        can_crit = false,
+        base_value = 0.0,
+        attr_adds = {},
+        effect_ids = { 5, },
+        extra_params = {},
+        damage_tags = {},
+        ability_tags = { "Ability.Support.Buff", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+    [3003] = {
+        id = 3003,
+        name = "暴风雪",
+        description = "大范围冰霜伤害",
+        ability_type = 2,
+        level = 0,
+        activation_policy = 0,
+        net_execution_policy = 0,
+        cooldown_duration = 15.0,
+        cooldown_tags = {},
+        cost_attrs = {
+            [2] = 50.0,
+        },
+        targeting_type = 4,
+        range = 3,
+        can_crit = false,
+        base_value = 50.0,
+        attr_adds = {
+            [5] = 1.2,
+        },
+        effect_ids = { 4, },
+        extra_params = {},
+        damage_tags = { "Damage.Ice", },
+        ability_tags = { "Ability.Attack.Magic", "Ability.Attack.AOE", },
+        cancel_abilities_with_tags = {},
+        block_abilities_with_tags = {},
+        activation_owned_tags = {},
+        activation_required_tags = {},
+        activation_blocked_tags = {},
+        target_required_tags = {},
+        target_blocked_tags = {},
+    },
+
+}
+
+LOG_INFO(" 加载完成")
+
+return M

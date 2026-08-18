@@ -1,0 +1,19 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <circle cx="16" cy="16" r="15" fill="#e94560"/>
+  <!-- 小鱼身体 -->
+  <ellipse cx="14" cy="16" rx="9" ry="5.5" fill="white" opacity="0.92"/>
+  <!-- 小鱼眼睛 -->
+  <circle cx="9" cy="14.5" r="1.8" fill="#e94560"/>
+  <circle cx="8.5" cy="14" r="0.7" fill="white"/>
+  <!-- 小鱼尾巴 -->
+  <path d="M23,12 L28,16 L23,20 Z" fill="white" opacity="0.88"/>
+  <!-- 小鱼背鳍 -->
+  <path d="M12,10 C14,8 16,9 18,11" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <!-- 小鱼腹鳍 -->
+  <path d="M16,20 C14,22 12,22 11,21" stroke="white" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <!-- 小鱼嘴巴 -->
+  <path d="M6,16 C5,16 5,17 6,17" stroke="white" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <!-- 泡泡 -->
+  <circle cx="5" cy="12" r="1" fill="white" opacity="0.5"/>
+  <circle cx="3" cy="9.5" r="0.6" fill="white" opacity="0.35"/>
+</svg>
