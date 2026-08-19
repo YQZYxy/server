@@ -1,12 +1,13 @@
 {
     "configurations": [
         {
-            "name": "luaserver",
+            "name": "logicserver",
             "includePath": [
                 "${workspaceFolder}",
-                "${workspaceFolder}/luaserver/**",
-                "${workspaceFolder}/luaserver/lua-5.5",
-                "${workspaceFolder}/luaserver/lua-protobuf",
+                "${workspaceFolder}/logicserver/**",
+                "${workspaceFolder}/share/lua",
+                "${workspaceFolder}/share/lua/lua-5.5",
+                "${workspaceFolder}/share/lua/lua-protobuf",
                 "${workspaceFolder}/share",
                 "${workspaceFolder}/include"
             ],
@@ -164,9 +165,10 @@
             "name": "allserver",
             "includePath": [
                 "${workspaceFolder}",
-                "${workspaceFolder}/luaserver/**",
-                "${workspaceFolder}/luaserver/lua-5.5",
-                "${workspaceFolder}/luaserver/lua-protobuf",
+                "${workspaceFolder}/logicserver/**",
+                "${workspaceFolder}/share/lua",
+                "${workspaceFolder}/share/lua/lua-5.5",
+                "${workspaceFolder}/share/lua/lua-protobuf",
                 "${workspaceFolder}/globalserver/**",
                 "${workspaceFolder}/dbserver/**",
                 "${workspaceFolder}/llama/include",
