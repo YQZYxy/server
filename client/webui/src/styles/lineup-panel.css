@@ -23,6 +23,37 @@
 .lineup-type-icon { font-size: 18px; }
 .lineup-type-label { font-size: 14px; font-weight: 500; }
 
+/* 阵容槽位切换(多阵容nvn) */
+.lineup-slot-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.lineup-slot-tab {
+  padding: 6px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  border: 1px solid transparent;
+  transition: all .2s;
+}
+.lineup-slot-tab:hover { background: rgba(255,255,255,0.1); }
+.lineup-slot-tab.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 英雄已在其它阵容上阵(他队) */
+.lineup-hero-card.in-other-lineup { opacity: 0.55; }
+.lineup-hero-badge.other {
+  background: rgba(255,152,0,0.9);
+}
+
 .lineup-slots-area {
   display: flex;
   justify-content: center;

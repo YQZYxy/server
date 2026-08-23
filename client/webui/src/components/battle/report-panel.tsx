@@ -4,7 +4,7 @@
 // ====================================================================
 
 import { useMemo, useCallback } from 'react'
-import { type P_GasBattle_SC } from '@/types'
+import { type PB_BattleMatchResult } from '@/types'
 import {
   parseReplayText,
   parseHeroesFromReport,
@@ -24,8 +24,8 @@ import PanelShell from '@/components/panel-shell'
 interface ReportPanelProps {
   reportText?: string
   onClose?: () => void
-  /** 由BattleFieldPanel通过registry传入 */
-  data?: P_GasBattle_SC
+  /** 由BattleFieldPanel通过registry传入(PB_BattleMatchResult 单场详情) */
+  data?: PB_BattleMatchResult
 }
 
 /** 将原始战报文本按行解析为元数据映射 */
@@ -101,7 +101,7 @@ function decodeEvent(evt: BattleEvent, names: NameMap): string {
 }
 
 export function ReportPanel({ reportText: propText, onClose, data: propData }: ReportPanelProps = {}) {
-  const reportText = propText ?? propData?.battle_report
+  const reportText = propText ?? ((propData?.battle_report as string) || '')
 
   const handleClose = useCallback(() => {
     onClose?.()

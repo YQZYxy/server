@@ -16,6 +16,8 @@ export {
 // use-battle (统一战斗流程)
 export { onBattleResult, offBattleResult, sendBattle ,setBattleNavigate} from './use-battle'
 
+export type { BattleSeriesResult } from './use-battle'
+
 export {
   EventType,
   SCHEMA_FIELDS,

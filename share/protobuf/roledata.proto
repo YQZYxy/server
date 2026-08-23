@@ -1,0 +1,56 @@
+// 字段必须加 optional 关键字 
+syntax = "proto3";
+
+import "data.proto";
+
+// ==================== 角色基础数据 ====================
+
+message PB_RoleBaseInfo
+{
+	optional int32 uid				= 1;
+	optional string name 			= 2;	
+	optional string user_name		= 3;
+	optional int32 level			= 4;	// 角色等级
+	optional int64 exp				= 5;	// 角色经验
+	optional int64 last_login_time	= 6;	// 最后登录时间
+}
+
+message PB_RoleBagItem
+{
+	optional int32 bag_type			= 1;
+	repeated PB_Item items			= 2;
+}
+
+message PB_RoleBag
+{
+	map<int32, PB_RoleBagItem> bag		= 1;	
+	repeated PB_Item weare_item			= 2;	// 当前装备的道具
+}
+
+// ==================== 养成模块数据 ====================
+
+message PB_RoleGrowthData
+{
+	optional PB_HeroListData hero			= 1;	// 英雄
+	optional PB_LineupListData lineup		= 2;	// 阵容
+	optional PB_QuestData quest				= 3;	// 任务
+}
+
+// ==================== 角色战斗快照(战斗需要的结构) ====================
+
+message PB_RoleBattleSnapshot
+{
+	optional PB_RoleBaseInfo base_info		= 1;	// 角色基础信息
+	optional PB_HeroListData hero			= 2;	// 英雄
+	optional PB_LineupListData lineup		= 3;	// 阵容
+}
+
+// ==================== 角色数据 ====================
+
+message PB_RoleData {
+	optional PB_RoleBaseInfo base_info = 1;		// 角色基础信息
+	optional PB_InventoryData inventory = 2;	// 背包数据
+	optional PB_RoleGrowthData growth = 3;		// 养成模块
+    
+    optional PB_RoleBag role_bag = 100;			// 角色背包数据 当前测试用
+}

@@ -17,7 +17,7 @@ function ArenaBattleModule:Ctor()
     self.battle_type = Const.BattleType.ARENA
 end
 
-function ArenaBattleModule:BuildParticipants(role, msg_data)
+function ArenaBattleModule:BuildMatchParticipants(role, msg_data, match_index, total_matches)
     local atk_uid = role.uid
     local def_uid = msg_data.id or 0
 
@@ -37,10 +37,10 @@ function ArenaBattleModule:BuildParticipants(role, msg_data)
         return nil
     end
     attacker:ConsumeChallenge()
-    attacker.role_snapshot = GLO.RoleSnapshot.Snapshot(role)
+    attacker.role_snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
 
-    local atk_heroes = GLO.RoleSnapshot.CreateBattleHeroes(attacker.role_snapshot, Const.BattleType.ARENA)
-    local def_heroes = GLO.RoleSnapshot.CreateBattleHeroes(defender.role_snapshot, Const.BattleType.ARENA)
+    local atk_heroes = GLO.RoleBattleSnapshot.CreateBattleHeroes(attacker.role_snapshot, Const.BattleType.ARENA)
+    local def_heroes = GLO.RoleBattleSnapshot.CreateBattleHeroes(defender.role_snapshot, Const.BattleType.ARENA)
     if not atk_heroes or #atk_heroes == 0 or not def_heroes or #def_heroes == 0 then
         LOG_ERROR("竞技场: 英雄为空")
         return nil
@@ -73,14 +73,13 @@ function ArenaBattleModule:BuildProtoReq(role, msg_data, participants)
     return req
 end
 
--- 战斗结果回调: 竞技场排名/奖励结算
-function ArenaBattleModule:OnBattleResult(role, event)
-    local result_type = event.result_type
-    local def_uid = event.param_id
-    local report_key = event.report_key or ""
+-- 战斗结果回调
+function ArenaBattleModule:OnBattleResult(role, series, series_result)
+    local def_uid = series.param_id or 0
+    local report_key = (series.report_keys and series.report_keys[1]) or ""
 
     -- 调用 ArenaManager 处理
-    GLO.ArenaManager.OnArenaBattleEnd(event.uid, def_uid, result_type, report_key)
+    GLO.ArenaManager.OnArenaBattleEnd(role.uid, def_uid, series_result, report_key)
 end
 
 LOG_INFO(" ArenaBattleModule 加载完成")

@@ -23,8 +23,11 @@ export const JOB_ICONS: Partial<Record<Job, string>> = {
 /** 默认英雄图标 */
 export const DEFAULT_HERO_ICON = '🧙'
 
-/** 阵容最大槽位数 */
+/** 阵容最大槽位数(单个阵容英雄数上限) */
 export const MAX_LINEUP_SLOTS = 5
+
+/** 每个战斗类型的最大阵容数量*/
+export const MAX_LINEUP_SLOT_COUNT = 3
 
 
 import { getCachedConfig } from '@/services/configmanager'

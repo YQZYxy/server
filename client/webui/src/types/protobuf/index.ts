@@ -29,6 +29,12 @@ export type PB_AttrData = _proto.PB_AttrData.$Properties
 export const PB_AttrPair = _proto.PB_AttrPair
 export type PB_AttrPair = _proto.PB_AttrPair.$Properties
 
+export const PB_BattleExecuteReq = _proto.PB_BattleExecuteReq
+export type PB_BattleExecuteReq = _proto.PB_BattleExecuteReq.$Properties
+
+export const PB_BattleMatchResult = _proto.PB_BattleMatchResult
+export type PB_BattleMatchResult = _proto.PB_BattleMatchResult.$Properties
+
 export const PB_BattleParticipant = _proto.PB_BattleParticipant
 export type PB_BattleParticipant = _proto.PB_BattleParticipant.$Properties
 
@@ -101,8 +107,14 @@ export type PB_RoleBagItem = _proto.PB_RoleBagItem.$Properties
 export const PB_RoleBaseInfo = _proto.PB_RoleBaseInfo
 export type PB_RoleBaseInfo = _proto.PB_RoleBaseInfo.$Properties
 
+export const PB_RoleBattleSnapshot = _proto.PB_RoleBattleSnapshot
+export type PB_RoleBattleSnapshot = _proto.PB_RoleBattleSnapshot.$Properties
+
 export const PB_RoleData = _proto.PB_RoleData
 export type PB_RoleData = _proto.PB_RoleData.$Properties
+
+export const PB_RoleGrowthData = _proto.PB_RoleGrowthData
+export type PB_RoleGrowthData = _proto.PB_RoleGrowthData.$Properties
 
 export const PB_ServerGlobalData = _proto.PB_ServerGlobalData
 export type PB_ServerGlobalData = _proto.PB_ServerGlobalData.$Properties
@@ -124,24 +136,6 @@ export type P_Arena_CS = _proto.P_Arena_CS.$Properties
 
 export const P_Arena_SC = _proto.P_Arena_SC
 export type P_Arena_SC = _proto.P_Arena_SC.$Properties
-
-export const P_BattleCancelReq = _proto.P_BattleCancelReq
-export type P_BattleCancelReq = _proto.P_BattleCancelReq.$Properties
-
-export const P_BattleCsServerRegister = _proto.P_BattleCsServerRegister
-export type P_BattleCsServerRegister = _proto.P_BattleCsServerRegister.$Properties
-
-export const P_BattleExecuteReq = _proto.P_BattleExecuteReq
-export type P_BattleExecuteReq = _proto.P_BattleExecuteReq.$Properties
-
-export const P_BattleExecuteRes = _proto.P_BattleExecuteRes
-export type P_BattleExecuteRes = _proto.P_BattleExecuteRes.$Properties
-
-export const P_BattleQueryReq = _proto.P_BattleQueryReq
-export type P_BattleQueryReq = _proto.P_BattleQueryReq.$Properties
-
-export const P_BattleQueryRes = _proto.P_BattleQueryRes
-export type P_BattleQueryRes = _proto.P_BattleQueryRes.$Properties
 
 export const P_BattleServerCommand = _proto.P_BattleServerCommand
 export type P_BattleServerCommand = _proto.P_BattleServerCommand.$Properties

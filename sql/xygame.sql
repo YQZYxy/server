@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 11/07/2026 18:58:49
+ Date: 23/08/2026 04:39:48
 */
 
 SET NAMES utf8mb4;
@@ -75,6 +75,9 @@ CREATE TABLE `role_data`  (
   `id` bigint NOT NULL,
   `username` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `name` varbinary(64) NOT NULL DEFAULT '',
+  `level` int NOT NULL,
+  `exp` bigint NOT NULL,
+  `last_login_time` bigint NOT NULL,
   `role_data` longblob NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `role_name_INX`(`name` ASC) USING BTREE

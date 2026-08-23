@@ -6,7 +6,7 @@ import { logParsedReport } from './replay-parser'
 import gameSocket from '@/services/socket'
 import { MHT } from '@/types'
 import { gameStore } from '@/store/game-store'
-import type { P_GasBattle_SC } from '@/types'
+import type { P_GasBattle_SC, PB_BattleMatchResult } from '@/types'
 
 function bytesToString(val: unknown): string {
   if (!val) return ''
@@ -39,6 +39,27 @@ export function setBattleNavigate(fn: (path: string, options?: { state?: any }) 
 // 最近一次战斗请求发送时刻, 计算响应耗时
 let _battleSendTime = 0
 
+// 系列战斗聚合结果
+export interface BattleSeriesResult {
+  sc: P_GasBattle_SC       // 合并下发的 SC
+  total: number            // 总场次
+  win: number              // 已获胜场数
+  seriesResult: number     // 总结果: PB_BattleResultType(1=胜 2=负 4=平)
+}
+
+// 将 SC.matches[] 中各场战报字节串转字符串
+function stringifyMatches(sc: P_GasBattle_SC): P_GasBattle_SC {
+  const matches = ((sc as any).matches ?? []).map((m: any) => {
+    logParsedReport(bytesToString(m.battle_report), '战报解析')
+    return {
+      ...m,
+      battle_report: bytesToString(m.battle_report),
+      battle_report_key: bytesToString(m.battle_report_key) || '',
+    }
+  })
+  return { ...sc, matches } as P_GasBattle_SC
+}
+
 // 向服务器发送战斗请求,统一入口
 export function sendBattle(battleType: number, id: number, params = '', reportKey = '') {
   const isReplay = reportKey !== ''
@@ -61,17 +82,28 @@ gameSocket.onMsg(MHT.MHT_GAS_BATTLE_SC, (body: P_GasBattle_SC) => {
 
   gameStore.getState().setLoading(false)
 
-  const rawText = bytesToString(body.battle_report)
-  ;(body as any).battle_report = rawText
+  // 1 战报回放不回调外部 0是战斗
+  if (body.ret_type == 0) _battleCallbacks.forEach(cb => cb(body))
 
-  logParsedReport(rawText, '战报解析')
+  // 战报统一从 matches 数组取(单场1个, 系列N个, 战报查询1个), 战报字节转字符串
+  const sc = stringifyMatches(body)
+  const matches = ((sc as any).matches ?? []) as PB_BattleMatchResult[]
+  const total = sc.total_matches ?? matches.length
 
-  // 先通知外部模块回调
-  if(body.ret_type == 0)  // 1 战报回放不回调外部 0是战斗
-  {
-    _battleCallbacks.forEach(cb => cb(body))
+  // ---- 战报回放 / 单场: 只有 1 场----
+  if (sc.ret_type == 1 || matches.length <= 1) {
+    const single = matches.length > 0 ? matches[0] : null
+    _navigate?.('/battle-field', { state: { battleResult: single } })
+    return
   }
 
-  // 跳转到战斗场景,通过route state传递战报数据
-  _navigate?.('/battle-field', { state: { battleResult: body } })
+  // ---- 系列战斗总结果 ----
+  const series: BattleSeriesResult = {
+    sc,
+    total,
+    win: sc.win_matches ?? 0,
+    seriesResult: sc.series_result ?? 0,
+  }
+  console.log(`[Battle] 系列战斗结果: total=${series.total}, win=${series.win}, result=${series.seriesResult}`)
+  _navigate?.('/battle-field', { state: { battleSeries: series } })
 })

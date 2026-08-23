@@ -28,33 +28,6 @@ message PB_Item
 	map<string, int32> stat_tags	= 3;
 }
 
-message PB_RoleBagItem
-{
-	optional int32 bag_type			= 1;
-	repeated PB_Item items			= 2;
-}
-
-message PB_RoleBag
-{
-	map<int32, PB_RoleBagItem> bag		= 1;	
-	repeated PB_Item weare_item			= 2;	// 当前装备的道具
-}
-
-// 角色基础数据
-
-message PB_RoleBaseInfo
-{
-	optional int32 uid			= 1;
-	optional string name 		= 2;	
-	optional string user_name	= 3;
-}
-
-message PB_RoleData {
-	optional string lua_role_data = 1;					// lua角色二进制数据结构
-	optional PB_RoleBaseInfo base_info = 2;	// 角色基础信息
-	optional PB_RoleBag role_bag = 3;			// 角色背包数据 当前测试用
-}
-
 // ==================== 背包协议数据 ====================
 
 message PB_InventorySlot
@@ -137,6 +110,7 @@ message PB_LineupData
 	optional int32 battle_type		= 1;	// 战斗类型
 	repeated int32 hero_ids			= 2;	// 上阵英雄id列表(不可重复,上限5个)
 	optional int64 combat_power		= 3;	// 阵容总战力
+	optional int32 slot				= 4;	// 阵容槽位(0=默认阵容,多阵容场景从0递增)
 }
 
 message PB_LineupListData

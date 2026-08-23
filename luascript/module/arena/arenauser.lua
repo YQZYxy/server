@@ -28,7 +28,7 @@ function ArenaUser:Ctor(uid, name, user_name)
     self.power = 0                    -- 战力(阵容英雄战力之和)
 
     -- 角色快照(注册竞技场时从在线角色复制,用于对手展示和战斗)
-    -- 结构: {base_info={uid,name,user_name}, hero_data={owned_heroes={...}, lineups={...}}}
+    -- 结构: {base_info={uid,name,user_name}, hero={heroes=...}, lineup={lineups=...}}
     self.role_snapshot = nil
 
     -- 每日数据(跨天重置)

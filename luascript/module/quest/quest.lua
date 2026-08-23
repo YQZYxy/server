@@ -84,23 +84,24 @@ function LOC.GetOrSetQuestData(role)
         return nil
     end
     
-    local role_data = role:GetLuaRoleData()
+    local role_data = role:GetRoleData()
     if not role_data then
         LOG_ERROR("角色数据为空")
         return nil
     end
+    local growth = role_data.growth
     
-    -- 确保数据结构存在
-    if not role_data.quest then
+    -- 确保任务数据结构存在
+    if not growth.quest then
         local global_config = M.GetQuestGlobaConfig()
-        role_data.quest = {
+        growth.quest = {
             max_active = (global_config and global_config.max_active_quests) or 10,
             active_quests = {},     -- {[quest_id] = {status, start_time, complete_time, objectives}}
             completed_quests = {}   -- {quest_id, ...}
         }
     end
     
-    return role_data.quest
+    return growth.quest
 end
 
 -- ==================== 公共接口 ==============================

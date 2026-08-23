@@ -6,7 +6,6 @@ local GLO = GLO
 local M = {}
 local LOC = {}
 local Utils = GLO.Utils
-local Serializer = GLO.Serializer
 local ProtoBuf = GLO.Protobuf
 local TimerManager = GLO.TimerManager
 local EventManager = GLO.EventManager
@@ -38,31 +37,6 @@ function LOC.GetOrSetData()
     end
     
     return M.m_data
-end
-
--- 创建角色数据内容部分(lua_role_data字段, 后续模块再表内加数据)
-function LOC.CreateLuaRoleData(uid)
-    return {
-        -- 基础信息
-        uid = uid or 0,
-        level = 1,
-        exp = 0,
-
-        -- 时间戳
-        last_login_time = 0,
-    }
-end
-
--- 创建完整角色数据结构
-function LOC.CreateRoleData(uid, name, level)
-    return {
-        base_info = {
-            uid = uid or 0,
-            name = name or "",
-            user_name = "",
-        },
-        lua_role_data = LOC.CreateLuaRoleData(uid),
-    }
 end
 
 -- 获取完整角色数据
@@ -270,7 +244,7 @@ end
 
 -- 获取角色完整数据(优先在线,其次离线缓存)
 -- @param uid: 玩家uid
--- @return role_data: PBRoleData结构table(包含base_info,lua_role_data等)
+-- @return role_data: PBRoleData结构table
 function M.GetRoleDataEx(uid)
     local data = LOC.GetOrSetData()
 
@@ -297,14 +271,14 @@ end
 
 -- 获取角色Lua数据(优先在线缓存)
 -- @param uid: 玩家uid
--- @return lua_role_data: table
+-- @return role_data: PBRoleData结构table
 function M.GetLuaRoleDataEx(uid)
     local role_data = M.GetRoleDataEx(uid)
-    if not role_data or not role_data.lua_role_data then
+    if not role_data then
         LOG_ERROR("获取角色Lua数据失败 uid:" .. tostring(uid))
         return nil
     end
-    return role_data.lua_role_data
+    return role_data
 end
 
 -- 获取或创建临时角色(用于竞技场、查看等,不加入在线管理器)
@@ -399,13 +373,6 @@ function LOC.LoadRoleDataFromCpp(uid)
         return nil
     end
 
-    -- 反序列化lua_role_data 二进制字符串为lua表字段
-    if role_data.lua_role_data and role_data.lua_role_data ~= "" then
-        role_data.lua_role_data = Serializer.Simple.Deserialize(role_data.lua_role_data)
-    else
-        role_data.lua_role_data = LOC.CreateLuaRoleData(uid)
-    end
-
     LOG_INFO("加载角色数据 uid:" .. tostring(uid) .. " netid:" .. netid)
     return role_data, netid
 end
@@ -419,11 +386,8 @@ function LOC.SaveRoleDataToCpp(uid)
         return false
     end
 
-    -- 序列化lua_role_data lua表字段为二进制字符串
+    -- 直接编码 PB_RoleData
     local save_data = Utils.DeepCopy(entry.m_roledata)
-    if save_data.lua_role_data then
-        save_data.lua_role_data = Serializer.Simple.Serialize(save_data.lua_role_data)
-    end
 
     -- 编码为protobuf
     local pb_role_data = ProtoBuf.Encode(save_data, "PB_RoleData")
@@ -449,6 +413,10 @@ function M.GetRoleData(uid)
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(uid))
         return nil
     end
+    -- 默认值
+    if not role_data.growth then
+        role_data.growth = {}
+    end
     return role_data
 end
 
@@ -460,16 +428,6 @@ function M.GetRoleBaseData(uid)
         return nil
     end
     return role_data.base_info
-end
-
--- 获取角色Lua数据
-function M.GetLuaRoleData(uid)
-    local role_data = LOC.GetOrSetRoleData(uid)
-    if not role_data or not role_data.lua_role_data then
-        LOG_ERROR("获取角色数据失败 uid:" .. tostring(uid))
-        return nil
-    end
-    return role_data.lua_role_data
 end
 
 -- 清理角色数据
@@ -608,13 +566,6 @@ EventManager.RegisterListener(EventManager.cpp_OnInitRoleDataFindRet, function(e
     if not role_data then
         LOG_ERROR("查找角色数据返回: 角色数据为空 uid=%d", uid)
         return
-    end
-
-    -- 反序列化lua_role_data
-    if role_data.lua_role_data and role_data.lua_role_data ~= "" then
-        role_data.lua_role_data = Serializer.Simple.Deserialize(role_data.lua_role_data)
-    else
-        role_data.lua_role_data = LOC.CreateLuaRoleData(uid)
     end
 
     -- 存入离线缓存

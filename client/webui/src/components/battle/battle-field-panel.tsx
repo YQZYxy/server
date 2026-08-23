@@ -17,7 +17,7 @@ import {
 import { JOB_ICONS, DEFAULT_HERO_ICON, Job, ENEMY_ICONS, DEFAULT_ENEMY_ICONS,
   ANIMATION_SPEED, getAbilityConfig, getBattleTypeConfig 
 } from '@/types'
-import type { P_GasBattle_SC } from '@/types'
+import type { PB_BattleMatchResult } from '@/types'
 
 const BATTLE_FIELD_PANELS = getPagePanels('battle_field')
 
@@ -31,13 +31,16 @@ function getHeroIcon(hero: BattleHeroState) {
 }
 
 interface BattleFieldPanelProps {
-  result: P_GasBattle_SC
+  result: PB_BattleMatchResult
   onBack: () => void
 }
 
 export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelProps) {
   const activePanel = gameStore(s => s.activePanel)
   const setActivePanel = gameStore(s => s.setActivePanel)
+
+  // 单场详情
+  const battleType = result.battle_type ?? 0
 
   const [animFrames, setAnimFrames] = useState<AnimationFrame[]>([])
   const [animIndex, setAnimIndex] = useState(-1)
@@ -55,7 +58,7 @@ export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelPro
 
   // ---- 解析战报 ----
   useEffect(() => {
-    const rawText = result.battle_report || ''
+    const rawText = (result.battle_report as string) || ''
     if (!rawText) return
 
     const events = parseReplayText(rawText)
@@ -329,7 +332,7 @@ export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelPro
   return (
     <div className="battle-page">
 
-      {/* ---- 注册面板覆盖层 ---- */}
+      {/* ---- 注册面板覆盖层(传入当前场 PB_BattleMatchResult, 战报/结果面板) ---- */}
       {registerActivePanel(activePanel, setActivePanel, result)}  
 
       {/* 顶部栏 */}
@@ -340,10 +343,10 @@ export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelPro
         <div className="battle-topbar-center">
           {animIndex >= animFrames.length - 1 ? (
             <button className="btn-view-result" onClick={() => setActivePanel('result')}>
-              🏆 {getBattleTypeConfig(result.battle_type ?? 0)?.label ?? '战斗'}结果
+              🏆 {getBattleTypeConfig(battleType)?.label ?? '战斗'}结果
             </button>
           ) : (
-            <h2>{getBattleTypeConfig(result.battle_type ?? 0)?.label ?? '战斗'}战斗中</h2>
+            <h2>{getBattleTypeConfig(battleType)?.label ?? '战斗'}战斗中</h2>
           )}
         </div>
         <div className="battle-topbar-right">

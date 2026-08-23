@@ -878,3 +878,76 @@
 .report-event-desc {
   flex: 1;
 }
+
+/* ==================== 系列战斗(nvn多场1v1) ==================== */
+.battle-series-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #0a0a1a 0%, #1a1a3a 100%);
+  overflow: hidden;
+}
+.battle-series-page .battle-page {
+  flex: 1;
+  min-height: 0;
+}
+.battle-series-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 20;
+}
+.battle-series-left { display: flex; align-items: center; }
+.battle-series-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.battle-series-right {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  overflow-x: auto;
+}
+.series-result-badge {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.series-result-badge.series-win  { background: rgba(64,199,129,0.25); color: #40c781; border: 1px solid #40c781; }
+.series-result-badge.series-lose { background: rgba(239,83,80,0.25); color: #ef5350; border: 1px solid #ef5350; }
+.series-result-badge.series-draw { background: rgba(255,193,7,0.25); color: #ffc107; border: 1px solid #ffc107; }
+.series-score {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.series-tab-btn {
+  padding: 5px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: #ccd;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.series-tab-btn:hover { border-color: var(--primary); }
+.series-tab-btn.active {
+  background: rgba(79,110,247,0.3);
+  border-color: var(--primary);
+  color: #fff;
+}
+.series-empty {
+  color: #aab;
+  padding: 40px;
+  text-align: center;
+}

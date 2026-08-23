@@ -63,35 +63,6 @@
             }
         },
         {
-            "name": "battleserver",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/share",
-                "${workspaceFolder}/include"
-            ],
-            "defines": [
-                "WIN32",
-                "_WIN32",
-                "_WINDOWS",
-                "_CONSOLE",
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE",
-                "_SCL_SECURE_NO_WARNINGS",
-                "_CRT_SECURE_NO_WARNINGS"
-            ],
-            "compilerPath": "cl.exe",
-            "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64",
-            "browse": {
-                "path": [
-                    "${workspaceFolder}"
-                ],
-                "limitSymbolsToIncludedHeaders": true
-            }
-        },
-        {
             "name": "globalserver",
             "includePath": [
                 "${workspaceFolder}",

@@ -292,3 +292,27 @@ message PB_BattleResult
     optional string report_key                       = 10;  // 战报文件key(用于历史查询)
     optional int32 battle_type                       = 11;  // 战斗类型
 }
+
+// ==================== 单场战斗结果 ====================
+
+message PB_BattleMatchResult
+{
+    optional int32 match_index        = 1;   // 场次(1-based)
+    optional int32 result_type        = 2;   // 本场结果(Const.BattleResultType)
+    optional string battle_report_key = 3;   // 本场战报key
+    optional string battle_report     = 4;   // 本场完整战报文本
+    optional int32 battle_type        = 5;   // 战斗类型(单场展示标题)
+    optional int32 id                 = 6;   // 关联id(主线关卡id/竞技场对手uid)
+}
+
+// ==================== 战斗执行请求 ====================
+
+message PB_BattleExecuteReq
+{
+    optional int32 req_id             = 1;   // 请求序列号
+    optional PB_BattleReq battle_req  = 2;   // 战斗请求数据(执行战斗时设置)
+    optional string report_key        = 3;   // 战报key(查询战报时设置,优先级高于 battle_req)
+    optional int32 uid                = 4;   // 发起战斗的角色uid
+    optional int32 match_index        = 5;   // 系列战斗:当前场次(0=单场)
+    optional int32 total_matches      = 6;   // 系列战斗:总场次(1=单场)
+}

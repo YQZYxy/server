@@ -3,18 +3,18 @@
 // ====================================================================
 
 import { useCallback } from 'react'
-import { BattleResult, RESULT_LABELS, type P_GasBattle_SC } from '@/types'
+import { BattleResult, RESULT_LABELS, type PB_BattleMatchResult } from '@/types'
 import { computeFinalHeroes } from '@/services/battle'
 import PanelShell from '@/components/panel-shell'
 
 interface ResultPanelProps {
   onClose?: () => void
-  /** 由BattleFieldPanel通过registry传入 */
-  data?: P_GasBattle_SC
+  /** 由BattleFieldPanel通过registry传入(PB_BattleMatchResult 单场详情) */
+  data?: PB_BattleMatchResult
 }
 
 export function ResultPanel({ onClose, data: propData }: ResultPanelProps = {}) {
-  const rawText = propData?.battle_report || ''
+  const rawText = (propData?.battle_report as string) || ''
   const heroList = rawText ? computeFinalHeroes(rawText) : []
 
   const resultType = (propData?.result_type ?? 0) as BattleResult

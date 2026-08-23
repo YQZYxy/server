@@ -3389,6 +3389,876 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
     return PB_BattleResult;
 })();
 
+export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
+
+    /**
+     * Properties of a PB_BattleMatchResult.
+     * @typedef {Object} PB_BattleMatchResult.$Properties
+     * @property {number|null} [match_index] PB_BattleMatchResult match_index
+     * @property {number|null} [result_type] PB_BattleMatchResult result_type
+     * @property {string|null} [battle_report_key] PB_BattleMatchResult battle_report_key
+     * @property {string|null} [battle_report] PB_BattleMatchResult battle_report
+     * @property {number|null} [battle_type] PB_BattleMatchResult battle_type
+     * @property {number|null} [id] PB_BattleMatchResult id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_BattleMatchResult.
+     * @exports IPB_BattleMatchResult
+     * @interface IPB_BattleMatchResult
+     * @augments PB_BattleMatchResult.$Properties
+     * @deprecated Use PB_BattleMatchResult.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_BattleMatchResult.
+     * @typedef {PB_BattleMatchResult.$Properties} PB_BattleMatchResult.$Shape
+     */
+
+    /**
+     * Constructs a new PB_BattleMatchResult.
+     * @exports PB_BattleMatchResult
+     * @classdesc Represents a PB_BattleMatchResult.
+     * @constructor
+     * @param {PB_BattleMatchResult.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_BattleMatchResult = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_BattleMatchResult match_index.
+     * @member {number|null|undefined} match_index
+     * @memberof PB_BattleMatchResult
+     * @instance
+     */
+    PB_BattleMatchResult.prototype.match_index = null;
+
+    /**
+     * PB_BattleMatchResult result_type.
+     * @member {number|null|undefined} result_type
+     * @memberof PB_BattleMatchResult
+     * @instance
+     */
+    PB_BattleMatchResult.prototype.result_type = null;
+
+    /**
+     * PB_BattleMatchResult battle_report_key.
+     * @member {string|null|undefined} battle_report_key
+     * @memberof PB_BattleMatchResult
+     * @instance
+     */
+    PB_BattleMatchResult.prototype.battle_report_key = null;
+
+    /**
+     * PB_BattleMatchResult battle_report.
+     * @member {string|null|undefined} battle_report
+     * @memberof PB_BattleMatchResult
+     * @instance
+     */
+    PB_BattleMatchResult.prototype.battle_report = null;
+
+    /**
+     * PB_BattleMatchResult battle_type.
+     * @member {number|null|undefined} battle_type
+     * @memberof PB_BattleMatchResult
+     * @instance
+     */
+    PB_BattleMatchResult.prototype.battle_type = null;
+
+    /**
+     * PB_BattleMatchResult id.
+     * @member {number|null|undefined} id
+     * @memberof PB_BattleMatchResult
+     * @instance
+     */
+    PB_BattleMatchResult.prototype.id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_match_index", {
+        get: $util.oneOfGetter($oneOfFields = ["match_index"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_result_type", {
+        get: $util.oneOfGetter($oneOfFields = ["result_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_battle_report_key", {
+        get: $util.oneOfGetter($oneOfFields = ["battle_report_key"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_battle_report", {
+        get: $util.oneOfGetter($oneOfFields = ["battle_report"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_battle_type", {
+        get: $util.oneOfGetter($oneOfFields = ["battle_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_id", {
+        get: $util.oneOfGetter($oneOfFields = ["id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_BattleMatchResult instance using the specified properties.
+     * @function create
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {PB_BattleMatchResult.$Properties=} [properties] Properties to set
+     * @returns {PB_BattleMatchResult} PB_BattleMatchResult instance
+     * @type {{
+     *   (properties: PB_BattleMatchResult.$Shape): PB_BattleMatchResult & PB_BattleMatchResult.$Shape;
+     *   (properties?: PB_BattleMatchResult.$Properties): PB_BattleMatchResult;
+     * }}
+     */
+    PB_BattleMatchResult.create = function(properties) {
+        return new PB_BattleMatchResult(properties);
+    };
+
+    /**
+     * Encodes the specified PB_BattleMatchResult message. Does not implicitly {@link PB_BattleMatchResult.verify|verify} messages.
+     * @function encode
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {PB_BattleMatchResult.$Properties} message PB_BattleMatchResult message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_BattleMatchResult.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.match_index);
+        if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result_type);
+        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.battle_report_key);
+        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.battle_report);
+        if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.battle_type);
+        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_BattleMatchResult message, length delimited. Does not implicitly {@link PB_BattleMatchResult.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {PB_BattleMatchResult.$Properties} message PB_BattleMatchResult message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_BattleMatchResult.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_BattleMatchResult message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_BattleMatchResult & PB_BattleMatchResult.$Shape} PB_BattleMatchResult
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_BattleMatchResult.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_BattleMatchResult();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.match_index = reader.int32();
+                    message._match_index = "match_index";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.result_type = reader.int32();
+                    message._result_type = "result_type";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.battle_report_key = reader.stringVerify();
+                    message._battle_report_key = "battle_report_key";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 2)
+                        break;
+                    message.battle_report = reader.stringVerify();
+                    message._battle_report = "battle_report";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.battle_type = reader.int32();
+                    message._battle_type = "battle_type";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.id = reader.int32();
+                    message._id = "id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_BattleMatchResult message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_BattleMatchResult & PB_BattleMatchResult.$Shape} PB_BattleMatchResult
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_BattleMatchResult.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_BattleMatchResult message.
+     * @function verify
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_BattleMatchResult.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index")) {
+            properties._match_index = 1;
+            if (!$util.isInteger(message.match_index))
+                return "match_index: integer expected";
+        }
+        if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type")) {
+            properties._result_type = 1;
+            if (!$util.isInteger(message.result_type))
+                return "result_type: integer expected";
+        }
+        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key")) {
+            properties._battle_report_key = 1;
+            if (!$util.isString(message.battle_report_key))
+                return "battle_report_key: string expected";
+        }
+        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report")) {
+            properties._battle_report = 1;
+            if (!$util.isString(message.battle_report))
+                return "battle_report: string expected";
+        }
+        if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type")) {
+            properties._battle_type = 1;
+            if (!$util.isInteger(message.battle_type))
+                return "battle_type: integer expected";
+        }
+        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
+            properties._id = 1;
+            if (!$util.isInteger(message.id))
+                return "id: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_BattleMatchResult message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_BattleMatchResult} PB_BattleMatchResult
+     */
+    PB_BattleMatchResult.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_BattleMatchResult)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_BattleMatchResult: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_BattleMatchResult();
+        if (object.match_index != null)
+            message.match_index = object.match_index | 0;
+        if (object.result_type != null)
+            message.result_type = object.result_type | 0;
+        if (object.battle_report_key != null)
+            message.battle_report_key = $String(object.battle_report_key);
+        if (object.battle_report != null)
+            message.battle_report = $String(object.battle_report);
+        if (object.battle_type != null)
+            message.battle_type = object.battle_type | 0;
+        if (object.id != null)
+            message.id = object.id | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_BattleMatchResult message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {PB_BattleMatchResult} message PB_BattleMatchResult
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_BattleMatchResult.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index"))
+            object.match_index = message.match_index;
+        if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
+            object.result_type = message.result_type;
+        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
+            object.battle_report_key = message.battle_report_key;
+        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report"))
+            object.battle_report = message.battle_report;
+        if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
+            object.battle_type = message.battle_type;
+        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+            object.id = message.id;
+        return object;
+    };
+
+    /**
+     * Converts this PB_BattleMatchResult to JSON.
+     * @function toJSON
+     * @memberof PB_BattleMatchResult
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_BattleMatchResult.prototype.toJSON = function() {
+        return PB_BattleMatchResult.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_BattleMatchResult
+     * @function getTypeUrl
+     * @memberof PB_BattleMatchResult
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_BattleMatchResult.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_BattleMatchResult";
+    };
+
+    return PB_BattleMatchResult;
+})();
+
+export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
+
+    /**
+     * Properties of a PB_BattleExecuteReq.
+     * @typedef {Object} PB_BattleExecuteReq.$Properties
+     * @property {number|null} [req_id] PB_BattleExecuteReq req_id
+     * @property {PB_BattleReq.$Properties|null} [battle_req] PB_BattleExecuteReq battle_req
+     * @property {string|null} [report_key] PB_BattleExecuteReq report_key
+     * @property {number|null} [uid] PB_BattleExecuteReq uid
+     * @property {number|null} [match_index] PB_BattleExecuteReq match_index
+     * @property {number|null} [total_matches] PB_BattleExecuteReq total_matches
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_BattleExecuteReq.
+     * @exports IPB_BattleExecuteReq
+     * @interface IPB_BattleExecuteReq
+     * @augments PB_BattleExecuteReq.$Properties
+     * @deprecated Use PB_BattleExecuteReq.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_BattleExecuteReq.
+     * @typedef {PB_BattleExecuteReq.$Properties} PB_BattleExecuteReq.$Shape
+     */
+
+    /**
+     * Constructs a new PB_BattleExecuteReq.
+     * @exports PB_BattleExecuteReq
+     * @classdesc Represents a PB_BattleExecuteReq.
+     * @constructor
+     * @param {PB_BattleExecuteReq.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_BattleExecuteReq = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_BattleExecuteReq req_id.
+     * @member {number|null|undefined} req_id
+     * @memberof PB_BattleExecuteReq
+     * @instance
+     */
+    PB_BattleExecuteReq.prototype.req_id = null;
+
+    /**
+     * PB_BattleExecuteReq battle_req.
+     * @member {PB_BattleReq.$Properties|null|undefined} battle_req
+     * @memberof PB_BattleExecuteReq
+     * @instance
+     */
+    PB_BattleExecuteReq.prototype.battle_req = null;
+
+    /**
+     * PB_BattleExecuteReq report_key.
+     * @member {string|null|undefined} report_key
+     * @memberof PB_BattleExecuteReq
+     * @instance
+     */
+    PB_BattleExecuteReq.prototype.report_key = null;
+
+    /**
+     * PB_BattleExecuteReq uid.
+     * @member {number|null|undefined} uid
+     * @memberof PB_BattleExecuteReq
+     * @instance
+     */
+    PB_BattleExecuteReq.prototype.uid = null;
+
+    /**
+     * PB_BattleExecuteReq match_index.
+     * @member {number|null|undefined} match_index
+     * @memberof PB_BattleExecuteReq
+     * @instance
+     */
+    PB_BattleExecuteReq.prototype.match_index = null;
+
+    /**
+     * PB_BattleExecuteReq total_matches.
+     * @member {number|null|undefined} total_matches
+     * @memberof PB_BattleExecuteReq
+     * @instance
+     */
+    PB_BattleExecuteReq.prototype.total_matches = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleExecuteReq.prototype, "_req_id", {
+        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleExecuteReq.prototype, "_battle_req", {
+        get: $util.oneOfGetter($oneOfFields = ["battle_req"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleExecuteReq.prototype, "_report_key", {
+        get: $util.oneOfGetter($oneOfFields = ["report_key"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleExecuteReq.prototype, "_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleExecuteReq.prototype, "_match_index", {
+        get: $util.oneOfGetter($oneOfFields = ["match_index"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleExecuteReq.prototype, "_total_matches", {
+        get: $util.oneOfGetter($oneOfFields = ["total_matches"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_BattleExecuteReq instance using the specified properties.
+     * @function create
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {PB_BattleExecuteReq.$Properties=} [properties] Properties to set
+     * @returns {PB_BattleExecuteReq} PB_BattleExecuteReq instance
+     * @type {{
+     *   (properties: PB_BattleExecuteReq.$Shape): PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape;
+     *   (properties?: PB_BattleExecuteReq.$Properties): PB_BattleExecuteReq;
+     * }}
+     */
+    PB_BattleExecuteReq.create = function(properties) {
+        return new PB_BattleExecuteReq(properties);
+    };
+
+    /**
+     * Encodes the specified PB_BattleExecuteReq message. Does not implicitly {@link PB_BattleExecuteReq.verify|verify} messages.
+     * @function encode
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {PB_BattleExecuteReq.$Properties} message PB_BattleExecuteReq message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_BattleExecuteReq.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_id);
+        if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req"))
+            $root.PB_BattleReq.encode(message.battle_req, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.report_key);
+        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.uid);
+        if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.match_index);
+        if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.total_matches);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_BattleExecuteReq message, length delimited. Does not implicitly {@link PB_BattleExecuteReq.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {PB_BattleExecuteReq.$Properties} message PB_BattleExecuteReq message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_BattleExecuteReq.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_BattleExecuteReq message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape} PB_BattleExecuteReq
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_BattleExecuteReq.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_BattleExecuteReq();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.req_id = reader.int32();
+                    message._req_id = "req_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.battle_req = $root.PB_BattleReq.decode(reader, reader.uint32(), $undefined, _depth + 1, message.battle_req);
+                    message._battle_req = "battle_req";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.report_key = reader.stringVerify();
+                    message._report_key = "report_key";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.uid = reader.int32();
+                    message._uid = "uid";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.match_index = reader.int32();
+                    message._match_index = "match_index";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.total_matches = reader.int32();
+                    message._total_matches = "total_matches";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_BattleExecuteReq message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape} PB_BattleExecuteReq
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_BattleExecuteReq.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_BattleExecuteReq message.
+     * @function verify
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_BattleExecuteReq.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
+            properties._req_id = 1;
+            if (!$util.isInteger(message.req_id))
+                return "req_id: integer expected";
+        }
+        if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req")) {
+            properties._battle_req = 1;
+            {
+                let error = $root.PB_BattleReq.verify(message.battle_req, _depth + 1);
+                if (error)
+                    return "battle_req." + error;
+            }
+        }
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key")) {
+            properties._report_key = 1;
+            if (!$util.isString(message.report_key))
+                return "report_key: string expected";
+        }
+        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
+            properties._uid = 1;
+            if (!$util.isInteger(message.uid))
+                return "uid: integer expected";
+        }
+        if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index")) {
+            properties._match_index = 1;
+            if (!$util.isInteger(message.match_index))
+                return "match_index: integer expected";
+        }
+        if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches")) {
+            properties._total_matches = 1;
+            if (!$util.isInteger(message.total_matches))
+                return "total_matches: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_BattleExecuteReq message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_BattleExecuteReq} PB_BattleExecuteReq
+     */
+    PB_BattleExecuteReq.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_BattleExecuteReq)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_BattleExecuteReq: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_BattleExecuteReq();
+        if (object.req_id != null)
+            message.req_id = object.req_id | 0;
+        if (object.battle_req != null) {
+            if (!$util.isObject(object.battle_req))
+                throw $TypeError(".PB_BattleExecuteReq.battle_req: object expected");
+            message.battle_req = $root.PB_BattleReq.fromObject(object.battle_req, _depth + 1);
+        }
+        if (object.report_key != null)
+            message.report_key = $String(object.report_key);
+        if (object.uid != null)
+            message.uid = object.uid | 0;
+        if (object.match_index != null)
+            message.match_index = object.match_index | 0;
+        if (object.total_matches != null)
+            message.total_matches = object.total_matches | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_BattleExecuteReq message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {PB_BattleExecuteReq} message PB_BattleExecuteReq
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_BattleExecuteReq.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
+            object.req_id = message.req_id;
+        if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req"))
+            object.battle_req = $root.PB_BattleReq.toObject(message.battle_req, options, _depth + 1);
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
+            object.report_key = message.report_key;
+        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
+            object.uid = message.uid;
+        if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index"))
+            object.match_index = message.match_index;
+        if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
+            object.total_matches = message.total_matches;
+        return object;
+    };
+
+    /**
+     * Converts this PB_BattleExecuteReq to JSON.
+     * @function toJSON
+     * @memberof PB_BattleExecuteReq
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_BattleExecuteReq.prototype.toJSON = function() {
+        return PB_BattleExecuteReq.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_BattleExecuteReq
+     * @function getTypeUrl
+     * @memberof PB_BattleExecuteReq
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_BattleExecuteReq.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_BattleExecuteReq";
+    };
+
+    return PB_BattleExecuteReq;
+})();
+
 export const PB_ServerGlobalData = $root.PB_ServerGlobalData = (() => {
 
     /**
@@ -4629,1355 +5499,6 @@ export const PB_Item = $root.PB_Item = (() => {
     };
 
     return PB_Item;
-})();
-
-export const PB_RoleBagItem = $root.PB_RoleBagItem = (() => {
-
-    /**
-     * Properties of a PB_RoleBagItem.
-     * @typedef {Object} PB_RoleBagItem.$Properties
-     * @property {number|null} [bag_type] PB_RoleBagItem bag_type
-     * @property {Array.<PB_Item.$Properties>|null} [items] PB_RoleBagItem items
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a PB_RoleBagItem.
-     * @exports IPB_RoleBagItem
-     * @interface IPB_RoleBagItem
-     * @augments PB_RoleBagItem.$Properties
-     * @deprecated Use PB_RoleBagItem.$Properties instead.
-     */
-
-    /**
-     * Shape of a PB_RoleBagItem.
-     * @typedef {PB_RoleBagItem.$Properties} PB_RoleBagItem.$Shape
-     */
-
-    /**
-     * Constructs a new PB_RoleBagItem.
-     * @exports PB_RoleBagItem
-     * @classdesc Represents a PB_RoleBagItem.
-     * @constructor
-     * @param {PB_RoleBagItem.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const PB_RoleBagItem = function (properties) {
-        this.items = [];
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * PB_RoleBagItem bag_type.
-     * @member {number|null|undefined} bag_type
-     * @memberof PB_RoleBagItem
-     * @instance
-     */
-    PB_RoleBagItem.prototype.bag_type = null;
-
-    /**
-     * PB_RoleBagItem items.
-     * @member {Array.<PB_Item.$Properties>} items
-     * @memberof PB_RoleBagItem
-     * @instance
-     */
-    PB_RoleBagItem.prototype.items = $util.emptyArray;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleBagItem.prototype, "_bag_type", {
-        get: $util.oneOfGetter($oneOfFields = ["bag_type"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new PB_RoleBagItem instance using the specified properties.
-     * @function create
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem.$Properties=} [properties] Properties to set
-     * @returns {PB_RoleBagItem} PB_RoleBagItem instance
-     * @type {{
-     *   (properties: PB_RoleBagItem.$Shape): PB_RoleBagItem & PB_RoleBagItem.$Shape;
-     *   (properties?: PB_RoleBagItem.$Properties): PB_RoleBagItem;
-     * }}
-     */
-    PB_RoleBagItem.create = function(properties) {
-        return new PB_RoleBagItem(properties);
-    };
-
-    /**
-     * Encodes the specified PB_RoleBagItem message. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
-     * @function encode
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem.$Properties} message PB_RoleBagItem message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBagItem.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.bag_type);
-        if (message.items != null && message.items.length)
-            for (let i = 0; i < message.items.length; ++i)
-                $root.PB_Item.encode(message.items[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified PB_RoleBagItem message, length delimited. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem.$Properties} message PB_RoleBagItem message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBagItem.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a PB_RoleBagItem message from the specified reader or buffer.
-     * @function decode
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBagItem.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBagItem();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.bag_type = reader.int32();
-                    message._bag_type = "bag_type";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    if (!(message.items && message.items.length))
-                        message.items = [];
-                    message.items.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a PB_RoleBagItem message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBagItem.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a PB_RoleBagItem message.
-     * @function verify
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    PB_RoleBagItem.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type")) {
-            properties._bag_type = 1;
-            if (!$util.isInteger(message.bag_type))
-                return "bag_type: integer expected";
-        }
-        if (message.items != null && $Object.hasOwnProperty.call(message, "items")) {
-            if (!$Array.isArray(message.items))
-                return "items: array expected";
-            for (let i = 0; i < message.items.length; ++i) {
-                let error = $root.PB_Item.verify(message.items[i], _depth + 1);
-                if (error)
-                    return "items." + error;
-            }
-        }
-        return null;
-    };
-
-    /**
-     * Creates a PB_RoleBagItem message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {PB_RoleBagItem} PB_RoleBagItem
-     */
-    PB_RoleBagItem.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_RoleBagItem)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".PB_RoleBagItem: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.PB_RoleBagItem();
-        if (object.bag_type != null)
-            message.bag_type = object.bag_type | 0;
-        if (object.items) {
-            if (!$Array.isArray(object.items))
-                throw $TypeError(".PB_RoleBagItem.items: array expected");
-            message.items = $Array(object.items.length);
-            for (let i = 0; i < object.items.length; ++i) {
-                if (!$util.isObject(object.items[i]))
-                    throw $TypeError(".PB_RoleBagItem.items: object expected");
-                message.items[i] = $root.PB_Item.fromObject(object.items[i], _depth + 1);
-            }
-        }
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a PB_RoleBagItem message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem} message PB_RoleBagItem
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    PB_RoleBagItem.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (options.arrays || options.defaults)
-            object.items = [];
-        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type"))
-            object.bag_type = message.bag_type;
-        if (message.items && message.items.length) {
-            object.items = $Array(message.items.length);
-            for (let j = 0; j < message.items.length; ++j)
-                object.items[j] = $root.PB_Item.toObject(message.items[j], options, _depth + 1);
-        }
-        return object;
-    };
-
-    /**
-     * Converts this PB_RoleBagItem to JSON.
-     * @function toJSON
-     * @memberof PB_RoleBagItem
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    PB_RoleBagItem.prototype.toJSON = function() {
-        return PB_RoleBagItem.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for PB_RoleBagItem
-     * @function getTypeUrl
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    PB_RoleBagItem.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/PB_RoleBagItem";
-    };
-
-    return PB_RoleBagItem;
-})();
-
-export const PB_RoleBag = $root.PB_RoleBag = (() => {
-
-    /**
-     * Properties of a PB_RoleBag.
-     * @typedef {Object} PB_RoleBag.$Properties
-     * @property {Object.<string,PB_RoleBagItem.$Properties>|null} [bag] PB_RoleBag bag
-     * @property {Array.<PB_Item.$Properties>|null} [weare_item] PB_RoleBag weare_item
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a PB_RoleBag.
-     * @exports IPB_RoleBag
-     * @interface IPB_RoleBag
-     * @augments PB_RoleBag.$Properties
-     * @deprecated Use PB_RoleBag.$Properties instead.
-     */
-
-    /**
-     * Shape of a PB_RoleBag.
-     * @typedef {PB_RoleBag.$Properties} PB_RoleBag.$Shape
-     */
-
-    /**
-     * Constructs a new PB_RoleBag.
-     * @exports PB_RoleBag
-     * @classdesc Represents a PB_RoleBag.
-     * @constructor
-     * @param {PB_RoleBag.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const PB_RoleBag = function (properties) {
-        this.bag = {};
-        this.weare_item = [];
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * PB_RoleBag bag.
-     * @member {Object.<string,PB_RoleBagItem.$Properties>} bag
-     * @memberof PB_RoleBag
-     * @instance
-     */
-    PB_RoleBag.prototype.bag = $util.emptyObject;
-
-    /**
-     * PB_RoleBag weare_item.
-     * @member {Array.<PB_Item.$Properties>} weare_item
-     * @memberof PB_RoleBag
-     * @instance
-     */
-    PB_RoleBag.prototype.weare_item = $util.emptyArray;
-
-    /**
-     * Creates a new PB_RoleBag instance using the specified properties.
-     * @function create
-     * @memberof PB_RoleBag
-     * @static
-     * @param {PB_RoleBag.$Properties=} [properties] Properties to set
-     * @returns {PB_RoleBag} PB_RoleBag instance
-     * @type {{
-     *   (properties: PB_RoleBag.$Shape): PB_RoleBag & PB_RoleBag.$Shape;
-     *   (properties?: PB_RoleBag.$Properties): PB_RoleBag;
-     * }}
-     */
-    PB_RoleBag.create = function(properties) {
-        return new PB_RoleBag(properties);
-    };
-
-    /**
-     * Encodes the specified PB_RoleBag message. Does not implicitly {@link PB_RoleBag.verify|verify} messages.
-     * @function encode
-     * @memberof PB_RoleBag
-     * @static
-     * @param {PB_RoleBag.$Properties} message PB_RoleBag message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBag.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.bag != null && $Object.hasOwnProperty.call(message, "bag"))
-            for (let keys = $Object.keys(message.bag), i = 0; i < keys.length; ++i) {
-                writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).int32(keys[i]);
-                $root.PB_RoleBagItem.encode(message.bag[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
-            }
-        if (message.weare_item != null && message.weare_item.length)
-            for (let i = 0; i < message.weare_item.length; ++i)
-                $root.PB_Item.encode(message.weare_item[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified PB_RoleBag message, length delimited. Does not implicitly {@link PB_RoleBag.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof PB_RoleBag
-     * @static
-     * @param {PB_RoleBag.$Properties} message PB_RoleBag message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBag.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a PB_RoleBag message from the specified reader or buffer.
-     * @function decode
-     * @memberof PB_RoleBag
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {PB_RoleBag & PB_RoleBag.$Shape} PB_RoleBag
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBag.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBag(), key, value;
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 2)
-                        break;
-                    if (message.bag === $util.emptyObject)
-                        message.bag = {};
-                    let end2 = reader.uint32() + reader.pos;
-                    key = 0;
-                    value = null;
-                    while (reader.pos < end2) {
-                        let tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
-                        case 1:
-                            if (wireType !== 0)
-                                break;
-                            key = reader.int32();
-                            continue;
-                        case 2:
-                            if (wireType !== 2)
-                                break;
-                            value = $root.PB_RoleBagItem.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
-                            continue;
-                        }
-                        reader.skipType(wireType, _depth, tag2);
-                    }
-                    message.bag[key] = value || new $root.PB_RoleBagItem();
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    if (!(message.weare_item && message.weare_item.length))
-                        message.weare_item = [];
-                    message.weare_item.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a PB_RoleBag message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof PB_RoleBag
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_RoleBag & PB_RoleBag.$Shape} PB_RoleBag
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBag.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a PB_RoleBag message.
-     * @function verify
-     * @memberof PB_RoleBag
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    PB_RoleBag.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        if (message.bag != null && $Object.hasOwnProperty.call(message, "bag")) {
-            if (!$util.isObject(message.bag))
-                return "bag: object expected";
-            let key = $Object.keys(message.bag);
-            for (let i = 0; i < key.length; ++i) {
-                if (!$util.key32Re.test(key[i]))
-                    return "bag: integer key{k:int32} expected";
-                {
-                    let error = $root.PB_RoleBagItem.verify(message.bag[key[i]], _depth + 1);
-                    if (error)
-                        return "bag." + error;
-                }
-            }
-        }
-        if (message.weare_item != null && $Object.hasOwnProperty.call(message, "weare_item")) {
-            if (!$Array.isArray(message.weare_item))
-                return "weare_item: array expected";
-            for (let i = 0; i < message.weare_item.length; ++i) {
-                let error = $root.PB_Item.verify(message.weare_item[i], _depth + 1);
-                if (error)
-                    return "weare_item." + error;
-            }
-        }
-        return null;
-    };
-
-    /**
-     * Creates a PB_RoleBag message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof PB_RoleBag
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {PB_RoleBag} PB_RoleBag
-     */
-    PB_RoleBag.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_RoleBag)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".PB_RoleBag: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.PB_RoleBag();
-        if (object.bag) {
-            if (!$util.isObject(object.bag))
-                throw $TypeError(".PB_RoleBag.bag: object expected");
-            message.bag = {};
-            for (let keys = $Object.keys(object.bag), i = 0; i < keys.length; ++i) {
-                if (keys[i] === "__proto__")
-                    $util.makeProp(message.bag, keys[i]);
-                if (!$util.isObject(object.bag[keys[i]]))
-                    throw $TypeError(".PB_RoleBag.bag: object expected");
-                message.bag[keys[i]] = $root.PB_RoleBagItem.fromObject(object.bag[keys[i]], _depth + 1);
-            }
-        }
-        if (object.weare_item) {
-            if (!$Array.isArray(object.weare_item))
-                throw $TypeError(".PB_RoleBag.weare_item: array expected");
-            message.weare_item = $Array(object.weare_item.length);
-            for (let i = 0; i < object.weare_item.length; ++i) {
-                if (!$util.isObject(object.weare_item[i]))
-                    throw $TypeError(".PB_RoleBag.weare_item: object expected");
-                message.weare_item[i] = $root.PB_Item.fromObject(object.weare_item[i], _depth + 1);
-            }
-        }
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a PB_RoleBag message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof PB_RoleBag
-     * @static
-     * @param {PB_RoleBag} message PB_RoleBag
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    PB_RoleBag.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (options.arrays || options.defaults)
-            object.weare_item = [];
-        if (options.objects || options.defaults)
-            object.bag = {};
-        let keys2;
-        if (message.bag && (keys2 = $Object.keys(message.bag)).length) {
-            object.bag = {};
-            for (let j = 0; j < keys2.length; ++j) {
-                if (keys2[j] === "__proto__")
-                    $util.makeProp(object.bag, keys2[j]);
-                object.bag[keys2[j]] = $root.PB_RoleBagItem.toObject(message.bag[keys2[j]], options, _depth + 1);
-            }
-        }
-        if (message.weare_item && message.weare_item.length) {
-            object.weare_item = $Array(message.weare_item.length);
-            for (let j = 0; j < message.weare_item.length; ++j)
-                object.weare_item[j] = $root.PB_Item.toObject(message.weare_item[j], options, _depth + 1);
-        }
-        return object;
-    };
-
-    /**
-     * Converts this PB_RoleBag to JSON.
-     * @function toJSON
-     * @memberof PB_RoleBag
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    PB_RoleBag.prototype.toJSON = function() {
-        return PB_RoleBag.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for PB_RoleBag
-     * @function getTypeUrl
-     * @memberof PB_RoleBag
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    PB_RoleBag.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/PB_RoleBag";
-    };
-
-    return PB_RoleBag;
-})();
-
-export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
-
-    /**
-     * Properties of a PB_RoleBaseInfo.
-     * @typedef {Object} PB_RoleBaseInfo.$Properties
-     * @property {number|null} [uid] PB_RoleBaseInfo uid
-     * @property {string|null} [name] PB_RoleBaseInfo name
-     * @property {string|null} [user_name] PB_RoleBaseInfo user_name
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a PB_RoleBaseInfo.
-     * @exports IPB_RoleBaseInfo
-     * @interface IPB_RoleBaseInfo
-     * @augments PB_RoleBaseInfo.$Properties
-     * @deprecated Use PB_RoleBaseInfo.$Properties instead.
-     */
-
-    /**
-     * Shape of a PB_RoleBaseInfo.
-     * @typedef {PB_RoleBaseInfo.$Properties} PB_RoleBaseInfo.$Shape
-     */
-
-    /**
-     * Constructs a new PB_RoleBaseInfo.
-     * @exports PB_RoleBaseInfo
-     * @classdesc Represents a PB_RoleBaseInfo.
-     * @constructor
-     * @param {PB_RoleBaseInfo.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const PB_RoleBaseInfo = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * PB_RoleBaseInfo uid.
-     * @member {number|null|undefined} uid
-     * @memberof PB_RoleBaseInfo
-     * @instance
-     */
-    PB_RoleBaseInfo.prototype.uid = null;
-
-    /**
-     * PB_RoleBaseInfo name.
-     * @member {string|null|undefined} name
-     * @memberof PB_RoleBaseInfo
-     * @instance
-     */
-    PB_RoleBaseInfo.prototype.name = null;
-
-    /**
-     * PB_RoleBaseInfo user_name.
-     * @member {string|null|undefined} user_name
-     * @memberof PB_RoleBaseInfo
-     * @instance
-     */
-    PB_RoleBaseInfo.prototype.user_name = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_uid", {
-        get: $util.oneOfGetter($oneOfFields = ["uid"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_name", {
-        get: $util.oneOfGetter($oneOfFields = ["name"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_user_name", {
-        get: $util.oneOfGetter($oneOfFields = ["user_name"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new PB_RoleBaseInfo instance using the specified properties.
-     * @function create
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {PB_RoleBaseInfo.$Properties=} [properties] Properties to set
-     * @returns {PB_RoleBaseInfo} PB_RoleBaseInfo instance
-     * @type {{
-     *   (properties: PB_RoleBaseInfo.$Shape): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
-     *   (properties?: PB_RoleBaseInfo.$Properties): PB_RoleBaseInfo;
-     * }}
-     */
-    PB_RoleBaseInfo.create = function(properties) {
-        return new PB_RoleBaseInfo(properties);
-    };
-
-    /**
-     * Encodes the specified PB_RoleBaseInfo message. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
-     * @function encode
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {PB_RoleBaseInfo.$Properties} message PB_RoleBaseInfo message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBaseInfo.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
-        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
-        if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
-            writer.uint32(/* id 3, wireType 2 =*/26).string(message.user_name);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified PB_RoleBaseInfo message, length delimited. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {PB_RoleBaseInfo.$Properties} message PB_RoleBaseInfo message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBaseInfo.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer.
-     * @function decode
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBaseInfo.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBaseInfo();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.uid = reader.int32();
-                    message._uid = "uid";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.name = reader.stringVerify();
-                    message._name = "name";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.user_name = reader.stringVerify();
-                    message._user_name = "user_name";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBaseInfo.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a PB_RoleBaseInfo message.
-     * @function verify
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    PB_RoleBaseInfo.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
-            properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
-        }
-        if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
-            properties._name = 1;
-            if (!$util.isString(message.name))
-                return "name: string expected";
-        }
-        if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name")) {
-            properties._user_name = 1;
-            if (!$util.isString(message.user_name))
-                return "user_name: string expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a PB_RoleBaseInfo message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {PB_RoleBaseInfo} PB_RoleBaseInfo
-     */
-    PB_RoleBaseInfo.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_RoleBaseInfo)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".PB_RoleBaseInfo: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.PB_RoleBaseInfo();
-        if (object.uid != null)
-            message.uid = object.uid | 0;
-        if (object.name != null)
-            message.name = $String(object.name);
-        if (object.user_name != null)
-            message.user_name = $String(object.user_name);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a PB_RoleBaseInfo message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {PB_RoleBaseInfo} message PB_RoleBaseInfo
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    PB_RoleBaseInfo.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
-        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
-            object.name = message.name;
-        if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
-            object.user_name = message.user_name;
-        return object;
-    };
-
-    /**
-     * Converts this PB_RoleBaseInfo to JSON.
-     * @function toJSON
-     * @memberof PB_RoleBaseInfo
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    PB_RoleBaseInfo.prototype.toJSON = function() {
-        return PB_RoleBaseInfo.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for PB_RoleBaseInfo
-     * @function getTypeUrl
-     * @memberof PB_RoleBaseInfo
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    PB_RoleBaseInfo.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/PB_RoleBaseInfo";
-    };
-
-    return PB_RoleBaseInfo;
-})();
-
-export const PB_RoleData = $root.PB_RoleData = (() => {
-
-    /**
-     * Properties of a PB_RoleData.
-     * @typedef {Object} PB_RoleData.$Properties
-     * @property {string|null} [lua_role_data] PB_RoleData lua_role_data
-     * @property {PB_RoleBaseInfo.$Properties|null} [base_info] PB_RoleData base_info
-     * @property {PB_RoleBag.$Properties|null} [role_bag] PB_RoleData role_bag
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a PB_RoleData.
-     * @exports IPB_RoleData
-     * @interface IPB_RoleData
-     * @augments PB_RoleData.$Properties
-     * @deprecated Use PB_RoleData.$Properties instead.
-     */
-
-    /**
-     * Shape of a PB_RoleData.
-     * @typedef {PB_RoleData.$Properties} PB_RoleData.$Shape
-     */
-
-    /**
-     * Constructs a new PB_RoleData.
-     * @exports PB_RoleData
-     * @classdesc Represents a PB_RoleData.
-     * @constructor
-     * @param {PB_RoleData.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const PB_RoleData = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * PB_RoleData lua_role_data.
-     * @member {string|null|undefined} lua_role_data
-     * @memberof PB_RoleData
-     * @instance
-     */
-    PB_RoleData.prototype.lua_role_data = null;
-
-    /**
-     * PB_RoleData base_info.
-     * @member {PB_RoleBaseInfo.$Properties|null|undefined} base_info
-     * @memberof PB_RoleData
-     * @instance
-     */
-    PB_RoleData.prototype.base_info = null;
-
-    /**
-     * PB_RoleData role_bag.
-     * @member {PB_RoleBag.$Properties|null|undefined} role_bag
-     * @memberof PB_RoleData
-     * @instance
-     */
-    PB_RoleData.prototype.role_bag = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleData.prototype, "_lua_role_data", {
-        get: $util.oneOfGetter($oneOfFields = ["lua_role_data"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleData.prototype, "_base_info", {
-        get: $util.oneOfGetter($oneOfFields = ["base_info"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleData.prototype, "_role_bag", {
-        get: $util.oneOfGetter($oneOfFields = ["role_bag"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new PB_RoleData instance using the specified properties.
-     * @function create
-     * @memberof PB_RoleData
-     * @static
-     * @param {PB_RoleData.$Properties=} [properties] Properties to set
-     * @returns {PB_RoleData} PB_RoleData instance
-     * @type {{
-     *   (properties: PB_RoleData.$Shape): PB_RoleData & PB_RoleData.$Shape;
-     *   (properties?: PB_RoleData.$Properties): PB_RoleData;
-     * }}
-     */
-    PB_RoleData.create = function(properties) {
-        return new PB_RoleData(properties);
-    };
-
-    /**
-     * Encodes the specified PB_RoleData message. Does not implicitly {@link PB_RoleData.verify|verify} messages.
-     * @function encode
-     * @memberof PB_RoleData
-     * @static
-     * @param {PB_RoleData.$Properties} message PB_RoleData message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleData.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.lua_role_data != null && $Object.hasOwnProperty.call(message, "lua_role_data"))
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.lua_role_data);
-        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
-            $root.PB_RoleBaseInfo.encode(message.base_info, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
-        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag"))
-            $root.PB_RoleBag.encode(message.role_bag, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified PB_RoleData message, length delimited. Does not implicitly {@link PB_RoleData.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof PB_RoleData
-     * @static
-     * @param {PB_RoleData.$Properties} message PB_RoleData message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleData.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a PB_RoleData message from the specified reader or buffer.
-     * @function decode
-     * @memberof PB_RoleData
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleData.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleData();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 2)
-                        break;
-                    message.lua_role_data = reader.stringVerify();
-                    message._lua_role_data = "lua_role_data";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.base_info = $root.PB_RoleBaseInfo.decode(reader, reader.uint32(), $undefined, _depth + 1, message.base_info);
-                    message._base_info = "base_info";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.role_bag = $root.PB_RoleBag.decode(reader, reader.uint32(), $undefined, _depth + 1, message.role_bag);
-                    message._role_bag = "role_bag";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a PB_RoleData message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof PB_RoleData
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleData.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a PB_RoleData message.
-     * @function verify
-     * @memberof PB_RoleData
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    PB_RoleData.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.lua_role_data != null && $Object.hasOwnProperty.call(message, "lua_role_data")) {
-            properties._lua_role_data = 1;
-            if (!$util.isString(message.lua_role_data))
-                return "lua_role_data: string expected";
-        }
-        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info")) {
-            properties._base_info = 1;
-            {
-                let error = $root.PB_RoleBaseInfo.verify(message.base_info, _depth + 1);
-                if (error)
-                    return "base_info." + error;
-            }
-        }
-        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag")) {
-            properties._role_bag = 1;
-            {
-                let error = $root.PB_RoleBag.verify(message.role_bag, _depth + 1);
-                if (error)
-                    return "role_bag." + error;
-            }
-        }
-        return null;
-    };
-
-    /**
-     * Creates a PB_RoleData message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof PB_RoleData
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {PB_RoleData} PB_RoleData
-     */
-    PB_RoleData.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_RoleData)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".PB_RoleData: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.PB_RoleData();
-        if (object.lua_role_data != null)
-            message.lua_role_data = $String(object.lua_role_data);
-        if (object.base_info != null) {
-            if (!$util.isObject(object.base_info))
-                throw $TypeError(".PB_RoleData.base_info: object expected");
-            message.base_info = $root.PB_RoleBaseInfo.fromObject(object.base_info, _depth + 1);
-        }
-        if (object.role_bag != null) {
-            if (!$util.isObject(object.role_bag))
-                throw $TypeError(".PB_RoleData.role_bag: object expected");
-            message.role_bag = $root.PB_RoleBag.fromObject(object.role_bag, _depth + 1);
-        }
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a PB_RoleData message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof PB_RoleData
-     * @static
-     * @param {PB_RoleData} message PB_RoleData
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    PB_RoleData.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.lua_role_data != null && $Object.hasOwnProperty.call(message, "lua_role_data"))
-            object.lua_role_data = message.lua_role_data;
-        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
-            object.base_info = $root.PB_RoleBaseInfo.toObject(message.base_info, options, _depth + 1);
-        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag"))
-            object.role_bag = $root.PB_RoleBag.toObject(message.role_bag, options, _depth + 1);
-        return object;
-    };
-
-    /**
-     * Converts this PB_RoleData to JSON.
-     * @function toJSON
-     * @memberof PB_RoleData
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    PB_RoleData.prototype.toJSON = function() {
-        return PB_RoleData.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for PB_RoleData
-     * @function getTypeUrl
-     * @memberof PB_RoleData
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    PB_RoleData.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/PB_RoleData";
-    };
-
-    return PB_RoleData;
 })();
 
 export const PB_InventorySlot = $root.PB_InventorySlot = (() => {
@@ -9332,6 +8853,7 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
      * @property {number|null} [battle_type] PB_LineupData battle_type
      * @property {Array.<number>|null} [hero_ids] PB_LineupData hero_ids
      * @property {number|null} [combat_power] PB_LineupData combat_power
+     * @property {number|null} [slot] PB_LineupData slot
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -9388,6 +8910,14 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
      */
     PB_LineupData.prototype.combat_power = null;
 
+    /**
+     * PB_LineupData slot.
+     * @member {number|null|undefined} slot
+     * @memberof PB_LineupData
+     * @instance
+     */
+    PB_LineupData.prototype.slot = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
@@ -9400,6 +8930,12 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_LineupData.prototype, "_combat_power", {
         get: $util.oneOfGetter($oneOfFields = ["combat_power"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_LineupData.prototype, "_slot", {
+        get: $util.oneOfGetter($oneOfFields = ["slot"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -9441,6 +8977,8 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
             writer.uint32(/* id 2, wireType 2 =*/18).int32s(message.hero_ids);
         if (message.combat_power != null && $Object.hasOwnProperty.call(message, "combat_power"))
             writer.uint32(/* id 3, wireType 0 =*/24).int64(message.combat_power);
+        if (message.slot != null && $Object.hasOwnProperty.call(message, "slot"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.slot);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -9516,6 +9054,13 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
                     message._combat_power = "combat_power";
                     continue;
                 }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.slot = reader.int32();
+                    message._slot = "slot";
+                    continue;
+                }
             }
             reader.skipType(wireType, _depth, tag);
             if (!reader.discardUnknown) {
@@ -9577,6 +9122,11 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
             if (!$util.isInteger(message.combat_power) && !(message.combat_power && $util.isInteger(message.combat_power.low) && $util.isInteger(message.combat_power.high)))
                 return "combat_power: integer|Long expected";
         }
+        if (message.slot != null && $Object.hasOwnProperty.call(message, "slot")) {
+            properties._slot = 1;
+            if (!$util.isInteger(message.slot))
+                return "slot: integer expected";
+        }
         return null;
     };
 
@@ -9616,6 +9166,8 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
                 message.combat_power = object.combat_power;
             else if (typeof object.combat_power === "object")
                 message.combat_power = new $util.LongBits(object.combat_power.low >>> 0, object.combat_power.high >>> 0).toNumber();
+        if (object.slot != null)
+            message.slot = object.slot | 0;
         return message;
     };
 
@@ -9652,6 +9204,8 @@ export const PB_LineupData = $root.PB_LineupData = (() => {
                 object.combat_power = options.longs === $String ? $String(message.combat_power) : message.combat_power;
             else
                 object.combat_power = options.longs === $String ? $util.Long.prototype.toString.call(message.combat_power) : options.longs === $Number ? new $util.LongBits(message.combat_power.low >>> 0, message.combat_power.high >>> 0).toNumber() : message.combat_power;
+        if (message.slot != null && $Object.hasOwnProperty.call(message, "slot"))
+            object.slot = message.slot;
         return object;
     };
 
@@ -24428,1973 +23982,6 @@ export const P_BattleServerKickOutRole = $root.P_BattleServerKickOutRole = (() =
     return P_BattleServerKickOutRole;
 })();
 
-export const P_BattleExecuteReq = $root.P_BattleExecuteReq = (() => {
-
-    /**
-     * Properties of a P_BattleExecuteReq.
-     * @typedef {Object} P_BattleExecuteReq.$Properties
-     * @property {number|null} [req_id] P_BattleExecuteReq req_id
-     * @property {PB_BattleReq.$Properties|null} [battle_req] P_BattleExecuteReq battle_req
-     * @property {string|null} [report_key] P_BattleExecuteReq report_key
-     * @property {number|null} [uid] P_BattleExecuteReq uid
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_BattleExecuteReq.
-     * @exports IP_BattleExecuteReq
-     * @interface IP_BattleExecuteReq
-     * @augments P_BattleExecuteReq.$Properties
-     * @deprecated Use P_BattleExecuteReq.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_BattleExecuteReq.
-     * @typedef {P_BattleExecuteReq.$Properties} P_BattleExecuteReq.$Shape
-     */
-
-    /**
-     * Constructs a new P_BattleExecuteReq.
-     * @exports P_BattleExecuteReq
-     * @classdesc Represents a P_BattleExecuteReq.
-     * @constructor
-     * @param {P_BattleExecuteReq.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_BattleExecuteReq = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_BattleExecuteReq req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_BattleExecuteReq
-     * @instance
-     */
-    P_BattleExecuteReq.prototype.req_id = null;
-
-    /**
-     * P_BattleExecuteReq battle_req.
-     * @member {PB_BattleReq.$Properties|null|undefined} battle_req
-     * @memberof P_BattleExecuteReq
-     * @instance
-     */
-    P_BattleExecuteReq.prototype.battle_req = null;
-
-    /**
-     * P_BattleExecuteReq report_key.
-     * @member {string|null|undefined} report_key
-     * @memberof P_BattleExecuteReq
-     * @instance
-     */
-    P_BattleExecuteReq.prototype.report_key = null;
-
-    /**
-     * P_BattleExecuteReq uid.
-     * @member {number|null|undefined} uid
-     * @memberof P_BattleExecuteReq
-     * @instance
-     */
-    P_BattleExecuteReq.prototype.uid = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleExecuteReq.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleExecuteReq.prototype, "_battle_req", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_req"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleExecuteReq.prototype, "_report_key", {
-        get: $util.oneOfGetter($oneOfFields = ["report_key"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleExecuteReq.prototype, "_uid", {
-        get: $util.oneOfGetter($oneOfFields = ["uid"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_BattleExecuteReq instance using the specified properties.
-     * @function create
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {P_BattleExecuteReq.$Properties=} [properties] Properties to set
-     * @returns {P_BattleExecuteReq} P_BattleExecuteReq instance
-     * @type {{
-     *   (properties: P_BattleExecuteReq.$Shape): P_BattleExecuteReq & P_BattleExecuteReq.$Shape;
-     *   (properties?: P_BattleExecuteReq.$Properties): P_BattleExecuteReq;
-     * }}
-     */
-    P_BattleExecuteReq.create = function(properties) {
-        return new P_BattleExecuteReq(properties);
-    };
-
-    /**
-     * Encodes the specified P_BattleExecuteReq message. Does not implicitly {@link P_BattleExecuteReq.verify|verify} messages.
-     * @function encode
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {P_BattleExecuteReq.$Properties} message P_BattleExecuteReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleExecuteReq.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_id);
-        if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req"))
-            $root.PB_BattleReq.encode(message.battle_req, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
-        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
-            writer.uint32(/* id 3, wireType 2 =*/26).string(message.report_key);
-        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.uid);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_BattleExecuteReq message, length delimited. Does not implicitly {@link P_BattleExecuteReq.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {P_BattleExecuteReq.$Properties} message P_BattleExecuteReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleExecuteReq.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_BattleExecuteReq message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_BattleExecuteReq & P_BattleExecuteReq.$Shape} P_BattleExecuteReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleExecuteReq.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_BattleExecuteReq();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int32();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.battle_req = $root.PB_BattleReq.decode(reader, reader.uint32(), $undefined, _depth + 1, message.battle_req);
-                    message._battle_req = "battle_req";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.report_key = reader.stringVerify();
-                    message._report_key = "report_key";
-                    continue;
-                }
-            case 4: {
-                    if (wireType !== 0)
-                        break;
-                    message.uid = reader.int32();
-                    message._uid = "uid";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_BattleExecuteReq message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_BattleExecuteReq & P_BattleExecuteReq.$Shape} P_BattleExecuteReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleExecuteReq.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_BattleExecuteReq message.
-     * @function verify
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_BattleExecuteReq.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id))
-                return "req_id: integer expected";
-        }
-        if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req")) {
-            properties._battle_req = 1;
-            {
-                let error = $root.PB_BattleReq.verify(message.battle_req, _depth + 1);
-                if (error)
-                    return "battle_req." + error;
-            }
-        }
-        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key")) {
-            properties._report_key = 1;
-            if (!$util.isString(message.report_key))
-                return "report_key: string expected";
-        }
-        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
-            properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_BattleExecuteReq message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_BattleExecuteReq} P_BattleExecuteReq
-     */
-    P_BattleExecuteReq.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_BattleExecuteReq)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_BattleExecuteReq: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_BattleExecuteReq();
-        if (object.req_id != null)
-            message.req_id = object.req_id | 0;
-        if (object.battle_req != null) {
-            if (!$util.isObject(object.battle_req))
-                throw $TypeError(".P_BattleExecuteReq.battle_req: object expected");
-            message.battle_req = $root.PB_BattleReq.fromObject(object.battle_req, _depth + 1);
-        }
-        if (object.report_key != null)
-            message.report_key = $String(object.report_key);
-        if (object.uid != null)
-            message.uid = object.uid | 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_BattleExecuteReq message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {P_BattleExecuteReq} message P_BattleExecuteReq
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_BattleExecuteReq.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            object.req_id = message.req_id;
-        if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req"))
-            object.battle_req = $root.PB_BattleReq.toObject(message.battle_req, options, _depth + 1);
-        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
-            object.report_key = message.report_key;
-        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
-        return object;
-    };
-
-    /**
-     * Converts this P_BattleExecuteReq to JSON.
-     * @function toJSON
-     * @memberof P_BattleExecuteReq
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_BattleExecuteReq.prototype.toJSON = function() {
-        return P_BattleExecuteReq.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_BattleExecuteReq
-     * @function getTypeUrl
-     * @memberof P_BattleExecuteReq
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_BattleExecuteReq.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_BattleExecuteReq";
-    };
-
-    return P_BattleExecuteReq;
-})();
-
-export const P_BattleExecuteRes = $root.P_BattleExecuteRes = (() => {
-
-    /**
-     * Properties of a P_BattleExecuteRes.
-     * @typedef {Object} P_BattleExecuteRes.$Properties
-     * @property {number|null} [req_id] P_BattleExecuteRes req_id
-     * @property {number|null} [ret] P_BattleExecuteRes ret
-     * @property {PB_BattleResult.$Properties|null} [battle_result] P_BattleExecuteRes battle_result
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_BattleExecuteRes.
-     * @exports IP_BattleExecuteRes
-     * @interface IP_BattleExecuteRes
-     * @augments P_BattleExecuteRes.$Properties
-     * @deprecated Use P_BattleExecuteRes.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_BattleExecuteRes.
-     * @typedef {P_BattleExecuteRes.$Properties} P_BattleExecuteRes.$Shape
-     */
-
-    /**
-     * Constructs a new P_BattleExecuteRes.
-     * @exports P_BattleExecuteRes
-     * @classdesc Represents a P_BattleExecuteRes.
-     * @constructor
-     * @param {P_BattleExecuteRes.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_BattleExecuteRes = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_BattleExecuteRes req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_BattleExecuteRes
-     * @instance
-     */
-    P_BattleExecuteRes.prototype.req_id = null;
-
-    /**
-     * P_BattleExecuteRes ret.
-     * @member {number|null|undefined} ret
-     * @memberof P_BattleExecuteRes
-     * @instance
-     */
-    P_BattleExecuteRes.prototype.ret = null;
-
-    /**
-     * P_BattleExecuteRes battle_result.
-     * @member {PB_BattleResult.$Properties|null|undefined} battle_result
-     * @memberof P_BattleExecuteRes
-     * @instance
-     */
-    P_BattleExecuteRes.prototype.battle_result = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleExecuteRes.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleExecuteRes.prototype, "_ret", {
-        get: $util.oneOfGetter($oneOfFields = ["ret"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleExecuteRes.prototype, "_battle_result", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_result"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_BattleExecuteRes instance using the specified properties.
-     * @function create
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {P_BattleExecuteRes.$Properties=} [properties] Properties to set
-     * @returns {P_BattleExecuteRes} P_BattleExecuteRes instance
-     * @type {{
-     *   (properties: P_BattleExecuteRes.$Shape): P_BattleExecuteRes & P_BattleExecuteRes.$Shape;
-     *   (properties?: P_BattleExecuteRes.$Properties): P_BattleExecuteRes;
-     * }}
-     */
-    P_BattleExecuteRes.create = function(properties) {
-        return new P_BattleExecuteRes(properties);
-    };
-
-    /**
-     * Encodes the specified P_BattleExecuteRes message. Does not implicitly {@link P_BattleExecuteRes.verify|verify} messages.
-     * @function encode
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {P_BattleExecuteRes.$Properties} message P_BattleExecuteRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleExecuteRes.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_id);
-        if (message.ret != null && $Object.hasOwnProperty.call(message, "ret"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.ret);
-        if (message.battle_result != null && $Object.hasOwnProperty.call(message, "battle_result"))
-            $root.PB_BattleResult.encode(message.battle_result, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_BattleExecuteRes message, length delimited. Does not implicitly {@link P_BattleExecuteRes.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {P_BattleExecuteRes.$Properties} message P_BattleExecuteRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleExecuteRes.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_BattleExecuteRes message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_BattleExecuteRes & P_BattleExecuteRes.$Shape} P_BattleExecuteRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleExecuteRes.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_BattleExecuteRes();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int32();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 0)
-                        break;
-                    message.ret = reader.int32();
-                    message._ret = "ret";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.battle_result = $root.PB_BattleResult.decode(reader, reader.uint32(), $undefined, _depth + 1, message.battle_result);
-                    message._battle_result = "battle_result";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_BattleExecuteRes message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_BattleExecuteRes & P_BattleExecuteRes.$Shape} P_BattleExecuteRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleExecuteRes.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_BattleExecuteRes message.
-     * @function verify
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_BattleExecuteRes.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id))
-                return "req_id: integer expected";
-        }
-        if (message.ret != null && $Object.hasOwnProperty.call(message, "ret")) {
-            properties._ret = 1;
-            if (!$util.isInteger(message.ret))
-                return "ret: integer expected";
-        }
-        if (message.battle_result != null && $Object.hasOwnProperty.call(message, "battle_result")) {
-            properties._battle_result = 1;
-            {
-                let error = $root.PB_BattleResult.verify(message.battle_result, _depth + 1);
-                if (error)
-                    return "battle_result." + error;
-            }
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_BattleExecuteRes message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_BattleExecuteRes} P_BattleExecuteRes
-     */
-    P_BattleExecuteRes.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_BattleExecuteRes)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_BattleExecuteRes: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_BattleExecuteRes();
-        if (object.req_id != null)
-            message.req_id = object.req_id | 0;
-        if (object.ret != null)
-            message.ret = object.ret | 0;
-        if (object.battle_result != null) {
-            if (!$util.isObject(object.battle_result))
-                throw $TypeError(".P_BattleExecuteRes.battle_result: object expected");
-            message.battle_result = $root.PB_BattleResult.fromObject(object.battle_result, _depth + 1);
-        }
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_BattleExecuteRes message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {P_BattleExecuteRes} message P_BattleExecuteRes
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_BattleExecuteRes.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            object.req_id = message.req_id;
-        if (message.ret != null && $Object.hasOwnProperty.call(message, "ret"))
-            object.ret = message.ret;
-        if (message.battle_result != null && $Object.hasOwnProperty.call(message, "battle_result"))
-            object.battle_result = $root.PB_BattleResult.toObject(message.battle_result, options, _depth + 1);
-        return object;
-    };
-
-    /**
-     * Converts this P_BattleExecuteRes to JSON.
-     * @function toJSON
-     * @memberof P_BattleExecuteRes
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_BattleExecuteRes.prototype.toJSON = function() {
-        return P_BattleExecuteRes.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_BattleExecuteRes
-     * @function getTypeUrl
-     * @memberof P_BattleExecuteRes
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_BattleExecuteRes.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_BattleExecuteRes";
-    };
-
-    return P_BattleExecuteRes;
-})();
-
-export const P_BattleCancelReq = $root.P_BattleCancelReq = (() => {
-
-    /**
-     * Properties of a P_BattleCancelReq.
-     * @typedef {Object} P_BattleCancelReq.$Properties
-     * @property {number|null} [battle_id] P_BattleCancelReq battle_id
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_BattleCancelReq.
-     * @exports IP_BattleCancelReq
-     * @interface IP_BattleCancelReq
-     * @augments P_BattleCancelReq.$Properties
-     * @deprecated Use P_BattleCancelReq.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_BattleCancelReq.
-     * @typedef {P_BattleCancelReq.$Properties} P_BattleCancelReq.$Shape
-     */
-
-    /**
-     * Constructs a new P_BattleCancelReq.
-     * @exports P_BattleCancelReq
-     * @classdesc Represents a P_BattleCancelReq.
-     * @constructor
-     * @param {P_BattleCancelReq.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_BattleCancelReq = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_BattleCancelReq battle_id.
-     * @member {number|null|undefined} battle_id
-     * @memberof P_BattleCancelReq
-     * @instance
-     */
-    P_BattleCancelReq.prototype.battle_id = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleCancelReq.prototype, "_battle_id", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_BattleCancelReq instance using the specified properties.
-     * @function create
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {P_BattleCancelReq.$Properties=} [properties] Properties to set
-     * @returns {P_BattleCancelReq} P_BattleCancelReq instance
-     * @type {{
-     *   (properties: P_BattleCancelReq.$Shape): P_BattleCancelReq & P_BattleCancelReq.$Shape;
-     *   (properties?: P_BattleCancelReq.$Properties): P_BattleCancelReq;
-     * }}
-     */
-    P_BattleCancelReq.create = function(properties) {
-        return new P_BattleCancelReq(properties);
-    };
-
-    /**
-     * Encodes the specified P_BattleCancelReq message. Does not implicitly {@link P_BattleCancelReq.verify|verify} messages.
-     * @function encode
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {P_BattleCancelReq.$Properties} message P_BattleCancelReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleCancelReq.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.battle_id);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_BattleCancelReq message, length delimited. Does not implicitly {@link P_BattleCancelReq.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {P_BattleCancelReq.$Properties} message P_BattleCancelReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleCancelReq.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_BattleCancelReq message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_BattleCancelReq & P_BattleCancelReq.$Shape} P_BattleCancelReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleCancelReq.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_BattleCancelReq();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.battle_id = reader.int32();
-                    message._battle_id = "battle_id";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_BattleCancelReq message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_BattleCancelReq & P_BattleCancelReq.$Shape} P_BattleCancelReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleCancelReq.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_BattleCancelReq message.
-     * @function verify
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_BattleCancelReq.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id")) {
-            properties._battle_id = 1;
-            if (!$util.isInteger(message.battle_id))
-                return "battle_id: integer expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_BattleCancelReq message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_BattleCancelReq} P_BattleCancelReq
-     */
-    P_BattleCancelReq.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_BattleCancelReq)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_BattleCancelReq: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_BattleCancelReq();
-        if (object.battle_id != null)
-            message.battle_id = object.battle_id | 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_BattleCancelReq message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {P_BattleCancelReq} message P_BattleCancelReq
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_BattleCancelReq.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id"))
-            object.battle_id = message.battle_id;
-        return object;
-    };
-
-    /**
-     * Converts this P_BattleCancelReq to JSON.
-     * @function toJSON
-     * @memberof P_BattleCancelReq
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_BattleCancelReq.prototype.toJSON = function() {
-        return P_BattleCancelReq.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_BattleCancelReq
-     * @function getTypeUrl
-     * @memberof P_BattleCancelReq
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_BattleCancelReq.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_BattleCancelReq";
-    };
-
-    return P_BattleCancelReq;
-})();
-
-export const P_BattleQueryReq = $root.P_BattleQueryReq = (() => {
-
-    /**
-     * Properties of a P_BattleQueryReq.
-     * @typedef {Object} P_BattleQueryReq.$Properties
-     * @property {number|null} [req_id] P_BattleQueryReq req_id
-     * @property {number|null} [battle_id] P_BattleQueryReq battle_id
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_BattleQueryReq.
-     * @exports IP_BattleQueryReq
-     * @interface IP_BattleQueryReq
-     * @augments P_BattleQueryReq.$Properties
-     * @deprecated Use P_BattleQueryReq.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_BattleQueryReq.
-     * @typedef {P_BattleQueryReq.$Properties} P_BattleQueryReq.$Shape
-     */
-
-    /**
-     * Constructs a new P_BattleQueryReq.
-     * @exports P_BattleQueryReq
-     * @classdesc Represents a P_BattleQueryReq.
-     * @constructor
-     * @param {P_BattleQueryReq.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_BattleQueryReq = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_BattleQueryReq req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_BattleQueryReq
-     * @instance
-     */
-    P_BattleQueryReq.prototype.req_id = null;
-
-    /**
-     * P_BattleQueryReq battle_id.
-     * @member {number|null|undefined} battle_id
-     * @memberof P_BattleQueryReq
-     * @instance
-     */
-    P_BattleQueryReq.prototype.battle_id = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleQueryReq.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleQueryReq.prototype, "_battle_id", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_BattleQueryReq instance using the specified properties.
-     * @function create
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {P_BattleQueryReq.$Properties=} [properties] Properties to set
-     * @returns {P_BattleQueryReq} P_BattleQueryReq instance
-     * @type {{
-     *   (properties: P_BattleQueryReq.$Shape): P_BattleQueryReq & P_BattleQueryReq.$Shape;
-     *   (properties?: P_BattleQueryReq.$Properties): P_BattleQueryReq;
-     * }}
-     */
-    P_BattleQueryReq.create = function(properties) {
-        return new P_BattleQueryReq(properties);
-    };
-
-    /**
-     * Encodes the specified P_BattleQueryReq message. Does not implicitly {@link P_BattleQueryReq.verify|verify} messages.
-     * @function encode
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {P_BattleQueryReq.$Properties} message P_BattleQueryReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleQueryReq.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_id);
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.battle_id);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_BattleQueryReq message, length delimited. Does not implicitly {@link P_BattleQueryReq.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {P_BattleQueryReq.$Properties} message P_BattleQueryReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleQueryReq.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_BattleQueryReq message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_BattleQueryReq & P_BattleQueryReq.$Shape} P_BattleQueryReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleQueryReq.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_BattleQueryReq();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int32();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 0)
-                        break;
-                    message.battle_id = reader.int32();
-                    message._battle_id = "battle_id";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_BattleQueryReq message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_BattleQueryReq & P_BattleQueryReq.$Shape} P_BattleQueryReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleQueryReq.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_BattleQueryReq message.
-     * @function verify
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_BattleQueryReq.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id))
-                return "req_id: integer expected";
-        }
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id")) {
-            properties._battle_id = 1;
-            if (!$util.isInteger(message.battle_id))
-                return "battle_id: integer expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_BattleQueryReq message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_BattleQueryReq} P_BattleQueryReq
-     */
-    P_BattleQueryReq.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_BattleQueryReq)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_BattleQueryReq: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_BattleQueryReq();
-        if (object.req_id != null)
-            message.req_id = object.req_id | 0;
-        if (object.battle_id != null)
-            message.battle_id = object.battle_id | 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_BattleQueryReq message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {P_BattleQueryReq} message P_BattleQueryReq
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_BattleQueryReq.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            object.req_id = message.req_id;
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id"))
-            object.battle_id = message.battle_id;
-        return object;
-    };
-
-    /**
-     * Converts this P_BattleQueryReq to JSON.
-     * @function toJSON
-     * @memberof P_BattleQueryReq
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_BattleQueryReq.prototype.toJSON = function() {
-        return P_BattleQueryReq.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_BattleQueryReq
-     * @function getTypeUrl
-     * @memberof P_BattleQueryReq
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_BattleQueryReq.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_BattleQueryReq";
-    };
-
-    return P_BattleQueryReq;
-})();
-
-export const P_BattleQueryRes = $root.P_BattleQueryRes = (() => {
-
-    /**
-     * Properties of a P_BattleQueryRes.
-     * @typedef {Object} P_BattleQueryRes.$Properties
-     * @property {number|null} [req_id] P_BattleQueryRes req_id
-     * @property {number|null} [battle_id] P_BattleQueryRes battle_id
-     * @property {PB_BattlePhase|null} [phase] P_BattleQueryRes phase
-     * @property {boolean|null} [is_active] P_BattleQueryRes is_active
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_BattleQueryRes.
-     * @exports IP_BattleQueryRes
-     * @interface IP_BattleQueryRes
-     * @augments P_BattleQueryRes.$Properties
-     * @deprecated Use P_BattleQueryRes.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_BattleQueryRes.
-     * @typedef {P_BattleQueryRes.$Properties} P_BattleQueryRes.$Shape
-     */
-
-    /**
-     * Constructs a new P_BattleQueryRes.
-     * @exports P_BattleQueryRes
-     * @classdesc Represents a P_BattleQueryRes.
-     * @constructor
-     * @param {P_BattleQueryRes.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_BattleQueryRes = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_BattleQueryRes req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_BattleQueryRes
-     * @instance
-     */
-    P_BattleQueryRes.prototype.req_id = null;
-
-    /**
-     * P_BattleQueryRes battle_id.
-     * @member {number|null|undefined} battle_id
-     * @memberof P_BattleQueryRes
-     * @instance
-     */
-    P_BattleQueryRes.prototype.battle_id = null;
-
-    /**
-     * P_BattleQueryRes phase.
-     * @member {PB_BattlePhase|null|undefined} phase
-     * @memberof P_BattleQueryRes
-     * @instance
-     */
-    P_BattleQueryRes.prototype.phase = null;
-
-    /**
-     * P_BattleQueryRes is_active.
-     * @member {boolean|null|undefined} is_active
-     * @memberof P_BattleQueryRes
-     * @instance
-     */
-    P_BattleQueryRes.prototype.is_active = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleQueryRes.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleQueryRes.prototype, "_battle_id", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleQueryRes.prototype, "_phase", {
-        get: $util.oneOfGetter($oneOfFields = ["phase"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleQueryRes.prototype, "_is_active", {
-        get: $util.oneOfGetter($oneOfFields = ["is_active"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_BattleQueryRes instance using the specified properties.
-     * @function create
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {P_BattleQueryRes.$Properties=} [properties] Properties to set
-     * @returns {P_BattleQueryRes} P_BattleQueryRes instance
-     * @type {{
-     *   (properties: P_BattleQueryRes.$Shape): P_BattleQueryRes & P_BattleQueryRes.$Shape;
-     *   (properties?: P_BattleQueryRes.$Properties): P_BattleQueryRes;
-     * }}
-     */
-    P_BattleQueryRes.create = function(properties) {
-        return new P_BattleQueryRes(properties);
-    };
-
-    /**
-     * Encodes the specified P_BattleQueryRes message. Does not implicitly {@link P_BattleQueryRes.verify|verify} messages.
-     * @function encode
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {P_BattleQueryRes.$Properties} message P_BattleQueryRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleQueryRes.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_id);
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.battle_id);
-        if (message.phase != null && $Object.hasOwnProperty.call(message, "phase"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.phase);
-        if (message.is_active != null && $Object.hasOwnProperty.call(message, "is_active"))
-            writer.uint32(/* id 4, wireType 0 =*/32).bool(message.is_active);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_BattleQueryRes message, length delimited. Does not implicitly {@link P_BattleQueryRes.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {P_BattleQueryRes.$Properties} message P_BattleQueryRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleQueryRes.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_BattleQueryRes message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_BattleQueryRes & P_BattleQueryRes.$Shape} P_BattleQueryRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleQueryRes.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_BattleQueryRes(), value;
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int32();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 0)
-                        break;
-                    message.battle_id = reader.int32();
-                    message._battle_id = "battle_id";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 0)
-                        break;
-                    message.phase = reader.int32();
-                    message._phase = "phase";
-                    continue;
-                }
-            case 4: {
-                    if (wireType !== 0)
-                        break;
-                    message.is_active = reader.bool();
-                    message._is_active = "is_active";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_BattleQueryRes message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_BattleQueryRes & P_BattleQueryRes.$Shape} P_BattleQueryRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleQueryRes.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_BattleQueryRes message.
-     * @function verify
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_BattleQueryRes.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id))
-                return "req_id: integer expected";
-        }
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id")) {
-            properties._battle_id = 1;
-            if (!$util.isInteger(message.battle_id))
-                return "battle_id: integer expected";
-        }
-        if (message.phase != null && $Object.hasOwnProperty.call(message, "phase")) {
-            properties._phase = 1;
-            if (typeof message.phase !== "number" || (message.phase | 0) !== message.phase)
-                return "phase: enum value expected";
-        }
-        if (message.is_active != null && $Object.hasOwnProperty.call(message, "is_active")) {
-            properties._is_active = 1;
-            if (typeof message.is_active !== "boolean")
-                return "is_active: boolean expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_BattleQueryRes message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_BattleQueryRes} P_BattleQueryRes
-     */
-    P_BattleQueryRes.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_BattleQueryRes)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_BattleQueryRes: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_BattleQueryRes();
-        if (object.req_id != null)
-            message.req_id = object.req_id | 0;
-        if (object.battle_id != null)
-            message.battle_id = object.battle_id | 0;
-        switch (object.phase) {
-        case "BATTLE_PHASE_NONE":
-        case 0:
-            message.phase = 0;
-            break;
-        case "BATTLE_PHASE_PREPARING":
-        case 1:
-            message.phase = 1;
-            break;
-        case "BATTLE_PHASE_STARTED":
-        case 2:
-            message.phase = 2;
-            break;
-        case "BATTLE_PHASE_ENDING":
-        case 3:
-            message.phase = 3;
-            break;
-        case "BATTLE_PHASE_FINISHED":
-        case 4:
-            message.phase = 4;
-            break;
-        default:
-            if (typeof object.phase === "number" && (object.phase | 0) === object.phase)
-                message.phase = object.phase;
-        }
-        if (object.is_active != null)
-            message.is_active = $Boolean(object.is_active);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_BattleQueryRes message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {P_BattleQueryRes} message P_BattleQueryRes
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_BattleQueryRes.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            object.req_id = message.req_id;
-        if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id"))
-            object.battle_id = message.battle_id;
-        if (message.phase != null && $Object.hasOwnProperty.call(message, "phase"))
-            object.phase = options.enums === $String ? $root.PB_BattlePhase[message.phase] === $undefined ? message.phase : $root.PB_BattlePhase[message.phase] : message.phase;
-        if (message.is_active != null && $Object.hasOwnProperty.call(message, "is_active"))
-            object.is_active = message.is_active;
-        return object;
-    };
-
-    /**
-     * Converts this P_BattleQueryRes to JSON.
-     * @function toJSON
-     * @memberof P_BattleQueryRes
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_BattleQueryRes.prototype.toJSON = function() {
-        return P_BattleQueryRes.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_BattleQueryRes
-     * @function getTypeUrl
-     * @memberof P_BattleQueryRes
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_BattleQueryRes.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_BattleQueryRes";
-    };
-
-    return P_BattleQueryRes;
-})();
-
-export const P_BattleCsServerRegister = $root.P_BattleCsServerRegister = (() => {
-
-    /**
-     * Properties of a P_BattleCsServerRegister.
-     * @typedef {Object} P_BattleCsServerRegister.$Properties
-     * @property {number|null} [id] P_BattleCsServerRegister id
-     * @property {number|null} [weight] P_BattleCsServerRegister weight
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_BattleCsServerRegister.
-     * @exports IP_BattleCsServerRegister
-     * @interface IP_BattleCsServerRegister
-     * @augments P_BattleCsServerRegister.$Properties
-     * @deprecated Use P_BattleCsServerRegister.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_BattleCsServerRegister.
-     * @typedef {P_BattleCsServerRegister.$Properties} P_BattleCsServerRegister.$Shape
-     */
-
-    /**
-     * Constructs a new P_BattleCsServerRegister.
-     * @exports P_BattleCsServerRegister
-     * @classdesc Represents a P_BattleCsServerRegister.
-     * @constructor
-     * @param {P_BattleCsServerRegister.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_BattleCsServerRegister = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_BattleCsServerRegister id.
-     * @member {number|null|undefined} id
-     * @memberof P_BattleCsServerRegister
-     * @instance
-     */
-    P_BattleCsServerRegister.prototype.id = null;
-
-    /**
-     * P_BattleCsServerRegister weight.
-     * @member {number|null|undefined} weight
-     * @memberof P_BattleCsServerRegister
-     * @instance
-     */
-    P_BattleCsServerRegister.prototype.weight = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleCsServerRegister.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleCsServerRegister.prototype, "_weight", {
-        get: $util.oneOfGetter($oneOfFields = ["weight"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_BattleCsServerRegister instance using the specified properties.
-     * @function create
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {P_BattleCsServerRegister.$Properties=} [properties] Properties to set
-     * @returns {P_BattleCsServerRegister} P_BattleCsServerRegister instance
-     * @type {{
-     *   (properties: P_BattleCsServerRegister.$Shape): P_BattleCsServerRegister & P_BattleCsServerRegister.$Shape;
-     *   (properties?: P_BattleCsServerRegister.$Properties): P_BattleCsServerRegister;
-     * }}
-     */
-    P_BattleCsServerRegister.create = function(properties) {
-        return new P_BattleCsServerRegister(properties);
-    };
-
-    /**
-     * Encodes the specified P_BattleCsServerRegister message. Does not implicitly {@link P_BattleCsServerRegister.verify|verify} messages.
-     * @function encode
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {P_BattleCsServerRegister.$Properties} message P_BattleCsServerRegister message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleCsServerRegister.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
-        if (message.weight != null && $Object.hasOwnProperty.call(message, "weight"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.weight);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_BattleCsServerRegister message, length delimited. Does not implicitly {@link P_BattleCsServerRegister.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {P_BattleCsServerRegister.$Properties} message P_BattleCsServerRegister message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_BattleCsServerRegister.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_BattleCsServerRegister message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_BattleCsServerRegister & P_BattleCsServerRegister.$Shape} P_BattleCsServerRegister
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleCsServerRegister.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_BattleCsServerRegister();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.id = reader.int32();
-                    message._id = "id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 0)
-                        break;
-                    message.weight = reader.int32();
-                    message._weight = "weight";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_BattleCsServerRegister message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_BattleCsServerRegister & P_BattleCsServerRegister.$Shape} P_BattleCsServerRegister
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_BattleCsServerRegister.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_BattleCsServerRegister message.
-     * @function verify
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_BattleCsServerRegister.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
-        }
-        if (message.weight != null && $Object.hasOwnProperty.call(message, "weight")) {
-            properties._weight = 1;
-            if (!$util.isInteger(message.weight))
-                return "weight: integer expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_BattleCsServerRegister message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_BattleCsServerRegister} P_BattleCsServerRegister
-     */
-    P_BattleCsServerRegister.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_BattleCsServerRegister)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_BattleCsServerRegister: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_BattleCsServerRegister();
-        if (object.id != null)
-            message.id = object.id | 0;
-        if (object.weight != null)
-            message.weight = object.weight | 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_BattleCsServerRegister message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {P_BattleCsServerRegister} message P_BattleCsServerRegister
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_BattleCsServerRegister.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
-        if (message.weight != null && $Object.hasOwnProperty.call(message, "weight"))
-            object.weight = message.weight;
-        return object;
-    };
-
-    /**
-     * Converts this P_BattleCsServerRegister to JSON.
-     * @function toJSON
-     * @memberof P_BattleCsServerRegister
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_BattleCsServerRegister.prototype.toJSON = function() {
-        return P_BattleCsServerRegister.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_BattleCsServerRegister
-     * @function getTypeUrl
-     * @memberof P_BattleCsServerRegister
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_BattleCsServerRegister.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_BattleCsServerRegister";
-    };
-
-    return P_BattleCsServerRegister;
-})();
-
 export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
 
     /**
@@ -30289,11 +27876,12 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
      * Properties of a P_GasBattle_SC.
      * @typedef {Object} P_GasBattle_SC.$Properties
      * @property {number|null} [ret_type] P_GasBattle_SC ret_type
-     * @property {string|null} [battle_report_key] P_GasBattle_SC battle_report_key
-     * @property {string|null} [battle_report] P_GasBattle_SC battle_report
      * @property {number|null} [battle_type] P_GasBattle_SC battle_type
      * @property {number|null} [id] P_GasBattle_SC id
-     * @property {number|null} [result_type] P_GasBattle_SC result_type
+     * @property {number|null} [total_matches] P_GasBattle_SC total_matches
+     * @property {number|null} [series_result] P_GasBattle_SC series_result
+     * @property {number|null} [win_matches] P_GasBattle_SC win_matches
+     * @property {Array.<PB_BattleMatchResult.$Properties>|null} [matches] P_GasBattle_SC matches
      * @property {number|null} [score_change] P_GasBattle_SC score_change
      * @property {number|null} [score_after] P_GasBattle_SC score_after
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
@@ -30321,6 +27909,7 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
     const P_GasBattle_SC = function (properties) {
+        this.matches = [];
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -30334,22 +27923,6 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
      * @instance
      */
     P_GasBattle_SC.prototype.ret_type = null;
-
-    /**
-     * P_GasBattle_SC battle_report_key.
-     * @member {string|null|undefined} battle_report_key
-     * @memberof P_GasBattle_SC
-     * @instance
-     */
-    P_GasBattle_SC.prototype.battle_report_key = null;
-
-    /**
-     * P_GasBattle_SC battle_report.
-     * @member {string|null|undefined} battle_report
-     * @memberof P_GasBattle_SC
-     * @instance
-     */
-    P_GasBattle_SC.prototype.battle_report = null;
 
     /**
      * P_GasBattle_SC battle_type.
@@ -30368,12 +27941,36 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
     P_GasBattle_SC.prototype.id = null;
 
     /**
-     * P_GasBattle_SC result_type.
-     * @member {number|null|undefined} result_type
+     * P_GasBattle_SC total_matches.
+     * @member {number|null|undefined} total_matches
      * @memberof P_GasBattle_SC
      * @instance
      */
-    P_GasBattle_SC.prototype.result_type = null;
+    P_GasBattle_SC.prototype.total_matches = null;
+
+    /**
+     * P_GasBattle_SC series_result.
+     * @member {number|null|undefined} series_result
+     * @memberof P_GasBattle_SC
+     * @instance
+     */
+    P_GasBattle_SC.prototype.series_result = null;
+
+    /**
+     * P_GasBattle_SC win_matches.
+     * @member {number|null|undefined} win_matches
+     * @memberof P_GasBattle_SC
+     * @instance
+     */
+    P_GasBattle_SC.prototype.win_matches = null;
+
+    /**
+     * P_GasBattle_SC matches.
+     * @member {Array.<PB_BattleMatchResult.$Properties>} matches
+     * @memberof P_GasBattle_SC
+     * @instance
+     */
+    P_GasBattle_SC.prototype.matches = $util.emptyArray;
 
     /**
      * P_GasBattle_SC score_change.
@@ -30401,18 +27998,6 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_GasBattle_SC.prototype, "_battle_report_key", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_report_key"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_GasBattle_SC.prototype, "_battle_report", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_report"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
     $Object.defineProperty(P_GasBattle_SC.prototype, "_battle_type", {
         get: $util.oneOfGetter($oneOfFields = ["battle_type"]),
         set: $util.oneOfSetter($oneOfFields)
@@ -30425,8 +28010,20 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_GasBattle_SC.prototype, "_result_type", {
-        get: $util.oneOfGetter($oneOfFields = ["result_type"]),
+    $Object.defineProperty(P_GasBattle_SC.prototype, "_total_matches", {
+        get: $util.oneOfGetter($oneOfFields = ["total_matches"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_GasBattle_SC.prototype, "_series_result", {
+        get: $util.oneOfGetter($oneOfFields = ["series_result"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_GasBattle_SC.prototype, "_win_matches", {
+        get: $util.oneOfGetter($oneOfFields = ["win_matches"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -30476,20 +28073,23 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             throw $Error("max depth exceeded");
         if (message.ret_type != null && $Object.hasOwnProperty.call(message, "ret_type"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.ret_type);
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.battle_report_key);
-        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report"))
-            writer.uint32(/* id 3, wireType 2 =*/26).string(message.battle_report);
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.battle_type);
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.battle_type);
         if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.id);
-        if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
-            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.result_type);
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.id);
+        if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.total_matches);
+        if (message.series_result != null && $Object.hasOwnProperty.call(message, "series_result"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.series_result);
+        if (message.win_matches != null && $Object.hasOwnProperty.call(message, "win_matches"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.win_matches);
+        if (message.matches != null && message.matches.length)
+            for (let i = 0; i < message.matches.length; ++i)
+                $root.PB_BattleMatchResult.encode(message.matches[i], writer.uint32(/* id 7, wireType 2 =*/58).fork(), _depth + 1).ldelim();
         if (message.score_change != null && $Object.hasOwnProperty.call(message, "score_change"))
-            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.score_change);
+            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.score_change);
         if (message.score_after != null && $Object.hasOwnProperty.call(message, "score_after"))
-            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.score_after);
+            writer.uint32(/* id 9, wireType 0 =*/72).int32(message.score_after);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -30545,48 +28145,56 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
                     continue;
                 }
             case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.battle_report_key = reader.stringVerify();
-                    message._battle_report_key = "battle_report_key";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.battle_report = reader.stringVerify();
-                    message._battle_report = "battle_report";
-                    continue;
-                }
-            case 4: {
                     if (wireType !== 0)
                         break;
                     message.battle_type = reader.int32();
                     message._battle_type = "battle_type";
                     continue;
                 }
-            case 5: {
+            case 3: {
                     if (wireType !== 0)
                         break;
                     message.id = reader.int32();
                     message._id = "id";
                     continue;
                 }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.total_matches = reader.int32();
+                    message._total_matches = "total_matches";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.series_result = reader.int32();
+                    message._series_result = "series_result";
+                    continue;
+                }
             case 6: {
                     if (wireType !== 0)
                         break;
-                    message.result_type = reader.int32();
-                    message._result_type = "result_type";
+                    message.win_matches = reader.int32();
+                    message._win_matches = "win_matches";
                     continue;
                 }
             case 7: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.matches && message.matches.length))
+                        message.matches = [];
+                    message.matches.push($root.PB_BattleMatchResult.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            case 8: {
                     if (wireType !== 0)
                         break;
                     message.score_change = reader.int32();
                     message._score_change = "score_change";
                     continue;
                 }
-            case 8: {
+            case 9: {
                     if (wireType !== 0)
                         break;
                     message.score_after = reader.int32();
@@ -30642,16 +28250,6 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             if (!$util.isInteger(message.ret_type))
                 return "ret_type: integer expected";
         }
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key")) {
-            properties._battle_report_key = 1;
-            if (!$util.isString(message.battle_report_key))
-                return "battle_report_key: string expected";
-        }
-        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report")) {
-            properties._battle_report = 1;
-            if (!$util.isString(message.battle_report))
-                return "battle_report: string expected";
-        }
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type")) {
             properties._battle_type = 1;
             if (!$util.isInteger(message.battle_type))
@@ -30662,10 +28260,29 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             if (!$util.isInteger(message.id))
                 return "id: integer expected";
         }
-        if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type")) {
-            properties._result_type = 1;
-            if (!$util.isInteger(message.result_type))
-                return "result_type: integer expected";
+        if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches")) {
+            properties._total_matches = 1;
+            if (!$util.isInteger(message.total_matches))
+                return "total_matches: integer expected";
+        }
+        if (message.series_result != null && $Object.hasOwnProperty.call(message, "series_result")) {
+            properties._series_result = 1;
+            if (!$util.isInteger(message.series_result))
+                return "series_result: integer expected";
+        }
+        if (message.win_matches != null && $Object.hasOwnProperty.call(message, "win_matches")) {
+            properties._win_matches = 1;
+            if (!$util.isInteger(message.win_matches))
+                return "win_matches: integer expected";
+        }
+        if (message.matches != null && $Object.hasOwnProperty.call(message, "matches")) {
+            if (!$Array.isArray(message.matches))
+                return "matches: array expected";
+            for (let i = 0; i < message.matches.length; ++i) {
+                let error = $root.PB_BattleMatchResult.verify(message.matches[i], _depth + 1);
+                if (error)
+                    return "matches." + error;
+            }
         }
         if (message.score_change != null && $Object.hasOwnProperty.call(message, "score_change")) {
             properties._score_change = 1;
@@ -30700,16 +28317,26 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
         let message = new $root.P_GasBattle_SC();
         if (object.ret_type != null)
             message.ret_type = object.ret_type | 0;
-        if (object.battle_report_key != null)
-            message.battle_report_key = $String(object.battle_report_key);
-        if (object.battle_report != null)
-            message.battle_report = $String(object.battle_report);
         if (object.battle_type != null)
             message.battle_type = object.battle_type | 0;
         if (object.id != null)
             message.id = object.id | 0;
-        if (object.result_type != null)
-            message.result_type = object.result_type | 0;
+        if (object.total_matches != null)
+            message.total_matches = object.total_matches | 0;
+        if (object.series_result != null)
+            message.series_result = object.series_result | 0;
+        if (object.win_matches != null)
+            message.win_matches = object.win_matches | 0;
+        if (object.matches) {
+            if (!$Array.isArray(object.matches))
+                throw $TypeError(".P_GasBattle_SC.matches: array expected");
+            message.matches = $Array(object.matches.length);
+            for (let i = 0; i < object.matches.length; ++i) {
+                if (!$util.isObject(object.matches[i]))
+                    throw $TypeError(".P_GasBattle_SC.matches: object expected");
+                message.matches[i] = $root.PB_BattleMatchResult.fromObject(object.matches[i], _depth + 1);
+            }
+        }
         if (object.score_change != null)
             message.score_change = object.score_change | 0;
         if (object.score_after != null)
@@ -30734,18 +28361,25 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
+        if (options.arrays || options.defaults)
+            object.matches = [];
         if (message.ret_type != null && $Object.hasOwnProperty.call(message, "ret_type"))
             object.ret_type = message.ret_type;
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
-            object.battle_report_key = message.battle_report_key;
-        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report"))
-            object.battle_report = message.battle_report;
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             object.battle_type = message.battle_type;
         if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
             object.id = message.id;
-        if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
-            object.result_type = message.result_type;
+        if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
+            object.total_matches = message.total_matches;
+        if (message.series_result != null && $Object.hasOwnProperty.call(message, "series_result"))
+            object.series_result = message.series_result;
+        if (message.win_matches != null && $Object.hasOwnProperty.call(message, "win_matches"))
+            object.win_matches = message.win_matches;
+        if (message.matches && message.matches.length) {
+            object.matches = $Array(message.matches.length);
+            for (let j = 0; j < message.matches.length; ++j)
+                object.matches[j] = $root.PB_BattleMatchResult.toObject(message.matches[j], options, _depth + 1);
+        }
         if (message.score_change != null && $Object.hasOwnProperty.call(message, "score_change"))
             object.score_change = message.score_change;
         if (message.score_after != null && $Object.hasOwnProperty.call(message, "score_after"))
@@ -32099,6 +29733,7 @@ export const P_SyncLineupUpdate_CS = $root.P_SyncLineupUpdate_CS = (() => {
      * @typedef {Object} P_SyncLineupUpdate_CS.$Properties
      * @property {number|null} [battle_type] P_SyncLineupUpdate_CS battle_type
      * @property {Array.<number>|null} [hero_ids] P_SyncLineupUpdate_CS hero_ids
+     * @property {number|null} [slot] P_SyncLineupUpdate_CS slot
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -32147,12 +29782,26 @@ export const P_SyncLineupUpdate_CS = $root.P_SyncLineupUpdate_CS = (() => {
      */
     P_SyncLineupUpdate_CS.prototype.hero_ids = $util.emptyArray;
 
+    /**
+     * P_SyncLineupUpdate_CS slot.
+     * @member {number|null|undefined} slot
+     * @memberof P_SyncLineupUpdate_CS
+     * @instance
+     */
+    P_SyncLineupUpdate_CS.prototype.slot = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(P_SyncLineupUpdate_CS.prototype, "_battle_type", {
         get: $util.oneOfGetter($oneOfFields = ["battle_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_SyncLineupUpdate_CS.prototype, "_slot", {
+        get: $util.oneOfGetter($oneOfFields = ["slot"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -32192,6 +29841,8 @@ export const P_SyncLineupUpdate_CS = $root.P_SyncLineupUpdate_CS = (() => {
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.battle_type);
         if (message.hero_ids != null && message.hero_ids.length)
             writer.uint32(/* id 2, wireType 2 =*/18).int32s(message.hero_ids);
+        if (message.slot != null && $Object.hasOwnProperty.call(message, "slot"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.slot);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -32260,6 +29911,13 @@ export const P_SyncLineupUpdate_CS = $root.P_SyncLineupUpdate_CS = (() => {
                     message.hero_ids.push(reader.int32());
                     continue;
                 }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.slot = reader.int32();
+                    message._slot = "slot";
+                    continue;
+                }
             }
             reader.skipType(wireType, _depth, tag);
             if (!reader.discardUnknown) {
@@ -32316,6 +29974,11 @@ export const P_SyncLineupUpdate_CS = $root.P_SyncLineupUpdate_CS = (() => {
                 if (!$util.isInteger(message.hero_ids[i]))
                     return "hero_ids: integer[] expected";
         }
+        if (message.slot != null && $Object.hasOwnProperty.call(message, "slot")) {
+            properties._slot = 1;
+            if (!$util.isInteger(message.slot))
+                return "slot: integer expected";
+        }
         return null;
     };
 
@@ -32346,6 +30009,8 @@ export const P_SyncLineupUpdate_CS = $root.P_SyncLineupUpdate_CS = (() => {
             for (let i = 0; i < object.hero_ids.length; ++i)
                 message.hero_ids[i] = object.hero_ids[i] | 0;
         }
+        if (object.slot != null)
+            message.slot = object.slot | 0;
         return message;
     };
 
@@ -32375,6 +30040,8 @@ export const P_SyncLineupUpdate_CS = $root.P_SyncLineupUpdate_CS = (() => {
             for (let j = 0; j < message.hero_ids.length; ++j)
                 object.hero_ids[j] = message.hero_ids[j];
         }
+        if (message.slot != null && $Object.hasOwnProperty.call(message, "slot"))
+            object.slot = message.slot;
         return object;
     };
 
@@ -35508,6 +33175,2225 @@ export const P_ArenaRank_SC = $root.P_ArenaRank_SC = (() => {
     };
 
     return P_ArenaRank_SC;
+})();
+
+export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
+
+    /**
+     * Properties of a PB_RoleBaseInfo.
+     * @typedef {Object} PB_RoleBaseInfo.$Properties
+     * @property {number|null} [uid] PB_RoleBaseInfo uid
+     * @property {string|null} [name] PB_RoleBaseInfo name
+     * @property {string|null} [user_name] PB_RoleBaseInfo user_name
+     * @property {number|null} [level] PB_RoleBaseInfo level
+     * @property {number|null} [exp] PB_RoleBaseInfo exp
+     * @property {number|null} [last_login_time] PB_RoleBaseInfo last_login_time
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_RoleBaseInfo.
+     * @exports IPB_RoleBaseInfo
+     * @interface IPB_RoleBaseInfo
+     * @augments PB_RoleBaseInfo.$Properties
+     * @deprecated Use PB_RoleBaseInfo.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_RoleBaseInfo.
+     * @typedef {PB_RoleBaseInfo.$Properties} PB_RoleBaseInfo.$Shape
+     */
+
+    /**
+     * Constructs a new PB_RoleBaseInfo.
+     * @exports PB_RoleBaseInfo
+     * @classdesc Represents a PB_RoleBaseInfo.
+     * @constructor
+     * @param {PB_RoleBaseInfo.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_RoleBaseInfo = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_RoleBaseInfo uid.
+     * @member {number|null|undefined} uid
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.uid = null;
+
+    /**
+     * PB_RoleBaseInfo name.
+     * @member {string|null|undefined} name
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.name = null;
+
+    /**
+     * PB_RoleBaseInfo user_name.
+     * @member {string|null|undefined} user_name
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.user_name = null;
+
+    /**
+     * PB_RoleBaseInfo level.
+     * @member {number|null|undefined} level
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.level = null;
+
+    /**
+     * PB_RoleBaseInfo exp.
+     * @member {number|null|undefined} exp
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.exp = null;
+
+    /**
+     * PB_RoleBaseInfo last_login_time.
+     * @member {number|null|undefined} last_login_time
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.last_login_time = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_name", {
+        get: $util.oneOfGetter($oneOfFields = ["name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_user_name", {
+        get: $util.oneOfGetter($oneOfFields = ["user_name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_level", {
+        get: $util.oneOfGetter($oneOfFields = ["level"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_exp", {
+        get: $util.oneOfGetter($oneOfFields = ["exp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_last_login_time", {
+        get: $util.oneOfGetter($oneOfFields = ["last_login_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_RoleBaseInfo instance using the specified properties.
+     * @function create
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {PB_RoleBaseInfo.$Properties=} [properties] Properties to set
+     * @returns {PB_RoleBaseInfo} PB_RoleBaseInfo instance
+     * @type {{
+     *   (properties: PB_RoleBaseInfo.$Shape): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
+     *   (properties?: PB_RoleBaseInfo.$Properties): PB_RoleBaseInfo;
+     * }}
+     */
+    PB_RoleBaseInfo.create = function(properties) {
+        return new PB_RoleBaseInfo(properties);
+    };
+
+    /**
+     * Encodes the specified PB_RoleBaseInfo message. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
+     * @function encode
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {PB_RoleBaseInfo.$Properties} message PB_RoleBaseInfo message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBaseInfo.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+        if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.user_name);
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.level);
+        if (message.exp != null && $Object.hasOwnProperty.call(message, "exp"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int64(message.exp);
+        if (message.last_login_time != null && $Object.hasOwnProperty.call(message, "last_login_time"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int64(message.last_login_time);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_RoleBaseInfo message, length delimited. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {PB_RoleBaseInfo.$Properties} message PB_RoleBaseInfo message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBaseInfo.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBaseInfo.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBaseInfo();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.uid = reader.int32();
+                    message._uid = "uid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.name = reader.stringVerify();
+                    message._name = "name";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.user_name = reader.stringVerify();
+                    message._user_name = "user_name";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.level = reader.int32();
+                    message._level = "level";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.exp = reader.int64();
+                    message._exp = "exp";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.last_login_time = reader.int64();
+                    message._last_login_time = "last_login_time";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBaseInfo.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_RoleBaseInfo message.
+     * @function verify
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_RoleBaseInfo.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
+            properties._uid = 1;
+            if (!$util.isInteger(message.uid))
+                return "uid: integer expected";
+        }
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
+            properties._name = 1;
+            if (!$util.isString(message.name))
+                return "name: string expected";
+        }
+        if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name")) {
+            properties._user_name = 1;
+            if (!$util.isString(message.user_name))
+                return "user_name: string expected";
+        }
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level")) {
+            properties._level = 1;
+            if (!$util.isInteger(message.level))
+                return "level: integer expected";
+        }
+        if (message.exp != null && $Object.hasOwnProperty.call(message, "exp")) {
+            properties._exp = 1;
+            if (!$util.isInteger(message.exp) && !(message.exp && $util.isInteger(message.exp.low) && $util.isInteger(message.exp.high)))
+                return "exp: integer|Long expected";
+        }
+        if (message.last_login_time != null && $Object.hasOwnProperty.call(message, "last_login_time")) {
+            properties._last_login_time = 1;
+            if (!$util.isInteger(message.last_login_time) && !(message.last_login_time && $util.isInteger(message.last_login_time.low) && $util.isInteger(message.last_login_time.high)))
+                return "last_login_time: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_RoleBaseInfo message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_RoleBaseInfo} PB_RoleBaseInfo
+     */
+    PB_RoleBaseInfo.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_RoleBaseInfo)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_RoleBaseInfo: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_RoleBaseInfo();
+        if (object.uid != null)
+            message.uid = object.uid | 0;
+        if (object.name != null)
+            message.name = $String(object.name);
+        if (object.user_name != null)
+            message.user_name = $String(object.user_name);
+        if (object.level != null)
+            message.level = object.level | 0;
+        if (object.exp != null)
+            if ($util.Long)
+                message.exp = $util.Long.fromValue(object.exp, false);
+            else if (typeof object.exp === "string")
+                message.exp = $parseInt(object.exp, 10);
+            else if (typeof object.exp === "number")
+                message.exp = object.exp;
+            else if (typeof object.exp === "object")
+                message.exp = new $util.LongBits(object.exp.low >>> 0, object.exp.high >>> 0).toNumber();
+        if (object.last_login_time != null)
+            if ($util.Long)
+                message.last_login_time = $util.Long.fromValue(object.last_login_time, false);
+            else if (typeof object.last_login_time === "string")
+                message.last_login_time = $parseInt(object.last_login_time, 10);
+            else if (typeof object.last_login_time === "number")
+                message.last_login_time = object.last_login_time;
+            else if (typeof object.last_login_time === "object")
+                message.last_login_time = new $util.LongBits(object.last_login_time.low >>> 0, object.last_login_time.high >>> 0).toNumber();
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_RoleBaseInfo message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {PB_RoleBaseInfo} message PB_RoleBaseInfo
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_RoleBaseInfo.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
+            object.uid = message.uid;
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+            object.name = message.name;
+        if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
+            object.user_name = message.user_name;
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            object.level = message.level;
+        if (message.exp != null && $Object.hasOwnProperty.call(message, "exp"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.exp = typeof message.exp === "number" ? $BigInt(message.exp) : $util.Long.fromBits(message.exp.low >>> 0, message.exp.high >>> 0, false).toBigInt();
+            else if (typeof message.exp === "number")
+                object.exp = options.longs === $String ? $String(message.exp) : message.exp;
+            else
+                object.exp = options.longs === $String ? $util.Long.prototype.toString.call(message.exp) : options.longs === $Number ? new $util.LongBits(message.exp.low >>> 0, message.exp.high >>> 0).toNumber() : message.exp;
+        if (message.last_login_time != null && $Object.hasOwnProperty.call(message, "last_login_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.last_login_time = typeof message.last_login_time === "number" ? $BigInt(message.last_login_time) : $util.Long.fromBits(message.last_login_time.low >>> 0, message.last_login_time.high >>> 0, false).toBigInt();
+            else if (typeof message.last_login_time === "number")
+                object.last_login_time = options.longs === $String ? $String(message.last_login_time) : message.last_login_time;
+            else
+                object.last_login_time = options.longs === $String ? $util.Long.prototype.toString.call(message.last_login_time) : options.longs === $Number ? new $util.LongBits(message.last_login_time.low >>> 0, message.last_login_time.high >>> 0).toNumber() : message.last_login_time;
+        return object;
+    };
+
+    /**
+     * Converts this PB_RoleBaseInfo to JSON.
+     * @function toJSON
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_RoleBaseInfo.prototype.toJSON = function() {
+        return PB_RoleBaseInfo.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_RoleBaseInfo
+     * @function getTypeUrl
+     * @memberof PB_RoleBaseInfo
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_RoleBaseInfo.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_RoleBaseInfo";
+    };
+
+    return PB_RoleBaseInfo;
+})();
+
+export const PB_RoleBagItem = $root.PB_RoleBagItem = (() => {
+
+    /**
+     * Properties of a PB_RoleBagItem.
+     * @typedef {Object} PB_RoleBagItem.$Properties
+     * @property {number|null} [bag_type] PB_RoleBagItem bag_type
+     * @property {Array.<PB_Item.$Properties>|null} [items] PB_RoleBagItem items
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_RoleBagItem.
+     * @exports IPB_RoleBagItem
+     * @interface IPB_RoleBagItem
+     * @augments PB_RoleBagItem.$Properties
+     * @deprecated Use PB_RoleBagItem.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_RoleBagItem.
+     * @typedef {PB_RoleBagItem.$Properties} PB_RoleBagItem.$Shape
+     */
+
+    /**
+     * Constructs a new PB_RoleBagItem.
+     * @exports PB_RoleBagItem
+     * @classdesc Represents a PB_RoleBagItem.
+     * @constructor
+     * @param {PB_RoleBagItem.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_RoleBagItem = function (properties) {
+        this.items = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_RoleBagItem bag_type.
+     * @member {number|null|undefined} bag_type
+     * @memberof PB_RoleBagItem
+     * @instance
+     */
+    PB_RoleBagItem.prototype.bag_type = null;
+
+    /**
+     * PB_RoleBagItem items.
+     * @member {Array.<PB_Item.$Properties>} items
+     * @memberof PB_RoleBagItem
+     * @instance
+     */
+    PB_RoleBagItem.prototype.items = $util.emptyArray;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBagItem.prototype, "_bag_type", {
+        get: $util.oneOfGetter($oneOfFields = ["bag_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_RoleBagItem instance using the specified properties.
+     * @function create
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {PB_RoleBagItem.$Properties=} [properties] Properties to set
+     * @returns {PB_RoleBagItem} PB_RoleBagItem instance
+     * @type {{
+     *   (properties: PB_RoleBagItem.$Shape): PB_RoleBagItem & PB_RoleBagItem.$Shape;
+     *   (properties?: PB_RoleBagItem.$Properties): PB_RoleBagItem;
+     * }}
+     */
+    PB_RoleBagItem.create = function(properties) {
+        return new PB_RoleBagItem(properties);
+    };
+
+    /**
+     * Encodes the specified PB_RoleBagItem message. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
+     * @function encode
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {PB_RoleBagItem.$Properties} message PB_RoleBagItem message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBagItem.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.bag_type);
+        if (message.items != null && message.items.length)
+            for (let i = 0; i < message.items.length; ++i)
+                $root.PB_Item.encode(message.items[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_RoleBagItem message, length delimited. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {PB_RoleBagItem.$Properties} message PB_RoleBagItem message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBagItem.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_RoleBagItem message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBagItem.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBagItem();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.bag_type = reader.int32();
+                    message._bag_type = "bag_type";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.items && message.items.length))
+                        message.items = [];
+                    message.items.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_RoleBagItem message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBagItem.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_RoleBagItem message.
+     * @function verify
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_RoleBagItem.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type")) {
+            properties._bag_type = 1;
+            if (!$util.isInteger(message.bag_type))
+                return "bag_type: integer expected";
+        }
+        if (message.items != null && $Object.hasOwnProperty.call(message, "items")) {
+            if (!$Array.isArray(message.items))
+                return "items: array expected";
+            for (let i = 0; i < message.items.length; ++i) {
+                let error = $root.PB_Item.verify(message.items[i], _depth + 1);
+                if (error)
+                    return "items." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_RoleBagItem message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_RoleBagItem} PB_RoleBagItem
+     */
+    PB_RoleBagItem.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_RoleBagItem)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_RoleBagItem: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_RoleBagItem();
+        if (object.bag_type != null)
+            message.bag_type = object.bag_type | 0;
+        if (object.items) {
+            if (!$Array.isArray(object.items))
+                throw $TypeError(".PB_RoleBagItem.items: array expected");
+            message.items = $Array(object.items.length);
+            for (let i = 0; i < object.items.length; ++i) {
+                if (!$util.isObject(object.items[i]))
+                    throw $TypeError(".PB_RoleBagItem.items: object expected");
+                message.items[i] = $root.PB_Item.fromObject(object.items[i], _depth + 1);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_RoleBagItem message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {PB_RoleBagItem} message PB_RoleBagItem
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_RoleBagItem.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.items = [];
+        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type"))
+            object.bag_type = message.bag_type;
+        if (message.items && message.items.length) {
+            object.items = $Array(message.items.length);
+            for (let j = 0; j < message.items.length; ++j)
+                object.items[j] = $root.PB_Item.toObject(message.items[j], options, _depth + 1);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this PB_RoleBagItem to JSON.
+     * @function toJSON
+     * @memberof PB_RoleBagItem
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_RoleBagItem.prototype.toJSON = function() {
+        return PB_RoleBagItem.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_RoleBagItem
+     * @function getTypeUrl
+     * @memberof PB_RoleBagItem
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_RoleBagItem.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_RoleBagItem";
+    };
+
+    return PB_RoleBagItem;
+})();
+
+export const PB_RoleBag = $root.PB_RoleBag = (() => {
+
+    /**
+     * Properties of a PB_RoleBag.
+     * @typedef {Object} PB_RoleBag.$Properties
+     * @property {Object.<string,PB_RoleBagItem.$Properties>|null} [bag] PB_RoleBag bag
+     * @property {Array.<PB_Item.$Properties>|null} [weare_item] PB_RoleBag weare_item
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_RoleBag.
+     * @exports IPB_RoleBag
+     * @interface IPB_RoleBag
+     * @augments PB_RoleBag.$Properties
+     * @deprecated Use PB_RoleBag.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_RoleBag.
+     * @typedef {PB_RoleBag.$Properties} PB_RoleBag.$Shape
+     */
+
+    /**
+     * Constructs a new PB_RoleBag.
+     * @exports PB_RoleBag
+     * @classdesc Represents a PB_RoleBag.
+     * @constructor
+     * @param {PB_RoleBag.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_RoleBag = function (properties) {
+        this.bag = {};
+        this.weare_item = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_RoleBag bag.
+     * @member {Object.<string,PB_RoleBagItem.$Properties>} bag
+     * @memberof PB_RoleBag
+     * @instance
+     */
+    PB_RoleBag.prototype.bag = $util.emptyObject;
+
+    /**
+     * PB_RoleBag weare_item.
+     * @member {Array.<PB_Item.$Properties>} weare_item
+     * @memberof PB_RoleBag
+     * @instance
+     */
+    PB_RoleBag.prototype.weare_item = $util.emptyArray;
+
+    /**
+     * Creates a new PB_RoleBag instance using the specified properties.
+     * @function create
+     * @memberof PB_RoleBag
+     * @static
+     * @param {PB_RoleBag.$Properties=} [properties] Properties to set
+     * @returns {PB_RoleBag} PB_RoleBag instance
+     * @type {{
+     *   (properties: PB_RoleBag.$Shape): PB_RoleBag & PB_RoleBag.$Shape;
+     *   (properties?: PB_RoleBag.$Properties): PB_RoleBag;
+     * }}
+     */
+    PB_RoleBag.create = function(properties) {
+        return new PB_RoleBag(properties);
+    };
+
+    /**
+     * Encodes the specified PB_RoleBag message. Does not implicitly {@link PB_RoleBag.verify|verify} messages.
+     * @function encode
+     * @memberof PB_RoleBag
+     * @static
+     * @param {PB_RoleBag.$Properties} message PB_RoleBag message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBag.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.bag != null && $Object.hasOwnProperty.call(message, "bag"))
+            for (let keys = $Object.keys(message.bag), i = 0; i < keys.length; ++i) {
+                writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).int32(keys[i]);
+                $root.PB_RoleBagItem.encode(message.bag[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
+            }
+        if (message.weare_item != null && message.weare_item.length)
+            for (let i = 0; i < message.weare_item.length; ++i)
+                $root.PB_Item.encode(message.weare_item[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_RoleBag message, length delimited. Does not implicitly {@link PB_RoleBag.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_RoleBag
+     * @static
+     * @param {PB_RoleBag.$Properties} message PB_RoleBag message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBag.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_RoleBag message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_RoleBag
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_RoleBag & PB_RoleBag.$Shape} PB_RoleBag
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBag.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBag(), key, value;
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    if (message.bag === $util.emptyObject)
+                        message.bag = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = 0;
+                    value = null;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.tag();
+                        wireType = tag2 & 7;
+                        switch (tag2 >>>= 3) {
+                        case 1:
+                            if (wireType !== 0)
+                                break;
+                            key = reader.int32();
+                            continue;
+                        case 2:
+                            if (wireType !== 2)
+                                break;
+                            value = $root.PB_RoleBagItem.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
+                            continue;
+                        }
+                        reader.skipType(wireType, _depth, tag2);
+                    }
+                    message.bag[key] = value || new $root.PB_RoleBagItem();
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.weare_item && message.weare_item.length))
+                        message.weare_item = [];
+                    message.weare_item.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_RoleBag message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_RoleBag
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_RoleBag & PB_RoleBag.$Shape} PB_RoleBag
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBag.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_RoleBag message.
+     * @function verify
+     * @memberof PB_RoleBag
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_RoleBag.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        if (message.bag != null && $Object.hasOwnProperty.call(message, "bag")) {
+            if (!$util.isObject(message.bag))
+                return "bag: object expected";
+            let key = $Object.keys(message.bag);
+            for (let i = 0; i < key.length; ++i) {
+                if (!$util.key32Re.test(key[i]))
+                    return "bag: integer key{k:int32} expected";
+                {
+                    let error = $root.PB_RoleBagItem.verify(message.bag[key[i]], _depth + 1);
+                    if (error)
+                        return "bag." + error;
+                }
+            }
+        }
+        if (message.weare_item != null && $Object.hasOwnProperty.call(message, "weare_item")) {
+            if (!$Array.isArray(message.weare_item))
+                return "weare_item: array expected";
+            for (let i = 0; i < message.weare_item.length; ++i) {
+                let error = $root.PB_Item.verify(message.weare_item[i], _depth + 1);
+                if (error)
+                    return "weare_item." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_RoleBag message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_RoleBag
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_RoleBag} PB_RoleBag
+     */
+    PB_RoleBag.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_RoleBag)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_RoleBag: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_RoleBag();
+        if (object.bag) {
+            if (!$util.isObject(object.bag))
+                throw $TypeError(".PB_RoleBag.bag: object expected");
+            message.bag = {};
+            for (let keys = $Object.keys(object.bag), i = 0; i < keys.length; ++i) {
+                if (keys[i] === "__proto__")
+                    $util.makeProp(message.bag, keys[i]);
+                if (!$util.isObject(object.bag[keys[i]]))
+                    throw $TypeError(".PB_RoleBag.bag: object expected");
+                message.bag[keys[i]] = $root.PB_RoleBagItem.fromObject(object.bag[keys[i]], _depth + 1);
+            }
+        }
+        if (object.weare_item) {
+            if (!$Array.isArray(object.weare_item))
+                throw $TypeError(".PB_RoleBag.weare_item: array expected");
+            message.weare_item = $Array(object.weare_item.length);
+            for (let i = 0; i < object.weare_item.length; ++i) {
+                if (!$util.isObject(object.weare_item[i]))
+                    throw $TypeError(".PB_RoleBag.weare_item: object expected");
+                message.weare_item[i] = $root.PB_Item.fromObject(object.weare_item[i], _depth + 1);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_RoleBag message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_RoleBag
+     * @static
+     * @param {PB_RoleBag} message PB_RoleBag
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_RoleBag.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.weare_item = [];
+        if (options.objects || options.defaults)
+            object.bag = {};
+        let keys2;
+        if (message.bag && (keys2 = $Object.keys(message.bag)).length) {
+            object.bag = {};
+            for (let j = 0; j < keys2.length; ++j) {
+                if (keys2[j] === "__proto__")
+                    $util.makeProp(object.bag, keys2[j]);
+                object.bag[keys2[j]] = $root.PB_RoleBagItem.toObject(message.bag[keys2[j]], options, _depth + 1);
+            }
+        }
+        if (message.weare_item && message.weare_item.length) {
+            object.weare_item = $Array(message.weare_item.length);
+            for (let j = 0; j < message.weare_item.length; ++j)
+                object.weare_item[j] = $root.PB_Item.toObject(message.weare_item[j], options, _depth + 1);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this PB_RoleBag to JSON.
+     * @function toJSON
+     * @memberof PB_RoleBag
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_RoleBag.prototype.toJSON = function() {
+        return PB_RoleBag.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_RoleBag
+     * @function getTypeUrl
+     * @memberof PB_RoleBag
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_RoleBag.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_RoleBag";
+    };
+
+    return PB_RoleBag;
+})();
+
+export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
+
+    /**
+     * Properties of a PB_RoleGrowthData.
+     * @typedef {Object} PB_RoleGrowthData.$Properties
+     * @property {PB_HeroListData.$Properties|null} [hero] PB_RoleGrowthData hero
+     * @property {PB_LineupListData.$Properties|null} [lineup] PB_RoleGrowthData lineup
+     * @property {PB_QuestData.$Properties|null} [quest] PB_RoleGrowthData quest
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_RoleGrowthData.
+     * @exports IPB_RoleGrowthData
+     * @interface IPB_RoleGrowthData
+     * @augments PB_RoleGrowthData.$Properties
+     * @deprecated Use PB_RoleGrowthData.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_RoleGrowthData.
+     * @typedef {PB_RoleGrowthData.$Properties} PB_RoleGrowthData.$Shape
+     */
+
+    /**
+     * Constructs a new PB_RoleGrowthData.
+     * @exports PB_RoleGrowthData
+     * @classdesc Represents a PB_RoleGrowthData.
+     * @constructor
+     * @param {PB_RoleGrowthData.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_RoleGrowthData = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_RoleGrowthData hero.
+     * @member {PB_HeroListData.$Properties|null|undefined} hero
+     * @memberof PB_RoleGrowthData
+     * @instance
+     */
+    PB_RoleGrowthData.prototype.hero = null;
+
+    /**
+     * PB_RoleGrowthData lineup.
+     * @member {PB_LineupListData.$Properties|null|undefined} lineup
+     * @memberof PB_RoleGrowthData
+     * @instance
+     */
+    PB_RoleGrowthData.prototype.lineup = null;
+
+    /**
+     * PB_RoleGrowthData quest.
+     * @member {PB_QuestData.$Properties|null|undefined} quest
+     * @memberof PB_RoleGrowthData
+     * @instance
+     */
+    PB_RoleGrowthData.prototype.quest = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleGrowthData.prototype, "_hero", {
+        get: $util.oneOfGetter($oneOfFields = ["hero"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleGrowthData.prototype, "_lineup", {
+        get: $util.oneOfGetter($oneOfFields = ["lineup"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleGrowthData.prototype, "_quest", {
+        get: $util.oneOfGetter($oneOfFields = ["quest"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_RoleGrowthData instance using the specified properties.
+     * @function create
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {PB_RoleGrowthData.$Properties=} [properties] Properties to set
+     * @returns {PB_RoleGrowthData} PB_RoleGrowthData instance
+     * @type {{
+     *   (properties: PB_RoleGrowthData.$Shape): PB_RoleGrowthData & PB_RoleGrowthData.$Shape;
+     *   (properties?: PB_RoleGrowthData.$Properties): PB_RoleGrowthData;
+     * }}
+     */
+    PB_RoleGrowthData.create = function(properties) {
+        return new PB_RoleGrowthData(properties);
+    };
+
+    /**
+     * Encodes the specified PB_RoleGrowthData message. Does not implicitly {@link PB_RoleGrowthData.verify|verify} messages.
+     * @function encode
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {PB_RoleGrowthData.$Properties} message PB_RoleGrowthData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleGrowthData.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+            $root.PB_HeroListData.encode(message.hero, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup"))
+            $root.PB_LineupListData.encode(message.lineup, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.quest != null && $Object.hasOwnProperty.call(message, "quest"))
+            $root.PB_QuestData.encode(message.quest, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_RoleGrowthData message, length delimited. Does not implicitly {@link PB_RoleGrowthData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {PB_RoleGrowthData.$Properties} message PB_RoleGrowthData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleGrowthData.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_RoleGrowthData message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_RoleGrowthData & PB_RoleGrowthData.$Shape} PB_RoleGrowthData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleGrowthData.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleGrowthData();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    message.hero = $root.PB_HeroListData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.hero);
+                    message._hero = "hero";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.lineup = $root.PB_LineupListData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.lineup);
+                    message._lineup = "lineup";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.quest = $root.PB_QuestData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.quest);
+                    message._quest = "quest";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_RoleGrowthData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_RoleGrowthData & PB_RoleGrowthData.$Shape} PB_RoleGrowthData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleGrowthData.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_RoleGrowthData message.
+     * @function verify
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_RoleGrowthData.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero")) {
+            properties._hero = 1;
+            {
+                let error = $root.PB_HeroListData.verify(message.hero, _depth + 1);
+                if (error)
+                    return "hero." + error;
+            }
+        }
+        if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup")) {
+            properties._lineup = 1;
+            {
+                let error = $root.PB_LineupListData.verify(message.lineup, _depth + 1);
+                if (error)
+                    return "lineup." + error;
+            }
+        }
+        if (message.quest != null && $Object.hasOwnProperty.call(message, "quest")) {
+            properties._quest = 1;
+            {
+                let error = $root.PB_QuestData.verify(message.quest, _depth + 1);
+                if (error)
+                    return "quest." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_RoleGrowthData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_RoleGrowthData} PB_RoleGrowthData
+     */
+    PB_RoleGrowthData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_RoleGrowthData)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_RoleGrowthData: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_RoleGrowthData();
+        if (object.hero != null) {
+            if (!$util.isObject(object.hero))
+                throw $TypeError(".PB_RoleGrowthData.hero: object expected");
+            message.hero = $root.PB_HeroListData.fromObject(object.hero, _depth + 1);
+        }
+        if (object.lineup != null) {
+            if (!$util.isObject(object.lineup))
+                throw $TypeError(".PB_RoleGrowthData.lineup: object expected");
+            message.lineup = $root.PB_LineupListData.fromObject(object.lineup, _depth + 1);
+        }
+        if (object.quest != null) {
+            if (!$util.isObject(object.quest))
+                throw $TypeError(".PB_RoleGrowthData.quest: object expected");
+            message.quest = $root.PB_QuestData.fromObject(object.quest, _depth + 1);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_RoleGrowthData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {PB_RoleGrowthData} message PB_RoleGrowthData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_RoleGrowthData.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+            object.hero = $root.PB_HeroListData.toObject(message.hero, options, _depth + 1);
+        if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup"))
+            object.lineup = $root.PB_LineupListData.toObject(message.lineup, options, _depth + 1);
+        if (message.quest != null && $Object.hasOwnProperty.call(message, "quest"))
+            object.quest = $root.PB_QuestData.toObject(message.quest, options, _depth + 1);
+        return object;
+    };
+
+    /**
+     * Converts this PB_RoleGrowthData to JSON.
+     * @function toJSON
+     * @memberof PB_RoleGrowthData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_RoleGrowthData.prototype.toJSON = function() {
+        return PB_RoleGrowthData.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_RoleGrowthData
+     * @function getTypeUrl
+     * @memberof PB_RoleGrowthData
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_RoleGrowthData.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_RoleGrowthData";
+    };
+
+    return PB_RoleGrowthData;
+})();
+
+export const PB_RoleBattleSnapshot = $root.PB_RoleBattleSnapshot = (() => {
+
+    /**
+     * Properties of a PB_RoleBattleSnapshot.
+     * @typedef {Object} PB_RoleBattleSnapshot.$Properties
+     * @property {PB_RoleBaseInfo.$Properties|null} [base_info] PB_RoleBattleSnapshot base_info
+     * @property {PB_HeroListData.$Properties|null} [hero] PB_RoleBattleSnapshot hero
+     * @property {PB_LineupListData.$Properties|null} [lineup] PB_RoleBattleSnapshot lineup
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_RoleBattleSnapshot.
+     * @exports IPB_RoleBattleSnapshot
+     * @interface IPB_RoleBattleSnapshot
+     * @augments PB_RoleBattleSnapshot.$Properties
+     * @deprecated Use PB_RoleBattleSnapshot.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_RoleBattleSnapshot.
+     * @typedef {PB_RoleBattleSnapshot.$Properties} PB_RoleBattleSnapshot.$Shape
+     */
+
+    /**
+     * Constructs a new PB_RoleBattleSnapshot.
+     * @exports PB_RoleBattleSnapshot
+     * @classdesc Represents a PB_RoleBattleSnapshot.
+     * @constructor
+     * @param {PB_RoleBattleSnapshot.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_RoleBattleSnapshot = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_RoleBattleSnapshot base_info.
+     * @member {PB_RoleBaseInfo.$Properties|null|undefined} base_info
+     * @memberof PB_RoleBattleSnapshot
+     * @instance
+     */
+    PB_RoleBattleSnapshot.prototype.base_info = null;
+
+    /**
+     * PB_RoleBattleSnapshot hero.
+     * @member {PB_HeroListData.$Properties|null|undefined} hero
+     * @memberof PB_RoleBattleSnapshot
+     * @instance
+     */
+    PB_RoleBattleSnapshot.prototype.hero = null;
+
+    /**
+     * PB_RoleBattleSnapshot lineup.
+     * @member {PB_LineupListData.$Properties|null|undefined} lineup
+     * @memberof PB_RoleBattleSnapshot
+     * @instance
+     */
+    PB_RoleBattleSnapshot.prototype.lineup = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBattleSnapshot.prototype, "_base_info", {
+        get: $util.oneOfGetter($oneOfFields = ["base_info"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBattleSnapshot.prototype, "_hero", {
+        get: $util.oneOfGetter($oneOfFields = ["hero"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBattleSnapshot.prototype, "_lineup", {
+        get: $util.oneOfGetter($oneOfFields = ["lineup"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_RoleBattleSnapshot instance using the specified properties.
+     * @function create
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {PB_RoleBattleSnapshot.$Properties=} [properties] Properties to set
+     * @returns {PB_RoleBattleSnapshot} PB_RoleBattleSnapshot instance
+     * @type {{
+     *   (properties: PB_RoleBattleSnapshot.$Shape): PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape;
+     *   (properties?: PB_RoleBattleSnapshot.$Properties): PB_RoleBattleSnapshot;
+     * }}
+     */
+    PB_RoleBattleSnapshot.create = function(properties) {
+        return new PB_RoleBattleSnapshot(properties);
+    };
+
+    /**
+     * Encodes the specified PB_RoleBattleSnapshot message. Does not implicitly {@link PB_RoleBattleSnapshot.verify|verify} messages.
+     * @function encode
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {PB_RoleBattleSnapshot.$Properties} message PB_RoleBattleSnapshot message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBattleSnapshot.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
+            $root.PB_RoleBaseInfo.encode(message.base_info, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+            $root.PB_HeroListData.encode(message.hero, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup"))
+            $root.PB_LineupListData.encode(message.lineup, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_RoleBattleSnapshot message, length delimited. Does not implicitly {@link PB_RoleBattleSnapshot.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {PB_RoleBattleSnapshot.$Properties} message PB_RoleBattleSnapshot message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleBattleSnapshot.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_RoleBattleSnapshot message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape} PB_RoleBattleSnapshot
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBattleSnapshot.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBattleSnapshot();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    message.base_info = $root.PB_RoleBaseInfo.decode(reader, reader.uint32(), $undefined, _depth + 1, message.base_info);
+                    message._base_info = "base_info";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.hero = $root.PB_HeroListData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.hero);
+                    message._hero = "hero";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.lineup = $root.PB_LineupListData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.lineup);
+                    message._lineup = "lineup";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_RoleBattleSnapshot message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape} PB_RoleBattleSnapshot
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleBattleSnapshot.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_RoleBattleSnapshot message.
+     * @function verify
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_RoleBattleSnapshot.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info")) {
+            properties._base_info = 1;
+            {
+                let error = $root.PB_RoleBaseInfo.verify(message.base_info, _depth + 1);
+                if (error)
+                    return "base_info." + error;
+            }
+        }
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero")) {
+            properties._hero = 1;
+            {
+                let error = $root.PB_HeroListData.verify(message.hero, _depth + 1);
+                if (error)
+                    return "hero." + error;
+            }
+        }
+        if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup")) {
+            properties._lineup = 1;
+            {
+                let error = $root.PB_LineupListData.verify(message.lineup, _depth + 1);
+                if (error)
+                    return "lineup." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_RoleBattleSnapshot message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_RoleBattleSnapshot} PB_RoleBattleSnapshot
+     */
+    PB_RoleBattleSnapshot.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_RoleBattleSnapshot)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_RoleBattleSnapshot: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_RoleBattleSnapshot();
+        if (object.base_info != null) {
+            if (!$util.isObject(object.base_info))
+                throw $TypeError(".PB_RoleBattleSnapshot.base_info: object expected");
+            message.base_info = $root.PB_RoleBaseInfo.fromObject(object.base_info, _depth + 1);
+        }
+        if (object.hero != null) {
+            if (!$util.isObject(object.hero))
+                throw $TypeError(".PB_RoleBattleSnapshot.hero: object expected");
+            message.hero = $root.PB_HeroListData.fromObject(object.hero, _depth + 1);
+        }
+        if (object.lineup != null) {
+            if (!$util.isObject(object.lineup))
+                throw $TypeError(".PB_RoleBattleSnapshot.lineup: object expected");
+            message.lineup = $root.PB_LineupListData.fromObject(object.lineup, _depth + 1);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_RoleBattleSnapshot message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {PB_RoleBattleSnapshot} message PB_RoleBattleSnapshot
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_RoleBattleSnapshot.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
+            object.base_info = $root.PB_RoleBaseInfo.toObject(message.base_info, options, _depth + 1);
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+            object.hero = $root.PB_HeroListData.toObject(message.hero, options, _depth + 1);
+        if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup"))
+            object.lineup = $root.PB_LineupListData.toObject(message.lineup, options, _depth + 1);
+        return object;
+    };
+
+    /**
+     * Converts this PB_RoleBattleSnapshot to JSON.
+     * @function toJSON
+     * @memberof PB_RoleBattleSnapshot
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_RoleBattleSnapshot.prototype.toJSON = function() {
+        return PB_RoleBattleSnapshot.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_RoleBattleSnapshot
+     * @function getTypeUrl
+     * @memberof PB_RoleBattleSnapshot
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_RoleBattleSnapshot.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_RoleBattleSnapshot";
+    };
+
+    return PB_RoleBattleSnapshot;
+})();
+
+export const PB_RoleData = $root.PB_RoleData = (() => {
+
+    /**
+     * Properties of a PB_RoleData.
+     * @typedef {Object} PB_RoleData.$Properties
+     * @property {PB_RoleBaseInfo.$Properties|null} [base_info] PB_RoleData base_info
+     * @property {PB_InventoryData.$Properties|null} [inventory] PB_RoleData inventory
+     * @property {PB_RoleGrowthData.$Properties|null} [growth] PB_RoleData growth
+     * @property {PB_RoleBag.$Properties|null} [role_bag] PB_RoleData role_bag
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_RoleData.
+     * @exports IPB_RoleData
+     * @interface IPB_RoleData
+     * @augments PB_RoleData.$Properties
+     * @deprecated Use PB_RoleData.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_RoleData.
+     * @typedef {PB_RoleData.$Properties} PB_RoleData.$Shape
+     */
+
+    /**
+     * Constructs a new PB_RoleData.
+     * @exports PB_RoleData
+     * @classdesc Represents a PB_RoleData.
+     * @constructor
+     * @param {PB_RoleData.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_RoleData = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_RoleData base_info.
+     * @member {PB_RoleBaseInfo.$Properties|null|undefined} base_info
+     * @memberof PB_RoleData
+     * @instance
+     */
+    PB_RoleData.prototype.base_info = null;
+
+    /**
+     * PB_RoleData inventory.
+     * @member {PB_InventoryData.$Properties|null|undefined} inventory
+     * @memberof PB_RoleData
+     * @instance
+     */
+    PB_RoleData.prototype.inventory = null;
+
+    /**
+     * PB_RoleData growth.
+     * @member {PB_RoleGrowthData.$Properties|null|undefined} growth
+     * @memberof PB_RoleData
+     * @instance
+     */
+    PB_RoleData.prototype.growth = null;
+
+    /**
+     * PB_RoleData role_bag.
+     * @member {PB_RoleBag.$Properties|null|undefined} role_bag
+     * @memberof PB_RoleData
+     * @instance
+     */
+    PB_RoleData.prototype.role_bag = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleData.prototype, "_base_info", {
+        get: $util.oneOfGetter($oneOfFields = ["base_info"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleData.prototype, "_inventory", {
+        get: $util.oneOfGetter($oneOfFields = ["inventory"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleData.prototype, "_growth", {
+        get: $util.oneOfGetter($oneOfFields = ["growth"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleData.prototype, "_role_bag", {
+        get: $util.oneOfGetter($oneOfFields = ["role_bag"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_RoleData instance using the specified properties.
+     * @function create
+     * @memberof PB_RoleData
+     * @static
+     * @param {PB_RoleData.$Properties=} [properties] Properties to set
+     * @returns {PB_RoleData} PB_RoleData instance
+     * @type {{
+     *   (properties: PB_RoleData.$Shape): PB_RoleData & PB_RoleData.$Shape;
+     *   (properties?: PB_RoleData.$Properties): PB_RoleData;
+     * }}
+     */
+    PB_RoleData.create = function(properties) {
+        return new PB_RoleData(properties);
+    };
+
+    /**
+     * Encodes the specified PB_RoleData message. Does not implicitly {@link PB_RoleData.verify|verify} messages.
+     * @function encode
+     * @memberof PB_RoleData
+     * @static
+     * @param {PB_RoleData.$Properties} message PB_RoleData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleData.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
+            $root.PB_RoleBaseInfo.encode(message.base_info, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.inventory != null && $Object.hasOwnProperty.call(message, "inventory"))
+            $root.PB_InventoryData.encode(message.inventory, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.growth != null && $Object.hasOwnProperty.call(message, "growth"))
+            $root.PB_RoleGrowthData.encode(message.growth, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag"))
+            $root.PB_RoleBag.encode(message.role_bag, writer.uint32(/* id 100, wireType 2 =*/802).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_RoleData message, length delimited. Does not implicitly {@link PB_RoleData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_RoleData
+     * @static
+     * @param {PB_RoleData.$Properties} message PB_RoleData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_RoleData.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_RoleData message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_RoleData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleData.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleData();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    message.base_info = $root.PB_RoleBaseInfo.decode(reader, reader.uint32(), $undefined, _depth + 1, message.base_info);
+                    message._base_info = "base_info";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.inventory = $root.PB_InventoryData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.inventory);
+                    message._inventory = "inventory";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.growth = $root.PB_RoleGrowthData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.growth);
+                    message._growth = "growth";
+                    continue;
+                }
+            case 100: {
+                    if (wireType !== 2)
+                        break;
+                    message.role_bag = $root.PB_RoleBag.decode(reader, reader.uint32(), $undefined, _depth + 1, message.role_bag);
+                    message._role_bag = "role_bag";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_RoleData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_RoleData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_RoleData.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_RoleData message.
+     * @function verify
+     * @memberof PB_RoleData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_RoleData.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info")) {
+            properties._base_info = 1;
+            {
+                let error = $root.PB_RoleBaseInfo.verify(message.base_info, _depth + 1);
+                if (error)
+                    return "base_info." + error;
+            }
+        }
+        if (message.inventory != null && $Object.hasOwnProperty.call(message, "inventory")) {
+            properties._inventory = 1;
+            {
+                let error = $root.PB_InventoryData.verify(message.inventory, _depth + 1);
+                if (error)
+                    return "inventory." + error;
+            }
+        }
+        if (message.growth != null && $Object.hasOwnProperty.call(message, "growth")) {
+            properties._growth = 1;
+            {
+                let error = $root.PB_RoleGrowthData.verify(message.growth, _depth + 1);
+                if (error)
+                    return "growth." + error;
+            }
+        }
+        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag")) {
+            properties._role_bag = 1;
+            {
+                let error = $root.PB_RoleBag.verify(message.role_bag, _depth + 1);
+                if (error)
+                    return "role_bag." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_RoleData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_RoleData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_RoleData} PB_RoleData
+     */
+    PB_RoleData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_RoleData)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_RoleData: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_RoleData();
+        if (object.base_info != null) {
+            if (!$util.isObject(object.base_info))
+                throw $TypeError(".PB_RoleData.base_info: object expected");
+            message.base_info = $root.PB_RoleBaseInfo.fromObject(object.base_info, _depth + 1);
+        }
+        if (object.inventory != null) {
+            if (!$util.isObject(object.inventory))
+                throw $TypeError(".PB_RoleData.inventory: object expected");
+            message.inventory = $root.PB_InventoryData.fromObject(object.inventory, _depth + 1);
+        }
+        if (object.growth != null) {
+            if (!$util.isObject(object.growth))
+                throw $TypeError(".PB_RoleData.growth: object expected");
+            message.growth = $root.PB_RoleGrowthData.fromObject(object.growth, _depth + 1);
+        }
+        if (object.role_bag != null) {
+            if (!$util.isObject(object.role_bag))
+                throw $TypeError(".PB_RoleData.role_bag: object expected");
+            message.role_bag = $root.PB_RoleBag.fromObject(object.role_bag, _depth + 1);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_RoleData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_RoleData
+     * @static
+     * @param {PB_RoleData} message PB_RoleData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_RoleData.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
+            object.base_info = $root.PB_RoleBaseInfo.toObject(message.base_info, options, _depth + 1);
+        if (message.inventory != null && $Object.hasOwnProperty.call(message, "inventory"))
+            object.inventory = $root.PB_InventoryData.toObject(message.inventory, options, _depth + 1);
+        if (message.growth != null && $Object.hasOwnProperty.call(message, "growth"))
+            object.growth = $root.PB_RoleGrowthData.toObject(message.growth, options, _depth + 1);
+        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag"))
+            object.role_bag = $root.PB_RoleBag.toObject(message.role_bag, options, _depth + 1);
+        return object;
+    };
+
+    /**
+     * Converts this PB_RoleData to JSON.
+     * @function toJSON
+     * @memberof PB_RoleData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_RoleData.prototype.toJSON = function() {
+        return PB_RoleData.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_RoleData
+     * @function getTypeUrl
+     * @memberof PB_RoleData
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_RoleData.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_RoleData";
+    };
+
+    return PB_RoleData;
 })();
 
 export {

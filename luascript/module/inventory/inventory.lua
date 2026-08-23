@@ -33,9 +33,9 @@ function LOC.SendAllMsg(role)
 
     -- 构建背包协议数据
     local slots = {}
-    for slot_idx, slot_data in pairs(inventory_data.slots or {}) do
+    for _, slot_data in ipairs(inventory_data.slots or {}) do
         table.insert(slots, {
-            slot_index = slot_idx,
+            slot_index = slot_data.slot_index,
             id = slot_data.id,
             num = slot_data.num
         })
@@ -58,7 +58,7 @@ function LOC.GetOrSetInventoryData(role)
         return nil
     end
     
-    local role_data = role:GetLuaRoleData()
+    local role_data = role:GetRoleData()
     if not role_data then
         LOG_ERROR("角色数据为空")
         return nil
@@ -68,17 +68,53 @@ function LOC.GetOrSetInventoryData(role)
     if not role_data.inventory then
         role_data.inventory = {
             max_slots = ConfigManager.itemglobalconfig.max_inventory_slots or 50,
-            slots = {} -- key: slot_index, value: { id, num }
+            slots = {} -- {slot_index=, id=, num=}
         }
     end
     
     return role_data.inventory
 end
 
+-- 按槽位索引查找物品
+function LOC.FindSlot(inventory_data, slot_index)
+    for _, slot in ipairs(inventory_data.slots or {}) do
+        if slot.slot_index == slot_index then
+            return slot
+        end
+    end
+    return nil
+end
+
+-- 移除指定槽位
+function LOC.RemoveSlot(inventory_data, slot_index)
+    local slots = inventory_data.slots
+    for i = #slots, 1, -1 do
+        if slots[i].slot_index == slot_index then
+            table.remove(slots, i)
+            return
+        end
+    end
+end
+
+-- 设置槽位(替换或新增)
+function LOC.SetSlot(inventory_data, slot_index, slot_data)
+    local slot = LOC.FindSlot(inventory_data, slot_index)
+    if slot then
+        slot.id = slot_data.id
+        slot.num = slot_data.num
+    else
+        table.insert(inventory_data.slots, {
+            slot_index = slot_index,
+            id = slot_data.id,
+            num = slot_data.num,
+        })
+    end
+end
+
 -- 查找空槽位
 function LOC.FindEmptySlot(inventory_data)
     for i = 1, inventory_data.max_slots do
-        if not inventory_data.slots[i] then
+        if not LOC.FindSlot(inventory_data, i) then
             return i
         end
     end
@@ -89,7 +125,7 @@ end
 function LOC.GetFreeSlots(inventory_data)
     local count = 0
     for i = 1, inventory_data.max_slots do
-        if not inventory_data.slots[i] then
+        if not LOC.FindSlot(inventory_data, i) then
             count = count + 1
         end
     end
@@ -119,7 +155,7 @@ function LOC.CalculateRequiredSlots(inventory_data, item_config, num)
     if max_stack == 0 then
         -- 无限堆叠,查找是否有现有槽位
         for i = 1, inventory_data.max_slots do
-            local slot = inventory_data.slots[i]
+            local slot = LOC.FindSlot(inventory_data, i)
             if slot and slot.id == item_config.id then
                 return 0 -- 已有槽位,不需要新槽位
             end
@@ -132,7 +168,7 @@ function LOC.CalculateRequiredSlots(inventory_data, item_config, num)
     
     -- 先查看现有槽位能堆叠多少
     for i = 1, inventory_data.max_slots do
-        local slot = inventory_data.slots[i]
+        local slot = LOC.FindSlot(inventory_data, i)
         if slot and slot.id == item_config.id then
             local can_add = max_stack - slot.num
             if can_add > 0 then
@@ -153,7 +189,7 @@ function LOC.FilterSlots(inventory_data, filter_func)
     local items = {}
     
     for i = 1, inventory_data.max_slots do
-        local slot = inventory_data.slots[i]
+        local slot = LOC.FindSlot(inventory_data, i)
         if slot then
             local item_config = Item.GetItemConfig(slot.id)
             if item_config and (not filter_func or filter_func(item_config)) then
@@ -221,18 +257,20 @@ function M.InitInventory(role)
     
     -- 验证已有物品数据
     local valid_count = 0
-    for slot_index, slot_data in pairs(inventory_data.slots) do
+    local slots = inventory_data.slots
+    for i = #slots, 1, -1 do
+        local slot_data = slots[i]
         if slot_data and slot_data.id and slot_data.num and slot_data.num > 0 then
             local item_config = Item.GetItemConfig(slot_data.id)
             if item_config then
                 valid_count = valid_count + 1
             else
                 LOG_WARN("无法找到物品配置 ID: " .. tostring(slot_data.id))
-                inventory_data.slots[slot_index] = nil
+                table.remove(slots, i)
             end
         else
             -- 清理无效数据
-            inventory_data.slots[slot_index] = nil
+            table.remove(slots, i)
         end
     end
     
@@ -291,7 +329,7 @@ function M.AddItem(role, id, num)
     -- 如果物品可堆叠,先尝试堆叠到现有格子
     if can_stack then
         for i = 1, inventory_data.max_slots do
-            local slot = inventory_data.slots[i]
+            local slot = LOC.FindSlot(inventory_data, i)
             if slot and slot.id == id then
                 if max_stack == 0 then
                     -- 无限堆叠
@@ -344,7 +382,7 @@ function M.AddItem(role, id, num)
             stack_size = math.min(num, max_stack)
         end
         
-        inventory_data.slots[empty_slot] = { id = id, num = stack_size }
+        LOC.SetSlot(inventory_data, empty_slot, { id = id, num = stack_size })
         num = num - stack_size
         
         LOG_INFO("%s 添加道具 (ID:%d %s x%d) 格子:%d",
@@ -435,14 +473,14 @@ function M.RemoveItem(role, id, num)
     
     -- 从后往前遍历,优先移除后面的
     for i = inventory_data.max_slots, 1, -1 do
-        local slot = inventory_data.slots[i]
+        local slot = LOC.FindSlot(inventory_data, i)
         if slot and slot.id == id then
             local remove_count = math.min(slot.num, num - removed)
             slot.num = slot.num - remove_count
             removed = removed + remove_count
             
             if slot.num <= 0 then
-                inventory_data.slots[i] = nil
+                LOC.RemoveSlot(inventory_data, i)
             end
             
             if removed >= num then
@@ -516,7 +554,7 @@ function M.GetItemCount(role, id)
     
     local count = 0
     for i = 1, inventory_data.max_slots do
-        local slot = inventory_data.slots[i]
+        local slot = LOC.FindSlot(inventory_data, i)
         if slot and slot.id == id then
             count = count + slot.num
         end
@@ -552,7 +590,7 @@ function M.UseItemBySlot(role, slot_index)
         return false
     end
     
-    local slot = inventory_data.slots[slot_index]
+    local slot = LOC.FindSlot(inventory_data, slot_index)
     if not slot then
         LOG_INFO("槽位为空")
         return false
@@ -580,7 +618,7 @@ function M.UseItemBySlot(role, slot_index)
         slot.num = slot.num - 1
         
         if slot.num <= 0 then
-            inventory_data.slots[slot_index] = nil
+            LOC.RemoveSlot(inventory_data, slot_index)
         end
         
         LOC.TriggerItemEvent("OnUseItem", role, item_id, 1, { slot_index = slot_index })
@@ -599,7 +637,7 @@ function M.UseItem(role, id)
     
     -- 查找第一个匹配的物品
     for i = 1, inventory_data.max_slots do
-        local slot = inventory_data.slots[i]
+        local slot = LOC.FindSlot(inventory_data, i)
         if slot and slot.id == id then
             return M.UseItemBySlot(role, i)
         end
@@ -626,9 +664,14 @@ function M.SwapSlots(role, slot_index_1, slot_index_2)
         return true -- 相同槽位无需交换
     end
     
-    local temp = inventory_data.slots[slot_index_1]
-    inventory_data.slots[slot_index_1] = inventory_data.slots[slot_index_2]
-    inventory_data.slots[slot_index_2] = temp
+    -- 交换两个元素记录的槽位索引
+    local slot_1 = LOC.FindSlot(inventory_data, slot_index_1)
+    local slot_2 = LOC.FindSlot(inventory_data, slot_index_2)
+    if not slot_1 or not slot_2 then
+        LOG_ERROR("交换槽位失败: 槽位为空")
+        return false
+    end
+    slot_1.slot_index, slot_2.slot_index = slot_2.slot_index, slot_1.slot_index
     
     LOG_INFO("交换插槽 " .. tostring(slot_index_1) .. " 和 " .. tostring(slot_index_2))
     return true
@@ -645,7 +688,7 @@ function M.GetSlotData(role, slot_index)
         return nil
     end
     
-    return inventory_data.slots[slot_index]
+    return LOC.FindSlot(inventory_data, slot_index)
 end
 
 -- 获取所有物品
@@ -706,7 +749,7 @@ function M.PrintInventory(role)
     LOG_INFO("插槽: " .. tostring(inventory_data.max_slots - LOC.GetFreeSlots(inventory_data)) .. "/" .. tostring(inventory_data.max_slots))
     
     for i = 1, inventory_data.max_slots do
-        local slot = inventory_data.slots[i]
+        local slot = LOC.FindSlot(inventory_data, i)
         if slot then
             local item_config = Item.GetItemConfig(slot.id)
             if item_config then

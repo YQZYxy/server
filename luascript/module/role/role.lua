@@ -22,8 +22,8 @@ function Role:GetRoleBaseData()
 end
 
 -- 获取角色Lua数据
-function Role:GetLuaRoleData()
-    return GLO.RoleManager.GetLuaRoleData(self.uid)
+function Role:GetRoleData()
+    return GLO.RoleManager.GetRoleData(self.uid)
 end
 
 -- 计算等级所需经验
@@ -52,7 +52,7 @@ end
 
 function Role:Init(uid)
     local base_info = self:GetRoleBaseData()
-    local data = self:GetLuaRoleData()
+    local data = self:GetRoleData()
 
     if not base_info or not data then
         LOG_ERROR("无法获取角色数据 uid:" .. tostring(uid))
@@ -60,7 +60,7 @@ function Role:Init(uid)
     end
 
     self.name = base_info.name
-    self.level = data.level or 1
+    self.level = base_info.level or 1
 
     -- 初始化背包
     GLO.Inventory.InitInventory(self)
@@ -84,29 +84,28 @@ end
 
 -- 获取升级所需经验
 function Role:GetExpToNextLevel()
-    local data = self:GetLuaRoleData()
-    if not data then
+    local base_info = self:GetRoleBaseData()
+    if not base_info or not base_info.level then
         return 0
     end
-    return M.CalculateRoleExpForLevel(data.level)
+    return M.CalculateRoleExpForLevel(base_info.level)
 end
 
 -- 添加经验
 function Role:AddExp(amount)
     local base_info = self:GetRoleBaseData()
-    local data = self:GetLuaRoleData()
-    if not base_info or not data then
+    if not base_info then
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(self.uid))
         return
     end
 
-    data.exp = (data.exp or 0) + amount
+    base_info.exp = (base_info.exp or 0) + amount
 
     LOG_INFO("💫 %s 获得 %d 经验(角色等级)", base_info.name, amount)
 
     -- 检查升级
     local exp_to_next_level = self:GetExpToNextLevel()
-    while data.exp >= exp_to_next_level do
+    while base_info.exp >= exp_to_next_level do
         self:LevelUp()
         exp_to_next_level = self:GetExpToNextLevel()
     end
@@ -115,21 +114,20 @@ end
 -- 升级
 function Role:LevelUp()
     local base_info = self:GetRoleBaseData()
-    local data = self:GetLuaRoleData()
-    if not base_info or not data then
+    if not base_info then
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(self.uid))
         return
     end
 
     local exp_to_next_level = self:GetExpToNextLevel()
-    data.exp = data.exp - exp_to_next_level
-    data.level = data.level + 1
+    base_info.exp = (base_info.exp or 0) - exp_to_next_level
+    base_info.level =(base_info.level or 0) + 1
 
     LOG_INFO("🌟 %s 角色等级提升到 Lv.%d!",
-        base_info.name, data.level)
+        base_info.name, base_info.level)
 
     -- 检查等级奖励
-    local reward_config = M.GetLevelReward(data.level)
+    local reward_config = M.GetLevelReward(base_info.level)
     if reward_config then
         for _, item_data in ipairs(reward_config.level_rewards) do
             local id = item_data.id
@@ -146,7 +144,7 @@ function Role:LevelUp()
     -- 触发升级事件
     EventManager.TriggerEvent(EventManager.lua_OnRoleLevelUp, {
         role = self,
-        new_level = data.level
+        new_level = base_info.level
     })
 end
 
@@ -156,14 +154,14 @@ function Role:CanEquip(item_config)
         return false
     end
 
-    local data = self:GetLuaRoleData()
-    if not data then
+    local base_info = self:GetRoleBaseData()
+    if not base_info or base_info.level then
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(self.uid))
         return false
     end
 
     -- 检查等级需求
-    if item_config.level and item_config.level > data.level then
+    if item_config.level and item_config.level > base_info.level then
         return false, "等级不足"
     end
 
@@ -175,7 +173,7 @@ end
 -- 打印角色状态
 function Role:PrintStatus()
     local base_info = self:GetRoleBaseData()
-    local data = self:GetLuaRoleData()
+    local data = self:GetRoleData()
     if not data or not base_info then
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(self.uid))
         return
@@ -183,9 +181,9 @@ function Role:PrintStatus()
 
     local exp_to_next_level = self:GetExpToNextLevel()
 
-    LOG_INFO("=== %s (Lv.%d) ===", base_info.name, data.level)
+    LOG_INFO("=== %s (Lv.%d) ===", base_info.name, base_info.level or 1)
     LOG_INFO("经验: %d/%d | 金币: %d",
-        data.exp, exp_to_next_level, self:GetGold())
+        base_info and base_info.exp or 0, exp_to_next_level, self:GetGold())
 
     -- 显示英雄信息
     local hero_count = HeroModule.GetHeroCount(self)
@@ -207,7 +205,7 @@ function Role:PrintStatus()
     -- 显示任务信息
     if GLO.Quest then
         local active_count = #GLO.Quest.GetActiveQuests(self)
-        local quest_data = data.quest_data
+        local quest_data = data.growth and data.growth.quest
         local completed_count = quest_data and #quest_data.completed_quests or 0
         LOG_INFO("任务: %d/%d (已完成: %d)",
             active_count,
@@ -232,13 +230,13 @@ function Role:GetUserName()
 end
 
 function Role:GetLevel()
-    local data = self:GetLuaRoleData()
-    return data and data.level or 1
+    local base_info = self:GetRoleBaseData()
+    return (base_info and base_info.level) or 1
 end
 
 function Role:GetExp()
-    local data = self:GetLuaRoleData()
-    return data and data.exp or 0
+    local base_info = self:GetRoleBaseData()
+    return (base_info and base_info.exp) or 0
 end
 
 function Role:GetGold()
@@ -249,14 +247,13 @@ end
 
 function Role:SendRoleDataInfo()
     local base_info = self:GetRoleBaseData()
-    local data = self:GetLuaRoleData()
-    if not data or not base_info then
+    if not base_info then
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(self:GetUID()))
         return
     end
 
     -- 更新最后登录时间
-    data.last_login_time = os.time()
+    base_info.last_login_time = os.time()
 
     -- 发送登录返回(基础信息)
     Protobuf.SendMsg(self:GetNetid(), MHT.MHT_SYNC_ROLE_INFO_RET_SC,
@@ -269,7 +266,7 @@ function Role:SendRoleDataInfo()
         .. " last_login_time: %d"
         .. " netid: %d",
         base_info.name,
-        data.last_login_time or 0,
+        (base_info.last_login_time) or 0,
         self:GetNetid())
 end
 

@@ -4,6 +4,7 @@
 syntax = "proto3";
 
 import "data.proto";
+import "roledata.proto";
 import "battledata.proto";
 
 // 消息头
@@ -334,7 +335,7 @@ message P_ChatDb_S
 
 
 // ================================================================================ 
-// ============================战斗服协议==========================================
+// ============================ UE 战斗服协议==========================================
 // ================================================================================ 
 
 // 战斗服注册
@@ -397,60 +398,6 @@ message P_BattleServerKickOutRole
 {
 	optional int32 uid		= 1;	// 角色数据
 	optional string token		= 2; // 角色令牌
-}
-
-// ========================================上面是UE实时战斗的协议跟battle没有关系=====================================================
-
-// 战斗执行请求 / 战报查询(设置 report_key 时为查询)
-// MHT_BATTLE_EXECUTE_REQ = 20008
-message P_BattleExecuteReq
-{
-    optional int32 req_id                    = 1;   // 请求序列号
-    optional PB_BattleReq battle_req 		= 2;   // 战斗请求数据(执行战斗时设置)
-    optional string report_key      = 3;   // 战报key(查询战报时设置,优先级高于 battle_req)
-    optional int32 uid              = 4;   // 发起战斗的角色uid
-}
-
-// 战斗执行返回
-// MHT_BATTLE_EXECUTE_RES = 20009
-message P_BattleExecuteRes
-{
-    optional int32 req_id                    = 1;   // 请求序列号
-    optional int32 ret                       = 2;   // 0=失败 1=成功
-    optional PB_BattleResult battle_result   = 3;   // 战斗结果
-}
-
-// 战斗取消请求
-// MHT_BATTLE_CANCEL_REQ = 20010
-message P_BattleCancelReq
-{
-    optional int32 battle_id = 1;
-}
-
-// 战斗查询请求
-// MHT_BATTLE_QUERY_REQ = 20011
-message P_BattleQueryReq
-{
-    optional int32 req_id    = 1;
-    optional int32 battle_id = 2;
-}
-
-// 战斗查询返回
-// MHT_BATTLE_QUERY_RES = 20012
-message P_BattleQueryRes
-{
-    optional int32 req_id            = 1;
-    optional int32 battle_id         = 2;
-    optional PB_BattlePhase phase    = 3;
-    optional bool is_active          = 4;
-}
-
-// C++战斗服注册
-// MHT_BATTLE_CS_SERVER_REGISTER = 20013
-message P_BattleCsServerRegister
-{
-    optional int32 id					= 1;
-    optional int32 weight				= 2;
 }
 
 // ================================================================================ 
@@ -576,15 +523,17 @@ message P_GasBattle_CS
 // MHT_GAS_BATTLE_SC = 30013
 message P_GasBattle_SC
 {
-	optional int32 ret_type 			= 1;		// 对应 P_GasBattle_CS 的 req_type
-	optional string battle_report_key	= 2;	// 战报唯一key
-	optional string battle_report		= 3;	// 战报事件
-	optional int32 battle_type			= 4;	// 战斗类型
-	optional int32 id					= 5;	// 关联id(主线为关卡id,竞技场为对手uid)
-	optional int32 result_type			= 6;	// 战斗结果(对应Const.BattleResultType: 0=无 1=胜利 2=失败 3=超时 4=平局)
+	optional int32 ret_type 			= 1;		// 对应 P_GasBattle_CS 的 req_type(0=战斗 1=战报回放)
+	optional int32 battle_type			= 2;	// 战斗类型
+	optional int32 id					= 3;	// 关联id(主线为关卡id,竞技场为对手uid)
+	// 战斗结果
+	optional int32 total_matches		= 4;	// 总场次(1=单场)
+	optional int32 series_result		= 5;	// 总结果(单场即本场结果)
+	optional int32 win_matches			= 6;	// 已获胜场数(单场胜利=1)
+	repeated PB_BattleMatchResult matches	= 7;	// 各场次结果(单场1个,系列N个,战报查询1个)
 
-	optional int32 score_change			= 7;	// 积分变化(竞技场专用,正为加负为减)
-	optional int32 score_after			= 8;	// 战斗后积分(竞技场专用)
+	optional int32 score_change			= 8;	// 积分变化(竞技场专用,正为加负为减)
+	optional int32 score_after			= 9;	// 战斗后积分(竞技场专用)
 }
 
 // 背包数据同步
@@ -634,6 +583,7 @@ message P_SyncLineupUpdate_CS
 {
 	optional int32 battle_type			= 1;	// 战斗类型
 	repeated int32 hero_ids				= 2;	// 新阵容英雄id列表
+	optional int32 slot					= 3;	// 阵容槽位(0=默认阵容,多阵容从0递增)
 }
 
 // ============================通用排行榜协议=======================================

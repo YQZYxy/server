@@ -97,7 +97,7 @@ GLO.MainBattleModule = require("module.battle.mainbattle")
 GLO.GmQuest = require("module.gm.gmquest")
 
 -- 角色数据快照工具
-GLO.RoleSnapshot = require("module.role.rolesnapshot")
+GLO.RoleBattleSnapshot = require("module.role.rolebattlesnapshot")
 
 -- 竞技场
 GLO.ArenaUser = require("module.arena.arenauser")

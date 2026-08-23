@@ -1,7 +1,6 @@
 local GLO = GLO
 local M = {}
 local L ={}
-local Const = GLO.Const
 local Utils = GLO.Utils
 local MsgManager = GLO.MsgManager
 local MHT = GLO.MHT
@@ -114,14 +113,18 @@ function M.HandleReplayQuery(netid, role, msg_data)
         LOG_ERROR("历史战报查询缺少 report_key")
         return
     end
-    Protobuf.SendBattleMsg(netid, MHT.MHT_BATTLE_EXECUTE_REQ, {
-        uid = role.uid,
-        report_key = report_key,
-    })
+
+    local encoded = Protobuf.Encode({ uid = role.uid, report_key = report_key }, "PB_BattleExecuteReq")
+    if encoded then
+        cpp_ExecuteBattle(netid, encoded)
+    end
 end
 
 -- 回合战斗状态超时(秒): 超过该时长未收到战斗结果, 视为战斗丢失, 解除占用
 L.BATTLE_TIMEOUT = 3
+
+-- 战斗结果的收集/组装/下发由 C++ 侧统一完成(单场=1场系列), Lua 只负责业务结算
+-- 见底部 cpp_OnBattleResult 监听
 
 -- 开始战斗
 function M.HandleBattleStart(role, msg_data)
@@ -148,9 +151,12 @@ function M.HandleBattleStart(role, msg_data)
     LOG_INFO("BattleManager分发战斗请求: uid=%s, name=%s, battle_type=%d, module=%s",
         role:GetUid(),role:GetName(), battle_type, module_inst.module_name or "未知战斗类型")
 
-    -- 请求发送成功才标记进入战斗
-    if module_inst:OnBattleReq(role, msg_data) then
-        role.in_battle_start_time = Utils.GetServerTime()
+    -- 标记进入战斗(同步执行: 战斗结果会在 OnBattleReq 内同步回调并清理此标记。
+    -- 若在结果回调之后设置, 会残留一个永不清除的标记, 导致下次进入时误判超时)
+    role.in_battle_start_time = Utils.GetServerTime()
+    if not module_inst:OnBattleReq(role, msg_data) then
+        LOG_WARN("战斗请求发送失败,解除占用: uid=%d", role:GetUid())
+        role.in_battle_start_time = nil
     end
 end
 
@@ -169,19 +175,32 @@ EventManager.RegisterListener(EventManager.cpp_OnBattleResult, function(event)
         return
     end
 
-    -- 解除角色战斗状态
-    role.in_battle_start_time = nil
-
     local module_inst = M.GetModuleInstance(battle_type)
     if not module_inst then
         LOG_ERROR("模块实例不存在或未注册 type=%d", battle_type)
         return
     end
 
-    LOG_INFO("BattleManager分发战斗结果: uid=%s, name=%s, battle_type=%d, module=%s",
-        role:GetUid(),role:GetName(), battle_type, module_inst.module_name or "未知战斗类型")
+    -- 解除角色战斗状态
+    role.in_battle_start_time = nil
 
-    module_inst:OnBattleResult(role, event)
+    -- event: uid/battle_type/param_id/result_type(总结果)/win_matches/total_matches/report_key
+    local total = event.total_matches or 1
+    local win = event.win_matches or 0
+    local series = {
+        battle_type = battle_type,
+        param_id = event.param_id or 0,
+        total = total,
+        win = win,
+        lose = total - win,
+        match_results = { [1] = event.result_type or 0 },
+        report_keys = { [1] = event.report_key or "" },
+    }
+
+    LOG_INFO("BattleManager分发战斗结果: uid=%s, name=%s, battle_type=%d, result=%d",
+        role:GetUid(),role:GetName(), battle_type, event.result_type or 0)
+
+    module_inst:OnBattleResult(role, series, event.result_type or 0)
 end)
 
 LOG_INFO(" BattleManager 加载完成")

@@ -104,7 +104,7 @@
         "ProtoListTypes",
         "ProtoListFields",
         "cpp_FastSerialize",
-        "cpp_SendBattleMsg"
+        "cpp_ExecuteBattle"
     ],
     "C_Cpp.default.compilerPath": "cl.exe",
 

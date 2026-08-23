@@ -22,7 +22,7 @@ function MainBattleModule:Ctor()
 end
 
 -- 构建参与者
-function MainBattleModule:BuildParticipants(role, msg_data)
+function MainBattleModule:BuildMatchParticipants(role, msg_data, match_index, total_matches)
     local stage_id = msg_data.id or 0
     local monster_entries = self:GetMonsterEntries(stage_id, msg_data)
 
@@ -73,15 +73,14 @@ function MainBattleModule:GetMonsterEntries(stage_id, msg_data)
     return entries
 end
 
-function MainBattleModule:OnBattleResult(role, event)
-    local result_type = event.result_type
-    local param_id = event.param_id
+function MainBattleModule:OnBattleResult(role, series, series_result)
+    local param_id = series.param_id or 0
 
     LOG_INFO("主线战斗结果: uid=%d, result=%d, stage=%d",
-        event.uid, result_type, param_id)
+        role.uid, series_result, param_id)
 
-    if result_type ~= Const.BattleResultType.VICTORY then
-        LOG_INFO("主线战斗未胜利,不发放奖励 uid=%d", event.uid)
+    if series_result ~= Const.BattleResultType.VICTORY then
+        LOG_INFO("主线战斗未胜利,不发放奖励 uid=%d", role.uid)
         return
     end
 

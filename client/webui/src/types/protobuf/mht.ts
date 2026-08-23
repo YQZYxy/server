@@ -40,12 +40,6 @@ export const MHT = {
   MHT_BATTLE_SERVER_REGISTER_TOKEN_AND_ROLE_DATA: 20005,  // 向战斗服注册角色信息
   MHT_BATTLE_SAVE_ROLE_DATA: 20006,  // 战斗服保存角色信息
   MHT_BATTLE_KICK_OUT_ROLE: 20007,  // 战斗服提出玩家
-  MHT_BATTLE_EXECUTE_REQ: 20008,  // 战斗执行请求 / 战报查询(设置 report_key 时为查询)
-  MHT_BATTLE_EXECUTE_RES: 20009,  // 战斗执行返回
-  MHT_BATTLE_CANCEL_REQ: 20010,  // 战斗取消请求
-  MHT_BATTLE_QUERY_REQ: 20011,  // 战斗查询请求
-  MHT_BATTLE_QUERY_RES: 20012,  // 战斗查询返回
-  MHT_BATTLE_CS_SERVER_REGISTER: 20013,  // C++战斗服注册
   MHT_LOGIN_CS: 30001,  // 角色登录请求
   MHT_LOGIN_SC: 30002,  // 角色登录返回
   MHT_GM_CS: 30003,  // GM指令请求
@@ -111,12 +105,6 @@ export const PROTO_BODY_TYPE: Record<number, string> = {
   20005: 'P_BattleServerRegisterTokenAndRoleData',
   20006: 'P_BattleServerSaveRoleData',
   20007: 'P_BattleServerKickOutRole',
-  20008: 'P_BattleExecuteReq',
-  20009: 'P_BattleExecuteRes',
-  20010: 'P_BattleCancelReq',
-  20011: 'P_BattleQueryReq',
-  20012: 'P_BattleQueryRes',
-  20013: 'P_BattleCsServerRegister',
   30001: 'P_LoginReq_CS',
   30002: 'P_LoginReq_SC',
   30003: 'P_GM_CS',

@@ -34,13 +34,6 @@ function M.SendDBMsg(msg_type, body)
 	return cpp_SendDBMsg(msg_type, body_encoded)
 end
 
--- 发送战斗请求到战斗服
-function M.SendBattleMsg(client_netid, msg_type, body)
-	local body_encoded = M.EncodeBody(msg_type, body)
-	if not body_encoded then return end
-	return cpp_SendBattleMsg(client_netid, body_encoded)
-end
-
 -- 直接编码指定 proto 类型 (用于序列化 PB_RoleData 等数据消息, 无需 msg_type)
 function M.Encode(data, message_type)
 	return ProtoEncode(message_type, data)

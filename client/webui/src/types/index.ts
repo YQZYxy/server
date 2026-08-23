@@ -23,6 +23,7 @@ export {
   JOB_ICONS,
   DEFAULT_HERO_ICON,
   MAX_LINEUP_SLOTS,
+  MAX_LINEUP_SLOT_COUNT,
   getHeroConfig,
   getHeroLevelConfig,} from './hero'
 

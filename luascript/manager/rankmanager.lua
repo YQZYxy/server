@@ -386,10 +386,10 @@ function M.UpdateRankWithLineup(role, rank_type, value, extra_data, battle_type)
         return
     end
     extra_data = extra_data or {}
-    local snapshot = GLO.RoleSnapshot.Snapshot(role)
+    local snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
     if snapshot then
         extra_data.power = value
-        extra_data.heroes = GLO.RoleSnapshot.BuildProtoHeroDataList(snapshot, battle_type)
+        extra_data.heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(snapshot, battle_type)
     end
     M.UpdateValue(rank_type, role.uid, role:GetName() or "", value, extra_data)
 end

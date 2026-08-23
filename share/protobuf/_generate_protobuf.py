@@ -52,12 +52,12 @@ CONFIG = {
     # 每个目标: (name, flag, output_config_key, clean_patterns, clean_recursive)
     # output_config_key 指向本 CONFIG 中的输出目录键名, 运行时解析为实际路径
     "TARGETS": [
-        ("C++",     "--cpp_out",            "OUTPUT_CPP_DIR",       ["*.pb.cc", "*.pb.h", "*.cpp", "*.hpp"], False),
+        ("C++",     "--cpp_out",            "OUTPUT_CPP_DIR",       ["*.pb.cc", "*.pb.h", "*.cpp", "*.hpp"], True),
         ("Lua",     "--descriptor_set_out", "OUTPUT_LUA_PROTO_DIR", ["*.pb","*.lua"],              True),
     ],
 
     # ---- 复制到 battle_a ----
-    "COPY_ENABLED": False,
+    "COPY_ENABLED": True,
     "COPY_SOURCE": "protocol",
     "COPY_TARGET": r"..\..\battle_a\Source\LyraGame\Protobuf\protocol",
     "COPY_PATTERNS": ["*.pb.cc", "*.pb.h", "*.h", "*.hpp"],

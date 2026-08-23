@@ -43,8 +43,7 @@ end
 
 -- 从快照计算英雄属性和战力(用于UI展示,不创建实例)
 function M.GetAttrsAndPower(snapshot, hero_id)
-    local owned = snapshot.hero_data and snapshot.hero_data.owned_heroes or {}
-    local hd = owned[hero_id]
+    local hd = GLO.RoleBattleSnapshot.FindHero(snapshot, hero_id)
     if not hd then return {}, 0 end
 
     local hero_config = ConfigManager.heroconfig[hero_id]
@@ -58,14 +57,14 @@ function M.GetAttrsAndPower(snapshot, hero_id)
     return attrs, power
 end
 
-function M.CreateHeroForBattle(hero_id, level, learned_abilities, owner_role, snapshot)
+function M.CreateHeroForBattle(hero_id, level, ability_ids, owner_role, snapshot)
     local config = M.GetHeroConfig(hero_id)
     if not config then return nil end
     local hero = Hero:New(hero_id, level, config, owner_role, snapshot)
     if not hero then return nil end
 
-    if learned_abilities and next(learned_abilities) then
-        for aid, _ in pairs(learned_abilities) do hero:AddAbility(aid, 1) end
+    if ability_ids and next(ability_ids) then
+        for _, aid in ipairs(ability_ids) do hero:AddAbility(aid, 1) end
     elseif config.starting_abilities then
         for _, aid in ipairs(config.starting_abilities) do hero:AddAbility(aid, 1) end
     end

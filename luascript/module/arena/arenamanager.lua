@@ -321,14 +321,13 @@ end
 -- @param battle_type: Const.BattleType
 -- @return list: 英雄信息列表 {hero_id, level, hp, attack, defense, speed, power, ability_ids}
 function M.BuildHeroInfoListFromSnapshot(snapshot, battle_type)
-    if not snapshot or not snapshot.hero_data then
+    if not snapshot then
         return {}
     end
-    local hero_ids = GLO.RoleSnapshot.GetLineupHeroIds(snapshot, battle_type or Const.BattleType.ARENA)
-    local owned = snapshot.hero_data.owned_heroes or {}
+    local hero_ids = GLO.RoleBattleSnapshot.GetLineupHeroIds(snapshot, battle_type or Const.BattleType.ARENA)
     local list = {}
     for _, hid in ipairs(hero_ids) do
-        local hd = owned[hid]
+        local hd = GLO.RoleBattleSnapshot.FindHero(snapshot, hid)
         if hd then
             local info = {
                 hero_id = hid,
@@ -349,8 +348,8 @@ function M.BuildHeroInfoListFromSnapshot(snapshot, battle_type)
                 info.speed = attr_map[Const.Attr.AGILITY] or 0
             end
             -- 从快照获取技能id
-            if hd.learned_abilities then
-                for ability_id, _ in pairs(hd.learned_abilities) do
+            if hd.abilities and hd.abilities.ability_ids then
+                for _, ability_id in ipairs(hd.abilities.ability_ids) do
                     table.insert(info.ability_ids, ability_id)
                 end
             end
@@ -440,10 +439,10 @@ function M.HandleRegister(netid, role)
     user:CheckDailyReset(day_id)
 
     -- 从在线角色复制快照(包含阵容英雄数据,用于对手展示和战斗)
-    user.role_snapshot = GLO.RoleSnapshot.Snapshot(role)
+    user.role_snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
 
     -- 从快照计算初始战力并同步到排行榜(保证离线展示时也有战力数据)
-    local init_power = GLO.RoleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
+    local init_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
     user:UpdatePower(init_power)
     GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, name, user.score, { power = init_power })
 
@@ -492,10 +491,10 @@ function M.HandleRefresh(netid, role)
     end
 
     -- 更新快照
-    user.role_snapshot = GLO.RoleSnapshot.Snapshot(role)
+    user.role_snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
 
     -- 从快照重新计算战力并同步到排行榜
-    local refresh_power = GLO.RoleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
+    local refresh_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
     user:UpdatePower(refresh_power)
     GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, user.name, user.score, { power = refresh_power })
 
@@ -668,7 +667,7 @@ function M.HandleArenaRankReq(netid, rank_offset, role)
         local arena_user = LOC.GetOrSetData().m_arena_users[node.uid]
         local heroes = {}
         if arena_user and arena_user.role_snapshot then
-            heroes = GLO.RoleSnapshot.BuildProtoHeroDataList(arena_user.role_snapshot, Const.BattleType.ARENA)
+            heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(arena_user.role_snapshot, Const.BattleType.ARENA)
         end
 
         table.insert(rank_list, {
@@ -700,7 +699,7 @@ function M.BuildOpponentInfoList(opponent_uids, exclude_uid)
             local other_user = LOC.GetOrSetData().m_arena_users[ouid]
             if other_user then
                 -- 从快照构建PBHeroData列表(含属性和战力)
-                local heroes = GLO.RoleSnapshot.BuildProtoHeroDataList(other_user.role_snapshot, Const.BattleType.ARENA)
+                local heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(other_user.role_snapshot, Const.BattleType.ARENA)
 
                 table.insert(list, {
                     uid = ouid,
