@@ -14,6 +14,14 @@ x64/
 node_modules
 client/webui/dist
 
+# _generate_protobuf.py 生成文件, 无需纳入版本管理
+share/protocol/
+luascript/proto/
+client/webui/src/types/protobuf/
+
+# generate_mysql_def.py 生成文件, 无需纳入版本管理
+dbserver/db/mysqltabledef.hpp
+
 
 #================额外保留=======	git add -f  lib/libmysqlconnector/libmysqlcppconn.so
 !lib/libmysqlconnector/libmysqlcppconn.so

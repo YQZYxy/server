@@ -35,16 +35,11 @@
         "StaticDir": "dist"
     },
 
-    "battleserver": {
-        "LuaScriptDir": "luascript"
-    },
-
     "LogPath": {
         "dbserver": "./log/dbserver",
         "globalserver": "./log/globalserver",
         "logicserver": "./log/logicserver",
-        "gatewayserver": "./log/gatewayserver",
-        "battleserver": "./log/battleserver"
+        "gatewayserver": "./log/gatewayserver"
     },
 
     "GameMapPort": {

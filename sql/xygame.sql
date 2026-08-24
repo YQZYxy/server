@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 23/08/2026 04:39:48
+ Date: 25/08/2026 01:53:20
 */
 
 SET NAMES utf8mb4;
@@ -62,10 +62,10 @@ CREATE TABLE `item_list`  (
   `uid` int NOT NULL DEFAULT 0,
   `item_id` int NOT NULL DEFAULT 0,
   `num` int NOT NULL DEFAULT 0,
-  `param` tinytext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `param` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `ROLE_ID_INDEX`(`uid` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for role_data
@@ -73,7 +73,7 @@ CREATE TABLE `item_list`  (
 DROP TABLE IF EXISTS `role_data`;
 CREATE TABLE `role_data`  (
   `id` bigint NOT NULL,
-  `username` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `name` varbinary(64) NOT NULL DEFAULT '',
   `level` int NOT NULL,
   `exp` bigint NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE `role_data`  (
   `role_data` longblob NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `role_name_INX`(`name` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for role_rank

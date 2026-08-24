@@ -34,7 +34,6 @@ start /b "globalserver" cmd /c "cd /d "%EXE_DIR%" && globalserver.exe >nul 2>&1"
 start /b "dbserver" cmd /c "cd /d "%EXE_DIR%" && dbserver.exe >nul 2>&1"
 start /b "logicserver" cmd /c "cd /d "%EXE_DIR%" && logicserver.exe"
 
-start /b "battleserver" cmd /c "cd /d "%EXE_DIR%" && battleserver.exe 8888 >nul 2>&1"
 
 :: 等待逻辑服
 timeout /t 3 /nobreak >nul
