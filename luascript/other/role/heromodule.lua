@@ -23,19 +23,26 @@ local DEFAULT_LINEUP_SLOT_MAX = 3
 -- ==================== 数据访问 ====================
 
 function M.GetOrSetHeroData(role)
-    local data = role:GetRoleData()
-    if not data then
+    if not role then
         return nil
     end
 
-    local growth = data.growth
-    if not growth.hero then
-        growth.hero = { heroes = {} }
+    local hero_data = GLO.RoleData.GetHero(role.uid)
+    local lineup_data = GLO.RoleData.GetLineup(role.uid)
+    if not hero_data or not lineup_data then
+        return nil
     end
-    if not growth.lineup then
-        growth.lineup = { lineups = {} }
+
+    if not hero_data.heroes then
+        hero_data.heroes = {}
     end
-    return growth
+    if not lineup_data.lineups then
+        lineup_data.lineups = {}
+    end
+    return {
+        hero = hero_data,
+        lineup = lineup_data,
+    }
 end
 
 -- 获取已拥有英雄列表
@@ -77,8 +84,6 @@ function M.Init(role)
     if not data.lineup or not next(data.lineup.lineups or {}) then
         M.InitDefaultLineup(role)
     end
-    LOG_INFO("HeroModule初始化完成 uid:%d, 英雄数量:%d",
-        role.uid, M.GetHeroCount(role))
     return true
 end
 
@@ -110,8 +115,7 @@ function M.CreateDefaultHero(role)
         end
     end
     table.insert(data.hero.heroes, hero_data)
-    LOG_INFO("创建默认英雄 uid:%d, hero_id:%d, name:%s",
-        role.uid, DEFAULT_HERO_ID, config.name or "未知")
+
     return hero_data
 end
 
@@ -141,8 +145,7 @@ function M.CreateHero(role, hero_id)
         end
     end
     table.insert(data.hero.heroes, hero_data)
-    LOG_INFO("创建新英雄 uid:%d, hero_id:%d, name:%s",
-        role.uid, hero_id, config.name or "未知")
+
     return hero_data
 end
 
@@ -171,7 +174,7 @@ function M.HeroLevelUp(role, hero_data)
     local exp_to_next = M.CalcHeroExpToNextLevel(hero_data.hero_id, hero_data.level)
     hero_data.exp = hero_data.exp - exp_to_next
     hero_data.level = hero_data.level + 1
-    LOG_INFO("🌟 英雄升级 uid:%d, hero_id:%d, Lv.%d -> Lv.%d, name:%s",
+    LOG_INFO("英雄升级 uid:%d, hero_id:%d, Lv.%d -> Lv.%d, name:%s",
         role.uid, hero_data.hero_id,
         hero_data.level - 1, hero_data.level,
         config.name or "未知")
@@ -325,20 +328,22 @@ function M.SetLineup(role, battle_type, slot, hero_ids)
         end
     end
     local seen = {}
+    local heroes = data.hero and data.hero.heroes
     for _, hid in ipairs(filtered) do
         if seen[hid] then
             LOG_WARN("阵容中存在重复英雄 hero_id:%d", hid)
             return false
         end
         seen[hid] = true
-        if not M.GetOwnedHero(role, hid) then
+        -- 直接用已取的 data 查英雄, 不再每次都走 GetOrSetHeroData
+        if not M.FindHeroInList(heroes, hid) then
             LOG_WARN("阵容中的英雄未拥有 hero_id:%d", hid)
             return false
         end
     end
     -- 多阵容间英雄不能重复(同一战斗类型下)
-    for _, other in ipairs(M.GetLineups(role, battle_type)) do
-        if (other.slot or 0) ~= slot then
+    for _, other in ipairs(data.lineup.lineups or {}) do
+        if other.battle_type == battle_type and (other.slot or 0) ~= slot then
             for _, hid in ipairs(other.hero_ids or {}) do
                 if seen[hid] then
                     LOG_WARN("英雄已在其它阵容上阵 hero_id:%d", hid)
@@ -348,7 +353,13 @@ function M.SetLineup(role, battle_type, slot, hero_ids)
         end
     end
     -- 保存(更新或新增)
-    local lineup = M.GetLineup(role, battle_type, slot)
+    local lineup = nil
+    for _, other in ipairs(data.lineup.lineups or {}) do
+        if other.battle_type == battle_type and (other.slot or 0) == slot then
+            lineup = other
+            break
+        end
+    end
     if lineup then
         lineup.hero_ids = hero_ids
         lineup.slot = slot
@@ -359,8 +370,6 @@ function M.SetLineup(role, battle_type, slot, hero_ids)
             hero_ids = hero_ids,
         })
     end
-    LOG_INFO("设置阵容 uid:%d, battle_type:%s, slot:%d, hero_ids:%s",
-        role.uid, battle_type, slot, table.concat(hero_ids, ","))
 
     -- 主线阵容变更时更新主线战力排行榜
     if Const.BattleType.MAIN_BATTLE == battle_type then
@@ -378,7 +387,8 @@ function M.UpdateMainBattleRank(role)
     if not role then
         return
     end
-    local snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
+    -- 只读快照, 不深拷贝
+    local snapshot = GLO.RoleBattleSnapshot.SnapshotRef(role)
     local total_power = GLO.RoleBattleSnapshot.CalcTeamPower(snapshot, GLO.Const.BattleType.MAIN_BATTLE)
     if GLO.RankManager then
         GLO.RankManager.UpdateRankWithLineup(role,
@@ -460,17 +470,26 @@ function M.BuildLineupListProto(role)
     end
 
     local lineup_list = {}
-    local snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
+    -- 只读快照: 不深拷贝整份英雄和阵容数据
+    local snapshot = GLO.RoleBattleSnapshot.SnapshotRef(role)
+    -- 同一英雄会在多个阵容里出现, 战力只算一次
+    local power_cache = {}
+    local heroes = data.hero and data.hero.heroes
     for _, lineup in ipairs(data.lineup.lineups or {}) do
         local total_power = 0
         local hero_ids = lineup.hero_ids or {}
         for _, hid in ipairs(hero_ids) do
             if hid and hid > 0 then
-                local hd = M.GetOwnedHero(role, hid)
-                if hd then
-                    local _, power = Hero.GetAttrsAndPower(snapshot, hid)
-                    total_power = total_power + power
+                local power = power_cache[hid]
+                if not power then
+                    power = 0
+                    if M.FindHeroInList(heroes, hid) then
+                        local _, hero_power = Hero.GetAttrsAndPower(snapshot, hid)
+                        power = hero_power or 0
+                    end
+                    power_cache[hid] = power
                 end
+                total_power = total_power + power
             end
         end
         table.insert(lineup_list, {
@@ -485,16 +504,11 @@ end
 
 -- 发送英雄数据给客户端
 function M.SyncHeroDataToClient(role)
-    local netid = role:GetNetid()
-    if not netid then
-        return
-    end
-
     local hero_proto = M.BuildHeroListProto(role)
-    Protobuf.SendMsg(netid, MHT.MHT_SYNC_HERO_DATA_SC, hero_proto)
+    Protobuf.SendMsgToRole(role, MHT.MHT_SYNC_HERO_DATA_SC, hero_proto)
 
     local lineup_proto = M.BuildLineupListProto(role)
-    Protobuf.SendMsg(netid, MHT.MHT_SYNC_LINEUP_DATA_SC, lineup_proto)
+    Protobuf.SendMsgToRole(role, MHT.MHT_SYNC_LINEUP_DATA_SC, lineup_proto)
 end
 
 -- ==================== 事件监听 ====================
@@ -514,8 +528,8 @@ end)
 
 -- ==================== 消息处理器 ====================
 
--- 阵容变更请求(MHT_SYNC_LINEUP_UPDATE_CS)
-GLO.MsgManager.RegisterMsg(GLO.MHT.MHT_SYNC_LINEUP_UPDATE_CS, function(netid, msg_data, role)
+-- 阵容变更请求
+GLO.MsgManager.RegisterMsg(GLO.MHT.MHT_SYNC_LINEUP_UPDATE_CS, function(netid, role, msg_data)
     if not role then
         LOG_ERROR("处理阵容变更消息失败: 无角色")
         return
@@ -529,9 +543,6 @@ GLO.MsgManager.RegisterMsg(GLO.MHT.MHT_SYNC_LINEUP_UPDATE_CS, function(netid, ms
     local slot = msg_data.slot or 0
     local hero_ids = msg_data.hero_ids or {}
 
-    LOG_INFO("阵容变更请求: uid=%d, battle_type=%s, slot=%d, hero_ids=%s",
-        role.uid, tostring(battle_type), slot, table.concat(hero_ids, ","))
-
     -- 应用阵容变更
     local success = M.SetLineup(role, battle_type, slot, hero_ids)
     if not success then
@@ -542,10 +553,7 @@ GLO.MsgManager.RegisterMsg(GLO.MHT.MHT_SYNC_LINEUP_UPDATE_CS, function(netid, ms
     local lineup_proto = M.BuildLineupListProto(role)
 
     -- 复用阵容同步协议下发最新阵容
-    Protobuf.SendMsg(netid, MHT.MHT_SYNC_LINEUP_DATA_SC, lineup_proto)
-
-    LOG_INFO("阵容变更完成 uid=%d, battle_type=%s, success=%s",
-        role.uid, tostring(battle_type), tostring(success))
+    Protobuf.SendMsgToRole(role, MHT.MHT_SYNC_LINEUP_DATA_SC, lineup_proto)
 end)
 
 LOG_INFO("HeroModule 加载完成")

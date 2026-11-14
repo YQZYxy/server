@@ -8927,6 +8927,9 @@ export class P_LoginReq_CS {
     /** P_LoginReq_CS login_user_name. */
     login_user_name?: (string|null);
 
+    /** P_LoginReq_CS token. */
+    token?: (string|null);
+
     /**
      * Creates a new P_LoginReq_CS instance using the specified properties.
      * @param [properties] Properties to set
@@ -9013,6 +9016,9 @@ export namespace P_LoginReq_CS {
 
         /** P_LoginReq_CS login_user_name */
         login_user_name?: (string|null);
+
+        /** P_LoginReq_CS token */
+        token?: (string|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -12530,129 +12536,6 @@ export namespace PB_RoleBaseInfo {
 }
 
 /**
- * Properties of a PB_RoleBagItem.
- * @deprecated Use PB_RoleBagItem.$Properties instead.
- */
-export interface IPB_RoleBagItem extends PB_RoleBagItem.$Properties {
-}
-
-/** Represents a PB_RoleBagItem. */
-export class PB_RoleBagItem {
-
-    /**
-     * Constructs a new PB_RoleBagItem.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_RoleBagItem.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_RoleBagItem bag_type. */
-    bag_type?: (number|null);
-
-    /** PB_RoleBagItem items. */
-    items: PB_Item.$Properties[];
-
-    /**
-     * Creates a new PB_RoleBagItem instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_RoleBagItem instance
-     */
-    static create(properties: PB_RoleBagItem.$Shape): PB_RoleBagItem & PB_RoleBagItem.$Shape;
-    static create(properties?: PB_RoleBagItem.$Properties): PB_RoleBagItem;
-
-    /**
-     * Encodes the specified PB_RoleBagItem message. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
-     * @param message PB_RoleBagItem message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_RoleBagItem.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_RoleBagItem message, length delimited. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
-     * @param message PB_RoleBagItem message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_RoleBagItem.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_RoleBagItem message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleBagItem & PB_RoleBagItem.$Shape;
-
-    /**
-     * Decodes a PB_RoleBagItem message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleBagItem & PB_RoleBagItem.$Shape;
-
-    /**
-     * Verifies a PB_RoleBagItem message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_RoleBagItem message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_RoleBagItem
-     */
-    static fromObject(object: { [k: string]: any }): PB_RoleBagItem;
-
-    /**
-     * Creates a plain object from a PB_RoleBagItem message. Also converts values to other types if specified.
-     * @param message PB_RoleBagItem
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_RoleBagItem, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_RoleBagItem to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_RoleBagItem
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_RoleBagItem {
-
-    /** Properties of a PB_RoleBagItem. */
-    interface $Properties {
-
-        /** PB_RoleBagItem bag_type */
-        bag_type?: (number|null);
-
-        /** PB_RoleBagItem items */
-        items?: (PB_Item.$Properties[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_RoleBagItem. */
-    type $Shape = PB_RoleBagItem.$Properties;
-}
-
-/**
  * Properties of a PB_RoleBag.
  * @deprecated Use PB_RoleBag.$Properties instead.
  */
@@ -12672,7 +12555,7 @@ export class PB_RoleBag {
     $unknowns?: Uint8Array[];
 
     /** PB_RoleBag bag. */
-    bag: { [k: string]: PB_RoleBagItem.$Properties };
+    bag: PB_Item.$Properties[];
 
     /** PB_RoleBag weare_item. */
     weare_item: PB_Item.$Properties[];
@@ -12762,7 +12645,7 @@ export namespace PB_RoleBag {
     interface $Properties {
 
         /** PB_RoleBag bag */
-        bag?: ({ [k: string]: PB_RoleBagItem.$Properties }|null);
+        bag?: (PB_Item.$Properties[]|null);
 
         /** PB_RoleBag weare_item */
         weare_item?: (PB_Item.$Properties[]|null);

@@ -57,7 +57,6 @@ function Monster:Ctor(monster_id)
         self.tags['Monster.Boss'] = true
     end
 
-    --LOG_INFO('创建怪物: %s (id=%d, Lv.%d)', self.name, self.monster_id, self.level)
 end
 
 function Monster:ScaleAttributes(scale)

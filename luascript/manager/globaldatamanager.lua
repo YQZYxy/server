@@ -123,7 +123,7 @@ function M.Get(key)
 
     local m_data = M.GetOrSetData()
     if not m_data.m_is_loaded then
-        LOG_ERROR("Warning: m_data not loaded yet")
+        LOG_ERROR("尚未加载")
         return nil
     end
     
@@ -135,12 +135,12 @@ function M.Set(key, data)
     local global_data = M.GetOrSetData()
     local dirty_keys = global_data.m_dirty_keys
     if not global_data.m_is_loaded then
-        LOG_ERROR("Warning: data not loaded yet")
+        LOG_ERROR("尚未加载")
         return false
     end
     
     if key == nil or key == "" then
-        LOG_ERROR("Error: Invalid key")
+        LOG_ERROR("无效key")
         return false
     end
     
@@ -155,12 +155,12 @@ function M.Delete(key)
     local global_data = M.GetOrSetData()
     local dirty_keys = global_data.m_dirty_keys
     if not global_data.m_is_loaded then
-        LOG_ERROR("Warning: m_data not loaded yet")
+        LOG_ERROR("尚未加载")
         return false
     end
     
     if key == nil or key == "" then
-        LOG_ERROR("Error: Invalid key")
+        LOG_ERROR("无效key")
         return false
     end
     
@@ -216,11 +216,9 @@ end
 function M.Clear()
     local m_data = M.GetOrSetData()
     if not m_data.m_is_loaded then
-        LOG_ERROR("Warning: m_data not loaded yet")
+        LOG_ERROR("无效key")
         return false
     end
-    
-    LOG_WARN("Warning: Clearing all global m_data...")
     
     -- 标记所有key为脏(保存时会删除)
     for key, _ in pairs(m_data.m_global_data) do
@@ -250,7 +248,7 @@ function M.PrintStatus()
 end
 
 -- 注册数据库返回处理器
-GLO.MsgManager.RegisterMsg(GLO.MHT.MHT_GLOBAL_DATA_DB_S, function(netid, msg_data, role)
+GLO.MsgManager.RegisterMsg(GLO.MHT.MHT_GLOBAL_DATA_DB_S, function(netid, role, msg_data)
     M.LoadRet(msg_data)
 end)
 

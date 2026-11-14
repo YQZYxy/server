@@ -32,7 +32,6 @@ function M.RegisterCommands()
     
     Gm.RegisterCommand("simexplore", "探索区域(更新任务进度)", M.Cmd_SimExplore)
     
-    LOG_INFO("Quest GM指令注册完成")
 end
 
 

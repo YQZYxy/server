@@ -16,16 +16,36 @@ function M.Snapshot(role)
         return nil
     end
 
-    local role_data = role:GetRoleData()
-    if not role_data then
+    local base_info = GLO.RoleData.GetBaseInfo(role.uid)
+    if not base_info then
         LOG_ERROR("RoleBattleSnapshot: 角色 %d 无数据", role.uid)
         return nil
     end
-    local growth = role_data.growth
     return {
-        base_info = Utils.DeepCopy(role_data.base_info or {}),
-        hero = Utils.DeepCopy(growth.hero or { heroes = {} }),
-        lineup = Utils.DeepCopy(growth.lineup or { lineups = {} }),
+        base_info = Utils.DeepCopy(base_info),
+        hero = Utils.DeepCopy(GLO.RoleData.GetHero(role.uid) or { heroes = {} }),
+        lineup = Utils.DeepCopy(GLO.RoleData.GetLineup(role.uid) or { lineups = {} }),
+    }
+end
+
+-- 从在线角色获取只读战斗快照
+-- 与 Snapshot 的区别: 不深拷贝, 直接引用 RoleData 的缓存表
+-- 调用方绝对不能修改返回的表(只用于算战力/构造协议等只读场景)
+function M.SnapshotRef(role)
+    if not role then
+        LOG_ERROR("RoleBattleSnapshot: role为空")
+        return nil
+    end
+
+    local base_info = GLO.RoleData.GetBaseInfo(role.uid)
+    if not base_info then
+        LOG_ERROR("RoleBattleSnapshot: 角色 %d 无数据", role.uid)
+        return nil
+    end
+    return {
+        base_info = base_info,
+        hero = GLO.RoleData.GetHero(role.uid) or { heroes = {} },
+        lineup = GLO.RoleData.GetLineup(role.uid) or { lineups = {} },
     }
 end
 
@@ -183,7 +203,12 @@ function M.BuildSingleHeroProtoData(snapshot, hero_id)
     }
     -- abilities
     if hd.abilities and hd.abilities.ability_ids and next(hd.abilities.ability_ids) then
-        entry.abilities = { ability_ids = hd.abilities.ability_ids }
+        -- 拷一份, 避免排行数据长期引用角色的实时数据
+        local ability_ids = {}
+        for index, aid in ipairs(hd.abilities.ability_ids) do
+            ability_ids[index] = aid
+        end
+        entry.abilities = { ability_ids = ability_ids }
     end
     -- attrs + combat_power
     local attr_map, combat_power = Hero.GetAttrsAndPower(snapshot, hero_id)

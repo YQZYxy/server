@@ -1,12 +1,12 @@
 @echo off
 chcp 65001 >nul
-
+ 
 set "ROOT=%~dp0"
 set "ROOT=%ROOT:~0,-1%"
-set "EXE_DIR=%ROOT%\bin"
+set "EXE_DIR=%ROOT%\debug"
 
 echo [gateway] Frontend: Vite Dev Server (:5173)
-echo [gateway] Gateway:  gatewayserver.exe (:5000)
+echo [gateway] Gateway:  gatewayserver.exe (:3723)
 echo.
 
 if not exist "%EXE_DIR%\config" (
@@ -33,7 +33,6 @@ echo [gateway] 关闭本窗口将停止所有服务器
 start /b "globalserver" cmd /c "cd /d "%EXE_DIR%" && globalserver.exe >nul 2>&1"
 start /b "dbserver" cmd /c "cd /d "%EXE_DIR%" && dbserver.exe >nul 2>&1"
 start /b "logicserver" cmd /c "cd /d "%EXE_DIR%" && logicserver.exe"
-
 
 :: 等待逻辑服
 timeout /t 3 /nobreak >nul

@@ -1,5 +1,5 @@
 // ============================================================
-//  此文件由 _generate_protobuf.py 自动生成 请勿手动修改
+//  此文件脚本自动生成 请勿手动修改
 // ============================================================
 
 export * from './mht'
@@ -100,9 +100,6 @@ export type PB_RankNode = _proto.PB_RankNode.$Properties
 
 export const PB_RoleBag = _proto.PB_RoleBag
 export type PB_RoleBag = _proto.PB_RoleBag.$Properties
-
-export const PB_RoleBagItem = _proto.PB_RoleBagItem
-export type PB_RoleBagItem = _proto.PB_RoleBagItem.$Properties
 
 export const PB_RoleBaseInfo = _proto.PB_RoleBaseInfo
 export type PB_RoleBaseInfo = _proto.PB_RoleBaseInfo.$Properties

@@ -18,12 +18,7 @@ M.Role = Role
 
 -- 获取角色基础数据
 function Role:GetRoleBaseData()
-    return GLO.RoleManager.GetRoleBaseData(self.uid)
-end
-
--- 获取角色Lua数据
-function Role:GetRoleData()
-    return GLO.RoleManager.GetRoleData(self.uid)
+    return GLO.RoleData.GetBaseInfo(self.uid)
 end
 
 -- 计算等级所需经验
@@ -41,10 +36,9 @@ end
 
 -- ==================Role类==================
 
-function Role:Ctor(uid, netid)
+function Role:Ctor(uid)
     -- 保存uid(唯一标识)
     self.uid = uid
-    self.netid = netid
     self.name = "Unknown"
     self.level = 1
     self.in_battle_start_time = nil  -- 战斗开始时间戳(nil=不在战斗, 非nil=战斗中, 超时自动解除)
@@ -52,9 +46,8 @@ end
 
 function Role:Init(uid)
     local base_info = self:GetRoleBaseData()
-    local data = self:GetRoleData()
 
-    if not base_info or not data then
+    if not base_info then
         LOG_ERROR("无法获取角色数据 uid:" .. tostring(uid))
         return false
     end
@@ -70,14 +63,6 @@ function Role:Init(uid)
     HeroModule.Init(self)
 
     return true
-end
-
-function Role:GetNetid()
-    return self.netid
-end
-
-function Role:SetNetid(netid)
-    self.netid = netid
 end
 
 -- ==================== Role经验/等级 ====================
@@ -101,7 +86,7 @@ function Role:AddExp(amount)
 
     base_info.exp = (base_info.exp or 0) + amount
 
-    LOG_INFO("💫 %s 获得 %d 经验(角色等级)", base_info.name, amount)
+    LOG_INFO("%s 获得 %d 经验(角色等级)", base_info.name, amount)
 
     -- 检查升级
     local exp_to_next_level = self:GetExpToNextLevel()
@@ -123,8 +108,7 @@ function Role:LevelUp()
     base_info.exp = (base_info.exp or 0) - exp_to_next_level
     base_info.level =(base_info.level or 0) + 1
 
-    LOG_INFO("🌟 %s 角色等级提升到 Lv.%d!",
-        base_info.name, base_info.level)
+    LOG_INFO("%s 角色等级提升到 Lv.%d!",base_info.name, base_info.level)
 
     -- 检查等级奖励
     local reward_config = M.GetLevelReward(base_info.level)
@@ -133,11 +117,6 @@ function Role:LevelUp()
             local id = item_data.id
             local num = item_data.num
             GLO.Inventory.AddItem(self, id, num)
-
-            local item_config = GLO.Item.GetItemConfig(id)
-            if item_config then
-                LOG_INFO("🎁 升级奖励物品: " .. item_config.name)
-            end
         end
     end
 
@@ -173,8 +152,7 @@ end
 -- 打印角色状态
 function Role:PrintStatus()
     local base_info = self:GetRoleBaseData()
-    local data = self:GetRoleData()
-    if not data or not base_info then
+    if not base_info then
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(self.uid))
         return
     end
@@ -205,7 +183,7 @@ function Role:PrintStatus()
     -- 显示任务信息
     if GLO.Quest then
         local active_count = #GLO.Quest.GetActiveQuests(self)
-        local quest_data = data.growth and data.growth.quest
+        local quest_data = GLO.RoleData.GetQuest(self.uid)
         local completed_count = quest_data and #quest_data.completed_quests or 0
         LOG_INFO("任务: %d/%d (已完成: %d)",
             active_count,
@@ -256,7 +234,7 @@ function Role:SendRoleDataInfo()
     base_info.last_login_time = os.time()
 
     -- 发送登录返回(基础信息)
-    Protobuf.SendMsg(self:GetNetid(), MHT.MHT_SYNC_ROLE_INFO_RET_SC,
+    Protobuf.SendMsgToRole(self, MHT.MHT_SYNC_ROLE_INFO_RET_SC,
     {
         role_base_info = base_info;
         server_id = 1;
@@ -264,10 +242,10 @@ function Role:SendRoleDataInfo()
 
     LOG_INFO("玩家 %s 登录游戏"
         .. " last_login_time: %d"
-        .. " netid: %d",
+        .. " uid: %d",
         base_info.name,
         (base_info.last_login_time) or 0,
-        self:GetNetid())
+        self.uid)
 end
 
 -- ================= 注册事件监听器 ================

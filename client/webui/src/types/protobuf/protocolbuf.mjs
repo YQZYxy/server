@@ -23988,6 +23988,7 @@ export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
      * Properties of a P_LoginReq_CS.
      * @typedef {Object} P_LoginReq_CS.$Properties
      * @property {string|null} [login_user_name] P_LoginReq_CS login_user_name
+     * @property {string|null} [token] P_LoginReq_CS token
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -24027,12 +24028,26 @@ export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
      */
     P_LoginReq_CS.prototype.login_user_name = null;
 
+    /**
+     * P_LoginReq_CS token.
+     * @member {string|null|undefined} token
+     * @memberof P_LoginReq_CS
+     * @instance
+     */
+    P_LoginReq_CS.prototype.token = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(P_LoginReq_CS.prototype, "_login_user_name", {
         get: $util.oneOfGetter($oneOfFields = ["login_user_name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_LoginReq_CS.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -24070,6 +24085,8 @@ export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
             throw $Error("max depth exceeded");
         if (message.login_user_name != null && $Object.hasOwnProperty.call(message, "login_user_name"))
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.login_user_name);
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -24124,6 +24141,13 @@ export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
                     message._login_user_name = "login_user_name";
                     continue;
                 }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
             }
             reader.skipType(wireType, _depth, tag);
             if (!reader.discardUnknown) {
@@ -24173,6 +24197,11 @@ export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
             if (!$util.isString(message.login_user_name))
                 return "login_user_name: string expected";
         }
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
         return null;
     };
 
@@ -24196,6 +24225,8 @@ export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
         let message = new $root.P_LoginReq_CS();
         if (object.login_user_name != null)
             message.login_user_name = $String(object.login_user_name);
+        if (object.token != null)
+            message.token = $String(object.token);
         return message;
     };
 
@@ -24218,6 +24249,8 @@ export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
         let object = {};
         if (message.login_user_name != null && $Object.hasOwnProperty.call(message, "login_user_name"))
             object.login_user_name = message.login_user_name;
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
         return object;
     };
 
@@ -33633,326 +33666,12 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
     return PB_RoleBaseInfo;
 })();
 
-export const PB_RoleBagItem = $root.PB_RoleBagItem = (() => {
-
-    /**
-     * Properties of a PB_RoleBagItem.
-     * @typedef {Object} PB_RoleBagItem.$Properties
-     * @property {number|null} [bag_type] PB_RoleBagItem bag_type
-     * @property {Array.<PB_Item.$Properties>|null} [items] PB_RoleBagItem items
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a PB_RoleBagItem.
-     * @exports IPB_RoleBagItem
-     * @interface IPB_RoleBagItem
-     * @augments PB_RoleBagItem.$Properties
-     * @deprecated Use PB_RoleBagItem.$Properties instead.
-     */
-
-    /**
-     * Shape of a PB_RoleBagItem.
-     * @typedef {PB_RoleBagItem.$Properties} PB_RoleBagItem.$Shape
-     */
-
-    /**
-     * Constructs a new PB_RoleBagItem.
-     * @exports PB_RoleBagItem
-     * @classdesc Represents a PB_RoleBagItem.
-     * @constructor
-     * @param {PB_RoleBagItem.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const PB_RoleBagItem = function (properties) {
-        this.items = [];
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * PB_RoleBagItem bag_type.
-     * @member {number|null|undefined} bag_type
-     * @memberof PB_RoleBagItem
-     * @instance
-     */
-    PB_RoleBagItem.prototype.bag_type = null;
-
-    /**
-     * PB_RoleBagItem items.
-     * @member {Array.<PB_Item.$Properties>} items
-     * @memberof PB_RoleBagItem
-     * @instance
-     */
-    PB_RoleBagItem.prototype.items = $util.emptyArray;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleBagItem.prototype, "_bag_type", {
-        get: $util.oneOfGetter($oneOfFields = ["bag_type"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new PB_RoleBagItem instance using the specified properties.
-     * @function create
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem.$Properties=} [properties] Properties to set
-     * @returns {PB_RoleBagItem} PB_RoleBagItem instance
-     * @type {{
-     *   (properties: PB_RoleBagItem.$Shape): PB_RoleBagItem & PB_RoleBagItem.$Shape;
-     *   (properties?: PB_RoleBagItem.$Properties): PB_RoleBagItem;
-     * }}
-     */
-    PB_RoleBagItem.create = function(properties) {
-        return new PB_RoleBagItem(properties);
-    };
-
-    /**
-     * Encodes the specified PB_RoleBagItem message. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
-     * @function encode
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem.$Properties} message PB_RoleBagItem message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBagItem.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.bag_type);
-        if (message.items != null && message.items.length)
-            for (let i = 0; i < message.items.length; ++i)
-                $root.PB_Item.encode(message.items[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified PB_RoleBagItem message, length delimited. Does not implicitly {@link PB_RoleBagItem.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem.$Properties} message PB_RoleBagItem message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_RoleBagItem.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a PB_RoleBagItem message from the specified reader or buffer.
-     * @function decode
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBagItem.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBagItem();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.bag_type = reader.int32();
-                    message._bag_type = "bag_type";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    if (!(message.items && message.items.length))
-                        message.items = [];
-                    message.items.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a PB_RoleBagItem message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_RoleBagItem & PB_RoleBagItem.$Shape} PB_RoleBagItem
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_RoleBagItem.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a PB_RoleBagItem message.
-     * @function verify
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    PB_RoleBagItem.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type")) {
-            properties._bag_type = 1;
-            if (!$util.isInteger(message.bag_type))
-                return "bag_type: integer expected";
-        }
-        if (message.items != null && $Object.hasOwnProperty.call(message, "items")) {
-            if (!$Array.isArray(message.items))
-                return "items: array expected";
-            for (let i = 0; i < message.items.length; ++i) {
-                let error = $root.PB_Item.verify(message.items[i], _depth + 1);
-                if (error)
-                    return "items." + error;
-            }
-        }
-        return null;
-    };
-
-    /**
-     * Creates a PB_RoleBagItem message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {PB_RoleBagItem} PB_RoleBagItem
-     */
-    PB_RoleBagItem.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_RoleBagItem)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".PB_RoleBagItem: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.PB_RoleBagItem();
-        if (object.bag_type != null)
-            message.bag_type = object.bag_type | 0;
-        if (object.items) {
-            if (!$Array.isArray(object.items))
-                throw $TypeError(".PB_RoleBagItem.items: array expected");
-            message.items = $Array(object.items.length);
-            for (let i = 0; i < object.items.length; ++i) {
-                if (!$util.isObject(object.items[i]))
-                    throw $TypeError(".PB_RoleBagItem.items: object expected");
-                message.items[i] = $root.PB_Item.fromObject(object.items[i], _depth + 1);
-            }
-        }
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a PB_RoleBagItem message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {PB_RoleBagItem} message PB_RoleBagItem
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    PB_RoleBagItem.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (options.arrays || options.defaults)
-            object.items = [];
-        if (message.bag_type != null && $Object.hasOwnProperty.call(message, "bag_type"))
-            object.bag_type = message.bag_type;
-        if (message.items && message.items.length) {
-            object.items = $Array(message.items.length);
-            for (let j = 0; j < message.items.length; ++j)
-                object.items[j] = $root.PB_Item.toObject(message.items[j], options, _depth + 1);
-        }
-        return object;
-    };
-
-    /**
-     * Converts this PB_RoleBagItem to JSON.
-     * @function toJSON
-     * @memberof PB_RoleBagItem
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    PB_RoleBagItem.prototype.toJSON = function() {
-        return PB_RoleBagItem.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for PB_RoleBagItem
-     * @function getTypeUrl
-     * @memberof PB_RoleBagItem
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    PB_RoleBagItem.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/PB_RoleBagItem";
-    };
-
-    return PB_RoleBagItem;
-})();
-
 export const PB_RoleBag = $root.PB_RoleBag = (() => {
 
     /**
      * Properties of a PB_RoleBag.
      * @typedef {Object} PB_RoleBag.$Properties
-     * @property {Object.<string,PB_RoleBagItem.$Properties>|null} [bag] PB_RoleBag bag
+     * @property {Array.<PB_Item.$Properties>|null} [bag] PB_RoleBag bag
      * @property {Array.<PB_Item.$Properties>|null} [weare_item] PB_RoleBag weare_item
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
@@ -33979,7 +33698,7 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
     const PB_RoleBag = function (properties) {
-        this.bag = {};
+        this.bag = [];
         this.weare_item = [];
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -33989,11 +33708,11 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
 
     /**
      * PB_RoleBag bag.
-     * @member {Object.<string,PB_RoleBagItem.$Properties>} bag
+     * @member {Array.<PB_Item.$Properties>} bag
      * @memberof PB_RoleBag
      * @instance
      */
-    PB_RoleBag.prototype.bag = $util.emptyObject;
+    PB_RoleBag.prototype.bag = $util.emptyArray;
 
     /**
      * PB_RoleBag weare_item.
@@ -34035,11 +33754,9 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.bag != null && $Object.hasOwnProperty.call(message, "bag"))
-            for (let keys = $Object.keys(message.bag), i = 0; i < keys.length; ++i) {
-                writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).int32(keys[i]);
-                $root.PB_RoleBagItem.encode(message.bag[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
-            }
+        if (message.bag != null && message.bag.length)
+            for (let i = 0; i < message.bag.length; ++i)
+                $root.PB_Item.encode(message.bag[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
         if (message.weare_item != null && message.weare_item.length)
             for (let i = 0; i < message.weare_item.length; ++i)
                 $root.PB_Item.encode(message.weare_item[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
@@ -34080,7 +33797,7 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBag(), key, value;
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBag();
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -34093,29 +33810,9 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
             case 1: {
                     if (wireType !== 2)
                         break;
-                    if (message.bag === $util.emptyObject)
-                        message.bag = {};
-                    let end2 = reader.uint32() + reader.pos;
-                    key = 0;
-                    value = null;
-                    while (reader.pos < end2) {
-                        let tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
-                        case 1:
-                            if (wireType !== 0)
-                                break;
-                            key = reader.int32();
-                            continue;
-                        case 2:
-                            if (wireType !== 2)
-                                break;
-                            value = $root.PB_RoleBagItem.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
-                            continue;
-                        }
-                        reader.skipType(wireType, _depth, tag2);
-                    }
-                    message.bag[key] = value || new $root.PB_RoleBagItem();
+                    if (!(message.bag && message.bag.length))
+                        message.bag = [];
+                    message.bag.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
                     continue;
                 }
             case 2: {
@@ -34170,17 +33867,12 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         if (message.bag != null && $Object.hasOwnProperty.call(message, "bag")) {
-            if (!$util.isObject(message.bag))
-                return "bag: object expected";
-            let key = $Object.keys(message.bag);
-            for (let i = 0; i < key.length; ++i) {
-                if (!$util.key32Re.test(key[i]))
-                    return "bag: integer key{k:int32} expected";
-                {
-                    let error = $root.PB_RoleBagItem.verify(message.bag[key[i]], _depth + 1);
-                    if (error)
-                        return "bag." + error;
-                }
+            if (!$Array.isArray(message.bag))
+                return "bag: array expected";
+            for (let i = 0; i < message.bag.length; ++i) {
+                let error = $root.PB_Item.verify(message.bag[i], _depth + 1);
+                if (error)
+                    return "bag." + error;
             }
         }
         if (message.weare_item != null && $Object.hasOwnProperty.call(message, "weare_item")) {
@@ -34214,15 +33906,13 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
             throw $Error("max depth exceeded");
         let message = new $root.PB_RoleBag();
         if (object.bag) {
-            if (!$util.isObject(object.bag))
-                throw $TypeError(".PB_RoleBag.bag: object expected");
-            message.bag = {};
-            for (let keys = $Object.keys(object.bag), i = 0; i < keys.length; ++i) {
-                if (keys[i] === "__proto__")
-                    $util.makeProp(message.bag, keys[i]);
-                if (!$util.isObject(object.bag[keys[i]]))
+            if (!$Array.isArray(object.bag))
+                throw $TypeError(".PB_RoleBag.bag: array expected");
+            message.bag = $Array(object.bag.length);
+            for (let i = 0; i < object.bag.length; ++i) {
+                if (!$util.isObject(object.bag[i]))
                     throw $TypeError(".PB_RoleBag.bag: object expected");
-                message.bag[keys[i]] = $root.PB_RoleBagItem.fromObject(object.bag[keys[i]], _depth + 1);
+                message.bag[i] = $root.PB_Item.fromObject(object.bag[i], _depth + 1);
             }
         }
         if (object.weare_item) {
@@ -34255,18 +33945,14 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (options.arrays || options.defaults)
+        if (options.arrays || options.defaults) {
+            object.bag = [];
             object.weare_item = [];
-        if (options.objects || options.defaults)
-            object.bag = {};
-        let keys2;
-        if (message.bag && (keys2 = $Object.keys(message.bag)).length) {
-            object.bag = {};
-            for (let j = 0; j < keys2.length; ++j) {
-                if (keys2[j] === "__proto__")
-                    $util.makeProp(object.bag, keys2[j]);
-                object.bag[keys2[j]] = $root.PB_RoleBagItem.toObject(message.bag[keys2[j]], options, _depth + 1);
-            }
+        }
+        if (message.bag && message.bag.length) {
+            object.bag = $Array(message.bag.length);
+            for (let j = 0; j < message.bag.length; ++j)
+                object.bag[j] = $root.PB_Item.toObject(message.bag[j], options, _depth + 1);
         }
         if (message.weare_item && message.weare_item.length) {
             object.weare_item = $Array(message.weare_item.length);

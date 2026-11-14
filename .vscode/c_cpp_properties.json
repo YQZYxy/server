@@ -9,6 +9,9 @@
                 "${workspaceFolder}/share/lua/lua-5.5",
                 "${workspaceFolder}/share/lua/lua-protobuf",
                 "${workspaceFolder}/share",
+                "${workspaceFolder}/share/protobuf/src",
+                "${workspaceFolder}/share/abseil",
+                "${workspaceFolder}/share/protobuf/third_party/utf8_range",
                 "${workspaceFolder}/include"
             ],
             "defines": [
@@ -38,6 +41,9 @@
             "includePath": [
                 "${workspaceFolder}",
                 "${workspaceFolder}/share",
+                "${workspaceFolder}/share/protobuf/src",
+                "${workspaceFolder}/share/abseil",
+                "${workspaceFolder}/share/protobuf/third_party/utf8_range",
                 "${workspaceFolder}/include"
             ],
             "defines": [
@@ -73,6 +79,9 @@
                 "${workspaceFolder}/llama/ggml/include",
                 "${workspaceFolder}/llama/tools/mtmd",
                 "${workspaceFolder}/share",
+                "${workspaceFolder}/share/protobuf/src",
+                "${workspaceFolder}/share/abseil",
+                "${workspaceFolder}/share/protobuf/third_party/utf8_range",
                 "${workspaceFolder}/include",
                 "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3/include"
             ],
@@ -106,6 +115,9 @@
                 "${workspaceFolder}",
                 "${workspaceFolder}/dbserver/**",
                 "${workspaceFolder}/share",
+                "${workspaceFolder}/share/protobuf/src",
+                "${workspaceFolder}/share/abseil",
+                "${workspaceFolder}/share/protobuf/third_party/utf8_range",
                 "${workspaceFolder}/share/mysqlconnector",
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/include/db"
@@ -148,6 +160,9 @@
                 "${workspaceFolder}/llama/ggml/include",
                 "${workspaceFolder}/llama/tools/mtmd",
                 "${workspaceFolder}/share",
+                "${workspaceFolder}/share/protobuf/src",
+                "${workspaceFolder}/share/abseil",
+                "${workspaceFolder}/share/protobuf/third_party/utf8_range",
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/include/db",
                 "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3/include"

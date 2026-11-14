@@ -22,9 +22,30 @@ end
 
 -- 发送消息 (C++ 负责构造消息头, Lua 只传包体)
 function M.SendMsg(netid, msg_type, body, token)
+	if not netid or netid <= 0 then
+		return false
+	end
 	local body_encoded = M.EncodeBody(msg_type, body)
 	if not body_encoded then return end
 	return cpp_SendMsg(netid, msg_type, body_encoded, token or "")
+end
+
+-- 按角色 uid 发送消息
+function M.SendMsgToUid(uid, msg_type, body)
+	if not uid or uid <= 0 then
+		return false
+	end
+	local body_encoded = M.EncodeBody(msg_type, body)
+	if not body_encoded then return end
+	return cpp_SendMsgToUid(uid, msg_type, body_encoded)
+end
+
+-- 按角色role发送消息
+function M.SendMsgToRole(role, msg_type, body)
+	if not role or not role.uid or role.uid <= 0 then
+		return false
+	end
+	return M.SendMsgToUid(role.uid, msg_type, body)
 end
 
 -- 发送数据库消息 (C++ 负责构造消息头, Lua 只传包体)

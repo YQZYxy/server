@@ -49,7 +49,6 @@ function MainBattleModule:BuildMatchParticipants(role, msg_data, match_index, to
         end
     end
 
-    --LOG_INFO("主线PVE: stage_id=%d, 英雄=%d, 怪物=%d", stage_id, #attacker, #defender)
     return { attacker_members = attacker, defender_members = defender }
 end
 
@@ -76,11 +75,7 @@ end
 function MainBattleModule:OnBattleResult(role, series, series_result)
     local param_id = series.param_id or 0
 
-    LOG_INFO("主线战斗结果: uid=%d, result=%d, stage=%d",
-        role.uid, series_result, param_id)
-
     if series_result ~= Const.BattleResultType.VICTORY then
-        LOG_INFO("主线战斗未胜利,不发放奖励 uid=%d", role.uid)
         return
     end
 
@@ -107,7 +102,6 @@ function MainBattleModule:OnBattleResult(role, series, series_result)
 
     if #loot > 0 then
         GLO.Inventory.AddItems(role, loot)
-        --LOG_INFO("战斗掉落: %s 获得 %d 种物品", role:GetName(), #loot)
     end
 
     if total_exp > 0 then
@@ -115,9 +109,8 @@ function MainBattleModule:OnBattleResult(role, series, series_result)
         for _, hid in ipairs(hero_ids or {}) do
             HeroModule.AddHeroExp(role, hid, total_exp)
         end
-        GLO.Protobuf.SendMsg(role:GetNetid(), MHT.MHT_SYNC_HERO_DATA_SC,
+        GLO.Protobuf.SendMsgToRole(role, MHT.MHT_SYNC_HERO_DATA_SC,
             HeroModule.BuildHeroListProto(role))
-        --LOG_INFO("英雄获得 %d 经验", total_exp)
     end
 end
 

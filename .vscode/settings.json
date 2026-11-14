@@ -1,9 +1,11 @@
 {
     // 在资源管理器中隐藏文件或文件夹
     "files.exclude": {
+        "**/.git": true,
         "**/__pycache__": true,
         "**/build": true,
         "**/.vs": true,
+        "**/ipch": true,
         "**/*.pdb": true,
         "**/*.lib": true,
         "**/*.dll": true,
@@ -26,6 +28,7 @@
         "**/lib/**": true,
         "**/.git/**": true,
         "**/.vs/**": true,
+        "**/ipch/**": true,
         "**/node_modules/": true,
         "**/dist/": true,
         "luban-4.5.0/": true,

@@ -209,7 +209,7 @@ EventManager.RegisterListener(EventManager.lua_OnAddItem, function(event_data)
     local num = event_data.num
 
     if role and item_name then
-        LOG_INFO("【事件】 " .. role.name .. " 获取: " .. item_name .. " x" .. tostring(num))
+        LOG_INFO(role.name .. " 获取: " .. item_name .. " x" .. tostring(num))
     end
 end)
 
@@ -219,7 +219,7 @@ EventManager.RegisterListener(EventManager.lua_OnRemoveItem, function(event_data
     local num = event_data.num
 
     if role then
-        LOG_INFO("【事件】 " .. role.name .. " 删除道具 (ID: " .. tostring(id) .. ") x" .. tostring(num))
+        LOG_INFO(role.name .. " 删除道具 (ID: " .. tostring(id) .. ") x" .. tostring(num))
     end
 end)
 
@@ -228,7 +228,7 @@ EventManager.RegisterListener(EventManager.lua_OnUseItem, function(event_data)
     local item = event_data.item
 
     if role and item then
-        LOG_INFO("【事件】 " .. role.name .. " 使用: " .. item.name)
+        LOG_INFO(role.name .. " 使用: " .. item.name)
     end
 end)
 

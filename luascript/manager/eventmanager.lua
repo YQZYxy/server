@@ -12,6 +12,8 @@ local M = {
 -- ================= c++ 事件名 ===================
 
 M.cpp_OnRoleLogin = "cpp_OnRoleLogin"
+M.cpp_OnRoleReconnect = "cpp_OnRoleReconnect"
+M.cpp_OnRoleOffline = "cpp_OnRoleOffline"
 M.cpp_OnRoleLogout = "cpp_OnRoleLogout"
 M.cpp_OnDayChange = "cpp_OnDayChange"
 M.cpp_OnWeekChange = "cpp_OnWeekChange"
@@ -25,10 +27,7 @@ M.lua_OnRoleLevelUp = "lua_OnRoleLevelUp"
 M.lua_OnHeroLevelUp = "lua_OnHeroLevelUp"
 
 -- gas_battle
-M.lua_OnBattleStart = "lua_OnBattleStart"
 M.lua_OnBattleEnd = "lua_OnBattleEnd"
-M.lua_OnGameplayTagChanged = "lua_OnGameplayTagChanged"
-M.lua_OnAttrChange = "lua_OnAttrChange"
 M.lua_OnPlayerDeath = "lua_OnPlayerDeath"
 
 -- inventory
@@ -42,9 +41,6 @@ M.lua_OnZoneEnter = "lua_OnZoneEnter"
 M.lua_OnQuestAccepted = "lua_OnQuestAccepted"
 M.lua_OnQuestTurnedIn = "lua_OnQuestTurnedIn"
 M.lua_OnQuestCompleted = "lua_OnQuestCompleted"
-
-M.lua_OnAccept = "lua_OnAccept"
-M.lua_OnDisconnect = "lua_OnDisconnect"
 
 
 -- ================= 事件优先级 ===================

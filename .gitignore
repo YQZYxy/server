@@ -14,7 +14,7 @@ x64/
 node_modules
 client/webui/dist
 
-# _generate_protobuf.py 生成文件, 无需纳入版本管理
+# generate_protobuf.py 生成文件, 无需纳入版本管理
 share/protocol/
 luascript/proto/
 client/webui/src/types/protobuf/
@@ -34,6 +34,7 @@ config/config.json
 share/protobuf/pprotocolhead.proto
 share/protobuf/generate_protobuf.bat
 share/protobuf/cpy_proto.bat
+gateway.sh
 
 #webui
 tsconfig.tsbuildinfo
@@ -45,6 +46,9 @@ client/script/webui/agent/session/memory
 config/config.xml
 config/model
 
+.DS_Store
+**/.DS_Store
+
 # python缓存
 __pycache__
 
@@ -52,7 +56,7 @@ __pycache__
 #files
 
 #*.vscode
-#*.sln
+*.sln
 *.xcodeproj
 *.VC.db
 *.opensdf
@@ -61,6 +65,7 @@ __pycache__
 *.suo
 *.xcworkspace
 .vcxproj
+ipch
 
 
 # Visual Studio 2015 user specific files

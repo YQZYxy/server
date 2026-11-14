@@ -1,7 +1,7 @@
 {
     "dbserver": {
         "ListenIP": "127.0.0.1",
-        "ListenPort": 3723,
+        "ListenPort": 3726,
         "Counter": {
             "DBName": "xygame",
             "UserName": "root",
@@ -12,7 +12,7 @@
 
     "globalserver": {
         "ListenIP": "127.0.0.1",
-        "ListenPort": 3726,
+        "ListenPort": 3727,
         "ListenLLMPort": 8080,
         "common_params": "--model F:/model/Qwopus3.5-9B-v3.Q8_0.gguf --fit off --ctx-size 200000 --batch-size 8192 --temp 0.7 --n-gpu-layers auto --kv_unified --parallel 4 --cache-type-k q4_0 --cache-type-v q4_0",
         "is_debug": false,
@@ -31,7 +31,7 @@
 
     "gatewayserver": {
         "ListenIP": "0.0.0.0",
-        "ListenPort": 5000,
+        "ListenPort": 3723,
         "StaticDir": "dist"
     },
 

@@ -111,7 +111,6 @@ function ArenaUser:CheckDailyReset(day_id)
         self.daily_challenge_count = 0
         self.daily_refresh_count = 0
         self.last_day_id = day_id
-        LOG_INFO("ArenaUser每日重置: uid=%d, new_day_id=%d", self.uid, day_id)
         return true
     end
     return false
@@ -198,7 +197,6 @@ GLO.Gm.RegisterCommand("arena", "竞技场", function (args, role)
     if 1 == req_type and user then
         user.daily_challenge_count = 0
         user.daily_refresh_count = 0
-        LOG_INFO("重置挑战次数和刷新次数")
     end
 
     return true, "成功"

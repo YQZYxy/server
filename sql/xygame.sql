@@ -80,7 +80,8 @@ CREATE TABLE `role_data`  (
   `last_login_time` bigint NOT NULL,
   `role_data` longblob NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `role_name_INX`(`name` ASC) USING BTREE
+  INDEX `role_name_INX`(`name` ASC) USING BTREE,
+  INDEX `role_username_INX`(`username` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------

@@ -9,7 +9,7 @@ local m_msg_func_list = {}
 
 -- ================注册消息处理函数==============================
 -- msg_type: 消息类型
--- func: 处理函数 function(netid, msg_data, role)  role参数只有用户消息才有,战斗服和内部协议没有role参数
+-- func: 处理函数 function(netid, role, msg_data)  role参数只有用户消息才有,战斗服和内部协议没有role参数
 function M.RegisterMsg(msg_type, func)
     if not msg_type or type(func) ~= "function" then
         LOG_ERROR("错误参数 .. msg_type: " .. tostring(msg_type) .. ", func: " .. tostring(func))
@@ -55,13 +55,13 @@ function M.OnRecv(netid, msg_type, msg_str, uid)
         end
 
         -- 调用处理函数
-        local success, err = pcall(handler_func, netid, msg_data, role)
+        local success, err = pcall(handler_func, netid, role, msg_data)
         if not success then
             LOG_ERROR("消息处理函数执行失败: msg_type=%d, error=%s", msg_type, tostring(err))
         end
     else
         -- 调用处理函数
-        local success, err = pcall(handler_func, netid, msg_data, nil)
+        local success, err = pcall(handler_func, netid, nil, msg_data)
         if not success then
             LOG_ERROR("消息处理函数执行失败: msg_type=%d, error=%s", msg_type, tostring(err))
         end

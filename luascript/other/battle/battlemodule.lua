@@ -19,8 +19,6 @@ end
 function BattleModule:OnBattleReq(role, msg_data)
     if not msg_data then return false end
 
-    LOG_INFO('========== %s 战斗请求 ==========', self.module_name)
-
     -- 单场与多场统一: 单场 = 总场次1的系列, 按场次逐场构建并发送
     local total_matches = self:GetMatchCount(role, msg_data) or 1
     for match_index = 1, total_matches do
@@ -41,13 +39,13 @@ function BattleModule:OnBattleReq(role, msg_data)
         exec_req.total_matches = total_matches
 
         local encoded = Protobuf.Encode(exec_req, "PB_BattleExecuteReq")
-        if not encoded or not cpp_ExecuteBattle(role:GetNetid(), encoded) then
+        if not encoded or not cpp_ExecuteBattle(role.uid, encoded) then
             LOG_ERROR('第%d场发送失败: uid=%d', match_index, role.uid)
             return false
         end
     end
 
-    LOG_INFO('战斗已发送: %s, uid=%d, total=%d', self.module_name, role.uid, total_matches)
+    LOG_INFO('战斗请求: %s, uid=%d, total=%d', self.module_name, role.uid, total_matches)
     return true
 end
 

@@ -34,13 +34,40 @@
       }
     },
     {
+      "name": "dbserver",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/debug/dbserver.exe",
+      "args": [],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/debug"
+    },
+    {
+      "name": "globalserver",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/debug/globalserver.exe",
+      "args": [],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/debug"
+    },
+    {
+      "name": "logicserver",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/debug/logicserver.exe",
+      "args": [],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/debug"
+    },
+    {
       "name": "gatewayserver",
       "type": "cppvsdbg",
       "request": "launch",
       "program": "${workspaceFolder}/debug/gatewayserver.exe",
       "args": [],
       "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}/debug"
     },
     {
       "name": "webui",
@@ -68,6 +95,13 @@
       "configurations": [
         "gatewayserver",
         "webui",
+      ]
+    },
+    {
+      "name": "UEServer调试",
+      "configurations": [
+        "dbserver",
+        "logicserver",
       ]
     },
   ]

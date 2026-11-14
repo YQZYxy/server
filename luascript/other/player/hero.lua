@@ -87,7 +87,6 @@ function Hero:Ctor(hero_id, level, config, owner_role, snapshot)
     self.snapshot = snapshot
 
     self:CalculateAttr()
-    --LOG_INFO('创建英雄: %s (id=%d, Lv.%d)', self.name, self.hero_id, self.level)
 end
 
 function Hero:CalculateAttr()

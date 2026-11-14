@@ -18,16 +18,17 @@ local M = {
 EventManager.RegisterListener(EventManager.cpp_OnGmCommand, function(event_data)
 	local command = event_data.command
 	local netid = event_data.netid
+	local uid = event_data.uid
 
 	local start_time = os.clock()
-	local success, result = M.ExecuteCommand(command, netid)
+	local success, result = M.ExecuteCommand(command, netid, uid)
 	local end_time = os.clock()
 	local duration = (end_time - start_time) * 1000 -- 转换为毫秒
 
 	if success then
-		LOG_INFO("【事件】 GM 耗时:%.2fms 命令执行: %s - %s ", duration, command, result or "完成")
+		LOG_INFO("耗时:%.2fms 命令执行: %s - %s ", duration, command, result or "完成")
 	else
-		LOG_WARN("【事件】 GM 耗时:%.2fms 指令失败: %s - %s ", duration, command, result or "未知错误")
+		LOG_WARN("耗时:%.2fms 指令失败: %s - %s ", duration, command, result or "未知错误")
 	end
 
 	M.SendMsg(netid, command, success, result)
@@ -38,7 +39,7 @@ function M.RegisterCommand(command_name, description, handler_func)
 	local command_name_lower = string.lower(command_name)
 	
 	if M.m_commands[command_name_lower] then
-		LOG_WARN("GM 命令已存在，覆盖: " .. command_name)
+		LOG_WARN("命令已存在，覆盖: " .. command_name)
 	end
 	
 	M.m_commands[command_name_lower] = {
@@ -46,12 +47,11 @@ function M.RegisterCommand(command_name, description, handler_func)
 		description = description or "",
 		handler = handler_func,
 	}
-	-- LOG_INFO("注册 GM: " .. command_name)
 	return true
 end
 
 -- ===============执行 GM 指令==============
-function M.ExecuteCommand(command_string, netid)
+function M.ExecuteCommand(command_string, netid, uid)
 	if not command_string or command_string == "" then
 		return false, "空指令"
 	end
@@ -78,7 +78,10 @@ function M.ExecuteCommand(command_string, netid)
 	M.RecordCommand(command_string)
 	
 	-- 执行指令
-	local role = GLO.RoleManager.GetRoleByNetid(netid)
+	local role = nil
+	if uid and uid > 0 then
+		role = GLO.RoleManager.GetRole(uid)
+	end
 	local success, result = command.handler(args,role)
 	if not success then
 		if result then
@@ -100,9 +103,6 @@ end
 
 -- ==============记录指令历史===================
 function M.RecordCommand(command_string)
-
-	LOG_INFO("记录GM指令: " .. command_string)
-
 	local record = {
 		command = command_string,
 		timestamp = Utils.GetServerTime()

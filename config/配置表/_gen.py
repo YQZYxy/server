@@ -21,7 +21,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Luban DLL 路径 (相对 SCRIPT_DIR)
 LUBAN_DLL = os.path.normpath(os.path.join(
-    SCRIPT_DIR, r"..\..\luban-4.5.0\src\Luban\bin\Debug\net8.0\Luban.dll"
+    SCRIPT_DIR, r"luban\Luban.dll"
 ))
 CONF_FILE = os.path.join(SCRIPT_DIR, "__luban__.conf")
 

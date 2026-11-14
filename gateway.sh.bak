@@ -1,0 +1,167 @@
+#!/bin/bash
+# gateway.sh -- macOS/Linux 版的一键起服脚本
+# 用法: ./gateway.sh [debug|release]
+# 说明: 1) 在可执行文件目录里为 config / luascript / dist 建软链(对应 bat 的 mklink /J)
+#       2) 依次启动 globalserver / dbserver / logicserver, 等 3 秒再起 gatewayserver
+#       3) 同时启动 client/webui 的 Vite 开发服务器(npm run dev)
+#       4) 前台跟随 logicserver 日志, Ctrl+C 停止全部服务
+
+set -u
+
+# 构建配置
+CONFIG="${1:-debug}"
+if [ "$CONFIG" != "debug" ] && [ "$CONFIG" != "release" ]; then
+	echo "错误: 配置必须是 debug 或 release, 得到: $CONFIG"
+	exit 1
+fi
+
+# 脚本所在目录(仓库根)
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+EXE_DIR="$ROOT/$CONFIG"
+RUNLOG="$EXE_DIR/runlog"
+
+if [ ! -d "$EXE_DIR" ]; then
+	echo "错误: 找不到可执行文件目录 $EXE_DIR"
+	echo "      请先构建: ./build.sh $CONFIG"
+	exit 1
+fi
+
+mkdir -p "$RUNLOG"
+
+echo "[gateway] 配置: $CONFIG"
+echo "[gateway] 前端: Vite Dev Server (http://localhost:5173)"
+echo "[gateway] 网关: gatewayserver (:3723)" 
+echo
+
+# 在可执行文件目录里建软链, 让服务器用仓库根的同名资源
+link_dir()
+{
+	local name="$1"
+	local source="$2"
+
+	# 已是软链则跳过
+	if [ -L "$EXE_DIR/$name" ]; then
+		return
+	fi
+
+	if [ -d "$EXE_DIR/$name" ]; then
+		# 已存在实体目录: 若它是空目录而源目录有内容, 替换为软链
+		if [ -n "$(ls -A "$source" 2>/dev/null)" ] && [ -z "$(ls -A "$EXE_DIR/$name" 2>/dev/null)" ]; then
+			rmdir "$EXE_DIR/$name" 2>/dev/null && echo "[relink] $name -> $source (原空目录已替换为软链)"
+		else
+			return
+		fi
+	elif [ -e "$EXE_DIR/$name" ]; then
+		# 普通文件, 不动
+		return
+	fi
+
+	if [ -d "$source" ]; then
+		ln -s "$source" "$EXE_DIR/$name"
+		echo "[link] $name -> $source"
+	else
+		mkdir -p "$EXE_DIR/$name"
+		echo "[mkdir] $name (空目录, 需要时再放文件)"
+	fi
+}
+
+link_dir "config" "$ROOT/config"
+link_dir "luascript" "$ROOT/luascript"
+link_dir "dist" "$ROOT/client/webui/dist"
+
+# 服务是否已在运行
+is_running()
+{
+	pgrep -f "$EXE_DIR/$1" >/dev/null 2>&1
+}
+
+# 后台启动一个服务, 日志写入 runlog/<name>.log
+start_service()
+{
+	local name="$1"
+	local pid_file="$RUNLOG/$name.pid"
+
+	if is_running "$name"; then
+		echo "$name 已在运行, 跳过 (PID: $(pgrep -f "$EXE_DIR/$name" | tr '\n' ' '))"
+		return
+	fi
+
+	if [ ! -x "$EXE_DIR/$name" ]; then
+		echo "警告: 找不到可执行文件 $EXE_DIR/$name, 跳过"
+		return
+	fi
+
+	# 子 shell 里 cd 到可执行文件目录再起, 保证 config/luascript/dist 相对路径可用
+	(
+		cd "$EXE_DIR" || exit 1
+		nohup "./$name" > "$RUNLOG/$name.log" 2>&1 &
+		echo $! > "$pid_file"
+	)
+
+	echo "$name 启动 (PID: $(cat "$pid_file")) 日志: runlog/$name.log"
+}
+
+# Ctrl+C / kill 时把本脚本起的服务一起收走
+stop_all()
+{
+	echo
+	echo "[gateway] 正在停止服务 ..."
+
+	for name in dbserver globalserver gatewayserver logicserver; do
+		local pid_file="$RUNLOG/$name.pid"
+		if [ ! -f "$pid_file" ]; then
+			continue
+		fi
+		local pid
+		pid="$(cat "$pid_file")"
+		if kill -0 "$pid" 2>/dev/null; then
+			kill "$pid" 2>/dev/null && echo "  停止 $name (PID: $pid)"
+		fi
+		rm -f "$pid_file"
+	done
+
+	if [ -n "${WEBUI_PID:-}" ] && kill -0 "$WEBUI_PID" 2>/dev/null; then
+		kill "$WEBUI_PID" 2>/dev/null && echo "  停止 webui (PID: $WEBUI_PID)"
+	fi
+
+	echo "[gateway] 已停止"
+}
+trap 'stop_all; exit 0' INT TERM
+
+# 启动顺序
+# start_service globalserver
+start_service dbserver
+start_service logicserver
+
+# 等逻辑服就绪, 再起网关(对应 bat 的 timeout /t 3)
+echo "[gateway] 等待 3 秒后启动 gatewayserver ..."
+sleep 3
+
+start_service gatewayserver
+
+# 前端开发服务器
+WEBUI_PID=""
+if [ -d "$ROOT/client/webui" ] && command -v npm >/dev/null 2>&1; then
+	(
+		cd "$ROOT/client/webui" || exit 1
+		nohup npm run dev > "$RUNLOG/webui.log" 2>&1 &
+		echo $! > "$RUNLOG/webui.pid"
+	)
+	WEBUI_PID="$(cat "$RUNLOG/webui.pid")"
+	echo "webui 启动 (PID: $WEBUI_PID) 日志: runlog/webui.log"
+else
+	echo "跳过 webui (未找到 client/webui 目录或 npm 命令)"
+fi
+
+echo
+echo "[gateway] 全部启动完成. Ctrl+C 停止全部服务"
+echo "[gateway] 其它服务日志: $RUNLOG/<name>.log"
+echo "[gateway] 下面是 logicserver 日志 (tail -f):"
+echo
+
+# 前台跟随逻辑服日志
+if [ -f "$RUNLOG/logicserver.log" ]; then
+	tail -f "$RUNLOG/logicserver.log"
+else
+	wait
+fi

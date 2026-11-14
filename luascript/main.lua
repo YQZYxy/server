@@ -2,8 +2,6 @@
 -- 主入口 加载所有模块
 -- ====================================================================
 
-LOG_INFO("========== Lua全局-主入口加载开始 =========")
-
 -- 先初始化全局表（在设置保护之前）
 GLO = {}
 math.randomseed(os.time())
@@ -18,8 +16,6 @@ end
 local _allowed_globals = {
     OnBeforeScriptReload = true,
     OnAfterScriptReload = true,
-    OnAccept = true,
-    OnDisconnect = true,
     InitGlobal = true,
     UpdateGlobal = true,
     ShutdownGlobal = true,
@@ -78,6 +74,7 @@ GLO.EventManager = require("manager.eventmanager")
 GLO.TimerManager = require("manager.timermanager")
 GLO.MsgManager = require("protocol.msgmanager")
 GLO.GlobalDataManager = require("manager.globaldatamanager")
+GLO.RoleData = require("other.role.roledata")
 GLO.RoleManager = require("other.role.rolemanager")
 GLO.BattleManager = require("other.battle.battlemanager")
 GLO.RankManager = require("manager.rankmanager")
@@ -160,7 +157,7 @@ end
 
 function GLO.SaveGlobal()
     
-    GLO.RoleManager.SaveAllRoleData() -- 保存所有角色数据
+    GLO.RoleData.Update(true) -- 回写所有未保存的角色数据
     GLO.GlobalDataManager.SaveForce() -- 保存全局数据
     GLO.RankManager.SaveAll()
     GLO.ArenaManager.SaveAllToDB()
@@ -170,23 +167,7 @@ end
 
 -- ============ 服务器网络回调 ============
 
-function OnAccept(netid, ip_address)
-  
-    GLO.EventManager.TriggerEvent(GLO.EventManager.lua_OnAccept, {
-        netid = netid,
-        ip_address = ip_address
-    })
-end
-
-function OnDisconnect(netid)
-    GLO.EventManager.TriggerEvent(GLO.EventManager.lua_OnDisconnect, {
-        netid = netid
-    })
-end
-
 -- C++协议回调
 function OnMsgCallLogic(netid, msg_type, msg_str, uid)
     GLO.MsgManager.OnRecv(netid, msg_type, msg_str, uid or 0)
 end
-
-LOG_INFO("========== Lua全局-主入口加载结束 =========")

@@ -15,7 +15,6 @@ local M = {}
 -- 角色登录事件
 GLO.EventManager.RegisterListener(EventManager.cpp_OnRoleLogin, function(event_data)
     local uid = event_data.uid
-    local netid = event_data.netid
 
     local role = GLO.RoleManager.GetRole(uid)
     if not role then
@@ -42,7 +41,7 @@ function LOC.SendAllMsg(role)
     end
 
     -- 下发背包数据
-    Protobuf.SendMsg(role:GetNetid(), MHT.MHT_SYNC_INVENTORY_DATA_SC,
+    Protobuf.SendMsgToRole(role, MHT.MHT_SYNC_INVENTORY_DATA_SC,
     {
         inventory_data = {
             max_slots = inventory_data.max_slots,
@@ -57,22 +56,22 @@ function LOC.GetOrSetInventoryData(role)
         LOG_ERROR("角色实例为空")
         return nil
     end
-    
-    local role_data = role:GetRoleData()
-    if not role_data then
+
+    local inventory_data = GLO.RoleData.GetInventory(role.uid)
+    if not inventory_data then
         LOG_ERROR("角色数据为空")
         return nil
     end
-    
+
     -- 确保数据结构存在
-    if not role_data.inventory then
-        role_data.inventory = {
-            max_slots = ConfigManager.itemglobalconfig.max_inventory_slots or 50,
-            slots = {} -- {slot_index=, id=, num=}
-        }
+    if not inventory_data.max_slots then
+        inventory_data.max_slots = ConfigManager.itemglobalconfig.max_inventory_slots or 50
     end
-    
-    return role_data.inventory
+    if not inventory_data.slots then
+        inventory_data.slots = {} -- {slot_index=, id=, num=}
+    end
+
+    return inventory_data
 end
 
 -- 按槽位索引查找物品
@@ -274,12 +273,6 @@ function M.InitInventory(role)
         end
     end
     
-    LOG_INFO("初始化背包: %s (%d/%d 格，验证 %d 种物品)", 
-        role.name, 
-        inventory_data.max_slots - LOC.GetFreeSlots(inventory_data),
-        inventory_data.max_slots,
-        valid_count)
-    
     return true
 end
 
@@ -362,8 +355,6 @@ function M.AddItem(role, id, num)
     while num > 0 do
         local empty_slot = LOC.FindEmptySlot(inventory_data)
         if not empty_slot then
-            LOG_INFO("背包已满!")
-            
             -- 如果成功添加了一部分，触发事件
             if add_count > num then
                 LOC.TriggerItemEvent("OnAddItem", role, id, add_count - num)
@@ -439,8 +430,6 @@ function M.AddItems(role, items)
     
     -- 检查背包空间
     if LOC.GetFreeSlots(inventory_data) < required_slots then
-        LOG_INFO("背包空间不足，无法添加多道具 需要 %d 个空格 可用空格: %d",
-            required_slots, LOC.GetFreeSlots(inventory_data))
         return false
     end
     
@@ -513,8 +502,6 @@ function M.RemoveItems(role, items)
         
         local current_count = M.GetItemCount(role, validated.id)
         if current_count < validated.num then
-            LOG_INFO("物品不足，无法移除多道具 ID: %d 需要: %d 拥有: %d",
-                validated.id, validated.num, current_count)
             return false
         end
     end
@@ -592,7 +579,6 @@ function M.UseItemBySlot(role, slot_index)
     
     local slot = LOC.FindSlot(inventory_data, slot_index)
     if not slot then
-        LOG_INFO("槽位为空")
         return false
     end
     
@@ -608,7 +594,6 @@ function M.UseItemBySlot(role, slot_index)
     
     -- 检查物品类型
     if item.type ~= Const.ItemType.CONSUMABLE then
-        LOG_INFO("道具不是消耗品")
         return false
     end
     
@@ -643,7 +628,6 @@ function M.UseItem(role, id)
         end
     end
     
-    LOG_INFO("背包中没有该物品 ID: " .. tostring(id))
     return false
 end
 
@@ -673,7 +657,6 @@ function M.SwapSlots(role, slot_index_1, slot_index_2)
     end
     slot_1.slot_index, slot_2.slot_index = slot_2.slot_index, slot_1.slot_index
     
-    LOG_INFO("交换插槽 " .. tostring(slot_index_1) .. " 和 " .. tostring(slot_index_2))
     return true
 end
 

@@ -57,9 +57,11 @@ gameSocket.onMsg(MHT.MHT_SERVER_CONNECT_RESULT, (body: any) => {
   if (s.reconnecting) {
     if (body?.success) {
       const uname = s.username
+      // 携带上次登录成功下发的 token
+      const token = s.token || sessionStorage.getItem('reconnect_token') || ''
       if (uname) {
-        console.log('[Reconnect] TCP已恢复, 自动发送登录')
-        gameSocket.sendMsg(MHT.MHT_LOGIN_CS, { login_user_name: uname })
+        console.log('[Reconnect] TCP已恢复, 自动发送登录(携带重连凭证)')
+        gameSocket.sendMsg(MHT.MHT_LOGIN_CS, { login_user_name: uname, token })
       }
     } else {
       // TCP 连接失败时, WS 仍连, 需断 WS 触发自动重连来重建 TCP
@@ -81,6 +83,8 @@ gameSocket.onMsg(MHT.MHT_LOGIN_SC, (body: any) => {
   s.setReconnecting(false)
   localStorage.setItem('login_username_storage', s.username)
   if (s.username) sessionStorage.setItem('reconnect_username', s.username)
+  // 保存重连凭证, 页面刷新后仍可恢复会话
+  sessionStorage.setItem('reconnect_token', token)
 })
 
 console.log('[Reconnect] 重连模块已初始化')

@@ -84,7 +84,7 @@ L.REQ_TYPE_BATTLE = 0  -- 战斗
 L.REQ_TYPE_REPLAY = 1  -- 战报
 
 -- 处理战斗请求
-function M.HandleBattleReq(netid, msg_data, role)
+MsgManager.RegisterMsg(MHT.MHT_GAS_BATTLE_CS, function(netid, role, msg_data)
     if not role then
         LOG_ERROR("处理战斗请求失败: 无角色")
         return
@@ -100,14 +100,14 @@ function M.HandleBattleReq(netid, msg_data, role)
     end
 
     if L.REQ_TYPE_REPLAY == msg_data.req_type then
-        M.HandleReplayQuery(netid, role, msg_data)
+        M.HandleReplayQuery(role, msg_data)
         return
     end
 
-end
+end)
 
 -- 查询历史战报
-function M.HandleReplayQuery(netid, role, msg_data)
+function M.HandleReplayQuery(role, msg_data)
     local report_key = msg_data.battle_report_key or ""
     if report_key == "" then
         LOG_ERROR("历史战报查询缺少 report_key")
@@ -116,7 +116,7 @@ function M.HandleReplayQuery(netid, role, msg_data)
 
     local encoded = Protobuf.Encode({ uid = role.uid, report_key = report_key }, "PB_BattleExecuteReq")
     if encoded then
-        cpp_ExecuteBattle(netid, encoded)
+        cpp_ExecuteBattle(role.uid, encoded)
     end
 end
 
@@ -148,7 +148,7 @@ function M.HandleBattleStart(role, msg_data)
         role.in_battle_start_time = nil
     end
 
-    LOG_INFO("BattleManager分发战斗请求: uid=%s, name=%s, battle_type=%d, module=%s",
+    LOG_INFO("战斗请求: uid=%s, name=%s, battle_type=%d, module=%s",
         role:GetUid(),role:GetName(), battle_type, module_inst.module_name or "未知战斗类型")
 
     -- 标记进入战斗(同步执行: 战斗结果会在 OnBattleReq 内同步回调并清理此标记。
@@ -160,9 +160,6 @@ function M.HandleBattleStart(role, msg_data)
     end
 end
 
-
--- 注册协议处理器
-MsgManager.RegisterMsg(MHT.MHT_GAS_BATTLE_CS, M.HandleBattleReq)
 
 -- ==================== 战斗结果 ====================
 EventManager.RegisterListener(EventManager.cpp_OnBattleResult, function(event)
@@ -197,7 +194,7 @@ EventManager.RegisterListener(EventManager.cpp_OnBattleResult, function(event)
         report_keys = { [1] = event.report_key or "" },
     }
 
-    LOG_INFO("BattleManager分发战斗结果: uid=%s, name=%s, battle_type=%d, result=%d",
+    LOG_INFO("战斗结果: uid=%s, name=%s, battle_type=%d, result=%d",
         role:GetUid(),role:GetName(), battle_type, event.result_type or 0)
 
     module_inst:OnBattleResult(role, series, event.result_type or 0)

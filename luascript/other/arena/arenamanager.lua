@@ -46,7 +46,6 @@ end)
 
 -- 初始化(服务器启动时从数据库加载)
 function M.Init()
-    LOG_INFO("开始初始化...")
 
     -- 注册排行榜类型
     GLO.RankManager.RegisterRankType(Const.RankType.ARENA, {
@@ -56,7 +55,7 @@ function M.Init()
     -- 竞技场用户数据
     M.LoadArena()
 
-    LOG_INFO("初始化完成, 已加载 %d 个竞技场用户", M.GetRegisteredCount())
+    LOG_INFO("已加载 %d 个竞技场用户", M.GetRegisteredCount())
 end
 
 -- 从数据库加载
@@ -128,7 +127,6 @@ function M.Register(uid, name, user_name)
         -- 更新信息
         user:UpdateName(name or "")
         user.is_registered = true
-        LOG_INFO("用户已存在,更新信息 uid=%d", uid)
         return user
     end
 
@@ -224,7 +222,6 @@ function M.MatchOpponents(uid)
     user.opponent_uids = result
     user.last_match_time = GLO.Utils.GetServerTime()
 
-    LOG_INFO("为玩家 %d 匹配了 %d 个对手", uid, #result)
     return result
 end
 
@@ -396,7 +393,7 @@ end
 -- ==================== 消息处理 ====================
 
 -- 处理竞技场请求
-function M.HandleArenaReq(netid, msg_data, role)
+MsgManager.RegisterMsg(MHT.MHT_ARENA_CS,function(netid, role, msg_data)
     if not role or not msg_data then
         LOG_ERROR("处理请求失败,参数无效")
         return
@@ -406,28 +403,28 @@ function M.HandleArenaReq(netid, msg_data, role)
 
     if req_type == 1 then
         -- 注册/进入竞技场
-        M.HandleRegister(netid, role)
+        M.HandleRegister(role)
     elseif req_type == 2 then
         -- 刷新对手
-        M.HandleRefresh(netid, role)
+        M.HandleRefresh(role)
     elseif req_type == 3 then
         -- 请求战斗日志
-        M.HandleBattleLogReq(netid, msg_data, role)
+        M.HandleBattleLogReq(msg_data, role)
     else
         LOG_WARN("未知请求类型 %d", req_type)
     end
-end
+end)
 
 -- ==================== 注册处理 ====================
 
-function M.HandleRegister(netid, role)
+function M.HandleRegister(role)
     local uid = role.uid
     local name = role:GetName()
     local user_name = role:GetUserName()
 
     local user = M.Register(uid, name, user_name)
     if not user then
-        Protobuf.SendMsg(netid, MHT.MHT_ARENA_SC, {
+        Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_SC, {
             req_type = 1,
             ret = 0,
         })
@@ -452,7 +449,7 @@ function M.HandleRegister(netid, role)
     -- 构建对手信息列表
     local opponents = M.BuildOpponentInfoList(opponent_uids, uid)
 
-    Protobuf.SendMsg(netid, MHT.MHT_ARENA_SC, {
+    Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_SC, {
         req_type = 1,
         ret = 1,
         score = user.score,
@@ -460,19 +457,16 @@ function M.HandleRegister(netid, role)
         daily_refresh_count = user.daily_refresh_count,
         opponents = opponents,
     })
-
-    LOG_INFO("用户 %d 进入竞技场, 分数=%d, 对手=%d",
-        uid, user.score, #opponents)
 end
 
 -- ==================== 刷新处理 ====================
 
-function M.HandleRefresh(netid, role)
+function M.HandleRefresh(role)
     local uid = role.uid
     local user = LOC.GetOrSetData().m_arena_users[uid]
 
     if not user then
-        Protobuf.SendMsg(netid, MHT.MHT_ARENA_SC, {
+        Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_SC, {
             req_type = 2,
             ret = 0,
         })
@@ -483,7 +477,7 @@ function M.HandleRefresh(netid, role)
     local opponent_uids = M.RefreshOpponents(uid)
     if not opponent_uids then
         -- 免费次数用完
-        Protobuf.SendMsg(netid, MHT.MHT_ARENA_SC, {
+        Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_SC, {
             req_type = 2,
             ret = 0,
         })
@@ -500,7 +494,7 @@ function M.HandleRefresh(netid, role)
 
     local opponents = M.BuildOpponentInfoList(opponent_uids, uid)
 
-    Protobuf.SendMsg(netid, MHT.MHT_ARENA_SC, {
+    Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_SC, {
         req_type = 2,
         ret = 1,
         score = user.score,
@@ -620,7 +614,7 @@ end
 -- ==================== 战斗日志处理 ====================
 
 -- 处理战斗日志请求
-function M.HandleBattleLogReq(netid, msg_data, role)
+function M.HandleBattleLogReq(netid, role, msg_data)
     if not role then
         LOG_ERROR("参数无效")
         return
@@ -630,7 +624,7 @@ function M.HandleBattleLogReq(netid, msg_data, role)
     local user = LOC.GetOrSetData().m_arena_users[uid]
 
     if not user then
-        Protobuf.SendMsg(netid, MHT.MHT_ARENA_BATTLE_LOG_SC, {
+        Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_BATTLE_LOG_SC, {
             ret = 0,
         })
         return
@@ -638,18 +632,21 @@ function M.HandleBattleLogReq(netid, msg_data, role)
 
     local battle_logs = user.battle_logs or {}
 
-    Protobuf.SendMsg(netid, MHT.MHT_ARENA_BATTLE_LOG_SC, {
+    Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_BATTLE_LOG_SC, {
         ret = 1,
         battle_logs = battle_logs,
     })
-
-    LOG_INFO("用户 %d 请求战斗日志, 共 %d 条", uid, #battle_logs)
 end
 
 -- ==================== 竞技场排行榜处理 ====================
 
 -- 竞技场排行榜处理器
-function M.HandleArenaRankReq(netid, rank_offset, role)
+function M.HandleArenaRankReq(netid, role, rank_offset)
+
+    if not role then
+        return
+    end
+
     local rank_type = Const.RankType.ARENA
 
     -- 确保排行榜已加载
@@ -682,7 +679,7 @@ function M.HandleArenaRankReq(netid, rank_offset, role)
         })
     end
 
-    Protobuf.SendMsg(netid, MHT.MHT_ARENA_RANK_SC, {
+    Protobuf.SendMsgToRole(role, MHT.MHT_ARENA_RANK_SC, {
         ret = 1,
         rank_list = rank_list,
         has_more = has_more or false,
@@ -738,19 +735,15 @@ function M.SaveAllToDB()
         req_type = 2,       -- 保存所有
         datas = datas,
     })
-    -- LOG_INFO("保存 %d 个竞技场用户数据到arena表", #datas)
 end
 
 -- ==================== 初始化 ====================
-
--- 注册协议处理器
-MsgManager.RegisterMsg(MHT.MHT_ARENA_CS, M.HandleArenaReq)
 
 -- 注册竞技场排行榜自定义处理器到RankManager
 GLO.RankManager.RegisterRankHandler(Const.RankType.ARENA, M.HandleArenaRankReq)
 
 -- 注册数据库返回处理器
-MsgManager.RegisterMsg(MHT.MHT_ARENA_DB_S, function(netid, msg_data, role)
+MsgManager.RegisterMsg(MHT.MHT_ARENA_DB_S, function(netid, role, msg_data)
     M.LoadRet(msg_data)
 end)
 

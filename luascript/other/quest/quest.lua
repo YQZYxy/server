@@ -16,7 +16,6 @@ local M = {}
 -- 角色登录事件
 GLO.EventManager.RegisterListener(EventManager.cpp_OnRoleLogin, function(event_data)
     local uid = event_data.uid
-    local netid = event_data.netid
 
     local role = GLO.RoleManager.GetRole(uid)
     if not role then
@@ -48,7 +47,7 @@ GLO.EventManager.RegisterListener(EventManager.cpp_OnRoleLogin, function(event_d
     end
 
     -- 下发任务数据
-    Protobuf.SendMsg(netid, MHT.MHT_SYNC_QUEST_DATA_SC,
+    Protobuf.SendMsgToRole(role, MHT.MHT_SYNC_QUEST_DATA_SC,
     {
         quest_data = {
             max_active = quest_data.max_active,
@@ -83,25 +82,26 @@ function LOC.GetOrSetQuestData(role)
         LOG_ERROR("角色实例为空")
         return nil
     end
-    
-    local role_data = role:GetRoleData()
-    if not role_data then
+
+    local quest_data = GLO.RoleData.GetQuest(role.uid)
+    if not quest_data then
         LOG_ERROR("角色数据为空")
         return nil
     end
-    local growth = role_data.growth
-    
+
     -- 确保任务数据结构存在
-    if not growth.quest then
+    if not quest_data.max_active then
         local global_config = M.GetQuestGlobaConfig()
-        growth.quest = {
-            max_active = (global_config and global_config.max_active_quests) or 10,
-            active_quests = {},     -- {[quest_id] = {status, start_time, complete_time, objectives}}
-            completed_quests = {}   -- {quest_id, ...}
-        }
+        quest_data.max_active = (global_config and global_config.max_active_quests) or 10
     end
-    
-    return growth.quest
+    if not quest_data.active_quests then
+        quest_data.active_quests = {}     -- {[quest_id] = {status, start_time, complete_time, objectives}}
+    end
+    if not quest_data.completed_quests then
+        quest_data.completed_quests = {}   -- {quest_id, ...}
+    end
+
+    return quest_data
 end
 
 -- ==================== 公共接口 ==============================
@@ -124,12 +124,7 @@ function M.InitQuest(role)
             quest_data.active_quests[quest_id] = nil
         end
     end
-    
-    LOG_INFO("初始化任务系统: %s (%d 个进行中的任务，已完成 %d 个)", 
-        role.name, 
-        valid_count,
-        #quest_data.completed_quests)
-    
+
     return true
 end
 
@@ -147,13 +142,11 @@ function M.AcceptQuest(role, quest_id)
     end
     
     if active_count >= quest_data.max_active then
-        LOG_INFO("❌ 已达到任务接取上限! (" .. tostring(quest_data.max_active) .. ")")
         return false
     end
     
     -- 检查是否已接取
     if quest_data.active_quests[quest_id] then
-        LOG_INFO("❌ 已经接取了该任务")
         return false
     end
     
@@ -166,7 +159,6 @@ function M.AcceptQuest(role, quest_id)
     
     -- 检查等级要求
     if role.level < quest_config.required_level then
-        LOG_INFO("无法接受任务: 等级不足 (需要 Lv." .. tostring(quest_config.required_level) .. ")")
         return false
     end
     
@@ -194,11 +186,9 @@ function M.AcceptQuest(role, quest_id)
         objectives = objectives_data
     }
     
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("📜 接受任务: " .. quest_config.name)
+    LOG_INFO("接受任务: " .. quest_config.name)
     LOG_INFO(quest_config.description)
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("📋 任务目标:")
+    LOG_INFO("任务目标:")
     
     if quest_config.objectives then
         for i, obj_id in ipairs(quest_config.objectives) do
@@ -209,9 +199,7 @@ function M.AcceptQuest(role, quest_id)
             end
         end
     end
-    
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    
+        
     -- 触发事件
     EventManager.TriggerEvent(EventManager.lua_OnQuestAccepted, {
         role = role,
@@ -341,11 +329,6 @@ function M.UpdateQuestByEvent(role, event_data)
                                     if obj_data.current_count >= obj_config.required_count then
                                         obj_data.current_count = obj_config.required_count
                                         obj_data.completed = true
-                                        
-                                        LOG_INFO("✅ 任务目标完成: " .. obj_config.description)
-                                    else
-                                        LOG_INFO("📝 任务进度更新: " .. obj_config.description .. 
-                                            " (" .. tostring(obj_data.current_count) .. "/" .. tostring(obj_config.required_count) .. ")")
                                     end
                                     
                                     updated = true
@@ -369,9 +352,7 @@ function M.UpdateQuestByEvent(role, event_data)
                 if all_completed then
                     save_data.status = Const.QuestStatus.COMPLETED
                     save_data.complete_time = Utils.GetServerTime()
-                    
-                    LOG_INFO("★★★ 任务完成: " .. quest_config.name .. " ★★★")
-                    
+                                        
                     EventManager.TriggerEvent(EventManager.lua_OnQuestCompleted, {
                         role = role,
                         quest_id = quest_id,
@@ -394,12 +375,12 @@ function M.TurnInQuest(role, quest_id)
     
     local save_data = quest_data.active_quests[quest_id]
     if not save_data then
-        LOG_INFO("未找到该任务")
+        LOG_ERROR("未找到该任务")
         return false
     end
     
     if save_data.status ~= Const.QuestStatus.COMPLETED then
-        LOG_INFO("任务尚未完成")
+        LOG_ERROR("任务尚未完成")
         return false
     end
     
@@ -409,12 +390,8 @@ function M.TurnInQuest(role, quest_id)
         return false
     end
     
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("🎉 提交任务: " .. quest_config.name)
-    
     -- 发放奖励
     if quest_config.reward_items and #quest_config.reward_items > 0 then
-        LOG_INFO("  🎁 物品奖励:")
         for _, item_data in ipairs(quest_config.reward_items) do
             local id = item_data.id
             local num = item_data.num or 1
@@ -426,9 +403,7 @@ function M.TurnInQuest(role, quest_id)
             end
         end
     end
-    
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    
+        
     save_data.status = Const.QuestStatus.TURNED_IN
     
     -- 移动到完成列表
@@ -454,12 +429,12 @@ function M.AbandonQuest(role, quest_id)
     
     local save_data = quest_data.active_quests[quest_id]
     if not save_data then
-        LOG_INFO("未找到该任务")
+        LOG_ERROR("未找到该任务")
         return false
     end
     
     if save_data.status ~= Const.QuestStatus.IN_PROGRESS then
-        LOG_INFO("任务无法放弃")
+        LOG_ERROR("任务无法放弃")
         return false
     end
     
@@ -468,9 +443,7 @@ function M.AbandonQuest(role, quest_id)
     
     -- 从数据中移除
     quest_data.active_quests[quest_id] = nil
-    
-    LOG_INFO("❌ 放弃任务: " .. quest_name)
-    
+        
     return true
 end
 
@@ -559,10 +532,7 @@ function M.PrintQuestLog(role)
         active_count = active_count + 1
     end
     
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("📖 " .. role.name .. " 的任务日志")
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("🔥 进行中: " .. tostring(active_count) .. "/" .. tostring(quest_data.max_active))
+    LOG_INFO("进行中: " .. tostring(active_count) .. "/" .. tostring(quest_data.max_active))
     
     if active_count > 0 then
         for quest_id, save_data in pairs(quest_data.active_quests) do
@@ -574,20 +544,16 @@ function M.PrintQuestLog(role)
                     " (" .. tostring(completed) .. "/" .. tostring(total) .. ")")
             end
         end
-    else
-        LOG_INFO("  暂无进行中的任务")
     end
     
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("✅ 已完成: " .. tostring(#quest_data.completed_quests))
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    LOG_INFO("已完成: " .. tostring(#quest_data.completed_quests))
 end
 
 -- 打印任务详情
 function M.PrintQuestStatus(role, quest_id)
     local save_data = M.GetQuestSaveData(role, quest_id)
     if not save_data then
-        LOG_INFO("未找到该任务")
+        LOG_ERROR("未找到该任务")
         return
     end
     
@@ -597,14 +563,11 @@ function M.PrintQuestStatus(role, quest_id)
         return
     end
     
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("📜 任务: " .. quest_config.name)
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    LOG_INFO("任务: " .. quest_config.name)
     LOG_INFO("状态: " .. LOC.GetQuestStatusName(save_data.status))
     LOG_INFO("等级: " .. tostring(quest_config.level))
     LOG_INFO("描述: " .. quest_config.description)
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    LOG_INFO("📋 任务目标:")
+    LOG_INFO("任务目标:")
     
     if quest_config.objectives then
         for i, obj_id in ipairs(quest_config.objectives) do
@@ -618,8 +581,6 @@ function M.PrintQuestStatus(role, quest_id)
             end
         end
     end
-    
-    LOG_INFO("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 end
 
 -- =============辅助函数===================

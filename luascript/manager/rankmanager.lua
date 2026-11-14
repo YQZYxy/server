@@ -89,7 +89,6 @@ end
 
 -- 初始化(服务器启动时从数据库加载)
 function M.Init()
-    LOG_INFO("RankManager 初始化")
     -- 注册内置排行榜类型
     M.RegisterRankType(GLO.Const.RankType.MAIN_BATTLE, {
         page_size = 100,
@@ -386,7 +385,8 @@ function M.UpdateRankWithLineup(role, rank_type, value, extra_data, battle_type)
         return
     end
     extra_data = extra_data or {}
-    local snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
+    -- 只读快照: BuildProtoHeroDataList 只读快照并构造新表, 不会改动角色数据
+    local snapshot = GLO.RoleBattleSnapshot.SnapshotRef(role)
     if snapshot then
         extra_data.power = value
         extra_data.heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(snapshot, battle_type)
@@ -440,20 +440,20 @@ end, true)
 
 -- ==================== 排行榜协议路由 ====================
 
--- 排行榜类型自定义处理器注册表: rank_type -> handler_fn(netid, rank_offset, role)
+-- 排行榜类型自定义处理器注册表: rank_type -> handler_fn(netid, role, rank_offset)
 local s_rank_handlers = {}
 
 -- 注册排行榜类型自定义处理器
 -- 当客户端请求该排行榜时,路由到自定义处理器而非通用排行榜逻辑
 -- @param rank_type: 排行榜类型
--- @param handler_fn: function(netid, rank_offset, role) end
+-- @param handler_fn: function(netid, role, rank_offset) end
 function M.RegisterRankHandler(rank_type, handler_fn)
     s_rank_handlers[rank_type] = handler_fn
     LOG_INFO("RankManager: 注册排行榜类型 %d 自定义处理器", rank_type)
 end
 
--- 处理通用排行榜请求(PRank_CS / MHT_RANK_CS)
-function M.HandleRankReq(netid, msg_data, role)
+-- 处理通用排行榜请求
+MsgManager.RegisterMsg(MHT.MHT_RANK_CS,function(netid, role, msg_data)
     if not msg_data then
         LOG_ERROR("参数无效")
         return
@@ -470,7 +470,7 @@ function M.HandleRankReq(netid, msg_data, role)
     -- 检查是否有自定义处理器
     local handler = s_rank_handlers[rank_type]
     if handler then
-        handler(netid, rank_offset, role)
+        handler(netid, role, rank_offset)
         return
     end
 
@@ -509,16 +509,10 @@ function M.HandleRankReq(netid, msg_data, role)
         has_more = has_more or false,
         total = total or 0,
     })
-
-    -- LOG_INFO("RankManager: 通用排行榜请求 type=%d, offset=%d, count=%d, total=%d",
-    --     rank_type, rank_offset, #rank_list, total or 0)
-end
-
--- 注册通用排行榜协议处理器
-MsgManager.RegisterMsg(MHT.MHT_RANK_CS, M.HandleRankReq)
+end)
 
 -- 注册数据库返回处理器
-MsgManager.RegisterMsg(MHT.MHT_RANK_DB_S, function(netid, msg_data, role)
+MsgManager.RegisterMsg(MHT.MHT_RANK_DB_S, function(netid, role, msg_data)
     M.LoadRet(msg_data)
 end)
 
