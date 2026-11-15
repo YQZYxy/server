@@ -1,0 +1,6 @@
+{
+  "project_root": "../..",
+  "proto_dir": "../../luascript/proto",
+  "report_dir": "../../debug/stress_reports",
+  "state_file": "../../debug/stress_gui.json"
+}

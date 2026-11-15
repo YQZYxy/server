@@ -11,26 +11,34 @@ import glob
 import os
 import re
 import struct
-import sys
 
 from google.protobuf import descriptor_pb2, descriptor_pool
 from google.protobuf.message_factory import GetMessageClass
+
+from .paths import StressStartupError, load_config
 
 # protobufmht.lua 里每个常量形如: M.MHT_LOGIN_CS = 30001 -- P_LoginReq_CS 角色登录请求
 MHT_PATTERN = re.compile(r"M\.(MHT_\w+)\s*=\s*(\d+)\s*--\s*(\w+)")
 
 
 def default_project_root():
-    """返回仓库根目录(本文件在 <root>/stress/protocol.py)"""
-    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    """返回仓库根目录(来自 stress_config.json 的 project_root)"""
+    return load_config()["project_root"]
 
 
 class ProtocolCodec:
     """proto 描述符加载与消息打包"""
 
     def __init__(self, project_root=None, proto_dir=None, mht_lua_path=None):
-        root = project_root or default_project_root()
-        self.proto_dir = proto_dir or os.path.join(root, "luascript", "proto")
+        config = load_config()
+        root = project_root or config["project_root"]
+        if proto_dir:
+            self.proto_dir = proto_dir
+        elif project_root:
+            # 显式传入仓库根目录时按约定推导, 否则用配置里的 proto_dir
+            self.proto_dir = os.path.join(root, "luascript", "proto")
+        else:
+            self.proto_dir = config["proto_dir"]
         self.mht_lua_path = mht_lua_path or os.path.join(self.proto_dir, "protobufmht.lua")
 
         self.pool = descriptor_pool.DescriptorPool()
@@ -146,10 +154,10 @@ class ProtocolCodec:
 
 
 def load_codec(project_root=None):
-    """加载失败时直接退出并给出可读提示"""
+    """加载失败时抛出 StressStartupError, 由入口统一展示(命令行打印或弹窗)"""
     try:
         return ProtocolCodec(project_root)
+    except StressStartupError:
+        raise
     except Exception as error:
-        print("加载协议失败: %s" % error)
-        print("请确认 luascript/proto/*.pb 存在(运行 generate_protobuf.py 生成)")
-        sys.exit(1)
+        raise StressStartupError("加载协议失败: %s" % error) from error

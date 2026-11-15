@@ -16,6 +16,7 @@ import tkinter as tk
 from collections import deque
 from tkinter import messagebox, ttk
 
+from .paths import load_config
 from .runner import GroupSpec, Runner, RunSpec
 from .scenarios import all_scenarios
 from .sysmon import ProcessMonitor
@@ -28,9 +29,6 @@ MAX_CHART_POINTS = 1800
 MAX_LOG_LINES_PER_REFRESH = 300
 # 日志框保留的最大行数, 超过后丢弃最旧的
 MAX_LOG_WIDGET_LINES = 3000
-REPORT_DIR_NAME = "debug/stress_reports"
-# 界面状态(最后的地址/端口 + 历史目标), 关闭时写入, 启动时读回
-STATE_FILE_NAME = "debug/stress_gui.json"
 # 历史目标保留条数
 MAX_TARGET_HISTORY = 20
 
@@ -144,10 +142,10 @@ class StressApp:
         # 和 "normal" 比较恒为 False, 会导致按钮永远恢复不了)
         self._ui_running = False
         self.targets = []       # 历史目标 [(host, port), ...], 最近的在前
-        self.report_dir = os.path.join(os.path.dirname(os.path.dirname(
-            os.path.abspath(__file__))), REPORT_DIR_NAME)
-        self.state_path = os.path.join(os.path.dirname(os.path.dirname(
-            os.path.abspath(__file__))), STATE_FILE_NAME)
+        # 报告目录与界面状态文件路径来自 stress_config.json
+        config = load_config()
+        self.report_dir = config["report_dir"]
+        self.state_path = config["state_file"]
         self.saved_state = self._load_state()
 
         self.root = tk.Tk()
