@@ -13,6 +13,7 @@ x64/
 ~$*
 node_modules
 client/webui/dist
+.lnk
 
 # generate_protobuf.py 生成文件, 无需纳入版本管理
 share/protocol/
@@ -35,6 +36,7 @@ share/protobuf/pprotocolhead.proto
 share/protobuf/generate_protobuf.bat
 share/protobuf/cpy_proto.bat
 gateway.sh
+gateway.bat
 
 #webui
 tsconfig.tsbuildinfo

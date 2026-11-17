@@ -1,9 +1,18 @@
 /* ---- 通用排行榜(rank-panel.tsx) ---- */
 .rank-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
   max-height: 70vh;
-  min-height: 400px;
   overflow-y: auto;
+  /* 滚到边界时不要把滚动传给外层容器/宿主 */
+  overscroll-behavior: contain;
+  touch-action: pan-y;
   padding: 8px 0;
+  cursor: grab;
+}
+
+.rank-scroll:active {
+  cursor: grabbing;
 }
 
 .rank-list {
@@ -103,6 +112,27 @@
   padding: 16px;
   color: var(--text-secondary);
   font-size: 13px;
+}
+
+/* ---- 加载更多 ---- */
+.rank-load-more {
+  display: block;
+  margin: 12px auto 4px;
+  padding: 8px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rank-load-more:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.24);
 }
 
 .rank-end {

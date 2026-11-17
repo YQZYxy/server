@@ -14,11 +14,11 @@ class AppConfig:
     m_debug: bool = False
 
     # AI 后端 API
-    m_api_url: str = "http://127.0.0.1:8080/chat/completions"
+    m_api_url: str = "https://api.deepseek.com/v1"
     m_api_key: str = ""
 
     # LangChain Agent 默认配置
-    m_agent_default_model: str = "XiaoYu"
+    m_agent_default_model: str = "deepseek-v4-flash"
     m_agent_max_iterations: int = 25
     m_agent_max_execution_time: int = 60  # 秒
     m_agent_temperature: float = 0.7

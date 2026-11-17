@@ -1,73 +1,70 @@
 -- ====================================================================
 --  RankManager - 排行榜管理器
+--  排序:
+--    按节点自身数值排序, 顺序为 主值 -> param1 -> param2 -> param3 -> 更新时间 -> uid
+--    前 4 个键的方向由注册时的 orders 决定,更新时间固定升序(同键值时先达到的靠前)
 -- ====================================================================
 
 local GLO = GLO
 local M = {}
 local LOC = M
 local Serializer = GLO.Serializer
-local Utils = GLO.Utils
-local Protobuf = GLO.Protobuf
 local MHT = GLO.MHT
 local TimerManager = GLO.TimerManager
 local MsgManager = GLO.MsgManager
 
--- ==================== 排行榜节点类 ====================
-
-local RankNode = GLO.Class:Extend("RankNode")
-M.RankNode = RankNode
-
-function RankNode:Ctor(type, uid, name, value, extra_data)
-    self.type = type or 0       -- 排行榜类型
-    self.uid = uid or 0         -- 玩家uid
-    self.name = name or ""      -- 玩家名字
-    self.value = value or 0     -- 排行榜主值(用于排序)
-    self.extra_data = extra_data or {}  -- 额外数据(自定义)
-    self.rank = 0               -- 当前排名(动态计算)
-end
-
-function RankNode:Serialize()
-    return {
-        type = self.type,
-        uid = self.uid,
-        name = self.name,
-        value = self.value,
-        extra_data = self.extra_data,
-    }
-end
-
-function RankNode:Deserialize(data)
-    if not data then return end
-    self.type = data.type or self.type
-    self.uid = data.uid or self.uid
-    self.name = data.name or self.name
-    self.value = data.value or 0
-    self.extra_data = data.extra_data or {}
-end
+-- 排序键数量: 主值 + 3 个参数(RANK_ORDER_COUNT 保持一致)
+local RANK_ORDER_COUNT = 4
+-- 缺省排序只按主值降序
+local DEFAULT_ORDERS = { "desc" }
 
 -- ==================== 排行榜类型管理器 ====================
 
--- 注册表: rank_type -> {sort_fn, page_size, custom}
+-- 注册表: rank_type -> {page_size, battle_type, orders}
 local s_rank_type_config = {}
 
+-- 生成下发给 C++ 的排序方向: { "desc", "asc", ... }, 下标即比较优先级
+function LOC.BuildOrders(rank_config)
+    local orders = rank_config.orders or DEFAULT_ORDERS
+
+    local specs = {}
+    for i = 1, math.min(#orders, RANK_ORDER_COUNT) do
+        specs[i] = orders[i]
+    end
+    if #specs == 0 then
+        specs[1] = "desc"
+    end
+    return specs
+end
+
 -- 注册排行榜类型
--- @param rank_type: 排行榜类型id
--- @param config: {sort_fn, page_size, custom, battle_type}
---   sort_fn(a, b): 自定义排序函数,返回true表示a排在b前面
---   page_size: 每页数量(默认100)
---   custom: 是否自定义数据(默认false,使用基础数据)
---   battle_type: 指定后会在排行榜列表中补充该阵容的英雄数据(在线从Role取,离线从extra_data.heroes取)
+-- rank_type: 排行榜类型id
+-- config: {
+--   page_size = 100,                 -- 每页数量
+--   battle_type = Const.BattleType,  -- 指定后排行榜列表会附带该阵容的英雄数据
+--   orders = { "desc", "asc" },      -- 排序方向, 依次对应 主值/param1/param2/param3
+-- }
 function M.RegisterRankType(rank_type, config)
     config = config or {}
-    s_rank_type_config[rank_type] = {
-        sort_fn = config.sort_fn or nil,  -- 默认按score从大到小
-        page_size = config.page_size or 100,
-        custom = config.custom or false,
-        battle_type = config.battle_type or nil,
-    }
-    LOG_INFO("RankManager: 注册排行榜类型 %d, page_size=%d", rank_type, config.page_size or 100)
 
-    -- 注册后立即预加载数据库数据
+    local rank_config = {
+        page_size = config.page_size or 100,
+        battle_type = config.battle_type or nil,
+        orders = config.orders or DEFAULT_ORDERS,
+    }
+    s_rank_type_config[rank_type] = rank_config
+
+    cpp_RankConfigure(rank_type, LOC.BuildOrders(rank_config))
+    cpp_RankClear(rank_type)
+
+    -- 数据已重置,加载状态与本地缓存一并作废,等待数据库重新拉取
+    local m_data = LOC.GetOrSetData()
+    m_data.m_is_loaded[rank_type] = nil
+    LOC.ClearNodeCache(rank_type)
+
+    LOG_INFO("RankManager: 注册排行榜类型 %d, page_size=%d, orders=%d",
+        rank_type, rank_config.page_size, #rank_config.orders)
+
     M.LoadRank(rank_type)
 end
 
@@ -76,36 +73,27 @@ end
 function LOC.GetOrSetData()
     if not M.m_data then
         M.m_data = {
-            -- [rank_type] = {[uid] = RankNode}
-            m_ranks = {},
-            -- 是否已加载
+            -- [rank_type] = 加载状态: nil=未请求 false=请求中 true=已加载
             m_is_loaded = {},
-            -- 脏标记
+            -- [rank_type] = 脏标记
             m_dirty = {},
+            -- [rank_type] = {[uid] = {time = 节点更新时间, node = 解析后的节点数据}}
+            m_node_cache = {},
         }
     end
     return M.m_data
 end
 
--- 初始化(服务器启动时从数据库加载)
-function M.Init()
-    -- 注册内置排行榜类型
-    M.RegisterRankType(GLO.Const.RankType.MAIN_BATTLE, {
-        page_size = 100,
-        battle_type = GLO.Const.BattleType.MAIN_BATTLE,
-    })
-end
-
 -- 加载指定类型的排行榜
+-- m_is_loaded 状态: nil=未请求 false=请求中 true=已加载
 function M.LoadRank(rank_type)
     local m_data = LOC.GetOrSetData()
-    if m_data.m_is_loaded[rank_type] then
+    if nil ~= m_data.m_is_loaded[rank_type] then
         return
     end
 
     m_data.m_is_loaded[rank_type] = false
 
-    -- 从rank表加载
     GLO.Protobuf.SendDBMsg(MHT.MHT_RANK_DB_C, {
         req_type = 1,       -- 加载
         rank_type = rank_type,
@@ -120,197 +108,225 @@ function M.LoadRet(msg_data)
     end
 
     local rank_type = msg_data.rank_type or 0
-    local datas = msg_data.datas
-
     local m_data = LOC.GetOrSetData()
 
-    if not m_data.m_ranks[rank_type] then
-        m_data.m_ranks[rank_type] = {}
-    end
+    -- 重新加载会覆盖整张榜,旧的节点缓存全部作废
+    LOC.ClearNodeCache(rank_type)
 
-    local rank_map = m_data.m_ranks[rank_type]
-
-    if datas then
-        for _, node_raw in ipairs(datas) do
-            local node_data = Serializer.Simple.Deserialize(node_raw.data)
-            if node_data then
-                local node = RankNode:New()
-                node:Deserialize(node_data)
-                rank_map[node.uid] = node
-            end
+    local load_count = 0
+    for _, node in ipairs(msg_data.datas or {}) do
+        -- 加载走专用入口
+        local rank = cpp_RankLoadNode(rank_type, node.uid, node.name or "",
+            node.value or 0, node.param1 or 0, node.param2 or 0, node.param3 or 0,
+            node.update_time or 0, node.data or "")
+        if not rank or rank <= 0 then
+            LOG_ERROR("RankManager: 加载排行榜节点失败 rank_type=%d uid=%s",
+                rank_type, tostring(node.uid))
+        else
+            load_count = load_count + 1
         end
     end
 
     m_data.m_is_loaded[rank_type] = true
 
-    LOG_INFO("RankManager: 加载排行榜类型 %d, 共 %d 条数据",
-        rank_type, M.GetNodeCount(rank_type))
+    LOG_INFO("RankManager: 加载排行榜类型 %d, 共 %d 条数据", rank_type, load_count)
+end
+
+-- ==================== 节点数据解析 ====================
+
+-- 把 C++ 返回的节点转成表
+-- 以节点更新时间判断缓存是否可用,内容没变时直接复用,避免重复解析附加数据
+-- entry: cpp_Rank* 返回的节点 {rank, uid, name, value, param1..3, time, data}
+function LOC.DecodeEntry(rank_type, entry)
+    local m_data = LOC.GetOrSetData()
+    local node_cache = m_data.m_node_cache[rank_type]
+    if not node_cache then
+        node_cache = {}
+        m_data.m_node_cache[rank_type] = node_cache
+    end
+
+    local cached = node_cache[entry.uid]
+    if cached and cached.time == entry.time then
+        cached.node.rank = entry.rank
+        return cached.node
+    end
+
+    local node = {
+        type = rank_type,
+        uid = entry.uid,
+        name = entry.name or "",
+        value = entry.value or 0,
+        param1 = entry.param1 or 0,
+        param2 = entry.param2 or 0,
+        param3 = entry.param3 or 0,
+        update_time = entry.time or 0,
+        extra_data = LOC.DecodeExtraData(rank_type, entry),
+        rank = entry.rank,
+    }
+
+    node_cache[entry.uid] = { time = entry.time, node = node }
+    return node
+end
+
+-- 解析附加数据
+-- extra_data: 反序列化失败时返回空表
+function LOC.DecodeExtraData(rank_type, entry)
+    if not entry.data or entry.data == "" then
+        return {}
+    end
+
+    local ok, decoded = pcall(Serializer.Simple.Deserialize, entry.data)
+    if not ok or type(decoded) ~= "table" then
+        LOG_ERROR("RankManager: 排行榜数据解析失败 rank_type=%d uid=%s",
+            rank_type, tostring(entry.uid))
+        return {}
+    end
+    return decoded
+end
+
+-- 清理节点缓存
+-- uid: 指定 uid 只清该节点,传 nil 清空整个排行榜类型
+function LOC.ClearNodeCache(rank_type, uid)
+    local m_data = LOC.GetOrSetData()
+    local node_cache = m_data.m_node_cache[rank_type]
+    if not node_cache then
+        return
+    end
+
+    if uid then
+        node_cache[uid] = nil
+    else
+        m_data.m_node_cache[rank_type] = nil
+    end
 end
 
 -- ==================== 节点操作 ====================
 
 -- 添加或更新节点
--- @param rank_type: 排行榜类型
--- @param uid: 玩家uid
--- @param name: 玩家名字
--- @param value: 排行榜主值
--- @param extra_data: 额外数据(可选)
-function M.AddNode(rank_type, uid, name, value, extra_data)
+-- rank_type: 排行榜类型
+-- value: 排行榜主值
+-- params: {param1, param2, param3} 自定义排序参数(可选)
+-- extra_data: 业务数据
+-- node: 排行榜节点, 写入失败返回 nil
+function M.AddNode(rank_type, uid, name, value, params, extra_data)
     local m_data = LOC.GetOrSetData()
 
-    -- 确保已加载
     if not m_data.m_is_loaded[rank_type] then
         M.LoadRank(rank_type)
     end
 
-    if not m_data.m_ranks[rank_type] then
-        m_data.m_ranks[rank_type] = {}
+    uid = uid or 0
+    if uid <= 0 then
+        LOG_ERROR("RankManager.AddNode: uid 无效 rank_type=%d", rank_type)
+        return nil
     end
 
-    local rank_map = m_data.m_ranks[rank_type]
-    local existing = rank_map[uid]
+    local param1 = params and params[1] or 0
+    local param2 = params and params[2] or 0
+    local param3 = params and params[3] or 0
+    local data_bytes = Serializer.Simple.Serialize(extra_data or {})
 
-    if existing then
-        -- 更新
-        existing.name = name or existing.name
-        existing.value = value or existing.value
-        existing.extra_data = extra_data or existing.extra_data
-    else
-        -- 新增
-        local node = RankNode:New(rank_type, uid, name or "", value or 0, extra_data or {})
-        rank_map[uid] = node
+    -- 更新排行榜节点
+    local rank, update_time = cpp_RankUpsert(rank_type, uid, name or "", value or 0,
+        param1, param2, param3, data_bytes)
+    if not rank or rank <= 0 then
+        LOG_ERROR("RankManager.AddNode: 写入排行榜失败 rank_type=%d uid=%d", rank_type, uid)
+        return nil
     end
 
-    -- 标记脏
     m_data.m_dirty[rank_type] = true
 
-    return rank_map[uid]
+    -- 刚落库的节点与 C++ 中数据一致,直接更新缓存
+    local node = {
+        type = rank_type,
+        uid = uid,
+        name = name or "",
+        value = value or 0,
+        param1 = param1,
+        param2 = param2,
+        param3 = param3,
+        update_time = update_time,
+        extra_data = extra_data or {},
+        rank = rank,
+    }
+    m_data.m_node_cache[rank_type] = m_data.m_node_cache[rank_type] or {}
+    m_data.m_node_cache[rank_type][uid] = { time = update_time, node = node }
+
+    return node
 end
 
 -- 删除节点
 function M.RemoveNode(rank_type, uid)
     local m_data = LOC.GetOrSetData()
-    if not m_data.m_ranks[rank_type] then
+
+    if not cpp_RankRemove(rank_type, uid) then
         return false
     end
 
-    if m_data.m_ranks[rank_type][uid] then
-        m_data.m_ranks[rank_type][uid] = nil
-        m_data.m_dirty[rank_type] = true
-        return true
-    end
-    return false
+    m_data.m_dirty[rank_type] = true
+    LOC.ClearNodeCache(rank_type, uid)
+    return true
 end
 
--- 获取节点
+-- 获取节点 不存在返回 nil
 function M.GetNode(rank_type, uid)
-    local m_data = LOC.GetOrSetData()
-    if not m_data.m_ranks[rank_type] then
+    if not uid or uid <= 0 then
         return nil
     end
-    return m_data.m_ranks[rank_type][uid]
+
+    local entry = cpp_RankGetNode(rank_type, uid)
+    if not entry then
+        return nil
+    end
+    return LOC.DecodeEntry(rank_type, entry)
 end
 
 -- 获取节点数量
 function M.GetNodeCount(rank_type)
-    local m_data = LOC.GetOrSetData()
-    if not m_data.m_ranks[rank_type] then
-        return 0
-    end
-    local count = 0
-    for _ in pairs(m_data.m_ranks[rank_type]) do
-        count = count + 1
-    end
-    return count
+    return cpp_RankCount(rank_type) or 0
 end
 
 -- ==================== 排序和分页 ====================
 
--- 获取排序后的列表
--- @param rank_type: 排行榜类型
--- @return sorted_list: 排序后的RankNode列表(带rank字段)
-function M.GetSortedList(rank_type)
-    local m_data = LOC.GetOrSetData()
-    local rank_map = m_data.m_ranks[rank_type]
-    if not rank_map then
-        return {}
+-- 获取分段排行榜数据
+-- offset: 偏移(从0开始)
+-- limit: 数量(默认使用注册时的page_size)
+-- 返回 nodes,has_more,total
+function M.GetRankPage(rank_type, offset, limit)
+    local rank_config = s_rank_type_config[rank_type] or {}
+    offset = offset or 0
+    limit = limit or rank_config.page_size or 100
+    if limit <= 0 then
+        limit = rank_config.page_size or 100
     end
 
-    local config = s_rank_type_config[rank_type] or {}
-    local sort_fn = config.sort_fn
-
-    -- 收集所有节点
-    local list = {}
-    for _, node in pairs(rank_map) do
-        table.insert(list, node)
+    local result = cpp_RankGetPage(rank_type, offset, limit) or {}
+    local nodes = {}
+    for _, entry in ipairs(result.list or {}) do
+        table.insert(nodes, LOC.DecodeEntry(rank_type, entry))
     end
 
-    -- 排序
-    if sort_fn then
-        -- 自定义排序
-        table.sort(list, sort_fn)
-    else
-        -- 默认排序: 按value从大到小,相同value按uid从小到大
-        table.sort(list, function(a, b)
-            if a.value ~= b.value then
-                return a.value > b.value
-            end
-            return a.uid < b.uid
-        end)
-    end
-
-    -- 设置排名
-    for i, node in ipairs(list) do
-        node.rank = i
-    end
-
-    return list
+    return nodes, result.has_more or false, result.total or 0
 end
 
--- 获取分段排行榜数据
--- @param rank_type: 排行榜类型
--- @param offset: 偏移(从0开始)
--- @param limit: 数量(默认使用注册时的page_size)
--- @return nodes, has_more, total
---   nodes: RankNode列表
---   has_more: 是否还有更多
---   total: 总节点数
-function M.GetRankPage(rank_type, offset, limit)
-    local config = s_rank_type_config[rank_type] or {}
-    limit = limit or config.page_size or 100
-    offset = offset or 0
-
-    local sorted = M.GetSortedList(rank_type)
-    local total = #sorted
-
-    -- 计算分页
-    local start_idx = offset + 1
-    local end_idx = math.min(offset + limit, total)
-
-    local page = {}
-    if start_idx <= end_idx then
-        for i = start_idx, end_idx do
-            table.insert(page, sorted[i])
-        end
+-- 获取排序后的完整列表
+-- rank_type: 排行榜类型
+-- sorted_list: 排序后的节点列表
+function M.GetSortedList(rank_type)
+    local total = M.GetNodeCount(rank_type)
+    if total <= 0 then
+        return {}
     end
-
-    local has_more = end_idx < total
-
-    return page, has_more, total
+    return M.GetRankPage(rank_type, 0, total) or {}
 end
 
 -- 获取指定玩家的排名
--- @param rank_type: 排行榜类型
--- @param uid: 玩家uid
--- @return rank: 排名(从1开始), 0表示未找到
+-- @return rank: 排名(从1开始),0表示未找到
 function M.GetPlayerRank(rank_type, uid)
-    local sorted = M.GetSortedList(rank_type)
-    for _, node in ipairs(sorted) do
-        if node.uid == uid then
-            return node.rank
-        end
+    if not uid or uid <= 0 then
+        return 0
     end
-    return 0
+    return cpp_RankGetRank(rank_type, uid) or 0
 end
 
 -- ==================== 保存到数据库 ====================
@@ -322,23 +338,26 @@ function M.SaveRank(rank_type)
         return
     end
 
-    local rank_map = m_data.m_ranks[rank_type]
-    if not rank_map then
+    -- 还没从数据库加载完成时不能回写,否则会把库里已有的数据覆盖成空
+    if not m_data.m_is_loaded[rank_type] then
+        LOG_WARN("RankManager: 排行榜类型 %d 未加载完成, 跳过本次保存", rank_type)
         return
     end
 
     local datas = {}
-    for uid, node in pairs(rank_map) do
-        local serialized = node:Serialize()
-        local data_bytes = Serializer.Simple.Serialize(serialized)
+    for _, entry in ipairs(cpp_RankGetAll(rank_type) or {}) do
         table.insert(datas, {
-            uid = uid,
-            name = node.name or "",
-            data = data_bytes,
+            uid = entry.uid,
+            name = entry.name or "",
+            value = entry.value or 0,
+            param1 = entry.param1 or 0,
+            param2 = entry.param2 or 0,
+            param3 = entry.param3 or 0,
+            update_time = entry.time or 0,
+            data = entry.data or "",
         })
     end
 
-    -- 通过PRankDb消息保存到MySQL rank表
     GLO.Protobuf.SendDBMsg(MHT.MHT_RANK_DB_C, {
         req_type = 2,       -- 保存
         rank_type = rank_type,
@@ -360,75 +379,83 @@ end
 -- ==================== 辅助函数 ====================
 
 -- 更新玩家排行榜值
--- @param rank_type: 排行榜类型
--- @param uid: 玩家uid
--- @param name: 玩家名字
--- @param value: 新值
-function M.UpdateValue(rank_type, uid, name, value, extra_data)
-    local node = M.AddNode(rank_type, uid, name, value, extra_data)
-    -- -- 立即单个保存到数据库
-    -- if node then
-    --     M.SaveSingleNode(rank_type, node)
-    -- end
-    return node
+-- rank_type: 排行榜类型
+-- uid: 玩家uid
+-- name: 玩家名字
+-- value: 新值
+-- params: {param1, param2, param3} 自定义排序参数(可选)
+-- extra_data: 业务数据
+function M.UpdateValue(rank_type, uid, name, value, params, extra_data)
+    return M.AddNode(rank_type, uid, name, value, params, extra_data)
 end
 
 -- 更新排行榜(带阵容数据,自动将阵容英雄信息合并到extra_data)
--- @param role: 角色实例
--- @param rank_type: 排行榜类型
--- @param value: 排行榜主值
--- @param extra_data: 额外数据(可选,会自动合并power和heroes)
--- @param battle_type: 阵容类型(Const.BattleType),构建阵容数据合并到extra_data
+-- role: 角色实例
+-- rank_type: 排行榜类型
+-- value: 排行榜主值
+-- extra_data: 额外数据(可选,会自动合并power和heroes)
+-- battle_type: 阵容类型(Const.BattleType),构建阵容数据合并到extra_data
 function M.UpdateRankWithLineup(role, rank_type, value, extra_data, battle_type)
     if not role or not rank_type or not battle_type then
         LOG_ERROR("RankManager.UpdateRankWithLineup: 参数无效")
         return
     end
     extra_data = extra_data or {}
-    -- 只读快照: BuildProtoHeroDataList 只读快照并构造新表, 不会改动角色数据
+    -- 只读快照: BuildProtoHeroDataList 只读快照并构造新表
     local snapshot = GLO.RoleBattleSnapshot.SnapshotRef(role)
     if snapshot then
         extra_data.power = value
         extra_data.heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(snapshot, battle_type)
     end
-    M.UpdateValue(rank_type, role.uid, role:GetName() or "", value, extra_data)
+    M.UpdateValue(rank_type, role.uid, role:GetName() or "", value, nil, extra_data)
 end
 
 -- 保存单个排行榜节点到数据库
--- @param rank_type: 排行榜类型
--- @param node: RankNode实例
+-- rank_type: 排行榜类型
+-- node: 业务节点(至少包含 uid)
 function M.SaveSingleNode(rank_type, node)
-    if not node then
+    if not node or not node.uid then
         return
     end
-    local serialized = node:Serialize()
-    local data_bytes = Serializer.Simple.Serialize(serialized)
+
+    local entry = cpp_RankGetNode(rank_type, node.uid)
+    if not entry then
+        return
+    end
+
     GLO.Protobuf.SendDBMsg(MHT.MHT_RANK_DB_C, {
         req_type = 3,   -- 保存单个
         rank_type = rank_type,
         datas = {{
-            uid = node.uid,
-            name = node.name or "",
-            value = node.value or 0,
-            data = data_bytes,
+            uid = entry.uid,
+            name = entry.name or "",
+            value = entry.value or 0,
+            param1 = entry.param1 or 0,
+            param2 = entry.param2 or 0,
+            param3 = entry.param3 or 0,
+            update_time = entry.time or 0,
+            data = entry.data or "",
         }},
     })
 end
 
 -- 批量更新排行榜
--- @param rank_type: 排行榜类型
--- @param nodes: {uid, name, value, extra_data}列表
+-- rank_type: 排行榜类型
+-- nodes: {uid, name, value, params, extra_data}列表
 function M.BatchUpdate(rank_type, nodes)
     for _, n in ipairs(nodes or {}) do
-        M.AddNode(rank_type, n.uid, n.name, n.value, n.extra_data)
+        M.AddNode(rank_type, n.uid, n.name, n.value, n.params, n.extra_data)
     end
 end
 
 -- 清理排行榜
 function M.ClearRank(rank_type)
     local m_data = LOC.GetOrSetData()
-    m_data.m_ranks[rank_type] = {}
+
+    cpp_RankClear(rank_type)
     m_data.m_dirty[rank_type] = true
+    LOC.ClearNodeCache(rank_type)
+
     LOG_INFO("RankManager: 清空排行榜类型 %d", rank_type)
 end
 
@@ -445,11 +472,36 @@ local s_rank_handlers = {}
 
 -- 注册排行榜类型自定义处理器
 -- 当客户端请求该排行榜时,路由到自定义处理器而非通用排行榜逻辑
--- @param rank_type: 排行榜类型
--- @param handler_fn: function(netid, role, rank_offset) end
+-- rank_type: 排行榜类型
+-- handler_fn: function(netid, role, rank_offset) end
 function M.RegisterRankHandler(rank_type, handler_fn)
     s_rank_handlers[rank_type] = handler_fn
     LOG_INFO("RankManager: 注册排行榜类型 %d 自定义处理器", rank_type)
+end
+
+-- 构建通用排行榜协议节点
+-- rank_node: PB_RankNode 结构
+function M.BuildRankNode(node, rank_config)
+    local power = (node.extra_data and node.extra_data.power) or 0
+    local heroes = {}
+
+    -- 从extra_data直接取完整数据
+    if rank_config.battle_type and node.extra_data and node.extra_data.heroes then
+        heroes = node.extra_data.heroes
+    end
+
+    return {
+        rank = node.rank,
+        uid = node.uid,
+        name = node.name or "",
+        value = node.value or 0,
+        param1 = node.param1 or 0,
+        param2 = node.param2 or 0,
+        param3 = node.param3 or 0,
+        update_time = node.update_time or 0,
+        power = power,
+        heroes = heroes,
+    }
 end
 
 -- 处理通用排行榜请求
@@ -474,9 +526,8 @@ MsgManager.RegisterMsg(MHT.MHT_RANK_CS,function(netid, role, msg_data)
         return
     end
 
-    -- 默认通用排行榜逻辑
     M.LoadRank(rank_type)
-    local config = s_rank_type_config[rank_type] or {}
+    local rank_config = s_rank_type_config[rank_type] or {}
 
     -- 获取分段数据
     local nodes, has_more, total = M.GetRankPage(rank_type, rank_offset)
@@ -484,22 +535,7 @@ MsgManager.RegisterMsg(MHT.MHT_RANK_CS,function(netid, role, msg_data)
     -- 构建通用排行榜节点列表
     local rank_list = {}
     for _, node in ipairs(nodes or {}) do
-        local power = (node.extra_data and node.extra_data.power) or 0
-        local heroes = {}
-
-        -- 从extra_data直接取完整英雄数据
-        if config.battle_type and node.extra_data and node.extra_data.heroes then
-            heroes = node.extra_data.heroes
-        end
-
-        table.insert(rank_list, {
-            rank = node.rank,
-            uid = node.uid,
-            name = node.name or "",
-            value = node.value or 0,
-            power = power,
-            heroes = heroes,
-        })
+        table.insert(rank_list, M.BuildRankNode(node, rank_config))
     end
 
     GLO.Protobuf.SendMsg(netid, MHT.MHT_RANK_SC, {
@@ -515,6 +551,14 @@ end)
 MsgManager.RegisterMsg(MHT.MHT_RANK_DB_S, function(netid, role, msg_data)
     M.LoadRet(msg_data)
 end)
+
+-- 服务器启动时从数据库加载
+function M.Init()
+    M.RegisterRankType(GLO.Const.RankType.MAIN_BATTLE, {
+        page_size = 100,
+        battle_type = GLO.Const.BattleType.MAIN_BATTLE,
+    })
+end
 
 LOG_INFO(" RankManager 加载完成")
 return M

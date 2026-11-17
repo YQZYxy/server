@@ -12,11 +12,7 @@
 
     "globalserver": {
         "ListenIP": "127.0.0.1",
-        "ListenPort": 3727,
-        "ListenLLMPort": 8080,
-        "common_params": "--model F:/model/Qwopus3.5-9B-v3.Q8_0.gguf --fit off --ctx-size 200000 --batch-size 8192 --temp 0.7 --n-gpu-layers auto --kv_unified --parallel 4 --cache-type-k q4_0 --cache-type-v q4_0",
-        "is_debug": false,
-        "extra_args": "--spec-type draft-mtp --spec-draft-n-max 3"
+        "ListenPort": 3727
     },
 
     "logicserver": {

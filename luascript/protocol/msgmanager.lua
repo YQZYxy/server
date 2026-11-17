@@ -4,6 +4,11 @@
 local GLO = GLO
 local M = {}
 
+-- 耗时统计用单调时钟
+local function NowUs()
+    return GLO.Utils.NowUs()
+end
+
 -- 消息处理函数注册表 {msg_type: callback_function}
 local m_msg_func_list = {}
 
@@ -27,8 +32,7 @@ end
 -- msg_str: 消息字符串 (protobuf序列化后的数据)
 -- uid: 用户ID (只有用户消息才有uid,战斗服和内部协议没有uid)
 function M.OnRecv(netid, msg_type, msg_str, uid)
-    local t0 = os.clock()
-    local t = t0
+    local t0 = NowUs()
 
     -- 查找消息处理函数
     local handler_func = m_msg_func_list[msg_type]
@@ -44,7 +48,7 @@ function M.OnRecv(netid, msg_type, msg_str, uid)
         LOG_ERROR("解码包体失败: msg_type=%d", msg_type)
         return
     end
-    local t_decode = os.clock()
+    local t_decode = NowUs()
 
     if GLO.MHT.MHT_BATTLE_MSG_TYPE_MAX < msg_type then
 
@@ -67,10 +71,11 @@ function M.OnRecv(netid, msg_type, msg_str, uid)
         end
     end
 
-    local cost = (os.clock() - t0) * 1000
+    local t_end = NowUs()
+    local cost = (t_end - t0) / 1000
     if cost > 10 then
-        local decode_ms = (t_decode - t) * 1000
-        local handler_ms = (os.clock() - t_decode) * 1000
+        local decode_ms = (t_decode - t0) / 1000
+        local handler_ms = (t_end - t_decode) / 1000
         local info = debug.getinfo(handler_func, "S")
         local src = info and info.source or "?"
         local linedef = info and info.linedefined or "?"

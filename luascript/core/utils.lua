@@ -343,6 +343,22 @@ function M.GetServerTime()
 	return cpp_GetServerTime()
 end
 
+-- 单调时钟(微秒), 仅用于耗时差值, 不要当时间戳使用
+-- windows 下只有 1ms 精度
+local cpp_now_micros = rawget(_G, "cpp_GetMonotonicMicros") or function()
+	-- 没有 C++ 绑定时退回 os.clock
+	return math.floor(os.clock() * 1000000)
+end
+
+function M.NowUs()
+	return cpp_now_micros()
+end
+
+-- 单调时钟(毫秒, 浮点)
+function M.NowMs()
+	return cpp_now_micros() / 1000
+end
+
 function M.TimeFormat(timestamp)
 	-- 简化版时间格式化
 	return os.date("%Y-%m-%d %H:%M:%S", timestamp)

@@ -19,14 +19,13 @@ function extractTags(items: Array<{ tags?: string[] }>): string[] {
 }
 
 const DEFAULT_URLS = [
-  'https://api.deepseek.com',
-  'http://127.0.0.1:8080/chat/completions',
+  'https://api.deepseek.com/v1',
   'https://api.openai.com/v1',
   'https://api.moonshot.cn/v1',
 ]
 
 const DEFAULT_MODELS = [
-  'XiaoYu', 'deepseek-v4-flash', 'deepseek-v4-pro',
+  'deepseek-v4-flash', 'deepseek-v4-pro',
   'gpt-4o', 'gpt-4o-mini', 'claude-4.6-opus',
 ]
 
@@ -212,7 +211,7 @@ export default function SidebarPanel({ config, onConfigChange, onClose, onSyncSu
             value={localConfig.apiUrl}
             list="apiUrlList"
             onChange={(e) => update({ apiUrl: e.target.value })}
-            placeholder="http://127.0.0.1:8080/chat/completions"
+            placeholder="https://api.deepseek.com/v1"
           />
           <datalist id="apiUrlList">
             {urlHistory.filter(u => u && !DEFAULT_URLS.includes(u)).map((url, i) => (

@@ -191,12 +191,3 @@ add_subdirectory(gatewayserver)
 
 # 启用解决方案文件夹, CMake 标准目标 (ALL_BUILD/ZERO_CHECK/INSTALL) 自动收进 CMakePredefinedTargets
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-# 将第三方目标收进 AllThirdParty 解决方案文件夹
-foreach(TARGET_NAME llama llama-common llama-common-base ggml ggml-base ggml-cpu ggml-cuda cpp-httplib mtmd 
-        llama-gemma3-cli llama-llava-cli llama-minicpmv-cli llama-mtmd-cli llama-mtmd-debug llama-qwen2vl-cli
-        vendor-hash)
-    if(TARGET ${TARGET_NAME})
-        set_target_properties(${TARGET_NAME} PROPERTIES FOLDER "AllThirdParty")
-    endif()
-endforeach()

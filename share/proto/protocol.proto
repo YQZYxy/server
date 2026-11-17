@@ -113,10 +113,14 @@ message P_ArenaDb_S
 // 排行榜数据库节点
 message PB_RankDbNode
 {
-	optional int64 uid						= 1;	// 用户uid
-	optional string name						= 2;	// 名字
-	optional int64 value					    = 3;	// 排行榜主值(用于排序)
-	optional string data						= 4;	// 序列化的lua数据
+	optional uint32 uid						= 1;	// 用户uid
+	optional string name					= 2;	// 名字
+	optional int64 value					= 3;	// 排行榜主值
+	optional int64 param1					= 4;	// 自定义排序参数
+	optional int64 param2					= 5;	// 自定义排序参数
+	optional int64 param3					= 6;	// 自定义排序参数
+	optional int64 update_time				= 7;	// 更新时间戳(毫秒)
+	optional string data					= 8;	// 序列化的lua数据
 }
 
 // 排行榜数据库请求
@@ -136,86 +140,6 @@ message P_RankDb_S
 	optional int32 save_ret					= 2;	// 保存结果
 	optional int32 rank_type					= 3;	// 排行榜类型
 	repeated PB_RankDbNode datas		= 4;	// 数据列表
-}
-
-// ============================LLM 聊天协议========================================
-
-// LLM 聊天请求 (Gateway → Global)
-// MHT_LLM_CHAT_REQ = 110
-message P_LlmChatReq
-{
-	optional string messages_json		= 1;	// 消息列表 JSON (OpenAI 格式)
-	optional string tools_json			= 2;	// 工具列表 JSON
-	optional int32 max_tokens			= 3;	// 最大生成 token 数
-	optional float temperature			= 4;	// 温度
-	optional bool stream				= 5;	// 是否流式
-	optional string model				= 6;	// 模型名
-	optional string grammar				= 7;	// 语法约束
-	optional string json_schema			= 8;	// JSON Schema
-	optional bool enable_thinking		= 9;	// 启用思考
-	optional bool use_jinja				= 10;	// 使用 Jinja 模版
-	optional string session_key			= 11;	// 会话标识
-	optional string media_datas_json	= 12;	// 多模态媒体数据 JSON
-	optional int64 req_id				= 13;	// 请求 ID (匹配响应)
-	optional bool add_generation_prompt	= 14;	// 添加生成 prompt
-	optional float response_format_type	= 15;	// response_format type
-}
-
-// LLM 聊天流式响应 (Global → Gateway)
-// MHT_LLM_CHAT_RESPONSE = 111
-message P_LlmChatResponse
-{
-	optional string content_delta		= 1;	// 文本 token 增量
-	optional string reasoning_delta		= 2;	// 思考 token 增量
-	optional int32 index				= 3;	// choice index
-	optional int64 req_id				= 4;	// 请求 ID (匹配请求)
-	optional string tool_call_json		= 5;	// 工具调用 delta JSON
-	optional int32 tool_call_index		= 6;	// 工具调用索引 (-1 表示非工具调用)
-	optional string tool_call_id		= 7;	// 工具调用 ID
-	optional string tool_call_name		= 8;	// 工具调用名
-}
-
-// LLM 聊天完成通知 (Global → Gateway)
-// MHT_LLM_CHAT_DONE = 112
-message P_LlmChatDone
-{
-	optional int64 req_id				= 1;	// 请求 ID (匹配请求)
-	optional string finish_reason		= 2;	// 完成原因: "stop", "length", "tool_calls"
-	optional int32 prompt_tokens		= 3;	// 提示 token 数
-	optional int32 completion_tokens	= 4;	// 生成 token 数
-	optional string full_text			= 5;	// 完整文本(用于工具调用回退检测)
-	optional bool has_tool_calls		= 6;	// 是否包含工具调用
-}
-
-// LLM 模型列表请求 (Gateway → Global)
-// MHT_LLM_MODELS_REQ = 113
-message P_LlmModelsReq
-{
-	optional int64 req_id			= 1;
-}
-
-// LLM 模型列表响应 (Global → Gateway)
-// MHT_LLM_MODELS_RES = 114
-message P_LlmModelsRes
-{
-	optional int64 req_id			= 1;
-	optional string models_json			= 2;	// 模型列表 JSON
-}
-
-// LLM 健康检查请求 (Gateway → Global)
-// MHT_LLM_HEALTH_REQ = 115
-message P_LlmHealthReq
-{
-	optional int64 req_id			= 1;
-}
-
-// LLM 健康检查响应 (Global → Gateway)
-// MHT_LLM_HEALTH_RES = 116
-message P_LlmHealthRes
-{
-	optional int64 req_id			= 1;
-	optional string status				= 2;
-	optional bool running				= 3;
 }
 
 // ============================角色相关数据库=======================================

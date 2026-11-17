@@ -11,10 +11,15 @@ local GLO = GLO
 local M = {}
 local LOC = {}
 
+-- 时间预算使用单调时钟(微秒)
+local function NowUs()
+    return GLO.Utils.NowUs()
+end
+
 -- 回写调度间隔(秒), 每次只处理一批角色
 local FLUSH_INTERVAL = 0.1
--- 单次回写的时间预算(秒), 超过就让出主循环
-local FLUSH_TIME_BUDGET = 0.002
+-- 单次回写的时间预算(微秒), 超过就让出主循环
+local FLUSH_TIME_BUDGET_US = 2000
 -- 单批最少处理的角色数, 实际会按在线数自适应, 保证 1 秒内能轮完一遍
 local MIN_ROLE_PER_UPDATE = 100
 -- 回写失败的重试退避(秒)
@@ -278,7 +283,7 @@ function M.Update(force)
         batch = MIN_ROLE_PER_UPDATE
     end
 
-    local start_clock = os.clock()
+    local start_us = NowUs()
     local now = GLO.Utils.GetServerTime()
     local processed = 0
     local scanned = 0
@@ -293,7 +298,7 @@ function M.Update(force)
         if uid and m_cache[uid] then
             M.Flush(uid, false, now)
             processed = processed + 1
-            if os.clock() - start_clock >= FLUSH_TIME_BUDGET then
+            if NowUs() - start_us >= FLUSH_TIME_BUDGET_US then
                 break
             end
         end

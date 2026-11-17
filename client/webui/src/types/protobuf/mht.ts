@@ -1,6 +1,6 @@
 // ============================================================
 //  此文件脚本自动生成 请勿手动修改
-//  来源: share/proto/*.proto
+//  来源: generate_protobuf
 // ============================================================
 
 // ==================== MHT 协议号常量 ====================
@@ -16,13 +16,6 @@ export const MHT = {
   MHT_ARENA_DB_S: 106,  // 竞技场数据库返回
   MHT_RANK_DB_C: 107,  // 排行榜数据库请求
   MHT_RANK_DB_S: 108,  // 排行榜数据库返回
-  MHT_LLM_CHAT_REQ: 110,  // LLM 聊天请求 (Gateway → Global)
-  MHT_LLM_CHAT_RESPONSE: 111,  // LLM 聊天流式响应 (Global → Gateway)
-  MHT_LLM_CHAT_DONE: 112,  // LLM 聊天完成通知 (Global → Gateway)
-  MHT_LLM_MODELS_REQ: 113,  // LLM 模型列表请求 (Gateway → Global)
-  MHT_LLM_MODELS_RES: 114,  // LLM 模型列表响应 (Global → Gateway)
-  MHT_LLM_HEALTH_REQ: 115,  // LLM 健康检查请求 (Gateway → Global)
-  MHT_LLM_HEALTH_RES: 116,  // LLM 健康检查响应 (Global → Gateway)
   MHT_SAVE_ROLE_DATA_C: 1000,  // 保存角色信息请求
   MHT_SAVE_ROLE_DATA_S: 1001,  // 保存角色信息返回
   MHT_INIT_ROLE_DATA_C: 1002,  // 初始化角色信息请求
@@ -81,13 +74,6 @@ export const PROTO_BODY_TYPE: Record<number, string> = {
   106: 'P_ArenaDb_S',
   107: 'P_RankDb_C',
   108: 'P_RankDb_S',
-  110: 'P_LlmChatReq',
-  111: 'P_LlmChatResponse',
-  112: 'P_LlmChatDone',
-  113: 'P_LlmModelsReq',
-  114: 'P_LlmModelsRes',
-  115: 'P_LlmHealthReq',
-  116: 'P_LlmHealthRes',
   1000: 'P_SaveRoleData_C',
   1001: 'P_SaveRoleData_S',
   1002: 'P_InitRoleData_C',

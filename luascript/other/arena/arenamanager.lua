@@ -441,7 +441,7 @@ function M.HandleRegister(role)
     -- 从快照计算初始战力并同步到排行榜(保证离线展示时也有战力数据)
     local init_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
     user:UpdatePower(init_power)
-    GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, name, user.score, { power = init_power })
+    GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, name, user.score, nil, { power = init_power })
 
     -- 匹配对手
     local opponent_uids = M.MatchOpponents(uid)
@@ -490,7 +490,7 @@ function M.HandleRefresh(role)
     -- 从快照重新计算战力并同步到排行榜
     local refresh_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
     user:UpdatePower(refresh_power)
-    GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, user.name, user.score, { power = refresh_power })
+    GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, user.name, user.score, nil, { power = refresh_power })
 
     local opponents = M.BuildOpponentInfoList(opponent_uids, uid)
 
@@ -553,9 +553,9 @@ function M.OnArenaBattleEnd(attacker_uid, defender_uid, battle_result, report_ke
 
     -- 更新排行榜(战力一并存入extra_data,以便离线玩家排行榜展示)
     GLO.RankManager.UpdateValue(Const.RankType.ARENA, attacker_uid, attacker.name or "",
-        attacker.score, { power = attacker_power })
+        attacker.score, nil, { power = attacker_power })
     GLO.RankManager.UpdateValue(Const.RankType.ARENA, defender_uid, defender.name or "",
-        defender.score, { power = defender_power })
+        defender.score, nil, { power = defender_power })
 
     -- 从快照构建战斗日志英雄信息
     local attacker_hero_infos = M.BuildHeroInfoListFromSnapshot(

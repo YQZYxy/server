@@ -123,11 +123,15 @@ message PB_LineupListData
 message PB_RankNode
 {
 	optional int32 rank						= 1;	// 排名
-	optional int32 uid						= 2;	// 用户uid
-	optional string name						= 3;	// 名字
-	optional int32 value						= 4;	// 排行榜主值(如分数)
-	optional int32 power						= 5;	// 战力
-	repeated PB_HeroData heroes		= 6;	// 阵容英雄
+	optional uint32 uid						= 2;	// 用户uid
+	optional string name					= 3;	// 名字
+	optional int64 value					= 4;	// 排行榜主值
+	optional int64 param1					= 5;	// 自定义排序参数1
+	optional int64 param2					= 6;	// 自定义排序参数2
+	optional int64 param3					= 7;	// 自定义排序参数3
+	optional int64 update_time				= 8;	// 更新时间戳(毫秒)
+	optional int64 power					= 9;	// 阵容战力
+	repeated PB_HeroData heroes				= 10;	// 阵容英雄
 }
 
 message PB_ArenaRankNode

@@ -3,9 +3,9 @@ import type { AgentConfig } from '@/types'
 const STORAGE_KEY = 'xiaoyu_config'
 
 const DEFAULT_CONFIG: AgentConfig = {
-  apiUrl: 'http://127.0.0.1:8080/chat/completions',
+  apiUrl: 'https://api.deepseek.com/v1',
   apiKey: '',
-  model: 'XiaoYu',
+  model: 'deepseek-v4-flash',
   agentHost: '127.0.0.1',
   agentPort: 9527,
   temperature: 0.7,

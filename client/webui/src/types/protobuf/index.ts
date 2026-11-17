@@ -206,27 +206,6 @@ export type P_InitRoleData_C = _proto.P_InitRoleData_C.$Properties
 export const P_InitRoleData_S = _proto.P_InitRoleData_S
 export type P_InitRoleData_S = _proto.P_InitRoleData_S.$Properties
 
-export const P_LlmChatDone = _proto.P_LlmChatDone
-export type P_LlmChatDone = _proto.P_LlmChatDone.$Properties
-
-export const P_LlmChatReq = _proto.P_LlmChatReq
-export type P_LlmChatReq = _proto.P_LlmChatReq.$Properties
-
-export const P_LlmChatResponse = _proto.P_LlmChatResponse
-export type P_LlmChatResponse = _proto.P_LlmChatResponse.$Properties
-
-export const P_LlmHealthReq = _proto.P_LlmHealthReq
-export type P_LlmHealthReq = _proto.P_LlmHealthReq.$Properties
-
-export const P_LlmHealthRes = _proto.P_LlmHealthRes
-export type P_LlmHealthRes = _proto.P_LlmHealthRes.$Properties
-
-export const P_LlmModelsReq = _proto.P_LlmModelsReq
-export type P_LlmModelsReq = _proto.P_LlmModelsReq.$Properties
-
-export const P_LlmModelsRes = _proto.P_LlmModelsRes
-export type P_LlmModelsRes = _proto.P_LlmModelsRes.$Properties
-
 export const P_LoginReq_CS = _proto.P_LoginReq_CS
 export type P_LoginReq_CS = _proto.P_LoginReq_CS.$Properties
 

@@ -90,9 +90,13 @@ CREATE TABLE `role_data`  (
 DROP TABLE IF EXISTS `role_rank`;
 CREATE TABLE `role_rank`  (
   `type` int NOT NULL,
-  `uid` bigint NOT NULL,
+  `uid` bigint unsigned NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `value` bigint NOT NULL,
+  `param1` bigint NOT NULL DEFAULT 0,
+  `param2` bigint NOT NULL DEFAULT 0,
+  `param3` bigint NOT NULL DEFAULT 0,
+  `update_time` bigint NOT NULL DEFAULT 0,
   `data` longblob NULL,
   PRIMARY KEY (`type`, `uid`) USING BTREE,
   INDEX `rank_type_idx`(`type` ASC) USING BTREE

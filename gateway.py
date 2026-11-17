@@ -68,24 +68,84 @@ EXIT_WAIT_INTERVAL = 0.1         # 等待进程退出的轮询间隔
 # 日志里的 ANSI 颜色转义
 ANSI_ESCAPE_PATTERN = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
 
+# 日志行格式: [时间][类型][级别]消息, 级别是单字符
+LOG_LEVEL_PATTERN = re.compile(r"^\[[^\]]*\]\[-?\d+\]\[([DICWEF])\]")
+
+# 终端颜色, 与 logmodule.cpp 的级别配色保持一致
+COLOR_RESET = "\033[0m"
+COLOR_GRAY = "\033[0;90m"
+COLOR_RED = "\033[0;91m"
+COLOR_GREEN = "\033[0;92m"
+COLOR_YELLOW = "\033[0;93m"
+
+# 日志级别 -> 颜色
+LOG_LEVEL_COLORS = {
+    "D": COLOR_GRAY,
+    "I": COLOR_GREEN,
+    "C": COLOR_GREEN,
+    "W": COLOR_YELLOW,
+    "E": COLOR_RED,
+    "F": COLOR_RED,
+}
+
 # Windows 控制台相关常量
 WINDOWS_STD_OUTPUT_HANDLE = -11
+WINDOWS_STD_ERROR_HANDLE = -12
 WINDOWS_ENABLE_VIRTUAL_TERMINAL = 0x0004
 WINDOWS_CTRL_C_EVENT = 0
 WINDOWS_STILL_ACTIVE = 259
 WINDOWS_PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
 
+# 当前输出端是否支持颜色
+_color_enabled = False
+
 
 # ==============================================
 # 基础输出与平台适配
 # ==============================================
-def print_line(message=""):
+def colorize(text, color):
+    """给整段文本包上颜色, 未开启颜色时原样返回."""
+    if not _color_enabled or not color or not text:
+        return text
+    return color + text + COLOR_RESET
+
+
+def colorize_log_line(line):
+    """按日志级别给整行着色, 行尾换行符保持原样."""
+    if not _color_enabled:
+        return line
+    body = line.rstrip("\r\n")
+    match = LOG_LEVEL_PATTERN.match(body)
+    if match is None:
+        return line
+    color = LOG_LEVEL_COLORS.get(match.group(1))
+    if color is None:
+        return line
+    return color + body + COLOR_RESET + line[len(body):]
+
+
+def print_line(message="", color=None):
     """打印一行并立即刷新, 终端被关闭时不抛异常."""
     try:
-        sys.stdout.write(message + "\n")
+        sys.stdout.write(colorize(message, color) + "\n")
         sys.stdout.flush()
     except (OSError, ValueError):
         pass
+
+
+def print_ok(message=""):
+    """打印成功信息."""
+    print_line(message, COLOR_GREEN)
+
+
+def print_warn(message=""):
+    """打印警告信息."""
+    print_line(message, COLOR_YELLOW)
+
+
+def print_error(message=""):
+    """打印错误信息."""
+    print_line(message, COLOR_RED)
 
 
 def configure_console():
@@ -98,26 +158,63 @@ def configure_console():
             reconfigure(encoding="utf-8", errors="replace")
         except (OSError, ValueError):
             pass
-    if IS_WINDOWS:
-        configure_windows_console()
+
+    global _color_enabled
+    virtual_terminal_ready = configure_windows_console() if IS_WINDOWS else True
+    _color_enabled = detect_color_support(virtual_terminal_ready)
+
+
+def detect_color_support(virtual_terminal_ready):
+    """只有输出到真实终端且支持 ANSI 转义时才上色, 避免重定向时写出乱码."""
+    if os.environ.get("NO_COLOR") is not None:
+        return False
+    if not virtual_terminal_ready:
+        return False
+    try:
+        return bool(sys.stdout.isatty())
+    except (AttributeError, ValueError):
+        return False
 
 
 def configure_windows_console():
-    """Windows: 切到 UTF-8 代码页并启用虚拟终端转义(日志里有颜色转义)."""
+    """Windows: 切到 UTF-8 代码页并启用虚拟终端转义, 返回是否开启成功."""
     try:
         kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
     except (AttributeError, OSError):
-        return
+        return False
 
     try:
         kernel32.SetConsoleOutputCP(65001)
         kernel32.SetConsoleCP(65001)
-        handle = kernel32.GetStdHandle(WINDOWS_STD_OUTPUT_HANDLE)
-        mode = ctypes.c_uint32()
-        if kernel32.GetConsoleMode(handle, ctypes.byref(mode)):
-            kernel32.SetConsoleMode(handle, mode.value | WINDOWS_ENABLE_VIRTUAL_TERMINAL)
     except (AttributeError, OSError):
         pass
+
+    try:
+        # 显式声明类型, 否则 64 位句柄会被 ctypes 当作 int 截断, 调用必然失败
+        kernel32.GetStdHandle.argtypes = [ctypes.c_uint32]
+        kernel32.GetStdHandle.restype = ctypes.c_void_p
+        kernel32.GetConsoleMode.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_uint32)]
+        kernel32.GetConsoleMode.restype = ctypes.c_int
+        kernel32.SetConsoleMode.argtypes = [ctypes.c_void_p, ctypes.c_uint32]
+        kernel32.SetConsoleMode.restype = ctypes.c_int
+    except AttributeError:
+        return False
+
+    enabled = False
+    # stdout 与 stderr 都开, 否则重定向其中一个时颜色会失效
+    for std_handle in (WINDOWS_STD_OUTPUT_HANDLE, WINDOWS_STD_ERROR_HANDLE):
+        try:
+            handle = kernel32.GetStdHandle(std_handle)
+            if not handle:
+                continue
+            mode = ctypes.c_uint32()
+            if not kernel32.GetConsoleMode(handle, ctypes.byref(mode)):
+                continue
+            if kernel32.SetConsoleMode(handle, mode.value | WINDOWS_ENABLE_VIRTUAL_TERMINAL):
+                enabled = True
+        except (AttributeError, OSError):
+            continue
+    return enabled
 
 
 def send_console_ctrl_c():
@@ -344,7 +441,7 @@ class ManagedProcess:
             self.release()
             return True
 
-        print_line("  警告: %s 未在 %.0f 秒内退出, 强制结束" % (self.name, timeout))
+        print_warn("  警告: %s 未在 %.0f 秒内退出, 强制结束" % (self.name, timeout))
         self.force_kill()
         exited = self.wait_exit(FORCE_KILL_WAIT)
         self.release()
@@ -478,6 +575,8 @@ class LogFollower:
         self.strip_color = strip_color
         self.current_path = ""
         self.offset = 0
+        # 着色时缓存最后一段不完整的行, 等下一批数据补齐后再输出
+        self.pending = ""
 
     def poll(self):
         """读取新增内容并输出, 每次轮询调用一次."""
@@ -485,6 +584,7 @@ class LogFollower:
         if path != self.current_path:
             self.current_path = path
             self.offset = 0
+            self.pending = ""
             print_line("[gateway] 跟随日志: %s" % path)
             if not os.path.exists(path):
                 print_line("[gateway] 日志文件还没生成, 等待服务写入 ...")
@@ -539,11 +639,23 @@ class LogFollower:
         text = data.decode("utf-8", errors="replace")
         if self.strip_color:
             text = ANSI_ESCAPE_PATTERN.sub("", text)
+        text = self.colorize(text)
         try:
             sys.stdout.write(text)
             sys.stdout.flush()
         except (OSError, ValueError):
             pass
+
+    def colorize(self, text):
+        """按日志级别逐行着色, 不完整的行留到下一批一起输出."""
+        if self.strip_color or not _color_enabled:
+            return text
+
+        lines = (self.pending + text).split("\n")
+        self.pending = lines.pop()
+        if not lines:
+            return ""
+        return "".join(colorize_log_line(line) + "\n" for line in lines)
 
 
 # ==============================================
@@ -615,7 +727,7 @@ class Gateway:
             if create_dir_link(link_path, target_path):
                 print_line("[link] %s -> %s" % (name, target_path))
             else:
-                print_line("[gateway] 警告: 创建链接失败 %s -> %s" % (name, target_path))
+                print_warn("[gateway] 警告: 创建链接失败 %s -> %s" % (name, target_path))
             return
 
         try:
@@ -650,7 +762,7 @@ class Gateway:
     def start_service(self, name):
         exe_path = executable_path(self.exe_dir, name)
         if not os.path.isfile(exe_path):
-            print_line("[gateway] 警告: 找不到可执行文件 %s, 跳过" % exe_path)
+            print_warn("[gateway] 警告: 找不到可执行文件 %s, 跳过" % exe_path)
             return None
 
         reused_pid = self.reclaim_pid(name, exe_path)
@@ -666,12 +778,12 @@ class Gateway:
             pid = managed.start()
         except OSError as error:
             managed.release()
-            print_line("[gateway] 错误: 启动 %s 失败: %s" % (name, error))
+            print_error("[gateway] 错误: 启动 %s 失败: %s" % (name, error))
             return None
 
         write_pid_file(self.runlog_dir, name, pid)
         self.processes[name] = managed
-        print_line("%s 启动 (PID: %d) 日志: runlog/%s.log" % (name, pid, name))
+        print_ok("%s 启动 (PID: %d) 日志: runlog/%s.log" % (name, pid, name))
         return managed
 
     def start_webui(self):
@@ -687,12 +799,12 @@ class Gateway:
             pid = managed.start()
         except OSError as error:
             managed.release()
-            print_line("[gateway] 错误: 启动 webui 失败: %s" % error)
+            print_error("[gateway] 错误: 启动 webui 失败: %s" % error)
             return None
 
         write_pid_file(self.runlog_dir, SERVER_WEBUI, pid)
         self.processes[SERVER_WEBUI] = managed
-        print_line("webui 启动 (PID: %d) 日志: runlog/%s.log" % (pid, SERVER_WEBUI))
+        print_ok("webui 启动 (PID: %d) 日志: runlog/%s.log" % (pid, SERVER_WEBUI))
         return managed
 
     def reclaim_pid(self, name, exe_path):
@@ -708,7 +820,7 @@ class Gateway:
     def follow(self):
         """前台跟随日志, 同时轮询服务状态, 直到收到停止信号."""
         print_line()
-        print_line("[gateway] 全部启动完成, Ctrl+C 停止全部服务")
+        print_ok("[gateway] 全部启动完成, Ctrl+C 停止全部服务")
         print_line("[gateway] 其它服务输出目录: %s" % self.runlog_dir)
 
         follower = None
@@ -733,8 +845,8 @@ class Gateway:
             return
         if not managed.is_alive():
             self.logic_exit_warned = True
-            print_line()
-            print_line("[gateway] 警告: logicserver 已退出, 详见 runlog/logicserver.log")
+            print_warn()
+            print_warn("[gateway] 警告: logicserver 已退出, 详见 runlog/logicserver.log")
 
     def sleep_interruptible(self, seconds):
         """可被打断的等待, 返回 False 表示等待期间收到了停止请求."""
@@ -770,8 +882,8 @@ class Gateway:
             remove_pid_file(self.runlog_dir, name)
 
         if failed:
-            print_line("[gateway] 警告: %s 仍未退出, 请手动检查" % ", ".join(failed))
-        print_line("[gateway] 已停止")
+            print_warn("[gateway] 警告: %s 仍未退出, 请手动检查" % ", ".join(failed))
+        print_ok("[gateway] 已停止")
 
 
 # ==============================================
@@ -792,7 +904,7 @@ def parse_args(argv=None):
     parser.add_argument("--no-follow", action="store_true", help="不跟随日志, 只保持服务运行")
     parser.add_argument("--lines", type=int, default=DEFAULT_TAIL_LINES,
                         help="跟随日志时首屏显示的历史行数, 默认 %d" % DEFAULT_TAIL_LINES)
-    parser.add_argument("--strip-color", action="store_true", help="去掉日志里的 ANSI 颜色转义")
+    parser.add_argument("--strip-color", action="store_true", help="不输出颜色(同时去掉日志里的 ANSI 转义)")
     parser.add_argument("--start-delay", type=float, default=DEFAULT_START_DELAY,
                         help="等待多少秒后启动 gatewayserver, 默认 %g" % DEFAULT_START_DELAY)
     parser.add_argument("--stop-timeout", type=float, default=DEFAULT_STOP_TIMEOUT,
@@ -829,7 +941,7 @@ def main(argv=None):
         # 兜底: 个别环境把 SIGINT 解释成 KeyboardInterrupt
         return 0
     except SystemExit as error:
-        print_line(str(error))
+        print_error(str(error))
         return 1
 
 

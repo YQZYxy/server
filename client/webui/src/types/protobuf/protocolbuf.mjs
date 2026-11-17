@@ -9523,6 +9523,10 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
      * @property {number|null} [uid] PB_RankNode uid
      * @property {string|null} [name] PB_RankNode name
      * @property {number|null} [value] PB_RankNode value
+     * @property {number|null} [param1] PB_RankNode param1
+     * @property {number|null} [param2] PB_RankNode param2
+     * @property {number|null} [param3] PB_RankNode param3
+     * @property {number|null} [update_time] PB_RankNode update_time
      * @property {number|null} [power] PB_RankNode power
      * @property {Array.<PB_HeroData.$Properties>|null} [heroes] PB_RankNode heroes
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
@@ -9590,6 +9594,38 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
     PB_RankNode.prototype.value = null;
 
     /**
+     * PB_RankNode param1.
+     * @member {number|null|undefined} param1
+     * @memberof PB_RankNode
+     * @instance
+     */
+    PB_RankNode.prototype.param1 = null;
+
+    /**
+     * PB_RankNode param2.
+     * @member {number|null|undefined} param2
+     * @memberof PB_RankNode
+     * @instance
+     */
+    PB_RankNode.prototype.param2 = null;
+
+    /**
+     * PB_RankNode param3.
+     * @member {number|null|undefined} param3
+     * @memberof PB_RankNode
+     * @instance
+     */
+    PB_RankNode.prototype.param3 = null;
+
+    /**
+     * PB_RankNode update_time.
+     * @member {number|null|undefined} update_time
+     * @memberof PB_RankNode
+     * @instance
+     */
+    PB_RankNode.prototype.update_time = null;
+
+    /**
      * PB_RankNode power.
      * @member {number|null|undefined} power
      * @memberof PB_RankNode
@@ -9629,6 +9665,30 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_RankNode.prototype, "_value", {
         get: $util.oneOfGetter($oneOfFields = ["value"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankNode.prototype, "_param1", {
+        get: $util.oneOfGetter($oneOfFields = ["param1"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankNode.prototype, "_param2", {
+        get: $util.oneOfGetter($oneOfFields = ["param2"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankNode.prototype, "_param3", {
+        get: $util.oneOfGetter($oneOfFields = ["param3"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankNode.prototype, "_update_time", {
+        get: $util.oneOfGetter($oneOfFields = ["update_time"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -9673,16 +9733,24 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         if (message.rank != null && $Object.hasOwnProperty.call(message, "rank"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.rank);
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.uid);
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.uid);
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.name);
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.value);
+            writer.uint32(/* id 4, wireType 0 =*/32).int64(message.value);
+        if (message.param1 != null && $Object.hasOwnProperty.call(message, "param1"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int64(message.param1);
+        if (message.param2 != null && $Object.hasOwnProperty.call(message, "param2"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int64(message.param2);
+        if (message.param3 != null && $Object.hasOwnProperty.call(message, "param3"))
+            writer.uint32(/* id 7, wireType 0 =*/56).int64(message.param3);
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time"))
+            writer.uint32(/* id 8, wireType 0 =*/64).int64(message.update_time);
         if (message.power != null && $Object.hasOwnProperty.call(message, "power"))
-            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.power);
+            writer.uint32(/* id 9, wireType 0 =*/72).int64(message.power);
         if (message.heroes != null && message.heroes.length)
             for (let i = 0; i < message.heroes.length; ++i)
-                $root.PB_HeroData.encode(message.heroes[i], writer.uint32(/* id 6, wireType 2 =*/50).fork(), _depth + 1).ldelim();
+                $root.PB_HeroData.encode(message.heroes[i], writer.uint32(/* id 10, wireType 2 =*/82).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -9740,7 +9808,7 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
             case 2: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int32();
+                    message.uid = reader.uint32();
                     message._uid = "uid";
                     continue;
                 }
@@ -9754,18 +9822,46 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
             case 4: {
                     if (wireType !== 0)
                         break;
-                    message.value = reader.int32();
+                    message.value = reader.int64();
                     message._value = "value";
                     continue;
                 }
             case 5: {
                     if (wireType !== 0)
                         break;
-                    message.power = reader.int32();
-                    message._power = "power";
+                    message.param1 = reader.int64();
+                    message._param1 = "param1";
                     continue;
                 }
             case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.param2 = reader.int64();
+                    message._param2 = "param2";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.param3 = reader.int64();
+                    message._param3 = "param3";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 0)
+                        break;
+                    message.update_time = reader.int64();
+                    message._update_time = "update_time";
+                    continue;
+                }
+            case 9: {
+                    if (wireType !== 0)
+                        break;
+                    message.power = reader.int64();
+                    message._power = "power";
+                    continue;
+                }
+            case 10: {
                     if (wireType !== 2)
                         break;
                     if (!(message.heroes && message.heroes.length))
@@ -9834,13 +9930,33 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         }
         if (message.value != null && $Object.hasOwnProperty.call(message, "value")) {
             properties._value = 1;
-            if (!$util.isInteger(message.value))
-                return "value: integer expected";
+            if (!$util.isInteger(message.value) && !(message.value && $util.isInteger(message.value.low) && $util.isInteger(message.value.high)))
+                return "value: integer|Long expected";
+        }
+        if (message.param1 != null && $Object.hasOwnProperty.call(message, "param1")) {
+            properties._param1 = 1;
+            if (!$util.isInteger(message.param1) && !(message.param1 && $util.isInteger(message.param1.low) && $util.isInteger(message.param1.high)))
+                return "param1: integer|Long expected";
+        }
+        if (message.param2 != null && $Object.hasOwnProperty.call(message, "param2")) {
+            properties._param2 = 1;
+            if (!$util.isInteger(message.param2) && !(message.param2 && $util.isInteger(message.param2.low) && $util.isInteger(message.param2.high)))
+                return "param2: integer|Long expected";
+        }
+        if (message.param3 != null && $Object.hasOwnProperty.call(message, "param3")) {
+            properties._param3 = 1;
+            if (!$util.isInteger(message.param3) && !(message.param3 && $util.isInteger(message.param3.low) && $util.isInteger(message.param3.high)))
+                return "param3: integer|Long expected";
+        }
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time")) {
+            properties._update_time = 1;
+            if (!$util.isInteger(message.update_time) && !(message.update_time && $util.isInteger(message.update_time.low) && $util.isInteger(message.update_time.high)))
+                return "update_time: integer|Long expected";
         }
         if (message.power != null && $Object.hasOwnProperty.call(message, "power")) {
             properties._power = 1;
-            if (!$util.isInteger(message.power))
-                return "power: integer expected";
+            if (!$util.isInteger(message.power) && !(message.power && $util.isInteger(message.power.low) && $util.isInteger(message.power.high)))
+                return "power: integer|Long expected";
         }
         if (message.heroes != null && $Object.hasOwnProperty.call(message, "heroes")) {
             if (!$Array.isArray(message.heroes))
@@ -9875,13 +9991,63 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         if (object.rank != null)
             message.rank = object.rank | 0;
         if (object.uid != null)
-            message.uid = object.uid | 0;
+            message.uid = object.uid >>> 0;
         if (object.name != null)
             message.name = $String(object.name);
         if (object.value != null)
-            message.value = object.value | 0;
+            if ($util.Long)
+                message.value = $util.Long.fromValue(object.value, false);
+            else if (typeof object.value === "string")
+                message.value = $parseInt(object.value, 10);
+            else if (typeof object.value === "number")
+                message.value = object.value;
+            else if (typeof object.value === "object")
+                message.value = new $util.LongBits(object.value.low >>> 0, object.value.high >>> 0).toNumber();
+        if (object.param1 != null)
+            if ($util.Long)
+                message.param1 = $util.Long.fromValue(object.param1, false);
+            else if (typeof object.param1 === "string")
+                message.param1 = $parseInt(object.param1, 10);
+            else if (typeof object.param1 === "number")
+                message.param1 = object.param1;
+            else if (typeof object.param1 === "object")
+                message.param1 = new $util.LongBits(object.param1.low >>> 0, object.param1.high >>> 0).toNumber();
+        if (object.param2 != null)
+            if ($util.Long)
+                message.param2 = $util.Long.fromValue(object.param2, false);
+            else if (typeof object.param2 === "string")
+                message.param2 = $parseInt(object.param2, 10);
+            else if (typeof object.param2 === "number")
+                message.param2 = object.param2;
+            else if (typeof object.param2 === "object")
+                message.param2 = new $util.LongBits(object.param2.low >>> 0, object.param2.high >>> 0).toNumber();
+        if (object.param3 != null)
+            if ($util.Long)
+                message.param3 = $util.Long.fromValue(object.param3, false);
+            else if (typeof object.param3 === "string")
+                message.param3 = $parseInt(object.param3, 10);
+            else if (typeof object.param3 === "number")
+                message.param3 = object.param3;
+            else if (typeof object.param3 === "object")
+                message.param3 = new $util.LongBits(object.param3.low >>> 0, object.param3.high >>> 0).toNumber();
+        if (object.update_time != null)
+            if ($util.Long)
+                message.update_time = $util.Long.fromValue(object.update_time, false);
+            else if (typeof object.update_time === "string")
+                message.update_time = $parseInt(object.update_time, 10);
+            else if (typeof object.update_time === "number")
+                message.update_time = object.update_time;
+            else if (typeof object.update_time === "object")
+                message.update_time = new $util.LongBits(object.update_time.low >>> 0, object.update_time.high >>> 0).toNumber();
         if (object.power != null)
-            message.power = object.power | 0;
+            if ($util.Long)
+                message.power = $util.Long.fromValue(object.power, false);
+            else if (typeof object.power === "string")
+                message.power = $parseInt(object.power, 10);
+            else if (typeof object.power === "number")
+                message.power = object.power;
+            else if (typeof object.power === "object")
+                message.power = new $util.LongBits(object.power.low >>> 0, object.power.high >>> 0).toNumber();
         if (object.heroes) {
             if (!$Array.isArray(object.heroes))
                 throw $TypeError(".PB_RankNode.heroes: array expected");
@@ -9921,9 +10087,47 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
-            object.value = message.value;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.value = typeof message.value === "number" ? $BigInt(message.value) : $util.Long.fromBits(message.value.low >>> 0, message.value.high >>> 0, false).toBigInt();
+            else if (typeof message.value === "number")
+                object.value = options.longs === $String ? $String(message.value) : message.value;
+            else
+                object.value = options.longs === $String ? $util.Long.prototype.toString.call(message.value) : options.longs === $Number ? new $util.LongBits(message.value.low >>> 0, message.value.high >>> 0).toNumber() : message.value;
+        if (message.param1 != null && $Object.hasOwnProperty.call(message, "param1"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.param1 = typeof message.param1 === "number" ? $BigInt(message.param1) : $util.Long.fromBits(message.param1.low >>> 0, message.param1.high >>> 0, false).toBigInt();
+            else if (typeof message.param1 === "number")
+                object.param1 = options.longs === $String ? $String(message.param1) : message.param1;
+            else
+                object.param1 = options.longs === $String ? $util.Long.prototype.toString.call(message.param1) : options.longs === $Number ? new $util.LongBits(message.param1.low >>> 0, message.param1.high >>> 0).toNumber() : message.param1;
+        if (message.param2 != null && $Object.hasOwnProperty.call(message, "param2"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.param2 = typeof message.param2 === "number" ? $BigInt(message.param2) : $util.Long.fromBits(message.param2.low >>> 0, message.param2.high >>> 0, false).toBigInt();
+            else if (typeof message.param2 === "number")
+                object.param2 = options.longs === $String ? $String(message.param2) : message.param2;
+            else
+                object.param2 = options.longs === $String ? $util.Long.prototype.toString.call(message.param2) : options.longs === $Number ? new $util.LongBits(message.param2.low >>> 0, message.param2.high >>> 0).toNumber() : message.param2;
+        if (message.param3 != null && $Object.hasOwnProperty.call(message, "param3"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.param3 = typeof message.param3 === "number" ? $BigInt(message.param3) : $util.Long.fromBits(message.param3.low >>> 0, message.param3.high >>> 0, false).toBigInt();
+            else if (typeof message.param3 === "number")
+                object.param3 = options.longs === $String ? $String(message.param3) : message.param3;
+            else
+                object.param3 = options.longs === $String ? $util.Long.prototype.toString.call(message.param3) : options.longs === $Number ? new $util.LongBits(message.param3.low >>> 0, message.param3.high >>> 0).toNumber() : message.param3;
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.update_time = typeof message.update_time === "number" ? $BigInt(message.update_time) : $util.Long.fromBits(message.update_time.low >>> 0, message.update_time.high >>> 0, false).toBigInt();
+            else if (typeof message.update_time === "number")
+                object.update_time = options.longs === $String ? $String(message.update_time) : message.update_time;
+            else
+                object.update_time = options.longs === $String ? $util.Long.prototype.toString.call(message.update_time) : options.longs === $Number ? new $util.LongBits(message.update_time.low >>> 0, message.update_time.high >>> 0).toNumber() : message.update_time;
         if (message.power != null && $Object.hasOwnProperty.call(message, "power"))
-            object.power = message.power;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.power = typeof message.power === "number" ? $BigInt(message.power) : $util.Long.fromBits(message.power.low >>> 0, message.power.high >>> 0, false).toBigInt();
+            else if (typeof message.power === "number")
+                object.power = options.longs === $String ? $String(message.power) : message.power;
+            else
+                object.power = options.longs === $String ? $util.Long.prototype.toString.call(message.power) : options.longs === $Number ? new $util.LongBits(message.power.low >>> 0, message.power.high >>> 0).toNumber() : message.power;
         if (message.heroes && message.heroes.length) {
             object.heroes = $Array(message.heroes.length);
             for (let j = 0; j < message.heroes.length; ++j)
@@ -13812,6 +14016,10 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
      * @property {number|null} [uid] PB_RankDbNode uid
      * @property {string|null} [name] PB_RankDbNode name
      * @property {number|null} [value] PB_RankDbNode value
+     * @property {number|null} [param1] PB_RankDbNode param1
+     * @property {number|null} [param2] PB_RankDbNode param2
+     * @property {number|null} [param3] PB_RankDbNode param3
+     * @property {number|null} [update_time] PB_RankDbNode update_time
      * @property {string|null} [data] PB_RankDbNode data
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
@@ -13869,6 +14077,38 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
     PB_RankDbNode.prototype.value = null;
 
     /**
+     * PB_RankDbNode param1.
+     * @member {number|null|undefined} param1
+     * @memberof PB_RankDbNode
+     * @instance
+     */
+    PB_RankDbNode.prototype.param1 = null;
+
+    /**
+     * PB_RankDbNode param2.
+     * @member {number|null|undefined} param2
+     * @memberof PB_RankDbNode
+     * @instance
+     */
+    PB_RankDbNode.prototype.param2 = null;
+
+    /**
+     * PB_RankDbNode param3.
+     * @member {number|null|undefined} param3
+     * @memberof PB_RankDbNode
+     * @instance
+     */
+    PB_RankDbNode.prototype.param3 = null;
+
+    /**
+     * PB_RankDbNode update_time.
+     * @member {number|null|undefined} update_time
+     * @memberof PB_RankDbNode
+     * @instance
+     */
+    PB_RankDbNode.prototype.update_time = null;
+
+    /**
      * PB_RankDbNode data.
      * @member {string|null|undefined} data
      * @memberof PB_RankDbNode
@@ -13894,6 +14134,30 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_RankDbNode.prototype, "_value", {
         get: $util.oneOfGetter($oneOfFields = ["value"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankDbNode.prototype, "_param1", {
+        get: $util.oneOfGetter($oneOfFields = ["param1"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankDbNode.prototype, "_param2", {
+        get: $util.oneOfGetter($oneOfFields = ["param2"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankDbNode.prototype, "_param3", {
+        get: $util.oneOfGetter($oneOfFields = ["param3"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RankDbNode.prototype, "_update_time", {
+        get: $util.oneOfGetter($oneOfFields = ["update_time"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -13936,13 +14200,21 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.uid);
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.uid);
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
             writer.uint32(/* id 3, wireType 0 =*/24).int64(message.value);
+        if (message.param1 != null && $Object.hasOwnProperty.call(message, "param1"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int64(message.param1);
+        if (message.param2 != null && $Object.hasOwnProperty.call(message, "param2"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int64(message.param2);
+        if (message.param3 != null && $Object.hasOwnProperty.call(message, "param3"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int64(message.param3);
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time"))
+            writer.uint32(/* id 7, wireType 0 =*/56).int64(message.update_time);
         if (message.data != null && $Object.hasOwnProperty.call(message, "data"))
-            writer.uint32(/* id 4, wireType 2 =*/34).string(message.data);
+            writer.uint32(/* id 8, wireType 2 =*/66).string(message.data);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -13993,7 +14265,7 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int64();
+                    message.uid = reader.uint32();
                     message._uid = "uid";
                     continue;
                 }
@@ -14012,6 +14284,34 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
                     continue;
                 }
             case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.param1 = reader.int64();
+                    message._param1 = "param1";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.param2 = reader.int64();
+                    message._param2 = "param2";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.param3 = reader.int64();
+                    message._param3 = "param3";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.update_time = reader.int64();
+                    message._update_time = "update_time";
+                    continue;
+                }
+            case 8: {
                     if (wireType !== 2)
                         break;
                     message.data = reader.stringVerify();
@@ -14064,8 +14364,8 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
         let properties = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
-                return "uid: integer|Long expected";
+            if (!$util.isInteger(message.uid))
+                return "uid: integer expected";
         }
         if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
             properties._name = 1;
@@ -14076,6 +14376,26 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
             properties._value = 1;
             if (!$util.isInteger(message.value) && !(message.value && $util.isInteger(message.value.low) && $util.isInteger(message.value.high)))
                 return "value: integer|Long expected";
+        }
+        if (message.param1 != null && $Object.hasOwnProperty.call(message, "param1")) {
+            properties._param1 = 1;
+            if (!$util.isInteger(message.param1) && !(message.param1 && $util.isInteger(message.param1.low) && $util.isInteger(message.param1.high)))
+                return "param1: integer|Long expected";
+        }
+        if (message.param2 != null && $Object.hasOwnProperty.call(message, "param2")) {
+            properties._param2 = 1;
+            if (!$util.isInteger(message.param2) && !(message.param2 && $util.isInteger(message.param2.low) && $util.isInteger(message.param2.high)))
+                return "param2: integer|Long expected";
+        }
+        if (message.param3 != null && $Object.hasOwnProperty.call(message, "param3")) {
+            properties._param3 = 1;
+            if (!$util.isInteger(message.param3) && !(message.param3 && $util.isInteger(message.param3.low) && $util.isInteger(message.param3.high)))
+                return "param3: integer|Long expected";
+        }
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time")) {
+            properties._update_time = 1;
+            if (!$util.isInteger(message.update_time) && !(message.update_time && $util.isInteger(message.update_time.low) && $util.isInteger(message.update_time.high)))
+                return "update_time: integer|Long expected";
         }
         if (message.data != null && $Object.hasOwnProperty.call(message, "data")) {
             properties._data = 1;
@@ -14104,14 +14424,7 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
             throw $Error("max depth exceeded");
         let message = new $root.PB_RankDbNode();
         if (object.uid != null)
-            if ($util.Long)
-                message.uid = $util.Long.fromValue(object.uid, false);
-            else if (typeof object.uid === "string")
-                message.uid = $parseInt(object.uid, 10);
-            else if (typeof object.uid === "number")
-                message.uid = object.uid;
-            else if (typeof object.uid === "object")
-                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
+            message.uid = object.uid >>> 0;
         if (object.name != null)
             message.name = $String(object.name);
         if (object.value != null)
@@ -14123,6 +14436,42 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
                 message.value = object.value;
             else if (typeof object.value === "object")
                 message.value = new $util.LongBits(object.value.low >>> 0, object.value.high >>> 0).toNumber();
+        if (object.param1 != null)
+            if ($util.Long)
+                message.param1 = $util.Long.fromValue(object.param1, false);
+            else if (typeof object.param1 === "string")
+                message.param1 = $parseInt(object.param1, 10);
+            else if (typeof object.param1 === "number")
+                message.param1 = object.param1;
+            else if (typeof object.param1 === "object")
+                message.param1 = new $util.LongBits(object.param1.low >>> 0, object.param1.high >>> 0).toNumber();
+        if (object.param2 != null)
+            if ($util.Long)
+                message.param2 = $util.Long.fromValue(object.param2, false);
+            else if (typeof object.param2 === "string")
+                message.param2 = $parseInt(object.param2, 10);
+            else if (typeof object.param2 === "number")
+                message.param2 = object.param2;
+            else if (typeof object.param2 === "object")
+                message.param2 = new $util.LongBits(object.param2.low >>> 0, object.param2.high >>> 0).toNumber();
+        if (object.param3 != null)
+            if ($util.Long)
+                message.param3 = $util.Long.fromValue(object.param3, false);
+            else if (typeof object.param3 === "string")
+                message.param3 = $parseInt(object.param3, 10);
+            else if (typeof object.param3 === "number")
+                message.param3 = object.param3;
+            else if (typeof object.param3 === "object")
+                message.param3 = new $util.LongBits(object.param3.low >>> 0, object.param3.high >>> 0).toNumber();
+        if (object.update_time != null)
+            if ($util.Long)
+                message.update_time = $util.Long.fromValue(object.update_time, false);
+            else if (typeof object.update_time === "string")
+                message.update_time = $parseInt(object.update_time, 10);
+            else if (typeof object.update_time === "number")
+                message.update_time = object.update_time;
+            else if (typeof object.update_time === "object")
+                message.update_time = new $util.LongBits(object.update_time.low >>> 0, object.update_time.high >>> 0).toNumber();
         if (object.data != null)
             message.data = $String(object.data);
         return message;
@@ -14146,12 +14495,7 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
             throw $Error("max depth exceeded");
         let object = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
-            else if (typeof message.uid === "number")
-                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
-            else
-                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
+            object.uid = message.uid;
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
@@ -14161,6 +14505,34 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
                 object.value = options.longs === $String ? $String(message.value) : message.value;
             else
                 object.value = options.longs === $String ? $util.Long.prototype.toString.call(message.value) : options.longs === $Number ? new $util.LongBits(message.value.low >>> 0, message.value.high >>> 0).toNumber() : message.value;
+        if (message.param1 != null && $Object.hasOwnProperty.call(message, "param1"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.param1 = typeof message.param1 === "number" ? $BigInt(message.param1) : $util.Long.fromBits(message.param1.low >>> 0, message.param1.high >>> 0, false).toBigInt();
+            else if (typeof message.param1 === "number")
+                object.param1 = options.longs === $String ? $String(message.param1) : message.param1;
+            else
+                object.param1 = options.longs === $String ? $util.Long.prototype.toString.call(message.param1) : options.longs === $Number ? new $util.LongBits(message.param1.low >>> 0, message.param1.high >>> 0).toNumber() : message.param1;
+        if (message.param2 != null && $Object.hasOwnProperty.call(message, "param2"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.param2 = typeof message.param2 === "number" ? $BigInt(message.param2) : $util.Long.fromBits(message.param2.low >>> 0, message.param2.high >>> 0, false).toBigInt();
+            else if (typeof message.param2 === "number")
+                object.param2 = options.longs === $String ? $String(message.param2) : message.param2;
+            else
+                object.param2 = options.longs === $String ? $util.Long.prototype.toString.call(message.param2) : options.longs === $Number ? new $util.LongBits(message.param2.low >>> 0, message.param2.high >>> 0).toNumber() : message.param2;
+        if (message.param3 != null && $Object.hasOwnProperty.call(message, "param3"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.param3 = typeof message.param3 === "number" ? $BigInt(message.param3) : $util.Long.fromBits(message.param3.low >>> 0, message.param3.high >>> 0, false).toBigInt();
+            else if (typeof message.param3 === "number")
+                object.param3 = options.longs === $String ? $String(message.param3) : message.param3;
+            else
+                object.param3 = options.longs === $String ? $util.Long.prototype.toString.call(message.param3) : options.longs === $Number ? new $util.LongBits(message.param3.low >>> 0, message.param3.high >>> 0).toNumber() : message.param3;
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.update_time = typeof message.update_time === "number" ? $BigInt(message.update_time) : $util.Long.fromBits(message.update_time.low >>> 0, message.update_time.high >>> 0, false).toBigInt();
+            else if (typeof message.update_time === "number")
+                object.update_time = options.longs === $String ? $String(message.update_time) : message.update_time;
+            else
+                object.update_time = options.longs === $String ? $util.Long.prototype.toString.call(message.update_time) : options.longs === $Number ? new $util.LongBits(message.update_time.low >>> 0, message.update_time.high >>> 0).toNumber() : message.update_time;
         if (message.data != null && $Object.hasOwnProperty.call(message, "data"))
             object.data = message.data;
         return object;
@@ -14919,2916 +15291,6 @@ export const P_RankDb_S = $root.P_RankDb_S = (() => {
     };
 
     return P_RankDb_S;
-})();
-
-export const P_LlmChatReq = $root.P_LlmChatReq = (() => {
-
-    /**
-     * Properties of a P_LlmChatReq.
-     * @typedef {Object} P_LlmChatReq.$Properties
-     * @property {string|null} [messages_json] P_LlmChatReq messages_json
-     * @property {string|null} [tools_json] P_LlmChatReq tools_json
-     * @property {number|null} [max_tokens] P_LlmChatReq max_tokens
-     * @property {number|null} [temperature] P_LlmChatReq temperature
-     * @property {boolean|null} [stream] P_LlmChatReq stream
-     * @property {string|null} [model] P_LlmChatReq model
-     * @property {string|null} [grammar] P_LlmChatReq grammar
-     * @property {string|null} [json_schema] P_LlmChatReq json_schema
-     * @property {boolean|null} [enable_thinking] P_LlmChatReq enable_thinking
-     * @property {boolean|null} [use_jinja] P_LlmChatReq use_jinja
-     * @property {string|null} [session_key] P_LlmChatReq session_key
-     * @property {string|null} [media_datas_json] P_LlmChatReq media_datas_json
-     * @property {number|null} [req_id] P_LlmChatReq req_id
-     * @property {boolean|null} [add_generation_prompt] P_LlmChatReq add_generation_prompt
-     * @property {number|null} [response_format_type] P_LlmChatReq response_format_type
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_LlmChatReq.
-     * @exports IP_LlmChatReq
-     * @interface IP_LlmChatReq
-     * @augments P_LlmChatReq.$Properties
-     * @deprecated Use P_LlmChatReq.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_LlmChatReq.
-     * @typedef {P_LlmChatReq.$Properties} P_LlmChatReq.$Shape
-     */
-
-    /**
-     * Constructs a new P_LlmChatReq.
-     * @exports P_LlmChatReq
-     * @classdesc Represents a P_LlmChatReq.
-     * @constructor
-     * @param {P_LlmChatReq.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_LlmChatReq = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_LlmChatReq messages_json.
-     * @member {string|null|undefined} messages_json
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.messages_json = null;
-
-    /**
-     * P_LlmChatReq tools_json.
-     * @member {string|null|undefined} tools_json
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.tools_json = null;
-
-    /**
-     * P_LlmChatReq max_tokens.
-     * @member {number|null|undefined} max_tokens
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.max_tokens = null;
-
-    /**
-     * P_LlmChatReq temperature.
-     * @member {number|null|undefined} temperature
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.temperature = null;
-
-    /**
-     * P_LlmChatReq stream.
-     * @member {boolean|null|undefined} stream
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.stream = null;
-
-    /**
-     * P_LlmChatReq model.
-     * @member {string|null|undefined} model
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.model = null;
-
-    /**
-     * P_LlmChatReq grammar.
-     * @member {string|null|undefined} grammar
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.grammar = null;
-
-    /**
-     * P_LlmChatReq json_schema.
-     * @member {string|null|undefined} json_schema
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.json_schema = null;
-
-    /**
-     * P_LlmChatReq enable_thinking.
-     * @member {boolean|null|undefined} enable_thinking
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.enable_thinking = null;
-
-    /**
-     * P_LlmChatReq use_jinja.
-     * @member {boolean|null|undefined} use_jinja
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.use_jinja = null;
-
-    /**
-     * P_LlmChatReq session_key.
-     * @member {string|null|undefined} session_key
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.session_key = null;
-
-    /**
-     * P_LlmChatReq media_datas_json.
-     * @member {string|null|undefined} media_datas_json
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.media_datas_json = null;
-
-    /**
-     * P_LlmChatReq req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.req_id = null;
-
-    /**
-     * P_LlmChatReq add_generation_prompt.
-     * @member {boolean|null|undefined} add_generation_prompt
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.add_generation_prompt = null;
-
-    /**
-     * P_LlmChatReq response_format_type.
-     * @member {number|null|undefined} response_format_type
-     * @memberof P_LlmChatReq
-     * @instance
-     */
-    P_LlmChatReq.prototype.response_format_type = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_messages_json", {
-        get: $util.oneOfGetter($oneOfFields = ["messages_json"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_tools_json", {
-        get: $util.oneOfGetter($oneOfFields = ["tools_json"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_max_tokens", {
-        get: $util.oneOfGetter($oneOfFields = ["max_tokens"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_temperature", {
-        get: $util.oneOfGetter($oneOfFields = ["temperature"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_stream", {
-        get: $util.oneOfGetter($oneOfFields = ["stream"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_model", {
-        get: $util.oneOfGetter($oneOfFields = ["model"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_grammar", {
-        get: $util.oneOfGetter($oneOfFields = ["grammar"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_json_schema", {
-        get: $util.oneOfGetter($oneOfFields = ["json_schema"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_enable_thinking", {
-        get: $util.oneOfGetter($oneOfFields = ["enable_thinking"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_use_jinja", {
-        get: $util.oneOfGetter($oneOfFields = ["use_jinja"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_session_key", {
-        get: $util.oneOfGetter($oneOfFields = ["session_key"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_media_datas_json", {
-        get: $util.oneOfGetter($oneOfFields = ["media_datas_json"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_add_generation_prompt", {
-        get: $util.oneOfGetter($oneOfFields = ["add_generation_prompt"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatReq.prototype, "_response_format_type", {
-        get: $util.oneOfGetter($oneOfFields = ["response_format_type"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_LlmChatReq instance using the specified properties.
-     * @function create
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {P_LlmChatReq.$Properties=} [properties] Properties to set
-     * @returns {P_LlmChatReq} P_LlmChatReq instance
-     * @type {{
-     *   (properties: P_LlmChatReq.$Shape): P_LlmChatReq & P_LlmChatReq.$Shape;
-     *   (properties?: P_LlmChatReq.$Properties): P_LlmChatReq;
-     * }}
-     */
-    P_LlmChatReq.create = function(properties) {
-        return new P_LlmChatReq(properties);
-    };
-
-    /**
-     * Encodes the specified P_LlmChatReq message. Does not implicitly {@link P_LlmChatReq.verify|verify} messages.
-     * @function encode
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {P_LlmChatReq.$Properties} message P_LlmChatReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmChatReq.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.messages_json != null && $Object.hasOwnProperty.call(message, "messages_json"))
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.messages_json);
-        if (message.tools_json != null && $Object.hasOwnProperty.call(message, "tools_json"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.tools_json);
-        if (message.max_tokens != null && $Object.hasOwnProperty.call(message, "max_tokens"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.max_tokens);
-        if (message.temperature != null && $Object.hasOwnProperty.call(message, "temperature"))
-            writer.uint32(/* id 4, wireType 5 =*/37).float(message.temperature);
-        if (message.stream != null && $Object.hasOwnProperty.call(message, "stream"))
-            writer.uint32(/* id 5, wireType 0 =*/40).bool(message.stream);
-        if (message.model != null && $Object.hasOwnProperty.call(message, "model"))
-            writer.uint32(/* id 6, wireType 2 =*/50).string(message.model);
-        if (message.grammar != null && $Object.hasOwnProperty.call(message, "grammar"))
-            writer.uint32(/* id 7, wireType 2 =*/58).string(message.grammar);
-        if (message.json_schema != null && $Object.hasOwnProperty.call(message, "json_schema"))
-            writer.uint32(/* id 8, wireType 2 =*/66).string(message.json_schema);
-        if (message.enable_thinking != null && $Object.hasOwnProperty.call(message, "enable_thinking"))
-            writer.uint32(/* id 9, wireType 0 =*/72).bool(message.enable_thinking);
-        if (message.use_jinja != null && $Object.hasOwnProperty.call(message, "use_jinja"))
-            writer.uint32(/* id 10, wireType 0 =*/80).bool(message.use_jinja);
-        if (message.session_key != null && $Object.hasOwnProperty.call(message, "session_key"))
-            writer.uint32(/* id 11, wireType 2 =*/90).string(message.session_key);
-        if (message.media_datas_json != null && $Object.hasOwnProperty.call(message, "media_datas_json"))
-            writer.uint32(/* id 12, wireType 2 =*/98).string(message.media_datas_json);
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 13, wireType 0 =*/104).int64(message.req_id);
-        if (message.add_generation_prompt != null && $Object.hasOwnProperty.call(message, "add_generation_prompt"))
-            writer.uint32(/* id 14, wireType 0 =*/112).bool(message.add_generation_prompt);
-        if (message.response_format_type != null && $Object.hasOwnProperty.call(message, "response_format_type"))
-            writer.uint32(/* id 15, wireType 5 =*/125).float(message.response_format_type);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_LlmChatReq message, length delimited. Does not implicitly {@link P_LlmChatReq.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {P_LlmChatReq.$Properties} message P_LlmChatReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmChatReq.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_LlmChatReq message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_LlmChatReq & P_LlmChatReq.$Shape} P_LlmChatReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmChatReq.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_LlmChatReq();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 2)
-                        break;
-                    message.messages_json = reader.stringVerify();
-                    message._messages_json = "messages_json";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.tools_json = reader.stringVerify();
-                    message._tools_json = "tools_json";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 0)
-                        break;
-                    message.max_tokens = reader.int32();
-                    message._max_tokens = "max_tokens";
-                    continue;
-                }
-            case 4: {
-                    if (wireType !== 5)
-                        break;
-                    message.temperature = reader.float();
-                    message._temperature = "temperature";
-                    continue;
-                }
-            case 5: {
-                    if (wireType !== 0)
-                        break;
-                    message.stream = reader.bool();
-                    message._stream = "stream";
-                    continue;
-                }
-            case 6: {
-                    if (wireType !== 2)
-                        break;
-                    message.model = reader.stringVerify();
-                    message._model = "model";
-                    continue;
-                }
-            case 7: {
-                    if (wireType !== 2)
-                        break;
-                    message.grammar = reader.stringVerify();
-                    message._grammar = "grammar";
-                    continue;
-                }
-            case 8: {
-                    if (wireType !== 2)
-                        break;
-                    message.json_schema = reader.stringVerify();
-                    message._json_schema = "json_schema";
-                    continue;
-                }
-            case 9: {
-                    if (wireType !== 0)
-                        break;
-                    message.enable_thinking = reader.bool();
-                    message._enable_thinking = "enable_thinking";
-                    continue;
-                }
-            case 10: {
-                    if (wireType !== 0)
-                        break;
-                    message.use_jinja = reader.bool();
-                    message._use_jinja = "use_jinja";
-                    continue;
-                }
-            case 11: {
-                    if (wireType !== 2)
-                        break;
-                    message.session_key = reader.stringVerify();
-                    message._session_key = "session_key";
-                    continue;
-                }
-            case 12: {
-                    if (wireType !== 2)
-                        break;
-                    message.media_datas_json = reader.stringVerify();
-                    message._media_datas_json = "media_datas_json";
-                    continue;
-                }
-            case 13: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int64();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 14: {
-                    if (wireType !== 0)
-                        break;
-                    message.add_generation_prompt = reader.bool();
-                    message._add_generation_prompt = "add_generation_prompt";
-                    continue;
-                }
-            case 15: {
-                    if (wireType !== 5)
-                        break;
-                    message.response_format_type = reader.float();
-                    message._response_format_type = "response_format_type";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_LlmChatReq message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_LlmChatReq & P_LlmChatReq.$Shape} P_LlmChatReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmChatReq.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_LlmChatReq message.
-     * @function verify
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_LlmChatReq.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.messages_json != null && $Object.hasOwnProperty.call(message, "messages_json")) {
-            properties._messages_json = 1;
-            if (!$util.isString(message.messages_json))
-                return "messages_json: string expected";
-        }
-        if (message.tools_json != null && $Object.hasOwnProperty.call(message, "tools_json")) {
-            properties._tools_json = 1;
-            if (!$util.isString(message.tools_json))
-                return "tools_json: string expected";
-        }
-        if (message.max_tokens != null && $Object.hasOwnProperty.call(message, "max_tokens")) {
-            properties._max_tokens = 1;
-            if (!$util.isInteger(message.max_tokens))
-                return "max_tokens: integer expected";
-        }
-        if (message.temperature != null && $Object.hasOwnProperty.call(message, "temperature")) {
-            properties._temperature = 1;
-            if (typeof message.temperature !== "number")
-                return "temperature: number expected";
-        }
-        if (message.stream != null && $Object.hasOwnProperty.call(message, "stream")) {
-            properties._stream = 1;
-            if (typeof message.stream !== "boolean")
-                return "stream: boolean expected";
-        }
-        if (message.model != null && $Object.hasOwnProperty.call(message, "model")) {
-            properties._model = 1;
-            if (!$util.isString(message.model))
-                return "model: string expected";
-        }
-        if (message.grammar != null && $Object.hasOwnProperty.call(message, "grammar")) {
-            properties._grammar = 1;
-            if (!$util.isString(message.grammar))
-                return "grammar: string expected";
-        }
-        if (message.json_schema != null && $Object.hasOwnProperty.call(message, "json_schema")) {
-            properties._json_schema = 1;
-            if (!$util.isString(message.json_schema))
-                return "json_schema: string expected";
-        }
-        if (message.enable_thinking != null && $Object.hasOwnProperty.call(message, "enable_thinking")) {
-            properties._enable_thinking = 1;
-            if (typeof message.enable_thinking !== "boolean")
-                return "enable_thinking: boolean expected";
-        }
-        if (message.use_jinja != null && $Object.hasOwnProperty.call(message, "use_jinja")) {
-            properties._use_jinja = 1;
-            if (typeof message.use_jinja !== "boolean")
-                return "use_jinja: boolean expected";
-        }
-        if (message.session_key != null && $Object.hasOwnProperty.call(message, "session_key")) {
-            properties._session_key = 1;
-            if (!$util.isString(message.session_key))
-                return "session_key: string expected";
-        }
-        if (message.media_datas_json != null && $Object.hasOwnProperty.call(message, "media_datas_json")) {
-            properties._media_datas_json = 1;
-            if (!$util.isString(message.media_datas_json))
-                return "media_datas_json: string expected";
-        }
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id) && !(message.req_id && $util.isInteger(message.req_id.low) && $util.isInteger(message.req_id.high)))
-                return "req_id: integer|Long expected";
-        }
-        if (message.add_generation_prompt != null && $Object.hasOwnProperty.call(message, "add_generation_prompt")) {
-            properties._add_generation_prompt = 1;
-            if (typeof message.add_generation_prompt !== "boolean")
-                return "add_generation_prompt: boolean expected";
-        }
-        if (message.response_format_type != null && $Object.hasOwnProperty.call(message, "response_format_type")) {
-            properties._response_format_type = 1;
-            if (typeof message.response_format_type !== "number")
-                return "response_format_type: number expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_LlmChatReq message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_LlmChatReq} P_LlmChatReq
-     */
-    P_LlmChatReq.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_LlmChatReq)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_LlmChatReq: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_LlmChatReq();
-        if (object.messages_json != null)
-            message.messages_json = $String(object.messages_json);
-        if (object.tools_json != null)
-            message.tools_json = $String(object.tools_json);
-        if (object.max_tokens != null)
-            message.max_tokens = object.max_tokens | 0;
-        if (object.temperature != null)
-            message.temperature = $Number(object.temperature);
-        if (object.stream != null)
-            message.stream = $Boolean(object.stream);
-        if (object.model != null)
-            message.model = $String(object.model);
-        if (object.grammar != null)
-            message.grammar = $String(object.grammar);
-        if (object.json_schema != null)
-            message.json_schema = $String(object.json_schema);
-        if (object.enable_thinking != null)
-            message.enable_thinking = $Boolean(object.enable_thinking);
-        if (object.use_jinja != null)
-            message.use_jinja = $Boolean(object.use_jinja);
-        if (object.session_key != null)
-            message.session_key = $String(object.session_key);
-        if (object.media_datas_json != null)
-            message.media_datas_json = $String(object.media_datas_json);
-        if (object.req_id != null)
-            if ($util.Long)
-                message.req_id = $util.Long.fromValue(object.req_id, false);
-            else if (typeof object.req_id === "string")
-                message.req_id = $parseInt(object.req_id, 10);
-            else if (typeof object.req_id === "number")
-                message.req_id = object.req_id;
-            else if (typeof object.req_id === "object")
-                message.req_id = new $util.LongBits(object.req_id.low >>> 0, object.req_id.high >>> 0).toNumber();
-        if (object.add_generation_prompt != null)
-            message.add_generation_prompt = $Boolean(object.add_generation_prompt);
-        if (object.response_format_type != null)
-            message.response_format_type = $Number(object.response_format_type);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_LlmChatReq message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {P_LlmChatReq} message P_LlmChatReq
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_LlmChatReq.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.messages_json != null && $Object.hasOwnProperty.call(message, "messages_json"))
-            object.messages_json = message.messages_json;
-        if (message.tools_json != null && $Object.hasOwnProperty.call(message, "tools_json"))
-            object.tools_json = message.tools_json;
-        if (message.max_tokens != null && $Object.hasOwnProperty.call(message, "max_tokens"))
-            object.max_tokens = message.max_tokens;
-        if (message.temperature != null && $Object.hasOwnProperty.call(message, "temperature"))
-            object.temperature = options.json && !$isFinite(message.temperature) ? $String(message.temperature) : message.temperature;
-        if (message.stream != null && $Object.hasOwnProperty.call(message, "stream"))
-            object.stream = message.stream;
-        if (message.model != null && $Object.hasOwnProperty.call(message, "model"))
-            object.model = message.model;
-        if (message.grammar != null && $Object.hasOwnProperty.call(message, "grammar"))
-            object.grammar = message.grammar;
-        if (message.json_schema != null && $Object.hasOwnProperty.call(message, "json_schema"))
-            object.json_schema = message.json_schema;
-        if (message.enable_thinking != null && $Object.hasOwnProperty.call(message, "enable_thinking"))
-            object.enable_thinking = message.enable_thinking;
-        if (message.use_jinja != null && $Object.hasOwnProperty.call(message, "use_jinja"))
-            object.use_jinja = message.use_jinja;
-        if (message.session_key != null && $Object.hasOwnProperty.call(message, "session_key"))
-            object.session_key = message.session_key;
-        if (message.media_datas_json != null && $Object.hasOwnProperty.call(message, "media_datas_json"))
-            object.media_datas_json = message.media_datas_json;
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.req_id = typeof message.req_id === "number" ? $BigInt(message.req_id) : $util.Long.fromBits(message.req_id.low >>> 0, message.req_id.high >>> 0, false).toBigInt();
-            else if (typeof message.req_id === "number")
-                object.req_id = options.longs === $String ? $String(message.req_id) : message.req_id;
-            else
-                object.req_id = options.longs === $String ? $util.Long.prototype.toString.call(message.req_id) : options.longs === $Number ? new $util.LongBits(message.req_id.low >>> 0, message.req_id.high >>> 0).toNumber() : message.req_id;
-        if (message.add_generation_prompt != null && $Object.hasOwnProperty.call(message, "add_generation_prompt"))
-            object.add_generation_prompt = message.add_generation_prompt;
-        if (message.response_format_type != null && $Object.hasOwnProperty.call(message, "response_format_type"))
-            object.response_format_type = options.json && !$isFinite(message.response_format_type) ? $String(message.response_format_type) : message.response_format_type;
-        return object;
-    };
-
-    /**
-     * Converts this P_LlmChatReq to JSON.
-     * @function toJSON
-     * @memberof P_LlmChatReq
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_LlmChatReq.prototype.toJSON = function() {
-        return P_LlmChatReq.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_LlmChatReq
-     * @function getTypeUrl
-     * @memberof P_LlmChatReq
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_LlmChatReq.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_LlmChatReq";
-    };
-
-    return P_LlmChatReq;
-})();
-
-export const P_LlmChatResponse = $root.P_LlmChatResponse = (() => {
-
-    /**
-     * Properties of a P_LlmChatResponse.
-     * @typedef {Object} P_LlmChatResponse.$Properties
-     * @property {string|null} [content_delta] P_LlmChatResponse content_delta
-     * @property {string|null} [reasoning_delta] P_LlmChatResponse reasoning_delta
-     * @property {number|null} [index] P_LlmChatResponse index
-     * @property {number|null} [req_id] P_LlmChatResponse req_id
-     * @property {string|null} [tool_call_json] P_LlmChatResponse tool_call_json
-     * @property {number|null} [tool_call_index] P_LlmChatResponse tool_call_index
-     * @property {string|null} [tool_call_id] P_LlmChatResponse tool_call_id
-     * @property {string|null} [tool_call_name] P_LlmChatResponse tool_call_name
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_LlmChatResponse.
-     * @exports IP_LlmChatResponse
-     * @interface IP_LlmChatResponse
-     * @augments P_LlmChatResponse.$Properties
-     * @deprecated Use P_LlmChatResponse.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_LlmChatResponse.
-     * @typedef {P_LlmChatResponse.$Properties} P_LlmChatResponse.$Shape
-     */
-
-    /**
-     * Constructs a new P_LlmChatResponse.
-     * @exports P_LlmChatResponse
-     * @classdesc Represents a P_LlmChatResponse.
-     * @constructor
-     * @param {P_LlmChatResponse.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_LlmChatResponse = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_LlmChatResponse content_delta.
-     * @member {string|null|undefined} content_delta
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.content_delta = null;
-
-    /**
-     * P_LlmChatResponse reasoning_delta.
-     * @member {string|null|undefined} reasoning_delta
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.reasoning_delta = null;
-
-    /**
-     * P_LlmChatResponse index.
-     * @member {number|null|undefined} index
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.index = null;
-
-    /**
-     * P_LlmChatResponse req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.req_id = null;
-
-    /**
-     * P_LlmChatResponse tool_call_json.
-     * @member {string|null|undefined} tool_call_json
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.tool_call_json = null;
-
-    /**
-     * P_LlmChatResponse tool_call_index.
-     * @member {number|null|undefined} tool_call_index
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.tool_call_index = null;
-
-    /**
-     * P_LlmChatResponse tool_call_id.
-     * @member {string|null|undefined} tool_call_id
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.tool_call_id = null;
-
-    /**
-     * P_LlmChatResponse tool_call_name.
-     * @member {string|null|undefined} tool_call_name
-     * @memberof P_LlmChatResponse
-     * @instance
-     */
-    P_LlmChatResponse.prototype.tool_call_name = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_content_delta", {
-        get: $util.oneOfGetter($oneOfFields = ["content_delta"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_reasoning_delta", {
-        get: $util.oneOfGetter($oneOfFields = ["reasoning_delta"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_index", {
-        get: $util.oneOfGetter($oneOfFields = ["index"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_tool_call_json", {
-        get: $util.oneOfGetter($oneOfFields = ["tool_call_json"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_tool_call_index", {
-        get: $util.oneOfGetter($oneOfFields = ["tool_call_index"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_tool_call_id", {
-        get: $util.oneOfGetter($oneOfFields = ["tool_call_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatResponse.prototype, "_tool_call_name", {
-        get: $util.oneOfGetter($oneOfFields = ["tool_call_name"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_LlmChatResponse instance using the specified properties.
-     * @function create
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {P_LlmChatResponse.$Properties=} [properties] Properties to set
-     * @returns {P_LlmChatResponse} P_LlmChatResponse instance
-     * @type {{
-     *   (properties: P_LlmChatResponse.$Shape): P_LlmChatResponse & P_LlmChatResponse.$Shape;
-     *   (properties?: P_LlmChatResponse.$Properties): P_LlmChatResponse;
-     * }}
-     */
-    P_LlmChatResponse.create = function(properties) {
-        return new P_LlmChatResponse(properties);
-    };
-
-    /**
-     * Encodes the specified P_LlmChatResponse message. Does not implicitly {@link P_LlmChatResponse.verify|verify} messages.
-     * @function encode
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {P_LlmChatResponse.$Properties} message P_LlmChatResponse message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmChatResponse.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.content_delta != null && $Object.hasOwnProperty.call(message, "content_delta"))
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.content_delta);
-        if (message.reasoning_delta != null && $Object.hasOwnProperty.call(message, "reasoning_delta"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.reasoning_delta);
-        if (message.index != null && $Object.hasOwnProperty.call(message, "index"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.index);
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int64(message.req_id);
-        if (message.tool_call_json != null && $Object.hasOwnProperty.call(message, "tool_call_json"))
-            writer.uint32(/* id 5, wireType 2 =*/42).string(message.tool_call_json);
-        if (message.tool_call_index != null && $Object.hasOwnProperty.call(message, "tool_call_index"))
-            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.tool_call_index);
-        if (message.tool_call_id != null && $Object.hasOwnProperty.call(message, "tool_call_id"))
-            writer.uint32(/* id 7, wireType 2 =*/58).string(message.tool_call_id);
-        if (message.tool_call_name != null && $Object.hasOwnProperty.call(message, "tool_call_name"))
-            writer.uint32(/* id 8, wireType 2 =*/66).string(message.tool_call_name);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_LlmChatResponse message, length delimited. Does not implicitly {@link P_LlmChatResponse.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {P_LlmChatResponse.$Properties} message P_LlmChatResponse message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmChatResponse.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_LlmChatResponse message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_LlmChatResponse & P_LlmChatResponse.$Shape} P_LlmChatResponse
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmChatResponse.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_LlmChatResponse();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 2)
-                        break;
-                    message.content_delta = reader.stringVerify();
-                    message._content_delta = "content_delta";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.reasoning_delta = reader.stringVerify();
-                    message._reasoning_delta = "reasoning_delta";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 0)
-                        break;
-                    message.index = reader.int32();
-                    message._index = "index";
-                    continue;
-                }
-            case 4: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int64();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 5: {
-                    if (wireType !== 2)
-                        break;
-                    message.tool_call_json = reader.stringVerify();
-                    message._tool_call_json = "tool_call_json";
-                    continue;
-                }
-            case 6: {
-                    if (wireType !== 0)
-                        break;
-                    message.tool_call_index = reader.int32();
-                    message._tool_call_index = "tool_call_index";
-                    continue;
-                }
-            case 7: {
-                    if (wireType !== 2)
-                        break;
-                    message.tool_call_id = reader.stringVerify();
-                    message._tool_call_id = "tool_call_id";
-                    continue;
-                }
-            case 8: {
-                    if (wireType !== 2)
-                        break;
-                    message.tool_call_name = reader.stringVerify();
-                    message._tool_call_name = "tool_call_name";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_LlmChatResponse message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_LlmChatResponse & P_LlmChatResponse.$Shape} P_LlmChatResponse
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmChatResponse.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_LlmChatResponse message.
-     * @function verify
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_LlmChatResponse.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.content_delta != null && $Object.hasOwnProperty.call(message, "content_delta")) {
-            properties._content_delta = 1;
-            if (!$util.isString(message.content_delta))
-                return "content_delta: string expected";
-        }
-        if (message.reasoning_delta != null && $Object.hasOwnProperty.call(message, "reasoning_delta")) {
-            properties._reasoning_delta = 1;
-            if (!$util.isString(message.reasoning_delta))
-                return "reasoning_delta: string expected";
-        }
-        if (message.index != null && $Object.hasOwnProperty.call(message, "index")) {
-            properties._index = 1;
-            if (!$util.isInteger(message.index))
-                return "index: integer expected";
-        }
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id) && !(message.req_id && $util.isInteger(message.req_id.low) && $util.isInteger(message.req_id.high)))
-                return "req_id: integer|Long expected";
-        }
-        if (message.tool_call_json != null && $Object.hasOwnProperty.call(message, "tool_call_json")) {
-            properties._tool_call_json = 1;
-            if (!$util.isString(message.tool_call_json))
-                return "tool_call_json: string expected";
-        }
-        if (message.tool_call_index != null && $Object.hasOwnProperty.call(message, "tool_call_index")) {
-            properties._tool_call_index = 1;
-            if (!$util.isInteger(message.tool_call_index))
-                return "tool_call_index: integer expected";
-        }
-        if (message.tool_call_id != null && $Object.hasOwnProperty.call(message, "tool_call_id")) {
-            properties._tool_call_id = 1;
-            if (!$util.isString(message.tool_call_id))
-                return "tool_call_id: string expected";
-        }
-        if (message.tool_call_name != null && $Object.hasOwnProperty.call(message, "tool_call_name")) {
-            properties._tool_call_name = 1;
-            if (!$util.isString(message.tool_call_name))
-                return "tool_call_name: string expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_LlmChatResponse message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_LlmChatResponse} P_LlmChatResponse
-     */
-    P_LlmChatResponse.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_LlmChatResponse)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_LlmChatResponse: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_LlmChatResponse();
-        if (object.content_delta != null)
-            message.content_delta = $String(object.content_delta);
-        if (object.reasoning_delta != null)
-            message.reasoning_delta = $String(object.reasoning_delta);
-        if (object.index != null)
-            message.index = object.index | 0;
-        if (object.req_id != null)
-            if ($util.Long)
-                message.req_id = $util.Long.fromValue(object.req_id, false);
-            else if (typeof object.req_id === "string")
-                message.req_id = $parseInt(object.req_id, 10);
-            else if (typeof object.req_id === "number")
-                message.req_id = object.req_id;
-            else if (typeof object.req_id === "object")
-                message.req_id = new $util.LongBits(object.req_id.low >>> 0, object.req_id.high >>> 0).toNumber();
-        if (object.tool_call_json != null)
-            message.tool_call_json = $String(object.tool_call_json);
-        if (object.tool_call_index != null)
-            message.tool_call_index = object.tool_call_index | 0;
-        if (object.tool_call_id != null)
-            message.tool_call_id = $String(object.tool_call_id);
-        if (object.tool_call_name != null)
-            message.tool_call_name = $String(object.tool_call_name);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_LlmChatResponse message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {P_LlmChatResponse} message P_LlmChatResponse
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_LlmChatResponse.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.content_delta != null && $Object.hasOwnProperty.call(message, "content_delta"))
-            object.content_delta = message.content_delta;
-        if (message.reasoning_delta != null && $Object.hasOwnProperty.call(message, "reasoning_delta"))
-            object.reasoning_delta = message.reasoning_delta;
-        if (message.index != null && $Object.hasOwnProperty.call(message, "index"))
-            object.index = message.index;
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.req_id = typeof message.req_id === "number" ? $BigInt(message.req_id) : $util.Long.fromBits(message.req_id.low >>> 0, message.req_id.high >>> 0, false).toBigInt();
-            else if (typeof message.req_id === "number")
-                object.req_id = options.longs === $String ? $String(message.req_id) : message.req_id;
-            else
-                object.req_id = options.longs === $String ? $util.Long.prototype.toString.call(message.req_id) : options.longs === $Number ? new $util.LongBits(message.req_id.low >>> 0, message.req_id.high >>> 0).toNumber() : message.req_id;
-        if (message.tool_call_json != null && $Object.hasOwnProperty.call(message, "tool_call_json"))
-            object.tool_call_json = message.tool_call_json;
-        if (message.tool_call_index != null && $Object.hasOwnProperty.call(message, "tool_call_index"))
-            object.tool_call_index = message.tool_call_index;
-        if (message.tool_call_id != null && $Object.hasOwnProperty.call(message, "tool_call_id"))
-            object.tool_call_id = message.tool_call_id;
-        if (message.tool_call_name != null && $Object.hasOwnProperty.call(message, "tool_call_name"))
-            object.tool_call_name = message.tool_call_name;
-        return object;
-    };
-
-    /**
-     * Converts this P_LlmChatResponse to JSON.
-     * @function toJSON
-     * @memberof P_LlmChatResponse
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_LlmChatResponse.prototype.toJSON = function() {
-        return P_LlmChatResponse.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_LlmChatResponse
-     * @function getTypeUrl
-     * @memberof P_LlmChatResponse
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_LlmChatResponse.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_LlmChatResponse";
-    };
-
-    return P_LlmChatResponse;
-})();
-
-export const P_LlmChatDone = $root.P_LlmChatDone = (() => {
-
-    /**
-     * Properties of a P_LlmChatDone.
-     * @typedef {Object} P_LlmChatDone.$Properties
-     * @property {number|null} [req_id] P_LlmChatDone req_id
-     * @property {string|null} [finish_reason] P_LlmChatDone finish_reason
-     * @property {number|null} [prompt_tokens] P_LlmChatDone prompt_tokens
-     * @property {number|null} [completion_tokens] P_LlmChatDone completion_tokens
-     * @property {string|null} [full_text] P_LlmChatDone full_text
-     * @property {boolean|null} [has_tool_calls] P_LlmChatDone has_tool_calls
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_LlmChatDone.
-     * @exports IP_LlmChatDone
-     * @interface IP_LlmChatDone
-     * @augments P_LlmChatDone.$Properties
-     * @deprecated Use P_LlmChatDone.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_LlmChatDone.
-     * @typedef {P_LlmChatDone.$Properties} P_LlmChatDone.$Shape
-     */
-
-    /**
-     * Constructs a new P_LlmChatDone.
-     * @exports P_LlmChatDone
-     * @classdesc Represents a P_LlmChatDone.
-     * @constructor
-     * @param {P_LlmChatDone.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_LlmChatDone = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_LlmChatDone req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_LlmChatDone
-     * @instance
-     */
-    P_LlmChatDone.prototype.req_id = null;
-
-    /**
-     * P_LlmChatDone finish_reason.
-     * @member {string|null|undefined} finish_reason
-     * @memberof P_LlmChatDone
-     * @instance
-     */
-    P_LlmChatDone.prototype.finish_reason = null;
-
-    /**
-     * P_LlmChatDone prompt_tokens.
-     * @member {number|null|undefined} prompt_tokens
-     * @memberof P_LlmChatDone
-     * @instance
-     */
-    P_LlmChatDone.prototype.prompt_tokens = null;
-
-    /**
-     * P_LlmChatDone completion_tokens.
-     * @member {number|null|undefined} completion_tokens
-     * @memberof P_LlmChatDone
-     * @instance
-     */
-    P_LlmChatDone.prototype.completion_tokens = null;
-
-    /**
-     * P_LlmChatDone full_text.
-     * @member {string|null|undefined} full_text
-     * @memberof P_LlmChatDone
-     * @instance
-     */
-    P_LlmChatDone.prototype.full_text = null;
-
-    /**
-     * P_LlmChatDone has_tool_calls.
-     * @member {boolean|null|undefined} has_tool_calls
-     * @memberof P_LlmChatDone
-     * @instance
-     */
-    P_LlmChatDone.prototype.has_tool_calls = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatDone.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatDone.prototype, "_finish_reason", {
-        get: $util.oneOfGetter($oneOfFields = ["finish_reason"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatDone.prototype, "_prompt_tokens", {
-        get: $util.oneOfGetter($oneOfFields = ["prompt_tokens"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatDone.prototype, "_completion_tokens", {
-        get: $util.oneOfGetter($oneOfFields = ["completion_tokens"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatDone.prototype, "_full_text", {
-        get: $util.oneOfGetter($oneOfFields = ["full_text"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmChatDone.prototype, "_has_tool_calls", {
-        get: $util.oneOfGetter($oneOfFields = ["has_tool_calls"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_LlmChatDone instance using the specified properties.
-     * @function create
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {P_LlmChatDone.$Properties=} [properties] Properties to set
-     * @returns {P_LlmChatDone} P_LlmChatDone instance
-     * @type {{
-     *   (properties: P_LlmChatDone.$Shape): P_LlmChatDone & P_LlmChatDone.$Shape;
-     *   (properties?: P_LlmChatDone.$Properties): P_LlmChatDone;
-     * }}
-     */
-    P_LlmChatDone.create = function(properties) {
-        return new P_LlmChatDone(properties);
-    };
-
-    /**
-     * Encodes the specified P_LlmChatDone message. Does not implicitly {@link P_LlmChatDone.verify|verify} messages.
-     * @function encode
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {P_LlmChatDone.$Properties} message P_LlmChatDone message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmChatDone.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.req_id);
-        if (message.finish_reason != null && $Object.hasOwnProperty.call(message, "finish_reason"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.finish_reason);
-        if (message.prompt_tokens != null && $Object.hasOwnProperty.call(message, "prompt_tokens"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.prompt_tokens);
-        if (message.completion_tokens != null && $Object.hasOwnProperty.call(message, "completion_tokens"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.completion_tokens);
-        if (message.full_text != null && $Object.hasOwnProperty.call(message, "full_text"))
-            writer.uint32(/* id 5, wireType 2 =*/42).string(message.full_text);
-        if (message.has_tool_calls != null && $Object.hasOwnProperty.call(message, "has_tool_calls"))
-            writer.uint32(/* id 6, wireType 0 =*/48).bool(message.has_tool_calls);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_LlmChatDone message, length delimited. Does not implicitly {@link P_LlmChatDone.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {P_LlmChatDone.$Properties} message P_LlmChatDone message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmChatDone.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_LlmChatDone message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_LlmChatDone & P_LlmChatDone.$Shape} P_LlmChatDone
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmChatDone.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_LlmChatDone();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int64();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.finish_reason = reader.stringVerify();
-                    message._finish_reason = "finish_reason";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 0)
-                        break;
-                    message.prompt_tokens = reader.int32();
-                    message._prompt_tokens = "prompt_tokens";
-                    continue;
-                }
-            case 4: {
-                    if (wireType !== 0)
-                        break;
-                    message.completion_tokens = reader.int32();
-                    message._completion_tokens = "completion_tokens";
-                    continue;
-                }
-            case 5: {
-                    if (wireType !== 2)
-                        break;
-                    message.full_text = reader.stringVerify();
-                    message._full_text = "full_text";
-                    continue;
-                }
-            case 6: {
-                    if (wireType !== 0)
-                        break;
-                    message.has_tool_calls = reader.bool();
-                    message._has_tool_calls = "has_tool_calls";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_LlmChatDone message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_LlmChatDone & P_LlmChatDone.$Shape} P_LlmChatDone
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmChatDone.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_LlmChatDone message.
-     * @function verify
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_LlmChatDone.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id) && !(message.req_id && $util.isInteger(message.req_id.low) && $util.isInteger(message.req_id.high)))
-                return "req_id: integer|Long expected";
-        }
-        if (message.finish_reason != null && $Object.hasOwnProperty.call(message, "finish_reason")) {
-            properties._finish_reason = 1;
-            if (!$util.isString(message.finish_reason))
-                return "finish_reason: string expected";
-        }
-        if (message.prompt_tokens != null && $Object.hasOwnProperty.call(message, "prompt_tokens")) {
-            properties._prompt_tokens = 1;
-            if (!$util.isInteger(message.prompt_tokens))
-                return "prompt_tokens: integer expected";
-        }
-        if (message.completion_tokens != null && $Object.hasOwnProperty.call(message, "completion_tokens")) {
-            properties._completion_tokens = 1;
-            if (!$util.isInteger(message.completion_tokens))
-                return "completion_tokens: integer expected";
-        }
-        if (message.full_text != null && $Object.hasOwnProperty.call(message, "full_text")) {
-            properties._full_text = 1;
-            if (!$util.isString(message.full_text))
-                return "full_text: string expected";
-        }
-        if (message.has_tool_calls != null && $Object.hasOwnProperty.call(message, "has_tool_calls")) {
-            properties._has_tool_calls = 1;
-            if (typeof message.has_tool_calls !== "boolean")
-                return "has_tool_calls: boolean expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_LlmChatDone message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_LlmChatDone} P_LlmChatDone
-     */
-    P_LlmChatDone.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_LlmChatDone)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_LlmChatDone: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_LlmChatDone();
-        if (object.req_id != null)
-            if ($util.Long)
-                message.req_id = $util.Long.fromValue(object.req_id, false);
-            else if (typeof object.req_id === "string")
-                message.req_id = $parseInt(object.req_id, 10);
-            else if (typeof object.req_id === "number")
-                message.req_id = object.req_id;
-            else if (typeof object.req_id === "object")
-                message.req_id = new $util.LongBits(object.req_id.low >>> 0, object.req_id.high >>> 0).toNumber();
-        if (object.finish_reason != null)
-            message.finish_reason = $String(object.finish_reason);
-        if (object.prompt_tokens != null)
-            message.prompt_tokens = object.prompt_tokens | 0;
-        if (object.completion_tokens != null)
-            message.completion_tokens = object.completion_tokens | 0;
-        if (object.full_text != null)
-            message.full_text = $String(object.full_text);
-        if (object.has_tool_calls != null)
-            message.has_tool_calls = $Boolean(object.has_tool_calls);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_LlmChatDone message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {P_LlmChatDone} message P_LlmChatDone
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_LlmChatDone.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.req_id = typeof message.req_id === "number" ? $BigInt(message.req_id) : $util.Long.fromBits(message.req_id.low >>> 0, message.req_id.high >>> 0, false).toBigInt();
-            else if (typeof message.req_id === "number")
-                object.req_id = options.longs === $String ? $String(message.req_id) : message.req_id;
-            else
-                object.req_id = options.longs === $String ? $util.Long.prototype.toString.call(message.req_id) : options.longs === $Number ? new $util.LongBits(message.req_id.low >>> 0, message.req_id.high >>> 0).toNumber() : message.req_id;
-        if (message.finish_reason != null && $Object.hasOwnProperty.call(message, "finish_reason"))
-            object.finish_reason = message.finish_reason;
-        if (message.prompt_tokens != null && $Object.hasOwnProperty.call(message, "prompt_tokens"))
-            object.prompt_tokens = message.prompt_tokens;
-        if (message.completion_tokens != null && $Object.hasOwnProperty.call(message, "completion_tokens"))
-            object.completion_tokens = message.completion_tokens;
-        if (message.full_text != null && $Object.hasOwnProperty.call(message, "full_text"))
-            object.full_text = message.full_text;
-        if (message.has_tool_calls != null && $Object.hasOwnProperty.call(message, "has_tool_calls"))
-            object.has_tool_calls = message.has_tool_calls;
-        return object;
-    };
-
-    /**
-     * Converts this P_LlmChatDone to JSON.
-     * @function toJSON
-     * @memberof P_LlmChatDone
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_LlmChatDone.prototype.toJSON = function() {
-        return P_LlmChatDone.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_LlmChatDone
-     * @function getTypeUrl
-     * @memberof P_LlmChatDone
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_LlmChatDone.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_LlmChatDone";
-    };
-
-    return P_LlmChatDone;
-})();
-
-export const P_LlmModelsReq = $root.P_LlmModelsReq = (() => {
-
-    /**
-     * Properties of a P_LlmModelsReq.
-     * @typedef {Object} P_LlmModelsReq.$Properties
-     * @property {number|null} [req_id] P_LlmModelsReq req_id
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_LlmModelsReq.
-     * @exports IP_LlmModelsReq
-     * @interface IP_LlmModelsReq
-     * @augments P_LlmModelsReq.$Properties
-     * @deprecated Use P_LlmModelsReq.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_LlmModelsReq.
-     * @typedef {P_LlmModelsReq.$Properties} P_LlmModelsReq.$Shape
-     */
-
-    /**
-     * Constructs a new P_LlmModelsReq.
-     * @exports P_LlmModelsReq
-     * @classdesc Represents a P_LlmModelsReq.
-     * @constructor
-     * @param {P_LlmModelsReq.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_LlmModelsReq = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_LlmModelsReq req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_LlmModelsReq
-     * @instance
-     */
-    P_LlmModelsReq.prototype.req_id = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmModelsReq.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_LlmModelsReq instance using the specified properties.
-     * @function create
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {P_LlmModelsReq.$Properties=} [properties] Properties to set
-     * @returns {P_LlmModelsReq} P_LlmModelsReq instance
-     * @type {{
-     *   (properties: P_LlmModelsReq.$Shape): P_LlmModelsReq & P_LlmModelsReq.$Shape;
-     *   (properties?: P_LlmModelsReq.$Properties): P_LlmModelsReq;
-     * }}
-     */
-    P_LlmModelsReq.create = function(properties) {
-        return new P_LlmModelsReq(properties);
-    };
-
-    /**
-     * Encodes the specified P_LlmModelsReq message. Does not implicitly {@link P_LlmModelsReq.verify|verify} messages.
-     * @function encode
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {P_LlmModelsReq.$Properties} message P_LlmModelsReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmModelsReq.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.req_id);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_LlmModelsReq message, length delimited. Does not implicitly {@link P_LlmModelsReq.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {P_LlmModelsReq.$Properties} message P_LlmModelsReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmModelsReq.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_LlmModelsReq message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_LlmModelsReq & P_LlmModelsReq.$Shape} P_LlmModelsReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmModelsReq.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_LlmModelsReq();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int64();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_LlmModelsReq message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_LlmModelsReq & P_LlmModelsReq.$Shape} P_LlmModelsReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmModelsReq.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_LlmModelsReq message.
-     * @function verify
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_LlmModelsReq.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id) && !(message.req_id && $util.isInteger(message.req_id.low) && $util.isInteger(message.req_id.high)))
-                return "req_id: integer|Long expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_LlmModelsReq message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_LlmModelsReq} P_LlmModelsReq
-     */
-    P_LlmModelsReq.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_LlmModelsReq)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_LlmModelsReq: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_LlmModelsReq();
-        if (object.req_id != null)
-            if ($util.Long)
-                message.req_id = $util.Long.fromValue(object.req_id, false);
-            else if (typeof object.req_id === "string")
-                message.req_id = $parseInt(object.req_id, 10);
-            else if (typeof object.req_id === "number")
-                message.req_id = object.req_id;
-            else if (typeof object.req_id === "object")
-                message.req_id = new $util.LongBits(object.req_id.low >>> 0, object.req_id.high >>> 0).toNumber();
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_LlmModelsReq message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {P_LlmModelsReq} message P_LlmModelsReq
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_LlmModelsReq.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.req_id = typeof message.req_id === "number" ? $BigInt(message.req_id) : $util.Long.fromBits(message.req_id.low >>> 0, message.req_id.high >>> 0, false).toBigInt();
-            else if (typeof message.req_id === "number")
-                object.req_id = options.longs === $String ? $String(message.req_id) : message.req_id;
-            else
-                object.req_id = options.longs === $String ? $util.Long.prototype.toString.call(message.req_id) : options.longs === $Number ? new $util.LongBits(message.req_id.low >>> 0, message.req_id.high >>> 0).toNumber() : message.req_id;
-        return object;
-    };
-
-    /**
-     * Converts this P_LlmModelsReq to JSON.
-     * @function toJSON
-     * @memberof P_LlmModelsReq
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_LlmModelsReq.prototype.toJSON = function() {
-        return P_LlmModelsReq.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_LlmModelsReq
-     * @function getTypeUrl
-     * @memberof P_LlmModelsReq
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_LlmModelsReq.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_LlmModelsReq";
-    };
-
-    return P_LlmModelsReq;
-})();
-
-export const P_LlmModelsRes = $root.P_LlmModelsRes = (() => {
-
-    /**
-     * Properties of a P_LlmModelsRes.
-     * @typedef {Object} P_LlmModelsRes.$Properties
-     * @property {number|null} [req_id] P_LlmModelsRes req_id
-     * @property {string|null} [models_json] P_LlmModelsRes models_json
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_LlmModelsRes.
-     * @exports IP_LlmModelsRes
-     * @interface IP_LlmModelsRes
-     * @augments P_LlmModelsRes.$Properties
-     * @deprecated Use P_LlmModelsRes.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_LlmModelsRes.
-     * @typedef {P_LlmModelsRes.$Properties} P_LlmModelsRes.$Shape
-     */
-
-    /**
-     * Constructs a new P_LlmModelsRes.
-     * @exports P_LlmModelsRes
-     * @classdesc Represents a P_LlmModelsRes.
-     * @constructor
-     * @param {P_LlmModelsRes.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_LlmModelsRes = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_LlmModelsRes req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_LlmModelsRes
-     * @instance
-     */
-    P_LlmModelsRes.prototype.req_id = null;
-
-    /**
-     * P_LlmModelsRes models_json.
-     * @member {string|null|undefined} models_json
-     * @memberof P_LlmModelsRes
-     * @instance
-     */
-    P_LlmModelsRes.prototype.models_json = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmModelsRes.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmModelsRes.prototype, "_models_json", {
-        get: $util.oneOfGetter($oneOfFields = ["models_json"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_LlmModelsRes instance using the specified properties.
-     * @function create
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {P_LlmModelsRes.$Properties=} [properties] Properties to set
-     * @returns {P_LlmModelsRes} P_LlmModelsRes instance
-     * @type {{
-     *   (properties: P_LlmModelsRes.$Shape): P_LlmModelsRes & P_LlmModelsRes.$Shape;
-     *   (properties?: P_LlmModelsRes.$Properties): P_LlmModelsRes;
-     * }}
-     */
-    P_LlmModelsRes.create = function(properties) {
-        return new P_LlmModelsRes(properties);
-    };
-
-    /**
-     * Encodes the specified P_LlmModelsRes message. Does not implicitly {@link P_LlmModelsRes.verify|verify} messages.
-     * @function encode
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {P_LlmModelsRes.$Properties} message P_LlmModelsRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmModelsRes.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.req_id);
-        if (message.models_json != null && $Object.hasOwnProperty.call(message, "models_json"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.models_json);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_LlmModelsRes message, length delimited. Does not implicitly {@link P_LlmModelsRes.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {P_LlmModelsRes.$Properties} message P_LlmModelsRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmModelsRes.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_LlmModelsRes message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_LlmModelsRes & P_LlmModelsRes.$Shape} P_LlmModelsRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmModelsRes.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_LlmModelsRes();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int64();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.models_json = reader.stringVerify();
-                    message._models_json = "models_json";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_LlmModelsRes message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_LlmModelsRes & P_LlmModelsRes.$Shape} P_LlmModelsRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmModelsRes.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_LlmModelsRes message.
-     * @function verify
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_LlmModelsRes.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id) && !(message.req_id && $util.isInteger(message.req_id.low) && $util.isInteger(message.req_id.high)))
-                return "req_id: integer|Long expected";
-        }
-        if (message.models_json != null && $Object.hasOwnProperty.call(message, "models_json")) {
-            properties._models_json = 1;
-            if (!$util.isString(message.models_json))
-                return "models_json: string expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_LlmModelsRes message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_LlmModelsRes} P_LlmModelsRes
-     */
-    P_LlmModelsRes.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_LlmModelsRes)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_LlmModelsRes: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_LlmModelsRes();
-        if (object.req_id != null)
-            if ($util.Long)
-                message.req_id = $util.Long.fromValue(object.req_id, false);
-            else if (typeof object.req_id === "string")
-                message.req_id = $parseInt(object.req_id, 10);
-            else if (typeof object.req_id === "number")
-                message.req_id = object.req_id;
-            else if (typeof object.req_id === "object")
-                message.req_id = new $util.LongBits(object.req_id.low >>> 0, object.req_id.high >>> 0).toNumber();
-        if (object.models_json != null)
-            message.models_json = $String(object.models_json);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_LlmModelsRes message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {P_LlmModelsRes} message P_LlmModelsRes
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_LlmModelsRes.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.req_id = typeof message.req_id === "number" ? $BigInt(message.req_id) : $util.Long.fromBits(message.req_id.low >>> 0, message.req_id.high >>> 0, false).toBigInt();
-            else if (typeof message.req_id === "number")
-                object.req_id = options.longs === $String ? $String(message.req_id) : message.req_id;
-            else
-                object.req_id = options.longs === $String ? $util.Long.prototype.toString.call(message.req_id) : options.longs === $Number ? new $util.LongBits(message.req_id.low >>> 0, message.req_id.high >>> 0).toNumber() : message.req_id;
-        if (message.models_json != null && $Object.hasOwnProperty.call(message, "models_json"))
-            object.models_json = message.models_json;
-        return object;
-    };
-
-    /**
-     * Converts this P_LlmModelsRes to JSON.
-     * @function toJSON
-     * @memberof P_LlmModelsRes
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_LlmModelsRes.prototype.toJSON = function() {
-        return P_LlmModelsRes.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_LlmModelsRes
-     * @function getTypeUrl
-     * @memberof P_LlmModelsRes
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_LlmModelsRes.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_LlmModelsRes";
-    };
-
-    return P_LlmModelsRes;
-})();
-
-export const P_LlmHealthReq = $root.P_LlmHealthReq = (() => {
-
-    /**
-     * Properties of a P_LlmHealthReq.
-     * @typedef {Object} P_LlmHealthReq.$Properties
-     * @property {number|null} [req_id] P_LlmHealthReq req_id
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_LlmHealthReq.
-     * @exports IP_LlmHealthReq
-     * @interface IP_LlmHealthReq
-     * @augments P_LlmHealthReq.$Properties
-     * @deprecated Use P_LlmHealthReq.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_LlmHealthReq.
-     * @typedef {P_LlmHealthReq.$Properties} P_LlmHealthReq.$Shape
-     */
-
-    /**
-     * Constructs a new P_LlmHealthReq.
-     * @exports P_LlmHealthReq
-     * @classdesc Represents a P_LlmHealthReq.
-     * @constructor
-     * @param {P_LlmHealthReq.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_LlmHealthReq = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_LlmHealthReq req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_LlmHealthReq
-     * @instance
-     */
-    P_LlmHealthReq.prototype.req_id = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmHealthReq.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_LlmHealthReq instance using the specified properties.
-     * @function create
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {P_LlmHealthReq.$Properties=} [properties] Properties to set
-     * @returns {P_LlmHealthReq} P_LlmHealthReq instance
-     * @type {{
-     *   (properties: P_LlmHealthReq.$Shape): P_LlmHealthReq & P_LlmHealthReq.$Shape;
-     *   (properties?: P_LlmHealthReq.$Properties): P_LlmHealthReq;
-     * }}
-     */
-    P_LlmHealthReq.create = function(properties) {
-        return new P_LlmHealthReq(properties);
-    };
-
-    /**
-     * Encodes the specified P_LlmHealthReq message. Does not implicitly {@link P_LlmHealthReq.verify|verify} messages.
-     * @function encode
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {P_LlmHealthReq.$Properties} message P_LlmHealthReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmHealthReq.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.req_id);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_LlmHealthReq message, length delimited. Does not implicitly {@link P_LlmHealthReq.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {P_LlmHealthReq.$Properties} message P_LlmHealthReq message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmHealthReq.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_LlmHealthReq message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_LlmHealthReq & P_LlmHealthReq.$Shape} P_LlmHealthReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmHealthReq.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_LlmHealthReq();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int64();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_LlmHealthReq message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_LlmHealthReq & P_LlmHealthReq.$Shape} P_LlmHealthReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmHealthReq.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_LlmHealthReq message.
-     * @function verify
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_LlmHealthReq.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id) && !(message.req_id && $util.isInteger(message.req_id.low) && $util.isInteger(message.req_id.high)))
-                return "req_id: integer|Long expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_LlmHealthReq message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_LlmHealthReq} P_LlmHealthReq
-     */
-    P_LlmHealthReq.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_LlmHealthReq)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_LlmHealthReq: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_LlmHealthReq();
-        if (object.req_id != null)
-            if ($util.Long)
-                message.req_id = $util.Long.fromValue(object.req_id, false);
-            else if (typeof object.req_id === "string")
-                message.req_id = $parseInt(object.req_id, 10);
-            else if (typeof object.req_id === "number")
-                message.req_id = object.req_id;
-            else if (typeof object.req_id === "object")
-                message.req_id = new $util.LongBits(object.req_id.low >>> 0, object.req_id.high >>> 0).toNumber();
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_LlmHealthReq message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {P_LlmHealthReq} message P_LlmHealthReq
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_LlmHealthReq.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.req_id = typeof message.req_id === "number" ? $BigInt(message.req_id) : $util.Long.fromBits(message.req_id.low >>> 0, message.req_id.high >>> 0, false).toBigInt();
-            else if (typeof message.req_id === "number")
-                object.req_id = options.longs === $String ? $String(message.req_id) : message.req_id;
-            else
-                object.req_id = options.longs === $String ? $util.Long.prototype.toString.call(message.req_id) : options.longs === $Number ? new $util.LongBits(message.req_id.low >>> 0, message.req_id.high >>> 0).toNumber() : message.req_id;
-        return object;
-    };
-
-    /**
-     * Converts this P_LlmHealthReq to JSON.
-     * @function toJSON
-     * @memberof P_LlmHealthReq
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_LlmHealthReq.prototype.toJSON = function() {
-        return P_LlmHealthReq.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_LlmHealthReq
-     * @function getTypeUrl
-     * @memberof P_LlmHealthReq
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_LlmHealthReq.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_LlmHealthReq";
-    };
-
-    return P_LlmHealthReq;
-})();
-
-export const P_LlmHealthRes = $root.P_LlmHealthRes = (() => {
-
-    /**
-     * Properties of a P_LlmHealthRes.
-     * @typedef {Object} P_LlmHealthRes.$Properties
-     * @property {number|null} [req_id] P_LlmHealthRes req_id
-     * @property {string|null} [status] P_LlmHealthRes status
-     * @property {boolean|null} [running] P_LlmHealthRes running
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_LlmHealthRes.
-     * @exports IP_LlmHealthRes
-     * @interface IP_LlmHealthRes
-     * @augments P_LlmHealthRes.$Properties
-     * @deprecated Use P_LlmHealthRes.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_LlmHealthRes.
-     * @typedef {P_LlmHealthRes.$Properties} P_LlmHealthRes.$Shape
-     */
-
-    /**
-     * Constructs a new P_LlmHealthRes.
-     * @exports P_LlmHealthRes
-     * @classdesc Represents a P_LlmHealthRes.
-     * @constructor
-     * @param {P_LlmHealthRes.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_LlmHealthRes = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_LlmHealthRes req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof P_LlmHealthRes
-     * @instance
-     */
-    P_LlmHealthRes.prototype.req_id = null;
-
-    /**
-     * P_LlmHealthRes status.
-     * @member {string|null|undefined} status
-     * @memberof P_LlmHealthRes
-     * @instance
-     */
-    P_LlmHealthRes.prototype.status = null;
-
-    /**
-     * P_LlmHealthRes running.
-     * @member {boolean|null|undefined} running
-     * @memberof P_LlmHealthRes
-     * @instance
-     */
-    P_LlmHealthRes.prototype.running = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmHealthRes.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmHealthRes.prototype, "_status", {
-        get: $util.oneOfGetter($oneOfFields = ["status"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_LlmHealthRes.prototype, "_running", {
-        get: $util.oneOfGetter($oneOfFields = ["running"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_LlmHealthRes instance using the specified properties.
-     * @function create
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {P_LlmHealthRes.$Properties=} [properties] Properties to set
-     * @returns {P_LlmHealthRes} P_LlmHealthRes instance
-     * @type {{
-     *   (properties: P_LlmHealthRes.$Shape): P_LlmHealthRes & P_LlmHealthRes.$Shape;
-     *   (properties?: P_LlmHealthRes.$Properties): P_LlmHealthRes;
-     * }}
-     */
-    P_LlmHealthRes.create = function(properties) {
-        return new P_LlmHealthRes(properties);
-    };
-
-    /**
-     * Encodes the specified P_LlmHealthRes message. Does not implicitly {@link P_LlmHealthRes.verify|verify} messages.
-     * @function encode
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {P_LlmHealthRes.$Properties} message P_LlmHealthRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmHealthRes.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.req_id);
-        if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.status);
-        if (message.running != null && $Object.hasOwnProperty.call(message, "running"))
-            writer.uint32(/* id 3, wireType 0 =*/24).bool(message.running);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_LlmHealthRes message, length delimited. Does not implicitly {@link P_LlmHealthRes.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {P_LlmHealthRes.$Properties} message P_LlmHealthRes message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_LlmHealthRes.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_LlmHealthRes message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_LlmHealthRes & P_LlmHealthRes.$Shape} P_LlmHealthRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmHealthRes.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_LlmHealthRes();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int64();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.status = reader.stringVerify();
-                    message._status = "status";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 0)
-                        break;
-                    message.running = reader.bool();
-                    message._running = "running";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_LlmHealthRes message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_LlmHealthRes & P_LlmHealthRes.$Shape} P_LlmHealthRes
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_LlmHealthRes.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_LlmHealthRes message.
-     * @function verify
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_LlmHealthRes.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id) && !(message.req_id && $util.isInteger(message.req_id.low) && $util.isInteger(message.req_id.high)))
-                return "req_id: integer|Long expected";
-        }
-        if (message.status != null && $Object.hasOwnProperty.call(message, "status")) {
-            properties._status = 1;
-            if (!$util.isString(message.status))
-                return "status: string expected";
-        }
-        if (message.running != null && $Object.hasOwnProperty.call(message, "running")) {
-            properties._running = 1;
-            if (typeof message.running !== "boolean")
-                return "running: boolean expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_LlmHealthRes message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_LlmHealthRes} P_LlmHealthRes
-     */
-    P_LlmHealthRes.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_LlmHealthRes)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_LlmHealthRes: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_LlmHealthRes();
-        if (object.req_id != null)
-            if ($util.Long)
-                message.req_id = $util.Long.fromValue(object.req_id, false);
-            else if (typeof object.req_id === "string")
-                message.req_id = $parseInt(object.req_id, 10);
-            else if (typeof object.req_id === "number")
-                message.req_id = object.req_id;
-            else if (typeof object.req_id === "object")
-                message.req_id = new $util.LongBits(object.req_id.low >>> 0, object.req_id.high >>> 0).toNumber();
-        if (object.status != null)
-            message.status = $String(object.status);
-        if (object.running != null)
-            message.running = $Boolean(object.running);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_LlmHealthRes message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {P_LlmHealthRes} message P_LlmHealthRes
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_LlmHealthRes.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.req_id = typeof message.req_id === "number" ? $BigInt(message.req_id) : $util.Long.fromBits(message.req_id.low >>> 0, message.req_id.high >>> 0, false).toBigInt();
-            else if (typeof message.req_id === "number")
-                object.req_id = options.longs === $String ? $String(message.req_id) : message.req_id;
-            else
-                object.req_id = options.longs === $String ? $util.Long.prototype.toString.call(message.req_id) : options.longs === $Number ? new $util.LongBits(message.req_id.low >>> 0, message.req_id.high >>> 0).toNumber() : message.req_id;
-        if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-            object.status = message.status;
-        if (message.running != null && $Object.hasOwnProperty.call(message, "running"))
-            object.running = message.running;
-        return object;
-    };
-
-    /**
-     * Converts this P_LlmHealthRes to JSON.
-     * @function toJSON
-     * @memberof P_LlmHealthRes
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_LlmHealthRes.prototype.toJSON = function() {
-        return P_LlmHealthRes.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_LlmHealthRes
-     * @function getTypeUrl
-     * @memberof P_LlmHealthRes
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_LlmHealthRes.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_LlmHealthRes";
-    };
-
-    return P_LlmHealthRes;
 })();
 
 /**

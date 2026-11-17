@@ -39,7 +39,7 @@ WORK_DIR = os.path.normpath(os.path.join(_SCRIPT_DIR, "share", "proto"))
 
 CONFIG = {
 
-    # 基础路径 (基于 share/ 目录)
+    # 基础路径
     "BASE_DIR": os.path.dirname(WORK_DIR),
 
     # proto 源文件目录 (相对 BASE_DIR)
@@ -191,6 +191,7 @@ def _scan_proto_files(proto_dir):
 
 
 def _compile_proto(protoc_path, target, proto_file, proto_path_arg, output_dir):
+    """编译单个 proto 文件, 生成 C++ 代码"""
     name, flag, out_dir, patterns, recursive = target
 
     if flag == "--descriptor_set_out":
@@ -340,7 +341,7 @@ def _build_file_header(comment_prefix, source=None):
         f'{comment_prefix}  此文件脚本自动生成 请勿手动修改',
     ]
     if source:
-        lines.append(f'{comment_prefix}  来源: share/proto/{source}')
+        lines.append(f'{comment_prefix}  来源: generate_protobuf')
     lines.append(f'{comment_prefix} ============================================================')
     lines.append('')
     return lines
@@ -497,7 +498,7 @@ def _get_group(number):
 
 
 def generate_protobufmht_hpp(results, output_path):
-    """生成 C++ MHT"""
+    """生成 C++ MHT 枚举"""
     lines = _build_file_header('//')
     lines.append("#ifndef __MSG_HEAD_DEF_HPP__")
     lines.append("#define __MSG_HEAD_DEF_HPP__")
@@ -538,9 +539,11 @@ def generate_protobufmht_hpp(results, output_path):
 
 
 def generate_protoregister_cpp(results, output_path):
-    """生成C++ 静态初始化自动注册 """
+    """生成 C++ 静态初始化自动注册"""
     lines = _build_file_header('//')
-    lines.append('#include "protobufmanager.hpp"')
+    # lines.append('#pragma once')
+    lines.append('')
+    lines.append('#include "proto/protobufmanager.hpp"')
     lines.append('#include "protobufmht.hpp"')
     lines.append("")
     lines.append("namespace {")

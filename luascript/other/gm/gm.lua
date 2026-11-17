@@ -20,10 +20,9 @@ EventManager.RegisterListener(EventManager.cpp_OnGmCommand, function(event_data)
 	local netid = event_data.netid
 	local uid = event_data.uid
 
-	local start_time = os.clock()
+	local start_us = Utils.NowUs()
 	local success, result = M.ExecuteCommand(command, netid, uid)
-	local end_time = os.clock()
-	local duration = (end_time - start_time) * 1000 -- 转换为毫秒
+	local duration = (Utils.NowUs() - start_us) / 1000 -- 转换为毫秒
 
 	if success then
 		LOG_INFO("耗时:%.2fms 命令执行: %s - %s ", duration, command, result or "完成")
