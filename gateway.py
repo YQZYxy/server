@@ -68,8 +68,8 @@ EXIT_WAIT_INTERVAL = 0.1         # 等待进程退出的轮询间隔
 # 日志里的 ANSI 颜色转义
 ANSI_ESCAPE_PATTERN = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
 
-# 日志行格式: [时间][类型][级别]消息, 级别是单字符
-LOG_LEVEL_PATTERN = re.compile(r"^\[[^\]]*\]\[-?\d+\]\[([DICWEF])\]")
+# 日志行格式: [时间][级别]消息, 级别是单字符
+LOG_LEVEL_PATTERN = re.compile(r"^\[[^\]]*\]\[([DICWEF])\]")
 
 # 终端颜色, 与 logmodule.cpp 的级别配色保持一致
 COLOR_RESET = "\033[0m"
