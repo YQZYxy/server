@@ -18,7 +18,7 @@ function bytesToString(val: unknown): string {
 // 外部模块回调 (模块在此注册,收到战报后回调)
 const _battleCallbacks = new Set<(body: P_GasBattle_SC) => void>()
 
-/** 注册战报回调(收到战报协议后调用,此时 body.battle_report 已转字符串) */
+/** 注册战报回调(收到战报协议后调用,此时 body.matches[].replay_text 已转字符串) */
 export function onBattleResult(cb: (body: P_GasBattle_SC) => void): () => void {
   _battleCallbacks.add(cb)
   return () => { _battleCallbacks.delete(cb) }
@@ -50,27 +50,27 @@ export interface BattleSeriesResult {
 // 将 SC.matches[] 中各场战报字节串转字符串
 function stringifyMatches(sc: P_GasBattle_SC): P_GasBattle_SC {
   const matches = ((sc as any).matches ?? []).map((m: any) => {
-    logParsedReport(bytesToString(m.battle_report), '战报解析')
+    logParsedReport(bytesToString(m.replay_text), '战报解析')
     return {
       ...m,
-      battle_report: bytesToString(m.battle_report),
-      battle_report_key: bytesToString(m.battle_report_key) || '',
+      replay_text: bytesToString(m.replay_text),
+      report_key: bytesToString(m.report_key) || '',
     }
   })
   return { ...sc, matches } as P_GasBattle_SC
 }
 
 // 向服务器发送战斗请求,统一入口
-export function sendBattle(battleType: number, id: number, params = '', reportKey = '') {
+// targetId: 主线=关卡ID, 竞技场=对手UID
+export function sendBattle(battleType: number, targetId: number, reportKey = '') {
   const isReplay = reportKey !== ''
   _battleSendTime = performance.now()
-  console.log(`[Battle] 发送战斗请求: battle_type=${battleType}, id=${id}, t=${_battleSendTime.toFixed(2)}ms`)
+  console.log(`[Battle] 发送战斗请求: battle_type=${battleType}, target_id=${targetId}, t=${_battleSendTime.toFixed(2)}ms`)
   gameSocket.sendMsg(MHT.MHT_GAS_BATTLE_CS, {
     req_type: isReplay ? 1 : 0,
     battle_type: isReplay ? 0 : battleType,
-    id,
-    params,
-    ...(isReplay ? { battle_report_key: reportKey } : {}),
+    target_id: targetId,
+    ...(isReplay ? { report_key: reportKey } : {}),
   })
 }
 

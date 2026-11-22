@@ -6,8 +6,8 @@ import { create } from 'zustand'
 import type {
   P_SyncRoleInfoRet_SC,
   P_SyncRoleExtraData_SC,
-  P_SyncInventoryData_SC,
-  P_SyncQuestData_SC,
+  P_SyncKnapsackData_SC,
+  P_SyncTaskData_SC,
   P_SyncHeroData_SC,
   P_SyncLineupData_SC,
 } from '@/types'
@@ -30,8 +30,8 @@ interface GameState {
   // ---- 角色同步数据 (来自服务器协议) ----
   roleInfo: P_SyncRoleInfoRet_SC | null
   roleExtra: P_SyncRoleExtraData_SC | null
-  inventory: P_SyncInventoryData_SC | null
-  quest: P_SyncQuestData_SC | null
+  knapsack: P_SyncKnapsackData_SC | null
+  task: P_SyncTaskData_SC | null
 
   // ---- 英雄/阵容数据 ----
   heroData: P_SyncHeroData_SC | null
@@ -87,8 +87,8 @@ export const gameStore = create<GameState>((set) => ({
   // ---- 角色数据 ----
   roleInfo: null,
   roleExtra: null,
-  inventory: null,
-  quest: null,
+  knapsack: null,
+  task: null,
 
   // ---- 英雄/阵容 ----
   heroData: null,

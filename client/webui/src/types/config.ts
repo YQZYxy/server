@@ -7,7 +7,7 @@ import { getCachedConfig } from '@/services/configmanager'
 
 // 角色配置 (heroconfig.json)
 export interface HeroConfig {
-  id: number
+  hero_id: number
   name: string
   description: string
   job: number
@@ -24,7 +24,7 @@ export interface HeroConfig {
 
 // 怪物配置 (monsterconfig.json)
 export interface MonsterConfig {
-  id: number
+  monster_id: number
   name: string
   level: number
   monster_type: number
@@ -39,7 +39,7 @@ export interface MonsterConfig {
 
 // 能力配置 (abilityconfig.json)
 export interface AbilityConfig {
-  id: number
+  ability_id: number
   name: string
   description: string
   ability_type: number
@@ -71,30 +71,28 @@ export interface AbilityConfig {
 
 // 效果配置 (effectconfig.json)
 export interface EffectConfig {
-  id: number
+  effect_id: number
   name: string
   description: string
   effect_type: number
   duration: number
-  periodic_interval: number
-  max_stack: number
-  base_value: number
-  attr_adds: [number, number][]
-  extra_params: number[]
+  periodic_policy: number
+  max_stack_count: number
+  modifiers: [number, number][]
   [key: string]: any
 }
 
 // 道具配置 (itemconfig.json)
 export interface ItemConfig {
-  id: number
+  item_id: number
   name: string
   description: string
-  /** 道具类型 (对应 Lua Const.ItemType) */
-  type: number
+  item_type: number
   sub_type: number
   quality: number
   level: number
   auto_use: boolean
+  use_type: number
   discard: boolean
   max_stack: number
   sell_price: number
@@ -109,52 +107,51 @@ export interface ItemConfig {
 
 // 物品全局配置 (itemglobalconfig.json)
 export interface ItemGlobalConfig {
-  max_inventory_slots: number
-  max_bag_types: number
+  max_knapsack_slots: number
   [key: string]: any
 }
 
 // 属性配置 (attrconfig.json)
 export interface AttrConfig {
-  id: number
+  attr_id: number
   name: string
   base: number
+  is_per: number
 }
 
-// 任务配置 (questconfig.json)
-export interface QuestConfig {
-  id: number
+// 任务配置 (taskconfig.json)
+export interface TaskConfig {
+  task_id: number
   name: string
   description: string
-  quest_type: number
+  task_type: number
   min_level: number
   objectives: number[]
   rewards: any[]
   [key: string]: any
 }
 
-// 任务全局配置 (questglobalconfig.json)
-export interface QuestGlobalConfig {
-  max_active_quests: number
+// 任务全局配置 (taskglobalconfig.json)
+export interface TaskGlobalConfig {
+  max_active_tasks: number
   [key: string]: any
 }
 
-// 任务目标配置 (questobjconfig.json)
-export interface QuestObjConfig {
-  id: number
-  name: string
+// 任务目标配置 (taskobjconfig.json)
+export interface TaskObjConfig {
+  task_obj_id: number
+  task_id: number
+  obj_type: number
+  required_count: number
   description: string
-  target_type: number
-  target_id: number
-  need_count: number
+  conditions: number[]
   [key: string]: any
 }
 
 // 角色等级配置 (herolevelconfig.json)
 export interface HeroLevelConfig {
   level: number
-  exp_required: number
-  rewards: any[]
+  level_rewards: any[]
   [key: string]: any
 }
 
@@ -168,7 +165,7 @@ export interface MonsterGroupEntry {
 
 // 主线关卡配置 (battlestageconfig.json)
 export interface BattlestageConfig {
-  id: number
+  level_id: number
   name: string
   desc: string
   monster_group_ids: number[]
@@ -176,7 +173,7 @@ export interface BattlestageConfig {
 
 // 怪物组配置 (battlemonstergroupconfig.json)
 export interface BattlemonstergroupConfig {
-  id: number
+  monster_group_id: number
   desc: string
   monster_ids: MonsterGroupEntry[]
 }

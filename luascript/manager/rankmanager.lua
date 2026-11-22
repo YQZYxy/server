@@ -12,6 +12,7 @@ local Serializer = GLO.Serializer
 local MHT = GLO.MHT
 local TimerManager = GLO.TimerManager
 local MsgManager = GLO.MsgManager
+local RankDef = GLO.RankDef
 
 -- 排序键数量: 主值 + 3 个参数(RANK_ORDER_COUNT 保持一致)
 local RANK_ORDER_COUNT = 4
@@ -41,7 +42,7 @@ end
 -- rank_type: 排行榜类型id
 -- config: {
 --   page_size = 100,                 -- 每页数量
---   battle_type = Const.BattleType,  -- 指定后排行榜列表会附带该阵容的英雄数据
+--   battle_type = ,                  -- 指定后排行榜列表会附带该阵容的英雄数据
 --   orders = { "desc", "asc" },      -- 排序方向, 依次对应 主值/param1/param2/param3
 -- }
 function M.RegisterRankType(rank_type, config)
@@ -293,20 +294,37 @@ end
 -- limit: 数量(默认使用注册时的page_size)
 -- 返回 nodes,has_more,total
 function M.GetRankPage(rank_type, offset, limit)
-    local rank_config = s_rank_type_config[rank_type] or {}
+    local rank_config = s_rank_type_config[rank_type]
+    if not rank_config then
+        LOG_ERROR("GetRankPage: 排行榜类型未注册 rank_type=" .. tostring(rank_type))
+        return {}, false, 0
+    end
     offset = offset or 0
-    limit = limit or rank_config.page_size or 100
+    limit = limit or rank_config.page_size
     if limit <= 0 then
-        limit = rank_config.page_size or 100
+        limit = rank_config.page_size
     end
 
-    local result = cpp_RankGetPage(rank_type, offset, limit) or {}
+    local result = cpp_RankGetPage(rank_type, offset, limit)
+    if not result then
+        LOG_ERROR("GetRankPage: 排行榜数据获取失败 rank_type=" .. tostring(rank_type))
+        return {}, false, 0
+    end
+    -- 榜单为空时协议不下发对应字段, 这里按空集处理
+    local list = result.list
+    if not list then
+        list = {}
+    end
+    local total = result.total
+    if not total then
+        total = 0
+    end
     local nodes = {}
-    for _, entry in ipairs(result.list or {}) do
+    for _, entry in ipairs(list) do
         table.insert(nodes, LOC.DecodeEntry(rank_type, entry))
     end
 
-    return nodes, result.has_more or false, result.total or 0
+    return nodes, result.has_more == true, total
 end
 
 -- 获取排序后的完整列表
@@ -387,27 +405,6 @@ end
 -- extra_data: 业务数据
 function M.UpdateValue(rank_type, uid, name, value, params, extra_data)
     return M.AddNode(rank_type, uid, name, value, params, extra_data)
-end
-
--- 更新排行榜(带阵容数据,自动将阵容英雄信息合并到extra_data)
--- role: 角色实例
--- rank_type: 排行榜类型
--- value: 排行榜主值
--- extra_data: 额外数据(可选,会自动合并power和heroes)
--- battle_type: 阵容类型(Const.BattleType),构建阵容数据合并到extra_data
-function M.UpdateRankWithLineup(role, rank_type, value, extra_data, battle_type)
-    if not role or not rank_type or not battle_type then
-        LOG_ERROR("RankManager.UpdateRankWithLineup: 参数无效")
-        return
-    end
-    extra_data = extra_data or {}
-    -- 只读快照: BuildProtoHeroDataList 只读快照并构造新表
-    local snapshot = GLO.RoleBattleSnapshot.SnapshotRef(role)
-    if snapshot then
-        extra_data.power = value
-        extra_data.heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(snapshot, battle_type)
-    end
-    M.UpdateValue(rank_type, role.uid, role:GetName() or "", value, nil, extra_data)
 end
 
 -- 保存单个排行榜节点到数据库
@@ -511,10 +508,10 @@ MsgManager.RegisterMsg(MHT.MHT_RANK_CS,function(netid, role, msg_data)
         return
     end
 
-    local rank_type = msg_data.rank_type or GLO.Const.RankType.NONE
+    local rank_type = msg_data.rank_type or RankDef.RankType.NONE
     local rank_offset = msg_data.rank_offset or 0
 
-    if GLO.Const.RankType.NONE == rank_type then
+    if RankDef.RankType.NONE == rank_type then
         LOG_ERROR("参数无效 rank_type" .. rank_type)
         return
     end
@@ -551,14 +548,6 @@ end)
 MsgManager.RegisterMsg(MHT.MHT_RANK_DB_S, function(netid, role, msg_data)
     M.LoadRet(msg_data)
 end)
-
--- 服务器启动时从数据库加载
-function M.Init()
-    M.RegisterRankType(GLO.Const.RankType.MAIN_BATTLE, {
-        page_size = 100,
-        battle_type = GLO.Const.BattleType.MAIN_BATTLE,
-    })
-end
 
 LOG_INFO(" RankManager 加载完成")
 return M

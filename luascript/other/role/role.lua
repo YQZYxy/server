@@ -6,9 +6,7 @@ local GLO = GLO
 local M = {}
 local Utils = GLO.Utils
 local EventManager = GLO.EventManager
-local Const = GLO.Const
 local ConfigManager = GLO.ConfigManager
-local Inventory = GLO.Inventory
 local Protobuf = GLO.Protobuf
 local MHT = GLO.MHT
 local HeroModule = GLO.HeroModule
@@ -19,6 +17,26 @@ M.Role = Role
 -- 获取角色基础数据
 function Role:GetRoleBaseData()
     return GLO.RoleData.GetBaseInfo(self.uid)
+end
+
+-- 是否为本进程托管的跨服角色(数据归属其他服)
+function Role:IsCrossRole()
+    return cpp_IsCrossRole(self.uid)
+end
+
+-- 角色在本进程的归属位置: 0不在本进程 1本服 2跨服托管
+function Role:GetRoleLocation()
+    return cpp_GetRoleLocation(self.uid)
+end
+
+-- 跨服流程状态: 0不在跨服 1申请中 2跨服中 3结算中
+function Role:GetCrossState()
+    return cpp_GetCrossState(self.uid)
+end
+
+-- 是否可以正常处理本服业务(在本服且不在跨服流程中)
+function Role:IsLocalActive()
+    return cpp_IsLocalActive(self.uid)
 end
 
 -- 计算等级所需经验
@@ -56,9 +74,9 @@ function Role:Init(uid)
     self.level = base_info.level or 1
 
     -- 初始化背包
-    GLO.Inventory.InitInventory(self)
+    GLO.Knapsack.Init(self)
     -- 初始化任务
-    GLO.Quest.InitQuest(self)
+    GLO.Task.InitTask(self)
     -- 初始化英雄模块
     HeroModule.Init(self)
 
@@ -78,6 +96,10 @@ end
 
 -- 添加经验
 function Role:AddExp(amount)
+    if not amount or amount <= 0 then
+        return
+    end
+
     local base_info = self:GetRoleBaseData()
     if not base_info then
         LOG_ERROR("获取角色数据失败 uid:" .. tostring(self.uid))
@@ -94,6 +116,9 @@ function Role:AddExp(amount)
         self:LevelUp()
         exp_to_next_level = self:GetExpToNextLevel()
     end
+
+    -- 经验/等级变化后同步客户端
+    self:SyncRoleBaseInfo()
 end
 
 -- 升级
@@ -114,9 +139,9 @@ function Role:LevelUp()
     local reward_config = M.GetLevelReward(base_info.level)
     if reward_config then
         for _, item_data in ipairs(reward_config.level_rewards) do
-            local id = item_data.id
+            local item_id = item_data.item_id
             local num = item_data.num
-            GLO.Inventory.AddItem(self, id, num)
+            GLO.Knapsack.AddItem(self, item_id, num, GLO.Knapsack.ITEM_REASON.UNKNOWN, "RoleAddItem")
         end
     end
 
@@ -159,9 +184,9 @@ function Role:PrintStatus()
 
     local exp_to_next_level = self:GetExpToNextLevel()
 
-    LOG_INFO("=== %s (Lv.%d) ===", base_info.name, base_info.level or 1)
+    LOG_INFO("=== %s (Lv.%d) ===", base_info.name, base_info.level)
     LOG_INFO("经验: %d/%d | 金币: %d",
-        base_info and base_info.exp or 0, exp_to_next_level, self:GetGold())
+        base_info.exp, exp_to_next_level, self:GetGold())
 
     -- 显示英雄信息
     local hero_count = HeroModule.GetHeroCount(self)
@@ -177,17 +202,21 @@ function Role:PrintStatus()
     end
 
     -- 显示背包信息
-    local used, max_slots = GLO.Inventory.GetCapacityInfo(self)
+    local used, max_slots = GLO.Knapsack.GetCapacityInfo(self)
     LOG_INFO("背包: %d/%d", used, max_slots)
 
     -- 显示任务信息
-    if GLO.Quest then
-        local active_count = #GLO.Quest.GetActiveQuests(self)
-        local quest_data = GLO.RoleData.GetQuest(self.uid)
-        local completed_count = quest_data and #quest_data.completed_quests or 0
+    if GLO.Task then
+        local active_count = #GLO.Task.GetActiveTasks(self)
+        local task_data = GLO.RoleData.GetTask(self.uid)
+        if not task_data then
+            LOG_ERROR("任务数据缺失 uid:" .. tostring(self.uid))
+            return
+        end
+        local completed_count = #task_data.completed_tasks
         LOG_INFO("任务: %d/%d (已完成: %d)",
             active_count,
-            quest_data and quest_data.max_active or 0,
+            task_data.max_active,
             completed_count)
     end
 end
@@ -209,19 +238,34 @@ end
 
 function Role:GetLevel()
     local base_info = self:GetRoleBaseData()
-    return (base_info and base_info.level) or 1
+    return base_info.level
 end
 
 function Role:GetExp()
     local base_info = self:GetRoleBaseData()
-    return (base_info and base_info.exp) or 0
+    return base_info.exp
 end
 
 function Role:GetGold()
-    return GLO.Inventory.GetItemCount(self, 1) or 0  -- 金币ID=1
+    return GLO.Knapsack.GetItemCount(self, 1) or 0  -- 金币ID=1
 end
 
 -- ==================== 协议下发 ====================
+
+-- 同步角色基础数据到客户端
+function Role:SyncRoleBaseInfo()
+    local base_info = self:GetRoleBaseData()
+    if not base_info then
+        LOG_ERROR("获取角色数据失败 uid:" .. tostring(self.uid))
+        return
+    end
+
+    Protobuf.SendMsgToRole(self, MHT.MHT_SYNC_ROLE_INFO_RET_SC,
+    {
+        role_base_info = base_info;
+        server_id = 1;
+    })
+end
 
 function Role:SendRoleDataInfo()
     local base_info = self:GetRoleBaseData()
@@ -234,17 +278,13 @@ function Role:SendRoleDataInfo()
     base_info.last_login_time = os.time()
 
     -- 发送登录返回(基础信息)
-    Protobuf.SendMsgToRole(self, MHT.MHT_SYNC_ROLE_INFO_RET_SC,
-    {
-        role_base_info = base_info;
-        server_id = 1;
-    })
+    self:SyncRoleBaseInfo()
 
     LOG_INFO("玩家 %s 登录游戏"
         .. " last_login_time: %d"
         .. " uid: %d",
         base_info.name,
-        (base_info.last_login_time) or 0,
+        base_info.last_login_time,
         self.uid)
 end
 

@@ -2,6 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
+// 开发代理目标: 默认 s1 网关, 可用 VITE_GATEWAY_URL 覆盖
+const gatewayTarget = process.env.VITE_GATEWAY_URL || 'http://127.0.0.1:38001'
+const gatewayWsTarget = gatewayTarget.replace(/^http/, 'ws')
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -14,12 +18,12 @@ export default defineConfig({
     proxy: {
       // 配置代理到网关
       '/config': {
-        target: 'http://127.0.0.1:5000',
+        target: gatewayTarget,
         changeOrigin: true,
       },
       // WebSocket 代理到网关
       '/ws': {
-        target: 'ws://127.0.0.1:5000',
+        target: gatewayWsTarget,
         ws: true,
       },
     },

@@ -11,7 +11,7 @@ export {
   ITEM_TYPES,
   ITEM_TYPE_TABS,  getItemConfig,
   getItemGlobalConfig,
-} from './inventory'
+} from './knapsack'
 
 // 属性
 export { Attr, ATTR_NAMES_FALLBACK } from './attr'
@@ -36,12 +36,12 @@ export {
 
 // 任务
 export {
-  QuestStatus,
-  QUEST_STATUS,
-  getQuestConfig,
-  getQuestGlobalConfig,
-  getQuestObjConfig,
-} from './quest'
+  TaskStatus,
+  TASK_STATUS,
+  getTaskConfig,
+  getTaskGlobalConfig,
+  getTaskObjConfig,
+} from './task'
 
 // 战斗
 export {
@@ -79,9 +79,9 @@ export type {
   ItemConfig,
   ItemGlobalConfig,
   AttrConfig,
-  QuestConfig,
-  QuestGlobalConfig,
-  QuestObjConfig,
+  TaskConfig,
+  TaskGlobalConfig,
+  TaskObjConfig,
   HeroLevelConfig,
   BattlestageConfig,
   BattlemonstergroupConfig,

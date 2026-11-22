@@ -5,106 +5,123 @@
 --[[
 字段结构说明:
 
-  id - id (int)
+  attr_id - 属性id (int)
   name - 名称 (string)
   base - 基础属性 (double)
+  is_per - 是否百分比 (int)
 --]]
 
 local M = {
-    [-2] = {
-        id = -2,
-        name = "最大法力值",
-        base = 0.0,
-    },
-
-    [-1] = {
-        id = -1,
-        name = "最大生命值",
-        base = 0.0,
-    },
-
     [0] = {
-        id = 0,
-        name = "无效属性",
-        base = 0.0,
+        attr_id = 0,
+        name = "生命值",
+        base = 100.0,
+        is_per = 0,
     },
 
     [1] = {
-        id = 1,
-        name = "生命值",
+        attr_id = 1,
+        name = "最大生命值",
         base = 100.0,
+        is_per = 0,
     },
 
     [2] = {
-        id = 2,
+        attr_id = 2,
         name = "法力值",
         base = 50.0,
+        is_per = 0,
     },
 
     [3] = {
-        id = 3,
-        name = "力量",
-        base = 10.0,
+        attr_id = 3,
+        name = "最大法力值",
+        base = 50.0,
+        is_per = 0,
     },
 
     [4] = {
-        id = 4,
-        name = "敏捷",
+        attr_id = 4,
+        name = "力量",
         base = 10.0,
+        is_per = 0,
     },
 
     [5] = {
-        id = 5,
-        name = "智力",
+        attr_id = 5,
+        name = "敏捷",
         base = 10.0,
+        is_per = 0,
     },
 
     [6] = {
-        id = 6,
-        name = "体力",
+        attr_id = 6,
+        name = "智力",
         base = 10.0,
+        is_per = 0,
     },
 
     [7] = {
-        id = 7,
-        name = "幸运",
-        base = 5.0,
+        attr_id = 7,
+        name = "体力",
+        base = 10.0,
+        is_per = 0,
     },
 
     [8] = {
-        id = 8,
+        attr_id = 8,
+        name = "幸运",
+        base = 5.0,
+        is_per = 0,
+    },
+
+    [9] = {
+        attr_id = 9,
         name = "护甲",
         base = 0.0,
+        is_per = 0,
     },
 
-    [100] = {
-        id = 100,
+    [10] = {
+        attr_id = 10,
         name = "暴击率",
         base = 0.05,
+        is_per = 1,
     },
 
-    [101] = {
-        id = 101,
+    [11] = {
+        attr_id = 11,
         name = "暴击伤害",
         base = 1.5,
+        is_per = 1,
     },
 
-    [102] = {
-        id = 102,
+    [12] = {
+        attr_id = 12,
         name = "攻击速度",
         base = 1.0,
+        is_per = 1,
     },
 
-    [103] = {
-        id = 103,
+    [13] = {
+        attr_id = 13,
         name = "闪避率",
         base = 0.05,
+        is_per = 1,
     },
 
-    [104] = {
-        id = 104,
+    [14] = {
+        attr_id = 14,
         name = "格挡率",
         base = 0.05,
+        is_per = 1,
+    },
+
+    [15] = {
+        attr_id = 15,
+        name = "伤害加成",
+        base = 0.0,
+        is_per = 1,
     },
 
 }

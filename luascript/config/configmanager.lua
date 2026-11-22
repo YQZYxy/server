@@ -6,6 +6,8 @@
 local M = {}
 
 M.abilityconfig = require("config.abilityconfig")
+M.activityconfig = require("config.activityconfig")
+M.activitytimeconfig = require("config.activitytimeconfig")
 M.attrconfig = require("config.attrconfig")
 M.battlemonstergroupconfig = require("config.battlemonstergroupconfig")
 M.battlestageconfig = require("config.battlestageconfig")
@@ -15,8 +17,8 @@ M.herolevelconfig = require("config.herolevelconfig")
 M.itemconfig = require("config.itemconfig")
 M.itemglobalconfig = require("config.itemglobalconfig")
 M.monsterconfig = require("config.monsterconfig")
-M.questconfig = require("config.questconfig")
-M.questglobalconfig = require("config.questglobalconfig")
-M.questobjconfig = require("config.questobjconfig")
+M.taskconfig = require("config.taskconfig")
+M.taskglobalconfig = require("config.taskglobalconfig")
+M.taskobjconfig = require("config.taskobjconfig")
 
 return M

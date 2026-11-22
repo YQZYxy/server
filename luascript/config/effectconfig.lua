@@ -5,7 +5,7 @@
 --[[
 字段结构说明:
 
-  id - ID (int)
+  effect_id - ID (int)
   name - 效果名 (string)
   description - 描述 (string)
   duration_policy - 持续类型 (int)
@@ -24,7 +24,7 @@
 
 local M = {
     [1] = {
-        id = 1,
+        effect_id = 1,
         name = "战吼",
         description = "",
         duration_policy = 2,
@@ -40,12 +40,12 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 3,
+                attr_id = 4,
                 op = 1,
                 value = 15.0,
             },
             {
-                attr_id = 8,
+                attr_id = 9,
                 op = 1,
                 value = 10.0,
             },
@@ -53,7 +53,7 @@ local M = {
     },
 
     [2] = {
-        id = 2,
+        effect_id = 2,
         name = "力量祝福",
         description = "",
         duration_policy = 2,
@@ -69,7 +69,7 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 3,
+                attr_id = 4,
                 op = 1,
                 value = 15.0,
             },
@@ -77,7 +77,7 @@ local M = {
     },
 
     [3] = {
-        id = 3,
+        effect_id = 3,
         name = "暗影护盾",
         description = "",
         duration_policy = 2,
@@ -93,7 +93,7 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 8,
+                attr_id = 9,
                 op = 1,
                 value = 30.0,
             },
@@ -101,7 +101,7 @@ local M = {
     },
 
     [4] = {
-        id = 4,
+        effect_id = 4,
         name = "冰霜箭",
         description = "",
         duration_policy = 2,
@@ -117,12 +117,12 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 102,
+                attr_id = 12,
                 op = 2,
                 value = 0.7,
             },
             {
-                attr_id = 4,
+                attr_id = 5,
                 op = 2,
                 value = 0.8,
             },
@@ -130,7 +130,7 @@ local M = {
     },
 
     [5] = {
-        id = 5,
+        effect_id = 5,
         name = "冰盾",
         description = "",
         duration_policy = 2,
@@ -146,7 +146,7 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 8,
+                attr_id = 9,
                 op = 1,
                 value = 30.0,
             },
@@ -154,7 +154,7 @@ local M = {
     },
 
     [6] = {
-        id = 6,
+        effect_id = 6,
         name = "生命药水",
         description = "",
         duration_policy = 1,
@@ -170,7 +170,7 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 1,
+                attr_id = 0,
                 op = 1,
                 value = 50.0,
             },
@@ -178,7 +178,7 @@ local M = {
     },
 
     [7] = {
-        id = 7,
+        effect_id = 7,
         name = "魔法药水",
         description = "",
         duration_policy = 1,
@@ -202,7 +202,7 @@ local M = {
     },
 
     [8] = {
-        id = 8,
+        effect_id = 8,
         name = "超级生命",
         description = "",
         duration_policy = 1,
@@ -218,7 +218,7 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 1,
+                attr_id = 0,
                 op = 1,
                 value = 150.0,
             },
@@ -226,7 +226,7 @@ local M = {
     },
 
     [9] = {
-        id = 9,
+        effect_id = 9,
         name = "超级魔法药水",
         description = "",
         duration_policy = 1,
@@ -250,7 +250,7 @@ local M = {
     },
 
     [10] = {
-        id = 10,
+        effect_id = 10,
         name = "力量药水",
         description = "",
         duration_policy = 1,
@@ -266,7 +266,7 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 3,
+                attr_id = 4,
                 op = 1,
                 value = 30.0,
             },
@@ -274,7 +274,7 @@ local M = {
     },
 
     [11] = {
-        id = 11,
+        effect_id = 11,
         name = "敏捷药水",
         description = "",
         duration_policy = 1,
@@ -290,7 +290,7 @@ local M = {
         remove_effects_with_tags = {},
         modifiers = {
             {
-                attr_id = 4,
+                attr_id = 5,
                 op = 1,
                 value = 25.0,
             },

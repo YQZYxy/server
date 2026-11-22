@@ -1,0 +1,23 @@
+#  行尾规则
+#  仓库内统一 LF, 工作区按平台转换(Windows 为 CRLF)
+* text=auto
+
+#  二进制文件: 不做任何行尾转换
+*.xlsx   binary
+*.xls    binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.pb     binary
+*.exe    binary
+*.dll    binary
+*.lib    binary
+*.pdb    binary
+*.zip    binary
+*.7z     binary
+*.rar    binary
+*.ttf    binary
+*.wav    binary
+*.mp3    binary

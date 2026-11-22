@@ -4,7 +4,6 @@
 --   Get<Name>(uid) 取该子结构的 table (首次访问从 C++ 拉取)
 --   定时只回写"被访问过且版本变化"的模块, 由 C++ 判断内容是否变化并落库
 --   停服/登出时把未回写的模块统一推回 C++
---   绑定名由 C++ 的 ROLE_DATA_BIND_LIST 决定, 这里自动生成接口
 -- ====================================================================
 
 local GLO = GLO
@@ -38,8 +37,25 @@ local m_saved = {}
 local m_fail = {}
 -- 已回写的内容 [uid][name] = 编码后的字符串, 用来跳过内容没变化的模块
 local m_last_encoded = {}
--- 绑定信息 [name] = { get = 函数, set = 函数, type = proto类型名 }
-local m_binds = {}
+
+-- 数据绑定表: name -> { path = PB_RoleData 内的字段路径, type = proto 类型名 }
+-- 新增/删除子结构只改这里
+local m_binds = {
+    BaseInfo  = { path = "base_info",     type = "PB_RoleBaseInfo" },
+    Knapsack  = { path = "knapsack",     type = "PB_KnapsackData" },
+    Hero      = { path = "growth.hero",   type = "PB_HeroListData" },
+    Lineup    = { path = "growth.lineup", type = "PB_LineupListData" },
+    Task     = { path = "growth.task",  type = "PB_TaskData" },
+    Mmo      = { path = "mmo",          type = "PB_MmoRoleData" },
+}
+
+-- 字段路径 -> name, 供点号访问用
+local m_path_index = {}
+for name, bind in pairs(m_binds) do
+    m_path_index[bind.path] = name
+end
+-- [uid] = 点号访问代理
+local m_proxy_cache = {}
 
 -- 分批轮转用的角色列表(删除时留 nil 洞, 定期压缩)
 local m_uids = {}
@@ -65,7 +81,7 @@ function LOC.Load(uid, name)
         return nil
     end
 
-    local raw = bind.get(uid)
+    local raw = cpp_RoleGetField(uid, bind.path)
     if raw == nil then
         -- 角色不在线(C++ 没有对应 RoleModule)
         return nil
@@ -193,7 +209,11 @@ end
 -- C++ 侧也会比较内容, 没变化就不置脏, 也不会落库
 function M.Flush(uid, force, now)
     uid = tonumber(uid)
-    local uid_cache = uid and m_cache[uid]
+    if not uid then
+        return true
+    end
+
+    local uid_cache = m_cache[uid]
     if not uid_cache then
         return true
     end
@@ -215,7 +235,7 @@ function M.Flush(uid, force, now)
                     m_saved[uid] = m_saved[uid] or {}
                     m_saved[uid][name] = touch
                     LOC.OnSuccess(uid, name)
-                elseif bind.set(uid, encoded) then
+                elseif cpp_RoleSetField(uid, bind.path, encoded) then
                     m_saved[uid] = m_saved[uid] or {}
                     m_saved[uid][name] = touch
                     m_last_encoded[uid] = m_last_encoded[uid] or {}
@@ -316,6 +336,7 @@ function M.ClearCache(uid)
     m_saved[uid] = nil
     m_fail[uid] = nil
     m_last_encoded[uid] = nil
+    m_proxy_cache[uid] = nil
 
     local pos = m_uid_pos[uid]
     if pos then
@@ -331,25 +352,44 @@ function M.Remove(uid)
     M.ClearCache(uid)
 end
 
--- 按 C++ 的绑定表生成 Get<Name>
+-- 按路径表生成 Get<Name>
 function LOC.InitBinds()
-    for _, bind in ipairs(cpp_RoleDataListBinds()) do
-        local get_func = _G["cpp_RoleGet_" .. bind.name]
-        local set_func = _G["cpp_RoleSet_" .. bind.name]
-        if get_func and set_func then
-            local name = bind.name
-            m_binds[name] = {
-                get = get_func,
-                set = set_func,
-                type = bind.type,
-            }
-            M["Get" .. name] = function(uid)
-                return M.Get(uid, name)
-            end
-        else
-            LOG_ERROR("RoleData: C++ 绑定缺失 " .. tostring(bind.name))
+    for name in pairs(m_binds) do
+        M["Get" .. name] = function(uid)
+            return M.Get(uid, name)
         end
     end
+end
+
+-- 生成点号访问节点 逐层下钻到路径表里的叶子
+local function MakeNode(uid, prefix)
+    return setmetatable({}, {
+        __index = function(_, key)
+            local path = (not prefix) and key or (prefix .. "." .. key)
+            local name = m_path_index[path]
+            if name then
+                return M.Get(uid, name)
+            end
+            return MakeNode(uid, path)
+        end,
+    })
+end
+
+-- 取角色的数据访问代理 支持点号路径
+-- 用法: GLO.RoleData.Of(uid).base_info  GLO.RoleData.Of(uid).growth.hero 
+function M.Of(uid)
+    uid = tonumber(uid)
+    if not uid or uid <= 0 then
+        LOG_ERROR("RoleData.Of: uid 无效 " .. tostring(uid))
+        return nil
+    end
+
+    local proxy = m_proxy_cache[uid]
+    if not proxy then
+        proxy = MakeNode(uid, nil)
+        m_proxy_cache[uid] = proxy
+    end
+    return proxy
 end
 
 LOC.InitBinds()

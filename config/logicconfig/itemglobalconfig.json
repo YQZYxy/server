@@ -1,5 +1,5 @@
 [
   {
-    "max_inventory_slots": 50
+    "max_knapsack_slots": 50
   }
 ]

@@ -1,12 +1,11 @@
 -- ====================================================================
 --  HeroModule
---  管理英雄列表、阵容、英雄升级/分解等业务
 -- ====================================================================
 
 local GLO = GLO
 local M = {}
 local Utils = GLO.Utils
-local Const = GLO.Const
+local BattleDef = GLO.BattleDef
 local Protobuf = GLO.Protobuf
 local MHT = GLO.MHT
 local EventManager = GLO.EventManager
@@ -15,10 +14,8 @@ local Hero = GLO.Hero
 
 -- 默认英雄ID(首次创建时使用)
 local DEFAULT_HERO_ID = 1
--- 默认阵容最大英雄数
-local DEFAULT_LINEUP_MAX = 5
--- 每个战斗类型最大阵容槽位数(多阵容nvn用)
-local DEFAULT_LINEUP_SLOT_MAX = 3
+-- 对外暴露给阵容模块使用
+M.DEFAULT_HERO_ID = DEFAULT_HERO_ID
 
 -- ==================== 数据访问 ====================
 
@@ -187,7 +184,7 @@ function M.HeroLevelUp(role, hero_data)
     end
 
     -- 英雄升级后,若该英雄在主线阵容中则刷新战力排行榜
-    local main_ids = M.GetLineupHeroIds(role, Const.BattleType.MAIN_BATTLE)
+    local main_ids = M.GetLineupHeroIds(role, BattleDef.BattleType.MAIN_BATTLE)
     for _, hid in ipairs(main_ids or {}) do
         if 0 ~= hid and hid == hero_data.hero_id then
             M.UpdateMainBattleRank(role)
@@ -245,138 +242,63 @@ function M.GetHeroCount(role)
     return #heroes
 end
 
+-- ==================== MMO 出战英雄 ====================
+
+-- 设置 MMO 出战英雄 只影响下次进入场景
+function M.SetMmoHero(role, hero_id)
+    if not role then
+        LOG_ERROR("设置MMO出战英雄失败, 角色为空")
+        return false
+    end
+    local hero_data = M.GetOwnedHero(role, hero_id)
+    if not hero_data then
+        LOG_ERROR("设置MMO出战英雄失败, 未拥有该英雄 uid:%d hero_id:%d", role.uid, hero_id)
+        return false
+    end
+
+    local base_info = GLO.RoleData.GetBaseInfo(role.uid)
+    if not base_info then
+        LOG_ERROR("设置MMO出战英雄失败, 取不到角色数据 uid:%d", role.uid)
+        return false
+    end
+
+    base_info.hero_id = hero_id
+    LOG_INFO("角色 %d 切换MMO出战英雄 hero_id:%d", role.uid, hero_id)
+    return true
+end
+
+-- 获取当前 MMO 出战英雄id
+function M.GetMmoHeroId(role)
+    if not role then
+        return 0
+    end
+    local base_info = GLO.RoleData.GetBaseInfo(role.uid)
+    if not base_info or not base_info.hero_id then
+        return 0
+    end
+    return base_info.hero_id
+end
+
 -- ==================== 阵容管理 ====================
 
 function M.InitDefaultLineup(role)
-    local data = M.GetOrSetHeroData(role)
-    if not data then
-        return
-    end
-    if not M.GetLineup(role, Const.BattleType.MAIN_BATTLE) then
-        table.insert(data.lineup.lineups, {
-            battle_type = Const.BattleType.MAIN_BATTLE,
-            hero_ids = {DEFAULT_HERO_ID},
-        })
-    end
+    return GLO.Lineup.InitDefaultLineup(role)
 end
 
--- 按战斗类型+槽位查找阵容(slot默认0)
 function M.GetLineup(role, battle_type, slot)
-    local data = M.GetOrSetHeroData(role)
-    if not data or not data.lineup then
-        return nil
-    end
-    slot = slot or 0
-    for _, lineup in ipairs(data.lineup.lineups or {}) do
-        if lineup.battle_type == battle_type and (lineup.slot or 0) == slot then
-            return lineup
-        end
-    end
-    return nil
+    return GLO.Lineup.GetLineup(role, battle_type, slot)
 end
 
--- 获取某战斗类型的所有阵容(按slot升序)
 function M.GetLineups(role, battle_type)
-    local data = M.GetOrSetHeroData(role)
-    if not data or not data.lineup then
-        return {}
-    end
-    local result = {}
-    for _, lineup in ipairs(data.lineup.lineups or {}) do
-        if lineup.battle_type == battle_type then
-            table.insert(result, lineup)
-        end
-    end
-    table.sort(result, function(a, b) return (a.slot or 0) < (b.slot or 0) end)
-    return result
+    return GLO.Lineup.GetLineups(role, battle_type)
 end
 
 function M.GetLineupHeroIds(role, battle_type, slot)
-    local lineup = M.GetLineup(role, battle_type, slot)
-    return lineup and lineup.hero_ids or nil
+    return GLO.Lineup.GetLineupHeroIds(role, battle_type, slot)
 end
 
--- 设置阵容
 function M.SetLineup(role, battle_type, slot, hero_ids)
-    if type(slot) == "table" then
-        hero_ids = slot
-        slot = 0
-    end
-    slot = slot or 0
-
-    if not battle_type or not hero_ids then
-        LOG_ERROR("设置阵容参数无效")
-        return false
-    end
-    local data = M.GetOrSetHeroData(role)
-    if not data then
-        return false
-    end
-    if slot >= DEFAULT_LINEUP_SLOT_MAX then
-        LOG_WARN("阵容槽位超过上限 %d, 当前:%d", DEFAULT_LINEUP_SLOT_MAX, slot)
-        return false
-    end
-    if #hero_ids > DEFAULT_LINEUP_MAX then
-        LOG_WARN("阵容英雄数量超过上限 %d, 当前:%d", DEFAULT_LINEUP_MAX, #hero_ids)
-        return false
-    end
-    -- 过滤掉0(空位),验证非空英雄
-    local filtered = {}
-    for _, hid in ipairs(hero_ids) do
-        if hid and hid > 0 then
-            table.insert(filtered, hid)
-        end
-    end
-    local seen = {}
-    local heroes = data.hero and data.hero.heroes
-    for _, hid in ipairs(filtered) do
-        if seen[hid] then
-            LOG_WARN("阵容中存在重复英雄 hero_id:%d", hid)
-            return false
-        end
-        seen[hid] = true
-        -- 直接用已取的 data 查英雄, 不再每次都走 GetOrSetHeroData
-        if not M.FindHeroInList(heroes, hid) then
-            LOG_WARN("阵容中的英雄未拥有 hero_id:%d", hid)
-            return false
-        end
-    end
-    -- 多阵容间英雄不能重复(同一战斗类型下)
-    for _, other in ipairs(data.lineup.lineups or {}) do
-        if other.battle_type == battle_type and (other.slot or 0) ~= slot then
-            for _, hid in ipairs(other.hero_ids or {}) do
-                if seen[hid] then
-                    LOG_WARN("英雄已在其它阵容上阵 hero_id:%d", hid)
-                    return false
-                end
-            end
-        end
-    end
-    -- 保存(更新或新增)
-    local lineup = nil
-    for _, other in ipairs(data.lineup.lineups or {}) do
-        if other.battle_type == battle_type and (other.slot or 0) == slot then
-            lineup = other
-            break
-        end
-    end
-    if lineup then
-        lineup.hero_ids = hero_ids
-        lineup.slot = slot
-    else
-        table.insert(data.lineup.lineups, {
-            battle_type = battle_type,
-            slot = slot,
-            hero_ids = hero_ids,
-        })
-    end
-
-    -- 主线阵容变更时更新主线战力排行榜
-    if Const.BattleType.MAIN_BATTLE == battle_type then
-        M.UpdateMainBattleRank(role)
-    end
-
-    return true
+    return GLO.Lineup.SetLineup(role, battle_type, slot, hero_ids)
 end
 
 -- ==================== 主线战力排行榜 ====================
@@ -387,28 +309,12 @@ function M.UpdateMainBattleRank(role)
     if not role then
         return
     end
-    -- 只读快照, 不深拷贝
-    local snapshot = GLO.RoleBattleSnapshot.SnapshotRef(role)
-    local total_power = GLO.RoleBattleSnapshot.CalcTeamPower(snapshot, GLO.Const.BattleType.MAIN_BATTLE)
-    if GLO.RankManager then
-        GLO.RankManager.UpdateRankWithLineup(role,
-            GLO.Const.RankType.MAIN_BATTLE,
-            total_power,
-            {},
-            GLO.Const.BattleType.MAIN_BATTLE)
-    end
+    GLO.MainBattleRank.Update(role)
 end
 
+-- 获取角色已使用的所有战斗类型
 function M.GetAllLineupTypes(role)
-    local data = M.GetOrSetHeroData(role)
-    if not data or not data.lineup then
-        return {}
-    end
-    local types = {}
-    for _, lineup in ipairs(data.lineup.lineups or {}) do
-        table.insert(types, lineup.battle_type)
-    end
-    return types
+    return GLO.Lineup.GetAllLineupTypes(role)
 end
 
 -- ==================== 战斗相关 ====================

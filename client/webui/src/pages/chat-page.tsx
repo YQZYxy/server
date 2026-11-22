@@ -43,7 +43,7 @@ export default function ChatPage() {
     if (!anchorId) return
 
     // 只有第一条消息id比锚点更旧(前置插入发生),才消费锚点
-    const firstId = messages[0]?.id
+    const firstId = messages[0]?.chat_id
     if (!firstId || firstId >= anchorId) return
 
     anchorMsgIdRef.current = 0

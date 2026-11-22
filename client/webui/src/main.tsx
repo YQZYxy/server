@@ -15,8 +15,8 @@ import './styles/info.css'
 // 面板
 import './styles/panel.css'
 import './styles/role-panel.css'
-import './styles/inventory-panel.css'
-import './styles/quest-panel.css'
+import './styles/knapsack-panel.css'
+import './styles/task-panel.css'
 import './styles/hero-panel.css'
 import './styles/lineup-panel.css'
 // Agent

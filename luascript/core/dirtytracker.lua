@@ -93,7 +93,11 @@ end
 -- 检查代理是否脏
 function M.IsDirty(proxy)
     local pd = proxy_data[proxy]
-    return pd and pd.dirty or false
+    if not pd then
+        LOG_ERROR("dirtytracker: proxy 未注册")
+        return false
+    end
+    return pd.dirty == true
 end
 
 -- 清除脏标记(递归清理子代理)

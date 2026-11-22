@@ -1,0 +1,77 @@
+{
+    "deploy": {
+        "variant": "auto",
+        "link": false,
+        "skip_existing": true,
+        "copy_pdb": true
+    },
+    "peers_ip": "127.0.0.1",
+    "zone_server_ids": [1, 2],
+    "nodes": [
+        {
+            "name": "s1",
+            "server_id": 1,
+            "executables": ["gatewayserver", "logicserver", "dbserver"],
+            "gateway_port": 38001,
+            "logic_port": 38011,
+            "battle_port": 38012,
+            "db_port": 38021,
+            "db_name": "xygame_s1",
+            "global_port": 38030,
+            "cluster_port": 38041,
+            "zone_enabled": true
+        },
+        {
+            "name": "s2",
+            "server_id": 2,
+            "executables": ["gatewayserver", "logicserver", "dbserver"],
+            "gateway_port": 38002,
+            "logic_port": 38013,
+            "battle_port": 38014,
+            "db_port": 38022,
+            "db_name": "xygame_s2",
+            "global_port": 38030,
+            "cluster_port": 38042,
+            "zone_enabled": true
+        },
+        {
+            "name": "hub",
+            "server_id": 1,
+            "executables": ["globalserver"],
+            "gateway_port": 38006,
+            "logic_port": 38007,
+            "battle_port": 38008,
+            "db_port": 38026,
+            "db_name": "xygame_hub",
+            "global_port": 38030,
+            "cluster_port": 38040,
+            "zone_enabled": false
+        },
+        {
+            "name": "cross",
+            "server_id": 42001,
+            "executables": ["gatewayserver", "logicserver", "dbserver"],
+            "gateway_port": 38004,
+            "logic_port": 38017,
+            "battle_port": 38018,
+            "db_port": 38024,
+            "db_name": "xygame_cross",
+            "global_port": 38030,
+            "cluster_port": 38044,
+            "zone_enabled": false
+        },
+        {
+            "name": "big_cross",
+            "server_id": 42501,
+            "executables": ["gatewayserver", "logicserver", "dbserver"],
+            "gateway_port": 38005,
+            "logic_port": 38019,
+            "battle_port": 38020,
+            "db_port": 38025,
+            "db_name": "xygame_big_cross",
+            "global_port": 38030,
+            "cluster_port": 38045,
+            "zone_enabled": false
+        }
+    ]
+}

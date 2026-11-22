@@ -16,6 +16,8 @@ export const MHT = {
   MHT_ARENA_DB_S: 106,  // 竞技场数据库返回
   MHT_RANK_DB_C: 107,  // 排行榜数据库请求
   MHT_RANK_DB_S: 108,  // 排行榜数据库返回
+  MHT_ACTIVITY_STATE_DB_C: 109,  // 活动状态请求
+  MHT_ACTIVITY_STATE_DB_S: 110,  // 活动状态返回
   MHT_SAVE_ROLE_DATA_C: 1000,  // 保存角色信息请求
   MHT_SAVE_ROLE_DATA_S: 1001,  // 保存角色信息返回
   MHT_INIT_ROLE_DATA_C: 1002,  // 初始化角色信息请求
@@ -26,13 +28,28 @@ export const MHT = {
   MHT_INIT_MULTIPLE_ROLE_DATA_S: 1007,  // 初始化角色信息返回 PINITROLEDATA_C
   MHT_CHAT_DB_C: 1008,  // 聊天数据库请求
   MHT_CHAT_DB_S: 1009,  // 聊天数据库返回
-  MHT_BATTLE_SERVER_REGISTER: 20001,  // 战斗服注册
-  MHT_BATTLE_SERVER_HEARTBEAT: 20002,  // 战斗服心跳
-  MHT_BATTLE_SERVER_COMMAND: 20003,  // 战斗服cmd
-  MHT_BATTLE_SERVER_STATUS: 20004,  // 战斗服状态
-  MHT_BATTLE_SERVER_REGISTER_TOKEN_AND_ROLE_DATA: 20005,  // 向战斗服注册角色信息
-  MHT_BATTLE_SAVE_ROLE_DATA: 20006,  // 战斗服保存角色信息
-  MHT_BATTLE_KICK_OUT_ROLE: 20007,  // 战斗服提出玩家
+  MHT_BATTLE_SERVER_REGISTER: 10001,  // UE服注册
+  MHT_BATTLE_SERVER_HEARTBEAT: 10002,  // UE服心跳
+  MHT_BATTLE_SERVER_COMMAND: 10003,  // UE服cmd
+  MHT_BATTLE_SERVER_STATUS: 10004,  // UE服状态
+  MHT_BATTLE_SERVER_REGISTER_TOKEN_AND_ROLE_DATA: 10005,  // 向战UE服注册角色信息
+  MHT_BATTLE_SAVE_ROLE_DATA: 10006,  // UE服保存角色信息
+  MHT_BATTLE_KICK_OUT_ROLE: 10007,  // UE服踢出玩家
+  MHT_MMO_ENTER_SCENE_CS: 20001,  // 进入场景请求
+  MHT_MMO_LEAVE_SCENE_CS: 20002,  // 离开场景请求
+  MHT_MMO_MOVE_CS: 20003,  // 移动请求
+  MHT_MMO_STOP_MOVE_CS: 20004,  // 停止移动请求
+  MHT_MMO_SYNC_ENTITY_SC: 20005,  // 实体进入视野同步
+  MHT_MMO_SYNC_LEAVE_ENTITY_SC: 20006,  // 实体离开视野同步
+  MHT_MMO_SYNC_MOVE_SC: 20007,  // 实体移动同步
+  MHT_MMO_ATTACK_CS: 20008,  // 普通攻击请求
+  MHT_MMO_SKILL_CS: 20009,  // 释放技能请求
+  MHT_MMO_DAMAGE_SC: 20010,  // 伤害同步
+  MHT_MMO_ROLE_STATE_SC: 20011,  // 角色状态同步
+  MHT_CROSS_ENTER_CS: 20012,  // 客户端 -> 归属服: 申请进入跨服玩法
+  MHT_CROSS_ENTER_SC: 20013,  // 归属服 -> 客户端: 跨服进场票据(场景服地址与令牌)
+  MHT_CROSS_AUTH_CS: 20014,  // 客户端 -> 场景服: 跨服会话认证
+  MHT_CROSS_AUTH_SC: 20015,  // 场景服 -> 客户端: 跨服会话认证结果
   MHT_LOGIN_CS: 30001,  // 角色登录请求
   MHT_LOGIN_SC: 30002,  // 角色登录返回
   MHT_GM_CS: 30003,  // GM指令请求
@@ -46,9 +63,9 @@ export const MHT = {
   MHT_CHAT_SC: 30011,  // 聊天返回
   MHT_GAS_BATTLE_CS: 30012,  // gas战斗cmd请求
   MHT_GAS_BATTLE_SC: 30013,  // gas战斗cmd返回
-  MHT_SYNC_INVENTORY_DATA_SC: 30014,  // 背包数据同步
+  MHT_SYNC_KNAPSACK_DATA_SC: 30014,  // 背包数据同步
   MHT_SYNC_ROLE_EXTRA_DATA_SC: 30015,  // 角色额外数据同步
-  MHT_SYNC_QUEST_DATA_SC: 30016,  // 任务数据同步
+  MHT_SYNC_TASK_DATA_SC: 30016,  // 任务数据同步
   MHT_SYNC_HERO_DATA_SC: 30017,  // 英雄数据同步
   MHT_SYNC_LINEUP_DATA_SC: 30018,  // 阵容数据同步
   MHT_SYNC_LINEUP_UPDATE_CS: 30019,  // 阵容变更请求
@@ -74,6 +91,8 @@ export const PROTO_BODY_TYPE: Record<number, string> = {
   106: 'P_ArenaDb_S',
   107: 'P_RankDb_C',
   108: 'P_RankDb_S',
+  109: 'P_ActivityStateDb_C',
+  110: 'P_ActivityStateDb_S',
   1000: 'P_SaveRoleData_C',
   1001: 'P_SaveRoleData_S',
   1002: 'P_InitRoleData_C',
@@ -84,13 +103,28 @@ export const PROTO_BODY_TYPE: Record<number, string> = {
   1007: 'P_InitMultipleRoleData_S',
   1008: 'P_ChatDb_C',
   1009: 'P_ChatDb_S',
-  20001: 'P_BattleServerRegister',
-  20002: 'P_BattleServerHeartbeat',
-  20003: 'P_BattleServerCommand',
-  20004: 'P_BattleServerStatus',
-  20005: 'P_BattleServerRegisterTokenAndRoleData',
-  20006: 'P_BattleServerSaveRoleData',
-  20007: 'P_BattleServerKickOutRole',
+  10001: 'P_BattleServerRegister',
+  10002: 'P_BattleServerHeartbeat',
+  10003: 'P_BattleServerCommand',
+  10004: 'P_BattleServerStatus',
+  10005: 'P_BattleServerRegisterTokenAndRoleData',
+  10006: 'P_BattleServerSaveRoleData',
+  10007: 'P_BattleServerKickOutRole',
+  20001: 'P_MmoEnterScene_CS',
+  20002: 'P_MmoLeaveScene_CS',
+  20003: 'P_MmoMove_CS',
+  20004: 'P_MmoStopMove_CS',
+  20005: 'P_MmoSyncEntity_SC',
+  20006: 'P_MmoSyncLeaveEntity_SC',
+  20007: 'P_MmoSyncMove_SC',
+  20008: 'P_MmoAttack_CS',
+  20009: 'P_MmoSkill_CS',
+  20010: 'P_MmoDamage_SC',
+  20011: 'P_MmoRoleState_SC',
+  20012: 'P_CrossEnter_CS',
+  20013: 'P_CrossEnter_SC',
+  20014: 'P_CrossAuth_CS',
+  20015: 'P_CrossAuth_SC',
   30001: 'P_LoginReq_CS',
   30002: 'P_LoginReq_SC',
   30003: 'P_GM_CS',
@@ -104,9 +138,9 @@ export const PROTO_BODY_TYPE: Record<number, string> = {
   30011: 'P_Chat_SC',
   30012: 'P_GasBattle_CS',
   30013: 'P_GasBattle_SC',
-  30014: 'P_SyncInventoryData_SC',
+  30014: 'P_SyncKnapsackData_SC',
   30015: 'P_SyncRoleExtraData_SC',
-  30016: 'P_SyncQuestData_SC',
+  30016: 'P_SyncTaskData_SC',
   30017: 'P_SyncHeroData_SC',
   30018: 'P_SyncLineupData_SC',
   30019: 'P_SyncLineupUpdate_CS',

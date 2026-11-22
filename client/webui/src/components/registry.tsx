@@ -5,8 +5,8 @@
 import type { ComponentType } from 'react'
 import type { PanelSlot } from '@/types'
 import RolePanel from './role/role-panel'
-import InventoryPanel from './inventory/inventory-panel'
-import QuestPanel from './quest/quest-panel'
+import KnapsackPanel from './knapsack/knapsack-panel'
+import TaskPanel from './task/task-panel'
 import GMPanel from './gm/gm-panel'
 import { HeroPanel } from './hero'
 import { LineupPanel } from './lineup'
@@ -42,8 +42,8 @@ export const PANEL_REGISTRY: PanelDef[] = [
   { id: 'role', label: '角色信息', icon: '🧙', component: RolePanel, slot: 'left', page: 'hall' },
   { id: 'hero', label: '英雄', icon: '⭐', component: HeroPanel, slot: 'left', page: 'hall' },
   { id: 'lineup', label: '阵容', icon: '⚔️', component: LineupPanel, slot: 'left', page: 'hall' },
-  { id: 'inventory', label: '背包', icon: '📦', component: InventoryPanel, slot: 'left', page: 'hall' },
-  { id: 'quest', label: '任务', icon: '📜', component: QuestPanel, slot: 'right', page: 'hall' },
+  { id: 'knapsack', label: '背包', icon: '📦', component: KnapsackPanel, slot: 'left', page: 'hall' },
+  { id: 'task', label: '任务', icon: '📜', component: TaskPanel, slot: 'right', page: 'hall' },
   { id: 'rank', label: '排行榜', icon: '🏆', component: RankListPanel, slot: 'right', page: 'hall' },
   { id: 'gm', label: 'GM', icon: '', component: GMPanel, slot: 'top', page: 'hall' },
 

@@ -9,6 +9,7 @@ import InfoPage from '@/pages/info-page'
 import AgentPage from '@/pages/agent-page'
 import ArenaPage from '@/pages/arena/arena-page'
 import BattleFieldPage from '@/pages/battle-field-page'
+import MmoPage from '@/pages/mmo-page'
 import Toast from '@/components/toast'
 import LoadingOverlay from '@/components/loading-overlay'
 import { DragProvider } from '@/hooks/use-drag-system'
@@ -34,6 +35,7 @@ function AppContent() {
           <Route path="/info" element={<InfoPage />} />
           <Route path="/agent" element={<AgentPage />} />
           <Route path="/arena" element={<ArenaPage />} />
+          <Route path="/mmo" element={<MmoPage />} />
         </Route>
         <Route path="/battle-field" element={<BattleFieldPage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />

@@ -5,7 +5,7 @@
 local GLO = GLO
 local M = {}
 local Player = GLO.Player
-local Const = GLO.Const
+local PlayerDef = GLO.PlayerDef
 local ConfigManager = GLO.ConfigManager
 
 local Hero = Player.Player:Extend('Hero')
@@ -18,13 +18,13 @@ end
 -- 英雄: 全局默认 + 英雄配置覆盖
 function M.GetAttrBaseMap(hero_config)
     local map = {}
-    for _, attr_id in pairs(Const.Attr) do
+    for _, attr_id in pairs(PlayerDef.Attr) do
         local attr_cfg = ConfigManager.attrconfig and ConfigManager.attrconfig[attr_id]
-        map[attr_id] = (attr_cfg and attr_cfg.base) or 0
+        map[attr_id] = attr_cfg.base
     end
     if hero_config and hero_config.base_attr then
         for attr_id, val in pairs(hero_config.base_attr) do
-            map[attr_id] = val or 0
+            map[attr_id] = val
         end
     end
     return map
@@ -35,7 +35,7 @@ function M.GetAttrGrowthMap(hero_config)
     local map = {}
     if hero_config and hero_config.attr_growth then
         for attr_id, val in pairs(hero_config.attr_growth) do
-            map[attr_id] = val or 0
+            map[attr_id] = val
         end
     end
     return map
@@ -44,12 +44,20 @@ end
 -- 从快照计算英雄属性和战力(用于UI展示,不创建实例)
 function M.GetAttrsAndPower(snapshot, hero_id)
     local hd = GLO.RoleBattleSnapshot.FindHero(snapshot, hero_id)
-    if not hd then return {}, 0 end
+    if not hd then
+        error("英雄数据缺失 hero_id:" .. tostring(hero_id))
+    end
 
     local hero_config = ConfigManager.heroconfig[hero_id]
+    if not hero_config then
+        error("heroconfig 缺少英雄配置 hero_id:" .. tostring(hero_id))
+    end
     local base_map = M.GetAttrBaseMap(hero_config)
     local growth_map = M.GetAttrGrowthMap(hero_config)
-    local level = hd.level or 1
+    if not hd.level or hd.level <= 0 then
+        error("英雄等级缺失 hero_id:" .. tostring(hero_id))
+    end
+    local level = hd.level
     local attrs = Player.CalculateAttrsFromConfig(base_map, growth_map, level)
 
     local power = 0
@@ -59,7 +67,12 @@ end
 
 function M.CreateHeroForBattle(hero_id, level, ability_ids, owner_role, snapshot)
     local config = M.GetHeroConfig(hero_id)
-    if not config then return nil end
+    if not config then
+        error("heroconfig 缺少英雄配置 hero_id:" .. tostring(hero_id))
+    end
+    if not level or level <= 0 then
+        error("创建战斗英雄等级无效 hero_id:" .. tostring(hero_id))
+    end
     local hero = Hero:New(hero_id, level, config, owner_role, snapshot)
     if not hero then return nil end
 
@@ -76,12 +89,12 @@ end
 function Hero:Ctor(hero_id, level, config, owner_role, snapshot)
     self:CallSuper('Ctor')
 
-    self.player_id = hero_id
-    self.player_type = Const.PlayerType.HERO
+    self.obj_id = hero_id
+    self.obj_type = PlayerDef.ObjType.HERO
 
-    self.hero_id = hero_id or 0
-    self.level = level or 1
-    self.name = config and config.name or ('Hero_' .. tostring(hero_id))
+    self.hero_id = hero_id
+    self.level = level
+    self.name = config.name
     self.config = config
     self.owner_role = owner_role
     self.snapshot = snapshot
@@ -95,8 +108,8 @@ function Hero:CalculateAttr()
     self.attrs = Player.CalculateAttrsFromConfig(base_map, growth_map, self.level)
 
     -- 满血满蓝
-    self.attrs[Const.Attr.MAX_HEALTH] = self.attrs[Const.Attr.HEALTH]
-    self.attrs[Const.Attr.MAX_MANA] = self.attrs[Const.Attr.MANA]
+    self.attrs[PlayerDef.Attr.MAX_HEALTH] = self.attrs[PlayerDef.Attr.HEALTH]
+    self.attrs[PlayerDef.Attr.MAX_MANA] = self.attrs[PlayerDef.Attr.MANA]
 end
 
 -- 属性缩放(用于怪物属性倍率,英雄暂不需要)

@@ -63,19 +63,19 @@ export function parseHeroesFromReport(rawText: string): BattleHeroState[] {
 
   try {
     // 按解析顺序收集参与者
-    const participantList: { pid: number; playerId: number; playerType: number; name: string; level: number; team_id: number; team_name: string; teamSide: number; hp: number; maxHp: number; mp: number; maxMp: number }[] = []
+    const participantList: { pid: number; objId: number; objType: number; name: string; level: number; team_id: number; team_name: string; teamSide: number; hp: number; maxHp: number; mp: number; maxMp: number }[] = []
 
     for (const _line of rawText.split('\n')) {
       const line = _line.trim()
       if (!line) continue
 
-      // #PARTICIPANT: pid player_id player_type name level team_id team_name team_side [#sym:attrs ...]
+      // #PARTICIPANT: pid obj_id obj_type name level team_id team_name team_side [#sym:attrs ...]
       if (line.startsWith('#PARTICIPANT:')) {
         const content = line.substring('#PARTICIPANT:'.length)
         const parts = content.split(/\s+/)
         const pid = parseInt(parts[0]) || 0
-        const playerId = parseInt(parts[1]) || 0    // player_id
-        const playerType = parseInt(parts[2]) || 0  // player_type
+        const objId = parseInt(parts[1]) || 0    // obj_id(对象配置ID)
+        const objType = parseInt(parts[2]) || 0  // obj_type(对象类型)
         const name = parts[3] || `英雄${pid}`
         const level = parseInt(parts[4]) || 1
         const team_id = parseInt(parts[5]) || 0  // team_id(玩家UID或怪物队伍ID)
@@ -95,14 +95,14 @@ export function parseHeroesFromReport(rawText: string): BattleHeroState[] {
             if (eq < 0) continue
             const id = parseInt(pair.substring(0, eq).trim())
             const val = parseFloat(pair.substring(eq + 1).trim())
-            if (id === 1) hp = val
-            else if (id === -1) maxHp = val
-            else if (id === 2) mp = val
-            else if (id === -2) maxMp = val
+            if (id === Attr.HEALTH) hp = val
+            else if (id === Attr.MAX_HEALTH) maxHp = val
+            else if (id === Attr.MANA) mp = val
+            else if (id === Attr.MAX_MANA) maxMp = val
           }
         }
 
-        participantList.push({ pid, playerId, playerType, name, level, team_id, team_name, teamSide, hp, maxHp, mp, maxMp })
+        participantList.push({ pid, objId, objType, name, level, team_id, team_name, teamSide, hp, maxHp, mp, maxMp })
         continue
       }
     }
@@ -115,14 +115,14 @@ export function parseHeroesFromReport(rawText: string): BattleHeroState[] {
     const heroMap = new Map<number, BattleHeroState>()
     for (let i = 0; i < participantList.length; i++) {
       const p = participantList[i]
-      const isMonster = p.playerType === 2  // ENTITY_TYPE_MONSTER
+      const isMonster = p.objType === 2  // OBJ_TYPE_MONSTER
 
       heroMap.set(p.pid, {
         pid: p.pid, name: p.name,
         hp: p.hp, maxHp: p.maxHp, mp: p.mp, maxMp: p.maxMp,
         teamSide: p.teamSide, isMonster, alive: true, level: p.level,
-        playerType: p.playerType,
-        playerId: p.playerId,
+        playerType: p.objType,
+        playerId: p.objId,
         teamId: p.team_id > 0 ? p.team_id : undefined,
         teamName: p.team_name || undefined,
       })
@@ -368,12 +368,16 @@ export function computeFinalHeroes(rawText: string): BattleHeroState[] {
       const attrId = getField(evt, 'attr_id')
       const newVal = getField(evt, 'new')
       const hero = heroMap.get(pid)
-      if (hero && attrId === 2) {
+      if (hero && attrId === Attr.MANA) {
         // MANA变化
         hero.mp = newVal
-      } else if (hero && attrId === 1) {
+      } else if (hero && attrId === Attr.MAX_MANA) {
+        hero.maxMp = newVal
+      } else if (hero && attrId === Attr.HEALTH) {
         // HEALTH变化(直接设置HP)
         hero.hp = newVal
+      } else if (hero && attrId === Attr.MAX_HEALTH) {
+        hero.maxHp = newVal
       }
     }
   }

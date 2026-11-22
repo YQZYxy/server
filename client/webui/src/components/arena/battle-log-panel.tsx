@@ -40,7 +40,7 @@ export default function BattleLogPanel({ onClose }: BattleLogPanelProps) {
 
   // 回放战斗
   const handleReplay = useCallback((reportKey: string) => {
-    sendBattle(BattleType.ARENA, 0, '', reportKey)
+    sendBattle(BattleType.ARENA, 0, reportKey)
   }, [])
 
   // 倒序排列(最新在前)

@@ -21,6 +21,12 @@ M.cpp_OnMonthChange = "cpp_OnMonthChange"
 M.cpp_OnGmCommand = "cpp_OnGmCommand"
 M.cpp_OnInitRoleDataFindRet = "cpp_OnInitRoleDataFindRet"
 M.cpp_OnBattleResult = "cpp_OnBattleResult"
+M.cpp_OnKnapsackAutoUse = "cpp_OnKnapsackAutoUse"
+M.cpp_OnMmoEvent = "cpp_OnMmoEvent"
+M.cpp_OnCrossEnterResult = "cpp_OnCrossEnterResult"
+M.cpp_OnActivityStateChange = "cpp_OnActivityStateChange"
+M.cpp_OnComputeFindPath = "cpp_OnComputeFindPath"
+M.cpp_OnComputeQueryRange = "cpp_OnComputeQueryRange"
 
 -- ================= lua 事件名 ===================
 M.lua_OnRoleLevelUp = "lua_OnRoleLevelUp"
@@ -38,9 +44,9 @@ M.lua_OnUseItem = "lua_OnUseItem"
 M.lua_OnNPCTalk = "lua_OnNPCTalk"
 M.lua_OnZoneEnter = "lua_OnZoneEnter"
 
-M.lua_OnQuestAccepted = "lua_OnQuestAccepted"
-M.lua_OnQuestTurnedIn = "lua_OnQuestTurnedIn"
-M.lua_OnQuestCompleted = "lua_OnQuestCompleted"
+M.lua_OnTaskAccepted = "lua_OnTaskAccepted"
+M.lua_OnTaskTurnedIn = "lua_OnTaskTurnedIn"
+M.lua_OnTaskCompleted = "lua_OnTaskCompleted"
 
 
 -- ================= 事件优先级 ===================
@@ -64,8 +70,7 @@ M.EVENT_PRIORITY_GM_MAIN = 200	-- GM入口
 function M.RegisterListener(event_name, callback, priority)
 	priority = priority or M.EVENT_PRIORITY_DEFAULT
 	
-	-- 调用 C++ 的 RegisterEvent 函数
-	local listener_id = RegisterEvent(event_name, callback, priority, false)
+	local listener_id = cpp_RegisterEvent(event_name, callback, priority, false)
 	
 	-- 保存 listener_id 用于后续移除
 	if not M.m_listener_ids[event_name] then
@@ -82,8 +87,7 @@ end
 
 -- =================触发事件 ============
 function M.TriggerEvent(event_name, event_data)
-	-- 调用 C++ 的 TriggerEvent 函数
-	TriggerEvent(event_name, event_data or {})
+	cpp_TriggerEvent(event_name, event_data or {})
 end
 
 -- ====================移除监听器==============
@@ -95,8 +99,7 @@ function M.RemoveListener(event_name, callback)
 	
 	for i = #listeners, 1, -1 do
 		if listeners[i].callback == callback then
-			-- 调用 C++ 的 UnregisterEvent 函数
-			UnregisterEvent(listeners[i].listener_id)
+			cpp_UnregisterEvent(listeners[i].listener_id)
 			table.remove(listeners, i)
 		end
 	end
@@ -106,7 +109,7 @@ end
 function M.ClearAllListeners()
 	for event_name, listeners in pairs(M.m_listener_ids) do
 		for _, listener_info in ipairs(listeners) do
-			UnregisterEvent(listener_info.listener_id)
+			cpp_UnregisterEvent(listener_info.listener_id)
 		end
 	end
 	

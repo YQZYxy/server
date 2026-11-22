@@ -16,14 +16,14 @@ gameSocket.onMsg(MHT.MHT_SYNC_ROLE_INFO_RET_SC, (body) => gameStore.setState({ r
 /** 从配置获取英雄图标 */
 function getHeroIcon(heroId: number): string {
   const configs = getHeroConfig()
-  const job = configs?.find(c => c.id === heroId)?.job
+  const job = configs?.find(c => c.hero_id === heroId)?.job
   return JOB_ICONS[(job ?? 0) as Job] ?? DEFAULT_HERO_ICON
 }
 
 /** 从配置获取英雄名 */
 function getHeroName(heroId: number): string {
   const configs = getHeroConfig()
-  return configs?.find(c => c.id === heroId)?.name || `英雄#${heroId}`
+  return configs?.find(c => c.hero_id === heroId)?.name || `英雄#${heroId}`
 }
 
 export default function RolePanel() {
@@ -68,6 +68,14 @@ export default function RolePanel() {
             <div className="attr-item">
               <span className="attr-name">UID</span>
               <span className="attr-value">{baseInfo?.uid ?? '-'}</span>
+            </div>
+            <div className="attr-item">
+              <span className="attr-name">等级</span>
+              <span className="attr-value">Lv.{baseInfo?.level ?? 1}</span>
+            </div>
+            <div className="attr-item">
+              <span className="attr-name">经验</span>
+              <span className="attr-value">{baseInfo?.exp ?? 0}</span>
             </div>
             <div className="attr-item">
               <span className="attr-name">服务器</span>

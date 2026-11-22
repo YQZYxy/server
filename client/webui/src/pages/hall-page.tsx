@@ -11,6 +11,7 @@ const HALL_PANELS = getPagePanels('hall')
 
 const MORE_CARDS = [
   { path: '/chat', icon: '💬', label: '聊天' },
+  { path: '/mmo', icon: '🗺️', label: 'MMO' },
   { path: '/agent', icon: '🐟', label: '小鱼' },
   { path: '/battle', icon: '⚔️', label: '战斗' },
   { path: '/info', icon: 'ℹ️', label: '我的' },

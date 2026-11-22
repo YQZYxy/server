@@ -47,7 +47,7 @@ async function _fetch(name: string): Promise<any> {
 const ALL_CONFIGS = [
   'heroconfig', 'monsterconfig', 'abilityconfig', 'effectconfig',
   'itemconfig', 'itemglobalconfig', 'attrconfig',
-  'questconfig', 'questglobalconfig', 'questobjconfig',
+  'taskconfig', 'taskglobalconfig', 'taskobjconfig',
   'herolevelconfig', 'battlestageconfig', 'battlemonstergroupconfig',
 ]
 

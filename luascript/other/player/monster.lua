@@ -4,7 +4,8 @@
 
 local GLO = GLO
 local M = {}
-local Const = GLO.Const
+local PlayerDef = GLO.PlayerDef
+local MonsterDef = GLO.MonsterDef
 local Player = GLO.Player
 local ConfigManager = GLO.ConfigManager
 
@@ -26,8 +27,8 @@ function Monster:CalculateAttr()
     end
     self.attrs = Player.CalculateAttrsFromConfig(base_map, nil, 1)
     -- 满血满蓝
-    self.attrs[Const.Attr.MAX_HEALTH] = self.attrs[Const.Attr.HEALTH]
-    self.attrs[Const.Attr.MAX_MANA] = self.attrs[Const.Attr.MANA]
+    self.attrs[PlayerDef.Attr.MAX_HEALTH] = self.attrs[PlayerDef.Attr.HEALTH]
+    self.attrs[PlayerDef.Attr.MAX_MANA] = self.attrs[PlayerDef.Attr.MANA]
 end
 
 function M.CreateMonster(monster_id)
@@ -39,12 +40,12 @@ function Monster:Ctor(monster_id)
     local config = M.GetMonsterConfig(monster_id)
     if not config then return end
 
-    self.player_id = monster_id
-    self.player_type = Const.PlayerType.MONSTER
+    self.obj_id = monster_id
+    self.obj_type = PlayerDef.ObjType.MONSTER
 
-    self.monster_id = config.id
+    self.monster_id = config.monster_id
     self.name = config.name
-    self.level = config.level or 1
+    self.level = config.level
     self.monster_type = config.monster_type
 
     self:CalculateAttr()
@@ -53,7 +54,7 @@ function Monster:Ctor(monster_id)
         for _, aid in ipairs(config.abilities) do self:AddAbility(aid, 1) end
     end
 
-    if self.monster_type == Const.MonsterType.BOSS then
+    if self.monster_type == MonsterDef.MonsterType.BOSS then
         self.tags['Monster.Boss'] = true
     end
 
@@ -64,8 +65,8 @@ function Monster:ScaleAttributes(scale)
         self.attrs[attr_id] = val * scale
     end
     -- 重新同步当前值
-    self.attrs[Const.Attr.MAX_HEALTH] = self.attrs[Const.Attr.HEALTH]
-    self.attrs[Const.Attr.MAX_MANA] = self.attrs[Const.Attr.MANA]
+    self.attrs[PlayerDef.Attr.MAX_HEALTH] = self.attrs[PlayerDef.Attr.HEALTH]
+    self.attrs[PlayerDef.Attr.MAX_MANA] = self.attrs[PlayerDef.Attr.MANA]
 end
 
 function Monster:SetLevel(level)

@@ -5,7 +5,8 @@
 local GLO = GLO
 local M = {}
 local Protobuf = GLO.Protobuf
-local Const = GLO.Const
+local BattleDef = GLO.BattleDef
+local PlayerDef = GLO.PlayerDef
 local MHT = GLO.MHT
 
 local BattleModule = GLO.Class:Extend('BattleModule')
@@ -20,7 +21,11 @@ function BattleModule:OnBattleReq(role, msg_data)
     if not msg_data then return false end
 
     -- 单场与多场统一: 单场 = 总场次1的系列, 按场次逐场构建并发送
-    local total_matches = self:GetMatchCount(role, msg_data) or 1
+    local total_matches = self:GetMatchCount(role, msg_data)
+    if not total_matches or total_matches <= 0 then
+        LOG_ERROR('战斗场次无效: uid=%d total=%s', role.uid, tostring(total_matches))
+        return false
+    end
     for match_index = 1, total_matches do
         local participants = self:BuildMatchParticipants(role, msg_data, match_index, total_matches)
         if not participants then
@@ -63,26 +68,32 @@ function BattleModule:BuildMatchParticipants(role, msg_data, match_index, total_
 end
 
 -- 战斗总结果回调
--- @param series: 系列聚合数据 {battle_type, param_id, total, win, lose, match_results, report_keys}
--- @param series_result: Const.BattleResultType 总胜负
+-- @param series: 系列聚合数据 {battle_type, target_id, total, win, lose, match_results, report_keys}
+-- @param series_result: BattleDef.BattleResultType 总胜负
 function BattleModule:OnBattleResult(role, series, series_result)
     -- 默认空实现, 子类重写处理系列奖励
 end
 
 function BattleModule:BuildProtoReq(role, msg_data, participants, match_index, total_matches)
-    local am = participants.attacker_members or {}
-    local dm = participants.defender_members or {}
+    local am = participants.attacker_members
+    local dm = participants.defender_members
+    if not am or not dm then
+        LOG_ERROR('战斗参与者缺失: uid=%d', role.uid)
+        return nil
+    end
+    local target_id = msg_data.target_id
     local exec_req = {
         uid = role.uid,
         battle_req = {
             battle_id = 0,
             mode = 1,   -- 回合制
             battle_type = self.battle_type,
+            target_id = target_id,
             random_seed = math.random(1, 999999),
             rules = {
-                victory_condition = Const.VictoryCondition.VICTORY_COND_DEFENDER_DEATH, -- 默认防守方全灭,进攻方胜利
+                victory_condition = BattleDef.VictoryCondition.VICTORY_COND_DEFENDER_DEATH, -- 默认防守方全灭,进攻方胜利
                 max_turns = 20,
-                max_duration = 300,
+                max_duration_sec = 300,
                 allow_flee = false,
                 score_limit = 0,
                 target_member_id = 0
@@ -91,50 +102,51 @@ function BattleModule:BuildProtoReq(role, msg_data, participants, match_index, t
                 {
                     team_id = role.uid,
                     team_name = role:GetName(),
-                    side = Const.TeamSide.ATTACKER,
+                    side = BattleDef.TeamSide.ATTACKER,
                     members = am
                 },
                 {
-                    team_id = msg_data.id or -1,
+                    team_id = target_id,
                     team_name = '防守方',
-                    side = Const.TeamSide.DEFENDER,
+                    side = BattleDef.TeamSide.DEFENDER,
                     members = dm
                 },
             },
-            req_type = msg_data.req_type or 0,
-            req_id = msg_data.id or 0,
         },
     }
     return exec_req
 end
 
-function M.BuildProtoParticipant(entity, team_id, team_name, team_side)
+function M.BuildProtoParticipant(entity)
     local attrs = {}
-    if entity.attrs then
-        for attr_id, val in pairs(entity.attrs) do
-            if val and val ~= 0 then
-                table.insert(attrs, {attr_id = attr_id, value = val})
-            end
+    for attr_id, val in pairs(entity.attrs) do
+        if val and val ~= 0 then
+            table.insert(attrs, {attr_id = attr_id, value = val})
         end
     end
     local abilities = {}
     local entity_abs = entity:GetAbilities()
     if entity_abs then
         for _, ab in pairs(entity_abs) do
-            table.insert(abilities, { ability_id = ab.id, level = ab.level or 1 })
+            if not ab.level or ab.level <= 0 then
+                LOG_ERROR('战斗能力等级无效 ability_id=%s', tostring(ab.ability_id))
+                return nil
+            end
+            table.insert(abilities, { ability_id = ab.ability_id, level = ab.level })
         end
     end
+    if not entity.level or entity.level <= 0 then
+        LOG_ERROR('战斗参与者等级无效 name=%s', tostring(entity.name))
+        return nil
+    end
     return {
-        player_id = entity.player_id or 0,
-        player_type = entity.player_type or Const.PlayerType.NONE,
-        name = entity.name or 'Unknown',
-        level = entity.level or 1,
-        team_id = team_id,
-        team_name = team_name, 
-        side = team_side,
-        initial_attrs = attrs,
+        obj_id = entity.obj_id,
+        obj_type = entity.obj_type,
+        name = entity.name,
+        level = entity.level,
+        attrs = attrs,
         abilities = abilities,
-        init_tags = {},
+        tags = {},
     }
 end
 

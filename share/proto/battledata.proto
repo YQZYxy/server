@@ -8,29 +8,26 @@ import "data.proto";
 // 属性ID常量
 enum PB_Attr
 {
-    ATTR_MAX_NONE         = 0;      //负值是系统属性
-
-    ATTR_MAX_MANA          = -2;    // 最大生命值
-    ATTR_MAX_HEALTH        = -1;    // 最大法力值
-
-    // === 上面是系统属性  ===
-
-	ATTR_HEALTH            = 1;     // 生命值
+	ATTR_HEALTH            = 0;     // 生命值
+	ATTR_MAX_HEALTH        = 1;     // 最大生命值
 	ATTR_MANA              = 2;     // 法力值
-	ATTR_STRENGTH          = 3;     // 力量
-	ATTR_AGILITY           = 4;     // 敏捷
-	ATTR_INTELLIGENCE      = 5;     // 智力
-	ATTR_VITALITY          = 6;     // 体质
-	ATTR_LUCK              = 7;     // 幸运
-	ATTR_ARMOR             = 8;     // 护甲
+	ATTR_MAX_MANA          = 3;     // 最大法力值
 
-    // === 百分比属性 (100-1000) ===
-	ATTR_CRIT_CHANCE       = 100;   // 暴击率
-	ATTR_CRIT_DAMAGE       = 101;   // 暴击伤害
-	ATTR_ATTACK_SPEED      = 102;   // 攻击速度
-	ATTR_DODGE_CHANCE      = 103;   // 闪避率
-	ATTR_BLOCK_CHANCE      = 104;   // 格挡率
-    ATTR_DAMAGE_MULTIPLIER = 105;   // 伤害加成
+	ATTR_STRENGTH          = 4;     // 力量
+	ATTR_AGILITY           = 5;     // 敏捷
+	ATTR_INTELLIGENCE      = 6;     // 智力
+	ATTR_VITALITY          = 7;     // 体质
+	ATTR_LUCK              = 8;     // 幸运
+	ATTR_ARMOR             = 9;     // 护甲
+
+	ATTR_CRIT_CHANCE       = 10;    // 暴击率
+	ATTR_CRIT_DAMAGE       = 11;    // 暴击伤害
+	ATTR_ATTACK_SPEED      = 12;    // 攻击速度
+	ATTR_DODGE_CHANCE      = 13;    // 闪避率
+	ATTR_BLOCK_CHANCE      = 14;    // 格挡率
+	ATTR_DAMAGE_MULTIPLIER = 15;    // 伤害加成
+
+	ATTR_MAX             = 16;    // 属性总数, 数组长度用
 };
 
 enum BattleEventType
@@ -58,12 +55,12 @@ enum PB_BattleMode
     BATTLE_MODE_REALTIME    = 2;   // 实时
 }
 
-// 实体类型
-enum PB_PlayerType
+// 对象类型(战斗参与者)
+enum PB_ObjType
 {
-    PLAYER_TYPE_NONE    = 0;
-    PLAYER_TYPE_HERO    = 1;   // 英雄(玩家)
-    PLAYER_TYPE_MONSTER = 2;   // 怪物(NPC)
+    OBJ_TYPE_NONE    = 0;
+    OBJ_TYPE_HERO    = 1;   // 英雄(玩家)
+    OBJ_TYPE_MONSTER = 2;   // 怪物(NPC)
 }
 
 // 战斗阶段
@@ -224,27 +221,25 @@ message PB_AbilitySpec
 }
 
 // ==================== 战斗参与者 ====================
-// 外部填充每个参战实体的初始数据,战斗引擎解析生成 BattleEntity
+// 外部填充每个参战实体的数据,战斗引擎解析生成 BattleEntity
+// 队伍信息(team_id/team_name/side)统一由 PB_BattleTeam 描述,参与者不再重复携带
 
 message PB_BattleParticipant
 {
-    optional int32 player_id                 = 1;   // ID(英雄对应 hero_id,怪物对应 monster_id)
-    optional PB_PlayerType player_type       = 2;   // 实体类型(英雄/怪物)
-    optional string name                     = 3;   // 显示名称(pvp为对手名/pve为怪物名)
-    optional int32 level                     = 4;   // 等级(默认1)
-    optional int32 team_id                   = 5;   // 队伍ID(玩家=uid,怪物=负值自增)
-    optional string team_name                = 6;   // 队伍名称(pvp对手名/pve怪物组名)
-    optional PB_TeamSide side                = 7;   // 阵营(攻击方/防守方)
-    repeated PB_AttrPair initial_attrs = 8; // 初始属性集合(复用 data.proto)
-    repeated PB_AbilitySpec abilities  = 9; // 能力集合(带等级)
-    repeated string init_tags       = 10;  // 初始标签(可选)
+    optional int32 obj_id              = 1;   // 对象配置ID(英雄=hero_id,怪物=monster_id)
+    optional PB_ObjType obj_type       = 2;   // 对象类型(英雄/怪物)
+    optional string name                = 3;   // 显示名称(pvp为对手名/pve为怪物名)
+    optional int32 level                = 4;   // 等级(默认1)
+    repeated PB_AttrPair attrs      = 5;   // 实体的属性集合(见 data.proto)
+    repeated PB_AbilitySpec abilities = 6;   // 能力集合(带等级)
+    repeated string tags               = 7;   // 初始标签(可选)
 }
 
 // ==================== 战斗队伍 ====================
 
 message PB_BattleTeam
 {
-    optional int32 team_id                       = 1;   // 队伍ID
+    optional int64 team_id                       = 1;   // 队伍ID(玩家UID/怪物自增), 需要 64 位
     optional string team_name                    = 2;   // 队伍名称
     optional PB_TeamSide side                    = 3;   // 阵营
     repeated PB_BattleParticipant members = 4; // 成员列表
@@ -256,7 +251,7 @@ message PB_BattleRules
 {
     optional PB_VictoryCondition victory_condition = 1; // 胜利条件
     optional int32 max_turns         = 2;   // 最大回合数(0=无限制)
-    optional int32 max_duration      = 3;   // 最大战斗时长秒(0=无限制)
+    optional int32 max_duration_sec  = 3;   // 最大战斗时长(秒,0=无限制)
     optional bool allow_flee         = 4;   // 是否允许逃跑
     optional int32 score_limit       = 5;   // 分数上限
     optional int32 target_member_id  = 6;   // 击杀目标实例ID
@@ -266,14 +261,28 @@ message PB_BattleRules
 
 message PB_BattleReq
 {
-    optional int32 battle_id                 = 1;   // 战斗ID
+    optional int32 battle_id                 = 1;   // 战斗ID(0=由引擎生成)
     optional PB_BattleMode mode              = 2;   // 战斗模式
-    optional int32 battle_type               = 3;   // 战斗类型
-    optional int32 random_seed               = 4;   // 随机种子
-    optional PB_BattleRules rules            = 5;   // 战斗规则
-    repeated PB_BattleTeam teams    = 6;            // 参战队伍列表
-    optional int32 req_type                  = 7;   // 请求类型(透传)
-    optional int32 req_id                    = 8;   // 请求子ID(透传)
+    optional int32 battle_type               = 3;   // 战斗类型(Const.BattleType)
+    optional int64 target_id                 = 4;   // 战斗目标(主线=关卡ID,竞技场=对手UID)
+    optional int32 random_seed               = 5;   // 随机种子
+    optional PB_BattleRules rules            = 6;   // 战斗规则
+    repeated PB_BattleTeam teams             = 7;   // 参战队伍列表
+}
+
+// ==================== 战斗实体状态 ====================
+
+// 战斗结束时的实体状态快照
+message PB_BattleEntityState
+{
+    optional int32 pid                 = 1;   // 战斗内实例ID
+    optional int32 obj_id              = 2;   // 对象配置ID
+    optional PB_ObjType obj_type       = 3;   // 对象类型
+    optional string name               = 4;   // 显示名称
+    optional int32 level               = 5;   // 等级
+    optional int64 team_id             = 6;   // 队伍ID(玩家UID/怪物自增), 需要 64 位
+    optional bool alive                = 7;   // 是否存活
+    repeated PB_AttrPair attrs         = 8;   // 结束时属性快照
 }
 
 // ==================== 战斗结果 ====================
@@ -282,37 +291,32 @@ message PB_BattleResult
 {
     optional int32 battle_id                         = 1;   // 战斗ID
     optional PB_BattleResultType result_type         = 2;   // 结果类型
-    optional int32 winner_team_id                    = 3;   // 胜利队伍ID
+    optional int64 winner_team_id                    = 3;   // 胜利队伍ID(玩家UID/怪物自增)
     optional int32 total_turns                       = 4;   // 总回合数
     optional int32 duration_ms                       = 5;   // 持续时间(毫秒)
     optional string replay_text                      = 6;   // 战报文本
-    repeated PB_BattleParticipant final_participants = 7;   // 参战实体最终状态
-    optional int32 req_type                          = 8;   // 透传:请求类型
-    optional int32 req_id                            = 9;   // 透传:请求子ID
-    optional string report_key                       = 10;  // 战报文件key(用于历史查询)
-    optional int32 battle_type                       = 11;  // 战斗类型
+    optional string report_key                       = 7;   // 战报文件key(用于历史查询)
+    repeated PB_BattleEntityState final_states       = 8;   // 参战实体最终状态
 }
 
 // ==================== 单场战斗结果 ====================
 
 message PB_BattleMatchResult
 {
-    optional int32 match_index        = 1;   // 场次(1-based)
-    optional int32 result_type        = 2;   // 本场结果(Const.BattleResultType)
-    optional string battle_report_key = 3;   // 本场战报key
-    optional string battle_report     = 4;   // 本场完整战报文本
-    optional int32 battle_type        = 5;   // 战斗类型(单场展示标题)
-    optional int32 id                 = 6;   // 关联id(主线关卡id/竞技场对手uid)
+    optional int32 match_index               = 1;   // 场次(1-based)
+    optional PB_BattleResultType result_type = 2;   // 本场结果
+    optional int32 battle_type               = 3;   // 战斗类型(单场展示标题)
+    optional string report_key               = 4;   // 本场战报key
+    optional string replay_text              = 5;   // 本场战报文本
 }
 
 // ==================== 战斗执行请求 ====================
 
 message PB_BattleExecuteReq
 {
-    optional int32 req_id             = 1;   // 请求序列号
-    optional PB_BattleReq battle_req  = 2;   // 战斗请求数据(执行战斗时设置)
-    optional string report_key        = 3;   // 战报key(查询战报时设置,优先级高于 battle_req)
-    optional int32 uid                = 4;   // 发起战斗的角色uid
-    optional int32 match_index        = 5;   // 系列战斗:当前场次(0=单场)
-    optional int32 total_matches      = 6;   // 系列战斗:总场次(1=单场)
+    optional PB_BattleReq battle_req  = 1;   // 战斗请求数据(执行战斗时设置)
+    optional string report_key        = 2;   // 战报key(查询战报时设置,优先级高于 battle_req)
+    optional int64 uid                = 3;   // 发起战斗的角色uid
+    optional int32 match_index        = 4;   // 系列战斗:当前场次(0=单场)
+    optional int32 total_matches      = 5;   // 系列战斗:总场次(1=单场)
 }

@@ -6,6 +6,7 @@ local GLO = GLO
 local M = {}
 local Utils = GLO.Utils
 local Hero = GLO.Hero
+local BattleDef = GLO.BattleDef
 
 -- 从在线角色创建战斗快照
 -- @param role: 在线Role实例
@@ -65,7 +66,7 @@ end
 
 -- 从快照获取阵容英雄id列表
 -- @param snapshot: role_battle_snapshot
--- @param battle_type: Const.BattleType(可选,默认MAIN_BATTLE)
+-- @param battle_type: BattleDef.BattleType(可选,默认MAIN_BATTLE)
 -- @param slot: 阵容槽位(可选,默认0)
 -- @return hero_ids: 英雄id数组
 function M.GetLineupHeroIds(snapshot, battle_type, slot)
@@ -73,7 +74,7 @@ function M.GetLineupHeroIds(snapshot, battle_type, slot)
         return {}
     end
 
-    battle_type = battle_type or GLO.Const.BattleType.MAIN_BATTLE
+    battle_type = battle_type or BattleDef.BattleType.MAIN_BATTLE
     slot = slot or 0
     local lineups = snapshot.lineup
     if not lineups then
@@ -82,25 +83,9 @@ function M.GetLineupHeroIds(snapshot, battle_type, slot)
 
     -- 优先取指定战斗类型+槽位的阵容
     for _, lineup in ipairs(lineups.lineups or {}) do
-        if lineup.battle_type == battle_type and (lineup.slot or 0) == slot
+        if lineup.battle_type == battle_type and lineup.slot == slot
             and lineup.hero_ids and #lineup.hero_ids > 0 then
             return lineup.hero_ids
-        end
-    end
-
-    -- 兼容旧数据: slot0 匹配无 slot 字段的阵容
-    if slot == 0 then
-        for _, lineup in ipairs(lineups.lineups or {}) do
-            if lineup.battle_type == battle_type and lineup.hero_ids and #lineup.hero_ids > 0 then
-                return lineup.hero_ids
-            end
-        end
-
-        -- 降级取主线阵容
-        for _, lineup in ipairs(lineups.lineups or {}) do
-            if lineup.battle_type == GLO.Const.BattleType.MAIN_BATTLE and lineup.hero_ids and #lineup.hero_ids > 0 then
-                return lineup.hero_ids
-            end
         end
     end
 
@@ -109,13 +94,13 @@ end
 
 -- 从快照获取某战斗类型所有阵容的英雄id列表(多阵容nvn用)
 -- @param snapshot: role_battle_snapshot
--- @param battle_type: Const.BattleType(可选,默认MAIN_BATTLE)
+-- @param battle_type: BattleDef.BattleType(可选,默认MAIN_BATTLE)
 -- @return lineups: {{slot=..., hero_ids=...}, ...} 按slot升序, 已过滤空阵容
 function M.GetAllLineupHeroIds(snapshot, battle_type)
     if not snapshot then
         return {}
     end
-    battle_type = battle_type or GLO.Const.BattleType.MAIN_BATTLE
+    battle_type = battle_type or BattleDef.BattleType.MAIN_BATTLE
     local lineups = snapshot.lineup
     if not lineups then
         return {}
@@ -124,7 +109,7 @@ function M.GetAllLineupHeroIds(snapshot, battle_type)
     for _, lineup in ipairs(lineups.lineups or {}) do
         if lineup.battle_type == battle_type and lineup.hero_ids and #lineup.hero_ids > 0 then
             table.insert(result, {
-                slot = lineup.slot or 0,
+                slot = lineup.slot,
                 hero_ids = lineup.hero_ids,
             })
         end
@@ -136,15 +121,19 @@ end
 -- 从快照获取指定英雄的等级
 -- @param snapshot: role_battle_snapshot
 -- @param hero_id: 英雄id
--- @return level: 等级,默认1
+-- @return level: 等级
 function M.GetHeroLevel(snapshot, hero_id)
     local hd = M.FindHero(snapshot, hero_id)
-    return (hd and hd.level) or 1
+    if not hd or not hd.level or hd.level <= 0 then
+        LOG_ERROR("RoleBattleSnapshot.GetHeroLevel: 英雄等级缺失 hero_id=%s", tostring(hero_id))
+        return nil
+    end
+    return hd.level
 end
 
 -- 从快照构建战斗英雄列表
 -- @param snapshot: role_battle_snapshot
--- @param battle_type: Const.BattleType(可选,默认MAIN_BATTLE)
+-- @param battle_type: BattleDef.BattleType(可选,默认MAIN_BATTLE)
 -- @param slot: 阵容槽位(可选,默认0)
 -- @return heroes: Hero实例列表
 function M.CreateBattleHeroes(snapshot, battle_type, slot)
@@ -152,10 +141,10 @@ function M.CreateBattleHeroes(snapshot, battle_type, slot)
         return {}
     end
 
-    battle_type = battle_type or GLO.Const.BattleType.MAIN_BATTLE
+    battle_type = battle_type or BattleDef.BattleType.MAIN_BATTLE
     local hero_ids = M.GetLineupHeroIds(snapshot, battle_type, slot)
     if #hero_ids == 0 then
-        LOG_WARN("RoleBattleSnapshot.CreateBattleHeroes: 阵容为空 slot=%d", slot or 0)
+        LOG_WARN("RoleBattleSnapshot.CreateBattleHeroes: 阵容为空 slot=%s", tostring(slot))
         return {}
     end
 
@@ -163,9 +152,13 @@ function M.CreateBattleHeroes(snapshot, battle_type, slot)
     for _, hid in ipairs(hero_ids) do
         local hd = M.FindHero(snapshot, hid)
         if hd then
+            if not hd.level or hd.level <= 0 then
+                LOG_ERROR("RoleBattleSnapshot.CreateBattleHeroes: 英雄等级缺失 hero_id=%s", tostring(hid))
+                return {}
+            end
             local hero = GLO.Hero.CreateHeroForBattle(
                 hd.hero_id,
-                hd.level or 1,
+                hd.level,
                 hd.abilities and hd.abilities.ability_ids or {},
                 nil,  -- 无owner_role,快照场景不需要角色事件回调
                 snapshot  -- 传入快照用于属性计算
@@ -198,9 +191,13 @@ function M.BuildSingleHeroProtoData(snapshot, hero_id)
     end
     local entry = {
         hero_id = hero_id,
-        level = hd.level or 1,
-        exp = hd.exp or 0,
+        level = hd.level,
+        exp = hd.exp,
     }
+    if not hd.level or hd.level <= 0 or hd.exp == nil then
+        LOG_ERROR("RoleBattleSnapshot.BuildSingleHeroProtoData: 英雄等级/经验缺失 hero_id=%s", tostring(hero_id))
+        return nil
+    end
     -- abilities
     if hd.abilities and hd.abilities.ability_ids and next(hd.abilities.ability_ids) then
         -- 拷一份, 避免排行数据长期引用角色的实时数据
@@ -223,14 +220,14 @@ end
 
 -- 从快照构建PBHeroData列表
 -- @param snapshot: role_battle_snapshot
--- @param battle_type: Const.BattleType(可选,默认MAIN_BATTLE)
+-- @param battle_type: BattleDef.BattleType(可选,默认MAIN_BATTLE)
 -- @return hero_list: PBHeroData结构数组 {hero_id, level, abilities, attrs, combat_power}
 function M.BuildProtoHeroDataList(snapshot, battle_type)
     if not snapshot then
         return {}
     end
 
-    battle_type = battle_type or GLO.Const.BattleType.MAIN_BATTLE
+    battle_type = battle_type or BattleDef.BattleType.MAIN_BATTLE
     local hero_ids = M.GetLineupHeroIds(snapshot, battle_type)
     if #hero_ids == 0 then
         return {}
@@ -248,20 +245,24 @@ end
 
 -- 从快照计算阵容总战力
 -- @param snapshot: role_battle_snapshot
--- @param battle_type: Const.BattleType(默认MAIN_BATTLE)
+-- @param battle_type: BattleDef.BattleType(默认MAIN_BATTLE)
 -- @return total_power: 队伍总战力
 function M.CalcTeamPower(snapshot, battle_type)
     if not snapshot then
         return 0
     end
 
-    battle_type = battle_type or GLO.Const.BattleType.MAIN_BATTLE
+    battle_type = battle_type or BattleDef.BattleType.MAIN_BATTLE
     local hero_ids = M.GetLineupHeroIds(snapshot, battle_type)
     local total = 0
     for _, hid in ipairs(hero_ids) do
         if M.FindHero(snapshot, hid) then
             local _, combat_power = Hero.GetAttrsAndPower(snapshot, hid)
-            total = total + (combat_power or 0)
+            if combat_power == nil then
+                LOG_ERROR("RoleBattleSnapshot 战力计算失败 hero_id=%s", tostring(hid))
+                return 0
+            end
+            total = total + combat_power
         end
     end
     return math.floor(total)

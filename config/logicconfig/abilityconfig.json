@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "ability_id": 1,
     "name": "普通攻击",
     "description": "基础物理攻击",
     "ability_type": 1,
@@ -16,7 +16,7 @@
     "base_value": 15,
     "attr_adds": [
       [
-        3,
+        4,
         0.5
       ]
     ],
@@ -39,7 +39,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 2,
+    "ability_id": 2,
     "name": "重击",
     "description": "强力一击,造成高额伤害",
     "ability_type": 1,
@@ -60,7 +60,7 @@
     "base_value": 35,
     "attr_adds": [
       [
-        3,
+        4,
         1.5
       ]
     ],
@@ -83,7 +83,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 3,
+    "ability_id": 3,
     "name": "快速打击",
     "description": "敏捷的快速攻击",
     "ability_type": 1,
@@ -104,7 +104,7 @@
     "base_value": 20,
     "attr_adds": [
       [
-        4,
+        5,
         0.8
       ]
     ],
@@ -125,7 +125,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 1001,
+    "ability_id": 1001,
     "name": "治疗术",
     "description": "恢复生命值",
     "ability_type": 4,
@@ -146,7 +146,7 @@
     "base_value": 80,
     "attr_adds": [
       [
-        5,
+        6,
         2
       ]
     ],
@@ -169,7 +169,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 1002,
+    "ability_id": 1002,
     "name": "战吼",
     "description": "提升自身力量",
     "ability_type": 5,
@@ -206,7 +206,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 1003,
+    "ability_id": 1003,
     "name": "力量祝福",
     "description": "提升力量",
     "ability_type": 5,
@@ -243,7 +243,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 2001,
+    "ability_id": 2001,
     "name": "生命汲取",
     "description": "吸取目标生命值",
     "ability_type": 3,
@@ -264,7 +264,7 @@
     "base_value": 40,
     "attr_adds": [
       [
-        5,
+        6,
         1.2
       ]
     ],
@@ -287,7 +287,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 2002,
+    "ability_id": 2002,
     "name": "暗影箭",
     "description": "发射暗影能量",
     "ability_type": 2,
@@ -308,11 +308,11 @@
     "base_value": 30,
     "attr_adds": [
       [
-        5,
+        6,
         1
       ],
       [
-        7,
+        8,
         0.5
       ]
     ],
@@ -333,7 +333,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 2003,
+    "ability_id": 2003,
     "name": "暗影护盾",
     "description": "召唤暗影护盾保护自己",
     "ability_type": 5,
@@ -370,7 +370,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 3001,
+    "ability_id": 3001,
     "name": "冰霜箭",
     "description": "发射冰霜能量,减速目标",
     "ability_type": 7,
@@ -391,7 +391,7 @@
     "base_value": 25,
     "attr_adds": [
       [
-        5,
+        6,
         1.2
       ]
     ],
@@ -414,7 +414,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 3002,
+    "ability_id": 3002,
     "name": "冰盾",
     "description": "冰霜护盾",
     "ability_type": 5,
@@ -451,7 +451,7 @@
     "target_blocked_tags": []
   },
   {
-    "id": 3003,
+    "ability_id": 3003,
     "name": "暴风雪",
     "description": "大范围冰霜伤害",
     "ability_type": 2,
@@ -472,7 +472,7 @@
     "base_value": 50,
     "attr_adds": [
       [
-        5,
+        6,
         1.2
       ]
     ],

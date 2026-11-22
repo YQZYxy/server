@@ -5,12 +5,12 @@
 --[[
 字段结构说明:
 
-  max_inventory_slots - 最大格子 (int)
+  max_knapsack_slots - 最大格子 (int)
 --]]
 
 local M = 
 {
-    max_inventory_slots = 50,
+    max_knapsack_slots = 50,
 }
 
 LOG_INFO(" 加载完成")

@@ -1,0 +1,15 @@
+// 字段必须加 optional 关键字 
+// 结构命名加 PB_ 
+// 协议命名加 P_
+syntax = "proto3";
+
+// =============================分区消息============================================
+
+// 跨服活动开关通知
+// 使用 CLUSTER_CHANNEL_ZONE 通道, body_type 为 ZONE_MSG_ACTIVITY_START / ZONE_MSG_ACTIVITY_STOP
+message P_ZoneActivityNotify
+{
+	optional uint32 activity_id	= 1;	// 活动id
+	optional string name		= 2;	// 活动名称
+	optional int32 zone_id		= 3;	// 所属分区id
+}

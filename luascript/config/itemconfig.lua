@@ -5,14 +5,15 @@
 --[[
 字段结构说明:
 
-  id - 物品ID (int)
+  item_id - 物品ID (int)
   name - 名称 (string)
   description - 描述 (string)
-  type - 类型 (int)
+  item_type - 类型 (int)
   sub_type - 子类型 (int)
   quality - 品质 (int)
   level - 等级 (int)
   auto_use - 自动使用 (bool)
+  use_type - 使用类型 (int)
   discard - 是否可丢弃 (bool)
   max_stack - 最大堆叠 (long)
   sell_price - 出售价格 (int)
@@ -26,14 +27,15 @@
 
 local M = {
     [1] = {
-        id = 1,
+        item_id = 1,
         name = "金币",
         description = "金币",
-        type = 0,
+        item_type = 0,
         sub_type = 0,
         quality = 6,
         level = 0,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 0,
@@ -46,14 +48,15 @@ local M = {
     },
 
     [2] = {
-        id = 2,
+        item_id = 2,
         name = "经验",
         description = "经验",
-        type = 0,
+        item_type = 0,
         sub_type = 0,
         quality = 1,
         level = 0,
         auto_use = true,
+        use_type = 1,
         discard = false,
         max_stack = 0,
         sell_price = 0,
@@ -66,14 +69,15 @@ local M = {
     },
 
     [1001] = {
-        id = 1001,
+        item_id = 1001,
         name = "铁剑",
         description = "一把普通的铁制长剑",
-        type = 1,
+        item_type = 1,
         sub_type = 0,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 30,
@@ -86,14 +90,15 @@ local M = {
     },
 
     [1002] = {
-        id = 1002,
+        item_id = 1002,
         name = "钢剑",
         description = "优质钢材锻造的长剑，锋利而坚固",
-        type = 1,
+        item_type = 1,
         sub_type = 0,
         quality = 3,
         level = 5,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 125,
@@ -106,14 +111,15 @@ local M = {
     },
 
     [1003] = {
-        id = 1003,
+        item_id = 1003,
         name = "传奇之刃",
         description = "传说中的神兵利器，散发着耀眼的光芒",
-        type = 1,
+        item_type = 1,
         sub_type = 0,
         quality = 6,
         level = 20,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 3000,
@@ -126,14 +132,15 @@ local M = {
     },
 
     [1004] = {
-        id = 1004,
+        item_id = 1004,
         name = "战斧",
         description = "沉重的双手战斧，威力惊人",
-        type = 1,
+        item_type = 1,
         sub_type = 0,
         quality = 4,
         level = 10,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 450,
@@ -146,14 +153,15 @@ local M = {
     },
 
     [2001] = {
-        id = 2001,
+        item_id = 2001,
         name = "皮甲",
         description = "简单的皮革护甲",
-        type = 2,
+        item_type = 2,
         sub_type = 0,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 15,
@@ -166,14 +174,15 @@ local M = {
     },
 
     [2002] = {
-        id = 2002,
+        item_id = 2002,
         name = "铁头盔",
         description = "铁制头盔，提供基础防护",
-        type = 2,
+        item_type = 2,
         sub_type = 0,
         quality = 2,
         level = 3,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 36,
@@ -186,14 +195,15 @@ local M = {
     },
 
     [2003] = {
-        id = 2003,
+        item_id = 2003,
         name = "钢板甲",
         description = "重型钢制板甲，防御力强大",
-        type = 2,
+        item_type = 2,
         sub_type = 0,
         quality = 4,
         level = 8,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 420,
@@ -206,14 +216,15 @@ local M = {
     },
 
     [2004] = {
-        id = 2004,
+        item_id = 2004,
         name = "铁护腿",
         description = "铁制护腿，保护双腿",
-        type = 2,
+        item_type = 2,
         sub_type = 0,
         quality = 3,
         level = 4,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 72,
@@ -226,14 +237,15 @@ local M = {
     },
 
     [2005] = {
-        id = 2005,
+        item_id = 2005,
         name = "皮手套",
         description = "柔软的皮革手套",
-        type = 2,
+        item_type = 2,
         sub_type = 0,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 0,
         sell_price = 8,
@@ -246,14 +258,15 @@ local M = {
     },
 
     [3001] = {
-        id = 3001,
+        item_id = 3001,
         name = "生命药水",
         description = "恢复50点生命值",
-        type = 3,
+        item_type = 3,
         sub_type = 7,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 99,
         sell_price = 25,
@@ -266,14 +279,15 @@ local M = {
     },
 
     [3002] = {
-        id = 3002,
+        item_id = 3002,
         name = "魔法药水",
         description = "恢复30点魔法值",
-        type = 3,
+        item_type = 3,
         sub_type = 8,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 99,
         sell_price = 15,
@@ -286,14 +300,15 @@ local M = {
     },
 
     [3003] = {
-        id = 3003,
+        item_id = 3003,
         name = "超级生命药水",
         description = "恢复150点生命值",
-        type = 3,
+        item_type = 3,
         sub_type = 7,
         quality = 4,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 99,
         sell_price = 75,
@@ -306,14 +321,15 @@ local M = {
     },
 
     [3004] = {
-        id = 3004,
+        item_id = 3004,
         name = "超级魔法药水",
         description = "恢复100点魔法值",
-        type = 3,
+        item_type = 3,
         sub_type = 8,
         quality = 4,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 99,
         sell_price = 50,
@@ -326,14 +342,15 @@ local M = {
     },
 
     [3005] = {
-        id = 3005,
+        item_id = 3005,
         name = "力量药水",
         description = "临时提升30点力量,持续60秒",
-        type = 3,
+        item_type = 3,
         sub_type = 9,
         quality = 3,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 99,
         sell_price = 40,
@@ -346,14 +363,15 @@ local M = {
     },
 
     [3006] = {
-        id = 3006,
+        item_id = 3006,
         name = "敏捷药水",
         description = "临时提升25点敏捷,持续60秒",
-        type = 3,
+        item_type = 3,
         sub_type = 10,
         quality = 3,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 99,
         sell_price = 40,
@@ -366,14 +384,15 @@ local M = {
     },
 
     [4001] = {
-        id = 4001,
+        item_id = 4001,
         name = "铁矿石",
         description = "基础的铁矿石，可用于锻造",
-        type = 4,
+        item_type = 4,
         sub_type = 1,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 200,
         sell_price = 1,
@@ -386,14 +405,15 @@ local M = {
     },
 
     [4002] = {
-        id = 4002,
+        item_id = 4002,
         name = "魔法草药",
         description = "蕴含魔力的草药，可用于炼金",
-        type = 4,
+        item_type = 4,
         sub_type = 2,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 200,
         sell_price = 2,
@@ -406,14 +426,15 @@ local M = {
     },
 
     [4003] = {
-        id = 4003,
+        item_id = 4003,
         name = "兽皮",
         description = "野兽的皮毛，可用于制作护甲",
-        type = 4,
+        item_type = 4,
         sub_type = 3,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 200,
         sell_price = 1,
@@ -426,14 +447,15 @@ local M = {
     },
 
     [4004] = {
-        id = 4004,
+        item_id = 4004,
         name = "布匹",
         description = "普通的布料",
-        type = 4,
+        item_type = 4,
         sub_type = 4,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 200,
         sell_price = 1,
@@ -446,14 +468,15 @@ local M = {
     },
 
     [4005] = {
-        id = 4005,
+        item_id = 4005,
         name = "秘银矿",
         description = "稀有的秘银矿石，价值不菲",
-        type = 4,
+        item_type = 4,
         sub_type = 1,
         quality = 4,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 100,
         sell_price = 20,
@@ -466,14 +489,15 @@ local M = {
     },
 
     [5001] = {
-        id = 5001,
+        item_id = 5001,
         name = "哥布林的耳朵",
         description = "任务物品：击败哥布林的证明",
-        type = 5,
+        item_type = 5,
         sub_type = 0,
         quality = 2,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 99,
         sell_price = 0,
@@ -486,14 +510,15 @@ local M = {
     },
 
     [5002] = {
-        id = 5002,
+        item_id = 5002,
         name = "古老的卷轴",
         description = "任务物品：记载着古老魔法的卷轴",
-        type = 5,
+        item_type = 5,
         sub_type = 0,
         quality = 4,
         level = 1,
         auto_use = false,
+        use_type = 0,
         discard = false,
         max_stack = 1,
         sell_price = 0,

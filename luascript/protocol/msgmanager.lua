@@ -50,7 +50,7 @@ function M.OnRecv(netid, msg_type, msg_str, uid)
     end
     local t_decode = NowUs()
 
-    if GLO.MHT.MHT_BATTLE_MSG_TYPE_MAX < msg_type then
+    if GLO.MHT.MHT_USER_MSG_TYPE_BEGIN < msg_type then
 
         local role = GLO.RoleManager.GetRole(uid)
         if not role then

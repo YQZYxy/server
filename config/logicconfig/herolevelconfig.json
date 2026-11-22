@@ -1,40 +1,40 @@
 [
   {
-    "id": 5,
+    "level": 5,
     "level_rewards": [
       {
-        "id": 3001,
+        "item_id": 3001,
         "num": 1
       },
       {
-        "id": 3003,
+        "item_id": 3003,
         "num": 1
       }
     ]
   },
   {
-    "id": 10,
+    "level": 10,
     "level_rewards": [
       {
-        "id": 3003,
+        "item_id": 3003,
         "num": 1
       }
     ]
   },
   {
-    "id": 15,
+    "level": 15,
     "level_rewards": [
       {
-        "id": 3005,
+        "item_id": 3005,
         "num": 1
       }
     ]
   },
   {
-    "id": 20,
+    "level": 20,
     "level_rewards": [
       {
-        "id": 3005,
+        "item_id": 3005,
         "num": 2
       }
     ]

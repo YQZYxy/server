@@ -1,0 +1,7 @@
+[
+  {
+    "max_active_tasks": 25,
+    "max_daily_tasks": 10,
+    "repeat_task_cooldown": 86400
+  }
+]

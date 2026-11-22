@@ -16,7 +16,7 @@ local s_module_inst_map = {}
 -- ==================== 注册与反注册 ====================
 
 -- 注册战斗模块类
--- @param battle_type: Const.BattleType.xxx
+-- @param battle_type: 战斗类型
 -- @param module_class: 继承自BattleModule的类
 function M.RegisterBattleModule(battle_type, module_class)
     if not battle_type or not module_class then
@@ -71,11 +71,11 @@ end
 
 -- 获取所有已注册的战斗类型列表
 function M.GetRegisteredBattleTypes()
-    local types = {}
-    for id, cls in pairs(s_module_class_map) do
-        table.insert(types, {id = id, name = cls.__class_name or "unknown"})
+    local battle_types = {}
+    for battle_type, cls in pairs(s_module_class_map) do
+        table.insert(battle_types, {battle_type = battle_type, name = cls.__class_name or "unknown"})
     end
-    return types
+    return battle_types
 end
 
 -- ==================== 消息分发 ====================
@@ -108,7 +108,7 @@ end)
 
 -- 查询历史战报
 function M.HandleReplayQuery(role, msg_data)
-    local report_key = msg_data.battle_report_key or ""
+    local report_key = msg_data.report_key or ""
     if report_key == "" then
         LOG_ERROR("历史战报查询缺少 report_key")
         return
@@ -181,12 +181,12 @@ EventManager.RegisterListener(EventManager.cpp_OnBattleResult, function(event)
     -- 解除角色战斗状态
     role.in_battle_start_time = nil
 
-    -- event: uid/battle_type/param_id/result_type(总结果)/win_matches/total_matches/report_key
+    -- event: uid/battle_type/target_id/result_type(总结果)/win_matches/total_matches/report_key
     local total = event.total_matches or 1
     local win = event.win_matches or 0
     local series = {
         battle_type = battle_type,
-        param_id = event.param_id or 0,
+        target_id = event.target_id or 0,
         total = total,
         win = win,
         lose = total - win,

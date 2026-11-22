@@ -11,6 +11,7 @@ import subprocess
 import re
 import shutil
 import glob
+import tempfile
 import json
 
 
@@ -80,7 +81,8 @@ CONFIG = {
 
     # ---- 范围标记 ----
     "RANGE_MARKS": [
-        ("MHT_BATTLE_MSG_TYPE_MAX", "30000", "战斗服与外部协议分界"),
+        ("MHT_UE_MSG_TYPE_BEGIN", "10000", "UE协议类型起始"),
+        ("MHT_USER_MSG_TYPE_BEGIN", "20000", "玩家协议类型起始"),
     ],
 }
 
@@ -152,30 +154,74 @@ def _check_protoc():
         return ""
 
 
-def _clean_directory(dir_path, patterns, recursive):
-    """清理目录中匹配的文件"""
-    for pattern in patterns:
-        if recursive:
-            search_path = os.path.join(dir_path, "**", pattern)
-        else:
-            search_path = os.path.join(dir_path, pattern)
-        for f in glob.glob(search_path, recursive=recursive):
+def _target_output_suffixes(target):
+    """按输出模式推导产物后缀"""
+    _, flag, _, _, _ = target
+    if flag == "--descriptor_set_out":
+        return [".pb"]
+    return [".pb.h", ".pb.cc"]
+
+
+def _clean_orphan_outputs(out_dir, suffixes, source_stems):
+    """只删除源文件已不存在的产物, 其余交给生成器覆盖, 避免无谓的时间戳变更"""
+    removed = []
+    if not os.path.isdir(out_dir):
+        return removed
+    for entry in sorted(os.listdir(out_dir)):
+        file_path = os.path.join(out_dir, entry)
+        if not os.path.isfile(file_path):
+            continue
+        for suffix in suffixes:
+            if not entry.endswith(suffix):
+                continue
+            stem = entry[:-len(suffix)]
+            if stem not in source_stems:
+                try:
+                    os.remove(file_path)
+                    removed.append(entry)
+                except OSError:
+                    pass
+            break
+    return removed
+
+
+def _sync_generated_files(tmp_dir, out_dir, suffixes):
+    """把临时目录里的产物同步到输出目录, 内容未变的文件保持原样不重写"""
+    changed = []
+    unchanged = 0
+    if not os.path.isdir(tmp_dir):
+        return changed, unchanged
+    os.makedirs(out_dir, exist_ok=True)
+    for entry in sorted(os.listdir(tmp_dir)):
+        if not any(entry.endswith(suffix) for suffix in suffixes):
+            continue
+        src = os.path.join(tmp_dir, entry)
+        dst = os.path.join(out_dir, entry)
+        if not os.path.isfile(src):
+            continue
+        if os.path.isfile(dst):
             try:
-                os.remove(f)
+                with open(src, "rb") as f:
+                    src_data = f.read()
+                with open(dst, "rb") as f:
+                    dst_data = f.read()
+                if src_data == dst_data:
+                    unchanged += 1
+                    continue
             except OSError:
                 pass
+        shutil.copyfile(src, dst)
+        changed.append(entry)
+    return changed, unchanged
 
 
 def _prepare_output_dir(target, base_dir):
-    """创建或清理目标输出目录, 返回完整路径"""
+    """确保输出目录存在, 不预先清空, 内容变更由生成器覆盖"""
     name, flag, out_dir, patterns, recursive = target
     full_dir = os.path.normpath(os.path.join(base_dir, out_dir))
     if not os.path.exists(full_dir):
         print(f"正在创建 {name} 输出目录: {full_dir}")
         os.makedirs(full_dir, exist_ok=True)
-    else:
-        print(f"正在清理 {name} 输出目录中的文件: {full_dir}")
-        _clean_directory(full_dir, patterns, recursive)
     return full_dir
 
 
@@ -653,9 +699,18 @@ def generate_proto_msgtype_hpp(results, output_path):
 
 
 def write_file(path, content):
+    """内容没变化就不重写, 避免无谓的修改时间变更"""
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    if os.path.exists(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                if f.read() == content:
+                    return False
+        except (OSError, UnicodeDecodeError):
+            pass
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
+    return True
 
 
 def _generate_protobuf_index_ts(dts_path: str, index_path: str):
@@ -847,6 +902,11 @@ def main():
     success_counts = {t[0]: 0 for t in enabled_targets}
     proto_path_arg = f"--proto_path={full_proto_dir}"
 
+    # 编译到临时目录, 只把内容变化的产物覆盖到输出目录
+    compile_tmp_dirs = {}
+    for target in enabled_targets:
+        compile_tmp_dirs[target[0]] = tempfile.mkdtemp(prefix=f"proto_{target[0]}_")
+
     for proto_file in proto_files:
         total_count += 1
         basename = os.path.basename(proto_file)
@@ -855,7 +915,7 @@ def main():
         for target in enabled_targets:
             ok, _ = _compile_proto(
                 protoc_path, target, proto_file, proto_path_arg,
-                output_dirs[target[0]]
+                compile_tmp_dirs[target[0]]
             )
             if ok:
                 success_counts[target[0]] += 1
@@ -863,6 +923,25 @@ def main():
                 fail_count += 1
 
         print()
+
+    # 同步产物: 内容未变的不覆盖, 源已删除的产物才清理
+    source_stems = {os.path.splitext(os.path.basename(p))[0] for p in proto_files}
+    sync_reports = {}
+    for target in enabled_targets:
+        target_name = target[0]
+        target_out_dir = output_dirs[target_name]
+        suffixes = _target_output_suffixes(target)
+        changed, unchanged = _sync_generated_files(
+            compile_tmp_dirs[target_name], target_out_dir, suffixes)
+        removed = _clean_orphan_outputs(target_out_dir, suffixes, source_stems)
+        sync_reports[target_name] = (changed, unchanged, removed)
+        shutil.rmtree(compile_tmp_dirs[target_name], ignore_errors=True)
+
+    for target_name, (changed, unchanged, removed) in sync_reports.items():
+        line = f"[{target_name}] 更新 {len(changed)} 个产物, 未变化跳过 {unchanged} 个"
+        if removed:
+            line += f", 清理已删除源的产物 {len(removed)} 个: {', '.join(removed)}"
+        print(line)
 
     # 生成 c++ 消息映射表
     bd = CONFIG["BASE_DIR"]

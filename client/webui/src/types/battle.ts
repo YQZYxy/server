@@ -117,7 +117,7 @@ export async function buildBattleModes(): Promise<BattleModeConfig[]> {
       const mainMode = modes.find(m => m.id === 'main')
       if (mainMode) {
         mainMode.levels = stages.map(s => ({
-          id: s.id,
+          id: s.level_id,
           label: s.name,
           desc: s.desc,
         }))

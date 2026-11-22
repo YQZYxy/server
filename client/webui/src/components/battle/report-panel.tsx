@@ -101,7 +101,7 @@ function decodeEvent(evt: BattleEvent, names: NameMap): string {
 }
 
 export function ReportPanel({ reportText: propText, onClose, data: propData }: ReportPanelProps = {}) {
-  const reportText = propText ?? ((propData?.battle_report as string) || '')
+  const reportText = propText ?? ((propData?.replay_text as string) || '')
 
   const handleClose = useCallback(() => {
     onClose?.()

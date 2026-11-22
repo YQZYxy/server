@@ -1,34 +1,39 @@
 // ============================================================
 //  属性枚举
+//  属性id 从 0 连续编号, 与 share/proto/battledata.proto 的 PB_Attr 保持一致
+//  是否百分比由属性配置的 is_per 标记, 这里不分区
 // ============================================================
 
 export enum Attr {
-  MAX_MANA = -2,
-  MAX_HEALTH = -1,
-  NONE = 0,
-  HEALTH = 1,
+  HEALTH = 0,
+  MAX_HEALTH = 1,
   MANA = 2,
-  STRENGTH = 3,
-  AGILITY = 4,
-  INTELLIGENCE = 5,
-  VITALITY = 6,
-  LUCK = 7,
-  ARMOR = 8,
-  CRIT_CHANCE = 100,
-  CRIT_DAMAGE = 101,
-  ATTACK_SPEED = 102,
-  DODGE_CHANCE = 103,
-  BLOCK_CHANCE = 104,
-  DAMAGE_MULTIPLIER = 105,
+  MAX_MANA = 3,
+
+  STRENGTH = 4,
+  AGILITY = 5,
+  INTELLIGENCE = 6,
+  VITALITY = 7,
+  LUCK = 8,
+  ARMOR = 9,
+
+  CRIT_CHANCE = 10,
+  CRIT_DAMAGE = 11,
+  ATTACK_SPEED = 12,
+  DODGE_CHANCE = 13,
+  BLOCK_CHANCE = 14,
+  DAMAGE_MULTIPLIER = 15,
 }
+
+/** 属性总数 */
+export const ATTR_MAX = 16
 
 /** 属性名映射 */
 export const ATTR_NAMES_FALLBACK: Record<Attr, string> = {
-  [Attr.MAX_MANA]: '最大法力',
-  [Attr.MAX_HEALTH]: '最大生命',
-  [Attr.NONE]: '无',
   [Attr.HEALTH]: '生命值',
+  [Attr.MAX_HEALTH]: '最大生命',
   [Attr.MANA]: '法力值',
+  [Attr.MAX_MANA]: '最大法力',
   [Attr.STRENGTH]: '力量',
   [Attr.AGILITY]: '敏捷',
   [Attr.INTELLIGENCE]: '智力',

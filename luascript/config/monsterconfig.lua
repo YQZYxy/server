@@ -5,7 +5,7 @@
 --[[
 字段结构说明:
 
-  id - 怪物ID (int)
+  monster_id - 怪物ID (int)
   name - 名称 (string)
   level - 等级 (int)
   monster_type - 怪物类型 (int)
@@ -20,17 +20,17 @@
 
 local M = {
     [1001] = {
-        id = 1001,
+        monster_id = 1001,
         name = "哥布林",
         level = 1,
         monster_type = 1,
         base_attr = {
-            [1] = 50.0,
+            [0] = 50.0,
             [2] = 50.0,
-            [3] = 8.0,
+            [4] = 8.0,
         },
         attr_growth = {
-            [1] = 25.0,
+            [0] = 25.0,
             [2] = 20.0,
         },
         abilities = { 1, 2, },
@@ -45,15 +45,15 @@ local M = {
         },
         loot_table = {
             {
-                id = 2,
+                item_id = 2,
                 num = 100,
             },
             {
-                id = 3001,
+                item_id = 3001,
                 num = 1,
             },
             {
-                id = 3003,
+                item_id = 3003,
                 num = 1,
             },
         },
@@ -61,17 +61,17 @@ local M = {
     },
 
     [1002] = {
-        id = 1002,
+        monster_id = 1002,
         name = "巨魔",
         level = 5,
         monster_type = 2,
         base_attr = {
-            [1] = 100.0,
+            [0] = 100.0,
             [2] = 50.0,
-            [3] = 20.0,
+            [4] = 20.0,
         },
         attr_growth = {
-            [1] = 25.0,
+            [0] = 25.0,
             [2] = 20.0,
         },
         abilities = { 1, 2, 2002, 2003, },
@@ -88,15 +88,15 @@ local M = {
         },
         loot_table = {
             {
-                id = 2,
+                item_id = 2,
                 num = 50,
             },
             {
-                id = 3001,
+                item_id = 3001,
                 num = 1,
             },
             {
-                id = 3003,
+                item_id = 3003,
                 num = 1,
             },
         },
@@ -104,17 +104,17 @@ local M = {
     },
 
     [1003] = {
-        id = 1003,
+        monster_id = 1003,
         name = "暗影领主",
         level = 10,
         monster_type = 3,
         base_attr = {
-            [1] = 100.0,
+            [0] = 100.0,
             [2] = 50.0,
-            [3] = 30.0,
+            [4] = 30.0,
         },
         attr_growth = {
-            [1] = 50.0,
+            [0] = 50.0,
             [2] = 30.0,
         },
         abilities = { 1, 2, 1001, 2002, 2003, },
@@ -132,15 +132,15 @@ local M = {
         },
         loot_table = {
             {
-                id = 2,
+                item_id = 2,
                 num = 200,
             },
             {
-                id = 3001,
+                item_id = 3001,
                 num = 1,
             },
             {
-                id = 3003,
+                item_id = 3003,
                 num = 1,
             },
         },
@@ -159,17 +159,17 @@ local M = {
     },
 
     [1004] = {
-        id = 1004,
+        monster_id = 1004,
         name = "冰霜元素",
         level = 7,
         monster_type = 2,
         base_attr = {
-            [1] = 100.0,
+            [0] = 100.0,
             [2] = 50.0,
-            [3] = 5.0,
+            [4] = 5.0,
         },
         attr_growth = {
-            [1] = 30.0,
+            [0] = 30.0,
             [2] = 25.0,
         },
         abilities = { 1, 2, 3001, 3002, 3003, },
@@ -187,15 +187,15 @@ local M = {
         },
         loot_table = {
             {
-                id = 2,
+                item_id = 2,
                 num = 80,
             },
             {
-                id = 3001,
+                item_id = 3001,
                 num = 1,
             },
             {
-                id = 3003,
+                item_id = 3003,
                 num = 1,
             },
         },

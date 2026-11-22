@@ -32,7 +32,13 @@ case $server_type in
 esac
 
 # 构建日志文件路径和模式
-log_dir="./debug/log/${server_type}"
+# 实例根目录, 默认 debug, 可用 CONFIG 环境变量覆盖(支持相对仓库根或绝对路径)
+instance_root="${CONFIG:-debug}"
+if [ -d "./log/${server_type}" ]; then
+    log_dir="./log/${server_type}"
+else
+    log_dir="${instance_root}/log/${server_type}"
+fi
 log_pattern="server${date_pattern}.log"
 
 # 查找匹配的日志文件

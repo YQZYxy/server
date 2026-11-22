@@ -20,8 +20,8 @@ export interface BattleHeroState {
   isMonster: boolean
   alive: boolean
   level?: number
-  playerType?: number  // 参与者类型(如ENTITY_TYPE_HERO/ENTITY_TYPE_MONSTER)
-  playerId?: number    // 模板ID
+  playerType?: number  // 对象类型(如OBJ_TYPE_HERO/OBJ_TYPE_MONSTER)
+  playerId?: number    // 对象配置ID
   teamId?: number   // 队伍ID(玩家UID/怪物ID)
   teamName?: string // 队伍名称
 }

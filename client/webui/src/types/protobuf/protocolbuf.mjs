@@ -3,7 +3,7 @@ import $protobuf from "protobufjs/minimal.js";
 
 // Common aliases
 const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
-const $Object = $util.global.Object, $undefined = $util.global.undefined, $Error = $util.global.Error, $TypeError = $util.global.TypeError, $Array = $util.global.Array, $String = $util.global.String, $Boolean = $util.global.Boolean, $parseInt = $util.global.parseInt, $BigInt = $util.global.BigInt, $Number = $util.global.Number, $isFinite = $util.global.isFinite;
+const $Object = $util.global.Object, $undefined = $util.global.undefined, $Error = $util.global.Error, $TypeError = $util.global.TypeError, $Array = $util.global.Array, $String = $util.global.String, $parseInt = $util.global.parseInt, $BigInt = $util.global.BigInt, $Number = $util.global.Number, $Boolean = $util.global.Boolean, $isFinite = $util.global.isFinite;
 
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
@@ -12,43 +12,43 @@ const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
  * PB_Attr enum.
  * @name PB_Attr
  * @enum {number}
- * @property {number} ATTR_MAX_NONE=0 ATTR_MAX_NONE value
- * @property {number} ATTR_MAX_MANA=-2 ATTR_MAX_MANA value
- * @property {number} ATTR_MAX_HEALTH=-1 ATTR_MAX_HEALTH value
- * @property {number} ATTR_HEALTH=1 ATTR_HEALTH value
+ * @property {number} ATTR_HEALTH=0 ATTR_HEALTH value
+ * @property {number} ATTR_MAX_HEALTH=1 ATTR_MAX_HEALTH value
  * @property {number} ATTR_MANA=2 ATTR_MANA value
- * @property {number} ATTR_STRENGTH=3 ATTR_STRENGTH value
- * @property {number} ATTR_AGILITY=4 ATTR_AGILITY value
- * @property {number} ATTR_INTELLIGENCE=5 ATTR_INTELLIGENCE value
- * @property {number} ATTR_VITALITY=6 ATTR_VITALITY value
- * @property {number} ATTR_LUCK=7 ATTR_LUCK value
- * @property {number} ATTR_ARMOR=8 ATTR_ARMOR value
- * @property {number} ATTR_CRIT_CHANCE=100 ATTR_CRIT_CHANCE value
- * @property {number} ATTR_CRIT_DAMAGE=101 ATTR_CRIT_DAMAGE value
- * @property {number} ATTR_ATTACK_SPEED=102 ATTR_ATTACK_SPEED value
- * @property {number} ATTR_DODGE_CHANCE=103 ATTR_DODGE_CHANCE value
- * @property {number} ATTR_BLOCK_CHANCE=104 ATTR_BLOCK_CHANCE value
- * @property {number} ATTR_DAMAGE_MULTIPLIER=105 ATTR_DAMAGE_MULTIPLIER value
+ * @property {number} ATTR_MAX_MANA=3 ATTR_MAX_MANA value
+ * @property {number} ATTR_STRENGTH=4 ATTR_STRENGTH value
+ * @property {number} ATTR_AGILITY=5 ATTR_AGILITY value
+ * @property {number} ATTR_INTELLIGENCE=6 ATTR_INTELLIGENCE value
+ * @property {number} ATTR_VITALITY=7 ATTR_VITALITY value
+ * @property {number} ATTR_LUCK=8 ATTR_LUCK value
+ * @property {number} ATTR_ARMOR=9 ATTR_ARMOR value
+ * @property {number} ATTR_CRIT_CHANCE=10 ATTR_CRIT_CHANCE value
+ * @property {number} ATTR_CRIT_DAMAGE=11 ATTR_CRIT_DAMAGE value
+ * @property {number} ATTR_ATTACK_SPEED=12 ATTR_ATTACK_SPEED value
+ * @property {number} ATTR_DODGE_CHANCE=13 ATTR_DODGE_CHANCE value
+ * @property {number} ATTR_BLOCK_CHANCE=14 ATTR_BLOCK_CHANCE value
+ * @property {number} ATTR_DAMAGE_MULTIPLIER=15 ATTR_DAMAGE_MULTIPLIER value
+ * @property {number} ATTR_MAX=16 ATTR_MAX value
  */
 export const PB_Attr = $root.PB_Attr = (() => {
     const valuesById = $Object.create(null), values = $Object.create(valuesById);
-    values[valuesById[0] = "ATTR_MAX_NONE"] = 0;
-    values[valuesById[-2] = "ATTR_MAX_MANA"] = -2;
-    values[valuesById[-1] = "ATTR_MAX_HEALTH"] = -1;
-    values[valuesById[1] = "ATTR_HEALTH"] = 1;
+    values[valuesById[0] = "ATTR_HEALTH"] = 0;
+    values[valuesById[1] = "ATTR_MAX_HEALTH"] = 1;
     values[valuesById[2] = "ATTR_MANA"] = 2;
-    values[valuesById[3] = "ATTR_STRENGTH"] = 3;
-    values[valuesById[4] = "ATTR_AGILITY"] = 4;
-    values[valuesById[5] = "ATTR_INTELLIGENCE"] = 5;
-    values[valuesById[6] = "ATTR_VITALITY"] = 6;
-    values[valuesById[7] = "ATTR_LUCK"] = 7;
-    values[valuesById[8] = "ATTR_ARMOR"] = 8;
-    values[valuesById[100] = "ATTR_CRIT_CHANCE"] = 100;
-    values[valuesById[101] = "ATTR_CRIT_DAMAGE"] = 101;
-    values[valuesById[102] = "ATTR_ATTACK_SPEED"] = 102;
-    values[valuesById[103] = "ATTR_DODGE_CHANCE"] = 103;
-    values[valuesById[104] = "ATTR_BLOCK_CHANCE"] = 104;
-    values[valuesById[105] = "ATTR_DAMAGE_MULTIPLIER"] = 105;
+    values[valuesById[3] = "ATTR_MAX_MANA"] = 3;
+    values[valuesById[4] = "ATTR_STRENGTH"] = 4;
+    values[valuesById[5] = "ATTR_AGILITY"] = 5;
+    values[valuesById[6] = "ATTR_INTELLIGENCE"] = 6;
+    values[valuesById[7] = "ATTR_VITALITY"] = 7;
+    values[valuesById[8] = "ATTR_LUCK"] = 8;
+    values[valuesById[9] = "ATTR_ARMOR"] = 9;
+    values[valuesById[10] = "ATTR_CRIT_CHANCE"] = 10;
+    values[valuesById[11] = "ATTR_CRIT_DAMAGE"] = 11;
+    values[valuesById[12] = "ATTR_ATTACK_SPEED"] = 12;
+    values[valuesById[13] = "ATTR_DODGE_CHANCE"] = 13;
+    values[valuesById[14] = "ATTR_BLOCK_CHANCE"] = 14;
+    values[valuesById[15] = "ATTR_DAMAGE_MULTIPLIER"] = 15;
+    values[valuesById[16] = "ATTR_MAX"] = 16;
     return values;
 })();
 
@@ -105,18 +105,18 @@ export const PB_BattleMode = $root.PB_BattleMode = (() => {
 })();
 
 /**
- * PB_PlayerType enum.
- * @name PB_PlayerType
+ * PB_ObjType enum.
+ * @name PB_ObjType
  * @enum {number}
- * @property {number} PLAYER_TYPE_NONE=0 PLAYER_TYPE_NONE value
- * @property {number} PLAYER_TYPE_HERO=1 PLAYER_TYPE_HERO value
- * @property {number} PLAYER_TYPE_MONSTER=2 PLAYER_TYPE_MONSTER value
+ * @property {number} OBJ_TYPE_NONE=0 OBJ_TYPE_NONE value
+ * @property {number} OBJ_TYPE_HERO=1 OBJ_TYPE_HERO value
+ * @property {number} OBJ_TYPE_MONSTER=2 OBJ_TYPE_MONSTER value
  */
-export const PB_PlayerType = $root.PB_PlayerType = (() => {
+export const PB_ObjType = $root.PB_ObjType = (() => {
     const valuesById = $Object.create(null), values = $Object.create(valuesById);
-    values[valuesById[0] = "PLAYER_TYPE_NONE"] = 0;
-    values[valuesById[1] = "PLAYER_TYPE_HERO"] = 1;
-    values[valuesById[2] = "PLAYER_TYPE_MONSTER"] = 2;
+    values[valuesById[0] = "OBJ_TYPE_NONE"] = 0;
+    values[valuesById[1] = "OBJ_TYPE_HERO"] = 1;
+    values[valuesById[2] = "OBJ_TYPE_MONSTER"] = 2;
     return values;
 })();
 
@@ -723,16 +723,13 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
     /**
      * Properties of a PB_BattleParticipant.
      * @typedef {Object} PB_BattleParticipant.$Properties
-     * @property {number|null} [player_id] PB_BattleParticipant player_id
-     * @property {PB_PlayerType|null} [player_type] PB_BattleParticipant player_type
+     * @property {number|null} [obj_id] PB_BattleParticipant obj_id
+     * @property {PB_ObjType|null} [obj_type] PB_BattleParticipant obj_type
      * @property {string|null} [name] PB_BattleParticipant name
      * @property {number|null} [level] PB_BattleParticipant level
-     * @property {number|null} [team_id] PB_BattleParticipant team_id
-     * @property {string|null} [team_name] PB_BattleParticipant team_name
-     * @property {PB_TeamSide|null} [side] PB_BattleParticipant side
-     * @property {Array.<PB_AttrPair.$Properties>|null} [initial_attrs] PB_BattleParticipant initial_attrs
+     * @property {Array.<PB_AttrPair.$Properties>|null} [attrs] PB_BattleParticipant attrs
      * @property {Array.<PB_AbilitySpec.$Properties>|null} [abilities] PB_BattleParticipant abilities
-     * @property {Array.<string>|null} [init_tags] PB_BattleParticipant init_tags
+     * @property {Array.<string>|null} [tags] PB_BattleParticipant tags
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -758,9 +755,9 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
     const PB_BattleParticipant = function (properties) {
-        this.initial_attrs = [];
+        this.attrs = [];
         this.abilities = [];
-        this.init_tags = [];
+        this.tags = [];
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -768,20 +765,20 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
     };
 
     /**
-     * PB_BattleParticipant player_id.
-     * @member {number|null|undefined} player_id
+     * PB_BattleParticipant obj_id.
+     * @member {number|null|undefined} obj_id
      * @memberof PB_BattleParticipant
      * @instance
      */
-    PB_BattleParticipant.prototype.player_id = null;
+    PB_BattleParticipant.prototype.obj_id = null;
 
     /**
-     * PB_BattleParticipant player_type.
-     * @member {PB_PlayerType|null|undefined} player_type
+     * PB_BattleParticipant obj_type.
+     * @member {PB_ObjType|null|undefined} obj_type
      * @memberof PB_BattleParticipant
      * @instance
      */
-    PB_BattleParticipant.prototype.player_type = null;
+    PB_BattleParticipant.prototype.obj_type = null;
 
     /**
      * PB_BattleParticipant name.
@@ -800,36 +797,12 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
     PB_BattleParticipant.prototype.level = null;
 
     /**
-     * PB_BattleParticipant team_id.
-     * @member {number|null|undefined} team_id
+     * PB_BattleParticipant attrs.
+     * @member {Array.<PB_AttrPair.$Properties>} attrs
      * @memberof PB_BattleParticipant
      * @instance
      */
-    PB_BattleParticipant.prototype.team_id = null;
-
-    /**
-     * PB_BattleParticipant team_name.
-     * @member {string|null|undefined} team_name
-     * @memberof PB_BattleParticipant
-     * @instance
-     */
-    PB_BattleParticipant.prototype.team_name = null;
-
-    /**
-     * PB_BattleParticipant side.
-     * @member {PB_TeamSide|null|undefined} side
-     * @memberof PB_BattleParticipant
-     * @instance
-     */
-    PB_BattleParticipant.prototype.side = null;
-
-    /**
-     * PB_BattleParticipant initial_attrs.
-     * @member {Array.<PB_AttrPair.$Properties>} initial_attrs
-     * @memberof PB_BattleParticipant
-     * @instance
-     */
-    PB_BattleParticipant.prototype.initial_attrs = $util.emptyArray;
+    PB_BattleParticipant.prototype.attrs = $util.emptyArray;
 
     /**
      * PB_BattleParticipant abilities.
@@ -840,25 +813,25 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
     PB_BattleParticipant.prototype.abilities = $util.emptyArray;
 
     /**
-     * PB_BattleParticipant init_tags.
-     * @member {Array.<string>} init_tags
+     * PB_BattleParticipant tags.
+     * @member {Array.<string>} tags
      * @memberof PB_BattleParticipant
      * @instance
      */
-    PB_BattleParticipant.prototype.init_tags = $util.emptyArray;
+    PB_BattleParticipant.prototype.tags = $util.emptyArray;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleParticipant.prototype, "_player_id", {
-        get: $util.oneOfGetter($oneOfFields = ["player_id"]),
+    $Object.defineProperty(PB_BattleParticipant.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleParticipant.prototype, "_player_type", {
-        get: $util.oneOfGetter($oneOfFields = ["player_type"]),
+    $Object.defineProperty(PB_BattleParticipant.prototype, "_obj_type", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_type"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -871,24 +844,6 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_BattleParticipant.prototype, "_level", {
         get: $util.oneOfGetter($oneOfFields = ["level"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleParticipant.prototype, "_team_id", {
-        get: $util.oneOfGetter($oneOfFields = ["team_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleParticipant.prototype, "_team_name", {
-        get: $util.oneOfGetter($oneOfFields = ["team_name"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleParticipant.prototype, "_side", {
-        get: $util.oneOfGetter($oneOfFields = ["side"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -924,29 +879,23 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.player_id != null && $Object.hasOwnProperty.call(message, "player_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.player_id);
-        if (message.player_type != null && $Object.hasOwnProperty.call(message, "player_type"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.player_type);
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.obj_id);
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.obj_type);
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.name);
         if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
             writer.uint32(/* id 4, wireType 0 =*/32).int32(message.level);
-        if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id"))
-            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.team_id);
-        if (message.team_name != null && $Object.hasOwnProperty.call(message, "team_name"))
-            writer.uint32(/* id 6, wireType 2 =*/50).string(message.team_name);
-        if (message.side != null && $Object.hasOwnProperty.call(message, "side"))
-            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.side);
-        if (message.initial_attrs != null && message.initial_attrs.length)
-            for (let i = 0; i < message.initial_attrs.length; ++i)
-                $root.PB_AttrPair.encode(message.initial_attrs[i], writer.uint32(/* id 8, wireType 2 =*/66).fork(), _depth + 1).ldelim();
+        if (message.attrs != null && message.attrs.length)
+            for (let i = 0; i < message.attrs.length; ++i)
+                $root.PB_AttrPair.encode(message.attrs[i], writer.uint32(/* id 5, wireType 2 =*/42).fork(), _depth + 1).ldelim();
         if (message.abilities != null && message.abilities.length)
             for (let i = 0; i < message.abilities.length; ++i)
-                $root.PB_AbilitySpec.encode(message.abilities[i], writer.uint32(/* id 9, wireType 2 =*/74).fork(), _depth + 1).ldelim();
-        if (message.init_tags != null && message.init_tags.length)
-            for (let i = 0; i < message.init_tags.length; ++i)
-                writer.uint32(/* id 10, wireType 2 =*/82).string(message.init_tags[i]);
+                $root.PB_AbilitySpec.encode(message.abilities[i], writer.uint32(/* id 6, wireType 2 =*/50).fork(), _depth + 1).ldelim();
+        if (message.tags != null && message.tags.length)
+            for (let i = 0; i < message.tags.length; ++i)
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.tags[i]);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -997,15 +946,15 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.player_id = reader.int32();
-                    message._player_id = "player_id";
+                    message.obj_id = reader.int32();
+                    message._obj_id = "obj_id";
                     continue;
                 }
             case 2: {
                     if (wireType !== 0)
                         break;
-                    message.player_type = reader.int32();
-                    message._player_type = "player_type";
+                    message.obj_type = reader.int32();
+                    message._obj_type = "obj_type";
                     continue;
                 }
             case 3: {
@@ -1023,35 +972,14 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
                     continue;
                 }
             case 5: {
-                    if (wireType !== 0)
+                    if (wireType !== 2)
                         break;
-                    message.team_id = reader.int32();
-                    message._team_id = "team_id";
+                    if (!(message.attrs && message.attrs.length))
+                        message.attrs = [];
+                    message.attrs.push($root.PB_AttrPair.decode(reader, reader.uint32(), $undefined, _depth + 1));
                     continue;
                 }
             case 6: {
-                    if (wireType !== 2)
-                        break;
-                    message.team_name = reader.stringVerify();
-                    message._team_name = "team_name";
-                    continue;
-                }
-            case 7: {
-                    if (wireType !== 0)
-                        break;
-                    message.side = reader.int32();
-                    message._side = "side";
-                    continue;
-                }
-            case 8: {
-                    if (wireType !== 2)
-                        break;
-                    if (!(message.initial_attrs && message.initial_attrs.length))
-                        message.initial_attrs = [];
-                    message.initial_attrs.push($root.PB_AttrPair.decode(reader, reader.uint32(), $undefined, _depth + 1));
-                    continue;
-                }
-            case 9: {
                     if (wireType !== 2)
                         break;
                     if (!(message.abilities && message.abilities.length))
@@ -1059,12 +987,12 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
                     message.abilities.push($root.PB_AbilitySpec.decode(reader, reader.uint32(), $undefined, _depth + 1));
                     continue;
                 }
-            case 10: {
+            case 7: {
                     if (wireType !== 2)
                         break;
-                    if (!(message.init_tags && message.init_tags.length))
-                        message.init_tags = [];
-                    message.init_tags.push(reader.stringVerify());
+                    if (!(message.tags && message.tags.length))
+                        message.tags = [];
+                    message.tags.push(reader.stringVerify());
                     continue;
                 }
             }
@@ -1111,15 +1039,15 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.player_id != null && $Object.hasOwnProperty.call(message, "player_id")) {
-            properties._player_id = 1;
-            if (!$util.isInteger(message.player_id))
-                return "player_id: integer expected";
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id))
+                return "obj_id: integer expected";
         }
-        if (message.player_type != null && $Object.hasOwnProperty.call(message, "player_type")) {
-            properties._player_type = 1;
-            if (typeof message.player_type !== "number" || (message.player_type | 0) !== message.player_type)
-                return "player_type: enum value expected";
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type")) {
+            properties._obj_type = 1;
+            if (typeof message.obj_type !== "number" || (message.obj_type | 0) !== message.obj_type)
+                return "obj_type: enum value expected";
         }
         if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
             properties._name = 1;
@@ -1131,28 +1059,13 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
             if (!$util.isInteger(message.level))
                 return "level: integer expected";
         }
-        if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id")) {
-            properties._team_id = 1;
-            if (!$util.isInteger(message.team_id))
-                return "team_id: integer expected";
-        }
-        if (message.team_name != null && $Object.hasOwnProperty.call(message, "team_name")) {
-            properties._team_name = 1;
-            if (!$util.isString(message.team_name))
-                return "team_name: string expected";
-        }
-        if (message.side != null && $Object.hasOwnProperty.call(message, "side")) {
-            properties._side = 1;
-            if (typeof message.side !== "number" || (message.side | 0) !== message.side)
-                return "side: enum value expected";
-        }
-        if (message.initial_attrs != null && $Object.hasOwnProperty.call(message, "initial_attrs")) {
-            if (!$Array.isArray(message.initial_attrs))
-                return "initial_attrs: array expected";
-            for (let i = 0; i < message.initial_attrs.length; ++i) {
-                let error = $root.PB_AttrPair.verify(message.initial_attrs[i], _depth + 1);
+        if (message.attrs != null && $Object.hasOwnProperty.call(message, "attrs")) {
+            if (!$Array.isArray(message.attrs))
+                return "attrs: array expected";
+            for (let i = 0; i < message.attrs.length; ++i) {
+                let error = $root.PB_AttrPair.verify(message.attrs[i], _depth + 1);
                 if (error)
-                    return "initial_attrs." + error;
+                    return "attrs." + error;
             }
         }
         if (message.abilities != null && $Object.hasOwnProperty.call(message, "abilities")) {
@@ -1164,12 +1077,12 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
                     return "abilities." + error;
             }
         }
-        if (message.init_tags != null && $Object.hasOwnProperty.call(message, "init_tags")) {
-            if (!$Array.isArray(message.init_tags))
-                return "init_tags: array expected";
-            for (let i = 0; i < message.init_tags.length; ++i)
-                if (!$util.isString(message.init_tags[i]))
-                    return "init_tags: string[] expected";
+        if (message.tags != null && $Object.hasOwnProperty.call(message, "tags")) {
+            if (!$Array.isArray(message.tags))
+                return "tags: array expected";
+            for (let i = 0; i < message.tags.length; ++i)
+                if (!$util.isString(message.tags[i]))
+                    return "tags: string[] expected";
         }
         return null;
     };
@@ -1192,62 +1105,37 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.PB_BattleParticipant();
-        if (object.player_id != null)
-            message.player_id = object.player_id | 0;
-        switch (object.player_type) {
-        case "PLAYER_TYPE_NONE":
+        if (object.obj_id != null)
+            message.obj_id = object.obj_id | 0;
+        switch (object.obj_type) {
+        case "OBJ_TYPE_NONE":
         case 0:
-            message.player_type = 0;
+            message.obj_type = 0;
             break;
-        case "PLAYER_TYPE_HERO":
+        case "OBJ_TYPE_HERO":
         case 1:
-            message.player_type = 1;
+            message.obj_type = 1;
             break;
-        case "PLAYER_TYPE_MONSTER":
+        case "OBJ_TYPE_MONSTER":
         case 2:
-            message.player_type = 2;
+            message.obj_type = 2;
             break;
         default:
-            if (typeof object.player_type === "number" && (object.player_type | 0) === object.player_type)
-                message.player_type = object.player_type;
+            if (typeof object.obj_type === "number" && (object.obj_type | 0) === object.obj_type)
+                message.obj_type = object.obj_type;
         }
         if (object.name != null)
             message.name = $String(object.name);
         if (object.level != null)
             message.level = object.level | 0;
-        if (object.team_id != null)
-            message.team_id = object.team_id | 0;
-        if (object.team_name != null)
-            message.team_name = $String(object.team_name);
-        switch (object.side) {
-        case "TEAM_SIDE_NONE":
-        case 0:
-            message.side = 0;
-            break;
-        case "TEAM_SIDE_ATTACKER":
-        case 1:
-            message.side = 1;
-            break;
-        case "TEAM_SIDE_DEFENDER":
-        case 2:
-            message.side = 2;
-            break;
-        case "TEAM_SIDE_NEUTRAL":
-        case 3:
-            message.side = 3;
-            break;
-        default:
-            if (typeof object.side === "number" && (object.side | 0) === object.side)
-                message.side = object.side;
-        }
-        if (object.initial_attrs) {
-            if (!$Array.isArray(object.initial_attrs))
-                throw $TypeError(".PB_BattleParticipant.initial_attrs: array expected");
-            message.initial_attrs = $Array(object.initial_attrs.length);
-            for (let i = 0; i < object.initial_attrs.length; ++i) {
-                if (!$util.isObject(object.initial_attrs[i]))
-                    throw $TypeError(".PB_BattleParticipant.initial_attrs: object expected");
-                message.initial_attrs[i] = $root.PB_AttrPair.fromObject(object.initial_attrs[i], _depth + 1);
+        if (object.attrs) {
+            if (!$Array.isArray(object.attrs))
+                throw $TypeError(".PB_BattleParticipant.attrs: array expected");
+            message.attrs = $Array(object.attrs.length);
+            for (let i = 0; i < object.attrs.length; ++i) {
+                if (!$util.isObject(object.attrs[i]))
+                    throw $TypeError(".PB_BattleParticipant.attrs: object expected");
+                message.attrs[i] = $root.PB_AttrPair.fromObject(object.attrs[i], _depth + 1);
             }
         }
         if (object.abilities) {
@@ -1260,12 +1148,12 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
                 message.abilities[i] = $root.PB_AbilitySpec.fromObject(object.abilities[i], _depth + 1);
             }
         }
-        if (object.init_tags) {
-            if (!$Array.isArray(object.init_tags))
-                throw $TypeError(".PB_BattleParticipant.init_tags: array expected");
-            message.init_tags = $Array(object.init_tags.length);
-            for (let i = 0; i < object.init_tags.length; ++i)
-                message.init_tags[i] = $String(object.init_tags[i]);
+        if (object.tags) {
+            if (!$Array.isArray(object.tags))
+                throw $TypeError(".PB_BattleParticipant.tags: array expected");
+            message.tags = $Array(object.tags.length);
+            for (let i = 0; i < object.tags.length; ++i)
+                message.tags[i] = $String(object.tags[i]);
         }
         return message;
     };
@@ -1288,38 +1176,32 @@ export const PB_BattleParticipant = $root.PB_BattleParticipant = (() => {
             throw $Error("max depth exceeded");
         let object = {};
         if (options.arrays || options.defaults) {
-            object.initial_attrs = [];
+            object.attrs = [];
             object.abilities = [];
-            object.init_tags = [];
+            object.tags = [];
         }
-        if (message.player_id != null && $Object.hasOwnProperty.call(message, "player_id"))
-            object.player_id = message.player_id;
-        if (message.player_type != null && $Object.hasOwnProperty.call(message, "player_type"))
-            object.player_type = options.enums === $String ? $root.PB_PlayerType[message.player_type] === $undefined ? message.player_type : $root.PB_PlayerType[message.player_type] : message.player_type;
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            object.obj_id = message.obj_id;
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type"))
+            object.obj_type = options.enums === $String ? $root.PB_ObjType[message.obj_type] === $undefined ? message.obj_type : $root.PB_ObjType[message.obj_type] : message.obj_type;
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
             object.level = message.level;
-        if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id"))
-            object.team_id = message.team_id;
-        if (message.team_name != null && $Object.hasOwnProperty.call(message, "team_name"))
-            object.team_name = message.team_name;
-        if (message.side != null && $Object.hasOwnProperty.call(message, "side"))
-            object.side = options.enums === $String ? $root.PB_TeamSide[message.side] === $undefined ? message.side : $root.PB_TeamSide[message.side] : message.side;
-        if (message.initial_attrs && message.initial_attrs.length) {
-            object.initial_attrs = $Array(message.initial_attrs.length);
-            for (let j = 0; j < message.initial_attrs.length; ++j)
-                object.initial_attrs[j] = $root.PB_AttrPair.toObject(message.initial_attrs[j], options, _depth + 1);
+        if (message.attrs && message.attrs.length) {
+            object.attrs = $Array(message.attrs.length);
+            for (let j = 0; j < message.attrs.length; ++j)
+                object.attrs[j] = $root.PB_AttrPair.toObject(message.attrs[j], options, _depth + 1);
         }
         if (message.abilities && message.abilities.length) {
             object.abilities = $Array(message.abilities.length);
             for (let j = 0; j < message.abilities.length; ++j)
                 object.abilities[j] = $root.PB_AbilitySpec.toObject(message.abilities[j], options, _depth + 1);
         }
-        if (message.init_tags && message.init_tags.length) {
-            object.init_tags = $Array(message.init_tags.length);
-            for (let j = 0; j < message.init_tags.length; ++j)
-                object.init_tags[j] = message.init_tags[j];
+        if (message.tags && message.tags.length) {
+            object.tags = $Array(message.tags.length);
+            for (let j = 0; j < message.tags.length; ++j)
+                object.tags[j] = message.tags[j];
         }
         return object;
     };
@@ -1479,7 +1361,7 @@ export const PB_BattleTeam = $root.PB_BattleTeam = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.team_id);
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.team_id);
         if (message.team_name != null && $Object.hasOwnProperty.call(message, "team_name"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.team_name);
         if (message.side != null && $Object.hasOwnProperty.call(message, "side"))
@@ -1537,7 +1419,7 @@ export const PB_BattleTeam = $root.PB_BattleTeam = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.team_id = reader.int32();
+                    message.team_id = reader.int64();
                     message._team_id = "team_id";
                     continue;
                 }
@@ -1609,8 +1491,8 @@ export const PB_BattleTeam = $root.PB_BattleTeam = (() => {
         let properties = {};
         if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id")) {
             properties._team_id = 1;
-            if (!$util.isInteger(message.team_id))
-                return "team_id: integer expected";
+            if (!$util.isInteger(message.team_id) && !(message.team_id && $util.isInteger(message.team_id.low) && $util.isInteger(message.team_id.high)))
+                return "team_id: integer|Long expected";
         }
         if (message.team_name != null && $Object.hasOwnProperty.call(message, "team_name")) {
             properties._team_name = 1;
@@ -1653,7 +1535,14 @@ export const PB_BattleTeam = $root.PB_BattleTeam = (() => {
             throw $Error("max depth exceeded");
         let message = new $root.PB_BattleTeam();
         if (object.team_id != null)
-            message.team_id = object.team_id | 0;
+            if ($util.Long)
+                message.team_id = $util.Long.fromValue(object.team_id, false);
+            else if (typeof object.team_id === "string")
+                message.team_id = $parseInt(object.team_id, 10);
+            else if (typeof object.team_id === "number")
+                message.team_id = object.team_id;
+            else if (typeof object.team_id === "object")
+                message.team_id = new $util.LongBits(object.team_id.low >>> 0, object.team_id.high >>> 0).toNumber();
         if (object.team_name != null)
             message.team_name = $String(object.team_name);
         switch (object.side) {
@@ -1710,7 +1599,12 @@ export const PB_BattleTeam = $root.PB_BattleTeam = (() => {
         if (options.arrays || options.defaults)
             object.members = [];
         if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id"))
-            object.team_id = message.team_id;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.team_id = typeof message.team_id === "number" ? $BigInt(message.team_id) : $util.Long.fromBits(message.team_id.low >>> 0, message.team_id.high >>> 0, false).toBigInt();
+            else if (typeof message.team_id === "number")
+                object.team_id = options.longs === $String ? $String(message.team_id) : message.team_id;
+            else
+                object.team_id = options.longs === $String ? $util.Long.prototype.toString.call(message.team_id) : options.longs === $Number ? new $util.LongBits(message.team_id.low >>> 0, message.team_id.high >>> 0).toNumber() : message.team_id;
         if (message.team_name != null && $Object.hasOwnProperty.call(message, "team_name"))
             object.team_name = message.team_name;
         if (message.side != null && $Object.hasOwnProperty.call(message, "side"))
@@ -1758,7 +1652,7 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
      * @typedef {Object} PB_BattleRules.$Properties
      * @property {PB_VictoryCondition|null} [victory_condition] PB_BattleRules victory_condition
      * @property {number|null} [max_turns] PB_BattleRules max_turns
-     * @property {number|null} [max_duration] PB_BattleRules max_duration
+     * @property {number|null} [max_duration_sec] PB_BattleRules max_duration_sec
      * @property {boolean|null} [allow_flee] PB_BattleRules allow_flee
      * @property {number|null} [score_limit] PB_BattleRules score_limit
      * @property {number|null} [target_member_id] PB_BattleRules target_member_id
@@ -1810,12 +1704,12 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
     PB_BattleRules.prototype.max_turns = null;
 
     /**
-     * PB_BattleRules max_duration.
-     * @member {number|null|undefined} max_duration
+     * PB_BattleRules max_duration_sec.
+     * @member {number|null|undefined} max_duration_sec
      * @memberof PB_BattleRules
      * @instance
      */
-    PB_BattleRules.prototype.max_duration = null;
+    PB_BattleRules.prototype.max_duration_sec = null;
 
     /**
      * PB_BattleRules allow_flee.
@@ -1857,8 +1751,8 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleRules.prototype, "_max_duration", {
-        get: $util.oneOfGetter($oneOfFields = ["max_duration"]),
+    $Object.defineProperty(PB_BattleRules.prototype, "_max_duration_sec", {
+        get: $util.oneOfGetter($oneOfFields = ["max_duration_sec"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -1916,8 +1810,8 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.victory_condition);
         if (message.max_turns != null && $Object.hasOwnProperty.call(message, "max_turns"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.max_turns);
-        if (message.max_duration != null && $Object.hasOwnProperty.call(message, "max_duration"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.max_duration);
+        if (message.max_duration_sec != null && $Object.hasOwnProperty.call(message, "max_duration_sec"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.max_duration_sec);
         if (message.allow_flee != null && $Object.hasOwnProperty.call(message, "allow_flee"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.allow_flee);
         if (message.score_limit != null && $Object.hasOwnProperty.call(message, "score_limit"))
@@ -1988,8 +1882,8 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
             case 3: {
                     if (wireType !== 0)
                         break;
-                    message.max_duration = reader.int32();
-                    message._max_duration = "max_duration";
+                    message.max_duration_sec = reader.int32();
+                    message._max_duration_sec = "max_duration_sec";
                     continue;
                 }
             case 4: {
@@ -2067,10 +1961,10 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
             if (!$util.isInteger(message.max_turns))
                 return "max_turns: integer expected";
         }
-        if (message.max_duration != null && $Object.hasOwnProperty.call(message, "max_duration")) {
-            properties._max_duration = 1;
-            if (!$util.isInteger(message.max_duration))
-                return "max_duration: integer expected";
+        if (message.max_duration_sec != null && $Object.hasOwnProperty.call(message, "max_duration_sec")) {
+            properties._max_duration_sec = 1;
+            if (!$util.isInteger(message.max_duration_sec))
+                return "max_duration_sec: integer expected";
         }
         if (message.allow_flee != null && $Object.hasOwnProperty.call(message, "allow_flee")) {
             properties._allow_flee = 1;
@@ -2147,8 +2041,8 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
         }
         if (object.max_turns != null)
             message.max_turns = object.max_turns | 0;
-        if (object.max_duration != null)
-            message.max_duration = object.max_duration | 0;
+        if (object.max_duration_sec != null)
+            message.max_duration_sec = object.max_duration_sec | 0;
         if (object.allow_flee != null)
             message.allow_flee = $Boolean(object.allow_flee);
         if (object.score_limit != null)
@@ -2179,8 +2073,8 @@ export const PB_BattleRules = $root.PB_BattleRules = (() => {
             object.victory_condition = options.enums === $String ? $root.PB_VictoryCondition[message.victory_condition] === $undefined ? message.victory_condition : $root.PB_VictoryCondition[message.victory_condition] : message.victory_condition;
         if (message.max_turns != null && $Object.hasOwnProperty.call(message, "max_turns"))
             object.max_turns = message.max_turns;
-        if (message.max_duration != null && $Object.hasOwnProperty.call(message, "max_duration"))
-            object.max_duration = message.max_duration;
+        if (message.max_duration_sec != null && $Object.hasOwnProperty.call(message, "max_duration_sec"))
+            object.max_duration_sec = message.max_duration_sec;
         if (message.allow_flee != null && $Object.hasOwnProperty.call(message, "allow_flee"))
             object.allow_flee = message.allow_flee;
         if (message.score_limit != null && $Object.hasOwnProperty.call(message, "score_limit"))
@@ -2226,11 +2120,10 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
      * @property {number|null} [battle_id] PB_BattleReq battle_id
      * @property {PB_BattleMode|null} [mode] PB_BattleReq mode
      * @property {number|null} [battle_type] PB_BattleReq battle_type
+     * @property {number|null} [target_id] PB_BattleReq target_id
      * @property {number|null} [random_seed] PB_BattleReq random_seed
      * @property {PB_BattleRules.$Properties|null} [rules] PB_BattleReq rules
      * @property {Array.<PB_BattleTeam.$Properties>|null} [teams] PB_BattleReq teams
-     * @property {number|null} [req_type] PB_BattleReq req_type
-     * @property {number|null} [req_id] PB_BattleReq req_id
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -2288,6 +2181,14 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
     PB_BattleReq.prototype.battle_type = null;
 
     /**
+     * PB_BattleReq target_id.
+     * @member {number|null|undefined} target_id
+     * @memberof PB_BattleReq
+     * @instance
+     */
+    PB_BattleReq.prototype.target_id = null;
+
+    /**
      * PB_BattleReq random_seed.
      * @member {number|null|undefined} random_seed
      * @memberof PB_BattleReq
@@ -2311,22 +2212,6 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
      */
     PB_BattleReq.prototype.teams = $util.emptyArray;
 
-    /**
-     * PB_BattleReq req_type.
-     * @member {number|null|undefined} req_type
-     * @memberof PB_BattleReq
-     * @instance
-     */
-    PB_BattleReq.prototype.req_type = null;
-
-    /**
-     * PB_BattleReq req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof PB_BattleReq
-     * @instance
-     */
-    PB_BattleReq.prototype.req_id = null;
-
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
@@ -2349,6 +2234,12 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleReq.prototype, "_target_id", {
+        get: $util.oneOfGetter($oneOfFields = ["target_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_BattleReq.prototype, "_random_seed", {
         get: $util.oneOfGetter($oneOfFields = ["random_seed"]),
         set: $util.oneOfSetter($oneOfFields)
@@ -2357,18 +2248,6 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_BattleReq.prototype, "_rules", {
         get: $util.oneOfGetter($oneOfFields = ["rules"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleReq.prototype, "_req_type", {
-        get: $util.oneOfGetter($oneOfFields = ["req_type"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleReq.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -2410,17 +2289,15 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.mode);
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             writer.uint32(/* id 3, wireType 0 =*/24).int32(message.battle_type);
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int64(message.target_id);
         if (message.random_seed != null && $Object.hasOwnProperty.call(message, "random_seed"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.random_seed);
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.random_seed);
         if (message.rules != null && $Object.hasOwnProperty.call(message, "rules"))
-            $root.PB_BattleRules.encode(message.rules, writer.uint32(/* id 5, wireType 2 =*/42).fork(), _depth + 1).ldelim();
+            $root.PB_BattleRules.encode(message.rules, writer.uint32(/* id 6, wireType 2 =*/50).fork(), _depth + 1).ldelim();
         if (message.teams != null && message.teams.length)
             for (let i = 0; i < message.teams.length; ++i)
-                $root.PB_BattleTeam.encode(message.teams[i], writer.uint32(/* id 6, wireType 2 =*/50).fork(), _depth + 1).ldelim();
-        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
-            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.req_type);
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.req_id);
+                $root.PB_BattleTeam.encode(message.teams[i], writer.uint32(/* id 7, wireType 2 =*/58).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -2492,37 +2369,30 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
             case 4: {
                     if (wireType !== 0)
                         break;
+                    message.target_id = reader.int64();
+                    message._target_id = "target_id";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
                     message.random_seed = reader.int32();
                     message._random_seed = "random_seed";
                     continue;
                 }
-            case 5: {
+            case 6: {
                     if (wireType !== 2)
                         break;
                     message.rules = $root.PB_BattleRules.decode(reader, reader.uint32(), $undefined, _depth + 1, message.rules);
                     message._rules = "rules";
                     continue;
                 }
-            case 6: {
+            case 7: {
                     if (wireType !== 2)
                         break;
                     if (!(message.teams && message.teams.length))
                         message.teams = [];
                     message.teams.push($root.PB_BattleTeam.decode(reader, reader.uint32(), $undefined, _depth + 1));
-                    continue;
-                }
-            case 7: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_type = reader.int32();
-                    message._req_type = "req_type";
-                    continue;
-                }
-            case 8: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int32();
-                    message._req_id = "req_id";
                     continue;
                 }
             }
@@ -2584,6 +2454,11 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
             if (!$util.isInteger(message.battle_type))
                 return "battle_type: integer expected";
         }
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id")) {
+            properties._target_id = 1;
+            if (!$util.isInteger(message.target_id) && !(message.target_id && $util.isInteger(message.target_id.low) && $util.isInteger(message.target_id.high)))
+                return "target_id: integer|Long expected";
+        }
         if (message.random_seed != null && $Object.hasOwnProperty.call(message, "random_seed")) {
             properties._random_seed = 1;
             if (!$util.isInteger(message.random_seed))
@@ -2605,16 +2480,6 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
                 if (error)
                     return "teams." + error;
             }
-        }
-        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type")) {
-            properties._req_type = 1;
-            if (!$util.isInteger(message.req_type))
-                return "req_type: integer expected";
-        }
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id))
-                return "req_id: integer expected";
         }
         return null;
     };
@@ -2658,6 +2523,15 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
         }
         if (object.battle_type != null)
             message.battle_type = object.battle_type | 0;
+        if (object.target_id != null)
+            if ($util.Long)
+                message.target_id = $util.Long.fromValue(object.target_id, false);
+            else if (typeof object.target_id === "string")
+                message.target_id = $parseInt(object.target_id, 10);
+            else if (typeof object.target_id === "number")
+                message.target_id = object.target_id;
+            else if (typeof object.target_id === "object")
+                message.target_id = new $util.LongBits(object.target_id.low >>> 0, object.target_id.high >>> 0).toNumber();
         if (object.random_seed != null)
             message.random_seed = object.random_seed | 0;
         if (object.rules != null) {
@@ -2675,10 +2549,6 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
                 message.teams[i] = $root.PB_BattleTeam.fromObject(object.teams[i], _depth + 1);
             }
         }
-        if (object.req_type != null)
-            message.req_type = object.req_type | 0;
-        if (object.req_id != null)
-            message.req_id = object.req_id | 0;
         return message;
     };
 
@@ -2707,6 +2577,13 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
             object.mode = options.enums === $String ? $root.PB_BattleMode[message.mode] === $undefined ? message.mode : $root.PB_BattleMode[message.mode] : message.mode;
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             object.battle_type = message.battle_type;
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.target_id = typeof message.target_id === "number" ? $BigInt(message.target_id) : $util.Long.fromBits(message.target_id.low >>> 0, message.target_id.high >>> 0, false).toBigInt();
+            else if (typeof message.target_id === "number")
+                object.target_id = options.longs === $String ? $String(message.target_id) : message.target_id;
+            else
+                object.target_id = options.longs === $String ? $util.Long.prototype.toString.call(message.target_id) : options.longs === $Number ? new $util.LongBits(message.target_id.low >>> 0, message.target_id.high >>> 0).toNumber() : message.target_id;
         if (message.random_seed != null && $Object.hasOwnProperty.call(message, "random_seed"))
             object.random_seed = message.random_seed;
         if (message.rules != null && $Object.hasOwnProperty.call(message, "rules"))
@@ -2716,10 +2593,6 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
             for (let j = 0; j < message.teams.length; ++j)
                 object.teams[j] = $root.PB_BattleTeam.toObject(message.teams[j], options, _depth + 1);
         }
-        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
-            object.req_type = message.req_type;
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            object.req_id = message.req_id;
         return object;
     };
 
@@ -2751,6 +2624,545 @@ export const PB_BattleReq = $root.PB_BattleReq = (() => {
     return PB_BattleReq;
 })();
 
+export const PB_BattleEntityState = $root.PB_BattleEntityState = (() => {
+
+    /**
+     * Properties of a PB_BattleEntityState.
+     * @typedef {Object} PB_BattleEntityState.$Properties
+     * @property {number|null} [pid] PB_BattleEntityState pid
+     * @property {number|null} [obj_id] PB_BattleEntityState obj_id
+     * @property {PB_ObjType|null} [obj_type] PB_BattleEntityState obj_type
+     * @property {string|null} [name] PB_BattleEntityState name
+     * @property {number|null} [level] PB_BattleEntityState level
+     * @property {number|null} [team_id] PB_BattleEntityState team_id
+     * @property {boolean|null} [alive] PB_BattleEntityState alive
+     * @property {Array.<PB_AttrPair.$Properties>|null} [attrs] PB_BattleEntityState attrs
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_BattleEntityState.
+     * @exports IPB_BattleEntityState
+     * @interface IPB_BattleEntityState
+     * @augments PB_BattleEntityState.$Properties
+     * @deprecated Use PB_BattleEntityState.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_BattleEntityState.
+     * @typedef {PB_BattleEntityState.$Properties} PB_BattleEntityState.$Shape
+     */
+
+    /**
+     * Constructs a new PB_BattleEntityState.
+     * @exports PB_BattleEntityState
+     * @classdesc Represents a PB_BattleEntityState.
+     * @constructor
+     * @param {PB_BattleEntityState.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_BattleEntityState = function (properties) {
+        this.attrs = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_BattleEntityState pid.
+     * @member {number|null|undefined} pid
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.pid = null;
+
+    /**
+     * PB_BattleEntityState obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.obj_id = null;
+
+    /**
+     * PB_BattleEntityState obj_type.
+     * @member {PB_ObjType|null|undefined} obj_type
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.obj_type = null;
+
+    /**
+     * PB_BattleEntityState name.
+     * @member {string|null|undefined} name
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.name = null;
+
+    /**
+     * PB_BattleEntityState level.
+     * @member {number|null|undefined} level
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.level = null;
+
+    /**
+     * PB_BattleEntityState team_id.
+     * @member {number|null|undefined} team_id
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.team_id = null;
+
+    /**
+     * PB_BattleEntityState alive.
+     * @member {boolean|null|undefined} alive
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.alive = null;
+
+    /**
+     * PB_BattleEntityState attrs.
+     * @member {Array.<PB_AttrPair.$Properties>} attrs
+     * @memberof PB_BattleEntityState
+     * @instance
+     */
+    PB_BattleEntityState.prototype.attrs = $util.emptyArray;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleEntityState.prototype, "_pid", {
+        get: $util.oneOfGetter($oneOfFields = ["pid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleEntityState.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleEntityState.prototype, "_obj_type", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleEntityState.prototype, "_name", {
+        get: $util.oneOfGetter($oneOfFields = ["name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleEntityState.prototype, "_level", {
+        get: $util.oneOfGetter($oneOfFields = ["level"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleEntityState.prototype, "_team_id", {
+        get: $util.oneOfGetter($oneOfFields = ["team_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleEntityState.prototype, "_alive", {
+        get: $util.oneOfGetter($oneOfFields = ["alive"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_BattleEntityState instance using the specified properties.
+     * @function create
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {PB_BattleEntityState.$Properties=} [properties] Properties to set
+     * @returns {PB_BattleEntityState} PB_BattleEntityState instance
+     * @type {{
+     *   (properties: PB_BattleEntityState.$Shape): PB_BattleEntityState & PB_BattleEntityState.$Shape;
+     *   (properties?: PB_BattleEntityState.$Properties): PB_BattleEntityState;
+     * }}
+     */
+    PB_BattleEntityState.create = function(properties) {
+        return new PB_BattleEntityState(properties);
+    };
+
+    /**
+     * Encodes the specified PB_BattleEntityState message. Does not implicitly {@link PB_BattleEntityState.verify|verify} messages.
+     * @function encode
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {PB_BattleEntityState.$Properties} message PB_BattleEntityState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_BattleEntityState.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.pid != null && $Object.hasOwnProperty.call(message, "pid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.pid);
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.obj_id);
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.obj_type);
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.name);
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.level);
+        if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int64(message.team_id);
+        if (message.alive != null && $Object.hasOwnProperty.call(message, "alive"))
+            writer.uint32(/* id 7, wireType 0 =*/56).bool(message.alive);
+        if (message.attrs != null && message.attrs.length)
+            for (let i = 0; i < message.attrs.length; ++i)
+                $root.PB_AttrPair.encode(message.attrs[i], writer.uint32(/* id 8, wireType 2 =*/66).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_BattleEntityState message, length delimited. Does not implicitly {@link PB_BattleEntityState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {PB_BattleEntityState.$Properties} message PB_BattleEntityState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_BattleEntityState.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_BattleEntityState message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_BattleEntityState & PB_BattleEntityState.$Shape} PB_BattleEntityState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_BattleEntityState.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_BattleEntityState(), value;
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.pid = reader.int32();
+                    message._pid = "pid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.int32();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_type = reader.int32();
+                    message._obj_type = "obj_type";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 2)
+                        break;
+                    message.name = reader.stringVerify();
+                    message._name = "name";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.level = reader.int32();
+                    message._level = "level";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.team_id = reader.int64();
+                    message._team_id = "team_id";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.alive = reader.bool();
+                    message._alive = "alive";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.attrs && message.attrs.length))
+                        message.attrs = [];
+                    message.attrs.push($root.PB_AttrPair.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_BattleEntityState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_BattleEntityState & PB_BattleEntityState.$Shape} PB_BattleEntityState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_BattleEntityState.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_BattleEntityState message.
+     * @function verify
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_BattleEntityState.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.pid != null && $Object.hasOwnProperty.call(message, "pid")) {
+            properties._pid = 1;
+            if (!$util.isInteger(message.pid))
+                return "pid: integer expected";
+        }
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id))
+                return "obj_id: integer expected";
+        }
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type")) {
+            properties._obj_type = 1;
+            if (typeof message.obj_type !== "number" || (message.obj_type | 0) !== message.obj_type)
+                return "obj_type: enum value expected";
+        }
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
+            properties._name = 1;
+            if (!$util.isString(message.name))
+                return "name: string expected";
+        }
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level")) {
+            properties._level = 1;
+            if (!$util.isInteger(message.level))
+                return "level: integer expected";
+        }
+        if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id")) {
+            properties._team_id = 1;
+            if (!$util.isInteger(message.team_id) && !(message.team_id && $util.isInteger(message.team_id.low) && $util.isInteger(message.team_id.high)))
+                return "team_id: integer|Long expected";
+        }
+        if (message.alive != null && $Object.hasOwnProperty.call(message, "alive")) {
+            properties._alive = 1;
+            if (typeof message.alive !== "boolean")
+                return "alive: boolean expected";
+        }
+        if (message.attrs != null && $Object.hasOwnProperty.call(message, "attrs")) {
+            if (!$Array.isArray(message.attrs))
+                return "attrs: array expected";
+            for (let i = 0; i < message.attrs.length; ++i) {
+                let error = $root.PB_AttrPair.verify(message.attrs[i], _depth + 1);
+                if (error)
+                    return "attrs." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_BattleEntityState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_BattleEntityState} PB_BattleEntityState
+     */
+    PB_BattleEntityState.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_BattleEntityState)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_BattleEntityState: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_BattleEntityState();
+        if (object.pid != null)
+            message.pid = object.pid | 0;
+        if (object.obj_id != null)
+            message.obj_id = object.obj_id | 0;
+        switch (object.obj_type) {
+        case "OBJ_TYPE_NONE":
+        case 0:
+            message.obj_type = 0;
+            break;
+        case "OBJ_TYPE_HERO":
+        case 1:
+            message.obj_type = 1;
+            break;
+        case "OBJ_TYPE_MONSTER":
+        case 2:
+            message.obj_type = 2;
+            break;
+        default:
+            if (typeof object.obj_type === "number" && (object.obj_type | 0) === object.obj_type)
+                message.obj_type = object.obj_type;
+        }
+        if (object.name != null)
+            message.name = $String(object.name);
+        if (object.level != null)
+            message.level = object.level | 0;
+        if (object.team_id != null)
+            if ($util.Long)
+                message.team_id = $util.Long.fromValue(object.team_id, false);
+            else if (typeof object.team_id === "string")
+                message.team_id = $parseInt(object.team_id, 10);
+            else if (typeof object.team_id === "number")
+                message.team_id = object.team_id;
+            else if (typeof object.team_id === "object")
+                message.team_id = new $util.LongBits(object.team_id.low >>> 0, object.team_id.high >>> 0).toNumber();
+        if (object.alive != null)
+            message.alive = $Boolean(object.alive);
+        if (object.attrs) {
+            if (!$Array.isArray(object.attrs))
+                throw $TypeError(".PB_BattleEntityState.attrs: array expected");
+            message.attrs = $Array(object.attrs.length);
+            for (let i = 0; i < object.attrs.length; ++i) {
+                if (!$util.isObject(object.attrs[i]))
+                    throw $TypeError(".PB_BattleEntityState.attrs: object expected");
+                message.attrs[i] = $root.PB_AttrPair.fromObject(object.attrs[i], _depth + 1);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_BattleEntityState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {PB_BattleEntityState} message PB_BattleEntityState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_BattleEntityState.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.attrs = [];
+        if (message.pid != null && $Object.hasOwnProperty.call(message, "pid"))
+            object.pid = message.pid;
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            object.obj_id = message.obj_id;
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type"))
+            object.obj_type = options.enums === $String ? $root.PB_ObjType[message.obj_type] === $undefined ? message.obj_type : $root.PB_ObjType[message.obj_type] : message.obj_type;
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+            object.name = message.name;
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            object.level = message.level;
+        if (message.team_id != null && $Object.hasOwnProperty.call(message, "team_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.team_id = typeof message.team_id === "number" ? $BigInt(message.team_id) : $util.Long.fromBits(message.team_id.low >>> 0, message.team_id.high >>> 0, false).toBigInt();
+            else if (typeof message.team_id === "number")
+                object.team_id = options.longs === $String ? $String(message.team_id) : message.team_id;
+            else
+                object.team_id = options.longs === $String ? $util.Long.prototype.toString.call(message.team_id) : options.longs === $Number ? new $util.LongBits(message.team_id.low >>> 0, message.team_id.high >>> 0).toNumber() : message.team_id;
+        if (message.alive != null && $Object.hasOwnProperty.call(message, "alive"))
+            object.alive = message.alive;
+        if (message.attrs && message.attrs.length) {
+            object.attrs = $Array(message.attrs.length);
+            for (let j = 0; j < message.attrs.length; ++j)
+                object.attrs[j] = $root.PB_AttrPair.toObject(message.attrs[j], options, _depth + 1);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this PB_BattleEntityState to JSON.
+     * @function toJSON
+     * @memberof PB_BattleEntityState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_BattleEntityState.prototype.toJSON = function() {
+        return PB_BattleEntityState.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_BattleEntityState
+     * @function getTypeUrl
+     * @memberof PB_BattleEntityState
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_BattleEntityState.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_BattleEntityState";
+    };
+
+    return PB_BattleEntityState;
+})();
+
 export const PB_BattleResult = $root.PB_BattleResult = (() => {
 
     /**
@@ -2762,11 +3174,8 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
      * @property {number|null} [total_turns] PB_BattleResult total_turns
      * @property {number|null} [duration_ms] PB_BattleResult duration_ms
      * @property {string|null} [replay_text] PB_BattleResult replay_text
-     * @property {Array.<PB_BattleParticipant.$Properties>|null} [final_participants] PB_BattleResult final_participants
-     * @property {number|null} [req_type] PB_BattleResult req_type
-     * @property {number|null} [req_id] PB_BattleResult req_id
      * @property {string|null} [report_key] PB_BattleResult report_key
-     * @property {number|null} [battle_type] PB_BattleResult battle_type
+     * @property {Array.<PB_BattleEntityState.$Properties>|null} [final_states] PB_BattleResult final_states
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -2792,7 +3201,7 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
     const PB_BattleResult = function (properties) {
-        this.final_participants = [];
+        this.final_states = [];
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -2848,30 +3257,6 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
     PB_BattleResult.prototype.replay_text = null;
 
     /**
-     * PB_BattleResult final_participants.
-     * @member {Array.<PB_BattleParticipant.$Properties>} final_participants
-     * @memberof PB_BattleResult
-     * @instance
-     */
-    PB_BattleResult.prototype.final_participants = $util.emptyArray;
-
-    /**
-     * PB_BattleResult req_type.
-     * @member {number|null|undefined} req_type
-     * @memberof PB_BattleResult
-     * @instance
-     */
-    PB_BattleResult.prototype.req_type = null;
-
-    /**
-     * PB_BattleResult req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof PB_BattleResult
-     * @instance
-     */
-    PB_BattleResult.prototype.req_id = null;
-
-    /**
      * PB_BattleResult report_key.
      * @member {string|null|undefined} report_key
      * @memberof PB_BattleResult
@@ -2880,12 +3265,12 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
     PB_BattleResult.prototype.report_key = null;
 
     /**
-     * PB_BattleResult battle_type.
-     * @member {number|null|undefined} battle_type
+     * PB_BattleResult final_states.
+     * @member {Array.<PB_BattleEntityState.$Properties>} final_states
      * @memberof PB_BattleResult
      * @instance
      */
-    PB_BattleResult.prototype.battle_type = null;
+    PB_BattleResult.prototype.final_states = $util.emptyArray;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
@@ -2927,26 +3312,8 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleResult.prototype, "_req_type", {
-        get: $util.oneOfGetter($oneOfFields = ["req_type"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleResult.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_BattleResult.prototype, "_report_key", {
         get: $util.oneOfGetter($oneOfFields = ["report_key"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleResult.prototype, "_battle_type", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_type"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -2987,24 +3354,18 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
         if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result_type);
         if (message.winner_team_id != null && $Object.hasOwnProperty.call(message, "winner_team_id"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.winner_team_id);
+            writer.uint32(/* id 3, wireType 0 =*/24).int64(message.winner_team_id);
         if (message.total_turns != null && $Object.hasOwnProperty.call(message, "total_turns"))
             writer.uint32(/* id 4, wireType 0 =*/32).int32(message.total_turns);
         if (message.duration_ms != null && $Object.hasOwnProperty.call(message, "duration_ms"))
             writer.uint32(/* id 5, wireType 0 =*/40).int32(message.duration_ms);
         if (message.replay_text != null && $Object.hasOwnProperty.call(message, "replay_text"))
             writer.uint32(/* id 6, wireType 2 =*/50).string(message.replay_text);
-        if (message.final_participants != null && message.final_participants.length)
-            for (let i = 0; i < message.final_participants.length; ++i)
-                $root.PB_BattleParticipant.encode(message.final_participants[i], writer.uint32(/* id 7, wireType 2 =*/58).fork(), _depth + 1).ldelim();
-        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
-            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.req_type);
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 9, wireType 0 =*/72).int32(message.req_id);
         if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
-            writer.uint32(/* id 10, wireType 2 =*/82).string(message.report_key);
-        if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
-            writer.uint32(/* id 11, wireType 0 =*/88).int32(message.battle_type);
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.report_key);
+        if (message.final_states != null && message.final_states.length)
+            for (let i = 0; i < message.final_states.length; ++i)
+                $root.PB_BattleEntityState.encode(message.final_states[i], writer.uint32(/* id 8, wireType 2 =*/66).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -3069,7 +3430,7 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
             case 3: {
                     if (wireType !== 0)
                         break;
-                    message.winner_team_id = reader.int32();
+                    message.winner_team_id = reader.int64();
                     message._winner_team_id = "winner_team_id";
                     continue;
                 }
@@ -3097,37 +3458,16 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
             case 7: {
                     if (wireType !== 2)
                         break;
-                    if (!(message.final_participants && message.final_participants.length))
-                        message.final_participants = [];
-                    message.final_participants.push($root.PB_BattleParticipant.decode(reader, reader.uint32(), $undefined, _depth + 1));
-                    continue;
-                }
-            case 8: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_type = reader.int32();
-                    message._req_type = "req_type";
-                    continue;
-                }
-            case 9: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int32();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 10: {
-                    if (wireType !== 2)
-                        break;
                     message.report_key = reader.stringVerify();
                     message._report_key = "report_key";
                     continue;
                 }
-            case 11: {
-                    if (wireType !== 0)
+            case 8: {
+                    if (wireType !== 2)
                         break;
-                    message.battle_type = reader.int32();
-                    message._battle_type = "battle_type";
+                    if (!(message.final_states && message.final_states.length))
+                        message.final_states = [];
+                    message.final_states.push($root.PB_BattleEntityState.decode(reader, reader.uint32(), $undefined, _depth + 1));
                     continue;
                 }
             }
@@ -3186,8 +3526,8 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
         }
         if (message.winner_team_id != null && $Object.hasOwnProperty.call(message, "winner_team_id")) {
             properties._winner_team_id = 1;
-            if (!$util.isInteger(message.winner_team_id))
-                return "winner_team_id: integer expected";
+            if (!$util.isInteger(message.winner_team_id) && !(message.winner_team_id && $util.isInteger(message.winner_team_id.low) && $util.isInteger(message.winner_team_id.high)))
+                return "winner_team_id: integer|Long expected";
         }
         if (message.total_turns != null && $Object.hasOwnProperty.call(message, "total_turns")) {
             properties._total_turns = 1;
@@ -3204,34 +3544,19 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
             if (!$util.isString(message.replay_text))
                 return "replay_text: string expected";
         }
-        if (message.final_participants != null && $Object.hasOwnProperty.call(message, "final_participants")) {
-            if (!$Array.isArray(message.final_participants))
-                return "final_participants: array expected";
-            for (let i = 0; i < message.final_participants.length; ++i) {
-                let error = $root.PB_BattleParticipant.verify(message.final_participants[i], _depth + 1);
-                if (error)
-                    return "final_participants." + error;
-            }
-        }
-        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type")) {
-            properties._req_type = 1;
-            if (!$util.isInteger(message.req_type))
-                return "req_type: integer expected";
-        }
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id))
-                return "req_id: integer expected";
-        }
         if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key")) {
             properties._report_key = 1;
             if (!$util.isString(message.report_key))
                 return "report_key: string expected";
         }
-        if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type")) {
-            properties._battle_type = 1;
-            if (!$util.isInteger(message.battle_type))
-                return "battle_type: integer expected";
+        if (message.final_states != null && $Object.hasOwnProperty.call(message, "final_states")) {
+            if (!$Array.isArray(message.final_states))
+                return "final_states: array expected";
+            for (let i = 0; i < message.final_states.length; ++i) {
+                let error = $root.PB_BattleEntityState.verify(message.final_states[i], _depth + 1);
+                if (error)
+                    return "final_states." + error;
+            }
         }
         return null;
     };
@@ -3286,31 +3611,32 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
                 message.result_type = object.result_type;
         }
         if (object.winner_team_id != null)
-            message.winner_team_id = object.winner_team_id | 0;
+            if ($util.Long)
+                message.winner_team_id = $util.Long.fromValue(object.winner_team_id, false);
+            else if (typeof object.winner_team_id === "string")
+                message.winner_team_id = $parseInt(object.winner_team_id, 10);
+            else if (typeof object.winner_team_id === "number")
+                message.winner_team_id = object.winner_team_id;
+            else if (typeof object.winner_team_id === "object")
+                message.winner_team_id = new $util.LongBits(object.winner_team_id.low >>> 0, object.winner_team_id.high >>> 0).toNumber();
         if (object.total_turns != null)
             message.total_turns = object.total_turns | 0;
         if (object.duration_ms != null)
             message.duration_ms = object.duration_ms | 0;
         if (object.replay_text != null)
             message.replay_text = $String(object.replay_text);
-        if (object.final_participants) {
-            if (!$Array.isArray(object.final_participants))
-                throw $TypeError(".PB_BattleResult.final_participants: array expected");
-            message.final_participants = $Array(object.final_participants.length);
-            for (let i = 0; i < object.final_participants.length; ++i) {
-                if (!$util.isObject(object.final_participants[i]))
-                    throw $TypeError(".PB_BattleResult.final_participants: object expected");
-                message.final_participants[i] = $root.PB_BattleParticipant.fromObject(object.final_participants[i], _depth + 1);
-            }
-        }
-        if (object.req_type != null)
-            message.req_type = object.req_type | 0;
-        if (object.req_id != null)
-            message.req_id = object.req_id | 0;
         if (object.report_key != null)
             message.report_key = $String(object.report_key);
-        if (object.battle_type != null)
-            message.battle_type = object.battle_type | 0;
+        if (object.final_states) {
+            if (!$Array.isArray(object.final_states))
+                throw $TypeError(".PB_BattleResult.final_states: array expected");
+            message.final_states = $Array(object.final_states.length);
+            for (let i = 0; i < object.final_states.length; ++i) {
+                if (!$util.isObject(object.final_states[i]))
+                    throw $TypeError(".PB_BattleResult.final_states: object expected");
+                message.final_states[i] = $root.PB_BattleEntityState.fromObject(object.final_states[i], _depth + 1);
+            }
+        }
         return message;
     };
 
@@ -3332,32 +3658,31 @@ export const PB_BattleResult = $root.PB_BattleResult = (() => {
             throw $Error("max depth exceeded");
         let object = {};
         if (options.arrays || options.defaults)
-            object.final_participants = [];
+            object.final_states = [];
         if (message.battle_id != null && $Object.hasOwnProperty.call(message, "battle_id"))
             object.battle_id = message.battle_id;
         if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
             object.result_type = options.enums === $String ? $root.PB_BattleResultType[message.result_type] === $undefined ? message.result_type : $root.PB_BattleResultType[message.result_type] : message.result_type;
         if (message.winner_team_id != null && $Object.hasOwnProperty.call(message, "winner_team_id"))
-            object.winner_team_id = message.winner_team_id;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.winner_team_id = typeof message.winner_team_id === "number" ? $BigInt(message.winner_team_id) : $util.Long.fromBits(message.winner_team_id.low >>> 0, message.winner_team_id.high >>> 0, false).toBigInt();
+            else if (typeof message.winner_team_id === "number")
+                object.winner_team_id = options.longs === $String ? $String(message.winner_team_id) : message.winner_team_id;
+            else
+                object.winner_team_id = options.longs === $String ? $util.Long.prototype.toString.call(message.winner_team_id) : options.longs === $Number ? new $util.LongBits(message.winner_team_id.low >>> 0, message.winner_team_id.high >>> 0).toNumber() : message.winner_team_id;
         if (message.total_turns != null && $Object.hasOwnProperty.call(message, "total_turns"))
             object.total_turns = message.total_turns;
         if (message.duration_ms != null && $Object.hasOwnProperty.call(message, "duration_ms"))
             object.duration_ms = message.duration_ms;
         if (message.replay_text != null && $Object.hasOwnProperty.call(message, "replay_text"))
             object.replay_text = message.replay_text;
-        if (message.final_participants && message.final_participants.length) {
-            object.final_participants = $Array(message.final_participants.length);
-            for (let j = 0; j < message.final_participants.length; ++j)
-                object.final_participants[j] = $root.PB_BattleParticipant.toObject(message.final_participants[j], options, _depth + 1);
-        }
-        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
-            object.req_type = message.req_type;
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            object.req_id = message.req_id;
         if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
             object.report_key = message.report_key;
-        if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
-            object.battle_type = message.battle_type;
+        if (message.final_states && message.final_states.length) {
+            object.final_states = $Array(message.final_states.length);
+            for (let j = 0; j < message.final_states.length; ++j)
+                object.final_states[j] = $root.PB_BattleEntityState.toObject(message.final_states[j], options, _depth + 1);
+        }
         return object;
     };
 
@@ -3395,11 +3720,10 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
      * Properties of a PB_BattleMatchResult.
      * @typedef {Object} PB_BattleMatchResult.$Properties
      * @property {number|null} [match_index] PB_BattleMatchResult match_index
-     * @property {number|null} [result_type] PB_BattleMatchResult result_type
-     * @property {string|null} [battle_report_key] PB_BattleMatchResult battle_report_key
-     * @property {string|null} [battle_report] PB_BattleMatchResult battle_report
+     * @property {PB_BattleResultType|null} [result_type] PB_BattleMatchResult result_type
      * @property {number|null} [battle_type] PB_BattleMatchResult battle_type
-     * @property {number|null} [id] PB_BattleMatchResult id
+     * @property {string|null} [report_key] PB_BattleMatchResult report_key
+     * @property {string|null} [replay_text] PB_BattleMatchResult replay_text
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -3441,27 +3765,11 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
 
     /**
      * PB_BattleMatchResult result_type.
-     * @member {number|null|undefined} result_type
+     * @member {PB_BattleResultType|null|undefined} result_type
      * @memberof PB_BattleMatchResult
      * @instance
      */
     PB_BattleMatchResult.prototype.result_type = null;
-
-    /**
-     * PB_BattleMatchResult battle_report_key.
-     * @member {string|null|undefined} battle_report_key
-     * @memberof PB_BattleMatchResult
-     * @instance
-     */
-    PB_BattleMatchResult.prototype.battle_report_key = null;
-
-    /**
-     * PB_BattleMatchResult battle_report.
-     * @member {string|null|undefined} battle_report
-     * @memberof PB_BattleMatchResult
-     * @instance
-     */
-    PB_BattleMatchResult.prototype.battle_report = null;
 
     /**
      * PB_BattleMatchResult battle_type.
@@ -3472,12 +3780,20 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
     PB_BattleMatchResult.prototype.battle_type = null;
 
     /**
-     * PB_BattleMatchResult id.
-     * @member {number|null|undefined} id
+     * PB_BattleMatchResult report_key.
+     * @member {string|null|undefined} report_key
      * @memberof PB_BattleMatchResult
      * @instance
      */
-    PB_BattleMatchResult.prototype.id = null;
+    PB_BattleMatchResult.prototype.report_key = null;
+
+    /**
+     * PB_BattleMatchResult replay_text.
+     * @member {string|null|undefined} replay_text
+     * @memberof PB_BattleMatchResult
+     * @instance
+     */
+    PB_BattleMatchResult.prototype.replay_text = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
@@ -3495,26 +3811,20 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleMatchResult.prototype, "_battle_report_key", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_report_key"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleMatchResult.prototype, "_battle_report", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_report"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_BattleMatchResult.prototype, "_battle_type", {
         get: $util.oneOfGetter($oneOfFields = ["battle_type"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleMatchResult.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_report_key", {
+        get: $util.oneOfGetter($oneOfFields = ["report_key"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_BattleMatchResult.prototype, "_replay_text", {
+        get: $util.oneOfGetter($oneOfFields = ["replay_text"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -3554,14 +3864,12 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.match_index);
         if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result_type);
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
-            writer.uint32(/* id 3, wireType 2 =*/26).string(message.battle_report_key);
-        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report"))
-            writer.uint32(/* id 4, wireType 2 =*/34).string(message.battle_report);
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
-            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.battle_type);
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.id);
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.battle_type);
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.report_key);
+        if (message.replay_text != null && $Object.hasOwnProperty.call(message, "replay_text"))
+            writer.uint32(/* id 5, wireType 2 =*/42).string(message.replay_text);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -3599,7 +3907,7 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_BattleMatchResult();
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_BattleMatchResult(), value;
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -3624,31 +3932,24 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
                     continue;
                 }
             case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.battle_report_key = reader.stringVerify();
-                    message._battle_report_key = "battle_report_key";
-                    continue;
-                }
-            case 4: {
-                    if (wireType !== 2)
-                        break;
-                    message.battle_report = reader.stringVerify();
-                    message._battle_report = "battle_report";
-                    continue;
-                }
-            case 5: {
                     if (wireType !== 0)
                         break;
                     message.battle_type = reader.int32();
                     message._battle_type = "battle_type";
                     continue;
                 }
-            case 6: {
-                    if (wireType !== 0)
+            case 4: {
+                    if (wireType !== 2)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.report_key = reader.stringVerify();
+                    message._report_key = "report_key";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 2)
+                        break;
+                    message.replay_text = reader.stringVerify();
+                    message._replay_text = "replay_text";
                     continue;
                 }
             }
@@ -3702,28 +4003,23 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
         }
         if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type")) {
             properties._result_type = 1;
-            if (!$util.isInteger(message.result_type))
-                return "result_type: integer expected";
-        }
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key")) {
-            properties._battle_report_key = 1;
-            if (!$util.isString(message.battle_report_key))
-                return "battle_report_key: string expected";
-        }
-        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report")) {
-            properties._battle_report = 1;
-            if (!$util.isString(message.battle_report))
-                return "battle_report: string expected";
+            if (typeof message.result_type !== "number" || (message.result_type | 0) !== message.result_type)
+                return "result_type: enum value expected";
         }
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type")) {
             properties._battle_type = 1;
             if (!$util.isInteger(message.battle_type))
                 return "battle_type: integer expected";
         }
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key")) {
+            properties._report_key = 1;
+            if (!$util.isString(message.report_key))
+                return "report_key: string expected";
+        }
+        if (message.replay_text != null && $Object.hasOwnProperty.call(message, "replay_text")) {
+            properties._replay_text = 1;
+            if (!$util.isString(message.replay_text))
+                return "replay_text: string expected";
         }
         return null;
     };
@@ -3748,16 +4044,41 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
         let message = new $root.PB_BattleMatchResult();
         if (object.match_index != null)
             message.match_index = object.match_index | 0;
-        if (object.result_type != null)
-            message.result_type = object.result_type | 0;
-        if (object.battle_report_key != null)
-            message.battle_report_key = $String(object.battle_report_key);
-        if (object.battle_report != null)
-            message.battle_report = $String(object.battle_report);
+        switch (object.result_type) {
+        case "BATTLE_RESULT_NONE":
+        case 0:
+            message.result_type = 0;
+            break;
+        case "BATTLE_RESULT_VICTORY":
+        case 1:
+            message.result_type = 1;
+            break;
+        case "BATTLE_RESULT_DEFEAT":
+        case 2:
+            message.result_type = 2;
+            break;
+        case "BATTLE_RESULT_TIME_OUT":
+        case 3:
+            message.result_type = 3;
+            break;
+        case "BATTLE_RESULT_DRAW":
+        case 4:
+            message.result_type = 4;
+            break;
+        case "BATTLE_RESULT_CANCELLED":
+        case 5:
+            message.result_type = 5;
+            break;
+        default:
+            if (typeof object.result_type === "number" && (object.result_type | 0) === object.result_type)
+                message.result_type = object.result_type;
+        }
         if (object.battle_type != null)
             message.battle_type = object.battle_type | 0;
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.report_key != null)
+            message.report_key = $String(object.report_key);
+        if (object.replay_text != null)
+            message.replay_text = $String(object.replay_text);
         return message;
     };
 
@@ -3781,15 +4102,13 @@ export const PB_BattleMatchResult = $root.PB_BattleMatchResult = (() => {
         if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index"))
             object.match_index = message.match_index;
         if (message.result_type != null && $Object.hasOwnProperty.call(message, "result_type"))
-            object.result_type = message.result_type;
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
-            object.battle_report_key = message.battle_report_key;
-        if (message.battle_report != null && $Object.hasOwnProperty.call(message, "battle_report"))
-            object.battle_report = message.battle_report;
+            object.result_type = options.enums === $String ? $root.PB_BattleResultType[message.result_type] === $undefined ? message.result_type : $root.PB_BattleResultType[message.result_type] : message.result_type;
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             object.battle_type = message.battle_type;
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
+            object.report_key = message.report_key;
+        if (message.replay_text != null && $Object.hasOwnProperty.call(message, "replay_text"))
+            object.replay_text = message.replay_text;
         return object;
     };
 
@@ -3826,7 +4145,6 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
     /**
      * Properties of a PB_BattleExecuteReq.
      * @typedef {Object} PB_BattleExecuteReq.$Properties
-     * @property {number|null} [req_id] PB_BattleExecuteReq req_id
      * @property {PB_BattleReq.$Properties|null} [battle_req] PB_BattleExecuteReq battle_req
      * @property {string|null} [report_key] PB_BattleExecuteReq report_key
      * @property {number|null} [uid] PB_BattleExecuteReq uid
@@ -3862,14 +4180,6 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     };
-
-    /**
-     * PB_BattleExecuteReq req_id.
-     * @member {number|null|undefined} req_id
-     * @memberof PB_BattleExecuteReq
-     * @instance
-     */
-    PB_BattleExecuteReq.prototype.req_id = null;
 
     /**
      * PB_BattleExecuteReq battle_req.
@@ -3913,12 +4223,6 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_BattleExecuteReq.prototype, "_req_id", {
-        get: $util.oneOfGetter($oneOfFields = ["req_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
 
     // Virtual OneOf for proto3 optional field
     $Object.defineProperty(PB_BattleExecuteReq.prototype, "_battle_req", {
@@ -3982,18 +4286,16 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_id);
         if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req"))
-            $root.PB_BattleReq.encode(message.battle_req, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+            $root.PB_BattleReq.encode(message.battle_req, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
         if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
-            writer.uint32(/* id 3, wireType 2 =*/26).string(message.report_key);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.report_key);
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.uid);
+            writer.uint32(/* id 3, wireType 0 =*/24).int64(message.uid);
         if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index"))
-            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.match_index);
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.match_index);
         if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
-            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.total_matches);
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.total_matches);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -4042,41 +4344,34 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
             let wireType = tag & 7;
             switch (tag >>>= 3) {
             case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.req_id = reader.int32();
-                    message._req_id = "req_id";
-                    continue;
-                }
-            case 2: {
                     if (wireType !== 2)
                         break;
                     message.battle_req = $root.PB_BattleReq.decode(reader, reader.uint32(), $undefined, _depth + 1, message.battle_req);
                     message._battle_req = "battle_req";
                     continue;
                 }
-            case 3: {
+            case 2: {
                     if (wireType !== 2)
                         break;
                     message.report_key = reader.stringVerify();
                     message._report_key = "report_key";
                     continue;
                 }
-            case 4: {
+            case 3: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
-            case 5: {
+            case 4: {
                     if (wireType !== 0)
                         break;
                     message.match_index = reader.int32();
                     message._match_index = "match_index";
                     continue;
                 }
-            case 6: {
+            case 5: {
                     if (wireType !== 0)
                         break;
                     message.total_matches = reader.int32();
@@ -4127,11 +4422,6 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id")) {
-            properties._req_id = 1;
-            if (!$util.isInteger(message.req_id))
-                return "req_id: integer expected";
-        }
         if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req")) {
             properties._battle_req = 1;
             {
@@ -4147,8 +4437,8 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
         }
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index")) {
             properties._match_index = 1;
@@ -4181,8 +4471,6 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.PB_BattleExecuteReq();
-        if (object.req_id != null)
-            message.req_id = object.req_id | 0;
         if (object.battle_req != null) {
             if (!$util.isObject(object.battle_req))
                 throw $TypeError(".PB_BattleExecuteReq.battle_req: object expected");
@@ -4191,7 +4479,14 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
         if (object.report_key != null)
             message.report_key = $String(object.report_key);
         if (object.uid != null)
-            message.uid = object.uid | 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.match_index != null)
             message.match_index = object.match_index | 0;
         if (object.total_matches != null)
@@ -4216,14 +4511,17 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.req_id != null && $Object.hasOwnProperty.call(message, "req_id"))
-            object.req_id = message.req_id;
         if (message.battle_req != null && $Object.hasOwnProperty.call(message, "battle_req"))
             object.battle_req = $root.PB_BattleReq.toObject(message.battle_req, options, _depth + 1);
         if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
             object.report_key = message.report_key;
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.match_index != null && $Object.hasOwnProperty.call(message, "match_index"))
             object.match_index = message.match_index;
         if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
@@ -4257,6 +4555,630 @@ export const PB_BattleExecuteReq = $root.PB_BattleExecuteReq = (() => {
     };
 
     return PB_BattleExecuteReq;
+})();
+
+export const PB_ActivityState = $root.PB_ActivityState = (() => {
+
+    /**
+     * Properties of a PB_ActivityState.
+     * @typedef {Object} PB_ActivityState.$Properties
+     * @property {number|null} [server_id] PB_ActivityState server_id
+     * @property {number|null} [config_id] PB_ActivityState config_id
+     * @property {number|null} [activity_id] PB_ActivityState activity_id
+     * @property {number|null} [state] PB_ActivityState state
+     * @property {number|null} [state_begin_time] PB_ActivityState state_begin_time
+     * @property {number|null} [start_time] PB_ActivityState start_time
+     * @property {number|null} [end_time] PB_ActivityState end_time
+     * @property {number|null} [round] PB_ActivityState round
+     * @property {number|null} [last_window_end] PB_ActivityState last_window_end
+     * @property {number|null} [update_time] PB_ActivityState update_time
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_ActivityState.
+     * @exports IPB_ActivityState
+     * @interface IPB_ActivityState
+     * @augments PB_ActivityState.$Properties
+     * @deprecated Use PB_ActivityState.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_ActivityState.
+     * @typedef {PB_ActivityState.$Properties} PB_ActivityState.$Shape
+     */
+
+    /**
+     * Constructs a new PB_ActivityState.
+     * @exports PB_ActivityState
+     * @classdesc Represents a PB_ActivityState.
+     * @constructor
+     * @param {PB_ActivityState.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_ActivityState = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_ActivityState server_id.
+     * @member {number|null|undefined} server_id
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.server_id = null;
+
+    /**
+     * PB_ActivityState config_id.
+     * @member {number|null|undefined} config_id
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.config_id = null;
+
+    /**
+     * PB_ActivityState activity_id.
+     * @member {number|null|undefined} activity_id
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.activity_id = null;
+
+    /**
+     * PB_ActivityState state.
+     * @member {number|null|undefined} state
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.state = null;
+
+    /**
+     * PB_ActivityState state_begin_time.
+     * @member {number|null|undefined} state_begin_time
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.state_begin_time = null;
+
+    /**
+     * PB_ActivityState start_time.
+     * @member {number|null|undefined} start_time
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.start_time = null;
+
+    /**
+     * PB_ActivityState end_time.
+     * @member {number|null|undefined} end_time
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.end_time = null;
+
+    /**
+     * PB_ActivityState round.
+     * @member {number|null|undefined} round
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.round = null;
+
+    /**
+     * PB_ActivityState last_window_end.
+     * @member {number|null|undefined} last_window_end
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.last_window_end = null;
+
+    /**
+     * PB_ActivityState update_time.
+     * @member {number|null|undefined} update_time
+     * @memberof PB_ActivityState
+     * @instance
+     */
+    PB_ActivityState.prototype.update_time = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_config_id", {
+        get: $util.oneOfGetter($oneOfFields = ["config_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_activity_id", {
+        get: $util.oneOfGetter($oneOfFields = ["activity_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_state", {
+        get: $util.oneOfGetter($oneOfFields = ["state"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_state_begin_time", {
+        get: $util.oneOfGetter($oneOfFields = ["state_begin_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_start_time", {
+        get: $util.oneOfGetter($oneOfFields = ["start_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_end_time", {
+        get: $util.oneOfGetter($oneOfFields = ["end_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_round", {
+        get: $util.oneOfGetter($oneOfFields = ["round"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_last_window_end", {
+        get: $util.oneOfGetter($oneOfFields = ["last_window_end"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityState.prototype, "_update_time", {
+        get: $util.oneOfGetter($oneOfFields = ["update_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_ActivityState instance using the specified properties.
+     * @function create
+     * @memberof PB_ActivityState
+     * @static
+     * @param {PB_ActivityState.$Properties=} [properties] Properties to set
+     * @returns {PB_ActivityState} PB_ActivityState instance
+     * @type {{
+     *   (properties: PB_ActivityState.$Shape): PB_ActivityState & PB_ActivityState.$Shape;
+     *   (properties?: PB_ActivityState.$Properties): PB_ActivityState;
+     * }}
+     */
+    PB_ActivityState.create = function(properties) {
+        return new PB_ActivityState(properties);
+    };
+
+    /**
+     * Encodes the specified PB_ActivityState message. Does not implicitly {@link PB_ActivityState.verify|verify} messages.
+     * @function encode
+     * @memberof PB_ActivityState
+     * @static
+     * @param {PB_ActivityState.$Properties} message PB_ActivityState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_ActivityState.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.server_id);
+        if (message.config_id != null && $Object.hasOwnProperty.call(message, "config_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.config_id);
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.activity_id);
+        if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.state);
+        if (message.state_begin_time != null && $Object.hasOwnProperty.call(message, "state_begin_time"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int64(message.state_begin_time);
+        if (message.start_time != null && $Object.hasOwnProperty.call(message, "start_time"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int64(message.start_time);
+        if (message.end_time != null && $Object.hasOwnProperty.call(message, "end_time"))
+            writer.uint32(/* id 7, wireType 0 =*/56).int64(message.end_time);
+        if (message.round != null && $Object.hasOwnProperty.call(message, "round"))
+            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.round);
+        if (message.last_window_end != null && $Object.hasOwnProperty.call(message, "last_window_end"))
+            writer.uint32(/* id 9, wireType 0 =*/72).int64(message.last_window_end);
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time"))
+            writer.uint32(/* id 10, wireType 0 =*/80).int64(message.update_time);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_ActivityState message, length delimited. Does not implicitly {@link PB_ActivityState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_ActivityState
+     * @static
+     * @param {PB_ActivityState.$Properties} message PB_ActivityState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_ActivityState.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_ActivityState message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_ActivityState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_ActivityState & PB_ActivityState.$Shape} PB_ActivityState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_ActivityState.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_ActivityState();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.server_id = reader.int32();
+                    message._server_id = "server_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.config_id = reader.uint32();
+                    message._config_id = "config_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.activity_id = reader.uint32();
+                    message._activity_id = "activity_id";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.state = reader.int32();
+                    message._state = "state";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.state_begin_time = reader.int64();
+                    message._state_begin_time = "state_begin_time";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.start_time = reader.int64();
+                    message._start_time = "start_time";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.end_time = reader.int64();
+                    message._end_time = "end_time";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 0)
+                        break;
+                    message.round = reader.int32();
+                    message._round = "round";
+                    continue;
+                }
+            case 9: {
+                    if (wireType !== 0)
+                        break;
+                    message.last_window_end = reader.int64();
+                    message._last_window_end = "last_window_end";
+                    continue;
+                }
+            case 10: {
+                    if (wireType !== 0)
+                        break;
+                    message.update_time = reader.int64();
+                    message._update_time = "update_time";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_ActivityState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_ActivityState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_ActivityState & PB_ActivityState.$Shape} PB_ActivityState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_ActivityState.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_ActivityState message.
+     * @function verify
+     * @memberof PB_ActivityState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_ActivityState.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id")) {
+            properties._server_id = 1;
+            if (!$util.isInteger(message.server_id))
+                return "server_id: integer expected";
+        }
+        if (message.config_id != null && $Object.hasOwnProperty.call(message, "config_id")) {
+            properties._config_id = 1;
+            if (!$util.isInteger(message.config_id))
+                return "config_id: integer expected";
+        }
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id")) {
+            properties._activity_id = 1;
+            if (!$util.isInteger(message.activity_id))
+                return "activity_id: integer expected";
+        }
+        if (message.state != null && $Object.hasOwnProperty.call(message, "state")) {
+            properties._state = 1;
+            if (!$util.isInteger(message.state))
+                return "state: integer expected";
+        }
+        if (message.state_begin_time != null && $Object.hasOwnProperty.call(message, "state_begin_time")) {
+            properties._state_begin_time = 1;
+            if (!$util.isInteger(message.state_begin_time) && !(message.state_begin_time && $util.isInteger(message.state_begin_time.low) && $util.isInteger(message.state_begin_time.high)))
+                return "state_begin_time: integer|Long expected";
+        }
+        if (message.start_time != null && $Object.hasOwnProperty.call(message, "start_time")) {
+            properties._start_time = 1;
+            if (!$util.isInteger(message.start_time) && !(message.start_time && $util.isInteger(message.start_time.low) && $util.isInteger(message.start_time.high)))
+                return "start_time: integer|Long expected";
+        }
+        if (message.end_time != null && $Object.hasOwnProperty.call(message, "end_time")) {
+            properties._end_time = 1;
+            if (!$util.isInteger(message.end_time) && !(message.end_time && $util.isInteger(message.end_time.low) && $util.isInteger(message.end_time.high)))
+                return "end_time: integer|Long expected";
+        }
+        if (message.round != null && $Object.hasOwnProperty.call(message, "round")) {
+            properties._round = 1;
+            if (!$util.isInteger(message.round))
+                return "round: integer expected";
+        }
+        if (message.last_window_end != null && $Object.hasOwnProperty.call(message, "last_window_end")) {
+            properties._last_window_end = 1;
+            if (!$util.isInteger(message.last_window_end) && !(message.last_window_end && $util.isInteger(message.last_window_end.low) && $util.isInteger(message.last_window_end.high)))
+                return "last_window_end: integer|Long expected";
+        }
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time")) {
+            properties._update_time = 1;
+            if (!$util.isInteger(message.update_time) && !(message.update_time && $util.isInteger(message.update_time.low) && $util.isInteger(message.update_time.high)))
+                return "update_time: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_ActivityState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_ActivityState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_ActivityState} PB_ActivityState
+     */
+    PB_ActivityState.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_ActivityState)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_ActivityState: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_ActivityState();
+        if (object.server_id != null)
+            message.server_id = object.server_id | 0;
+        if (object.config_id != null)
+            message.config_id = object.config_id >>> 0;
+        if (object.activity_id != null)
+            message.activity_id = object.activity_id >>> 0;
+        if (object.state != null)
+            message.state = object.state | 0;
+        if (object.state_begin_time != null)
+            if ($util.Long)
+                message.state_begin_time = $util.Long.fromValue(object.state_begin_time, false);
+            else if (typeof object.state_begin_time === "string")
+                message.state_begin_time = $parseInt(object.state_begin_time, 10);
+            else if (typeof object.state_begin_time === "number")
+                message.state_begin_time = object.state_begin_time;
+            else if (typeof object.state_begin_time === "object")
+                message.state_begin_time = new $util.LongBits(object.state_begin_time.low >>> 0, object.state_begin_time.high >>> 0).toNumber();
+        if (object.start_time != null)
+            if ($util.Long)
+                message.start_time = $util.Long.fromValue(object.start_time, false);
+            else if (typeof object.start_time === "string")
+                message.start_time = $parseInt(object.start_time, 10);
+            else if (typeof object.start_time === "number")
+                message.start_time = object.start_time;
+            else if (typeof object.start_time === "object")
+                message.start_time = new $util.LongBits(object.start_time.low >>> 0, object.start_time.high >>> 0).toNumber();
+        if (object.end_time != null)
+            if ($util.Long)
+                message.end_time = $util.Long.fromValue(object.end_time, false);
+            else if (typeof object.end_time === "string")
+                message.end_time = $parseInt(object.end_time, 10);
+            else if (typeof object.end_time === "number")
+                message.end_time = object.end_time;
+            else if (typeof object.end_time === "object")
+                message.end_time = new $util.LongBits(object.end_time.low >>> 0, object.end_time.high >>> 0).toNumber();
+        if (object.round != null)
+            message.round = object.round | 0;
+        if (object.last_window_end != null)
+            if ($util.Long)
+                message.last_window_end = $util.Long.fromValue(object.last_window_end, false);
+            else if (typeof object.last_window_end === "string")
+                message.last_window_end = $parseInt(object.last_window_end, 10);
+            else if (typeof object.last_window_end === "number")
+                message.last_window_end = object.last_window_end;
+            else if (typeof object.last_window_end === "object")
+                message.last_window_end = new $util.LongBits(object.last_window_end.low >>> 0, object.last_window_end.high >>> 0).toNumber();
+        if (object.update_time != null)
+            if ($util.Long)
+                message.update_time = $util.Long.fromValue(object.update_time, false);
+            else if (typeof object.update_time === "string")
+                message.update_time = $parseInt(object.update_time, 10);
+            else if (typeof object.update_time === "number")
+                message.update_time = object.update_time;
+            else if (typeof object.update_time === "object")
+                message.update_time = new $util.LongBits(object.update_time.low >>> 0, object.update_time.high >>> 0).toNumber();
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_ActivityState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_ActivityState
+     * @static
+     * @param {PB_ActivityState} message PB_ActivityState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_ActivityState.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            object.server_id = message.server_id;
+        if (message.config_id != null && $Object.hasOwnProperty.call(message, "config_id"))
+            object.config_id = message.config_id;
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            object.activity_id = message.activity_id;
+        if (message.state != null && $Object.hasOwnProperty.call(message, "state"))
+            object.state = message.state;
+        if (message.state_begin_time != null && $Object.hasOwnProperty.call(message, "state_begin_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.state_begin_time = typeof message.state_begin_time === "number" ? $BigInt(message.state_begin_time) : $util.Long.fromBits(message.state_begin_time.low >>> 0, message.state_begin_time.high >>> 0, false).toBigInt();
+            else if (typeof message.state_begin_time === "number")
+                object.state_begin_time = options.longs === $String ? $String(message.state_begin_time) : message.state_begin_time;
+            else
+                object.state_begin_time = options.longs === $String ? $util.Long.prototype.toString.call(message.state_begin_time) : options.longs === $Number ? new $util.LongBits(message.state_begin_time.low >>> 0, message.state_begin_time.high >>> 0).toNumber() : message.state_begin_time;
+        if (message.start_time != null && $Object.hasOwnProperty.call(message, "start_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.start_time = typeof message.start_time === "number" ? $BigInt(message.start_time) : $util.Long.fromBits(message.start_time.low >>> 0, message.start_time.high >>> 0, false).toBigInt();
+            else if (typeof message.start_time === "number")
+                object.start_time = options.longs === $String ? $String(message.start_time) : message.start_time;
+            else
+                object.start_time = options.longs === $String ? $util.Long.prototype.toString.call(message.start_time) : options.longs === $Number ? new $util.LongBits(message.start_time.low >>> 0, message.start_time.high >>> 0).toNumber() : message.start_time;
+        if (message.end_time != null && $Object.hasOwnProperty.call(message, "end_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.end_time = typeof message.end_time === "number" ? $BigInt(message.end_time) : $util.Long.fromBits(message.end_time.low >>> 0, message.end_time.high >>> 0, false).toBigInt();
+            else if (typeof message.end_time === "number")
+                object.end_time = options.longs === $String ? $String(message.end_time) : message.end_time;
+            else
+                object.end_time = options.longs === $String ? $util.Long.prototype.toString.call(message.end_time) : options.longs === $Number ? new $util.LongBits(message.end_time.low >>> 0, message.end_time.high >>> 0).toNumber() : message.end_time;
+        if (message.round != null && $Object.hasOwnProperty.call(message, "round"))
+            object.round = message.round;
+        if (message.last_window_end != null && $Object.hasOwnProperty.call(message, "last_window_end"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.last_window_end = typeof message.last_window_end === "number" ? $BigInt(message.last_window_end) : $util.Long.fromBits(message.last_window_end.low >>> 0, message.last_window_end.high >>> 0, false).toBigInt();
+            else if (typeof message.last_window_end === "number")
+                object.last_window_end = options.longs === $String ? $String(message.last_window_end) : message.last_window_end;
+            else
+                object.last_window_end = options.longs === $String ? $util.Long.prototype.toString.call(message.last_window_end) : options.longs === $Number ? new $util.LongBits(message.last_window_end.low >>> 0, message.last_window_end.high >>> 0).toNumber() : message.last_window_end;
+        if (message.update_time != null && $Object.hasOwnProperty.call(message, "update_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.update_time = typeof message.update_time === "number" ? $BigInt(message.update_time) : $util.Long.fromBits(message.update_time.low >>> 0, message.update_time.high >>> 0, false).toBigInt();
+            else if (typeof message.update_time === "number")
+                object.update_time = options.longs === $String ? $String(message.update_time) : message.update_time;
+            else
+                object.update_time = options.longs === $String ? $util.Long.prototype.toString.call(message.update_time) : options.longs === $Number ? new $util.LongBits(message.update_time.low >>> 0, message.update_time.high >>> 0).toNumber() : message.update_time;
+        return object;
+    };
+
+    /**
+     * Converts this PB_ActivityState to JSON.
+     * @function toJSON
+     * @memberof PB_ActivityState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_ActivityState.prototype.toJSON = function() {
+        return PB_ActivityState.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_ActivityState
+     * @function getTypeUrl
+     * @memberof PB_ActivityState
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_ActivityState.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_ActivityState";
+    };
+
+    return PB_ActivityState;
 })();
 
 export const PB_ServerGlobalData = $root.PB_ServerGlobalData = (() => {
@@ -4678,7 +5600,7 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
     /**
      * Properties of a PB_ChatData.
      * @typedef {Object} PB_ChatData.$Properties
-     * @property {number|null} [id] PB_ChatData id
+     * @property {number|null} [chat_id] PB_ChatData chat_id
      * @property {string|null} [chat_msg] PB_ChatData chat_msg
      * @property {string|null} [user_name] PB_ChatData user_name
      * @property {string|null} [name] PB_ChatData name
@@ -4716,12 +5638,12 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
     };
 
     /**
-     * PB_ChatData id.
-     * @member {number|null|undefined} id
+     * PB_ChatData chat_id.
+     * @member {number|null|undefined} chat_id
      * @memberof PB_ChatData
      * @instance
      */
-    PB_ChatData.prototype.id = null;
+    PB_ChatData.prototype.chat_id = null;
 
     /**
      * PB_ChatData chat_msg.
@@ -4767,8 +5689,8 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_ChatData.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(PB_ChatData.prototype, "_chat_id", {
+        get: $util.oneOfGetter($oneOfFields = ["chat_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -4834,8 +5756,8 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.id);
+        if (message.chat_id != null && $Object.hasOwnProperty.call(message, "chat_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.chat_id);
         if (message.chat_msg != null && $Object.hasOwnProperty.call(message, "chat_msg"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.chat_msg);
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
@@ -4843,7 +5765,7 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 4, wireType 2 =*/34).string(message.name);
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.uid);
+            writer.uint32(/* id 5, wireType 0 =*/40).int64(message.uid);
         if (message.time != null && $Object.hasOwnProperty.call(message, "time"))
             writer.uint32(/* id 6, wireType 0 =*/48).uint64(message.time);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
@@ -4896,8 +5818,8 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.uint64();
-                    message._id = "id";
+                    message.chat_id = reader.uint64();
+                    message._chat_id = "chat_id";
                     continue;
                 }
             case 2: {
@@ -4924,7 +5846,7 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
             case 5: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
@@ -4979,10 +5901,10 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
-                return "id: integer|Long expected";
+        if (message.chat_id != null && $Object.hasOwnProperty.call(message, "chat_id")) {
+            properties._chat_id = 1;
+            if (!$util.isInteger(message.chat_id) && !(message.chat_id && $util.isInteger(message.chat_id.low) && $util.isInteger(message.chat_id.high)))
+                return "chat_id: integer|Long expected";
         }
         if (message.chat_msg != null && $Object.hasOwnProperty.call(message, "chat_msg")) {
             properties._chat_msg = 1;
@@ -5001,8 +5923,8 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
         }
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.time != null && $Object.hasOwnProperty.call(message, "time")) {
             properties._time = 1;
@@ -5030,15 +5952,15 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.PB_ChatData();
-        if (object.id != null)
+        if (object.chat_id != null)
             if ($util.Long)
-                message.id = $util.Long.fromValue(object.id, true);
-            else if (typeof object.id === "string")
-                message.id = $parseInt(object.id, 10);
-            else if (typeof object.id === "number")
-                message.id = object.id;
-            else if (typeof object.id === "object")
-                message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+                message.chat_id = $util.Long.fromValue(object.chat_id, true);
+            else if (typeof object.chat_id === "string")
+                message.chat_id = $parseInt(object.chat_id, 10);
+            else if (typeof object.chat_id === "number")
+                message.chat_id = object.chat_id;
+            else if (typeof object.chat_id === "object")
+                message.chat_id = new $util.LongBits(object.chat_id.low >>> 0, object.chat_id.high >>> 0).toNumber(true);
         if (object.chat_msg != null)
             message.chat_msg = $String(object.chat_msg);
         if (object.user_name != null)
@@ -5046,7 +5968,14 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
         if (object.name != null)
             message.name = $String(object.name);
         if (object.uid != null)
-            message.uid = object.uid | 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.time != null)
             if ($util.Long)
                 message.time = $util.Long.fromValue(object.time, true);
@@ -5076,13 +6005,13 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+        if (message.chat_id != null && $Object.hasOwnProperty.call(message, "chat_id"))
             if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.id = typeof message.id === "number" ? $BigInt(message.id) : $util.Long.fromBits(message.id.low >>> 0, message.id.high >>> 0, true).toBigInt();
-            else if (typeof message.id === "number")
-                object.id = options.longs === $String ? $String(message.id) : message.id;
+                object.chat_id = typeof message.chat_id === "number" ? $BigInt(message.chat_id) : $util.Long.fromBits(message.chat_id.low >>> 0, message.chat_id.high >>> 0, true).toBigInt();
+            else if (typeof message.chat_id === "number")
+                object.chat_id = options.longs === $String ? $String(message.chat_id) : message.chat_id;
             else
-                object.id = options.longs === $String ? $util.Long.prototype.toString.call(message.id) : options.longs === $Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+                object.chat_id = options.longs === $String ? $util.Long.prototype.toString.call(message.chat_id) : options.longs === $Number ? new $util.LongBits(message.chat_id.low >>> 0, message.chat_id.high >>> 0).toNumber(true) : message.chat_id;
         if (message.chat_msg != null && $Object.hasOwnProperty.call(message, "chat_msg"))
             object.chat_msg = message.chat_msg;
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
@@ -5090,7 +6019,12 @@ export const PB_ChatData = $root.PB_ChatData = (() => {
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.time != null && $Object.hasOwnProperty.call(message, "time"))
             if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
                 object.time = typeof message.time === "number" ? $BigInt(message.time) : $util.Long.fromBits(message.time.low >>> 0, message.time.high >>> 0, true).toBigInt();
@@ -5134,7 +6068,8 @@ export const PB_Item = $root.PB_Item = (() => {
     /**
      * Properties of a PB_Item.
      * @typedef {Object} PB_Item.$Properties
-     * @property {number|null} [id] PB_Item id
+     * @property {number|null} [slot_index] PB_Item slot_index
+     * @property {number|null} [item_id] PB_Item item_id
      * @property {number|null} [num] PB_Item num
      * @property {Object.<string,number>|null} [stat_tags] PB_Item stat_tags
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
@@ -5170,12 +6105,20 @@ export const PB_Item = $root.PB_Item = (() => {
     };
 
     /**
-     * PB_Item id.
-     * @member {number|null|undefined} id
+     * PB_Item slot_index.
+     * @member {number|null|undefined} slot_index
      * @memberof PB_Item
      * @instance
      */
-    PB_Item.prototype.id = null;
+    PB_Item.prototype.slot_index = null;
+
+    /**
+     * PB_Item item_id.
+     * @member {number|null|undefined} item_id
+     * @memberof PB_Item
+     * @instance
+     */
+    PB_Item.prototype.item_id = null;
 
     /**
      * PB_Item num.
@@ -5197,8 +6140,14 @@ export const PB_Item = $root.PB_Item = (() => {
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_Item.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(PB_Item.prototype, "_slot_index", {
+        get: $util.oneOfGetter($oneOfFields = ["slot_index"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_Item.prototype, "_item_id", {
+        get: $util.oneOfGetter($oneOfFields = ["item_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -5240,13 +6189,15 @@ export const PB_Item = $root.PB_Item = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+        if (message.slot_index != null && $Object.hasOwnProperty.call(message, "slot_index"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.slot_index);
+        if (message.item_id != null && $Object.hasOwnProperty.call(message, "item_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.item_id);
         if (message.num != null && $Object.hasOwnProperty.call(message, "num"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.num);
+            writer.uint32(/* id 3, wireType 0 =*/24).int64(message.num);
         if (message.stat_tags != null && $Object.hasOwnProperty.call(message, "stat_tags"))
             for (let keys = $Object.keys(message.stat_tags), i = 0; i < keys.length; ++i)
-                writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.stat_tags[keys[i]]).ldelim();
+                writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.stat_tags[keys[i]]).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -5297,18 +6248,25 @@ export const PB_Item = $root.PB_Item = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.slot_index = reader.int32();
+                    message._slot_index = "slot_index";
                     continue;
                 }
             case 2: {
                     if (wireType !== 0)
                         break;
-                    message.num = reader.int32();
-                    message._num = "num";
+                    message.item_id = reader.int32();
+                    message._item_id = "item_id";
                     continue;
                 }
             case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.num = reader.int64();
+                    message._num = "num";
+                    continue;
+                }
+            case 4: {
                     if (wireType !== 2)
                         break;
                     if (message.stat_tags === $util.emptyObject)
@@ -5382,15 +6340,20 @@ export const PB_Item = $root.PB_Item = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.slot_index != null && $Object.hasOwnProperty.call(message, "slot_index")) {
+            properties._slot_index = 1;
+            if (!$util.isInteger(message.slot_index))
+                return "slot_index: integer expected";
+        }
+        if (message.item_id != null && $Object.hasOwnProperty.call(message, "item_id")) {
+            properties._item_id = 1;
+            if (!$util.isInteger(message.item_id))
+                return "item_id: integer expected";
         }
         if (message.num != null && $Object.hasOwnProperty.call(message, "num")) {
             properties._num = 1;
-            if (!$util.isInteger(message.num))
-                return "num: integer expected";
+            if (!$util.isInteger(message.num) && !(message.num && $util.isInteger(message.num.low) && $util.isInteger(message.num.high)))
+                return "num: integer|Long expected";
         }
         if (message.stat_tags != null && $Object.hasOwnProperty.call(message, "stat_tags")) {
             if (!$util.isObject(message.stat_tags))
@@ -5421,10 +6384,19 @@ export const PB_Item = $root.PB_Item = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.PB_Item();
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.slot_index != null)
+            message.slot_index = object.slot_index | 0;
+        if (object.item_id != null)
+            message.item_id = object.item_id | 0;
         if (object.num != null)
-            message.num = object.num | 0;
+            if ($util.Long)
+                message.num = $util.Long.fromValue(object.num, false);
+            else if (typeof object.num === "string")
+                message.num = $parseInt(object.num, 10);
+            else if (typeof object.num === "number")
+                message.num = object.num;
+            else if (typeof object.num === "object")
+                message.num = new $util.LongBits(object.num.low >>> 0, object.num.high >>> 0).toNumber();
         if (object.stat_tags) {
             if (!$util.isObject(object.stat_tags))
                 throw $TypeError(".PB_Item.stat_tags: object expected");
@@ -5457,10 +6429,17 @@ export const PB_Item = $root.PB_Item = (() => {
         let object = {};
         if (options.objects || options.defaults)
             object.stat_tags = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.slot_index != null && $Object.hasOwnProperty.call(message, "slot_index"))
+            object.slot_index = message.slot_index;
+        if (message.item_id != null && $Object.hasOwnProperty.call(message, "item_id"))
+            object.item_id = message.item_id;
         if (message.num != null && $Object.hasOwnProperty.call(message, "num"))
-            object.num = message.num;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.num = typeof message.num === "number" ? $BigInt(message.num) : $util.Long.fromBits(message.num.low >>> 0, message.num.high >>> 0, false).toBigInt();
+            else if (typeof message.num === "number")
+                object.num = options.longs === $String ? $String(message.num) : message.num;
+            else
+                object.num = options.longs === $String ? $util.Long.prototype.toString.call(message.num) : options.longs === $Number ? new $util.LongBits(message.num.low >>> 0, message.num.high >>> 0).toNumber() : message.num;
         let keys2;
         if (message.stat_tags && (keys2 = $Object.keys(message.stat_tags)).length) {
             object.stat_tags = {};
@@ -5501,371 +6480,37 @@ export const PB_Item = $root.PB_Item = (() => {
     return PB_Item;
 })();
 
-export const PB_InventorySlot = $root.PB_InventorySlot = (() => {
+export const PB_KnapsackData = $root.PB_KnapsackData = (() => {
 
     /**
-     * Properties of a PB_InventorySlot.
-     * @typedef {Object} PB_InventorySlot.$Properties
-     * @property {number|null} [slot_index] PB_InventorySlot slot_index
-     * @property {number|null} [id] PB_InventorySlot id
-     * @property {number|null} [num] PB_InventorySlot num
+     * Properties of a PB_KnapsackData.
+     * @typedef {Object} PB_KnapsackData.$Properties
+     * @property {Array.<PB_Item.$Properties>|null} [slots] PB_KnapsackData slots
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
     /**
-     * Properties of a PB_InventorySlot.
-     * @exports IPB_InventorySlot
-     * @interface IPB_InventorySlot
-     * @augments PB_InventorySlot.$Properties
-     * @deprecated Use PB_InventorySlot.$Properties instead.
+     * Properties of a PB_KnapsackData.
+     * @exports IPB_KnapsackData
+     * @interface IPB_KnapsackData
+     * @augments PB_KnapsackData.$Properties
+     * @deprecated Use PB_KnapsackData.$Properties instead.
      */
 
     /**
-     * Shape of a PB_InventorySlot.
-     * @typedef {PB_InventorySlot.$Properties} PB_InventorySlot.$Shape
+     * Shape of a PB_KnapsackData.
+     * @typedef {PB_KnapsackData.$Properties} PB_KnapsackData.$Shape
      */
 
     /**
-     * Constructs a new PB_InventorySlot.
-     * @exports PB_InventorySlot
-     * @classdesc Represents a PB_InventorySlot.
+     * Constructs a new PB_KnapsackData.
+     * @exports PB_KnapsackData
+     * @classdesc Represents a PB_KnapsackData.
      * @constructor
-     * @param {PB_InventorySlot.$Properties=} [properties] Properties to set
+     * @param {PB_KnapsackData.$Properties=} [properties] Properties to set
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
-    const PB_InventorySlot = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * PB_InventorySlot slot_index.
-     * @member {number|null|undefined} slot_index
-     * @memberof PB_InventorySlot
-     * @instance
-     */
-    PB_InventorySlot.prototype.slot_index = null;
-
-    /**
-     * PB_InventorySlot id.
-     * @member {number|null|undefined} id
-     * @memberof PB_InventorySlot
-     * @instance
-     */
-    PB_InventorySlot.prototype.id = null;
-
-    /**
-     * PB_InventorySlot num.
-     * @member {number|null|undefined} num
-     * @memberof PB_InventorySlot
-     * @instance
-     */
-    PB_InventorySlot.prototype.num = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_InventorySlot.prototype, "_slot_index", {
-        get: $util.oneOfGetter($oneOfFields = ["slot_index"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_InventorySlot.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_InventorySlot.prototype, "_num", {
-        get: $util.oneOfGetter($oneOfFields = ["num"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new PB_InventorySlot instance using the specified properties.
-     * @function create
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {PB_InventorySlot.$Properties=} [properties] Properties to set
-     * @returns {PB_InventorySlot} PB_InventorySlot instance
-     * @type {{
-     *   (properties: PB_InventorySlot.$Shape): PB_InventorySlot & PB_InventorySlot.$Shape;
-     *   (properties?: PB_InventorySlot.$Properties): PB_InventorySlot;
-     * }}
-     */
-    PB_InventorySlot.create = function(properties) {
-        return new PB_InventorySlot(properties);
-    };
-
-    /**
-     * Encodes the specified PB_InventorySlot message. Does not implicitly {@link PB_InventorySlot.verify|verify} messages.
-     * @function encode
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {PB_InventorySlot.$Properties} message PB_InventorySlot message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_InventorySlot.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.slot_index != null && $Object.hasOwnProperty.call(message, "slot_index"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.slot_index);
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.id);
-        if (message.num != null && $Object.hasOwnProperty.call(message, "num"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.num);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified PB_InventorySlot message, length delimited. Does not implicitly {@link PB_InventorySlot.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {PB_InventorySlot.$Properties} message PB_InventorySlot message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    PB_InventorySlot.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a PB_InventorySlot message from the specified reader or buffer.
-     * @function decode
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {PB_InventorySlot & PB_InventorySlot.$Shape} PB_InventorySlot
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_InventorySlot.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_InventorySlot();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.slot_index = reader.int32();
-                    message._slot_index = "slot_index";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 0)
-                        break;
-                    message.id = reader.int32();
-                    message._id = "id";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 0)
-                        break;
-                    message.num = reader.int32();
-                    message._num = "num";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a PB_InventorySlot message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_InventorySlot & PB_InventorySlot.$Shape} PB_InventorySlot
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    PB_InventorySlot.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a PB_InventorySlot message.
-     * @function verify
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    PB_InventorySlot.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.slot_index != null && $Object.hasOwnProperty.call(message, "slot_index")) {
-            properties._slot_index = 1;
-            if (!$util.isInteger(message.slot_index))
-                return "slot_index: integer expected";
-        }
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
-        }
-        if (message.num != null && $Object.hasOwnProperty.call(message, "num")) {
-            properties._num = 1;
-            if (!$util.isInteger(message.num))
-                return "num: integer expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a PB_InventorySlot message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {PB_InventorySlot} PB_InventorySlot
-     */
-    PB_InventorySlot.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_InventorySlot)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".PB_InventorySlot: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.PB_InventorySlot();
-        if (object.slot_index != null)
-            message.slot_index = object.slot_index | 0;
-        if (object.id != null)
-            message.id = object.id | 0;
-        if (object.num != null)
-            message.num = object.num | 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a PB_InventorySlot message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {PB_InventorySlot} message PB_InventorySlot
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    PB_InventorySlot.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.slot_index != null && $Object.hasOwnProperty.call(message, "slot_index"))
-            object.slot_index = message.slot_index;
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
-        if (message.num != null && $Object.hasOwnProperty.call(message, "num"))
-            object.num = message.num;
-        return object;
-    };
-
-    /**
-     * Converts this PB_InventorySlot to JSON.
-     * @function toJSON
-     * @memberof PB_InventorySlot
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    PB_InventorySlot.prototype.toJSON = function() {
-        return PB_InventorySlot.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for PB_InventorySlot
-     * @function getTypeUrl
-     * @memberof PB_InventorySlot
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    PB_InventorySlot.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/PB_InventorySlot";
-    };
-
-    return PB_InventorySlot;
-})();
-
-export const PB_InventoryData = $root.PB_InventoryData = (() => {
-
-    /**
-     * Properties of a PB_InventoryData.
-     * @typedef {Object} PB_InventoryData.$Properties
-     * @property {number|null} [max_slots] PB_InventoryData max_slots
-     * @property {Array.<PB_InventorySlot.$Properties>|null} [slots] PB_InventoryData slots
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a PB_InventoryData.
-     * @exports IPB_InventoryData
-     * @interface IPB_InventoryData
-     * @augments PB_InventoryData.$Properties
-     * @deprecated Use PB_InventoryData.$Properties instead.
-     */
-
-    /**
-     * Shape of a PB_InventoryData.
-     * @typedef {PB_InventoryData.$Properties} PB_InventoryData.$Shape
-     */
-
-    /**
-     * Constructs a new PB_InventoryData.
-     * @exports PB_InventoryData
-     * @classdesc Represents a PB_InventoryData.
-     * @constructor
-     * @param {PB_InventoryData.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const PB_InventoryData = function (properties) {
+    const PB_KnapsackData = function (properties) {
         this.slots = [];
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -5874,67 +6519,48 @@ export const PB_InventoryData = $root.PB_InventoryData = (() => {
     };
 
     /**
-     * PB_InventoryData max_slots.
-     * @member {number|null|undefined} max_slots
-     * @memberof PB_InventoryData
+     * PB_KnapsackData slots.
+     * @member {Array.<PB_Item.$Properties>} slots
+     * @memberof PB_KnapsackData
      * @instance
      */
-    PB_InventoryData.prototype.max_slots = null;
+    PB_KnapsackData.prototype.slots = $util.emptyArray;
 
     /**
-     * PB_InventoryData slots.
-     * @member {Array.<PB_InventorySlot.$Properties>} slots
-     * @memberof PB_InventoryData
-     * @instance
-     */
-    PB_InventoryData.prototype.slots = $util.emptyArray;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_InventoryData.prototype, "_max_slots", {
-        get: $util.oneOfGetter($oneOfFields = ["max_slots"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new PB_InventoryData instance using the specified properties.
+     * Creates a new PB_KnapsackData instance using the specified properties.
      * @function create
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
-     * @param {PB_InventoryData.$Properties=} [properties] Properties to set
-     * @returns {PB_InventoryData} PB_InventoryData instance
+     * @param {PB_KnapsackData.$Properties=} [properties] Properties to set
+     * @returns {PB_KnapsackData} PB_KnapsackData instance
      * @type {{
-     *   (properties: PB_InventoryData.$Shape): PB_InventoryData & PB_InventoryData.$Shape;
-     *   (properties?: PB_InventoryData.$Properties): PB_InventoryData;
+     *   (properties: PB_KnapsackData.$Shape): PB_KnapsackData & PB_KnapsackData.$Shape;
+     *   (properties?: PB_KnapsackData.$Properties): PB_KnapsackData;
      * }}
      */
-    PB_InventoryData.create = function(properties) {
-        return new PB_InventoryData(properties);
+    PB_KnapsackData.create = function(properties) {
+        return new PB_KnapsackData(properties);
     };
 
     /**
-     * Encodes the specified PB_InventoryData message. Does not implicitly {@link PB_InventoryData.verify|verify} messages.
+     * Encodes the specified PB_KnapsackData message. Does not implicitly {@link PB_KnapsackData.verify|verify} messages.
      * @function encode
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
-     * @param {PB_InventoryData.$Properties} message PB_InventoryData message or plain object to encode
+     * @param {PB_KnapsackData.$Properties} message PB_KnapsackData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_InventoryData.encode = function (message, writer, _depth) {
+    PB_KnapsackData.encode = function (message, writer, _depth) {
         if (!writer)
             writer = $Writer.create();
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.max_slots != null && $Object.hasOwnProperty.call(message, "max_slots"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.max_slots);
         if (message.slots != null && message.slots.length)
             for (let i = 0; i < message.slots.length; ++i)
-                $root.PB_InventorySlot.encode(message.slots[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+                $root.PB_Item.encode(message.slots[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -5942,37 +6568,37 @@ export const PB_InventoryData = $root.PB_InventoryData = (() => {
     };
 
     /**
-     * Encodes the specified PB_InventoryData message, length delimited. Does not implicitly {@link PB_InventoryData.verify|verify} messages.
+     * Encodes the specified PB_KnapsackData message, length delimited. Does not implicitly {@link PB_KnapsackData.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
-     * @param {PB_InventoryData.$Properties} message PB_InventoryData message or plain object to encode
+     * @param {PB_KnapsackData.$Properties} message PB_KnapsackData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_InventoryData.encodeDelimited = function(message, writer) {
+    PB_KnapsackData.encodeDelimited = function(message, writer) {
         return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
     };
 
     /**
-     * Decodes a PB_InventoryData message from the specified reader or buffer.
+     * Decodes a PB_KnapsackData message from the specified reader or buffer.
      * @function decode
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {PB_InventoryData & PB_InventoryData.$Shape} PB_InventoryData
+     * @returns {PB_KnapsackData & PB_KnapsackData.$Shape} PB_KnapsackData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_InventoryData.decode = function (reader, length, _end, _depth, _target) {
+    PB_KnapsackData.decode = function (reader, length, _end, _depth, _target) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_InventoryData();
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_KnapsackData();
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -5983,18 +6609,11 @@ export const PB_InventoryData = $root.PB_InventoryData = (() => {
             let wireType = tag & 7;
             switch (tag >>>= 3) {
             case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.max_slots = reader.int32();
-                    message._max_slots = "max_slots";
-                    continue;
-                }
-            case 2: {
                     if (wireType !== 2)
                         break;
                     if (!(message.slots && message.slots.length))
                         message.slots = [];
-                    message.slots.push($root.PB_InventorySlot.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    message.slots.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
                     continue;
                 }
             }
@@ -6010,47 +6629,41 @@ export const PB_InventoryData = $root.PB_InventoryData = (() => {
     };
 
     /**
-     * Decodes a PB_InventoryData message from the specified reader or buffer, length delimited.
+     * Decodes a PB_KnapsackData message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_InventoryData & PB_InventoryData.$Shape} PB_InventoryData
+     * @returns {PB_KnapsackData & PB_KnapsackData.$Shape} PB_KnapsackData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_InventoryData.decodeDelimited = function(reader) {
+    PB_KnapsackData.decodeDelimited = function(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a PB_InventoryData message.
+     * Verifies a PB_KnapsackData message.
      * @function verify
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    PB_InventoryData.verify = function (message, _depth) {
+    PB_KnapsackData.verify = function (message, _depth) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
-        let properties = {};
-        if (message.max_slots != null && $Object.hasOwnProperty.call(message, "max_slots")) {
-            properties._max_slots = 1;
-            if (!$util.isInteger(message.max_slots))
-                return "max_slots: integer expected";
-        }
         if (message.slots != null && $Object.hasOwnProperty.call(message, "slots")) {
             if (!$Array.isArray(message.slots))
                 return "slots: array expected";
             for (let i = 0; i < message.slots.length; ++i) {
-                let error = $root.PB_InventorySlot.verify(message.slots[i], _depth + 1);
+                let error = $root.PB_Item.verify(message.slots[i], _depth + 1);
                 if (error)
                     return "slots." + error;
             }
@@ -6059,48 +6672,46 @@ export const PB_InventoryData = $root.PB_InventoryData = (() => {
     };
 
     /**
-     * Creates a PB_InventoryData message from a plain object. Also converts values to their respective internal types.
+     * Creates a PB_KnapsackData message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {PB_InventoryData} PB_InventoryData
+     * @returns {PB_KnapsackData} PB_KnapsackData
      */
-    PB_InventoryData.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_InventoryData)
+    PB_KnapsackData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_KnapsackData)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".PB_InventoryData: object expected");
+            throw $TypeError(".PB_KnapsackData: object expected");
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        let message = new $root.PB_InventoryData();
-        if (object.max_slots != null)
-            message.max_slots = object.max_slots | 0;
+        let message = new $root.PB_KnapsackData();
         if (object.slots) {
             if (!$Array.isArray(object.slots))
-                throw $TypeError(".PB_InventoryData.slots: array expected");
+                throw $TypeError(".PB_KnapsackData.slots: array expected");
             message.slots = $Array(object.slots.length);
             for (let i = 0; i < object.slots.length; ++i) {
                 if (!$util.isObject(object.slots[i]))
-                    throw $TypeError(".PB_InventoryData.slots: object expected");
-                message.slots[i] = $root.PB_InventorySlot.fromObject(object.slots[i], _depth + 1);
+                    throw $TypeError(".PB_KnapsackData.slots: object expected");
+                message.slots[i] = $root.PB_Item.fromObject(object.slots[i], _depth + 1);
             }
         }
         return message;
     };
 
     /**
-     * Creates a plain object from a PB_InventoryData message. Also converts values to other types if specified.
+     * Creates a plain object from a PB_KnapsackData message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
-     * @param {PB_InventoryData} message PB_InventoryData
+     * @param {PB_KnapsackData} message PB_KnapsackData
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    PB_InventoryData.toObject = function (message, options, _depth) {
+    PB_KnapsackData.toObject = function (message, options, _depth) {
         if (!options)
             options = {};
         if (_depth === $undefined)
@@ -6110,42 +6721,40 @@ export const PB_InventoryData = $root.PB_InventoryData = (() => {
         let object = {};
         if (options.arrays || options.defaults)
             object.slots = [];
-        if (message.max_slots != null && $Object.hasOwnProperty.call(message, "max_slots"))
-            object.max_slots = message.max_slots;
         if (message.slots && message.slots.length) {
             object.slots = $Array(message.slots.length);
             for (let j = 0; j < message.slots.length; ++j)
-                object.slots[j] = $root.PB_InventorySlot.toObject(message.slots[j], options, _depth + 1);
+                object.slots[j] = $root.PB_Item.toObject(message.slots[j], options, _depth + 1);
         }
         return object;
     };
 
     /**
-     * Converts this PB_InventoryData to JSON.
+     * Converts this PB_KnapsackData to JSON.
      * @function toJSON
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    PB_InventoryData.prototype.toJSON = function() {
-        return PB_InventoryData.toObject(this, $protobuf.util.toJSONOptions);
+    PB_KnapsackData.prototype.toJSON = function() {
+        return PB_KnapsackData.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for PB_InventoryData
+     * Gets the type url for PB_KnapsackData
      * @function getTypeUrl
-     * @memberof PB_InventoryData
+     * @memberof PB_KnapsackData
      * @static
      * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns {string} The type url
      */
-    PB_InventoryData.getTypeUrl = function(prefix) {
+    PB_KnapsackData.getTypeUrl = function(prefix) {
         if (prefix === $undefined)
             prefix = "type.googleapis.com";
-        return prefix + "/PB_InventoryData";
+        return prefix + "/PB_KnapsackData";
     };
 
-    return PB_InventoryData;
+    return PB_KnapsackData;
 })();
 
 export const PB_AttrPair = $root.PB_AttrPair = (() => {
@@ -7002,38 +7611,38 @@ export const PB_AbilitiesData = $root.PB_AbilitiesData = (() => {
     return PB_AbilitiesData;
 })();
 
-export const PB_QuestObjectiveData = $root.PB_QuestObjectiveData = (() => {
+export const PB_TaskObjectiveData = $root.PB_TaskObjectiveData = (() => {
 
     /**
-     * Properties of a PB_QuestObjectiveData.
-     * @typedef {Object} PB_QuestObjectiveData.$Properties
-     * @property {number|null} [current_count] PB_QuestObjectiveData current_count
-     * @property {boolean|null} [completed] PB_QuestObjectiveData completed
+     * Properties of a PB_TaskObjectiveData.
+     * @typedef {Object} PB_TaskObjectiveData.$Properties
+     * @property {number|null} [current_count] PB_TaskObjectiveData current_count
+     * @property {boolean|null} [completed] PB_TaskObjectiveData completed
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
     /**
-     * Properties of a PB_QuestObjectiveData.
-     * @exports IPB_QuestObjectiveData
-     * @interface IPB_QuestObjectiveData
-     * @augments PB_QuestObjectiveData.$Properties
-     * @deprecated Use PB_QuestObjectiveData.$Properties instead.
+     * Properties of a PB_TaskObjectiveData.
+     * @exports IPB_TaskObjectiveData
+     * @interface IPB_TaskObjectiveData
+     * @augments PB_TaskObjectiveData.$Properties
+     * @deprecated Use PB_TaskObjectiveData.$Properties instead.
      */
 
     /**
-     * Shape of a PB_QuestObjectiveData.
-     * @typedef {PB_QuestObjectiveData.$Properties} PB_QuestObjectiveData.$Shape
+     * Shape of a PB_TaskObjectiveData.
+     * @typedef {PB_TaskObjectiveData.$Properties} PB_TaskObjectiveData.$Shape
      */
 
     /**
-     * Constructs a new PB_QuestObjectiveData.
-     * @exports PB_QuestObjectiveData
-     * @classdesc Represents a PB_QuestObjectiveData.
+     * Constructs a new PB_TaskObjectiveData.
+     * @exports PB_TaskObjectiveData
+     * @classdesc Represents a PB_TaskObjectiveData.
      * @constructor
-     * @param {PB_QuestObjectiveData.$Properties=} [properties] Properties to set
+     * @param {PB_TaskObjectiveData.$Properties=} [properties] Properties to set
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
-    const PB_QuestObjectiveData = function (properties) {
+    const PB_TaskObjectiveData = function (properties) {
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -7041,62 +7650,62 @@ export const PB_QuestObjectiveData = $root.PB_QuestObjectiveData = (() => {
     };
 
     /**
-     * PB_QuestObjectiveData current_count.
+     * PB_TaskObjectiveData current_count.
      * @member {number|null|undefined} current_count
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @instance
      */
-    PB_QuestObjectiveData.prototype.current_count = null;
+    PB_TaskObjectiveData.prototype.current_count = null;
 
     /**
-     * PB_QuestObjectiveData completed.
+     * PB_TaskObjectiveData completed.
      * @member {boolean|null|undefined} completed
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @instance
      */
-    PB_QuestObjectiveData.prototype.completed = null;
+    PB_TaskObjectiveData.prototype.completed = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_QuestObjectiveData.prototype, "_current_count", {
+    $Object.defineProperty(PB_TaskObjectiveData.prototype, "_current_count", {
         get: $util.oneOfGetter($oneOfFields = ["current_count"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_QuestObjectiveData.prototype, "_completed", {
+    $Object.defineProperty(PB_TaskObjectiveData.prototype, "_completed", {
         get: $util.oneOfGetter($oneOfFields = ["completed"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     /**
-     * Creates a new PB_QuestObjectiveData instance using the specified properties.
+     * Creates a new PB_TaskObjectiveData instance using the specified properties.
      * @function create
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
-     * @param {PB_QuestObjectiveData.$Properties=} [properties] Properties to set
-     * @returns {PB_QuestObjectiveData} PB_QuestObjectiveData instance
+     * @param {PB_TaskObjectiveData.$Properties=} [properties] Properties to set
+     * @returns {PB_TaskObjectiveData} PB_TaskObjectiveData instance
      * @type {{
-     *   (properties: PB_QuestObjectiveData.$Shape): PB_QuestObjectiveData & PB_QuestObjectiveData.$Shape;
-     *   (properties?: PB_QuestObjectiveData.$Properties): PB_QuestObjectiveData;
+     *   (properties: PB_TaskObjectiveData.$Shape): PB_TaskObjectiveData & PB_TaskObjectiveData.$Shape;
+     *   (properties?: PB_TaskObjectiveData.$Properties): PB_TaskObjectiveData;
      * }}
      */
-    PB_QuestObjectiveData.create = function(properties) {
-        return new PB_QuestObjectiveData(properties);
+    PB_TaskObjectiveData.create = function(properties) {
+        return new PB_TaskObjectiveData(properties);
     };
 
     /**
-     * Encodes the specified PB_QuestObjectiveData message. Does not implicitly {@link PB_QuestObjectiveData.verify|verify} messages.
+     * Encodes the specified PB_TaskObjectiveData message. Does not implicitly {@link PB_TaskObjectiveData.verify|verify} messages.
      * @function encode
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
-     * @param {PB_QuestObjectiveData.$Properties} message PB_QuestObjectiveData message or plain object to encode
+     * @param {PB_TaskObjectiveData.$Properties} message PB_TaskObjectiveData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_QuestObjectiveData.encode = function (message, writer, _depth) {
+    PB_TaskObjectiveData.encode = function (message, writer, _depth) {
         if (!writer)
             writer = $Writer.create();
         if (_depth === $undefined)
@@ -7114,37 +7723,37 @@ export const PB_QuestObjectiveData = $root.PB_QuestObjectiveData = (() => {
     };
 
     /**
-     * Encodes the specified PB_QuestObjectiveData message, length delimited. Does not implicitly {@link PB_QuestObjectiveData.verify|verify} messages.
+     * Encodes the specified PB_TaskObjectiveData message, length delimited. Does not implicitly {@link PB_TaskObjectiveData.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
-     * @param {PB_QuestObjectiveData.$Properties} message PB_QuestObjectiveData message or plain object to encode
+     * @param {PB_TaskObjectiveData.$Properties} message PB_TaskObjectiveData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_QuestObjectiveData.encodeDelimited = function(message, writer) {
+    PB_TaskObjectiveData.encodeDelimited = function(message, writer) {
         return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
     };
 
     /**
-     * Decodes a PB_QuestObjectiveData message from the specified reader or buffer.
+     * Decodes a PB_TaskObjectiveData message from the specified reader or buffer.
      * @function decode
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {PB_QuestObjectiveData & PB_QuestObjectiveData.$Shape} PB_QuestObjectiveData
+     * @returns {PB_TaskObjectiveData & PB_TaskObjectiveData.$Shape} PB_TaskObjectiveData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_QuestObjectiveData.decode = function (reader, length, _end, _depth, _target) {
+    PB_TaskObjectiveData.decode = function (reader, length, _end, _depth, _target) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_QuestObjectiveData();
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_TaskObjectiveData();
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -7181,30 +7790,30 @@ export const PB_QuestObjectiveData = $root.PB_QuestObjectiveData = (() => {
     };
 
     /**
-     * Decodes a PB_QuestObjectiveData message from the specified reader or buffer, length delimited.
+     * Decodes a PB_TaskObjectiveData message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_QuestObjectiveData & PB_QuestObjectiveData.$Shape} PB_QuestObjectiveData
+     * @returns {PB_TaskObjectiveData & PB_TaskObjectiveData.$Shape} PB_TaskObjectiveData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_QuestObjectiveData.decodeDelimited = function(reader) {
+    PB_TaskObjectiveData.decodeDelimited = function(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a PB_QuestObjectiveData message.
+     * Verifies a PB_TaskObjectiveData message.
      * @function verify
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    PB_QuestObjectiveData.verify = function (message, _depth) {
+    PB_TaskObjectiveData.verify = function (message, _depth) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (_depth === $undefined)
@@ -7226,23 +7835,23 @@ export const PB_QuestObjectiveData = $root.PB_QuestObjectiveData = (() => {
     };
 
     /**
-     * Creates a PB_QuestObjectiveData message from a plain object. Also converts values to their respective internal types.
+     * Creates a PB_TaskObjectiveData message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {PB_QuestObjectiveData} PB_QuestObjectiveData
+     * @returns {PB_TaskObjectiveData} PB_TaskObjectiveData
      */
-    PB_QuestObjectiveData.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_QuestObjectiveData)
+    PB_TaskObjectiveData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_TaskObjectiveData)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".PB_QuestObjectiveData: object expected");
+            throw $TypeError(".PB_TaskObjectiveData: object expected");
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        let message = new $root.PB_QuestObjectiveData();
+        let message = new $root.PB_TaskObjectiveData();
         if (object.current_count != null)
             message.current_count = object.current_count | 0;
         if (object.completed != null)
@@ -7251,15 +7860,15 @@ export const PB_QuestObjectiveData = $root.PB_QuestObjectiveData = (() => {
     };
 
     /**
-     * Creates a plain object from a PB_QuestObjectiveData message. Also converts values to other types if specified.
+     * Creates a plain object from a PB_TaskObjectiveData message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
-     * @param {PB_QuestObjectiveData} message PB_QuestObjectiveData
+     * @param {PB_TaskObjectiveData} message PB_TaskObjectiveData
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    PB_QuestObjectiveData.toObject = function (message, options, _depth) {
+    PB_TaskObjectiveData.toObject = function (message, options, _depth) {
         if (!options)
             options = {};
         if (_depth === $undefined)
@@ -7275,67 +7884,67 @@ export const PB_QuestObjectiveData = $root.PB_QuestObjectiveData = (() => {
     };
 
     /**
-     * Converts this PB_QuestObjectiveData to JSON.
+     * Converts this PB_TaskObjectiveData to JSON.
      * @function toJSON
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    PB_QuestObjectiveData.prototype.toJSON = function() {
-        return PB_QuestObjectiveData.toObject(this, $protobuf.util.toJSONOptions);
+    PB_TaskObjectiveData.prototype.toJSON = function() {
+        return PB_TaskObjectiveData.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for PB_QuestObjectiveData
+     * Gets the type url for PB_TaskObjectiveData
      * @function getTypeUrl
-     * @memberof PB_QuestObjectiveData
+     * @memberof PB_TaskObjectiveData
      * @static
      * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns {string} The type url
      */
-    PB_QuestObjectiveData.getTypeUrl = function(prefix) {
+    PB_TaskObjectiveData.getTypeUrl = function(prefix) {
         if (prefix === $undefined)
             prefix = "type.googleapis.com";
-        return prefix + "/PB_QuestObjectiveData";
+        return prefix + "/PB_TaskObjectiveData";
     };
 
-    return PB_QuestObjectiveData;
+    return PB_TaskObjectiveData;
 })();
 
-export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
+export const PB_TaskSaveData = $root.PB_TaskSaveData = (() => {
 
     /**
-     * Properties of a PB_QuestSaveData.
-     * @typedef {Object} PB_QuestSaveData.$Properties
-     * @property {number|null} [status] PB_QuestSaveData status
-     * @property {number|null} [start_time] PB_QuestSaveData start_time
-     * @property {number|null} [complete_time] PB_QuestSaveData complete_time
-     * @property {Array.<PB_QuestObjectiveData.$Properties>|null} [objectives] PB_QuestSaveData objectives
+     * Properties of a PB_TaskSaveData.
+     * @typedef {Object} PB_TaskSaveData.$Properties
+     * @property {number|null} [status] PB_TaskSaveData status
+     * @property {number|null} [start_time] PB_TaskSaveData start_time
+     * @property {number|null} [complete_time] PB_TaskSaveData complete_time
+     * @property {Array.<PB_TaskObjectiveData.$Properties>|null} [objectives] PB_TaskSaveData objectives
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
     /**
-     * Properties of a PB_QuestSaveData.
-     * @exports IPB_QuestSaveData
-     * @interface IPB_QuestSaveData
-     * @augments PB_QuestSaveData.$Properties
-     * @deprecated Use PB_QuestSaveData.$Properties instead.
+     * Properties of a PB_TaskSaveData.
+     * @exports IPB_TaskSaveData
+     * @interface IPB_TaskSaveData
+     * @augments PB_TaskSaveData.$Properties
+     * @deprecated Use PB_TaskSaveData.$Properties instead.
      */
 
     /**
-     * Shape of a PB_QuestSaveData.
-     * @typedef {PB_QuestSaveData.$Properties} PB_QuestSaveData.$Shape
+     * Shape of a PB_TaskSaveData.
+     * @typedef {PB_TaskSaveData.$Properties} PB_TaskSaveData.$Shape
      */
 
     /**
-     * Constructs a new PB_QuestSaveData.
-     * @exports PB_QuestSaveData
-     * @classdesc Represents a PB_QuestSaveData.
+     * Constructs a new PB_TaskSaveData.
+     * @exports PB_TaskSaveData
+     * @classdesc Represents a PB_TaskSaveData.
      * @constructor
-     * @param {PB_QuestSaveData.$Properties=} [properties] Properties to set
+     * @param {PB_TaskSaveData.$Properties=} [properties] Properties to set
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
-    const PB_QuestSaveData = function (properties) {
+    const PB_TaskSaveData = function (properties) {
         this.objectives = [];
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -7344,84 +7953,84 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
     };
 
     /**
-     * PB_QuestSaveData status.
+     * PB_TaskSaveData status.
      * @member {number|null|undefined} status
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @instance
      */
-    PB_QuestSaveData.prototype.status = null;
+    PB_TaskSaveData.prototype.status = null;
 
     /**
-     * PB_QuestSaveData start_time.
+     * PB_TaskSaveData start_time.
      * @member {number|null|undefined} start_time
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @instance
      */
-    PB_QuestSaveData.prototype.start_time = null;
+    PB_TaskSaveData.prototype.start_time = null;
 
     /**
-     * PB_QuestSaveData complete_time.
+     * PB_TaskSaveData complete_time.
      * @member {number|null|undefined} complete_time
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @instance
      */
-    PB_QuestSaveData.prototype.complete_time = null;
+    PB_TaskSaveData.prototype.complete_time = null;
 
     /**
-     * PB_QuestSaveData objectives.
-     * @member {Array.<PB_QuestObjectiveData.$Properties>} objectives
-     * @memberof PB_QuestSaveData
+     * PB_TaskSaveData objectives.
+     * @member {Array.<PB_TaskObjectiveData.$Properties>} objectives
+     * @memberof PB_TaskSaveData
      * @instance
      */
-    PB_QuestSaveData.prototype.objectives = $util.emptyArray;
+    PB_TaskSaveData.prototype.objectives = $util.emptyArray;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_QuestSaveData.prototype, "_status", {
+    $Object.defineProperty(PB_TaskSaveData.prototype, "_status", {
         get: $util.oneOfGetter($oneOfFields = ["status"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_QuestSaveData.prototype, "_start_time", {
+    $Object.defineProperty(PB_TaskSaveData.prototype, "_start_time", {
         get: $util.oneOfGetter($oneOfFields = ["start_time"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_QuestSaveData.prototype, "_complete_time", {
+    $Object.defineProperty(PB_TaskSaveData.prototype, "_complete_time", {
         get: $util.oneOfGetter($oneOfFields = ["complete_time"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     /**
-     * Creates a new PB_QuestSaveData instance using the specified properties.
+     * Creates a new PB_TaskSaveData instance using the specified properties.
      * @function create
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
-     * @param {PB_QuestSaveData.$Properties=} [properties] Properties to set
-     * @returns {PB_QuestSaveData} PB_QuestSaveData instance
+     * @param {PB_TaskSaveData.$Properties=} [properties] Properties to set
+     * @returns {PB_TaskSaveData} PB_TaskSaveData instance
      * @type {{
-     *   (properties: PB_QuestSaveData.$Shape): PB_QuestSaveData & PB_QuestSaveData.$Shape;
-     *   (properties?: PB_QuestSaveData.$Properties): PB_QuestSaveData;
+     *   (properties: PB_TaskSaveData.$Shape): PB_TaskSaveData & PB_TaskSaveData.$Shape;
+     *   (properties?: PB_TaskSaveData.$Properties): PB_TaskSaveData;
      * }}
      */
-    PB_QuestSaveData.create = function(properties) {
-        return new PB_QuestSaveData(properties);
+    PB_TaskSaveData.create = function(properties) {
+        return new PB_TaskSaveData(properties);
     };
 
     /**
-     * Encodes the specified PB_QuestSaveData message. Does not implicitly {@link PB_QuestSaveData.verify|verify} messages.
+     * Encodes the specified PB_TaskSaveData message. Does not implicitly {@link PB_TaskSaveData.verify|verify} messages.
      * @function encode
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
-     * @param {PB_QuestSaveData.$Properties} message PB_QuestSaveData message or plain object to encode
+     * @param {PB_TaskSaveData.$Properties} message PB_TaskSaveData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_QuestSaveData.encode = function (message, writer, _depth) {
+    PB_TaskSaveData.encode = function (message, writer, _depth) {
         if (!writer)
             writer = $Writer.create();
         if (_depth === $undefined)
@@ -7436,7 +8045,7 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
             writer.uint32(/* id 3, wireType 0 =*/24).int64(message.complete_time);
         if (message.objectives != null && message.objectives.length)
             for (let i = 0; i < message.objectives.length; ++i)
-                $root.PB_QuestObjectiveData.encode(message.objectives[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), _depth + 1).ldelim();
+                $root.PB_TaskObjectiveData.encode(message.objectives[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -7444,37 +8053,37 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
     };
 
     /**
-     * Encodes the specified PB_QuestSaveData message, length delimited. Does not implicitly {@link PB_QuestSaveData.verify|verify} messages.
+     * Encodes the specified PB_TaskSaveData message, length delimited. Does not implicitly {@link PB_TaskSaveData.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
-     * @param {PB_QuestSaveData.$Properties} message PB_QuestSaveData message or plain object to encode
+     * @param {PB_TaskSaveData.$Properties} message PB_TaskSaveData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_QuestSaveData.encodeDelimited = function(message, writer) {
+    PB_TaskSaveData.encodeDelimited = function(message, writer) {
         return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
     };
 
     /**
-     * Decodes a PB_QuestSaveData message from the specified reader or buffer.
+     * Decodes a PB_TaskSaveData message from the specified reader or buffer.
      * @function decode
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {PB_QuestSaveData & PB_QuestSaveData.$Shape} PB_QuestSaveData
+     * @returns {PB_TaskSaveData & PB_TaskSaveData.$Shape} PB_TaskSaveData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_QuestSaveData.decode = function (reader, length, _end, _depth, _target) {
+    PB_TaskSaveData.decode = function (reader, length, _end, _depth, _target) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_QuestSaveData();
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_TaskSaveData();
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -7510,7 +8119,7 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
                         break;
                     if (!(message.objectives && message.objectives.length))
                         message.objectives = [];
-                    message.objectives.push($root.PB_QuestObjectiveData.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    message.objectives.push($root.PB_TaskObjectiveData.decode(reader, reader.uint32(), $undefined, _depth + 1));
                     continue;
                 }
             }
@@ -7526,30 +8135,30 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
     };
 
     /**
-     * Decodes a PB_QuestSaveData message from the specified reader or buffer, length delimited.
+     * Decodes a PB_TaskSaveData message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_QuestSaveData & PB_QuestSaveData.$Shape} PB_QuestSaveData
+     * @returns {PB_TaskSaveData & PB_TaskSaveData.$Shape} PB_TaskSaveData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_QuestSaveData.decodeDelimited = function(reader) {
+    PB_TaskSaveData.decodeDelimited = function(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a PB_QuestSaveData message.
+     * Verifies a PB_TaskSaveData message.
      * @function verify
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    PB_QuestSaveData.verify = function (message, _depth) {
+    PB_TaskSaveData.verify = function (message, _depth) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (_depth === $undefined)
@@ -7576,7 +8185,7 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
             if (!$Array.isArray(message.objectives))
                 return "objectives: array expected";
             for (let i = 0; i < message.objectives.length; ++i) {
-                let error = $root.PB_QuestObjectiveData.verify(message.objectives[i], _depth + 1);
+                let error = $root.PB_TaskObjectiveData.verify(message.objectives[i], _depth + 1);
                 if (error)
                     return "objectives." + error;
             }
@@ -7585,23 +8194,23 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
     };
 
     /**
-     * Creates a PB_QuestSaveData message from a plain object. Also converts values to their respective internal types.
+     * Creates a PB_TaskSaveData message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {PB_QuestSaveData} PB_QuestSaveData
+     * @returns {PB_TaskSaveData} PB_TaskSaveData
      */
-    PB_QuestSaveData.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_QuestSaveData)
+    PB_TaskSaveData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_TaskSaveData)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".PB_QuestSaveData: object expected");
+            throw $TypeError(".PB_TaskSaveData: object expected");
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        let message = new $root.PB_QuestSaveData();
+        let message = new $root.PB_TaskSaveData();
         if (object.status != null)
             message.status = object.status | 0;
         if (object.start_time != null)
@@ -7624,27 +8233,27 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
                 message.complete_time = new $util.LongBits(object.complete_time.low >>> 0, object.complete_time.high >>> 0).toNumber();
         if (object.objectives) {
             if (!$Array.isArray(object.objectives))
-                throw $TypeError(".PB_QuestSaveData.objectives: array expected");
+                throw $TypeError(".PB_TaskSaveData.objectives: array expected");
             message.objectives = $Array(object.objectives.length);
             for (let i = 0; i < object.objectives.length; ++i) {
                 if (!$util.isObject(object.objectives[i]))
-                    throw $TypeError(".PB_QuestSaveData.objectives: object expected");
-                message.objectives[i] = $root.PB_QuestObjectiveData.fromObject(object.objectives[i], _depth + 1);
+                    throw $TypeError(".PB_TaskSaveData.objectives: object expected");
+                message.objectives[i] = $root.PB_TaskObjectiveData.fromObject(object.objectives[i], _depth + 1);
             }
         }
         return message;
     };
 
     /**
-     * Creates a plain object from a PB_QuestSaveData message. Also converts values to other types if specified.
+     * Creates a plain object from a PB_TaskSaveData message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
-     * @param {PB_QuestSaveData} message PB_QuestSaveData
+     * @param {PB_TaskSaveData} message PB_TaskSaveData
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    PB_QuestSaveData.toObject = function (message, options, _depth) {
+    PB_TaskSaveData.toObject = function (message, options, _depth) {
         if (!options)
             options = {};
         if (_depth === $undefined)
@@ -7673,74 +8282,74 @@ export const PB_QuestSaveData = $root.PB_QuestSaveData = (() => {
         if (message.objectives && message.objectives.length) {
             object.objectives = $Array(message.objectives.length);
             for (let j = 0; j < message.objectives.length; ++j)
-                object.objectives[j] = $root.PB_QuestObjectiveData.toObject(message.objectives[j], options, _depth + 1);
+                object.objectives[j] = $root.PB_TaskObjectiveData.toObject(message.objectives[j], options, _depth + 1);
         }
         return object;
     };
 
     /**
-     * Converts this PB_QuestSaveData to JSON.
+     * Converts this PB_TaskSaveData to JSON.
      * @function toJSON
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    PB_QuestSaveData.prototype.toJSON = function() {
-        return PB_QuestSaveData.toObject(this, $protobuf.util.toJSONOptions);
+    PB_TaskSaveData.prototype.toJSON = function() {
+        return PB_TaskSaveData.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for PB_QuestSaveData
+     * Gets the type url for PB_TaskSaveData
      * @function getTypeUrl
-     * @memberof PB_QuestSaveData
+     * @memberof PB_TaskSaveData
      * @static
      * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns {string} The type url
      */
-    PB_QuestSaveData.getTypeUrl = function(prefix) {
+    PB_TaskSaveData.getTypeUrl = function(prefix) {
         if (prefix === $undefined)
             prefix = "type.googleapis.com";
-        return prefix + "/PB_QuestSaveData";
+        return prefix + "/PB_TaskSaveData";
     };
 
-    return PB_QuestSaveData;
+    return PB_TaskSaveData;
 })();
 
-export const PB_QuestData = $root.PB_QuestData = (() => {
+export const PB_TaskData = $root.PB_TaskData = (() => {
 
     /**
-     * Properties of a PB_QuestData.
-     * @typedef {Object} PB_QuestData.$Properties
-     * @property {number|null} [max_active] PB_QuestData max_active
-     * @property {Object.<string,PB_QuestSaveData.$Properties>|null} [active_quests] PB_QuestData active_quests
-     * @property {Array.<number>|null} [completed_quests] PB_QuestData completed_quests
+     * Properties of a PB_TaskData.
+     * @typedef {Object} PB_TaskData.$Properties
+     * @property {number|null} [max_active] PB_TaskData max_active
+     * @property {Object.<string,PB_TaskSaveData.$Properties>|null} [active_tasks] PB_TaskData active_tasks
+     * @property {Array.<number>|null} [completed_tasks] PB_TaskData completed_tasks
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
     /**
-     * Properties of a PB_QuestData.
-     * @exports IPB_QuestData
-     * @interface IPB_QuestData
-     * @augments PB_QuestData.$Properties
-     * @deprecated Use PB_QuestData.$Properties instead.
+     * Properties of a PB_TaskData.
+     * @exports IPB_TaskData
+     * @interface IPB_TaskData
+     * @augments PB_TaskData.$Properties
+     * @deprecated Use PB_TaskData.$Properties instead.
      */
 
     /**
-     * Shape of a PB_QuestData.
-     * @typedef {PB_QuestData.$Properties} PB_QuestData.$Shape
+     * Shape of a PB_TaskData.
+     * @typedef {PB_TaskData.$Properties} PB_TaskData.$Shape
      */
 
     /**
-     * Constructs a new PB_QuestData.
-     * @exports PB_QuestData
-     * @classdesc Represents a PB_QuestData.
+     * Constructs a new PB_TaskData.
+     * @exports PB_TaskData
+     * @classdesc Represents a PB_TaskData.
      * @constructor
-     * @param {PB_QuestData.$Properties=} [properties] Properties to set
+     * @param {PB_TaskData.$Properties=} [properties] Properties to set
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
-    const PB_QuestData = function (properties) {
-        this.active_quests = {};
-        this.completed_quests = [];
+    const PB_TaskData = function (properties) {
+        this.active_tasks = {};
+        this.completed_tasks = [];
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -7748,64 +8357,64 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
     };
 
     /**
-     * PB_QuestData max_active.
+     * PB_TaskData max_active.
      * @member {number|null|undefined} max_active
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @instance
      */
-    PB_QuestData.prototype.max_active = null;
+    PB_TaskData.prototype.max_active = null;
 
     /**
-     * PB_QuestData active_quests.
-     * @member {Object.<string,PB_QuestSaveData.$Properties>} active_quests
-     * @memberof PB_QuestData
+     * PB_TaskData active_tasks.
+     * @member {Object.<string,PB_TaskSaveData.$Properties>} active_tasks
+     * @memberof PB_TaskData
      * @instance
      */
-    PB_QuestData.prototype.active_quests = $util.emptyObject;
+    PB_TaskData.prototype.active_tasks = $util.emptyObject;
 
     /**
-     * PB_QuestData completed_quests.
-     * @member {Array.<number>} completed_quests
-     * @memberof PB_QuestData
+     * PB_TaskData completed_tasks.
+     * @member {Array.<number>} completed_tasks
+     * @memberof PB_TaskData
      * @instance
      */
-    PB_QuestData.prototype.completed_quests = $util.emptyArray;
+    PB_TaskData.prototype.completed_tasks = $util.emptyArray;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_QuestData.prototype, "_max_active", {
+    $Object.defineProperty(PB_TaskData.prototype, "_max_active", {
         get: $util.oneOfGetter($oneOfFields = ["max_active"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     /**
-     * Creates a new PB_QuestData instance using the specified properties.
+     * Creates a new PB_TaskData instance using the specified properties.
      * @function create
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
-     * @param {PB_QuestData.$Properties=} [properties] Properties to set
-     * @returns {PB_QuestData} PB_QuestData instance
+     * @param {PB_TaskData.$Properties=} [properties] Properties to set
+     * @returns {PB_TaskData} PB_TaskData instance
      * @type {{
-     *   (properties: PB_QuestData.$Shape): PB_QuestData & PB_QuestData.$Shape;
-     *   (properties?: PB_QuestData.$Properties): PB_QuestData;
+     *   (properties: PB_TaskData.$Shape): PB_TaskData & PB_TaskData.$Shape;
+     *   (properties?: PB_TaskData.$Properties): PB_TaskData;
      * }}
      */
-    PB_QuestData.create = function(properties) {
-        return new PB_QuestData(properties);
+    PB_TaskData.create = function(properties) {
+        return new PB_TaskData(properties);
     };
 
     /**
-     * Encodes the specified PB_QuestData message. Does not implicitly {@link PB_QuestData.verify|verify} messages.
+     * Encodes the specified PB_TaskData message. Does not implicitly {@link PB_TaskData.verify|verify} messages.
      * @function encode
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
-     * @param {PB_QuestData.$Properties} message PB_QuestData message or plain object to encode
+     * @param {PB_TaskData.$Properties} message PB_TaskData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_QuestData.encode = function (message, writer, _depth) {
+    PB_TaskData.encode = function (message, writer, _depth) {
         if (!writer)
             writer = $Writer.create();
         if (_depth === $undefined)
@@ -7814,13 +8423,13 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
             throw $Error("max depth exceeded");
         if (message.max_active != null && $Object.hasOwnProperty.call(message, "max_active"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.max_active);
-        if (message.active_quests != null && $Object.hasOwnProperty.call(message, "active_quests"))
-            for (let keys = $Object.keys(message.active_quests), i = 0; i < keys.length; ++i) {
+        if (message.active_tasks != null && $Object.hasOwnProperty.call(message, "active_tasks"))
+            for (let keys = $Object.keys(message.active_tasks), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 0 =*/8).int32(keys[i]);
-                $root.PB_QuestSaveData.encode(message.active_quests[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
+                $root.PB_TaskSaveData.encode(message.active_tasks[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
             }
-        if (message.completed_quests != null && message.completed_quests.length)
-            writer.uint32(/* id 3, wireType 2 =*/26).int32s(message.completed_quests);
+        if (message.completed_tasks != null && message.completed_tasks.length)
+            writer.uint32(/* id 3, wireType 2 =*/26).int32s(message.completed_tasks);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -7828,37 +8437,37 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
     };
 
     /**
-     * Encodes the specified PB_QuestData message, length delimited. Does not implicitly {@link PB_QuestData.verify|verify} messages.
+     * Encodes the specified PB_TaskData message, length delimited. Does not implicitly {@link PB_TaskData.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
-     * @param {PB_QuestData.$Properties} message PB_QuestData message or plain object to encode
+     * @param {PB_TaskData.$Properties} message PB_TaskData message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_QuestData.encodeDelimited = function(message, writer) {
+    PB_TaskData.encodeDelimited = function(message, writer) {
         return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
     };
 
     /**
-     * Decodes a PB_QuestData message from the specified reader or buffer.
+     * Decodes a PB_TaskData message from the specified reader or buffer.
      * @function decode
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {PB_QuestData & PB_QuestData.$Shape} PB_QuestData
+     * @returns {PB_TaskData & PB_TaskData.$Shape} PB_TaskData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_QuestData.decode = function (reader, length, _end, _depth, _target) {
+    PB_TaskData.decode = function (reader, length, _end, _depth, _target) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_QuestData(), key, value;
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_TaskData(), key, value;
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -7878,8 +8487,8 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
             case 2: {
                     if (wireType !== 2)
                         break;
-                    if (message.active_quests === $util.emptyObject)
-                        message.active_quests = {};
+                    if (message.active_tasks === $util.emptyObject)
+                        message.active_tasks = {};
                     let end2 = reader.uint32() + reader.pos;
                     key = 0;
                     value = null;
@@ -7895,26 +8504,26 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
                         case 2:
                             if (wireType !== 2)
                                 break;
-                            value = $root.PB_QuestSaveData.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
+                            value = $root.PB_TaskSaveData.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
                             continue;
                         }
                         reader.skipType(wireType, _depth, tag2);
                     }
-                    message.active_quests[key] = value || new $root.PB_QuestSaveData();
+                    message.active_tasks[key] = value || new $root.PB_TaskSaveData();
                     continue;
                 }
             case 3: {
                     if (wireType === 2) {
-                        if (!(message.completed_quests && message.completed_quests.length))
-                            message.completed_quests = [];
-                        reader.int32s(message.completed_quests);
+                        if (!(message.completed_tasks && message.completed_tasks.length))
+                            message.completed_tasks = [];
+                        reader.int32s(message.completed_tasks);
                         continue;
                     }
                     if (wireType !== 0)
                         break;
-                    if (!(message.completed_quests && message.completed_quests.length))
-                        message.completed_quests = [];
-                    message.completed_quests.push(reader.int32());
+                    if (!(message.completed_tasks && message.completed_tasks.length))
+                        message.completed_tasks = [];
+                    message.completed_tasks.push(reader.int32());
                     continue;
                 }
             }
@@ -7930,30 +8539,30 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
     };
 
     /**
-     * Decodes a PB_QuestData message from the specified reader or buffer, length delimited.
+     * Decodes a PB_TaskData message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_QuestData & PB_QuestData.$Shape} PB_QuestData
+     * @returns {PB_TaskData & PB_TaskData.$Shape} PB_TaskData
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_QuestData.decodeDelimited = function(reader) {
+    PB_TaskData.decodeDelimited = function(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a PB_QuestData message.
+     * Verifies a PB_TaskData message.
      * @function verify
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    PB_QuestData.verify = function (message, _depth) {
+    PB_TaskData.verify = function (message, _depth) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (_depth === $undefined)
@@ -7966,82 +8575,82 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
             if (!$util.isInteger(message.max_active))
                 return "max_active: integer expected";
         }
-        if (message.active_quests != null && $Object.hasOwnProperty.call(message, "active_quests")) {
-            if (!$util.isObject(message.active_quests))
-                return "active_quests: object expected";
-            let key = $Object.keys(message.active_quests);
+        if (message.active_tasks != null && $Object.hasOwnProperty.call(message, "active_tasks")) {
+            if (!$util.isObject(message.active_tasks))
+                return "active_tasks: object expected";
+            let key = $Object.keys(message.active_tasks);
             for (let i = 0; i < key.length; ++i) {
                 if (!$util.key32Re.test(key[i]))
-                    return "active_quests: integer key{k:int32} expected";
+                    return "active_tasks: integer key{k:int32} expected";
                 {
-                    let error = $root.PB_QuestSaveData.verify(message.active_quests[key[i]], _depth + 1);
+                    let error = $root.PB_TaskSaveData.verify(message.active_tasks[key[i]], _depth + 1);
                     if (error)
-                        return "active_quests." + error;
+                        return "active_tasks." + error;
                 }
             }
         }
-        if (message.completed_quests != null && $Object.hasOwnProperty.call(message, "completed_quests")) {
-            if (!$Array.isArray(message.completed_quests))
-                return "completed_quests: array expected";
-            for (let i = 0; i < message.completed_quests.length; ++i)
-                if (!$util.isInteger(message.completed_quests[i]))
-                    return "completed_quests: integer[] expected";
+        if (message.completed_tasks != null && $Object.hasOwnProperty.call(message, "completed_tasks")) {
+            if (!$Array.isArray(message.completed_tasks))
+                return "completed_tasks: array expected";
+            for (let i = 0; i < message.completed_tasks.length; ++i)
+                if (!$util.isInteger(message.completed_tasks[i]))
+                    return "completed_tasks: integer[] expected";
         }
         return null;
     };
 
     /**
-     * Creates a PB_QuestData message from a plain object. Also converts values to their respective internal types.
+     * Creates a PB_TaskData message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {PB_QuestData} PB_QuestData
+     * @returns {PB_TaskData} PB_TaskData
      */
-    PB_QuestData.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_QuestData)
+    PB_TaskData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_TaskData)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".PB_QuestData: object expected");
+            throw $TypeError(".PB_TaskData: object expected");
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        let message = new $root.PB_QuestData();
+        let message = new $root.PB_TaskData();
         if (object.max_active != null)
             message.max_active = object.max_active | 0;
-        if (object.active_quests) {
-            if (!$util.isObject(object.active_quests))
-                throw $TypeError(".PB_QuestData.active_quests: object expected");
-            message.active_quests = {};
-            for (let keys = $Object.keys(object.active_quests), i = 0; i < keys.length; ++i) {
+        if (object.active_tasks) {
+            if (!$util.isObject(object.active_tasks))
+                throw $TypeError(".PB_TaskData.active_tasks: object expected");
+            message.active_tasks = {};
+            for (let keys = $Object.keys(object.active_tasks), i = 0; i < keys.length; ++i) {
                 if (keys[i] === "__proto__")
-                    $util.makeProp(message.active_quests, keys[i]);
-                if (!$util.isObject(object.active_quests[keys[i]]))
-                    throw $TypeError(".PB_QuestData.active_quests: object expected");
-                message.active_quests[keys[i]] = $root.PB_QuestSaveData.fromObject(object.active_quests[keys[i]], _depth + 1);
+                    $util.makeProp(message.active_tasks, keys[i]);
+                if (!$util.isObject(object.active_tasks[keys[i]]))
+                    throw $TypeError(".PB_TaskData.active_tasks: object expected");
+                message.active_tasks[keys[i]] = $root.PB_TaskSaveData.fromObject(object.active_tasks[keys[i]], _depth + 1);
             }
         }
-        if (object.completed_quests) {
-            if (!$Array.isArray(object.completed_quests))
-                throw $TypeError(".PB_QuestData.completed_quests: array expected");
-            message.completed_quests = $Array(object.completed_quests.length);
-            for (let i = 0; i < object.completed_quests.length; ++i)
-                message.completed_quests[i] = object.completed_quests[i] | 0;
+        if (object.completed_tasks) {
+            if (!$Array.isArray(object.completed_tasks))
+                throw $TypeError(".PB_TaskData.completed_tasks: array expected");
+            message.completed_tasks = $Array(object.completed_tasks.length);
+            for (let i = 0; i < object.completed_tasks.length; ++i)
+                message.completed_tasks[i] = object.completed_tasks[i] | 0;
         }
         return message;
     };
 
     /**
-     * Creates a plain object from a PB_QuestData message. Also converts values to other types if specified.
+     * Creates a plain object from a PB_TaskData message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
-     * @param {PB_QuestData} message PB_QuestData
+     * @param {PB_TaskData} message PB_TaskData
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    PB_QuestData.toObject = function (message, options, _depth) {
+    PB_TaskData.toObject = function (message, options, _depth) {
         if (!options)
             options = {};
         if (_depth === $undefined)
@@ -8050,54 +8659,54 @@ export const PB_QuestData = $root.PB_QuestData = (() => {
             throw $Error("max depth exceeded");
         let object = {};
         if (options.arrays || options.defaults)
-            object.completed_quests = [];
+            object.completed_tasks = [];
         if (options.objects || options.defaults)
-            object.active_quests = {};
+            object.active_tasks = {};
         if (message.max_active != null && $Object.hasOwnProperty.call(message, "max_active"))
             object.max_active = message.max_active;
         let keys2;
-        if (message.active_quests && (keys2 = $Object.keys(message.active_quests)).length) {
-            object.active_quests = {};
+        if (message.active_tasks && (keys2 = $Object.keys(message.active_tasks)).length) {
+            object.active_tasks = {};
             for (let j = 0; j < keys2.length; ++j) {
                 if (keys2[j] === "__proto__")
-                    $util.makeProp(object.active_quests, keys2[j]);
-                object.active_quests[keys2[j]] = $root.PB_QuestSaveData.toObject(message.active_quests[keys2[j]], options, _depth + 1);
+                    $util.makeProp(object.active_tasks, keys2[j]);
+                object.active_tasks[keys2[j]] = $root.PB_TaskSaveData.toObject(message.active_tasks[keys2[j]], options, _depth + 1);
             }
         }
-        if (message.completed_quests && message.completed_quests.length) {
-            object.completed_quests = $Array(message.completed_quests.length);
-            for (let j = 0; j < message.completed_quests.length; ++j)
-                object.completed_quests[j] = message.completed_quests[j];
+        if (message.completed_tasks && message.completed_tasks.length) {
+            object.completed_tasks = $Array(message.completed_tasks.length);
+            for (let j = 0; j < message.completed_tasks.length; ++j)
+                object.completed_tasks[j] = message.completed_tasks[j];
         }
         return object;
     };
 
     /**
-     * Converts this PB_QuestData to JSON.
+     * Converts this PB_TaskData to JSON.
      * @function toJSON
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    PB_QuestData.prototype.toJSON = function() {
-        return PB_QuestData.toObject(this, $protobuf.util.toJSONOptions);
+    PB_TaskData.prototype.toJSON = function() {
+        return PB_TaskData.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for PB_QuestData
+     * Gets the type url for PB_TaskData
      * @function getTypeUrl
-     * @memberof PB_QuestData
+     * @memberof PB_TaskData
      * @static
      * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns {string} The type url
      */
-    PB_QuestData.getTypeUrl = function(prefix) {
+    PB_TaskData.getTypeUrl = function(prefix) {
         if (prefix === $undefined)
             prefix = "type.googleapis.com";
-        return prefix + "/PB_QuestData";
+        return prefix + "/PB_TaskData";
     };
 
-    return PB_QuestData;
+    return PB_TaskData;
 })();
 
 export const PB_HeroData = $root.PB_HeroData = (() => {
@@ -9733,7 +10342,7 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         if (message.rank != null && $Object.hasOwnProperty.call(message, "rank"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.rank);
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.uid);
+            writer.uint32(/* id 2, wireType 0 =*/16).int64(message.uid);
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.name);
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
@@ -9808,7 +10417,7 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
             case 2: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.uint32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
@@ -9920,8 +10529,8 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         }
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
             properties._name = 1;
@@ -9991,7 +10600,14 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         if (object.rank != null)
             message.rank = object.rank | 0;
         if (object.uid != null)
-            message.uid = object.uid >>> 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.name != null)
             message.name = $String(object.name);
         if (object.value != null)
@@ -10083,7 +10699,12 @@ export const PB_RankNode = $root.PB_RankNode = (() => {
         if (message.rank != null && $Object.hasOwnProperty.call(message, "rank"))
             object.rank = message.rank;
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
@@ -10435,6 +11056,5589 @@ export const PB_ArenaRankNode = $root.PB_ArenaRankNode = (() => {
     };
 
     return PB_ArenaRankNode;
+})();
+
+export const P_ClusterHello = $root.P_ClusterHello = (() => {
+
+    /**
+     * Properties of a P_ClusterHello.
+     * @typedef {Object} P_ClusterHello.$Properties
+     * @property {string|null} [token] P_ClusterHello token
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ClusterHello.
+     * @exports IP_ClusterHello
+     * @interface IP_ClusterHello
+     * @augments P_ClusterHello.$Properties
+     * @deprecated Use P_ClusterHello.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ClusterHello.
+     * @typedef {P_ClusterHello.$Properties} P_ClusterHello.$Shape
+     */
+
+    /**
+     * Constructs a new P_ClusterHello.
+     * @exports P_ClusterHello
+     * @classdesc Represents a P_ClusterHello.
+     * @constructor
+     * @param {P_ClusterHello.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ClusterHello = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ClusterHello token.
+     * @member {string|null|undefined} token
+     * @memberof P_ClusterHello
+     * @instance
+     */
+    P_ClusterHello.prototype.token = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterHello.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_ClusterHello instance using the specified properties.
+     * @function create
+     * @memberof P_ClusterHello
+     * @static
+     * @param {P_ClusterHello.$Properties=} [properties] Properties to set
+     * @returns {P_ClusterHello} P_ClusterHello instance
+     * @type {{
+     *   (properties: P_ClusterHello.$Shape): P_ClusterHello & P_ClusterHello.$Shape;
+     *   (properties?: P_ClusterHello.$Properties): P_ClusterHello;
+     * }}
+     */
+    P_ClusterHello.create = function(properties) {
+        return new P_ClusterHello(properties);
+    };
+
+    /**
+     * Encodes the specified P_ClusterHello message. Does not implicitly {@link P_ClusterHello.verify|verify} messages.
+     * @function encode
+     * @memberof P_ClusterHello
+     * @static
+     * @param {P_ClusterHello.$Properties} message P_ClusterHello message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterHello.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ClusterHello message, length delimited. Does not implicitly {@link P_ClusterHello.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ClusterHello
+     * @static
+     * @param {P_ClusterHello.$Properties} message P_ClusterHello message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterHello.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ClusterHello message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ClusterHello
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ClusterHello & P_ClusterHello.$Shape} P_ClusterHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterHello.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ClusterHello();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ClusterHello message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ClusterHello
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ClusterHello & P_ClusterHello.$Shape} P_ClusterHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterHello.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ClusterHello message.
+     * @function verify
+     * @memberof P_ClusterHello
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ClusterHello.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ClusterHello message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ClusterHello
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ClusterHello} P_ClusterHello
+     */
+    P_ClusterHello.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ClusterHello)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ClusterHello: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ClusterHello();
+        if (object.token != null)
+            message.token = $String(object.token);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ClusterHello message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ClusterHello
+     * @static
+     * @param {P_ClusterHello} message P_ClusterHello
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ClusterHello.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
+        return object;
+    };
+
+    /**
+     * Converts this P_ClusterHello to JSON.
+     * @function toJSON
+     * @memberof P_ClusterHello
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ClusterHello.prototype.toJSON = function() {
+        return P_ClusterHello.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ClusterHello
+     * @function getTypeUrl
+     * @memberof P_ClusterHello
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ClusterHello.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ClusterHello";
+    };
+
+    return P_ClusterHello;
+})();
+
+export const P_ClusterHeartbeat = $root.P_ClusterHeartbeat = (() => {
+
+    /**
+     * Properties of a P_ClusterHeartbeat.
+     * @typedef {Object} P_ClusterHeartbeat.$Properties
+     * @property {number|null} [load] P_ClusterHeartbeat load
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ClusterHeartbeat.
+     * @exports IP_ClusterHeartbeat
+     * @interface IP_ClusterHeartbeat
+     * @augments P_ClusterHeartbeat.$Properties
+     * @deprecated Use P_ClusterHeartbeat.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ClusterHeartbeat.
+     * @typedef {P_ClusterHeartbeat.$Properties} P_ClusterHeartbeat.$Shape
+     */
+
+    /**
+     * Constructs a new P_ClusterHeartbeat.
+     * @exports P_ClusterHeartbeat
+     * @classdesc Represents a P_ClusterHeartbeat.
+     * @constructor
+     * @param {P_ClusterHeartbeat.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ClusterHeartbeat = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ClusterHeartbeat load.
+     * @member {number|null|undefined} load
+     * @memberof P_ClusterHeartbeat
+     * @instance
+     */
+    P_ClusterHeartbeat.prototype.load = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterHeartbeat.prototype, "_load", {
+        get: $util.oneOfGetter($oneOfFields = ["load"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_ClusterHeartbeat instance using the specified properties.
+     * @function create
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {P_ClusterHeartbeat.$Properties=} [properties] Properties to set
+     * @returns {P_ClusterHeartbeat} P_ClusterHeartbeat instance
+     * @type {{
+     *   (properties: P_ClusterHeartbeat.$Shape): P_ClusterHeartbeat & P_ClusterHeartbeat.$Shape;
+     *   (properties?: P_ClusterHeartbeat.$Properties): P_ClusterHeartbeat;
+     * }}
+     */
+    P_ClusterHeartbeat.create = function(properties) {
+        return new P_ClusterHeartbeat(properties);
+    };
+
+    /**
+     * Encodes the specified P_ClusterHeartbeat message. Does not implicitly {@link P_ClusterHeartbeat.verify|verify} messages.
+     * @function encode
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {P_ClusterHeartbeat.$Properties} message P_ClusterHeartbeat message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterHeartbeat.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.load != null && $Object.hasOwnProperty.call(message, "load"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.load);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ClusterHeartbeat message, length delimited. Does not implicitly {@link P_ClusterHeartbeat.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {P_ClusterHeartbeat.$Properties} message P_ClusterHeartbeat message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterHeartbeat.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ClusterHeartbeat message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ClusterHeartbeat & P_ClusterHeartbeat.$Shape} P_ClusterHeartbeat
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterHeartbeat.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ClusterHeartbeat();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.load = reader.int32();
+                    message._load = "load";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ClusterHeartbeat message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ClusterHeartbeat & P_ClusterHeartbeat.$Shape} P_ClusterHeartbeat
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterHeartbeat.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ClusterHeartbeat message.
+     * @function verify
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ClusterHeartbeat.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.load != null && $Object.hasOwnProperty.call(message, "load")) {
+            properties._load = 1;
+            if (!$util.isInteger(message.load))
+                return "load: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ClusterHeartbeat message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ClusterHeartbeat} P_ClusterHeartbeat
+     */
+    P_ClusterHeartbeat.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ClusterHeartbeat)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ClusterHeartbeat: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ClusterHeartbeat();
+        if (object.load != null)
+            message.load = object.load | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ClusterHeartbeat message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {P_ClusterHeartbeat} message P_ClusterHeartbeat
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ClusterHeartbeat.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.load != null && $Object.hasOwnProperty.call(message, "load"))
+            object.load = message.load;
+        return object;
+    };
+
+    /**
+     * Converts this P_ClusterHeartbeat to JSON.
+     * @function toJSON
+     * @memberof P_ClusterHeartbeat
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ClusterHeartbeat.prototype.toJSON = function() {
+        return P_ClusterHeartbeat.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ClusterHeartbeat
+     * @function getTypeUrl
+     * @memberof P_ClusterHeartbeat
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ClusterHeartbeat.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ClusterHeartbeat";
+    };
+
+    return P_ClusterHeartbeat;
+})();
+
+export const P_ClusterNodeInfo = $root.P_ClusterNodeInfo = (() => {
+
+    /**
+     * Properties of a P_ClusterNodeInfo.
+     * @typedef {Object} P_ClusterNodeInfo.$Properties
+     * @property {number|null} [zone_id] P_ClusterNodeInfo zone_id
+     * @property {number|null} [server_id] P_ClusterNodeInfo server_id
+     * @property {number|null} [node_type] P_ClusterNodeInfo node_type
+     * @property {number|null} [instance_id] P_ClusterNodeInfo instance_id
+     * @property {number|null} [load] P_ClusterNodeInfo load
+     * @property {boolean|null} [online] P_ClusterNodeInfo online
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ClusterNodeInfo.
+     * @exports IP_ClusterNodeInfo
+     * @interface IP_ClusterNodeInfo
+     * @augments P_ClusterNodeInfo.$Properties
+     * @deprecated Use P_ClusterNodeInfo.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ClusterNodeInfo.
+     * @typedef {P_ClusterNodeInfo.$Properties} P_ClusterNodeInfo.$Shape
+     */
+
+    /**
+     * Constructs a new P_ClusterNodeInfo.
+     * @exports P_ClusterNodeInfo
+     * @classdesc Represents a P_ClusterNodeInfo.
+     * @constructor
+     * @param {P_ClusterNodeInfo.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ClusterNodeInfo = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ClusterNodeInfo zone_id.
+     * @member {number|null|undefined} zone_id
+     * @memberof P_ClusterNodeInfo
+     * @instance
+     */
+    P_ClusterNodeInfo.prototype.zone_id = null;
+
+    /**
+     * P_ClusterNodeInfo server_id.
+     * @member {number|null|undefined} server_id
+     * @memberof P_ClusterNodeInfo
+     * @instance
+     */
+    P_ClusterNodeInfo.prototype.server_id = null;
+
+    /**
+     * P_ClusterNodeInfo node_type.
+     * @member {number|null|undefined} node_type
+     * @memberof P_ClusterNodeInfo
+     * @instance
+     */
+    P_ClusterNodeInfo.prototype.node_type = null;
+
+    /**
+     * P_ClusterNodeInfo instance_id.
+     * @member {number|null|undefined} instance_id
+     * @memberof P_ClusterNodeInfo
+     * @instance
+     */
+    P_ClusterNodeInfo.prototype.instance_id = null;
+
+    /**
+     * P_ClusterNodeInfo load.
+     * @member {number|null|undefined} load
+     * @memberof P_ClusterNodeInfo
+     * @instance
+     */
+    P_ClusterNodeInfo.prototype.load = null;
+
+    /**
+     * P_ClusterNodeInfo online.
+     * @member {boolean|null|undefined} online
+     * @memberof P_ClusterNodeInfo
+     * @instance
+     */
+    P_ClusterNodeInfo.prototype.online = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterNodeInfo.prototype, "_zone_id", {
+        get: $util.oneOfGetter($oneOfFields = ["zone_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterNodeInfo.prototype, "_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterNodeInfo.prototype, "_node_type", {
+        get: $util.oneOfGetter($oneOfFields = ["node_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterNodeInfo.prototype, "_instance_id", {
+        get: $util.oneOfGetter($oneOfFields = ["instance_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterNodeInfo.prototype, "_load", {
+        get: $util.oneOfGetter($oneOfFields = ["load"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterNodeInfo.prototype, "_online", {
+        get: $util.oneOfGetter($oneOfFields = ["online"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_ClusterNodeInfo instance using the specified properties.
+     * @function create
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {P_ClusterNodeInfo.$Properties=} [properties] Properties to set
+     * @returns {P_ClusterNodeInfo} P_ClusterNodeInfo instance
+     * @type {{
+     *   (properties: P_ClusterNodeInfo.$Shape): P_ClusterNodeInfo & P_ClusterNodeInfo.$Shape;
+     *   (properties?: P_ClusterNodeInfo.$Properties): P_ClusterNodeInfo;
+     * }}
+     */
+    P_ClusterNodeInfo.create = function(properties) {
+        return new P_ClusterNodeInfo(properties);
+    };
+
+    /**
+     * Encodes the specified P_ClusterNodeInfo message. Does not implicitly {@link P_ClusterNodeInfo.verify|verify} messages.
+     * @function encode
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {P_ClusterNodeInfo.$Properties} message P_ClusterNodeInfo message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterNodeInfo.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.zone_id != null && $Object.hasOwnProperty.call(message, "zone_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.zone_id);
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.server_id);
+        if (message.node_type != null && $Object.hasOwnProperty.call(message, "node_type"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.node_type);
+        if (message.instance_id != null && $Object.hasOwnProperty.call(message, "instance_id"))
+            writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.instance_id);
+        if (message.load != null && $Object.hasOwnProperty.call(message, "load"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.load);
+        if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
+            writer.uint32(/* id 6, wireType 0 =*/48).bool(message.online);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ClusterNodeInfo message, length delimited. Does not implicitly {@link P_ClusterNodeInfo.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {P_ClusterNodeInfo.$Properties} message P_ClusterNodeInfo message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterNodeInfo.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ClusterNodeInfo message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ClusterNodeInfo & P_ClusterNodeInfo.$Shape} P_ClusterNodeInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterNodeInfo.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ClusterNodeInfo();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.zone_id = reader.uint32();
+                    message._zone_id = "zone_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.server_id = reader.uint32();
+                    message._server_id = "server_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.node_type = reader.int32();
+                    message._node_type = "node_type";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.instance_id = reader.uint32();
+                    message._instance_id = "instance_id";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.load = reader.int32();
+                    message._load = "load";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.online = reader.bool();
+                    message._online = "online";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ClusterNodeInfo message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ClusterNodeInfo & P_ClusterNodeInfo.$Shape} P_ClusterNodeInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterNodeInfo.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ClusterNodeInfo message.
+     * @function verify
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ClusterNodeInfo.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.zone_id != null && $Object.hasOwnProperty.call(message, "zone_id")) {
+            properties._zone_id = 1;
+            if (!$util.isInteger(message.zone_id))
+                return "zone_id: integer expected";
+        }
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id")) {
+            properties._server_id = 1;
+            if (!$util.isInteger(message.server_id))
+                return "server_id: integer expected";
+        }
+        if (message.node_type != null && $Object.hasOwnProperty.call(message, "node_type")) {
+            properties._node_type = 1;
+            if (!$util.isInteger(message.node_type))
+                return "node_type: integer expected";
+        }
+        if (message.instance_id != null && $Object.hasOwnProperty.call(message, "instance_id")) {
+            properties._instance_id = 1;
+            if (!$util.isInteger(message.instance_id))
+                return "instance_id: integer expected";
+        }
+        if (message.load != null && $Object.hasOwnProperty.call(message, "load")) {
+            properties._load = 1;
+            if (!$util.isInteger(message.load))
+                return "load: integer expected";
+        }
+        if (message.online != null && $Object.hasOwnProperty.call(message, "online")) {
+            properties._online = 1;
+            if (typeof message.online !== "boolean")
+                return "online: boolean expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ClusterNodeInfo message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ClusterNodeInfo} P_ClusterNodeInfo
+     */
+    P_ClusterNodeInfo.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ClusterNodeInfo)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ClusterNodeInfo: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ClusterNodeInfo();
+        if (object.zone_id != null)
+            message.zone_id = object.zone_id >>> 0;
+        if (object.server_id != null)
+            message.server_id = object.server_id >>> 0;
+        if (object.node_type != null)
+            message.node_type = object.node_type | 0;
+        if (object.instance_id != null)
+            message.instance_id = object.instance_id >>> 0;
+        if (object.load != null)
+            message.load = object.load | 0;
+        if (object.online != null)
+            message.online = $Boolean(object.online);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ClusterNodeInfo message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {P_ClusterNodeInfo} message P_ClusterNodeInfo
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ClusterNodeInfo.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.zone_id != null && $Object.hasOwnProperty.call(message, "zone_id"))
+            object.zone_id = message.zone_id;
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            object.server_id = message.server_id;
+        if (message.node_type != null && $Object.hasOwnProperty.call(message, "node_type"))
+            object.node_type = message.node_type;
+        if (message.instance_id != null && $Object.hasOwnProperty.call(message, "instance_id"))
+            object.instance_id = message.instance_id;
+        if (message.load != null && $Object.hasOwnProperty.call(message, "load"))
+            object.load = message.load;
+        if (message.online != null && $Object.hasOwnProperty.call(message, "online"))
+            object.online = message.online;
+        return object;
+    };
+
+    /**
+     * Converts this P_ClusterNodeInfo to JSON.
+     * @function toJSON
+     * @memberof P_ClusterNodeInfo
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ClusterNodeInfo.prototype.toJSON = function() {
+        return P_ClusterNodeInfo.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ClusterNodeInfo
+     * @function getTypeUrl
+     * @memberof P_ClusterNodeInfo
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ClusterNodeInfo.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ClusterNodeInfo";
+    };
+
+    return P_ClusterNodeInfo;
+})();
+
+export const P_ClusterNodeList = $root.P_ClusterNodeList = (() => {
+
+    /**
+     * Properties of a P_ClusterNodeList.
+     * @typedef {Object} P_ClusterNodeList.$Properties
+     * @property {Array.<P_ClusterNodeInfo.$Properties>|null} [nodes] P_ClusterNodeList nodes
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ClusterNodeList.
+     * @exports IP_ClusterNodeList
+     * @interface IP_ClusterNodeList
+     * @augments P_ClusterNodeList.$Properties
+     * @deprecated Use P_ClusterNodeList.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ClusterNodeList.
+     * @typedef {P_ClusterNodeList.$Properties} P_ClusterNodeList.$Shape
+     */
+
+    /**
+     * Constructs a new P_ClusterNodeList.
+     * @exports P_ClusterNodeList
+     * @classdesc Represents a P_ClusterNodeList.
+     * @constructor
+     * @param {P_ClusterNodeList.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ClusterNodeList = function (properties) {
+        this.nodes = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ClusterNodeList nodes.
+     * @member {Array.<P_ClusterNodeInfo.$Properties>} nodes
+     * @memberof P_ClusterNodeList
+     * @instance
+     */
+    P_ClusterNodeList.prototype.nodes = $util.emptyArray;
+
+    /**
+     * Creates a new P_ClusterNodeList instance using the specified properties.
+     * @function create
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {P_ClusterNodeList.$Properties=} [properties] Properties to set
+     * @returns {P_ClusterNodeList} P_ClusterNodeList instance
+     * @type {{
+     *   (properties: P_ClusterNodeList.$Shape): P_ClusterNodeList & P_ClusterNodeList.$Shape;
+     *   (properties?: P_ClusterNodeList.$Properties): P_ClusterNodeList;
+     * }}
+     */
+    P_ClusterNodeList.create = function(properties) {
+        return new P_ClusterNodeList(properties);
+    };
+
+    /**
+     * Encodes the specified P_ClusterNodeList message. Does not implicitly {@link P_ClusterNodeList.verify|verify} messages.
+     * @function encode
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {P_ClusterNodeList.$Properties} message P_ClusterNodeList message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterNodeList.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.nodes != null && message.nodes.length)
+            for (let i = 0; i < message.nodes.length; ++i)
+                $root.P_ClusterNodeInfo.encode(message.nodes[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ClusterNodeList message, length delimited. Does not implicitly {@link P_ClusterNodeList.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {P_ClusterNodeList.$Properties} message P_ClusterNodeList message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterNodeList.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ClusterNodeList message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ClusterNodeList & P_ClusterNodeList.$Shape} P_ClusterNodeList
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterNodeList.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ClusterNodeList();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.nodes && message.nodes.length))
+                        message.nodes = [];
+                    message.nodes.push($root.P_ClusterNodeInfo.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ClusterNodeList message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ClusterNodeList & P_ClusterNodeList.$Shape} P_ClusterNodeList
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterNodeList.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ClusterNodeList message.
+     * @function verify
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ClusterNodeList.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        if (message.nodes != null && $Object.hasOwnProperty.call(message, "nodes")) {
+            if (!$Array.isArray(message.nodes))
+                return "nodes: array expected";
+            for (let i = 0; i < message.nodes.length; ++i) {
+                let error = $root.P_ClusterNodeInfo.verify(message.nodes[i], _depth + 1);
+                if (error)
+                    return "nodes." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ClusterNodeList message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ClusterNodeList} P_ClusterNodeList
+     */
+    P_ClusterNodeList.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ClusterNodeList)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ClusterNodeList: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ClusterNodeList();
+        if (object.nodes) {
+            if (!$Array.isArray(object.nodes))
+                throw $TypeError(".P_ClusterNodeList.nodes: array expected");
+            message.nodes = $Array(object.nodes.length);
+            for (let i = 0; i < object.nodes.length; ++i) {
+                if (!$util.isObject(object.nodes[i]))
+                    throw $TypeError(".P_ClusterNodeList.nodes: object expected");
+                message.nodes[i] = $root.P_ClusterNodeInfo.fromObject(object.nodes[i], _depth + 1);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ClusterNodeList message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {P_ClusterNodeList} message P_ClusterNodeList
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ClusterNodeList.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.nodes = [];
+        if (message.nodes && message.nodes.length) {
+            object.nodes = $Array(message.nodes.length);
+            for (let j = 0; j < message.nodes.length; ++j)
+                object.nodes[j] = $root.P_ClusterNodeInfo.toObject(message.nodes[j], options, _depth + 1);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this P_ClusterNodeList to JSON.
+     * @function toJSON
+     * @memberof P_ClusterNodeList
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ClusterNodeList.prototype.toJSON = function() {
+        return P_ClusterNodeList.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ClusterNodeList
+     * @function getTypeUrl
+     * @memberof P_ClusterNodeList
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ClusterNodeList.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ClusterNodeList";
+    };
+
+    return P_ClusterNodeList;
+})();
+
+export const P_ClusterRpcReply = $root.P_ClusterRpcReply = (() => {
+
+    /**
+     * Properties of a P_ClusterRpcReply.
+     * @typedef {Object} P_ClusterRpcReply.$Properties
+     * @property {number|null} [error_code] P_ClusterRpcReply error_code
+     * @property {string|null} [error_message] P_ClusterRpcReply error_message
+     * @property {Uint8Array|null} [body] P_ClusterRpcReply body
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ClusterRpcReply.
+     * @exports IP_ClusterRpcReply
+     * @interface IP_ClusterRpcReply
+     * @augments P_ClusterRpcReply.$Properties
+     * @deprecated Use P_ClusterRpcReply.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ClusterRpcReply.
+     * @typedef {P_ClusterRpcReply.$Properties} P_ClusterRpcReply.$Shape
+     */
+
+    /**
+     * Constructs a new P_ClusterRpcReply.
+     * @exports P_ClusterRpcReply
+     * @classdesc Represents a P_ClusterRpcReply.
+     * @constructor
+     * @param {P_ClusterRpcReply.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ClusterRpcReply = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ClusterRpcReply error_code.
+     * @member {number|null|undefined} error_code
+     * @memberof P_ClusterRpcReply
+     * @instance
+     */
+    P_ClusterRpcReply.prototype.error_code = null;
+
+    /**
+     * P_ClusterRpcReply error_message.
+     * @member {string|null|undefined} error_message
+     * @memberof P_ClusterRpcReply
+     * @instance
+     */
+    P_ClusterRpcReply.prototype.error_message = null;
+
+    /**
+     * P_ClusterRpcReply body.
+     * @member {Uint8Array|null|undefined} body
+     * @memberof P_ClusterRpcReply
+     * @instance
+     */
+    P_ClusterRpcReply.prototype.body = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterRpcReply.prototype, "_error_code", {
+        get: $util.oneOfGetter($oneOfFields = ["error_code"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterRpcReply.prototype, "_error_message", {
+        get: $util.oneOfGetter($oneOfFields = ["error_message"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ClusterRpcReply.prototype, "_body", {
+        get: $util.oneOfGetter($oneOfFields = ["body"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_ClusterRpcReply instance using the specified properties.
+     * @function create
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {P_ClusterRpcReply.$Properties=} [properties] Properties to set
+     * @returns {P_ClusterRpcReply} P_ClusterRpcReply instance
+     * @type {{
+     *   (properties: P_ClusterRpcReply.$Shape): P_ClusterRpcReply & P_ClusterRpcReply.$Shape;
+     *   (properties?: P_ClusterRpcReply.$Properties): P_ClusterRpcReply;
+     * }}
+     */
+    P_ClusterRpcReply.create = function(properties) {
+        return new P_ClusterRpcReply(properties);
+    };
+
+    /**
+     * Encodes the specified P_ClusterRpcReply message. Does not implicitly {@link P_ClusterRpcReply.verify|verify} messages.
+     * @function encode
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {P_ClusterRpcReply.$Properties} message P_ClusterRpcReply message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterRpcReply.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.error_code != null && $Object.hasOwnProperty.call(message, "error_code"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.error_code);
+        if (message.error_message != null && $Object.hasOwnProperty.call(message, "error_message"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.error_message);
+        if (message.body != null && $Object.hasOwnProperty.call(message, "body"))
+            writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.body);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ClusterRpcReply message, length delimited. Does not implicitly {@link P_ClusterRpcReply.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {P_ClusterRpcReply.$Properties} message P_ClusterRpcReply message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ClusterRpcReply.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ClusterRpcReply message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ClusterRpcReply & P_ClusterRpcReply.$Shape} P_ClusterRpcReply
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterRpcReply.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ClusterRpcReply();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.error_code = reader.int32();
+                    message._error_code = "error_code";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.error_message = reader.stringVerify();
+                    message._error_message = "error_message";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.body = reader.bytes();
+                    message._body = "body";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ClusterRpcReply message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ClusterRpcReply & P_ClusterRpcReply.$Shape} P_ClusterRpcReply
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ClusterRpcReply.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ClusterRpcReply message.
+     * @function verify
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ClusterRpcReply.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.error_code != null && $Object.hasOwnProperty.call(message, "error_code")) {
+            properties._error_code = 1;
+            if (!$util.isInteger(message.error_code))
+                return "error_code: integer expected";
+        }
+        if (message.error_message != null && $Object.hasOwnProperty.call(message, "error_message")) {
+            properties._error_message = 1;
+            if (!$util.isString(message.error_message))
+                return "error_message: string expected";
+        }
+        if (message.body != null && $Object.hasOwnProperty.call(message, "body")) {
+            properties._body = 1;
+            if (!(message.body && typeof message.body.length === "number" || $util.isString(message.body)))
+                return "body: buffer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ClusterRpcReply message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ClusterRpcReply} P_ClusterRpcReply
+     */
+    P_ClusterRpcReply.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ClusterRpcReply)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ClusterRpcReply: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ClusterRpcReply();
+        if (object.error_code != null)
+            message.error_code = object.error_code | 0;
+        if (object.error_message != null)
+            message.error_message = $String(object.error_message);
+        if (object.body != null)
+            if (typeof object.body === "string")
+                $util.base64.decode(object.body, message.body = $util.newBuffer($util.base64.length(object.body)), 0);
+            else if (object.body.length >= 0)
+                message.body = object.body;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ClusterRpcReply message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {P_ClusterRpcReply} message P_ClusterRpcReply
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ClusterRpcReply.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.error_code != null && $Object.hasOwnProperty.call(message, "error_code"))
+            object.error_code = message.error_code;
+        if (message.error_message != null && $Object.hasOwnProperty.call(message, "error_message"))
+            object.error_message = message.error_message;
+        if (message.body != null && $Object.hasOwnProperty.call(message, "body"))
+            object.body = options.bytes === $String ? $util.base64.encode(message.body, 0, message.body.length) : options.bytes === $Array ? $Array.prototype.slice.call(message.body) : message.body;
+        return object;
+    };
+
+    /**
+     * Converts this P_ClusterRpcReply to JSON.
+     * @function toJSON
+     * @memberof P_ClusterRpcReply
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ClusterRpcReply.prototype.toJSON = function() {
+        return P_ClusterRpcReply.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ClusterRpcReply
+     * @function getTypeUrl
+     * @memberof P_ClusterRpcReply
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ClusterRpcReply.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ClusterRpcReply";
+    };
+
+    return P_ClusterRpcReply;
+})();
+
+export const PB_CrossRoleSnapshot = $root.PB_CrossRoleSnapshot = (() => {
+
+    /**
+     * Properties of a PB_CrossRoleSnapshot.
+     * @typedef {Object} PB_CrossRoleSnapshot.$Properties
+     * @property {number|null} [role_uid] PB_CrossRoleSnapshot role_uid
+     * @property {number|null} [home_server_id] PB_CrossRoleSnapshot home_server_id
+     * @property {number|null} [scene_server_id] PB_CrossRoleSnapshot scene_server_id
+     * @property {number|null} [activity_id] PB_CrossRoleSnapshot activity_id
+     * @property {Uint8Array|null} [extra] PB_CrossRoleSnapshot extra
+     * @property {Uint8Array|null} [role_data] PB_CrossRoleSnapshot role_data
+     * @property {string|null} [scene_ip] PB_CrossRoleSnapshot scene_ip
+     * @property {number|null} [scene_port] PB_CrossRoleSnapshot scene_port
+     * @property {string|null} [token] PB_CrossRoleSnapshot token
+     * @property {number|null} [pos_x] PB_CrossRoleSnapshot pos_x
+     * @property {number|null} [pos_y] PB_CrossRoleSnapshot pos_y
+     * @property {number|null} [pos_z] PB_CrossRoleSnapshot pos_z
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_CrossRoleSnapshot.
+     * @exports IPB_CrossRoleSnapshot
+     * @interface IPB_CrossRoleSnapshot
+     * @augments PB_CrossRoleSnapshot.$Properties
+     * @deprecated Use PB_CrossRoleSnapshot.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_CrossRoleSnapshot.
+     * @typedef {PB_CrossRoleSnapshot.$Properties} PB_CrossRoleSnapshot.$Shape
+     */
+
+    /**
+     * Constructs a new PB_CrossRoleSnapshot.
+     * @exports PB_CrossRoleSnapshot
+     * @classdesc Represents a PB_CrossRoleSnapshot.
+     * @constructor
+     * @param {PB_CrossRoleSnapshot.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_CrossRoleSnapshot = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_CrossRoleSnapshot role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.role_uid = null;
+
+    /**
+     * PB_CrossRoleSnapshot home_server_id.
+     * @member {number|null|undefined} home_server_id
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.home_server_id = null;
+
+    /**
+     * PB_CrossRoleSnapshot scene_server_id.
+     * @member {number|null|undefined} scene_server_id
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.scene_server_id = null;
+
+    /**
+     * PB_CrossRoleSnapshot activity_id.
+     * @member {number|null|undefined} activity_id
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.activity_id = null;
+
+    /**
+     * PB_CrossRoleSnapshot extra.
+     * @member {Uint8Array|null|undefined} extra
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.extra = null;
+
+    /**
+     * PB_CrossRoleSnapshot role_data.
+     * @member {Uint8Array|null|undefined} role_data
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.role_data = null;
+
+    /**
+     * PB_CrossRoleSnapshot scene_ip.
+     * @member {string|null|undefined} scene_ip
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.scene_ip = null;
+
+    /**
+     * PB_CrossRoleSnapshot scene_port.
+     * @member {number|null|undefined} scene_port
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.scene_port = null;
+
+    /**
+     * PB_CrossRoleSnapshot token.
+     * @member {string|null|undefined} token
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.token = null;
+
+    /**
+     * PB_CrossRoleSnapshot pos_x.
+     * @member {number|null|undefined} pos_x
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.pos_x = null;
+
+    /**
+     * PB_CrossRoleSnapshot pos_y.
+     * @member {number|null|undefined} pos_y
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.pos_y = null;
+
+    /**
+     * PB_CrossRoleSnapshot pos_z.
+     * @member {number|null|undefined} pos_z
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     */
+    PB_CrossRoleSnapshot.prototype.pos_z = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_home_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["home_server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_scene_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_activity_id", {
+        get: $util.oneOfGetter($oneOfFields = ["activity_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_extra", {
+        get: $util.oneOfGetter($oneOfFields = ["extra"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_role_data", {
+        get: $util.oneOfGetter($oneOfFields = ["role_data"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_scene_ip", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_ip"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_scene_port", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_port"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_pos_x", {
+        get: $util.oneOfGetter($oneOfFields = ["pos_x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_pos_y", {
+        get: $util.oneOfGetter($oneOfFields = ["pos_y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossRoleSnapshot.prototype, "_pos_z", {
+        get: $util.oneOfGetter($oneOfFields = ["pos_z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_CrossRoleSnapshot instance using the specified properties.
+     * @function create
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {PB_CrossRoleSnapshot.$Properties=} [properties] Properties to set
+     * @returns {PB_CrossRoleSnapshot} PB_CrossRoleSnapshot instance
+     * @type {{
+     *   (properties: PB_CrossRoleSnapshot.$Shape): PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape;
+     *   (properties?: PB_CrossRoleSnapshot.$Properties): PB_CrossRoleSnapshot;
+     * }}
+     */
+    PB_CrossRoleSnapshot.create = function(properties) {
+        return new PB_CrossRoleSnapshot(properties);
+    };
+
+    /**
+     * Encodes the specified PB_CrossRoleSnapshot message. Does not implicitly {@link PB_CrossRoleSnapshot.verify|verify} messages.
+     * @function encode
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {PB_CrossRoleSnapshot.$Properties} message PB_CrossRoleSnapshot message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_CrossRoleSnapshot.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.role_uid);
+        if (message.home_server_id != null && $Object.hasOwnProperty.call(message, "home_server_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.home_server_id);
+        if (message.scene_server_id != null && $Object.hasOwnProperty.call(message, "scene_server_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.scene_server_id);
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.activity_id);
+        if (message.extra != null && $Object.hasOwnProperty.call(message, "extra"))
+            writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.extra);
+        if (message.role_data != null && $Object.hasOwnProperty.call(message, "role_data"))
+            writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.role_data);
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.scene_ip);
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.scene_port);
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 9, wireType 2 =*/74).string(message.token);
+        if (message.pos_x != null && $Object.hasOwnProperty.call(message, "pos_x"))
+            writer.uint32(/* id 10, wireType 5 =*/85).float(message.pos_x);
+        if (message.pos_y != null && $Object.hasOwnProperty.call(message, "pos_y"))
+            writer.uint32(/* id 11, wireType 5 =*/93).float(message.pos_y);
+        if (message.pos_z != null && $Object.hasOwnProperty.call(message, "pos_z"))
+            writer.uint32(/* id 12, wireType 5 =*/101).float(message.pos_z);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_CrossRoleSnapshot message, length delimited. Does not implicitly {@link PB_CrossRoleSnapshot.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {PB_CrossRoleSnapshot.$Properties} message PB_CrossRoleSnapshot message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_CrossRoleSnapshot.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_CrossRoleSnapshot message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape} PB_CrossRoleSnapshot
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_CrossRoleSnapshot.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_CrossRoleSnapshot();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.uint64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.home_server_id = reader.uint32();
+                    message._home_server_id = "home_server_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_server_id = reader.uint32();
+                    message._scene_server_id = "scene_server_id";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.activity_id = reader.uint32();
+                    message._activity_id = "activity_id";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 2)
+                        break;
+                    message.extra = reader.bytes();
+                    message._extra = "extra";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 2)
+                        break;
+                    message.role_data = reader.bytes();
+                    message._role_data = "role_data";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 2)
+                        break;
+                    message.scene_ip = reader.stringVerify();
+                    message._scene_ip = "scene_ip";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_port = reader.uint32();
+                    message._scene_port = "scene_port";
+                    continue;
+                }
+            case 9: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
+            case 10: {
+                    if (wireType !== 5)
+                        break;
+                    message.pos_x = reader.float();
+                    message._pos_x = "pos_x";
+                    continue;
+                }
+            case 11: {
+                    if (wireType !== 5)
+                        break;
+                    message.pos_y = reader.float();
+                    message._pos_y = "pos_y";
+                    continue;
+                }
+            case 12: {
+                    if (wireType !== 5)
+                        break;
+                    message.pos_z = reader.float();
+                    message._pos_z = "pos_z";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_CrossRoleSnapshot message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape} PB_CrossRoleSnapshot
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_CrossRoleSnapshot.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_CrossRoleSnapshot message.
+     * @function verify
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_CrossRoleSnapshot.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        if (message.home_server_id != null && $Object.hasOwnProperty.call(message, "home_server_id")) {
+            properties._home_server_id = 1;
+            if (!$util.isInteger(message.home_server_id))
+                return "home_server_id: integer expected";
+        }
+        if (message.scene_server_id != null && $Object.hasOwnProperty.call(message, "scene_server_id")) {
+            properties._scene_server_id = 1;
+            if (!$util.isInteger(message.scene_server_id))
+                return "scene_server_id: integer expected";
+        }
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id")) {
+            properties._activity_id = 1;
+            if (!$util.isInteger(message.activity_id))
+                return "activity_id: integer expected";
+        }
+        if (message.extra != null && $Object.hasOwnProperty.call(message, "extra")) {
+            properties._extra = 1;
+            if (!(message.extra && typeof message.extra.length === "number" || $util.isString(message.extra)))
+                return "extra: buffer expected";
+        }
+        if (message.role_data != null && $Object.hasOwnProperty.call(message, "role_data")) {
+            properties._role_data = 1;
+            if (!(message.role_data && typeof message.role_data.length === "number" || $util.isString(message.role_data)))
+                return "role_data: buffer expected";
+        }
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip")) {
+            properties._scene_ip = 1;
+            if (!$util.isString(message.scene_ip))
+                return "scene_ip: string expected";
+        }
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port")) {
+            properties._scene_port = 1;
+            if (!$util.isInteger(message.scene_port))
+                return "scene_port: integer expected";
+        }
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
+        if (message.pos_x != null && $Object.hasOwnProperty.call(message, "pos_x")) {
+            properties._pos_x = 1;
+            if (typeof message.pos_x !== "number")
+                return "pos_x: number expected";
+        }
+        if (message.pos_y != null && $Object.hasOwnProperty.call(message, "pos_y")) {
+            properties._pos_y = 1;
+            if (typeof message.pos_y !== "number")
+                return "pos_y: number expected";
+        }
+        if (message.pos_z != null && $Object.hasOwnProperty.call(message, "pos_z")) {
+            properties._pos_z = 1;
+            if (typeof message.pos_z !== "number")
+                return "pos_z: number expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_CrossRoleSnapshot message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_CrossRoleSnapshot} PB_CrossRoleSnapshot
+     */
+    PB_CrossRoleSnapshot.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_CrossRoleSnapshot)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_CrossRoleSnapshot: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_CrossRoleSnapshot();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, true);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber(true);
+        if (object.home_server_id != null)
+            message.home_server_id = object.home_server_id >>> 0;
+        if (object.scene_server_id != null)
+            message.scene_server_id = object.scene_server_id >>> 0;
+        if (object.activity_id != null)
+            message.activity_id = object.activity_id >>> 0;
+        if (object.extra != null)
+            if (typeof object.extra === "string")
+                $util.base64.decode(object.extra, message.extra = $util.newBuffer($util.base64.length(object.extra)), 0);
+            else if (object.extra.length >= 0)
+                message.extra = object.extra;
+        if (object.role_data != null)
+            if (typeof object.role_data === "string")
+                $util.base64.decode(object.role_data, message.role_data = $util.newBuffer($util.base64.length(object.role_data)), 0);
+            else if (object.role_data.length >= 0)
+                message.role_data = object.role_data;
+        if (object.scene_ip != null)
+            message.scene_ip = $String(object.scene_ip);
+        if (object.scene_port != null)
+            message.scene_port = object.scene_port >>> 0;
+        if (object.token != null)
+            message.token = $String(object.token);
+        if (object.pos_x != null)
+            message.pos_x = $Number(object.pos_x);
+        if (object.pos_y != null)
+            message.pos_y = $Number(object.pos_y);
+        if (object.pos_z != null)
+            message.pos_z = $Number(object.pos_z);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_CrossRoleSnapshot message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {PB_CrossRoleSnapshot} message PB_CrossRoleSnapshot
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_CrossRoleSnapshot.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber(true) : message.role_uid;
+        if (message.home_server_id != null && $Object.hasOwnProperty.call(message, "home_server_id"))
+            object.home_server_id = message.home_server_id;
+        if (message.scene_server_id != null && $Object.hasOwnProperty.call(message, "scene_server_id"))
+            object.scene_server_id = message.scene_server_id;
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            object.activity_id = message.activity_id;
+        if (message.extra != null && $Object.hasOwnProperty.call(message, "extra"))
+            object.extra = options.bytes === $String ? $util.base64.encode(message.extra, 0, message.extra.length) : options.bytes === $Array ? $Array.prototype.slice.call(message.extra) : message.extra;
+        if (message.role_data != null && $Object.hasOwnProperty.call(message, "role_data"))
+            object.role_data = options.bytes === $String ? $util.base64.encode(message.role_data, 0, message.role_data.length) : options.bytes === $Array ? $Array.prototype.slice.call(message.role_data) : message.role_data;
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            object.scene_ip = message.scene_ip;
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            object.scene_port = message.scene_port;
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
+        if (message.pos_x != null && $Object.hasOwnProperty.call(message, "pos_x"))
+            object.pos_x = options.json && !$isFinite(message.pos_x) ? $String(message.pos_x) : message.pos_x;
+        if (message.pos_y != null && $Object.hasOwnProperty.call(message, "pos_y"))
+            object.pos_y = options.json && !$isFinite(message.pos_y) ? $String(message.pos_y) : message.pos_y;
+        if (message.pos_z != null && $Object.hasOwnProperty.call(message, "pos_z"))
+            object.pos_z = options.json && !$isFinite(message.pos_z) ? $String(message.pos_z) : message.pos_z;
+        return object;
+    };
+
+    /**
+     * Converts this PB_CrossRoleSnapshot to JSON.
+     * @function toJSON
+     * @memberof PB_CrossRoleSnapshot
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_CrossRoleSnapshot.prototype.toJSON = function() {
+        return PB_CrossRoleSnapshot.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_CrossRoleSnapshot
+     * @function getTypeUrl
+     * @memberof PB_CrossRoleSnapshot
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_CrossRoleSnapshot.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_CrossRoleSnapshot";
+    };
+
+    return PB_CrossRoleSnapshot;
+})();
+
+export const PB_CrossTicket = $root.PB_CrossTicket = (() => {
+
+    /**
+     * Properties of a PB_CrossTicket.
+     * @typedef {Object} PB_CrossTicket.$Properties
+     * @property {number|null} [role_uid] PB_CrossTicket role_uid
+     * @property {number|null} [home_server_id] PB_CrossTicket home_server_id
+     * @property {number|null} [scene_server_id] PB_CrossTicket scene_server_id
+     * @property {number|null} [expire_time] PB_CrossTicket expire_time
+     * @property {number|null} [cross_type] PB_CrossTicket cross_type
+     * @property {string|null} [scene_ip] PB_CrossTicket scene_ip
+     * @property {number|null} [scene_port] PB_CrossTicket scene_port
+     * @property {string|null} [token] PB_CrossTicket token
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_CrossTicket.
+     * @exports IPB_CrossTicket
+     * @interface IPB_CrossTicket
+     * @augments PB_CrossTicket.$Properties
+     * @deprecated Use PB_CrossTicket.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_CrossTicket.
+     * @typedef {PB_CrossTicket.$Properties} PB_CrossTicket.$Shape
+     */
+
+    /**
+     * Constructs a new PB_CrossTicket.
+     * @exports PB_CrossTicket
+     * @classdesc Represents a PB_CrossTicket.
+     * @constructor
+     * @param {PB_CrossTicket.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_CrossTicket = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_CrossTicket role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.role_uid = null;
+
+    /**
+     * PB_CrossTicket home_server_id.
+     * @member {number|null|undefined} home_server_id
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.home_server_id = null;
+
+    /**
+     * PB_CrossTicket scene_server_id.
+     * @member {number|null|undefined} scene_server_id
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.scene_server_id = null;
+
+    /**
+     * PB_CrossTicket expire_time.
+     * @member {number|null|undefined} expire_time
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.expire_time = null;
+
+    /**
+     * PB_CrossTicket cross_type.
+     * @member {number|null|undefined} cross_type
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.cross_type = null;
+
+    /**
+     * PB_CrossTicket scene_ip.
+     * @member {string|null|undefined} scene_ip
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.scene_ip = null;
+
+    /**
+     * PB_CrossTicket scene_port.
+     * @member {number|null|undefined} scene_port
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.scene_port = null;
+
+    /**
+     * PB_CrossTicket token.
+     * @member {string|null|undefined} token
+     * @memberof PB_CrossTicket
+     * @instance
+     */
+    PB_CrossTicket.prototype.token = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_home_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["home_server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_scene_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_expire_time", {
+        get: $util.oneOfGetter($oneOfFields = ["expire_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_cross_type", {
+        get: $util.oneOfGetter($oneOfFields = ["cross_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_scene_ip", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_ip"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_scene_port", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_port"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_CrossTicket.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_CrossTicket instance using the specified properties.
+     * @function create
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {PB_CrossTicket.$Properties=} [properties] Properties to set
+     * @returns {PB_CrossTicket} PB_CrossTicket instance
+     * @type {{
+     *   (properties: PB_CrossTicket.$Shape): PB_CrossTicket & PB_CrossTicket.$Shape;
+     *   (properties?: PB_CrossTicket.$Properties): PB_CrossTicket;
+     * }}
+     */
+    PB_CrossTicket.create = function(properties) {
+        return new PB_CrossTicket(properties);
+    };
+
+    /**
+     * Encodes the specified PB_CrossTicket message. Does not implicitly {@link PB_CrossTicket.verify|verify} messages.
+     * @function encode
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {PB_CrossTicket.$Properties} message PB_CrossTicket message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_CrossTicket.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.role_uid);
+        if (message.home_server_id != null && $Object.hasOwnProperty.call(message, "home_server_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.home_server_id);
+        if (message.scene_server_id != null && $Object.hasOwnProperty.call(message, "scene_server_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.scene_server_id);
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
+            writer.uint32(/* id 4, wireType 0 =*/32).uint64(message.expire_time);
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.cross_type);
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            writer.uint32(/* id 6, wireType 2 =*/50).string(message.scene_ip);
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.scene_port);
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 8, wireType 2 =*/66).string(message.token);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_CrossTicket message, length delimited. Does not implicitly {@link PB_CrossTicket.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {PB_CrossTicket.$Properties} message PB_CrossTicket message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_CrossTicket.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_CrossTicket message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_CrossTicket & PB_CrossTicket.$Shape} PB_CrossTicket
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_CrossTicket.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_CrossTicket();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.uint64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.home_server_id = reader.uint32();
+                    message._home_server_id = "home_server_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_server_id = reader.uint32();
+                    message._scene_server_id = "scene_server_id";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.expire_time = reader.uint64();
+                    message._expire_time = "expire_time";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.cross_type = reader.int32();
+                    message._cross_type = "cross_type";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 2)
+                        break;
+                    message.scene_ip = reader.stringVerify();
+                    message._scene_ip = "scene_ip";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_port = reader.uint32();
+                    message._scene_port = "scene_port";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_CrossTicket message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_CrossTicket & PB_CrossTicket.$Shape} PB_CrossTicket
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_CrossTicket.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_CrossTicket message.
+     * @function verify
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_CrossTicket.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        if (message.home_server_id != null && $Object.hasOwnProperty.call(message, "home_server_id")) {
+            properties._home_server_id = 1;
+            if (!$util.isInteger(message.home_server_id))
+                return "home_server_id: integer expected";
+        }
+        if (message.scene_server_id != null && $Object.hasOwnProperty.call(message, "scene_server_id")) {
+            properties._scene_server_id = 1;
+            if (!$util.isInteger(message.scene_server_id))
+                return "scene_server_id: integer expected";
+        }
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time")) {
+            properties._expire_time = 1;
+            if (!$util.isInteger(message.expire_time) && !(message.expire_time && $util.isInteger(message.expire_time.low) && $util.isInteger(message.expire_time.high)))
+                return "expire_time: integer|Long expected";
+        }
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type")) {
+            properties._cross_type = 1;
+            if (!$util.isInteger(message.cross_type))
+                return "cross_type: integer expected";
+        }
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip")) {
+            properties._scene_ip = 1;
+            if (!$util.isString(message.scene_ip))
+                return "scene_ip: string expected";
+        }
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port")) {
+            properties._scene_port = 1;
+            if (!$util.isInteger(message.scene_port))
+                return "scene_port: integer expected";
+        }
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_CrossTicket message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_CrossTicket} PB_CrossTicket
+     */
+    PB_CrossTicket.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_CrossTicket)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_CrossTicket: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_CrossTicket();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, true);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber(true);
+        if (object.home_server_id != null)
+            message.home_server_id = object.home_server_id >>> 0;
+        if (object.scene_server_id != null)
+            message.scene_server_id = object.scene_server_id >>> 0;
+        if (object.expire_time != null)
+            if ($util.Long)
+                message.expire_time = $util.Long.fromValue(object.expire_time, true);
+            else if (typeof object.expire_time === "string")
+                message.expire_time = $parseInt(object.expire_time, 10);
+            else if (typeof object.expire_time === "number")
+                message.expire_time = object.expire_time;
+            else if (typeof object.expire_time === "object")
+                message.expire_time = new $util.LongBits(object.expire_time.low >>> 0, object.expire_time.high >>> 0).toNumber(true);
+        if (object.cross_type != null)
+            message.cross_type = object.cross_type | 0;
+        if (object.scene_ip != null)
+            message.scene_ip = $String(object.scene_ip);
+        if (object.scene_port != null)
+            message.scene_port = object.scene_port >>> 0;
+        if (object.token != null)
+            message.token = $String(object.token);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_CrossTicket message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {PB_CrossTicket} message PB_CrossTicket
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_CrossTicket.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber(true) : message.role_uid;
+        if (message.home_server_id != null && $Object.hasOwnProperty.call(message, "home_server_id"))
+            object.home_server_id = message.home_server_id;
+        if (message.scene_server_id != null && $Object.hasOwnProperty.call(message, "scene_server_id"))
+            object.scene_server_id = message.scene_server_id;
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.expire_time = typeof message.expire_time === "number" ? $BigInt(message.expire_time) : $util.Long.fromBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0, true).toBigInt();
+            else if (typeof message.expire_time === "number")
+                object.expire_time = options.longs === $String ? $String(message.expire_time) : message.expire_time;
+            else
+                object.expire_time = options.longs === $String ? $util.Long.prototype.toString.call(message.expire_time) : options.longs === $Number ? new $util.LongBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0).toNumber(true) : message.expire_time;
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            object.cross_type = message.cross_type;
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            object.scene_ip = message.scene_ip;
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            object.scene_port = message.scene_port;
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
+        return object;
+    };
+
+    /**
+     * Converts this PB_CrossTicket to JSON.
+     * @function toJSON
+     * @memberof PB_CrossTicket
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_CrossTicket.prototype.toJSON = function() {
+        return PB_CrossTicket.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_CrossTicket
+     * @function getTypeUrl
+     * @memberof PB_CrossTicket
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_CrossTicket.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_CrossTicket";
+    };
+
+    return PB_CrossTicket;
+})();
+
+export const P_CrossLeave = $root.P_CrossLeave = (() => {
+
+    /**
+     * Properties of a P_CrossLeave.
+     * @typedef {Object} P_CrossLeave.$Properties
+     * @property {number|null} [role_uid] P_CrossLeave role_uid
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossLeave.
+     * @exports IP_CrossLeave
+     * @interface IP_CrossLeave
+     * @augments P_CrossLeave.$Properties
+     * @deprecated Use P_CrossLeave.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossLeave.
+     * @typedef {P_CrossLeave.$Properties} P_CrossLeave.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossLeave.
+     * @exports P_CrossLeave
+     * @classdesc Represents a P_CrossLeave.
+     * @constructor
+     * @param {P_CrossLeave.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossLeave = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossLeave role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof P_CrossLeave
+     * @instance
+     */
+    P_CrossLeave.prototype.role_uid = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossLeave.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossLeave instance using the specified properties.
+     * @function create
+     * @memberof P_CrossLeave
+     * @static
+     * @param {P_CrossLeave.$Properties=} [properties] Properties to set
+     * @returns {P_CrossLeave} P_CrossLeave instance
+     * @type {{
+     *   (properties: P_CrossLeave.$Shape): P_CrossLeave & P_CrossLeave.$Shape;
+     *   (properties?: P_CrossLeave.$Properties): P_CrossLeave;
+     * }}
+     */
+    P_CrossLeave.create = function(properties) {
+        return new P_CrossLeave(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossLeave message. Does not implicitly {@link P_CrossLeave.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossLeave
+     * @static
+     * @param {P_CrossLeave.$Properties} message P_CrossLeave message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossLeave.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.role_uid);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossLeave message, length delimited. Does not implicitly {@link P_CrossLeave.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossLeave
+     * @static
+     * @param {P_CrossLeave.$Properties} message P_CrossLeave message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossLeave.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossLeave message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossLeave
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossLeave & P_CrossLeave.$Shape} P_CrossLeave
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossLeave.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossLeave();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.uint64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossLeave message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossLeave
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossLeave & P_CrossLeave.$Shape} P_CrossLeave
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossLeave.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossLeave message.
+     * @function verify
+     * @memberof P_CrossLeave
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossLeave.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossLeave message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossLeave
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossLeave} P_CrossLeave
+     */
+    P_CrossLeave.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossLeave)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossLeave: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossLeave();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, true);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber(true);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossLeave message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossLeave
+     * @static
+     * @param {P_CrossLeave} message P_CrossLeave
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossLeave.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber(true) : message.role_uid;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossLeave to JSON.
+     * @function toJSON
+     * @memberof P_CrossLeave
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossLeave.prototype.toJSON = function() {
+        return P_CrossLeave.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossLeave
+     * @function getTypeUrl
+     * @memberof P_CrossLeave
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossLeave.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossLeave";
+    };
+
+    return P_CrossLeave;
+})();
+
+export const P_CrossQueryRole = $root.P_CrossQueryRole = (() => {
+
+    /**
+     * Properties of a P_CrossQueryRole.
+     * @typedef {Object} P_CrossQueryRole.$Properties
+     * @property {number|null} [role_uid] P_CrossQueryRole role_uid
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossQueryRole.
+     * @exports IP_CrossQueryRole
+     * @interface IP_CrossQueryRole
+     * @augments P_CrossQueryRole.$Properties
+     * @deprecated Use P_CrossQueryRole.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossQueryRole.
+     * @typedef {P_CrossQueryRole.$Properties} P_CrossQueryRole.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossQueryRole.
+     * @exports P_CrossQueryRole
+     * @classdesc Represents a P_CrossQueryRole.
+     * @constructor
+     * @param {P_CrossQueryRole.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossQueryRole = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossQueryRole role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof P_CrossQueryRole
+     * @instance
+     */
+    P_CrossQueryRole.prototype.role_uid = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossQueryRole.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossQueryRole instance using the specified properties.
+     * @function create
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {P_CrossQueryRole.$Properties=} [properties] Properties to set
+     * @returns {P_CrossQueryRole} P_CrossQueryRole instance
+     * @type {{
+     *   (properties: P_CrossQueryRole.$Shape): P_CrossQueryRole & P_CrossQueryRole.$Shape;
+     *   (properties?: P_CrossQueryRole.$Properties): P_CrossQueryRole;
+     * }}
+     */
+    P_CrossQueryRole.create = function(properties) {
+        return new P_CrossQueryRole(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossQueryRole message. Does not implicitly {@link P_CrossQueryRole.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {P_CrossQueryRole.$Properties} message P_CrossQueryRole message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossQueryRole.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.role_uid);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossQueryRole message, length delimited. Does not implicitly {@link P_CrossQueryRole.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {P_CrossQueryRole.$Properties} message P_CrossQueryRole message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossQueryRole.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossQueryRole message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossQueryRole & P_CrossQueryRole.$Shape} P_CrossQueryRole
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossQueryRole.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossQueryRole();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.uint64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossQueryRole message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossQueryRole & P_CrossQueryRole.$Shape} P_CrossQueryRole
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossQueryRole.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossQueryRole message.
+     * @function verify
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossQueryRole.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossQueryRole message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossQueryRole} P_CrossQueryRole
+     */
+    P_CrossQueryRole.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossQueryRole)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossQueryRole: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossQueryRole();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, true);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber(true);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossQueryRole message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {P_CrossQueryRole} message P_CrossQueryRole
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossQueryRole.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber(true) : message.role_uid;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossQueryRole to JSON.
+     * @function toJSON
+     * @memberof P_CrossQueryRole
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossQueryRole.prototype.toJSON = function() {
+        return P_CrossQueryRole.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossQueryRole
+     * @function getTypeUrl
+     * @memberof P_CrossQueryRole
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossQueryRole.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossQueryRole";
+    };
+
+    return P_CrossQueryRole;
+})();
+
+export const PB_MmoRoleData = $root.PB_MmoRoleData = (() => {
+
+    /**
+     * Properties of a PB_MmoRoleData.
+     * @typedef {Object} PB_MmoRoleData.$Properties
+     * @property {number|null} [scene_id] PB_MmoRoleData scene_id
+     * @property {number|null} [x] PB_MmoRoleData x
+     * @property {number|null} [y] PB_MmoRoleData y
+     * @property {number|null} [z] PB_MmoRoleData z
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_MmoRoleData.
+     * @exports IPB_MmoRoleData
+     * @interface IPB_MmoRoleData
+     * @augments PB_MmoRoleData.$Properties
+     * @deprecated Use PB_MmoRoleData.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_MmoRoleData.
+     * @typedef {PB_MmoRoleData.$Properties} PB_MmoRoleData.$Shape
+     */
+
+    /**
+     * Constructs a new PB_MmoRoleData.
+     * @exports PB_MmoRoleData
+     * @classdesc Represents a PB_MmoRoleData.
+     * @constructor
+     * @param {PB_MmoRoleData.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_MmoRoleData = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_MmoRoleData scene_id.
+     * @member {number|null|undefined} scene_id
+     * @memberof PB_MmoRoleData
+     * @instance
+     */
+    PB_MmoRoleData.prototype.scene_id = null;
+
+    /**
+     * PB_MmoRoleData x.
+     * @member {number|null|undefined} x
+     * @memberof PB_MmoRoleData
+     * @instance
+     */
+    PB_MmoRoleData.prototype.x = null;
+
+    /**
+     * PB_MmoRoleData y.
+     * @member {number|null|undefined} y
+     * @memberof PB_MmoRoleData
+     * @instance
+     */
+    PB_MmoRoleData.prototype.y = null;
+
+    /**
+     * PB_MmoRoleData z.
+     * @member {number|null|undefined} z
+     * @memberof PB_MmoRoleData
+     * @instance
+     */
+    PB_MmoRoleData.prototype.z = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleData.prototype, "_scene_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleData.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleData.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleData.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_MmoRoleData instance using the specified properties.
+     * @function create
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {PB_MmoRoleData.$Properties=} [properties] Properties to set
+     * @returns {PB_MmoRoleData} PB_MmoRoleData instance
+     * @type {{
+     *   (properties: PB_MmoRoleData.$Shape): PB_MmoRoleData & PB_MmoRoleData.$Shape;
+     *   (properties?: PB_MmoRoleData.$Properties): PB_MmoRoleData;
+     * }}
+     */
+    PB_MmoRoleData.create = function(properties) {
+        return new PB_MmoRoleData(properties);
+    };
+
+    /**
+     * Encodes the specified PB_MmoRoleData message. Does not implicitly {@link PB_MmoRoleData.verify|verify} messages.
+     * @function encode
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {PB_MmoRoleData.$Properties} message PB_MmoRoleData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoRoleData.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.scene_id);
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.z);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_MmoRoleData message, length delimited. Does not implicitly {@link PB_MmoRoleData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {PB_MmoRoleData.$Properties} message PB_MmoRoleData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoRoleData.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_MmoRoleData message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_MmoRoleData & PB_MmoRoleData.$Shape} PB_MmoRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoRoleData.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_MmoRoleData();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_id = reader.uint64();
+                    message._scene_id = "scene_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_MmoRoleData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_MmoRoleData & PB_MmoRoleData.$Shape} PB_MmoRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoRoleData.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_MmoRoleData message.
+     * @function verify
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_MmoRoleData.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id")) {
+            properties._scene_id = 1;
+            if (!$util.isInteger(message.scene_id) && !(message.scene_id && $util.isInteger(message.scene_id.low) && $util.isInteger(message.scene_id.high)))
+                return "scene_id: integer|Long expected";
+        }
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_MmoRoleData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_MmoRoleData} PB_MmoRoleData
+     */
+    PB_MmoRoleData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_MmoRoleData)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_MmoRoleData: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_MmoRoleData();
+        if (object.scene_id != null)
+            if ($util.Long)
+                message.scene_id = $util.Long.fromValue(object.scene_id, true);
+            else if (typeof object.scene_id === "string")
+                message.scene_id = $parseInt(object.scene_id, 10);
+            else if (typeof object.scene_id === "number")
+                message.scene_id = object.scene_id;
+            else if (typeof object.scene_id === "object")
+                message.scene_id = new $util.LongBits(object.scene_id.low >>> 0, object.scene_id.high >>> 0).toNumber(true);
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_MmoRoleData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {PB_MmoRoleData} message PB_MmoRoleData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_MmoRoleData.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.scene_id = typeof message.scene_id === "number" ? $BigInt(message.scene_id) : $util.Long.fromBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0, true).toBigInt();
+            else if (typeof message.scene_id === "number")
+                object.scene_id = options.longs === $String ? $String(message.scene_id) : message.scene_id;
+            else
+                object.scene_id = options.longs === $String ? $util.Long.prototype.toString.call(message.scene_id) : options.longs === $Number ? new $util.LongBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0).toNumber(true) : message.scene_id;
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        return object;
+    };
+
+    /**
+     * Converts this PB_MmoRoleData to JSON.
+     * @function toJSON
+     * @memberof PB_MmoRoleData
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_MmoRoleData.prototype.toJSON = function() {
+        return PB_MmoRoleData.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_MmoRoleData
+     * @function getTypeUrl
+     * @memberof PB_MmoRoleData
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_MmoRoleData.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_MmoRoleData";
+    };
+
+    return PB_MmoRoleData;
+})();
+
+export const PB_MmoRoleInit = $root.PB_MmoRoleInit = (() => {
+
+    /**
+     * Properties of a PB_MmoRoleInit.
+     * @typedef {Object} PB_MmoRoleInit.$Properties
+     * @property {number|null} [role_uid] PB_MmoRoleInit role_uid
+     * @property {number|null} [scene_id] PB_MmoRoleInit scene_id
+     * @property {string|null} [role_name] PB_MmoRoleInit role_name
+     * @property {number|null} [x] PB_MmoRoleInit x
+     * @property {number|null} [y] PB_MmoRoleInit y
+     * @property {number|null} [z] PB_MmoRoleInit z
+     * @property {PB_HeroData.$Properties|null} [hero] PB_MmoRoleInit hero
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_MmoRoleInit.
+     * @exports IPB_MmoRoleInit
+     * @interface IPB_MmoRoleInit
+     * @augments PB_MmoRoleInit.$Properties
+     * @deprecated Use PB_MmoRoleInit.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_MmoRoleInit.
+     * @typedef {PB_MmoRoleInit.$Properties} PB_MmoRoleInit.$Shape
+     */
+
+    /**
+     * Constructs a new PB_MmoRoleInit.
+     * @exports PB_MmoRoleInit
+     * @classdesc Represents a PB_MmoRoleInit.
+     * @constructor
+     * @param {PB_MmoRoleInit.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_MmoRoleInit = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_MmoRoleInit role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof PB_MmoRoleInit
+     * @instance
+     */
+    PB_MmoRoleInit.prototype.role_uid = null;
+
+    /**
+     * PB_MmoRoleInit scene_id.
+     * @member {number|null|undefined} scene_id
+     * @memberof PB_MmoRoleInit
+     * @instance
+     */
+    PB_MmoRoleInit.prototype.scene_id = null;
+
+    /**
+     * PB_MmoRoleInit role_name.
+     * @member {string|null|undefined} role_name
+     * @memberof PB_MmoRoleInit
+     * @instance
+     */
+    PB_MmoRoleInit.prototype.role_name = null;
+
+    /**
+     * PB_MmoRoleInit x.
+     * @member {number|null|undefined} x
+     * @memberof PB_MmoRoleInit
+     * @instance
+     */
+    PB_MmoRoleInit.prototype.x = null;
+
+    /**
+     * PB_MmoRoleInit y.
+     * @member {number|null|undefined} y
+     * @memberof PB_MmoRoleInit
+     * @instance
+     */
+    PB_MmoRoleInit.prototype.y = null;
+
+    /**
+     * PB_MmoRoleInit z.
+     * @member {number|null|undefined} z
+     * @memberof PB_MmoRoleInit
+     * @instance
+     */
+    PB_MmoRoleInit.prototype.z = null;
+
+    /**
+     * PB_MmoRoleInit hero.
+     * @member {PB_HeroData.$Properties|null|undefined} hero
+     * @memberof PB_MmoRoleInit
+     * @instance
+     */
+    PB_MmoRoleInit.prototype.hero = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleInit.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleInit.prototype, "_scene_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleInit.prototype, "_role_name", {
+        get: $util.oneOfGetter($oneOfFields = ["role_name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleInit.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleInit.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleInit.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleInit.prototype, "_hero", {
+        get: $util.oneOfGetter($oneOfFields = ["hero"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_MmoRoleInit instance using the specified properties.
+     * @function create
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {PB_MmoRoleInit.$Properties=} [properties] Properties to set
+     * @returns {PB_MmoRoleInit} PB_MmoRoleInit instance
+     * @type {{
+     *   (properties: PB_MmoRoleInit.$Shape): PB_MmoRoleInit & PB_MmoRoleInit.$Shape;
+     *   (properties?: PB_MmoRoleInit.$Properties): PB_MmoRoleInit;
+     * }}
+     */
+    PB_MmoRoleInit.create = function(properties) {
+        return new PB_MmoRoleInit(properties);
+    };
+
+    /**
+     * Encodes the specified PB_MmoRoleInit message. Does not implicitly {@link PB_MmoRoleInit.verify|verify} messages.
+     * @function encode
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {PB_MmoRoleInit.$Properties} message PB_MmoRoleInit message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoRoleInit.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.role_uid);
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.scene_id);
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.role_name);
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 5, wireType 5 =*/45).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 6, wireType 5 =*/53).float(message.z);
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+            $root.PB_HeroData.encode(message.hero, writer.uint32(/* id 7, wireType 2 =*/58).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_MmoRoleInit message, length delimited. Does not implicitly {@link PB_MmoRoleInit.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {PB_MmoRoleInit.$Properties} message PB_MmoRoleInit message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoRoleInit.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_MmoRoleInit message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_MmoRoleInit & PB_MmoRoleInit.$Shape} PB_MmoRoleInit
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoRoleInit.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_MmoRoleInit();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.int64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_id = reader.uint64();
+                    message._scene_id = "scene_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.role_name = reader.stringVerify();
+                    message._role_name = "role_name";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 2)
+                        break;
+                    message.hero = $root.PB_HeroData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.hero);
+                    message._hero = "hero";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_MmoRoleInit message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_MmoRoleInit & PB_MmoRoleInit.$Shape} PB_MmoRoleInit
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoRoleInit.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_MmoRoleInit message.
+     * @function verify
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_MmoRoleInit.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id")) {
+            properties._scene_id = 1;
+            if (!$util.isInteger(message.scene_id) && !(message.scene_id && $util.isInteger(message.scene_id.low) && $util.isInteger(message.scene_id.high)))
+                return "scene_id: integer|Long expected";
+        }
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name")) {
+            properties._role_name = 1;
+            if (!$util.isString(message.role_name))
+                return "role_name: string expected";
+        }
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero")) {
+            properties._hero = 1;
+            {
+                let error = $root.PB_HeroData.verify(message.hero, _depth + 1);
+                if (error)
+                    return "hero." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_MmoRoleInit message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_MmoRoleInit} PB_MmoRoleInit
+     */
+    PB_MmoRoleInit.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_MmoRoleInit)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_MmoRoleInit: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_MmoRoleInit();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, false);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber();
+        if (object.scene_id != null)
+            if ($util.Long)
+                message.scene_id = $util.Long.fromValue(object.scene_id, true);
+            else if (typeof object.scene_id === "string")
+                message.scene_id = $parseInt(object.scene_id, 10);
+            else if (typeof object.scene_id === "number")
+                message.scene_id = object.scene_id;
+            else if (typeof object.scene_id === "object")
+                message.scene_id = new $util.LongBits(object.scene_id.low >>> 0, object.scene_id.high >>> 0).toNumber(true);
+        if (object.role_name != null)
+            message.role_name = $String(object.role_name);
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        if (object.hero != null) {
+            if (!$util.isObject(object.hero))
+                throw $TypeError(".PB_MmoRoleInit.hero: object expected");
+            message.hero = $root.PB_HeroData.fromObject(object.hero, _depth + 1);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_MmoRoleInit message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {PB_MmoRoleInit} message PB_MmoRoleInit
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_MmoRoleInit.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, false).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber() : message.role_uid;
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.scene_id = typeof message.scene_id === "number" ? $BigInt(message.scene_id) : $util.Long.fromBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0, true).toBigInt();
+            else if (typeof message.scene_id === "number")
+                object.scene_id = options.longs === $String ? $String(message.scene_id) : message.scene_id;
+            else
+                object.scene_id = options.longs === $String ? $util.Long.prototype.toString.call(message.scene_id) : options.longs === $Number ? new $util.LongBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0).toNumber(true) : message.scene_id;
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            object.role_name = message.role_name;
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        if (message.hero != null && $Object.hasOwnProperty.call(message, "hero"))
+            object.hero = $root.PB_HeroData.toObject(message.hero, options, _depth + 1);
+        return object;
+    };
+
+    /**
+     * Converts this PB_MmoRoleInit to JSON.
+     * @function toJSON
+     * @memberof PB_MmoRoleInit
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_MmoRoleInit.prototype.toJSON = function() {
+        return PB_MmoRoleInit.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_MmoRoleInit
+     * @function getTypeUrl
+     * @memberof PB_MmoRoleInit
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_MmoRoleInit.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_MmoRoleInit";
+    };
+
+    return PB_MmoRoleInit;
+})();
+
+export const PB_MmoRoleState = $root.PB_MmoRoleState = (() => {
+
+    /**
+     * Properties of a PB_MmoRoleState.
+     * @typedef {Object} PB_MmoRoleState.$Properties
+     * @property {number|null} [role_uid] PB_MmoRoleState role_uid
+     * @property {number|null} [obj_id] PB_MmoRoleState obj_id
+     * @property {number|null} [scene_id] PB_MmoRoleState scene_id
+     * @property {string|null} [role_name] PB_MmoRoleState role_name
+     * @property {number|null} [hero_id] PB_MmoRoleState hero_id
+     * @property {number|null} [level] PB_MmoRoleState level
+     * @property {number|null} [hp] PB_MmoRoleState hp
+     * @property {number|null} [max_hp] PB_MmoRoleState max_hp
+     * @property {boolean|null} [dead] PB_MmoRoleState dead
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_MmoRoleState.
+     * @exports IPB_MmoRoleState
+     * @interface IPB_MmoRoleState
+     * @augments PB_MmoRoleState.$Properties
+     * @deprecated Use PB_MmoRoleState.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_MmoRoleState.
+     * @typedef {PB_MmoRoleState.$Properties} PB_MmoRoleState.$Shape
+     */
+
+    /**
+     * Constructs a new PB_MmoRoleState.
+     * @exports PB_MmoRoleState
+     * @classdesc Represents a PB_MmoRoleState.
+     * @constructor
+     * @param {PB_MmoRoleState.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_MmoRoleState = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_MmoRoleState role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.role_uid = null;
+
+    /**
+     * PB_MmoRoleState obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.obj_id = null;
+
+    /**
+     * PB_MmoRoleState scene_id.
+     * @member {number|null|undefined} scene_id
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.scene_id = null;
+
+    /**
+     * PB_MmoRoleState role_name.
+     * @member {string|null|undefined} role_name
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.role_name = null;
+
+    /**
+     * PB_MmoRoleState hero_id.
+     * @member {number|null|undefined} hero_id
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.hero_id = null;
+
+    /**
+     * PB_MmoRoleState level.
+     * @member {number|null|undefined} level
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.level = null;
+
+    /**
+     * PB_MmoRoleState hp.
+     * @member {number|null|undefined} hp
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.hp = null;
+
+    /**
+     * PB_MmoRoleState max_hp.
+     * @member {number|null|undefined} max_hp
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.max_hp = null;
+
+    /**
+     * PB_MmoRoleState dead.
+     * @member {boolean|null|undefined} dead
+     * @memberof PB_MmoRoleState
+     * @instance
+     */
+    PB_MmoRoleState.prototype.dead = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_scene_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_role_name", {
+        get: $util.oneOfGetter($oneOfFields = ["role_name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_hero_id", {
+        get: $util.oneOfGetter($oneOfFields = ["hero_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_level", {
+        get: $util.oneOfGetter($oneOfFields = ["level"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_max_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["max_hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoRoleState.prototype, "_dead", {
+        get: $util.oneOfGetter($oneOfFields = ["dead"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_MmoRoleState instance using the specified properties.
+     * @function create
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {PB_MmoRoleState.$Properties=} [properties] Properties to set
+     * @returns {PB_MmoRoleState} PB_MmoRoleState instance
+     * @type {{
+     *   (properties: PB_MmoRoleState.$Shape): PB_MmoRoleState & PB_MmoRoleState.$Shape;
+     *   (properties?: PB_MmoRoleState.$Properties): PB_MmoRoleState;
+     * }}
+     */
+    PB_MmoRoleState.create = function(properties) {
+        return new PB_MmoRoleState(properties);
+    };
+
+    /**
+     * Encodes the specified PB_MmoRoleState message. Does not implicitly {@link PB_MmoRoleState.verify|verify} messages.
+     * @function encode
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {PB_MmoRoleState.$Properties} message PB_MmoRoleState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoRoleState.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.role_uid);
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.obj_id);
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.scene_id);
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.role_name);
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int32(message.hero_id);
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.level);
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.hp);
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.max_hp);
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            writer.uint32(/* id 9, wireType 0 =*/72).bool(message.dead);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_MmoRoleState message, length delimited. Does not implicitly {@link PB_MmoRoleState.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {PB_MmoRoleState.$Properties} message PB_MmoRoleState message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoRoleState.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_MmoRoleState message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_MmoRoleState & PB_MmoRoleState.$Shape} PB_MmoRoleState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoRoleState.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_MmoRoleState();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.int64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.uint64();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_id = reader.uint64();
+                    message._scene_id = "scene_id";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 2)
+                        break;
+                    message.role_name = reader.stringVerify();
+                    message._role_name = "role_name";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.hero_id = reader.int32();
+                    message._hero_id = "hero_id";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.level = reader.int32();
+                    message._level = "level";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.hp = reader.int32();
+                    message._hp = "hp";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 0)
+                        break;
+                    message.max_hp = reader.int32();
+                    message._max_hp = "max_hp";
+                    continue;
+                }
+            case 9: {
+                    if (wireType !== 0)
+                        break;
+                    message.dead = reader.bool();
+                    message._dead = "dead";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_MmoRoleState message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_MmoRoleState & PB_MmoRoleState.$Shape} PB_MmoRoleState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoRoleState.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_MmoRoleState message.
+     * @function verify
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_MmoRoleState.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id) && !(message.obj_id && $util.isInteger(message.obj_id.low) && $util.isInteger(message.obj_id.high)))
+                return "obj_id: integer|Long expected";
+        }
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id")) {
+            properties._scene_id = 1;
+            if (!$util.isInteger(message.scene_id) && !(message.scene_id && $util.isInteger(message.scene_id.low) && $util.isInteger(message.scene_id.high)))
+                return "scene_id: integer|Long expected";
+        }
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name")) {
+            properties._role_name = 1;
+            if (!$util.isString(message.role_name))
+                return "role_name: string expected";
+        }
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id")) {
+            properties._hero_id = 1;
+            if (!$util.isInteger(message.hero_id))
+                return "hero_id: integer expected";
+        }
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level")) {
+            properties._level = 1;
+            if (!$util.isInteger(message.level))
+                return "level: integer expected";
+        }
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp")) {
+            properties._hp = 1;
+            if (!$util.isInteger(message.hp))
+                return "hp: integer expected";
+        }
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp")) {
+            properties._max_hp = 1;
+            if (!$util.isInteger(message.max_hp))
+                return "max_hp: integer expected";
+        }
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead")) {
+            properties._dead = 1;
+            if (typeof message.dead !== "boolean")
+                return "dead: boolean expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_MmoRoleState message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_MmoRoleState} PB_MmoRoleState
+     */
+    PB_MmoRoleState.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_MmoRoleState)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_MmoRoleState: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_MmoRoleState();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, false);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber();
+        if (object.obj_id != null)
+            if ($util.Long)
+                message.obj_id = $util.Long.fromValue(object.obj_id, true);
+            else if (typeof object.obj_id === "string")
+                message.obj_id = $parseInt(object.obj_id, 10);
+            else if (typeof object.obj_id === "number")
+                message.obj_id = object.obj_id;
+            else if (typeof object.obj_id === "object")
+                message.obj_id = new $util.LongBits(object.obj_id.low >>> 0, object.obj_id.high >>> 0).toNumber(true);
+        if (object.scene_id != null)
+            if ($util.Long)
+                message.scene_id = $util.Long.fromValue(object.scene_id, true);
+            else if (typeof object.scene_id === "string")
+                message.scene_id = $parseInt(object.scene_id, 10);
+            else if (typeof object.scene_id === "number")
+                message.scene_id = object.scene_id;
+            else if (typeof object.scene_id === "object")
+                message.scene_id = new $util.LongBits(object.scene_id.low >>> 0, object.scene_id.high >>> 0).toNumber(true);
+        if (object.role_name != null)
+            message.role_name = $String(object.role_name);
+        if (object.hero_id != null)
+            message.hero_id = object.hero_id | 0;
+        if (object.level != null)
+            message.level = object.level | 0;
+        if (object.hp != null)
+            message.hp = object.hp | 0;
+        if (object.max_hp != null)
+            message.max_hp = object.max_hp | 0;
+        if (object.dead != null)
+            message.dead = $Boolean(object.dead);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_MmoRoleState message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {PB_MmoRoleState} message PB_MmoRoleState
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_MmoRoleState.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, false).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber() : message.role_uid;
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.obj_id = typeof message.obj_id === "number" ? $BigInt(message.obj_id) : $util.Long.fromBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.obj_id === "number")
+                object.obj_id = options.longs === $String ? $String(message.obj_id) : message.obj_id;
+            else
+                object.obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.obj_id) : options.longs === $Number ? new $util.LongBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0).toNumber(true) : message.obj_id;
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.scene_id = typeof message.scene_id === "number" ? $BigInt(message.scene_id) : $util.Long.fromBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0, true).toBigInt();
+            else if (typeof message.scene_id === "number")
+                object.scene_id = options.longs === $String ? $String(message.scene_id) : message.scene_id;
+            else
+                object.scene_id = options.longs === $String ? $util.Long.prototype.toString.call(message.scene_id) : options.longs === $Number ? new $util.LongBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0).toNumber(true) : message.scene_id;
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            object.role_name = message.role_name;
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id"))
+            object.hero_id = message.hero_id;
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            object.level = message.level;
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            object.hp = message.hp;
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            object.max_hp = message.max_hp;
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            object.dead = message.dead;
+        return object;
+    };
+
+    /**
+     * Converts this PB_MmoRoleState to JSON.
+     * @function toJSON
+     * @memberof PB_MmoRoleState
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_MmoRoleState.prototype.toJSON = function() {
+        return PB_MmoRoleState.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_MmoRoleState
+     * @function getTypeUrl
+     * @memberof PB_MmoRoleState
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_MmoRoleState.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_MmoRoleState";
+    };
+
+    return PB_MmoRoleState;
+})();
+
+export const PB_MmoEvent = $root.PB_MmoEvent = (() => {
+
+    /**
+     * Properties of a PB_MmoEvent.
+     * @typedef {Object} PB_MmoEvent.$Properties
+     * @property {number|null} [type] PB_MmoEvent type
+     * @property {number|null} [role_uid] PB_MmoEvent role_uid
+     * @property {number|null} [target_uid] PB_MmoEvent target_uid
+     * @property {number|null} [obj_id] PB_MmoEvent obj_id
+     * @property {number|null} [scene_id] PB_MmoEvent scene_id
+     * @property {number|null} [hero_id] PB_MmoEvent hero_id
+     * @property {string|null} [role_name] PB_MmoEvent role_name
+     * @property {number|null} [x] PB_MmoEvent x
+     * @property {number|null} [y] PB_MmoEvent y
+     * @property {number|null} [z] PB_MmoEvent z
+     * @property {number|null} [value] PB_MmoEvent value
+     * @property {number|null} [hp] PB_MmoEvent hp
+     * @property {number|null} [max_hp] PB_MmoEvent max_hp
+     * @property {number|null} [level] PB_MmoEvent level
+     * @property {boolean|null} [dead] PB_MmoEvent dead
+     * @property {Array.<number>|null} [viewers] PB_MmoEvent viewers
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_MmoEvent.
+     * @exports IPB_MmoEvent
+     * @interface IPB_MmoEvent
+     * @augments PB_MmoEvent.$Properties
+     * @deprecated Use PB_MmoEvent.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_MmoEvent.
+     * @typedef {PB_MmoEvent.$Properties} PB_MmoEvent.$Shape
+     */
+
+    /**
+     * Constructs a new PB_MmoEvent.
+     * @exports PB_MmoEvent
+     * @classdesc Represents a PB_MmoEvent.
+     * @constructor
+     * @param {PB_MmoEvent.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_MmoEvent = function (properties) {
+        this.viewers = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_MmoEvent type.
+     * @member {number|null|undefined} type
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.type = null;
+
+    /**
+     * PB_MmoEvent role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.role_uid = null;
+
+    /**
+     * PB_MmoEvent target_uid.
+     * @member {number|null|undefined} target_uid
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.target_uid = null;
+
+    /**
+     * PB_MmoEvent obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.obj_id = null;
+
+    /**
+     * PB_MmoEvent scene_id.
+     * @member {number|null|undefined} scene_id
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.scene_id = null;
+
+    /**
+     * PB_MmoEvent hero_id.
+     * @member {number|null|undefined} hero_id
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.hero_id = null;
+
+    /**
+     * PB_MmoEvent role_name.
+     * @member {string|null|undefined} role_name
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.role_name = null;
+
+    /**
+     * PB_MmoEvent x.
+     * @member {number|null|undefined} x
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.x = null;
+
+    /**
+     * PB_MmoEvent y.
+     * @member {number|null|undefined} y
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.y = null;
+
+    /**
+     * PB_MmoEvent z.
+     * @member {number|null|undefined} z
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.z = null;
+
+    /**
+     * PB_MmoEvent value.
+     * @member {number|null|undefined} value
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.value = null;
+
+    /**
+     * PB_MmoEvent hp.
+     * @member {number|null|undefined} hp
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.hp = null;
+
+    /**
+     * PB_MmoEvent max_hp.
+     * @member {number|null|undefined} max_hp
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.max_hp = null;
+
+    /**
+     * PB_MmoEvent level.
+     * @member {number|null|undefined} level
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.level = null;
+
+    /**
+     * PB_MmoEvent dead.
+     * @member {boolean|null|undefined} dead
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.dead = null;
+
+    /**
+     * PB_MmoEvent viewers.
+     * @member {Array.<number>} viewers
+     * @memberof PB_MmoEvent
+     * @instance
+     */
+    PB_MmoEvent.prototype.viewers = $util.emptyArray;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_type", {
+        get: $util.oneOfGetter($oneOfFields = ["type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_target_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["target_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_scene_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_hero_id", {
+        get: $util.oneOfGetter($oneOfFields = ["hero_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_role_name", {
+        get: $util.oneOfGetter($oneOfFields = ["role_name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_value", {
+        get: $util.oneOfGetter($oneOfFields = ["value"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_max_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["max_hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_level", {
+        get: $util.oneOfGetter($oneOfFields = ["level"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_MmoEvent.prototype, "_dead", {
+        get: $util.oneOfGetter($oneOfFields = ["dead"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_MmoEvent instance using the specified properties.
+     * @function create
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {PB_MmoEvent.$Properties=} [properties] Properties to set
+     * @returns {PB_MmoEvent} PB_MmoEvent instance
+     * @type {{
+     *   (properties: PB_MmoEvent.$Shape): PB_MmoEvent & PB_MmoEvent.$Shape;
+     *   (properties?: PB_MmoEvent.$Properties): PB_MmoEvent;
+     * }}
+     */
+    PB_MmoEvent.create = function(properties) {
+        return new PB_MmoEvent(properties);
+    };
+
+    /**
+     * Encodes the specified PB_MmoEvent message. Does not implicitly {@link PB_MmoEvent.verify|verify} messages.
+     * @function encode
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {PB_MmoEvent.$Properties} message PB_MmoEvent message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoEvent.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.type != null && $Object.hasOwnProperty.call(message, "type"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int64(message.role_uid);
+        if (message.target_uid != null && $Object.hasOwnProperty.call(message, "target_uid"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int64(message.target_uid);
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 4, wireType 0 =*/32).uint64(message.obj_id);
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.scene_id);
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.hero_id);
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.role_name);
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 8, wireType 5 =*/69).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 9, wireType 5 =*/77).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 10, wireType 5 =*/85).float(message.z);
+        if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
+            writer.uint32(/* id 11, wireType 0 =*/88).int32(message.value);
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            writer.uint32(/* id 12, wireType 0 =*/96).int32(message.hp);
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            writer.uint32(/* id 13, wireType 0 =*/104).int32(message.max_hp);
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            writer.uint32(/* id 14, wireType 0 =*/112).int32(message.level);
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            writer.uint32(/* id 15, wireType 0 =*/120).bool(message.dead);
+        if (message.viewers != null && message.viewers.length)
+            writer.uint32(/* id 16, wireType 2 =*/130).uint64s(message.viewers);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_MmoEvent message, length delimited. Does not implicitly {@link PB_MmoEvent.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {PB_MmoEvent.$Properties} message PB_MmoEvent message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_MmoEvent.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_MmoEvent message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_MmoEvent & PB_MmoEvent.$Shape} PB_MmoEvent
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoEvent.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_MmoEvent();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.type = reader.int32();
+                    message._type = "type";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.int64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.target_uid = reader.int64();
+                    message._target_uid = "target_uid";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.uint64();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_id = reader.uint64();
+                    message._scene_id = "scene_id";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.hero_id = reader.int32();
+                    message._hero_id = "hero_id";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 2)
+                        break;
+                    message.role_name = reader.stringVerify();
+                    message._role_name = "role_name";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 9: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 10: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            case 11: {
+                    if (wireType !== 0)
+                        break;
+                    message.value = reader.int32();
+                    message._value = "value";
+                    continue;
+                }
+            case 12: {
+                    if (wireType !== 0)
+                        break;
+                    message.hp = reader.int32();
+                    message._hp = "hp";
+                    continue;
+                }
+            case 13: {
+                    if (wireType !== 0)
+                        break;
+                    message.max_hp = reader.int32();
+                    message._max_hp = "max_hp";
+                    continue;
+                }
+            case 14: {
+                    if (wireType !== 0)
+                        break;
+                    message.level = reader.int32();
+                    message._level = "level";
+                    continue;
+                }
+            case 15: {
+                    if (wireType !== 0)
+                        break;
+                    message.dead = reader.bool();
+                    message._dead = "dead";
+                    continue;
+                }
+            case 16: {
+                    if (wireType === 2) {
+                        if (!(message.viewers && message.viewers.length))
+                            message.viewers = [];
+                        reader.uint64s(message.viewers);
+                        continue;
+                    }
+                    if (wireType !== 0)
+                        break;
+                    if (!(message.viewers && message.viewers.length))
+                        message.viewers = [];
+                    message.viewers.push(reader.uint64());
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_MmoEvent message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_MmoEvent & PB_MmoEvent.$Shape} PB_MmoEvent
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_MmoEvent.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_MmoEvent message.
+     * @function verify
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_MmoEvent.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.type != null && $Object.hasOwnProperty.call(message, "type")) {
+            properties._type = 1;
+            if (!$util.isInteger(message.type))
+                return "type: integer expected";
+        }
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        if (message.target_uid != null && $Object.hasOwnProperty.call(message, "target_uid")) {
+            properties._target_uid = 1;
+            if (!$util.isInteger(message.target_uid) && !(message.target_uid && $util.isInteger(message.target_uid.low) && $util.isInteger(message.target_uid.high)))
+                return "target_uid: integer|Long expected";
+        }
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id) && !(message.obj_id && $util.isInteger(message.obj_id.low) && $util.isInteger(message.obj_id.high)))
+                return "obj_id: integer|Long expected";
+        }
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id")) {
+            properties._scene_id = 1;
+            if (!$util.isInteger(message.scene_id) && !(message.scene_id && $util.isInteger(message.scene_id.low) && $util.isInteger(message.scene_id.high)))
+                return "scene_id: integer|Long expected";
+        }
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id")) {
+            properties._hero_id = 1;
+            if (!$util.isInteger(message.hero_id))
+                return "hero_id: integer expected";
+        }
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name")) {
+            properties._role_name = 1;
+            if (!$util.isString(message.role_name))
+                return "role_name: string expected";
+        }
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        if (message.value != null && $Object.hasOwnProperty.call(message, "value")) {
+            properties._value = 1;
+            if (!$util.isInteger(message.value))
+                return "value: integer expected";
+        }
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp")) {
+            properties._hp = 1;
+            if (!$util.isInteger(message.hp))
+                return "hp: integer expected";
+        }
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp")) {
+            properties._max_hp = 1;
+            if (!$util.isInteger(message.max_hp))
+                return "max_hp: integer expected";
+        }
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level")) {
+            properties._level = 1;
+            if (!$util.isInteger(message.level))
+                return "level: integer expected";
+        }
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead")) {
+            properties._dead = 1;
+            if (typeof message.dead !== "boolean")
+                return "dead: boolean expected";
+        }
+        if (message.viewers != null && $Object.hasOwnProperty.call(message, "viewers")) {
+            if (!$Array.isArray(message.viewers))
+                return "viewers: array expected";
+            for (let i = 0; i < message.viewers.length; ++i)
+                if (!$util.isInteger(message.viewers[i]) && !(message.viewers[i] && $util.isInteger(message.viewers[i].low) && $util.isInteger(message.viewers[i].high)))
+                    return "viewers: integer|Long[] expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a PB_MmoEvent message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_MmoEvent} PB_MmoEvent
+     */
+    PB_MmoEvent.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_MmoEvent)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_MmoEvent: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_MmoEvent();
+        if (object.type != null)
+            message.type = object.type | 0;
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, false);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber();
+        if (object.target_uid != null)
+            if ($util.Long)
+                message.target_uid = $util.Long.fromValue(object.target_uid, false);
+            else if (typeof object.target_uid === "string")
+                message.target_uid = $parseInt(object.target_uid, 10);
+            else if (typeof object.target_uid === "number")
+                message.target_uid = object.target_uid;
+            else if (typeof object.target_uid === "object")
+                message.target_uid = new $util.LongBits(object.target_uid.low >>> 0, object.target_uid.high >>> 0).toNumber();
+        if (object.obj_id != null)
+            if ($util.Long)
+                message.obj_id = $util.Long.fromValue(object.obj_id, true);
+            else if (typeof object.obj_id === "string")
+                message.obj_id = $parseInt(object.obj_id, 10);
+            else if (typeof object.obj_id === "number")
+                message.obj_id = object.obj_id;
+            else if (typeof object.obj_id === "object")
+                message.obj_id = new $util.LongBits(object.obj_id.low >>> 0, object.obj_id.high >>> 0).toNumber(true);
+        if (object.scene_id != null)
+            if ($util.Long)
+                message.scene_id = $util.Long.fromValue(object.scene_id, true);
+            else if (typeof object.scene_id === "string")
+                message.scene_id = $parseInt(object.scene_id, 10);
+            else if (typeof object.scene_id === "number")
+                message.scene_id = object.scene_id;
+            else if (typeof object.scene_id === "object")
+                message.scene_id = new $util.LongBits(object.scene_id.low >>> 0, object.scene_id.high >>> 0).toNumber(true);
+        if (object.hero_id != null)
+            message.hero_id = object.hero_id | 0;
+        if (object.role_name != null)
+            message.role_name = $String(object.role_name);
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        if (object.value != null)
+            message.value = object.value | 0;
+        if (object.hp != null)
+            message.hp = object.hp | 0;
+        if (object.max_hp != null)
+            message.max_hp = object.max_hp | 0;
+        if (object.level != null)
+            message.level = object.level | 0;
+        if (object.dead != null)
+            message.dead = $Boolean(object.dead);
+        if (object.viewers) {
+            if (!$Array.isArray(object.viewers))
+                throw $TypeError(".PB_MmoEvent.viewers: array expected");
+            message.viewers = $Array(object.viewers.length);
+            for (let i = 0; i < object.viewers.length; ++i)
+                if ($util.Long)
+                    message.viewers[i] = $util.Long.fromValue(object.viewers[i], true);
+                else if (typeof object.viewers[i] === "string")
+                    message.viewers[i] = $parseInt(object.viewers[i], 10);
+                else if (typeof object.viewers[i] === "number")
+                    message.viewers[i] = object.viewers[i];
+                else if (typeof object.viewers[i] === "object")
+                    message.viewers[i] = new $util.LongBits(object.viewers[i].low >>> 0, object.viewers[i].high >>> 0).toNumber(true);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_MmoEvent message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {PB_MmoEvent} message PB_MmoEvent
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_MmoEvent.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.viewers = [];
+        if (message.type != null && $Object.hasOwnProperty.call(message, "type"))
+            object.type = message.type;
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, false).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber() : message.role_uid;
+        if (message.target_uid != null && $Object.hasOwnProperty.call(message, "target_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.target_uid = typeof message.target_uid === "number" ? $BigInt(message.target_uid) : $util.Long.fromBits(message.target_uid.low >>> 0, message.target_uid.high >>> 0, false).toBigInt();
+            else if (typeof message.target_uid === "number")
+                object.target_uid = options.longs === $String ? $String(message.target_uid) : message.target_uid;
+            else
+                object.target_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.target_uid) : options.longs === $Number ? new $util.LongBits(message.target_uid.low >>> 0, message.target_uid.high >>> 0).toNumber() : message.target_uid;
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.obj_id = typeof message.obj_id === "number" ? $BigInt(message.obj_id) : $util.Long.fromBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.obj_id === "number")
+                object.obj_id = options.longs === $String ? $String(message.obj_id) : message.obj_id;
+            else
+                object.obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.obj_id) : options.longs === $Number ? new $util.LongBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0).toNumber(true) : message.obj_id;
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.scene_id = typeof message.scene_id === "number" ? $BigInt(message.scene_id) : $util.Long.fromBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0, true).toBigInt();
+            else if (typeof message.scene_id === "number")
+                object.scene_id = options.longs === $String ? $String(message.scene_id) : message.scene_id;
+            else
+                object.scene_id = options.longs === $String ? $util.Long.prototype.toString.call(message.scene_id) : options.longs === $Number ? new $util.LongBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0).toNumber(true) : message.scene_id;
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id"))
+            object.hero_id = message.hero_id;
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            object.role_name = message.role_name;
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
+            object.value = message.value;
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            object.hp = message.hp;
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            object.max_hp = message.max_hp;
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            object.level = message.level;
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            object.dead = message.dead;
+        if (message.viewers && message.viewers.length) {
+            object.viewers = $Array(message.viewers.length);
+            for (let j = 0; j < message.viewers.length; ++j)
+                if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                    object.viewers[j] = typeof message.viewers[j] === "number" ? $BigInt(message.viewers[j]) : $util.Long.fromBits(message.viewers[j].low >>> 0, message.viewers[j].high >>> 0, true).toBigInt();
+                else if (typeof message.viewers[j] === "number")
+                    object.viewers[j] = options.longs === $String ? $String(message.viewers[j]) : message.viewers[j];
+                else
+                    object.viewers[j] = options.longs === $String ? $util.Long.prototype.toString.call(message.viewers[j]) : options.longs === $Number ? new $util.LongBits(message.viewers[j].low >>> 0, message.viewers[j].high >>> 0).toNumber(true) : message.viewers[j];
+        }
+        return object;
+    };
+
+    /**
+     * Converts this PB_MmoEvent to JSON.
+     * @function toJSON
+     * @memberof PB_MmoEvent
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_MmoEvent.prototype.toJSON = function() {
+        return PB_MmoEvent.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_MmoEvent
+     * @function getTypeUrl
+     * @memberof PB_MmoEvent
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_MmoEvent.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_MmoEvent";
+    };
+
+    return PB_MmoEvent;
 })();
 
 export const PB_MessageHead = $root.PB_MessageHead = (() => {
@@ -12079,7 +18283,7 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
     /**
      * Properties of a PB_GlobalDataDbNode.
      * @typedef {Object} PB_GlobalDataDbNode.$Properties
-     * @property {string|null} [id] PB_GlobalDataDbNode id
+     * @property {string|null} [key] PB_GlobalDataDbNode key
      * @property {string|null} [data] PB_GlobalDataDbNode data
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
@@ -12113,12 +18317,12 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
     };
 
     /**
-     * PB_GlobalDataDbNode id.
-     * @member {string|null|undefined} id
+     * PB_GlobalDataDbNode key.
+     * @member {string|null|undefined} key
      * @memberof PB_GlobalDataDbNode
      * @instance
      */
-    PB_GlobalDataDbNode.prototype.id = null;
+    PB_GlobalDataDbNode.prototype.key = null;
 
     /**
      * PB_GlobalDataDbNode data.
@@ -12132,8 +18336,8 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_GlobalDataDbNode.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(PB_GlobalDataDbNode.prototype, "_key", {
+        get: $util.oneOfGetter($oneOfFields = ["key"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -12175,8 +18379,8 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+        if (message.key != null && $Object.hasOwnProperty.call(message, "key"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.key);
         if (message.data != null && $Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
@@ -12229,8 +18433,8 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
             case 1: {
                     if (wireType !== 2)
                         break;
-                    message.id = reader.stringVerify();
-                    message._id = "id";
+                    message.key = reader.stringVerify();
+                    message._key = "key";
                     continue;
                 }
             case 2: {
@@ -12284,10 +18488,10 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isString(message.id))
-                return "id: string expected";
+        if (message.key != null && $Object.hasOwnProperty.call(message, "key")) {
+            properties._key = 1;
+            if (!$util.isString(message.key))
+                return "key: string expected";
         }
         if (message.data != null && $Object.hasOwnProperty.call(message, "data")) {
             properties._data = 1;
@@ -12315,8 +18519,8 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.PB_GlobalDataDbNode();
-        if (object.id != null)
-            message.id = $String(object.id);
+        if (object.key != null)
+            message.key = $String(object.key);
         if (object.data != null)
             message.data = $String(object.data);
         return message;
@@ -12339,8 +18543,8 @@ export const PB_GlobalDataDbNode = $root.PB_GlobalDataDbNode = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.key != null && $Object.hasOwnProperty.call(message, "key"))
+            object.key = message.key;
         if (message.data != null && $Object.hasOwnProperty.call(message, "data"))
             object.data = message.data;
         return object;
@@ -14200,7 +20404,7 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.uid);
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.uid);
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
@@ -14265,7 +20469,7 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.uint32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
@@ -14364,8 +20568,8 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
         let properties = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
             properties._name = 1;
@@ -14424,7 +20628,14 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
             throw $Error("max depth exceeded");
         let message = new $root.PB_RankDbNode();
         if (object.uid != null)
-            message.uid = object.uid >>> 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.name != null)
             message.name = $String(object.name);
         if (object.value != null)
@@ -14495,7 +20706,12 @@ export const PB_RankDbNode = $root.PB_RankDbNode = (() => {
             throw $Error("max depth exceeded");
         let object = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
@@ -15291,6 +21507,747 @@ export const P_RankDb_S = $root.P_RankDb_S = (() => {
     };
 
     return P_RankDb_S;
+})();
+
+/**
+ * PE_ACTIVITY_STATE_DB_REQ_TYPE enum.
+ * @name PE_ACTIVITY_STATE_DB_REQ_TYPE
+ * @enum {number}
+ * @property {number} PE_ACTIVITY_STATE_DB_REQ_LOAD=0 PE_ACTIVITY_STATE_DB_REQ_LOAD value
+ * @property {number} PE_ACTIVITY_STATE_DB_REQ_SAVE=1 PE_ACTIVITY_STATE_DB_REQ_SAVE value
+ */
+export const PE_ACTIVITY_STATE_DB_REQ_TYPE = $root.PE_ACTIVITY_STATE_DB_REQ_TYPE = (() => {
+    const valuesById = $Object.create(null), values = $Object.create(valuesById);
+    values[valuesById[0] = "PE_ACTIVITY_STATE_DB_REQ_LOAD"] = 0;
+    values[valuesById[1] = "PE_ACTIVITY_STATE_DB_REQ_SAVE"] = 1;
+    return values;
+})();
+
+export const P_ActivityStateDb_C = $root.P_ActivityStateDb_C = (() => {
+
+    /**
+     * Properties of a P_ActivityStateDb_C.
+     * @typedef {Object} P_ActivityStateDb_C.$Properties
+     * @property {number|null} [req_type] P_ActivityStateDb_C req_type
+     * @property {number|null} [server_id] P_ActivityStateDb_C server_id
+     * @property {Array.<PB_ActivityState.$Properties>|null} [states] P_ActivityStateDb_C states
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ActivityStateDb_C.
+     * @exports IP_ActivityStateDb_C
+     * @interface IP_ActivityStateDb_C
+     * @augments P_ActivityStateDb_C.$Properties
+     * @deprecated Use P_ActivityStateDb_C.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ActivityStateDb_C.
+     * @typedef {P_ActivityStateDb_C.$Properties} P_ActivityStateDb_C.$Shape
+     */
+
+    /**
+     * Constructs a new P_ActivityStateDb_C.
+     * @exports P_ActivityStateDb_C
+     * @classdesc Represents a P_ActivityStateDb_C.
+     * @constructor
+     * @param {P_ActivityStateDb_C.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ActivityStateDb_C = function (properties) {
+        this.states = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ActivityStateDb_C req_type.
+     * @member {number|null|undefined} req_type
+     * @memberof P_ActivityStateDb_C
+     * @instance
+     */
+    P_ActivityStateDb_C.prototype.req_type = null;
+
+    /**
+     * P_ActivityStateDb_C server_id.
+     * @member {number|null|undefined} server_id
+     * @memberof P_ActivityStateDb_C
+     * @instance
+     */
+    P_ActivityStateDb_C.prototype.server_id = null;
+
+    /**
+     * P_ActivityStateDb_C states.
+     * @member {Array.<PB_ActivityState.$Properties>} states
+     * @memberof P_ActivityStateDb_C
+     * @instance
+     */
+    P_ActivityStateDb_C.prototype.states = $util.emptyArray;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ActivityStateDb_C.prototype, "_req_type", {
+        get: $util.oneOfGetter($oneOfFields = ["req_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ActivityStateDb_C.prototype, "_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_ActivityStateDb_C instance using the specified properties.
+     * @function create
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {P_ActivityStateDb_C.$Properties=} [properties] Properties to set
+     * @returns {P_ActivityStateDb_C} P_ActivityStateDb_C instance
+     * @type {{
+     *   (properties: P_ActivityStateDb_C.$Shape): P_ActivityStateDb_C & P_ActivityStateDb_C.$Shape;
+     *   (properties?: P_ActivityStateDb_C.$Properties): P_ActivityStateDb_C;
+     * }}
+     */
+    P_ActivityStateDb_C.create = function(properties) {
+        return new P_ActivityStateDb_C(properties);
+    };
+
+    /**
+     * Encodes the specified P_ActivityStateDb_C message. Does not implicitly {@link P_ActivityStateDb_C.verify|verify} messages.
+     * @function encode
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {P_ActivityStateDb_C.$Properties} message P_ActivityStateDb_C message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ActivityStateDb_C.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_type);
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.server_id);
+        if (message.states != null && message.states.length)
+            for (let i = 0; i < message.states.length; ++i)
+                $root.PB_ActivityState.encode(message.states[i], writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ActivityStateDb_C message, length delimited. Does not implicitly {@link P_ActivityStateDb_C.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {P_ActivityStateDb_C.$Properties} message P_ActivityStateDb_C message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ActivityStateDb_C.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ActivityStateDb_C message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ActivityStateDb_C & P_ActivityStateDb_C.$Shape} P_ActivityStateDb_C
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ActivityStateDb_C.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ActivityStateDb_C();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.req_type = reader.int32();
+                    message._req_type = "req_type";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.server_id = reader.int32();
+                    message._server_id = "server_id";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.states && message.states.length))
+                        message.states = [];
+                    message.states.push($root.PB_ActivityState.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ActivityStateDb_C message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ActivityStateDb_C & P_ActivityStateDb_C.$Shape} P_ActivityStateDb_C
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ActivityStateDb_C.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ActivityStateDb_C message.
+     * @function verify
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ActivityStateDb_C.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type")) {
+            properties._req_type = 1;
+            if (!$util.isInteger(message.req_type))
+                return "req_type: integer expected";
+        }
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id")) {
+            properties._server_id = 1;
+            if (!$util.isInteger(message.server_id))
+                return "server_id: integer expected";
+        }
+        if (message.states != null && $Object.hasOwnProperty.call(message, "states")) {
+            if (!$Array.isArray(message.states))
+                return "states: array expected";
+            for (let i = 0; i < message.states.length; ++i) {
+                let error = $root.PB_ActivityState.verify(message.states[i], _depth + 1);
+                if (error)
+                    return "states." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ActivityStateDb_C message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ActivityStateDb_C} P_ActivityStateDb_C
+     */
+    P_ActivityStateDb_C.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ActivityStateDb_C)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ActivityStateDb_C: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ActivityStateDb_C();
+        if (object.req_type != null)
+            message.req_type = object.req_type | 0;
+        if (object.server_id != null)
+            message.server_id = object.server_id | 0;
+        if (object.states) {
+            if (!$Array.isArray(object.states))
+                throw $TypeError(".P_ActivityStateDb_C.states: array expected");
+            message.states = $Array(object.states.length);
+            for (let i = 0; i < object.states.length; ++i) {
+                if (!$util.isObject(object.states[i]))
+                    throw $TypeError(".P_ActivityStateDb_C.states: object expected");
+                message.states[i] = $root.PB_ActivityState.fromObject(object.states[i], _depth + 1);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ActivityStateDb_C message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {P_ActivityStateDb_C} message P_ActivityStateDb_C
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ActivityStateDb_C.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.states = [];
+        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
+            object.req_type = message.req_type;
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            object.server_id = message.server_id;
+        if (message.states && message.states.length) {
+            object.states = $Array(message.states.length);
+            for (let j = 0; j < message.states.length; ++j)
+                object.states[j] = $root.PB_ActivityState.toObject(message.states[j], options, _depth + 1);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this P_ActivityStateDb_C to JSON.
+     * @function toJSON
+     * @memberof P_ActivityStateDb_C
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ActivityStateDb_C.prototype.toJSON = function() {
+        return P_ActivityStateDb_C.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ActivityStateDb_C
+     * @function getTypeUrl
+     * @memberof P_ActivityStateDb_C
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ActivityStateDb_C.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ActivityStateDb_C";
+    };
+
+    return P_ActivityStateDb_C;
+})();
+
+export const P_ActivityStateDb_S = $root.P_ActivityStateDb_S = (() => {
+
+    /**
+     * Properties of a P_ActivityStateDb_S.
+     * @typedef {Object} P_ActivityStateDb_S.$Properties
+     * @property {number|null} [req_type] P_ActivityStateDb_S req_type
+     * @property {number|null} [ret] P_ActivityStateDb_S ret
+     * @property {number|null} [server_id] P_ActivityStateDb_S server_id
+     * @property {Array.<PB_ActivityState.$Properties>|null} [states] P_ActivityStateDb_S states
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ActivityStateDb_S.
+     * @exports IP_ActivityStateDb_S
+     * @interface IP_ActivityStateDb_S
+     * @augments P_ActivityStateDb_S.$Properties
+     * @deprecated Use P_ActivityStateDb_S.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ActivityStateDb_S.
+     * @typedef {P_ActivityStateDb_S.$Properties} P_ActivityStateDb_S.$Shape
+     */
+
+    /**
+     * Constructs a new P_ActivityStateDb_S.
+     * @exports P_ActivityStateDb_S
+     * @classdesc Represents a P_ActivityStateDb_S.
+     * @constructor
+     * @param {P_ActivityStateDb_S.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ActivityStateDb_S = function (properties) {
+        this.states = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ActivityStateDb_S req_type.
+     * @member {number|null|undefined} req_type
+     * @memberof P_ActivityStateDb_S
+     * @instance
+     */
+    P_ActivityStateDb_S.prototype.req_type = null;
+
+    /**
+     * P_ActivityStateDb_S ret.
+     * @member {number|null|undefined} ret
+     * @memberof P_ActivityStateDb_S
+     * @instance
+     */
+    P_ActivityStateDb_S.prototype.ret = null;
+
+    /**
+     * P_ActivityStateDb_S server_id.
+     * @member {number|null|undefined} server_id
+     * @memberof P_ActivityStateDb_S
+     * @instance
+     */
+    P_ActivityStateDb_S.prototype.server_id = null;
+
+    /**
+     * P_ActivityStateDb_S states.
+     * @member {Array.<PB_ActivityState.$Properties>} states
+     * @memberof P_ActivityStateDb_S
+     * @instance
+     */
+    P_ActivityStateDb_S.prototype.states = $util.emptyArray;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ActivityStateDb_S.prototype, "_req_type", {
+        get: $util.oneOfGetter($oneOfFields = ["req_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ActivityStateDb_S.prototype, "_ret", {
+        get: $util.oneOfGetter($oneOfFields = ["ret"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ActivityStateDb_S.prototype, "_server_id", {
+        get: $util.oneOfGetter($oneOfFields = ["server_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_ActivityStateDb_S instance using the specified properties.
+     * @function create
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {P_ActivityStateDb_S.$Properties=} [properties] Properties to set
+     * @returns {P_ActivityStateDb_S} P_ActivityStateDb_S instance
+     * @type {{
+     *   (properties: P_ActivityStateDb_S.$Shape): P_ActivityStateDb_S & P_ActivityStateDb_S.$Shape;
+     *   (properties?: P_ActivityStateDb_S.$Properties): P_ActivityStateDb_S;
+     * }}
+     */
+    P_ActivityStateDb_S.create = function(properties) {
+        return new P_ActivityStateDb_S(properties);
+    };
+
+    /**
+     * Encodes the specified P_ActivityStateDb_S message. Does not implicitly {@link P_ActivityStateDb_S.verify|verify} messages.
+     * @function encode
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {P_ActivityStateDb_S.$Properties} message P_ActivityStateDb_S message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ActivityStateDb_S.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_type);
+        if (message.ret != null && $Object.hasOwnProperty.call(message, "ret"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.ret);
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.server_id);
+        if (message.states != null && message.states.length)
+            for (let i = 0; i < message.states.length; ++i)
+                $root.PB_ActivityState.encode(message.states[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ActivityStateDb_S message, length delimited. Does not implicitly {@link P_ActivityStateDb_S.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {P_ActivityStateDb_S.$Properties} message P_ActivityStateDb_S message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ActivityStateDb_S.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ActivityStateDb_S message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ActivityStateDb_S & P_ActivityStateDb_S.$Shape} P_ActivityStateDb_S
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ActivityStateDb_S.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ActivityStateDb_S();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.req_type = reader.int32();
+                    message._req_type = "req_type";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.ret = reader.int32();
+                    message._ret = "ret";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.server_id = reader.int32();
+                    message._server_id = "server_id";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.states && message.states.length))
+                        message.states = [];
+                    message.states.push($root.PB_ActivityState.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ActivityStateDb_S message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ActivityStateDb_S & P_ActivityStateDb_S.$Shape} P_ActivityStateDb_S
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ActivityStateDb_S.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ActivityStateDb_S message.
+     * @function verify
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ActivityStateDb_S.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type")) {
+            properties._req_type = 1;
+            if (!$util.isInteger(message.req_type))
+                return "req_type: integer expected";
+        }
+        if (message.ret != null && $Object.hasOwnProperty.call(message, "ret")) {
+            properties._ret = 1;
+            if (!$util.isInteger(message.ret))
+                return "ret: integer expected";
+        }
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id")) {
+            properties._server_id = 1;
+            if (!$util.isInteger(message.server_id))
+                return "server_id: integer expected";
+        }
+        if (message.states != null && $Object.hasOwnProperty.call(message, "states")) {
+            if (!$Array.isArray(message.states))
+                return "states: array expected";
+            for (let i = 0; i < message.states.length; ++i) {
+                let error = $root.PB_ActivityState.verify(message.states[i], _depth + 1);
+                if (error)
+                    return "states." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ActivityStateDb_S message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ActivityStateDb_S} P_ActivityStateDb_S
+     */
+    P_ActivityStateDb_S.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ActivityStateDb_S)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ActivityStateDb_S: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ActivityStateDb_S();
+        if (object.req_type != null)
+            message.req_type = object.req_type | 0;
+        if (object.ret != null)
+            message.ret = object.ret | 0;
+        if (object.server_id != null)
+            message.server_id = object.server_id | 0;
+        if (object.states) {
+            if (!$Array.isArray(object.states))
+                throw $TypeError(".P_ActivityStateDb_S.states: array expected");
+            message.states = $Array(object.states.length);
+            for (let i = 0; i < object.states.length; ++i) {
+                if (!$util.isObject(object.states[i]))
+                    throw $TypeError(".P_ActivityStateDb_S.states: object expected");
+                message.states[i] = $root.PB_ActivityState.fromObject(object.states[i], _depth + 1);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ActivityStateDb_S message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {P_ActivityStateDb_S} message P_ActivityStateDb_S
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ActivityStateDb_S.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.states = [];
+        if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
+            object.req_type = message.req_type;
+        if (message.ret != null && $Object.hasOwnProperty.call(message, "ret"))
+            object.ret = message.ret;
+        if (message.server_id != null && $Object.hasOwnProperty.call(message, "server_id"))
+            object.server_id = message.server_id;
+        if (message.states && message.states.length) {
+            object.states = $Array(message.states.length);
+            for (let j = 0; j < message.states.length; ++j)
+                object.states[j] = $root.PB_ActivityState.toObject(message.states[j], options, _depth + 1);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this P_ActivityStateDb_S to JSON.
+     * @function toJSON
+     * @memberof P_ActivityStateDb_S
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ActivityStateDb_S.prototype.toJSON = function() {
+        return P_ActivityStateDb_S.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ActivityStateDb_S
+     * @function getTypeUrl
+     * @memberof P_ActivityStateDb_S
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ActivityStateDb_S.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ActivityStateDb_S";
+    };
+
+    return P_ActivityStateDb_S;
 })();
 
 /**
@@ -16203,7 +23160,7 @@ export const P_InitRoleData_C = $root.P_InitRoleData_C = (() => {
         if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_type);
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.uid);
+            writer.uint32(/* id 2, wireType 0 =*/16).int64(message.uid);
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.user_name);
         if (message.netid != null && $Object.hasOwnProperty.call(message, "netid"))
@@ -16265,7 +23222,7 @@ export const P_InitRoleData_C = $root.P_InitRoleData_C = (() => {
             case 2: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
@@ -16334,8 +23291,8 @@ export const P_InitRoleData_C = $root.P_InitRoleData_C = (() => {
         }
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name")) {
             properties._user_name = 1;
@@ -16371,7 +23328,14 @@ export const P_InitRoleData_C = $root.P_InitRoleData_C = (() => {
         if (object.req_type != null)
             message.req_type = object.req_type | 0;
         if (object.uid != null)
-            message.uid = object.uid | 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.user_name != null)
             message.user_name = $String(object.user_name);
         if (object.netid != null)
@@ -16399,7 +23363,12 @@ export const P_InitRoleData_C = $root.P_InitRoleData_C = (() => {
         if (message.req_type != null && $Object.hasOwnProperty.call(message, "req_type"))
             object.req_type = message.req_type;
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
             object.user_name = message.user_name;
         if (message.netid != null && $Object.hasOwnProperty.call(message, "netid"))
@@ -19139,7 +26108,7 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
     /**
      * Properties of a P_BattleServerRegister.
      * @typedef {Object} P_BattleServerRegister.$Properties
-     * @property {number|null} [id] P_BattleServerRegister id
+     * @property {number|null} [ue_id] P_BattleServerRegister ue_id
      * @property {string|null} [ip] P_BattleServerRegister ip
      * @property {number|null} [port] P_BattleServerRegister port
      * @property {number|null} [weight] P_BattleServerRegister weight
@@ -19175,12 +26144,12 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
     };
 
     /**
-     * P_BattleServerRegister id.
-     * @member {number|null|undefined} id
+     * P_BattleServerRegister ue_id.
+     * @member {number|null|undefined} ue_id
      * @memberof P_BattleServerRegister
      * @instance
      */
-    P_BattleServerRegister.prototype.id = null;
+    P_BattleServerRegister.prototype.ue_id = null;
 
     /**
      * P_BattleServerRegister ip.
@@ -19210,8 +26179,8 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleServerRegister.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(P_BattleServerRegister.prototype, "_ue_id", {
+        get: $util.oneOfGetter($oneOfFields = ["ue_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -19265,8 +26234,8 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.ue_id);
         if (message.ip != null && $Object.hasOwnProperty.call(message, "ip"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.ip);
         if (message.port != null && $Object.hasOwnProperty.call(message, "port"))
@@ -19323,8 +26292,8 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.ue_id = reader.int32();
+                    message._ue_id = "ue_id";
                     continue;
                 }
             case 2: {
@@ -19392,10 +26361,10 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id")) {
+            properties._ue_id = 1;
+            if (!$util.isInteger(message.ue_id))
+                return "ue_id: integer expected";
         }
         if (message.ip != null && $Object.hasOwnProperty.call(message, "ip")) {
             properties._ip = 1;
@@ -19433,8 +26402,8 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.P_BattleServerRegister();
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.ue_id != null)
+            message.ue_id = object.ue_id | 0;
         if (object.ip != null)
             message.ip = $String(object.ip);
         if (object.port != null)
@@ -19461,8 +26430,8 @@ export const P_BattleServerRegister = $root.P_BattleServerRegister = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            object.ue_id = message.ue_id;
         if (message.ip != null && $Object.hasOwnProperty.call(message, "ip"))
             object.ip = message.ip;
         if (message.port != null && $Object.hasOwnProperty.call(message, "port"))
@@ -19505,7 +26474,7 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
     /**
      * Properties of a P_BattleServerHeartbeat.
      * @typedef {Object} P_BattleServerHeartbeat.$Properties
-     * @property {number|null} [id] P_BattleServerHeartbeat id
+     * @property {number|null} [ue_id] P_BattleServerHeartbeat ue_id
      * @property {number|null} [player_count] P_BattleServerHeartbeat player_count
      * @property {number|null} [cpu_usage] P_BattleServerHeartbeat cpu_usage
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
@@ -19540,12 +26509,12 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
     };
 
     /**
-     * P_BattleServerHeartbeat id.
-     * @member {number|null|undefined} id
+     * P_BattleServerHeartbeat ue_id.
+     * @member {number|null|undefined} ue_id
      * @memberof P_BattleServerHeartbeat
      * @instance
      */
-    P_BattleServerHeartbeat.prototype.id = null;
+    P_BattleServerHeartbeat.prototype.ue_id = null;
 
     /**
      * P_BattleServerHeartbeat player_count.
@@ -19567,8 +26536,8 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleServerHeartbeat.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(P_BattleServerHeartbeat.prototype, "_ue_id", {
+        get: $util.oneOfGetter($oneOfFields = ["ue_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -19616,8 +26585,8 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.ue_id);
         if (message.player_count != null && $Object.hasOwnProperty.call(message, "player_count"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.player_count);
         if (message.cpu_usage != null && $Object.hasOwnProperty.call(message, "cpu_usage"))
@@ -19672,8 +26641,8 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.ue_id = reader.int32();
+                    message._ue_id = "ue_id";
                     continue;
                 }
             case 2: {
@@ -19734,10 +26703,10 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id")) {
+            properties._ue_id = 1;
+            if (!$util.isInteger(message.ue_id))
+                return "ue_id: integer expected";
         }
         if (message.player_count != null && $Object.hasOwnProperty.call(message, "player_count")) {
             properties._player_count = 1;
@@ -19770,8 +26739,8 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.P_BattleServerHeartbeat();
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.ue_id != null)
+            message.ue_id = object.ue_id | 0;
         if (object.player_count != null)
             message.player_count = object.player_count | 0;
         if (object.cpu_usage != null)
@@ -19796,8 +26765,8 @@ export const P_BattleServerHeartbeat = $root.P_BattleServerHeartbeat = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            object.ue_id = message.ue_id;
         if (message.player_count != null && $Object.hasOwnProperty.call(message, "player_count"))
             object.player_count = message.player_count;
         if (message.cpu_usage != null && $Object.hasOwnProperty.call(message, "cpu_usage"))
@@ -19838,7 +26807,7 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
     /**
      * Properties of a P_BattleServerCommand.
      * @typedef {Object} P_BattleServerCommand.$Properties
-     * @property {number|null} [id] P_BattleServerCommand id
+     * @property {number|null} [ue_id] P_BattleServerCommand ue_id
      * @property {string|null} [command] P_BattleServerCommand command
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
@@ -19872,12 +26841,12 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
     };
 
     /**
-     * P_BattleServerCommand id.
-     * @member {number|null|undefined} id
+     * P_BattleServerCommand ue_id.
+     * @member {number|null|undefined} ue_id
      * @memberof P_BattleServerCommand
      * @instance
      */
-    P_BattleServerCommand.prototype.id = null;
+    P_BattleServerCommand.prototype.ue_id = null;
 
     /**
      * P_BattleServerCommand command.
@@ -19891,8 +26860,8 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleServerCommand.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(P_BattleServerCommand.prototype, "_ue_id", {
+        get: $util.oneOfGetter($oneOfFields = ["ue_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -19934,8 +26903,8 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.ue_id);
         if (message.command != null && $Object.hasOwnProperty.call(message, "command"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.command);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
@@ -19988,8 +26957,8 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.ue_id = reader.int32();
+                    message._ue_id = "ue_id";
                     continue;
                 }
             case 2: {
@@ -20043,10 +27012,10 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id")) {
+            properties._ue_id = 1;
+            if (!$util.isInteger(message.ue_id))
+                return "ue_id: integer expected";
         }
         if (message.command != null && $Object.hasOwnProperty.call(message, "command")) {
             properties._command = 1;
@@ -20074,8 +27043,8 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.P_BattleServerCommand();
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.ue_id != null)
+            message.ue_id = object.ue_id | 0;
         if (object.command != null)
             message.command = $String(object.command);
         return message;
@@ -20098,8 +27067,8 @@ export const P_BattleServerCommand = $root.P_BattleServerCommand = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            object.ue_id = message.ue_id;
         if (message.command != null && $Object.hasOwnProperty.call(message, "command"))
             object.command = message.command;
         return object;
@@ -20138,7 +27107,7 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
     /**
      * Properties of a P_BattleServerStatus.
      * @typedef {Object} P_BattleServerStatus.$Properties
-     * @property {number|null} [id] P_BattleServerStatus id
+     * @property {number|null} [ue_id] P_BattleServerStatus ue_id
      * @property {boolean|null} [alive] P_BattleServerStatus alive
      * @property {number|null} [player_count] P_BattleServerStatus player_count
      * @property {number|null} [cpu_usage] P_BattleServerStatus cpu_usage
@@ -20174,12 +27143,12 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
     };
 
     /**
-     * P_BattleServerStatus id.
-     * @member {number|null|undefined} id
+     * P_BattleServerStatus ue_id.
+     * @member {number|null|undefined} ue_id
      * @memberof P_BattleServerStatus
      * @instance
      */
-    P_BattleServerStatus.prototype.id = null;
+    P_BattleServerStatus.prototype.ue_id = null;
 
     /**
      * P_BattleServerStatus alive.
@@ -20209,8 +27178,8 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleServerStatus.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(P_BattleServerStatus.prototype, "_ue_id", {
+        get: $util.oneOfGetter($oneOfFields = ["ue_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -20264,8 +27233,8 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.ue_id);
         if (message.alive != null && $Object.hasOwnProperty.call(message, "alive"))
             writer.uint32(/* id 2, wireType 0 =*/16).bool(message.alive);
         if (message.player_count != null && $Object.hasOwnProperty.call(message, "player_count"))
@@ -20322,8 +27291,8 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.ue_id = reader.int32();
+                    message._ue_id = "ue_id";
                     continue;
                 }
             case 2: {
@@ -20391,10 +27360,10 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id")) {
+            properties._ue_id = 1;
+            if (!$util.isInteger(message.ue_id))
+                return "ue_id: integer expected";
         }
         if (message.alive != null && $Object.hasOwnProperty.call(message, "alive")) {
             properties._alive = 1;
@@ -20432,8 +27401,8 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.P_BattleServerStatus();
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.ue_id != null)
+            message.ue_id = object.ue_id | 0;
         if (object.alive != null)
             message.alive = $Boolean(object.alive);
         if (object.player_count != null)
@@ -20460,8 +27429,8 @@ export const P_BattleServerStatus = $root.P_BattleServerStatus = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            object.ue_id = message.ue_id;
         if (message.alive != null && $Object.hasOwnProperty.call(message, "alive"))
             object.alive = message.alive;
         if (message.player_count != null && $Object.hasOwnProperty.call(message, "player_count"))
@@ -20504,7 +27473,7 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
     /**
      * Properties of a P_BattleServerRegisterTokenAndRoleData.
      * @typedef {Object} P_BattleServerRegisterTokenAndRoleData.$Properties
-     * @property {number|null} [id] P_BattleServerRegisterTokenAndRoleData id
+     * @property {number|null} [ue_id] P_BattleServerRegisterTokenAndRoleData ue_id
      * @property {PB_RoleData.$Properties|null} [role_data] P_BattleServerRegisterTokenAndRoleData role_data
      * @property {string|null} [token] P_BattleServerRegisterTokenAndRoleData token
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
@@ -20539,12 +27508,12 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
     };
 
     /**
-     * P_BattleServerRegisterTokenAndRoleData id.
-     * @member {number|null|undefined} id
+     * P_BattleServerRegisterTokenAndRoleData ue_id.
+     * @member {number|null|undefined} ue_id
      * @memberof P_BattleServerRegisterTokenAndRoleData
      * @instance
      */
-    P_BattleServerRegisterTokenAndRoleData.prototype.id = null;
+    P_BattleServerRegisterTokenAndRoleData.prototype.ue_id = null;
 
     /**
      * P_BattleServerRegisterTokenAndRoleData role_data.
@@ -20566,8 +27535,8 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_BattleServerRegisterTokenAndRoleData.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(P_BattleServerRegisterTokenAndRoleData.prototype, "_ue_id", {
+        get: $util.oneOfGetter($oneOfFields = ["ue_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -20615,8 +27584,8 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.ue_id);
         if (message.role_data != null && $Object.hasOwnProperty.call(message, "role_data"))
             $root.PB_RoleData.encode(message.role_data, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
         if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
@@ -20671,8 +27640,8 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.ue_id = reader.int32();
+                    message._ue_id = "ue_id";
                     continue;
                 }
             case 2: {
@@ -20733,10 +27702,10 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id")) {
+            properties._ue_id = 1;
+            if (!$util.isInteger(message.ue_id))
+                return "ue_id: integer expected";
         }
         if (message.role_data != null && $Object.hasOwnProperty.call(message, "role_data")) {
             properties._role_data = 1;
@@ -20772,8 +27741,8 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let message = new $root.P_BattleServerRegisterTokenAndRoleData();
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.ue_id != null)
+            message.ue_id = object.ue_id | 0;
         if (object.role_data != null) {
             if (!$util.isObject(object.role_data))
                 throw $TypeError(".P_BattleServerRegisterTokenAndRoleData.role_data: object expected");
@@ -20801,8 +27770,8 @@ export const P_BattleServerRegisterTokenAndRoleData = $root.P_BattleServerRegist
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.ue_id != null && $Object.hasOwnProperty.call(message, "ue_id"))
+            object.ue_id = message.ue_id;
         if (message.role_data != null && $Object.hasOwnProperty.call(message, "role_data"))
             object.role_data = $root.PB_RoleData.toObject(message.role_data, options, _depth + 1);
         if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
@@ -21246,7 +28215,7 @@ export const P_BattleServerKickOutRole = $root.P_BattleServerKickOutRole = (() =
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.uid);
         if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
@@ -21299,7 +28268,7 @@ export const P_BattleServerKickOutRole = $root.P_BattleServerKickOutRole = (() =
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
@@ -21356,8 +28325,8 @@ export const P_BattleServerKickOutRole = $root.P_BattleServerKickOutRole = (() =
         let properties = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
             properties._token = 1;
@@ -21386,7 +28355,14 @@ export const P_BattleServerKickOutRole = $root.P_BattleServerKickOutRole = (() =
             throw $Error("max depth exceeded");
         let message = new $root.P_BattleServerKickOutRole();
         if (object.uid != null)
-            message.uid = object.uid | 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.token != null)
             message.token = $String(object.token);
         return message;
@@ -21410,7 +28386,12 @@ export const P_BattleServerKickOutRole = $root.P_BattleServerKickOutRole = (() =
             throw $Error("max depth exceeded");
         let object = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
             object.token = message.token;
         return object;
@@ -21442,6 +28423,4110 @@ export const P_BattleServerKickOutRole = $root.P_BattleServerKickOutRole = (() =
     };
 
     return P_BattleServerKickOutRole;
+})();
+
+export const P_MmoEnterScene_CS = $root.P_MmoEnterScene_CS = (() => {
+
+    /**
+     * Properties of a P_MmoEnterScene_CS.
+     * @typedef {Object} P_MmoEnterScene_CS.$Properties
+     * @property {number|null} [scene_id] P_MmoEnterScene_CS scene_id
+     * @property {number|null} [x] P_MmoEnterScene_CS x
+     * @property {number|null} [y] P_MmoEnterScene_CS y
+     * @property {number|null} [z] P_MmoEnterScene_CS z
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoEnterScene_CS.
+     * @exports IP_MmoEnterScene_CS
+     * @interface IP_MmoEnterScene_CS
+     * @augments P_MmoEnterScene_CS.$Properties
+     * @deprecated Use P_MmoEnterScene_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoEnterScene_CS.
+     * @typedef {P_MmoEnterScene_CS.$Properties} P_MmoEnterScene_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoEnterScene_CS.
+     * @exports P_MmoEnterScene_CS
+     * @classdesc Represents a P_MmoEnterScene_CS.
+     * @constructor
+     * @param {P_MmoEnterScene_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoEnterScene_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoEnterScene_CS scene_id.
+     * @member {number|null|undefined} scene_id
+     * @memberof P_MmoEnterScene_CS
+     * @instance
+     */
+    P_MmoEnterScene_CS.prototype.scene_id = null;
+
+    /**
+     * P_MmoEnterScene_CS x.
+     * @member {number|null|undefined} x
+     * @memberof P_MmoEnterScene_CS
+     * @instance
+     */
+    P_MmoEnterScene_CS.prototype.x = null;
+
+    /**
+     * P_MmoEnterScene_CS y.
+     * @member {number|null|undefined} y
+     * @memberof P_MmoEnterScene_CS
+     * @instance
+     */
+    P_MmoEnterScene_CS.prototype.y = null;
+
+    /**
+     * P_MmoEnterScene_CS z.
+     * @member {number|null|undefined} z
+     * @memberof P_MmoEnterScene_CS
+     * @instance
+     */
+    P_MmoEnterScene_CS.prototype.z = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoEnterScene_CS.prototype, "_scene_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoEnterScene_CS.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoEnterScene_CS.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoEnterScene_CS.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoEnterScene_CS instance using the specified properties.
+     * @function create
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {P_MmoEnterScene_CS.$Properties=} [properties] Properties to set
+     * @returns {P_MmoEnterScene_CS} P_MmoEnterScene_CS instance
+     * @type {{
+     *   (properties: P_MmoEnterScene_CS.$Shape): P_MmoEnterScene_CS & P_MmoEnterScene_CS.$Shape;
+     *   (properties?: P_MmoEnterScene_CS.$Properties): P_MmoEnterScene_CS;
+     * }}
+     */
+    P_MmoEnterScene_CS.create = function(properties) {
+        return new P_MmoEnterScene_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoEnterScene_CS message. Does not implicitly {@link P_MmoEnterScene_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {P_MmoEnterScene_CS.$Properties} message P_MmoEnterScene_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoEnterScene_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.scene_id);
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.z);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoEnterScene_CS message, length delimited. Does not implicitly {@link P_MmoEnterScene_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {P_MmoEnterScene_CS.$Properties} message P_MmoEnterScene_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoEnterScene_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoEnterScene_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoEnterScene_CS & P_MmoEnterScene_CS.$Shape} P_MmoEnterScene_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoEnterScene_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoEnterScene_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_id = reader.uint64();
+                    message._scene_id = "scene_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoEnterScene_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoEnterScene_CS & P_MmoEnterScene_CS.$Shape} P_MmoEnterScene_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoEnterScene_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoEnterScene_CS message.
+     * @function verify
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoEnterScene_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id")) {
+            properties._scene_id = 1;
+            if (!$util.isInteger(message.scene_id) && !(message.scene_id && $util.isInteger(message.scene_id.low) && $util.isInteger(message.scene_id.high)))
+                return "scene_id: integer|Long expected";
+        }
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoEnterScene_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoEnterScene_CS} P_MmoEnterScene_CS
+     */
+    P_MmoEnterScene_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoEnterScene_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoEnterScene_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoEnterScene_CS();
+        if (object.scene_id != null)
+            if ($util.Long)
+                message.scene_id = $util.Long.fromValue(object.scene_id, true);
+            else if (typeof object.scene_id === "string")
+                message.scene_id = $parseInt(object.scene_id, 10);
+            else if (typeof object.scene_id === "number")
+                message.scene_id = object.scene_id;
+            else if (typeof object.scene_id === "object")
+                message.scene_id = new $util.LongBits(object.scene_id.low >>> 0, object.scene_id.high >>> 0).toNumber(true);
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoEnterScene_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {P_MmoEnterScene_CS} message P_MmoEnterScene_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoEnterScene_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.scene_id = typeof message.scene_id === "number" ? $BigInt(message.scene_id) : $util.Long.fromBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0, true).toBigInt();
+            else if (typeof message.scene_id === "number")
+                object.scene_id = options.longs === $String ? $String(message.scene_id) : message.scene_id;
+            else
+                object.scene_id = options.longs === $String ? $util.Long.prototype.toString.call(message.scene_id) : options.longs === $Number ? new $util.LongBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0).toNumber(true) : message.scene_id;
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoEnterScene_CS to JSON.
+     * @function toJSON
+     * @memberof P_MmoEnterScene_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoEnterScene_CS.prototype.toJSON = function() {
+        return P_MmoEnterScene_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoEnterScene_CS
+     * @function getTypeUrl
+     * @memberof P_MmoEnterScene_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoEnterScene_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoEnterScene_CS";
+    };
+
+    return P_MmoEnterScene_CS;
+})();
+
+export const P_MmoLeaveScene_CS = $root.P_MmoLeaveScene_CS = (() => {
+
+    /**
+     * Properties of a P_MmoLeaveScene_CS.
+     * @typedef {Object} P_MmoLeaveScene_CS.$Properties
+     * @property {number|null} [scene_id] P_MmoLeaveScene_CS scene_id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoLeaveScene_CS.
+     * @exports IP_MmoLeaveScene_CS
+     * @interface IP_MmoLeaveScene_CS
+     * @augments P_MmoLeaveScene_CS.$Properties
+     * @deprecated Use P_MmoLeaveScene_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoLeaveScene_CS.
+     * @typedef {P_MmoLeaveScene_CS.$Properties} P_MmoLeaveScene_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoLeaveScene_CS.
+     * @exports P_MmoLeaveScene_CS
+     * @classdesc Represents a P_MmoLeaveScene_CS.
+     * @constructor
+     * @param {P_MmoLeaveScene_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoLeaveScene_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoLeaveScene_CS scene_id.
+     * @member {number|null|undefined} scene_id
+     * @memberof P_MmoLeaveScene_CS
+     * @instance
+     */
+    P_MmoLeaveScene_CS.prototype.scene_id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoLeaveScene_CS.prototype, "_scene_id", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoLeaveScene_CS instance using the specified properties.
+     * @function create
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {P_MmoLeaveScene_CS.$Properties=} [properties] Properties to set
+     * @returns {P_MmoLeaveScene_CS} P_MmoLeaveScene_CS instance
+     * @type {{
+     *   (properties: P_MmoLeaveScene_CS.$Shape): P_MmoLeaveScene_CS & P_MmoLeaveScene_CS.$Shape;
+     *   (properties?: P_MmoLeaveScene_CS.$Properties): P_MmoLeaveScene_CS;
+     * }}
+     */
+    P_MmoLeaveScene_CS.create = function(properties) {
+        return new P_MmoLeaveScene_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoLeaveScene_CS message. Does not implicitly {@link P_MmoLeaveScene_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {P_MmoLeaveScene_CS.$Properties} message P_MmoLeaveScene_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoLeaveScene_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.scene_id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoLeaveScene_CS message, length delimited. Does not implicitly {@link P_MmoLeaveScene_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {P_MmoLeaveScene_CS.$Properties} message P_MmoLeaveScene_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoLeaveScene_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoLeaveScene_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoLeaveScene_CS & P_MmoLeaveScene_CS.$Shape} P_MmoLeaveScene_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoLeaveScene_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoLeaveScene_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_id = reader.uint64();
+                    message._scene_id = "scene_id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoLeaveScene_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoLeaveScene_CS & P_MmoLeaveScene_CS.$Shape} P_MmoLeaveScene_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoLeaveScene_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoLeaveScene_CS message.
+     * @function verify
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoLeaveScene_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id")) {
+            properties._scene_id = 1;
+            if (!$util.isInteger(message.scene_id) && !(message.scene_id && $util.isInteger(message.scene_id.low) && $util.isInteger(message.scene_id.high)))
+                return "scene_id: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoLeaveScene_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoLeaveScene_CS} P_MmoLeaveScene_CS
+     */
+    P_MmoLeaveScene_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoLeaveScene_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoLeaveScene_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoLeaveScene_CS();
+        if (object.scene_id != null)
+            if ($util.Long)
+                message.scene_id = $util.Long.fromValue(object.scene_id, true);
+            else if (typeof object.scene_id === "string")
+                message.scene_id = $parseInt(object.scene_id, 10);
+            else if (typeof object.scene_id === "number")
+                message.scene_id = object.scene_id;
+            else if (typeof object.scene_id === "object")
+                message.scene_id = new $util.LongBits(object.scene_id.low >>> 0, object.scene_id.high >>> 0).toNumber(true);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoLeaveScene_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {P_MmoLeaveScene_CS} message P_MmoLeaveScene_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoLeaveScene_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.scene_id != null && $Object.hasOwnProperty.call(message, "scene_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.scene_id = typeof message.scene_id === "number" ? $BigInt(message.scene_id) : $util.Long.fromBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0, true).toBigInt();
+            else if (typeof message.scene_id === "number")
+                object.scene_id = options.longs === $String ? $String(message.scene_id) : message.scene_id;
+            else
+                object.scene_id = options.longs === $String ? $util.Long.prototype.toString.call(message.scene_id) : options.longs === $Number ? new $util.LongBits(message.scene_id.low >>> 0, message.scene_id.high >>> 0).toNumber(true) : message.scene_id;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoLeaveScene_CS to JSON.
+     * @function toJSON
+     * @memberof P_MmoLeaveScene_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoLeaveScene_CS.prototype.toJSON = function() {
+        return P_MmoLeaveScene_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoLeaveScene_CS
+     * @function getTypeUrl
+     * @memberof P_MmoLeaveScene_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoLeaveScene_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoLeaveScene_CS";
+    };
+
+    return P_MmoLeaveScene_CS;
+})();
+
+export const P_MmoMove_CS = $root.P_MmoMove_CS = (() => {
+
+    /**
+     * Properties of a P_MmoMove_CS.
+     * @typedef {Object} P_MmoMove_CS.$Properties
+     * @property {number|null} [x] P_MmoMove_CS x
+     * @property {number|null} [y] P_MmoMove_CS y
+     * @property {number|null} [z] P_MmoMove_CS z
+     * @property {number|null} [speed] P_MmoMove_CS speed
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoMove_CS.
+     * @exports IP_MmoMove_CS
+     * @interface IP_MmoMove_CS
+     * @augments P_MmoMove_CS.$Properties
+     * @deprecated Use P_MmoMove_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoMove_CS.
+     * @typedef {P_MmoMove_CS.$Properties} P_MmoMove_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoMove_CS.
+     * @exports P_MmoMove_CS
+     * @classdesc Represents a P_MmoMove_CS.
+     * @constructor
+     * @param {P_MmoMove_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoMove_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoMove_CS x.
+     * @member {number|null|undefined} x
+     * @memberof P_MmoMove_CS
+     * @instance
+     */
+    P_MmoMove_CS.prototype.x = null;
+
+    /**
+     * P_MmoMove_CS y.
+     * @member {number|null|undefined} y
+     * @memberof P_MmoMove_CS
+     * @instance
+     */
+    P_MmoMove_CS.prototype.y = null;
+
+    /**
+     * P_MmoMove_CS z.
+     * @member {number|null|undefined} z
+     * @memberof P_MmoMove_CS
+     * @instance
+     */
+    P_MmoMove_CS.prototype.z = null;
+
+    /**
+     * P_MmoMove_CS speed.
+     * @member {number|null|undefined} speed
+     * @memberof P_MmoMove_CS
+     * @instance
+     */
+    P_MmoMove_CS.prototype.speed = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoMove_CS.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoMove_CS.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoMove_CS.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoMove_CS.prototype, "_speed", {
+        get: $util.oneOfGetter($oneOfFields = ["speed"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoMove_CS instance using the specified properties.
+     * @function create
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {P_MmoMove_CS.$Properties=} [properties] Properties to set
+     * @returns {P_MmoMove_CS} P_MmoMove_CS instance
+     * @type {{
+     *   (properties: P_MmoMove_CS.$Shape): P_MmoMove_CS & P_MmoMove_CS.$Shape;
+     *   (properties?: P_MmoMove_CS.$Properties): P_MmoMove_CS;
+     * }}
+     */
+    P_MmoMove_CS.create = function(properties) {
+        return new P_MmoMove_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoMove_CS message. Does not implicitly {@link P_MmoMove_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {P_MmoMove_CS.$Properties} message P_MmoMove_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoMove_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.z);
+        if (message.speed != null && $Object.hasOwnProperty.call(message, "speed"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.speed);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoMove_CS message, length delimited. Does not implicitly {@link P_MmoMove_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {P_MmoMove_CS.$Properties} message P_MmoMove_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoMove_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoMove_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoMove_CS & P_MmoMove_CS.$Shape} P_MmoMove_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoMove_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoMove_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 5)
+                        break;
+                    message.speed = reader.float();
+                    message._speed = "speed";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoMove_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoMove_CS & P_MmoMove_CS.$Shape} P_MmoMove_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoMove_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoMove_CS message.
+     * @function verify
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoMove_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        if (message.speed != null && $Object.hasOwnProperty.call(message, "speed")) {
+            properties._speed = 1;
+            if (typeof message.speed !== "number")
+                return "speed: number expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoMove_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoMove_CS} P_MmoMove_CS
+     */
+    P_MmoMove_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoMove_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoMove_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoMove_CS();
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        if (object.speed != null)
+            message.speed = $Number(object.speed);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoMove_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {P_MmoMove_CS} message P_MmoMove_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoMove_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        if (message.speed != null && $Object.hasOwnProperty.call(message, "speed"))
+            object.speed = options.json && !$isFinite(message.speed) ? $String(message.speed) : message.speed;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoMove_CS to JSON.
+     * @function toJSON
+     * @memberof P_MmoMove_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoMove_CS.prototype.toJSON = function() {
+        return P_MmoMove_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoMove_CS
+     * @function getTypeUrl
+     * @memberof P_MmoMove_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoMove_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoMove_CS";
+    };
+
+    return P_MmoMove_CS;
+})();
+
+export const P_MmoStopMove_CS = $root.P_MmoStopMove_CS = (() => {
+
+    /**
+     * Properties of a P_MmoStopMove_CS.
+     * @typedef {Object} P_MmoStopMove_CS.$Properties
+     * @property {number|null} [x] P_MmoStopMove_CS x
+     * @property {number|null} [y] P_MmoStopMove_CS y
+     * @property {number|null} [z] P_MmoStopMove_CS z
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoStopMove_CS.
+     * @exports IP_MmoStopMove_CS
+     * @interface IP_MmoStopMove_CS
+     * @augments P_MmoStopMove_CS.$Properties
+     * @deprecated Use P_MmoStopMove_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoStopMove_CS.
+     * @typedef {P_MmoStopMove_CS.$Properties} P_MmoStopMove_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoStopMove_CS.
+     * @exports P_MmoStopMove_CS
+     * @classdesc Represents a P_MmoStopMove_CS.
+     * @constructor
+     * @param {P_MmoStopMove_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoStopMove_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoStopMove_CS x.
+     * @member {number|null|undefined} x
+     * @memberof P_MmoStopMove_CS
+     * @instance
+     */
+    P_MmoStopMove_CS.prototype.x = null;
+
+    /**
+     * P_MmoStopMove_CS y.
+     * @member {number|null|undefined} y
+     * @memberof P_MmoStopMove_CS
+     * @instance
+     */
+    P_MmoStopMove_CS.prototype.y = null;
+
+    /**
+     * P_MmoStopMove_CS z.
+     * @member {number|null|undefined} z
+     * @memberof P_MmoStopMove_CS
+     * @instance
+     */
+    P_MmoStopMove_CS.prototype.z = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoStopMove_CS.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoStopMove_CS.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoStopMove_CS.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoStopMove_CS instance using the specified properties.
+     * @function create
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {P_MmoStopMove_CS.$Properties=} [properties] Properties to set
+     * @returns {P_MmoStopMove_CS} P_MmoStopMove_CS instance
+     * @type {{
+     *   (properties: P_MmoStopMove_CS.$Shape): P_MmoStopMove_CS & P_MmoStopMove_CS.$Shape;
+     *   (properties?: P_MmoStopMove_CS.$Properties): P_MmoStopMove_CS;
+     * }}
+     */
+    P_MmoStopMove_CS.create = function(properties) {
+        return new P_MmoStopMove_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoStopMove_CS message. Does not implicitly {@link P_MmoStopMove_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {P_MmoStopMove_CS.$Properties} message P_MmoStopMove_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoStopMove_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.z);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoStopMove_CS message, length delimited. Does not implicitly {@link P_MmoStopMove_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {P_MmoStopMove_CS.$Properties} message P_MmoStopMove_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoStopMove_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoStopMove_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoStopMove_CS & P_MmoStopMove_CS.$Shape} P_MmoStopMove_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoStopMove_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoStopMove_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoStopMove_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoStopMove_CS & P_MmoStopMove_CS.$Shape} P_MmoStopMove_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoStopMove_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoStopMove_CS message.
+     * @function verify
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoStopMove_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoStopMove_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoStopMove_CS} P_MmoStopMove_CS
+     */
+    P_MmoStopMove_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoStopMove_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoStopMove_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoStopMove_CS();
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoStopMove_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {P_MmoStopMove_CS} message P_MmoStopMove_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoStopMove_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoStopMove_CS to JSON.
+     * @function toJSON
+     * @memberof P_MmoStopMove_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoStopMove_CS.prototype.toJSON = function() {
+        return P_MmoStopMove_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoStopMove_CS
+     * @function getTypeUrl
+     * @memberof P_MmoStopMove_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoStopMove_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoStopMove_CS";
+    };
+
+    return P_MmoStopMove_CS;
+})();
+
+export const P_MmoSyncEntity_SC = $root.P_MmoSyncEntity_SC = (() => {
+
+    /**
+     * Properties of a P_MmoSyncEntity_SC.
+     * @typedef {Object} P_MmoSyncEntity_SC.$Properties
+     * @property {number|null} [obj_id] P_MmoSyncEntity_SC obj_id
+     * @property {number|null} [owner_uid] P_MmoSyncEntity_SC owner_uid
+     * @property {number|null} [obj_type] P_MmoSyncEntity_SC obj_type
+     * @property {number|null} [x] P_MmoSyncEntity_SC x
+     * @property {number|null} [y] P_MmoSyncEntity_SC y
+     * @property {number|null} [z] P_MmoSyncEntity_SC z
+     * @property {string|null} [role_name] P_MmoSyncEntity_SC role_name
+     * @property {number|null} [level] P_MmoSyncEntity_SC level
+     * @property {number|null} [hp] P_MmoSyncEntity_SC hp
+     * @property {number|null} [max_hp] P_MmoSyncEntity_SC max_hp
+     * @property {boolean|null} [dead] P_MmoSyncEntity_SC dead
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoSyncEntity_SC.
+     * @exports IP_MmoSyncEntity_SC
+     * @interface IP_MmoSyncEntity_SC
+     * @augments P_MmoSyncEntity_SC.$Properties
+     * @deprecated Use P_MmoSyncEntity_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoSyncEntity_SC.
+     * @typedef {P_MmoSyncEntity_SC.$Properties} P_MmoSyncEntity_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoSyncEntity_SC.
+     * @exports P_MmoSyncEntity_SC
+     * @classdesc Represents a P_MmoSyncEntity_SC.
+     * @constructor
+     * @param {P_MmoSyncEntity_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoSyncEntity_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoSyncEntity_SC obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.obj_id = null;
+
+    /**
+     * P_MmoSyncEntity_SC owner_uid.
+     * @member {number|null|undefined} owner_uid
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.owner_uid = null;
+
+    /**
+     * P_MmoSyncEntity_SC obj_type.
+     * @member {number|null|undefined} obj_type
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.obj_type = null;
+
+    /**
+     * P_MmoSyncEntity_SC x.
+     * @member {number|null|undefined} x
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.x = null;
+
+    /**
+     * P_MmoSyncEntity_SC y.
+     * @member {number|null|undefined} y
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.y = null;
+
+    /**
+     * P_MmoSyncEntity_SC z.
+     * @member {number|null|undefined} z
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.z = null;
+
+    /**
+     * P_MmoSyncEntity_SC role_name.
+     * @member {string|null|undefined} role_name
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.role_name = null;
+
+    /**
+     * P_MmoSyncEntity_SC level.
+     * @member {number|null|undefined} level
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.level = null;
+
+    /**
+     * P_MmoSyncEntity_SC hp.
+     * @member {number|null|undefined} hp
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.hp = null;
+
+    /**
+     * P_MmoSyncEntity_SC max_hp.
+     * @member {number|null|undefined} max_hp
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.max_hp = null;
+
+    /**
+     * P_MmoSyncEntity_SC dead.
+     * @member {boolean|null|undefined} dead
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     */
+    P_MmoSyncEntity_SC.prototype.dead = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_owner_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["owner_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_obj_type", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_role_name", {
+        get: $util.oneOfGetter($oneOfFields = ["role_name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_level", {
+        get: $util.oneOfGetter($oneOfFields = ["level"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_max_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["max_hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncEntity_SC.prototype, "_dead", {
+        get: $util.oneOfGetter($oneOfFields = ["dead"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoSyncEntity_SC instance using the specified properties.
+     * @function create
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {P_MmoSyncEntity_SC.$Properties=} [properties] Properties to set
+     * @returns {P_MmoSyncEntity_SC} P_MmoSyncEntity_SC instance
+     * @type {{
+     *   (properties: P_MmoSyncEntity_SC.$Shape): P_MmoSyncEntity_SC & P_MmoSyncEntity_SC.$Shape;
+     *   (properties?: P_MmoSyncEntity_SC.$Properties): P_MmoSyncEntity_SC;
+     * }}
+     */
+    P_MmoSyncEntity_SC.create = function(properties) {
+        return new P_MmoSyncEntity_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoSyncEntity_SC message. Does not implicitly {@link P_MmoSyncEntity_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {P_MmoSyncEntity_SC.$Properties} message P_MmoSyncEntity_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSyncEntity_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.obj_id);
+        if (message.owner_uid != null && $Object.hasOwnProperty.call(message, "owner_uid"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.owner_uid);
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.obj_type);
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 5, wireType 5 =*/45).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 6, wireType 5 =*/53).float(message.z);
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.role_name);
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            writer.uint32(/* id 8, wireType 0 =*/64).int32(message.level);
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            writer.uint32(/* id 9, wireType 0 =*/72).int32(message.hp);
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            writer.uint32(/* id 10, wireType 0 =*/80).int32(message.max_hp);
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            writer.uint32(/* id 11, wireType 0 =*/88).bool(message.dead);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoSyncEntity_SC message, length delimited. Does not implicitly {@link P_MmoSyncEntity_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {P_MmoSyncEntity_SC.$Properties} message P_MmoSyncEntity_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSyncEntity_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoSyncEntity_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoSyncEntity_SC & P_MmoSyncEntity_SC.$Shape} P_MmoSyncEntity_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSyncEntity_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoSyncEntity_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.uint64();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.owner_uid = reader.uint64();
+                    message._owner_uid = "owner_uid";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_type = reader.int32();
+                    message._obj_type = "obj_type";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 2)
+                        break;
+                    message.role_name = reader.stringVerify();
+                    message._role_name = "role_name";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 0)
+                        break;
+                    message.level = reader.int32();
+                    message._level = "level";
+                    continue;
+                }
+            case 9: {
+                    if (wireType !== 0)
+                        break;
+                    message.hp = reader.int32();
+                    message._hp = "hp";
+                    continue;
+                }
+            case 10: {
+                    if (wireType !== 0)
+                        break;
+                    message.max_hp = reader.int32();
+                    message._max_hp = "max_hp";
+                    continue;
+                }
+            case 11: {
+                    if (wireType !== 0)
+                        break;
+                    message.dead = reader.bool();
+                    message._dead = "dead";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoSyncEntity_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoSyncEntity_SC & P_MmoSyncEntity_SC.$Shape} P_MmoSyncEntity_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSyncEntity_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoSyncEntity_SC message.
+     * @function verify
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoSyncEntity_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id) && !(message.obj_id && $util.isInteger(message.obj_id.low) && $util.isInteger(message.obj_id.high)))
+                return "obj_id: integer|Long expected";
+        }
+        if (message.owner_uid != null && $Object.hasOwnProperty.call(message, "owner_uid")) {
+            properties._owner_uid = 1;
+            if (!$util.isInteger(message.owner_uid) && !(message.owner_uid && $util.isInteger(message.owner_uid.low) && $util.isInteger(message.owner_uid.high)))
+                return "owner_uid: integer|Long expected";
+        }
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type")) {
+            properties._obj_type = 1;
+            if (!$util.isInteger(message.obj_type))
+                return "obj_type: integer expected";
+        }
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name")) {
+            properties._role_name = 1;
+            if (!$util.isString(message.role_name))
+                return "role_name: string expected";
+        }
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level")) {
+            properties._level = 1;
+            if (!$util.isInteger(message.level))
+                return "level: integer expected";
+        }
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp")) {
+            properties._hp = 1;
+            if (!$util.isInteger(message.hp))
+                return "hp: integer expected";
+        }
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp")) {
+            properties._max_hp = 1;
+            if (!$util.isInteger(message.max_hp))
+                return "max_hp: integer expected";
+        }
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead")) {
+            properties._dead = 1;
+            if (typeof message.dead !== "boolean")
+                return "dead: boolean expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoSyncEntity_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoSyncEntity_SC} P_MmoSyncEntity_SC
+     */
+    P_MmoSyncEntity_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoSyncEntity_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoSyncEntity_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoSyncEntity_SC();
+        if (object.obj_id != null)
+            if ($util.Long)
+                message.obj_id = $util.Long.fromValue(object.obj_id, true);
+            else if (typeof object.obj_id === "string")
+                message.obj_id = $parseInt(object.obj_id, 10);
+            else if (typeof object.obj_id === "number")
+                message.obj_id = object.obj_id;
+            else if (typeof object.obj_id === "object")
+                message.obj_id = new $util.LongBits(object.obj_id.low >>> 0, object.obj_id.high >>> 0).toNumber(true);
+        if (object.owner_uid != null)
+            if ($util.Long)
+                message.owner_uid = $util.Long.fromValue(object.owner_uid, true);
+            else if (typeof object.owner_uid === "string")
+                message.owner_uid = $parseInt(object.owner_uid, 10);
+            else if (typeof object.owner_uid === "number")
+                message.owner_uid = object.owner_uid;
+            else if (typeof object.owner_uid === "object")
+                message.owner_uid = new $util.LongBits(object.owner_uid.low >>> 0, object.owner_uid.high >>> 0).toNumber(true);
+        if (object.obj_type != null)
+            message.obj_type = object.obj_type | 0;
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        if (object.role_name != null)
+            message.role_name = $String(object.role_name);
+        if (object.level != null)
+            message.level = object.level | 0;
+        if (object.hp != null)
+            message.hp = object.hp | 0;
+        if (object.max_hp != null)
+            message.max_hp = object.max_hp | 0;
+        if (object.dead != null)
+            message.dead = $Boolean(object.dead);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoSyncEntity_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {P_MmoSyncEntity_SC} message P_MmoSyncEntity_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoSyncEntity_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.obj_id = typeof message.obj_id === "number" ? $BigInt(message.obj_id) : $util.Long.fromBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.obj_id === "number")
+                object.obj_id = options.longs === $String ? $String(message.obj_id) : message.obj_id;
+            else
+                object.obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.obj_id) : options.longs === $Number ? new $util.LongBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0).toNumber(true) : message.obj_id;
+        if (message.owner_uid != null && $Object.hasOwnProperty.call(message, "owner_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.owner_uid = typeof message.owner_uid === "number" ? $BigInt(message.owner_uid) : $util.Long.fromBits(message.owner_uid.low >>> 0, message.owner_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.owner_uid === "number")
+                object.owner_uid = options.longs === $String ? $String(message.owner_uid) : message.owner_uid;
+            else
+                object.owner_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.owner_uid) : options.longs === $Number ? new $util.LongBits(message.owner_uid.low >>> 0, message.owner_uid.high >>> 0).toNumber(true) : message.owner_uid;
+        if (message.obj_type != null && $Object.hasOwnProperty.call(message, "obj_type"))
+            object.obj_type = message.obj_type;
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        if (message.role_name != null && $Object.hasOwnProperty.call(message, "role_name"))
+            object.role_name = message.role_name;
+        if (message.level != null && $Object.hasOwnProperty.call(message, "level"))
+            object.level = message.level;
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            object.hp = message.hp;
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            object.max_hp = message.max_hp;
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            object.dead = message.dead;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoSyncEntity_SC to JSON.
+     * @function toJSON
+     * @memberof P_MmoSyncEntity_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoSyncEntity_SC.prototype.toJSON = function() {
+        return P_MmoSyncEntity_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoSyncEntity_SC
+     * @function getTypeUrl
+     * @memberof P_MmoSyncEntity_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoSyncEntity_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoSyncEntity_SC";
+    };
+
+    return P_MmoSyncEntity_SC;
+})();
+
+export const P_MmoSyncLeaveEntity_SC = $root.P_MmoSyncLeaveEntity_SC = (() => {
+
+    /**
+     * Properties of a P_MmoSyncLeaveEntity_SC.
+     * @typedef {Object} P_MmoSyncLeaveEntity_SC.$Properties
+     * @property {number|null} [obj_id] P_MmoSyncLeaveEntity_SC obj_id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoSyncLeaveEntity_SC.
+     * @exports IP_MmoSyncLeaveEntity_SC
+     * @interface IP_MmoSyncLeaveEntity_SC
+     * @augments P_MmoSyncLeaveEntity_SC.$Properties
+     * @deprecated Use P_MmoSyncLeaveEntity_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoSyncLeaveEntity_SC.
+     * @typedef {P_MmoSyncLeaveEntity_SC.$Properties} P_MmoSyncLeaveEntity_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoSyncLeaveEntity_SC.
+     * @exports P_MmoSyncLeaveEntity_SC
+     * @classdesc Represents a P_MmoSyncLeaveEntity_SC.
+     * @constructor
+     * @param {P_MmoSyncLeaveEntity_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoSyncLeaveEntity_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoSyncLeaveEntity_SC obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @instance
+     */
+    P_MmoSyncLeaveEntity_SC.prototype.obj_id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncLeaveEntity_SC.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoSyncLeaveEntity_SC instance using the specified properties.
+     * @function create
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {P_MmoSyncLeaveEntity_SC.$Properties=} [properties] Properties to set
+     * @returns {P_MmoSyncLeaveEntity_SC} P_MmoSyncLeaveEntity_SC instance
+     * @type {{
+     *   (properties: P_MmoSyncLeaveEntity_SC.$Shape): P_MmoSyncLeaveEntity_SC & P_MmoSyncLeaveEntity_SC.$Shape;
+     *   (properties?: P_MmoSyncLeaveEntity_SC.$Properties): P_MmoSyncLeaveEntity_SC;
+     * }}
+     */
+    P_MmoSyncLeaveEntity_SC.create = function(properties) {
+        return new P_MmoSyncLeaveEntity_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoSyncLeaveEntity_SC message. Does not implicitly {@link P_MmoSyncLeaveEntity_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {P_MmoSyncLeaveEntity_SC.$Properties} message P_MmoSyncLeaveEntity_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSyncLeaveEntity_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.obj_id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoSyncLeaveEntity_SC message, length delimited. Does not implicitly {@link P_MmoSyncLeaveEntity_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {P_MmoSyncLeaveEntity_SC.$Properties} message P_MmoSyncLeaveEntity_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSyncLeaveEntity_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoSyncLeaveEntity_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoSyncLeaveEntity_SC & P_MmoSyncLeaveEntity_SC.$Shape} P_MmoSyncLeaveEntity_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSyncLeaveEntity_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoSyncLeaveEntity_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.uint64();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoSyncLeaveEntity_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoSyncLeaveEntity_SC & P_MmoSyncLeaveEntity_SC.$Shape} P_MmoSyncLeaveEntity_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSyncLeaveEntity_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoSyncLeaveEntity_SC message.
+     * @function verify
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoSyncLeaveEntity_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id) && !(message.obj_id && $util.isInteger(message.obj_id.low) && $util.isInteger(message.obj_id.high)))
+                return "obj_id: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoSyncLeaveEntity_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoSyncLeaveEntity_SC} P_MmoSyncLeaveEntity_SC
+     */
+    P_MmoSyncLeaveEntity_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoSyncLeaveEntity_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoSyncLeaveEntity_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoSyncLeaveEntity_SC();
+        if (object.obj_id != null)
+            if ($util.Long)
+                message.obj_id = $util.Long.fromValue(object.obj_id, true);
+            else if (typeof object.obj_id === "string")
+                message.obj_id = $parseInt(object.obj_id, 10);
+            else if (typeof object.obj_id === "number")
+                message.obj_id = object.obj_id;
+            else if (typeof object.obj_id === "object")
+                message.obj_id = new $util.LongBits(object.obj_id.low >>> 0, object.obj_id.high >>> 0).toNumber(true);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoSyncLeaveEntity_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {P_MmoSyncLeaveEntity_SC} message P_MmoSyncLeaveEntity_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoSyncLeaveEntity_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.obj_id = typeof message.obj_id === "number" ? $BigInt(message.obj_id) : $util.Long.fromBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.obj_id === "number")
+                object.obj_id = options.longs === $String ? $String(message.obj_id) : message.obj_id;
+            else
+                object.obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.obj_id) : options.longs === $Number ? new $util.LongBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0).toNumber(true) : message.obj_id;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoSyncLeaveEntity_SC to JSON.
+     * @function toJSON
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoSyncLeaveEntity_SC.prototype.toJSON = function() {
+        return P_MmoSyncLeaveEntity_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoSyncLeaveEntity_SC
+     * @function getTypeUrl
+     * @memberof P_MmoSyncLeaveEntity_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoSyncLeaveEntity_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoSyncLeaveEntity_SC";
+    };
+
+    return P_MmoSyncLeaveEntity_SC;
+})();
+
+export const P_MmoSyncMove_SC = $root.P_MmoSyncMove_SC = (() => {
+
+    /**
+     * Properties of a P_MmoSyncMove_SC.
+     * @typedef {Object} P_MmoSyncMove_SC.$Properties
+     * @property {number|null} [obj_id] P_MmoSyncMove_SC obj_id
+     * @property {number|null} [x] P_MmoSyncMove_SC x
+     * @property {number|null} [y] P_MmoSyncMove_SC y
+     * @property {number|null} [z] P_MmoSyncMove_SC z
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoSyncMove_SC.
+     * @exports IP_MmoSyncMove_SC
+     * @interface IP_MmoSyncMove_SC
+     * @augments P_MmoSyncMove_SC.$Properties
+     * @deprecated Use P_MmoSyncMove_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoSyncMove_SC.
+     * @typedef {P_MmoSyncMove_SC.$Properties} P_MmoSyncMove_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoSyncMove_SC.
+     * @exports P_MmoSyncMove_SC
+     * @classdesc Represents a P_MmoSyncMove_SC.
+     * @constructor
+     * @param {P_MmoSyncMove_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoSyncMove_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoSyncMove_SC obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof P_MmoSyncMove_SC
+     * @instance
+     */
+    P_MmoSyncMove_SC.prototype.obj_id = null;
+
+    /**
+     * P_MmoSyncMove_SC x.
+     * @member {number|null|undefined} x
+     * @memberof P_MmoSyncMove_SC
+     * @instance
+     */
+    P_MmoSyncMove_SC.prototype.x = null;
+
+    /**
+     * P_MmoSyncMove_SC y.
+     * @member {number|null|undefined} y
+     * @memberof P_MmoSyncMove_SC
+     * @instance
+     */
+    P_MmoSyncMove_SC.prototype.y = null;
+
+    /**
+     * P_MmoSyncMove_SC z.
+     * @member {number|null|undefined} z
+     * @memberof P_MmoSyncMove_SC
+     * @instance
+     */
+    P_MmoSyncMove_SC.prototype.z = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncMove_SC.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncMove_SC.prototype, "_x", {
+        get: $util.oneOfGetter($oneOfFields = ["x"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncMove_SC.prototype, "_y", {
+        get: $util.oneOfGetter($oneOfFields = ["y"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSyncMove_SC.prototype, "_z", {
+        get: $util.oneOfGetter($oneOfFields = ["z"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoSyncMove_SC instance using the specified properties.
+     * @function create
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {P_MmoSyncMove_SC.$Properties=} [properties] Properties to set
+     * @returns {P_MmoSyncMove_SC} P_MmoSyncMove_SC instance
+     * @type {{
+     *   (properties: P_MmoSyncMove_SC.$Shape): P_MmoSyncMove_SC & P_MmoSyncMove_SC.$Shape;
+     *   (properties?: P_MmoSyncMove_SC.$Properties): P_MmoSyncMove_SC;
+     * }}
+     */
+    P_MmoSyncMove_SC.create = function(properties) {
+        return new P_MmoSyncMove_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoSyncMove_SC message. Does not implicitly {@link P_MmoSyncMove_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {P_MmoSyncMove_SC.$Properties} message P_MmoSyncMove_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSyncMove_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.obj_id);
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            writer.uint32(/* id 2, wireType 5 =*/21).float(message.x);
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            writer.uint32(/* id 3, wireType 5 =*/29).float(message.y);
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            writer.uint32(/* id 4, wireType 5 =*/37).float(message.z);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoSyncMove_SC message, length delimited. Does not implicitly {@link P_MmoSyncMove_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {P_MmoSyncMove_SC.$Properties} message P_MmoSyncMove_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSyncMove_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoSyncMove_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoSyncMove_SC & P_MmoSyncMove_SC.$Shape} P_MmoSyncMove_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSyncMove_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoSyncMove_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.uint64();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 5)
+                        break;
+                    message.x = reader.float();
+                    message._x = "x";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 5)
+                        break;
+                    message.y = reader.float();
+                    message._y = "y";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 5)
+                        break;
+                    message.z = reader.float();
+                    message._z = "z";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoSyncMove_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoSyncMove_SC & P_MmoSyncMove_SC.$Shape} P_MmoSyncMove_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSyncMove_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoSyncMove_SC message.
+     * @function verify
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoSyncMove_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id) && !(message.obj_id && $util.isInteger(message.obj_id.low) && $util.isInteger(message.obj_id.high)))
+                return "obj_id: integer|Long expected";
+        }
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x")) {
+            properties._x = 1;
+            if (typeof message.x !== "number")
+                return "x: number expected";
+        }
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y")) {
+            properties._y = 1;
+            if (typeof message.y !== "number")
+                return "y: number expected";
+        }
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z")) {
+            properties._z = 1;
+            if (typeof message.z !== "number")
+                return "z: number expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoSyncMove_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoSyncMove_SC} P_MmoSyncMove_SC
+     */
+    P_MmoSyncMove_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoSyncMove_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoSyncMove_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoSyncMove_SC();
+        if (object.obj_id != null)
+            if ($util.Long)
+                message.obj_id = $util.Long.fromValue(object.obj_id, true);
+            else if (typeof object.obj_id === "string")
+                message.obj_id = $parseInt(object.obj_id, 10);
+            else if (typeof object.obj_id === "number")
+                message.obj_id = object.obj_id;
+            else if (typeof object.obj_id === "object")
+                message.obj_id = new $util.LongBits(object.obj_id.low >>> 0, object.obj_id.high >>> 0).toNumber(true);
+        if (object.x != null)
+            message.x = $Number(object.x);
+        if (object.y != null)
+            message.y = $Number(object.y);
+        if (object.z != null)
+            message.z = $Number(object.z);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoSyncMove_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {P_MmoSyncMove_SC} message P_MmoSyncMove_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoSyncMove_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.obj_id = typeof message.obj_id === "number" ? $BigInt(message.obj_id) : $util.Long.fromBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.obj_id === "number")
+                object.obj_id = options.longs === $String ? $String(message.obj_id) : message.obj_id;
+            else
+                object.obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.obj_id) : options.longs === $Number ? new $util.LongBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0).toNumber(true) : message.obj_id;
+        if (message.x != null && $Object.hasOwnProperty.call(message, "x"))
+            object.x = options.json && !$isFinite(message.x) ? $String(message.x) : message.x;
+        if (message.y != null && $Object.hasOwnProperty.call(message, "y"))
+            object.y = options.json && !$isFinite(message.y) ? $String(message.y) : message.y;
+        if (message.z != null && $Object.hasOwnProperty.call(message, "z"))
+            object.z = options.json && !$isFinite(message.z) ? $String(message.z) : message.z;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoSyncMove_SC to JSON.
+     * @function toJSON
+     * @memberof P_MmoSyncMove_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoSyncMove_SC.prototype.toJSON = function() {
+        return P_MmoSyncMove_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoSyncMove_SC
+     * @function getTypeUrl
+     * @memberof P_MmoSyncMove_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoSyncMove_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoSyncMove_SC";
+    };
+
+    return P_MmoSyncMove_SC;
+})();
+
+export const P_MmoAttack_CS = $root.P_MmoAttack_CS = (() => {
+
+    /**
+     * Properties of a P_MmoAttack_CS.
+     * @typedef {Object} P_MmoAttack_CS.$Properties
+     * @property {number|null} [target_obj_id] P_MmoAttack_CS target_obj_id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoAttack_CS.
+     * @exports IP_MmoAttack_CS
+     * @interface IP_MmoAttack_CS
+     * @augments P_MmoAttack_CS.$Properties
+     * @deprecated Use P_MmoAttack_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoAttack_CS.
+     * @typedef {P_MmoAttack_CS.$Properties} P_MmoAttack_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoAttack_CS.
+     * @exports P_MmoAttack_CS
+     * @classdesc Represents a P_MmoAttack_CS.
+     * @constructor
+     * @param {P_MmoAttack_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoAttack_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoAttack_CS target_obj_id.
+     * @member {number|null|undefined} target_obj_id
+     * @memberof P_MmoAttack_CS
+     * @instance
+     */
+    P_MmoAttack_CS.prototype.target_obj_id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoAttack_CS.prototype, "_target_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["target_obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoAttack_CS instance using the specified properties.
+     * @function create
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {P_MmoAttack_CS.$Properties=} [properties] Properties to set
+     * @returns {P_MmoAttack_CS} P_MmoAttack_CS instance
+     * @type {{
+     *   (properties: P_MmoAttack_CS.$Shape): P_MmoAttack_CS & P_MmoAttack_CS.$Shape;
+     *   (properties?: P_MmoAttack_CS.$Properties): P_MmoAttack_CS;
+     * }}
+     */
+    P_MmoAttack_CS.create = function(properties) {
+        return new P_MmoAttack_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoAttack_CS message. Does not implicitly {@link P_MmoAttack_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {P_MmoAttack_CS.$Properties} message P_MmoAttack_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoAttack_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.target_obj_id != null && $Object.hasOwnProperty.call(message, "target_obj_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.target_obj_id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoAttack_CS message, length delimited. Does not implicitly {@link P_MmoAttack_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {P_MmoAttack_CS.$Properties} message P_MmoAttack_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoAttack_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoAttack_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoAttack_CS & P_MmoAttack_CS.$Shape} P_MmoAttack_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoAttack_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoAttack_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.target_obj_id = reader.uint64();
+                    message._target_obj_id = "target_obj_id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoAttack_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoAttack_CS & P_MmoAttack_CS.$Shape} P_MmoAttack_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoAttack_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoAttack_CS message.
+     * @function verify
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoAttack_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.target_obj_id != null && $Object.hasOwnProperty.call(message, "target_obj_id")) {
+            properties._target_obj_id = 1;
+            if (!$util.isInteger(message.target_obj_id) && !(message.target_obj_id && $util.isInteger(message.target_obj_id.low) && $util.isInteger(message.target_obj_id.high)))
+                return "target_obj_id: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoAttack_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoAttack_CS} P_MmoAttack_CS
+     */
+    P_MmoAttack_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoAttack_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoAttack_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoAttack_CS();
+        if (object.target_obj_id != null)
+            if ($util.Long)
+                message.target_obj_id = $util.Long.fromValue(object.target_obj_id, true);
+            else if (typeof object.target_obj_id === "string")
+                message.target_obj_id = $parseInt(object.target_obj_id, 10);
+            else if (typeof object.target_obj_id === "number")
+                message.target_obj_id = object.target_obj_id;
+            else if (typeof object.target_obj_id === "object")
+                message.target_obj_id = new $util.LongBits(object.target_obj_id.low >>> 0, object.target_obj_id.high >>> 0).toNumber(true);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoAttack_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {P_MmoAttack_CS} message P_MmoAttack_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoAttack_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.target_obj_id != null && $Object.hasOwnProperty.call(message, "target_obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.target_obj_id = typeof message.target_obj_id === "number" ? $BigInt(message.target_obj_id) : $util.Long.fromBits(message.target_obj_id.low >>> 0, message.target_obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.target_obj_id === "number")
+                object.target_obj_id = options.longs === $String ? $String(message.target_obj_id) : message.target_obj_id;
+            else
+                object.target_obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.target_obj_id) : options.longs === $Number ? new $util.LongBits(message.target_obj_id.low >>> 0, message.target_obj_id.high >>> 0).toNumber(true) : message.target_obj_id;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoAttack_CS to JSON.
+     * @function toJSON
+     * @memberof P_MmoAttack_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoAttack_CS.prototype.toJSON = function() {
+        return P_MmoAttack_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoAttack_CS
+     * @function getTypeUrl
+     * @memberof P_MmoAttack_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoAttack_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoAttack_CS";
+    };
+
+    return P_MmoAttack_CS;
+})();
+
+export const P_MmoSkill_CS = $root.P_MmoSkill_CS = (() => {
+
+    /**
+     * Properties of a P_MmoSkill_CS.
+     * @typedef {Object} P_MmoSkill_CS.$Properties
+     * @property {number|null} [skill_id] P_MmoSkill_CS skill_id
+     * @property {number|null} [target_obj_id] P_MmoSkill_CS target_obj_id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoSkill_CS.
+     * @exports IP_MmoSkill_CS
+     * @interface IP_MmoSkill_CS
+     * @augments P_MmoSkill_CS.$Properties
+     * @deprecated Use P_MmoSkill_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoSkill_CS.
+     * @typedef {P_MmoSkill_CS.$Properties} P_MmoSkill_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoSkill_CS.
+     * @exports P_MmoSkill_CS
+     * @classdesc Represents a P_MmoSkill_CS.
+     * @constructor
+     * @param {P_MmoSkill_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoSkill_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoSkill_CS skill_id.
+     * @member {number|null|undefined} skill_id
+     * @memberof P_MmoSkill_CS
+     * @instance
+     */
+    P_MmoSkill_CS.prototype.skill_id = null;
+
+    /**
+     * P_MmoSkill_CS target_obj_id.
+     * @member {number|null|undefined} target_obj_id
+     * @memberof P_MmoSkill_CS
+     * @instance
+     */
+    P_MmoSkill_CS.prototype.target_obj_id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSkill_CS.prototype, "_skill_id", {
+        get: $util.oneOfGetter($oneOfFields = ["skill_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoSkill_CS.prototype, "_target_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["target_obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoSkill_CS instance using the specified properties.
+     * @function create
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {P_MmoSkill_CS.$Properties=} [properties] Properties to set
+     * @returns {P_MmoSkill_CS} P_MmoSkill_CS instance
+     * @type {{
+     *   (properties: P_MmoSkill_CS.$Shape): P_MmoSkill_CS & P_MmoSkill_CS.$Shape;
+     *   (properties?: P_MmoSkill_CS.$Properties): P_MmoSkill_CS;
+     * }}
+     */
+    P_MmoSkill_CS.create = function(properties) {
+        return new P_MmoSkill_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoSkill_CS message. Does not implicitly {@link P_MmoSkill_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {P_MmoSkill_CS.$Properties} message P_MmoSkill_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSkill_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.skill_id != null && $Object.hasOwnProperty.call(message, "skill_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.skill_id);
+        if (message.target_obj_id != null && $Object.hasOwnProperty.call(message, "target_obj_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.target_obj_id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoSkill_CS message, length delimited. Does not implicitly {@link P_MmoSkill_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {P_MmoSkill_CS.$Properties} message P_MmoSkill_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoSkill_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoSkill_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoSkill_CS & P_MmoSkill_CS.$Shape} P_MmoSkill_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSkill_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoSkill_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.skill_id = reader.int32();
+                    message._skill_id = "skill_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.target_obj_id = reader.uint64();
+                    message._target_obj_id = "target_obj_id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoSkill_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoSkill_CS & P_MmoSkill_CS.$Shape} P_MmoSkill_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoSkill_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoSkill_CS message.
+     * @function verify
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoSkill_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.skill_id != null && $Object.hasOwnProperty.call(message, "skill_id")) {
+            properties._skill_id = 1;
+            if (!$util.isInteger(message.skill_id))
+                return "skill_id: integer expected";
+        }
+        if (message.target_obj_id != null && $Object.hasOwnProperty.call(message, "target_obj_id")) {
+            properties._target_obj_id = 1;
+            if (!$util.isInteger(message.target_obj_id) && !(message.target_obj_id && $util.isInteger(message.target_obj_id.low) && $util.isInteger(message.target_obj_id.high)))
+                return "target_obj_id: integer|Long expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoSkill_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoSkill_CS} P_MmoSkill_CS
+     */
+    P_MmoSkill_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoSkill_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoSkill_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoSkill_CS();
+        if (object.skill_id != null)
+            message.skill_id = object.skill_id | 0;
+        if (object.target_obj_id != null)
+            if ($util.Long)
+                message.target_obj_id = $util.Long.fromValue(object.target_obj_id, true);
+            else if (typeof object.target_obj_id === "string")
+                message.target_obj_id = $parseInt(object.target_obj_id, 10);
+            else if (typeof object.target_obj_id === "number")
+                message.target_obj_id = object.target_obj_id;
+            else if (typeof object.target_obj_id === "object")
+                message.target_obj_id = new $util.LongBits(object.target_obj_id.low >>> 0, object.target_obj_id.high >>> 0).toNumber(true);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoSkill_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {P_MmoSkill_CS} message P_MmoSkill_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoSkill_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.skill_id != null && $Object.hasOwnProperty.call(message, "skill_id"))
+            object.skill_id = message.skill_id;
+        if (message.target_obj_id != null && $Object.hasOwnProperty.call(message, "target_obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.target_obj_id = typeof message.target_obj_id === "number" ? $BigInt(message.target_obj_id) : $util.Long.fromBits(message.target_obj_id.low >>> 0, message.target_obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.target_obj_id === "number")
+                object.target_obj_id = options.longs === $String ? $String(message.target_obj_id) : message.target_obj_id;
+            else
+                object.target_obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.target_obj_id) : options.longs === $Number ? new $util.LongBits(message.target_obj_id.low >>> 0, message.target_obj_id.high >>> 0).toNumber(true) : message.target_obj_id;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoSkill_CS to JSON.
+     * @function toJSON
+     * @memberof P_MmoSkill_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoSkill_CS.prototype.toJSON = function() {
+        return P_MmoSkill_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoSkill_CS
+     * @function getTypeUrl
+     * @memberof P_MmoSkill_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoSkill_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoSkill_CS";
+    };
+
+    return P_MmoSkill_CS;
+})();
+
+export const P_MmoDamage_SC = $root.P_MmoDamage_SC = (() => {
+
+    /**
+     * Properties of a P_MmoDamage_SC.
+     * @typedef {Object} P_MmoDamage_SC.$Properties
+     * @property {number|null} [obj_id] P_MmoDamage_SC obj_id
+     * @property {number|null} [attacker_uid] P_MmoDamage_SC attacker_uid
+     * @property {number|null} [damage] P_MmoDamage_SC damage
+     * @property {number|null} [hp] P_MmoDamage_SC hp
+     * @property {boolean|null} [dead] P_MmoDamage_SC dead
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoDamage_SC.
+     * @exports IP_MmoDamage_SC
+     * @interface IP_MmoDamage_SC
+     * @augments P_MmoDamage_SC.$Properties
+     * @deprecated Use P_MmoDamage_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoDamage_SC.
+     * @typedef {P_MmoDamage_SC.$Properties} P_MmoDamage_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoDamage_SC.
+     * @exports P_MmoDamage_SC
+     * @classdesc Represents a P_MmoDamage_SC.
+     * @constructor
+     * @param {P_MmoDamage_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoDamage_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoDamage_SC obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof P_MmoDamage_SC
+     * @instance
+     */
+    P_MmoDamage_SC.prototype.obj_id = null;
+
+    /**
+     * P_MmoDamage_SC attacker_uid.
+     * @member {number|null|undefined} attacker_uid
+     * @memberof P_MmoDamage_SC
+     * @instance
+     */
+    P_MmoDamage_SC.prototype.attacker_uid = null;
+
+    /**
+     * P_MmoDamage_SC damage.
+     * @member {number|null|undefined} damage
+     * @memberof P_MmoDamage_SC
+     * @instance
+     */
+    P_MmoDamage_SC.prototype.damage = null;
+
+    /**
+     * P_MmoDamage_SC hp.
+     * @member {number|null|undefined} hp
+     * @memberof P_MmoDamage_SC
+     * @instance
+     */
+    P_MmoDamage_SC.prototype.hp = null;
+
+    /**
+     * P_MmoDamage_SC dead.
+     * @member {boolean|null|undefined} dead
+     * @memberof P_MmoDamage_SC
+     * @instance
+     */
+    P_MmoDamage_SC.prototype.dead = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoDamage_SC.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoDamage_SC.prototype, "_attacker_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["attacker_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoDamage_SC.prototype, "_damage", {
+        get: $util.oneOfGetter($oneOfFields = ["damage"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoDamage_SC.prototype, "_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoDamage_SC.prototype, "_dead", {
+        get: $util.oneOfGetter($oneOfFields = ["dead"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoDamage_SC instance using the specified properties.
+     * @function create
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {P_MmoDamage_SC.$Properties=} [properties] Properties to set
+     * @returns {P_MmoDamage_SC} P_MmoDamage_SC instance
+     * @type {{
+     *   (properties: P_MmoDamage_SC.$Shape): P_MmoDamage_SC & P_MmoDamage_SC.$Shape;
+     *   (properties?: P_MmoDamage_SC.$Properties): P_MmoDamage_SC;
+     * }}
+     */
+    P_MmoDamage_SC.create = function(properties) {
+        return new P_MmoDamage_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoDamage_SC message. Does not implicitly {@link P_MmoDamage_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {P_MmoDamage_SC.$Properties} message P_MmoDamage_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoDamage_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.obj_id);
+        if (message.attacker_uid != null && $Object.hasOwnProperty.call(message, "attacker_uid"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.attacker_uid);
+        if (message.damage != null && $Object.hasOwnProperty.call(message, "damage"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.damage);
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.hp);
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            writer.uint32(/* id 5, wireType 0 =*/40).bool(message.dead);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoDamage_SC message, length delimited. Does not implicitly {@link P_MmoDamage_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {P_MmoDamage_SC.$Properties} message P_MmoDamage_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoDamage_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoDamage_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoDamage_SC & P_MmoDamage_SC.$Shape} P_MmoDamage_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoDamage_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoDamage_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.uint64();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.attacker_uid = reader.uint64();
+                    message._attacker_uid = "attacker_uid";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.damage = reader.int32();
+                    message._damage = "damage";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.hp = reader.int32();
+                    message._hp = "hp";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.dead = reader.bool();
+                    message._dead = "dead";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoDamage_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoDamage_SC & P_MmoDamage_SC.$Shape} P_MmoDamage_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoDamage_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoDamage_SC message.
+     * @function verify
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoDamage_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id) && !(message.obj_id && $util.isInteger(message.obj_id.low) && $util.isInteger(message.obj_id.high)))
+                return "obj_id: integer|Long expected";
+        }
+        if (message.attacker_uid != null && $Object.hasOwnProperty.call(message, "attacker_uid")) {
+            properties._attacker_uid = 1;
+            if (!$util.isInteger(message.attacker_uid) && !(message.attacker_uid && $util.isInteger(message.attacker_uid.low) && $util.isInteger(message.attacker_uid.high)))
+                return "attacker_uid: integer|Long expected";
+        }
+        if (message.damage != null && $Object.hasOwnProperty.call(message, "damage")) {
+            properties._damage = 1;
+            if (!$util.isInteger(message.damage))
+                return "damage: integer expected";
+        }
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp")) {
+            properties._hp = 1;
+            if (!$util.isInteger(message.hp))
+                return "hp: integer expected";
+        }
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead")) {
+            properties._dead = 1;
+            if (typeof message.dead !== "boolean")
+                return "dead: boolean expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoDamage_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoDamage_SC} P_MmoDamage_SC
+     */
+    P_MmoDamage_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoDamage_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoDamage_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoDamage_SC();
+        if (object.obj_id != null)
+            if ($util.Long)
+                message.obj_id = $util.Long.fromValue(object.obj_id, true);
+            else if (typeof object.obj_id === "string")
+                message.obj_id = $parseInt(object.obj_id, 10);
+            else if (typeof object.obj_id === "number")
+                message.obj_id = object.obj_id;
+            else if (typeof object.obj_id === "object")
+                message.obj_id = new $util.LongBits(object.obj_id.low >>> 0, object.obj_id.high >>> 0).toNumber(true);
+        if (object.attacker_uid != null)
+            if ($util.Long)
+                message.attacker_uid = $util.Long.fromValue(object.attacker_uid, true);
+            else if (typeof object.attacker_uid === "string")
+                message.attacker_uid = $parseInt(object.attacker_uid, 10);
+            else if (typeof object.attacker_uid === "number")
+                message.attacker_uid = object.attacker_uid;
+            else if (typeof object.attacker_uid === "object")
+                message.attacker_uid = new $util.LongBits(object.attacker_uid.low >>> 0, object.attacker_uid.high >>> 0).toNumber(true);
+        if (object.damage != null)
+            message.damage = object.damage | 0;
+        if (object.hp != null)
+            message.hp = object.hp | 0;
+        if (object.dead != null)
+            message.dead = $Boolean(object.dead);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoDamage_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {P_MmoDamage_SC} message P_MmoDamage_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoDamage_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.obj_id = typeof message.obj_id === "number" ? $BigInt(message.obj_id) : $util.Long.fromBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.obj_id === "number")
+                object.obj_id = options.longs === $String ? $String(message.obj_id) : message.obj_id;
+            else
+                object.obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.obj_id) : options.longs === $Number ? new $util.LongBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0).toNumber(true) : message.obj_id;
+        if (message.attacker_uid != null && $Object.hasOwnProperty.call(message, "attacker_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.attacker_uid = typeof message.attacker_uid === "number" ? $BigInt(message.attacker_uid) : $util.Long.fromBits(message.attacker_uid.low >>> 0, message.attacker_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.attacker_uid === "number")
+                object.attacker_uid = options.longs === $String ? $String(message.attacker_uid) : message.attacker_uid;
+            else
+                object.attacker_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.attacker_uid) : options.longs === $Number ? new $util.LongBits(message.attacker_uid.low >>> 0, message.attacker_uid.high >>> 0).toNumber(true) : message.attacker_uid;
+        if (message.damage != null && $Object.hasOwnProperty.call(message, "damage"))
+            object.damage = message.damage;
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            object.hp = message.hp;
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            object.dead = message.dead;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoDamage_SC to JSON.
+     * @function toJSON
+     * @memberof P_MmoDamage_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoDamage_SC.prototype.toJSON = function() {
+        return P_MmoDamage_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoDamage_SC
+     * @function getTypeUrl
+     * @memberof P_MmoDamage_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoDamage_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoDamage_SC";
+    };
+
+    return P_MmoDamage_SC;
+})();
+
+export const P_MmoRoleState_SC = $root.P_MmoRoleState_SC = (() => {
+
+    /**
+     * Properties of a P_MmoRoleState_SC.
+     * @typedef {Object} P_MmoRoleState_SC.$Properties
+     * @property {number|null} [obj_id] P_MmoRoleState_SC obj_id
+     * @property {number|null} [owner_uid] P_MmoRoleState_SC owner_uid
+     * @property {number|null} [hp] P_MmoRoleState_SC hp
+     * @property {number|null} [max_hp] P_MmoRoleState_SC max_hp
+     * @property {boolean|null} [dead] P_MmoRoleState_SC dead
+     * @property {number|null} [value] P_MmoRoleState_SC value
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_MmoRoleState_SC.
+     * @exports IP_MmoRoleState_SC
+     * @interface IP_MmoRoleState_SC
+     * @augments P_MmoRoleState_SC.$Properties
+     * @deprecated Use P_MmoRoleState_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_MmoRoleState_SC.
+     * @typedef {P_MmoRoleState_SC.$Properties} P_MmoRoleState_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_MmoRoleState_SC.
+     * @exports P_MmoRoleState_SC
+     * @classdesc Represents a P_MmoRoleState_SC.
+     * @constructor
+     * @param {P_MmoRoleState_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_MmoRoleState_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_MmoRoleState_SC obj_id.
+     * @member {number|null|undefined} obj_id
+     * @memberof P_MmoRoleState_SC
+     * @instance
+     */
+    P_MmoRoleState_SC.prototype.obj_id = null;
+
+    /**
+     * P_MmoRoleState_SC owner_uid.
+     * @member {number|null|undefined} owner_uid
+     * @memberof P_MmoRoleState_SC
+     * @instance
+     */
+    P_MmoRoleState_SC.prototype.owner_uid = null;
+
+    /**
+     * P_MmoRoleState_SC hp.
+     * @member {number|null|undefined} hp
+     * @memberof P_MmoRoleState_SC
+     * @instance
+     */
+    P_MmoRoleState_SC.prototype.hp = null;
+
+    /**
+     * P_MmoRoleState_SC max_hp.
+     * @member {number|null|undefined} max_hp
+     * @memberof P_MmoRoleState_SC
+     * @instance
+     */
+    P_MmoRoleState_SC.prototype.max_hp = null;
+
+    /**
+     * P_MmoRoleState_SC dead.
+     * @member {boolean|null|undefined} dead
+     * @memberof P_MmoRoleState_SC
+     * @instance
+     */
+    P_MmoRoleState_SC.prototype.dead = null;
+
+    /**
+     * P_MmoRoleState_SC value.
+     * @member {number|null|undefined} value
+     * @memberof P_MmoRoleState_SC
+     * @instance
+     */
+    P_MmoRoleState_SC.prototype.value = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoRoleState_SC.prototype, "_obj_id", {
+        get: $util.oneOfGetter($oneOfFields = ["obj_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoRoleState_SC.prototype, "_owner_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["owner_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoRoleState_SC.prototype, "_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoRoleState_SC.prototype, "_max_hp", {
+        get: $util.oneOfGetter($oneOfFields = ["max_hp"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoRoleState_SC.prototype, "_dead", {
+        get: $util.oneOfGetter($oneOfFields = ["dead"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_MmoRoleState_SC.prototype, "_value", {
+        get: $util.oneOfGetter($oneOfFields = ["value"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_MmoRoleState_SC instance using the specified properties.
+     * @function create
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {P_MmoRoleState_SC.$Properties=} [properties] Properties to set
+     * @returns {P_MmoRoleState_SC} P_MmoRoleState_SC instance
+     * @type {{
+     *   (properties: P_MmoRoleState_SC.$Shape): P_MmoRoleState_SC & P_MmoRoleState_SC.$Shape;
+     *   (properties?: P_MmoRoleState_SC.$Properties): P_MmoRoleState_SC;
+     * }}
+     */
+    P_MmoRoleState_SC.create = function(properties) {
+        return new P_MmoRoleState_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_MmoRoleState_SC message. Does not implicitly {@link P_MmoRoleState_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {P_MmoRoleState_SC.$Properties} message P_MmoRoleState_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoRoleState_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.obj_id);
+        if (message.owner_uid != null && $Object.hasOwnProperty.call(message, "owner_uid"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.owner_uid);
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.hp);
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.max_hp);
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            writer.uint32(/* id 5, wireType 0 =*/40).bool(message.dead);
+        if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
+            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.value);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_MmoRoleState_SC message, length delimited. Does not implicitly {@link P_MmoRoleState_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {P_MmoRoleState_SC.$Properties} message P_MmoRoleState_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_MmoRoleState_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_MmoRoleState_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_MmoRoleState_SC & P_MmoRoleState_SC.$Shape} P_MmoRoleState_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoRoleState_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_MmoRoleState_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.obj_id = reader.uint64();
+                    message._obj_id = "obj_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.owner_uid = reader.uint64();
+                    message._owner_uid = "owner_uid";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.hp = reader.int32();
+                    message._hp = "hp";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.max_hp = reader.int32();
+                    message._max_hp = "max_hp";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.dead = reader.bool();
+                    message._dead = "dead";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.value = reader.int32();
+                    message._value = "value";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_MmoRoleState_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_MmoRoleState_SC & P_MmoRoleState_SC.$Shape} P_MmoRoleState_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_MmoRoleState_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_MmoRoleState_SC message.
+     * @function verify
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_MmoRoleState_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id")) {
+            properties._obj_id = 1;
+            if (!$util.isInteger(message.obj_id) && !(message.obj_id && $util.isInteger(message.obj_id.low) && $util.isInteger(message.obj_id.high)))
+                return "obj_id: integer|Long expected";
+        }
+        if (message.owner_uid != null && $Object.hasOwnProperty.call(message, "owner_uid")) {
+            properties._owner_uid = 1;
+            if (!$util.isInteger(message.owner_uid) && !(message.owner_uid && $util.isInteger(message.owner_uid.low) && $util.isInteger(message.owner_uid.high)))
+                return "owner_uid: integer|Long expected";
+        }
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp")) {
+            properties._hp = 1;
+            if (!$util.isInteger(message.hp))
+                return "hp: integer expected";
+        }
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp")) {
+            properties._max_hp = 1;
+            if (!$util.isInteger(message.max_hp))
+                return "max_hp: integer expected";
+        }
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead")) {
+            properties._dead = 1;
+            if (typeof message.dead !== "boolean")
+                return "dead: boolean expected";
+        }
+        if (message.value != null && $Object.hasOwnProperty.call(message, "value")) {
+            properties._value = 1;
+            if (!$util.isInteger(message.value))
+                return "value: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_MmoRoleState_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_MmoRoleState_SC} P_MmoRoleState_SC
+     */
+    P_MmoRoleState_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_MmoRoleState_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_MmoRoleState_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_MmoRoleState_SC();
+        if (object.obj_id != null)
+            if ($util.Long)
+                message.obj_id = $util.Long.fromValue(object.obj_id, true);
+            else if (typeof object.obj_id === "string")
+                message.obj_id = $parseInt(object.obj_id, 10);
+            else if (typeof object.obj_id === "number")
+                message.obj_id = object.obj_id;
+            else if (typeof object.obj_id === "object")
+                message.obj_id = new $util.LongBits(object.obj_id.low >>> 0, object.obj_id.high >>> 0).toNumber(true);
+        if (object.owner_uid != null)
+            if ($util.Long)
+                message.owner_uid = $util.Long.fromValue(object.owner_uid, true);
+            else if (typeof object.owner_uid === "string")
+                message.owner_uid = $parseInt(object.owner_uid, 10);
+            else if (typeof object.owner_uid === "number")
+                message.owner_uid = object.owner_uid;
+            else if (typeof object.owner_uid === "object")
+                message.owner_uid = new $util.LongBits(object.owner_uid.low >>> 0, object.owner_uid.high >>> 0).toNumber(true);
+        if (object.hp != null)
+            message.hp = object.hp | 0;
+        if (object.max_hp != null)
+            message.max_hp = object.max_hp | 0;
+        if (object.dead != null)
+            message.dead = $Boolean(object.dead);
+        if (object.value != null)
+            message.value = object.value | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_MmoRoleState_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {P_MmoRoleState_SC} message P_MmoRoleState_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_MmoRoleState_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.obj_id != null && $Object.hasOwnProperty.call(message, "obj_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.obj_id = typeof message.obj_id === "number" ? $BigInt(message.obj_id) : $util.Long.fromBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0, true).toBigInt();
+            else if (typeof message.obj_id === "number")
+                object.obj_id = options.longs === $String ? $String(message.obj_id) : message.obj_id;
+            else
+                object.obj_id = options.longs === $String ? $util.Long.prototype.toString.call(message.obj_id) : options.longs === $Number ? new $util.LongBits(message.obj_id.low >>> 0, message.obj_id.high >>> 0).toNumber(true) : message.obj_id;
+        if (message.owner_uid != null && $Object.hasOwnProperty.call(message, "owner_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.owner_uid = typeof message.owner_uid === "number" ? $BigInt(message.owner_uid) : $util.Long.fromBits(message.owner_uid.low >>> 0, message.owner_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.owner_uid === "number")
+                object.owner_uid = options.longs === $String ? $String(message.owner_uid) : message.owner_uid;
+            else
+                object.owner_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.owner_uid) : options.longs === $Number ? new $util.LongBits(message.owner_uid.low >>> 0, message.owner_uid.high >>> 0).toNumber(true) : message.owner_uid;
+        if (message.hp != null && $Object.hasOwnProperty.call(message, "hp"))
+            object.hp = message.hp;
+        if (message.max_hp != null && $Object.hasOwnProperty.call(message, "max_hp"))
+            object.max_hp = message.max_hp;
+        if (message.dead != null && $Object.hasOwnProperty.call(message, "dead"))
+            object.dead = message.dead;
+        if (message.value != null && $Object.hasOwnProperty.call(message, "value"))
+            object.value = message.value;
+        return object;
+    };
+
+    /**
+     * Converts this P_MmoRoleState_SC to JSON.
+     * @function toJSON
+     * @memberof P_MmoRoleState_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_MmoRoleState_SC.prototype.toJSON = function() {
+        return P_MmoRoleState_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_MmoRoleState_SC
+     * @function getTypeUrl
+     * @memberof P_MmoRoleState_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_MmoRoleState_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_MmoRoleState_SC";
+    };
+
+    return P_MmoRoleState_SC;
 })();
 
 export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
@@ -24973,9 +36058,8 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
      * @typedef {Object} P_GasBattle_CS.$Properties
      * @property {number|null} [req_type] P_GasBattle_CS req_type
      * @property {number|null} [battle_type] P_GasBattle_CS battle_type
-     * @property {number|null} [id] P_GasBattle_CS id
-     * @property {string|null} [battle_report_key] P_GasBattle_CS battle_report_key
-     * @property {string|null} [params] P_GasBattle_CS params
+     * @property {number|null} [target_id] P_GasBattle_CS target_id
+     * @property {string|null} [report_key] P_GasBattle_CS report_key
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -25024,28 +36108,20 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
     P_GasBattle_CS.prototype.battle_type = null;
 
     /**
-     * P_GasBattle_CS id.
-     * @member {number|null|undefined} id
+     * P_GasBattle_CS target_id.
+     * @member {number|null|undefined} target_id
      * @memberof P_GasBattle_CS
      * @instance
      */
-    P_GasBattle_CS.prototype.id = null;
+    P_GasBattle_CS.prototype.target_id = null;
 
     /**
-     * P_GasBattle_CS battle_report_key.
-     * @member {string|null|undefined} battle_report_key
+     * P_GasBattle_CS report_key.
+     * @member {string|null|undefined} report_key
      * @memberof P_GasBattle_CS
      * @instance
      */
-    P_GasBattle_CS.prototype.battle_report_key = null;
-
-    /**
-     * P_GasBattle_CS params.
-     * @member {string|null|undefined} params
-     * @memberof P_GasBattle_CS
-     * @instance
-     */
-    P_GasBattle_CS.prototype.params = null;
+    P_GasBattle_CS.prototype.report_key = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
@@ -25063,20 +36139,14 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_GasBattle_CS.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(P_GasBattle_CS.prototype, "_target_id", {
+        get: $util.oneOfGetter($oneOfFields = ["target_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_GasBattle_CS.prototype, "_battle_report_key", {
-        get: $util.oneOfGetter($oneOfFields = ["battle_report_key"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_GasBattle_CS.prototype, "_params", {
-        get: $util.oneOfGetter($oneOfFields = ["params"]),
+    $Object.defineProperty(P_GasBattle_CS.prototype, "_report_key", {
+        get: $util.oneOfGetter($oneOfFields = ["report_key"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -25116,12 +36186,10 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.req_type);
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.battle_type);
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.id);
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
-            writer.uint32(/* id 4, wireType 2 =*/34).string(message.battle_report_key);
-        if (message.params != null && $Object.hasOwnProperty.call(message, "params"))
-            writer.uint32(/* id 10, wireType 2 =*/82).string(message.params);
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int64(message.target_id);
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
+            writer.uint32(/* id 4, wireType 2 =*/34).string(message.report_key);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -25186,22 +36254,15 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
             case 3: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.target_id = reader.int64();
+                    message._target_id = "target_id";
                     continue;
                 }
             case 4: {
                     if (wireType !== 2)
                         break;
-                    message.battle_report_key = reader.stringVerify();
-                    message._battle_report_key = "battle_report_key";
-                    continue;
-                }
-            case 10: {
-                    if (wireType !== 2)
-                        break;
-                    message.params = reader.stringVerify();
-                    message._params = "params";
+                    message.report_key = reader.stringVerify();
+                    message._report_key = "report_key";
                     continue;
                 }
             }
@@ -25258,20 +36319,15 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
             if (!$util.isInteger(message.battle_type))
                 return "battle_type: integer expected";
         }
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id")) {
+            properties._target_id = 1;
+            if (!$util.isInteger(message.target_id) && !(message.target_id && $util.isInteger(message.target_id.low) && $util.isInteger(message.target_id.high)))
+                return "target_id: integer|Long expected";
         }
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key")) {
-            properties._battle_report_key = 1;
-            if (!$util.isString(message.battle_report_key))
-                return "battle_report_key: string expected";
-        }
-        if (message.params != null && $Object.hasOwnProperty.call(message, "params")) {
-            properties._params = 1;
-            if (!$util.isString(message.params))
-                return "params: string expected";
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key")) {
+            properties._report_key = 1;
+            if (!$util.isString(message.report_key))
+                return "report_key: string expected";
         }
         return null;
     };
@@ -25298,12 +36354,17 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
             message.req_type = object.req_type | 0;
         if (object.battle_type != null)
             message.battle_type = object.battle_type | 0;
-        if (object.id != null)
-            message.id = object.id | 0;
-        if (object.battle_report_key != null)
-            message.battle_report_key = $String(object.battle_report_key);
-        if (object.params != null)
-            message.params = $String(object.params);
+        if (object.target_id != null)
+            if ($util.Long)
+                message.target_id = $util.Long.fromValue(object.target_id, false);
+            else if (typeof object.target_id === "string")
+                message.target_id = $parseInt(object.target_id, 10);
+            else if (typeof object.target_id === "number")
+                message.target_id = object.target_id;
+            else if (typeof object.target_id === "object")
+                message.target_id = new $util.LongBits(object.target_id.low >>> 0, object.target_id.high >>> 0).toNumber();
+        if (object.report_key != null)
+            message.report_key = $String(object.report_key);
         return message;
     };
 
@@ -25328,12 +36389,15 @@ export const P_GasBattle_CS = $root.P_GasBattle_CS = (() => {
             object.req_type = message.req_type;
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             object.battle_type = message.battle_type;
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
-        if (message.battle_report_key != null && $Object.hasOwnProperty.call(message, "battle_report_key"))
-            object.battle_report_key = message.battle_report_key;
-        if (message.params != null && $Object.hasOwnProperty.call(message, "params"))
-            object.params = message.params;
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.target_id = typeof message.target_id === "number" ? $BigInt(message.target_id) : $util.Long.fromBits(message.target_id.low >>> 0, message.target_id.high >>> 0, false).toBigInt();
+            else if (typeof message.target_id === "number")
+                object.target_id = options.longs === $String ? $String(message.target_id) : message.target_id;
+            else
+                object.target_id = options.longs === $String ? $util.Long.prototype.toString.call(message.target_id) : options.longs === $Number ? new $util.LongBits(message.target_id.low >>> 0, message.target_id.high >>> 0).toNumber() : message.target_id;
+        if (message.report_key != null && $Object.hasOwnProperty.call(message, "report_key"))
+            object.report_key = message.report_key;
         return object;
     };
 
@@ -25372,7 +36436,7 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
      * @typedef {Object} P_GasBattle_SC.$Properties
      * @property {number|null} [ret_type] P_GasBattle_SC ret_type
      * @property {number|null} [battle_type] P_GasBattle_SC battle_type
-     * @property {number|null} [id] P_GasBattle_SC id
+     * @property {number|null} [target_id] P_GasBattle_SC target_id
      * @property {number|null} [total_matches] P_GasBattle_SC total_matches
      * @property {number|null} [series_result] P_GasBattle_SC series_result
      * @property {number|null} [win_matches] P_GasBattle_SC win_matches
@@ -25428,12 +36492,12 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
     P_GasBattle_SC.prototype.battle_type = null;
 
     /**
-     * P_GasBattle_SC id.
-     * @member {number|null|undefined} id
+     * P_GasBattle_SC target_id.
+     * @member {number|null|undefined} target_id
      * @memberof P_GasBattle_SC
      * @instance
      */
-    P_GasBattle_SC.prototype.id = null;
+    P_GasBattle_SC.prototype.target_id = null;
 
     /**
      * P_GasBattle_SC total_matches.
@@ -25499,8 +36563,8 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_GasBattle_SC.prototype, "_id", {
-        get: $util.oneOfGetter($oneOfFields = ["id"]),
+    $Object.defineProperty(P_GasBattle_SC.prototype, "_target_id", {
+        get: $util.oneOfGetter($oneOfFields = ["target_id"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -25570,8 +36634,8 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.ret_type);
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.battle_type);
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.id);
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int64(message.target_id);
         if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
             writer.uint32(/* id 4, wireType 0 =*/32).int32(message.total_matches);
         if (message.series_result != null && $Object.hasOwnProperty.call(message, "series_result"))
@@ -25649,8 +36713,8 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             case 3: {
                     if (wireType !== 0)
                         break;
-                    message.id = reader.int32();
-                    message._id = "id";
+                    message.target_id = reader.int64();
+                    message._target_id = "target_id";
                     continue;
                 }
             case 4: {
@@ -25750,10 +36814,10 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             if (!$util.isInteger(message.battle_type))
                 return "battle_type: integer expected";
         }
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id")) {
-            properties._id = 1;
-            if (!$util.isInteger(message.id))
-                return "id: integer expected";
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id")) {
+            properties._target_id = 1;
+            if (!$util.isInteger(message.target_id) && !(message.target_id && $util.isInteger(message.target_id.low) && $util.isInteger(message.target_id.high)))
+                return "target_id: integer|Long expected";
         }
         if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches")) {
             properties._total_matches = 1;
@@ -25814,8 +36878,15 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             message.ret_type = object.ret_type | 0;
         if (object.battle_type != null)
             message.battle_type = object.battle_type | 0;
-        if (object.id != null)
-            message.id = object.id | 0;
+        if (object.target_id != null)
+            if ($util.Long)
+                message.target_id = $util.Long.fromValue(object.target_id, false);
+            else if (typeof object.target_id === "string")
+                message.target_id = $parseInt(object.target_id, 10);
+            else if (typeof object.target_id === "number")
+                message.target_id = object.target_id;
+            else if (typeof object.target_id === "object")
+                message.target_id = new $util.LongBits(object.target_id.low >>> 0, object.target_id.high >>> 0).toNumber();
         if (object.total_matches != null)
             message.total_matches = object.total_matches | 0;
         if (object.series_result != null)
@@ -25862,8 +36933,13 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
             object.ret_type = message.ret_type;
         if (message.battle_type != null && $Object.hasOwnProperty.call(message, "battle_type"))
             object.battle_type = message.battle_type;
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
-            object.id = message.id;
+        if (message.target_id != null && $Object.hasOwnProperty.call(message, "target_id"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.target_id = typeof message.target_id === "number" ? $BigInt(message.target_id) : $util.Long.fromBits(message.target_id.low >>> 0, message.target_id.high >>> 0, false).toBigInt();
+            else if (typeof message.target_id === "number")
+                object.target_id = options.longs === $String ? $String(message.target_id) : message.target_id;
+            else
+                object.target_id = options.longs === $String ? $util.Long.prototype.toString.call(message.target_id) : options.longs === $Number ? new $util.LongBits(message.target_id.low >>> 0, message.target_id.high >>> 0).toNumber() : message.target_id;
         if (message.total_matches != null && $Object.hasOwnProperty.call(message, "total_matches"))
             object.total_matches = message.total_matches;
         if (message.series_result != null && $Object.hasOwnProperty.call(message, "series_result"))
@@ -25910,37 +36986,37 @@ export const P_GasBattle_SC = $root.P_GasBattle_SC = (() => {
     return P_GasBattle_SC;
 })();
 
-export const P_SyncInventoryData_SC = $root.P_SyncInventoryData_SC = (() => {
+export const P_SyncKnapsackData_SC = $root.P_SyncKnapsackData_SC = (() => {
 
     /**
-     * Properties of a P_SyncInventoryData_SC.
-     * @typedef {Object} P_SyncInventoryData_SC.$Properties
-     * @property {PB_InventoryData.$Properties|null} [inventory_data] P_SyncInventoryData_SC inventory_data
+     * Properties of a P_SyncKnapsackData_SC.
+     * @typedef {Object} P_SyncKnapsackData_SC.$Properties
+     * @property {PB_KnapsackData.$Properties|null} [knapsack_data] P_SyncKnapsackData_SC knapsack_data
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
     /**
-     * Properties of a P_SyncInventoryData_SC.
-     * @exports IP_SyncInventoryData_SC
-     * @interface IP_SyncInventoryData_SC
-     * @augments P_SyncInventoryData_SC.$Properties
-     * @deprecated Use P_SyncInventoryData_SC.$Properties instead.
+     * Properties of a P_SyncKnapsackData_SC.
+     * @exports IP_SyncKnapsackData_SC
+     * @interface IP_SyncKnapsackData_SC
+     * @augments P_SyncKnapsackData_SC.$Properties
+     * @deprecated Use P_SyncKnapsackData_SC.$Properties instead.
      */
 
     /**
-     * Shape of a P_SyncInventoryData_SC.
-     * @typedef {P_SyncInventoryData_SC.$Properties} P_SyncInventoryData_SC.$Shape
+     * Shape of a P_SyncKnapsackData_SC.
+     * @typedef {P_SyncKnapsackData_SC.$Properties} P_SyncKnapsackData_SC.$Shape
      */
 
     /**
-     * Constructs a new P_SyncInventoryData_SC.
-     * @exports P_SyncInventoryData_SC
-     * @classdesc Represents a P_SyncInventoryData_SC.
+     * Constructs a new P_SyncKnapsackData_SC.
+     * @exports P_SyncKnapsackData_SC
+     * @classdesc Represents a P_SyncKnapsackData_SC.
      * @constructor
-     * @param {P_SyncInventoryData_SC.$Properties=} [properties] Properties to set
+     * @param {P_SyncKnapsackData_SC.$Properties=} [properties] Properties to set
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
-    const P_SyncInventoryData_SC = function (properties) {
+    const P_SyncKnapsackData_SC = function (properties) {
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -25948,56 +37024,56 @@ export const P_SyncInventoryData_SC = $root.P_SyncInventoryData_SC = (() => {
     };
 
     /**
-     * P_SyncInventoryData_SC inventory_data.
-     * @member {PB_InventoryData.$Properties|null|undefined} inventory_data
-     * @memberof P_SyncInventoryData_SC
+     * P_SyncKnapsackData_SC knapsack_data.
+     * @member {PB_KnapsackData.$Properties|null|undefined} knapsack_data
+     * @memberof P_SyncKnapsackData_SC
      * @instance
      */
-    P_SyncInventoryData_SC.prototype.inventory_data = null;
+    P_SyncKnapsackData_SC.prototype.knapsack_data = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_SyncInventoryData_SC.prototype, "_inventory_data", {
-        get: $util.oneOfGetter($oneOfFields = ["inventory_data"]),
+    $Object.defineProperty(P_SyncKnapsackData_SC.prototype, "_knapsack_data", {
+        get: $util.oneOfGetter($oneOfFields = ["knapsack_data"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     /**
-     * Creates a new P_SyncInventoryData_SC instance using the specified properties.
+     * Creates a new P_SyncKnapsackData_SC instance using the specified properties.
      * @function create
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
-     * @param {P_SyncInventoryData_SC.$Properties=} [properties] Properties to set
-     * @returns {P_SyncInventoryData_SC} P_SyncInventoryData_SC instance
+     * @param {P_SyncKnapsackData_SC.$Properties=} [properties] Properties to set
+     * @returns {P_SyncKnapsackData_SC} P_SyncKnapsackData_SC instance
      * @type {{
-     *   (properties: P_SyncInventoryData_SC.$Shape): P_SyncInventoryData_SC & P_SyncInventoryData_SC.$Shape;
-     *   (properties?: P_SyncInventoryData_SC.$Properties): P_SyncInventoryData_SC;
+     *   (properties: P_SyncKnapsackData_SC.$Shape): P_SyncKnapsackData_SC & P_SyncKnapsackData_SC.$Shape;
+     *   (properties?: P_SyncKnapsackData_SC.$Properties): P_SyncKnapsackData_SC;
      * }}
      */
-    P_SyncInventoryData_SC.create = function(properties) {
-        return new P_SyncInventoryData_SC(properties);
+    P_SyncKnapsackData_SC.create = function(properties) {
+        return new P_SyncKnapsackData_SC(properties);
     };
 
     /**
-     * Encodes the specified P_SyncInventoryData_SC message. Does not implicitly {@link P_SyncInventoryData_SC.verify|verify} messages.
+     * Encodes the specified P_SyncKnapsackData_SC message. Does not implicitly {@link P_SyncKnapsackData_SC.verify|verify} messages.
      * @function encode
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
-     * @param {P_SyncInventoryData_SC.$Properties} message P_SyncInventoryData_SC message or plain object to encode
+     * @param {P_SyncKnapsackData_SC.$Properties} message P_SyncKnapsackData_SC message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    P_SyncInventoryData_SC.encode = function (message, writer, _depth) {
+    P_SyncKnapsackData_SC.encode = function (message, writer, _depth) {
         if (!writer)
             writer = $Writer.create();
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.inventory_data != null && $Object.hasOwnProperty.call(message, "inventory_data"))
-            $root.PB_InventoryData.encode(message.inventory_data, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.knapsack_data != null && $Object.hasOwnProperty.call(message, "knapsack_data"))
+            $root.PB_KnapsackData.encode(message.knapsack_data, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -26005,37 +37081,37 @@ export const P_SyncInventoryData_SC = $root.P_SyncInventoryData_SC = (() => {
     };
 
     /**
-     * Encodes the specified P_SyncInventoryData_SC message, length delimited. Does not implicitly {@link P_SyncInventoryData_SC.verify|verify} messages.
+     * Encodes the specified P_SyncKnapsackData_SC message, length delimited. Does not implicitly {@link P_SyncKnapsackData_SC.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
-     * @param {P_SyncInventoryData_SC.$Properties} message P_SyncInventoryData_SC message or plain object to encode
+     * @param {P_SyncKnapsackData_SC.$Properties} message P_SyncKnapsackData_SC message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    P_SyncInventoryData_SC.encodeDelimited = function(message, writer) {
+    P_SyncKnapsackData_SC.encodeDelimited = function(message, writer) {
         return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
     };
 
     /**
-     * Decodes a P_SyncInventoryData_SC message from the specified reader or buffer.
+     * Decodes a P_SyncKnapsackData_SC message from the specified reader or buffer.
      * @function decode
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {P_SyncInventoryData_SC & P_SyncInventoryData_SC.$Shape} P_SyncInventoryData_SC
+     * @returns {P_SyncKnapsackData_SC & P_SyncKnapsackData_SC.$Shape} P_SyncKnapsackData_SC
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    P_SyncInventoryData_SC.decode = function (reader, length, _end, _depth, _target) {
+    P_SyncKnapsackData_SC.decode = function (reader, length, _end, _depth, _target) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_SyncInventoryData_SC();
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_SyncKnapsackData_SC();
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -26048,8 +37124,8 @@ export const P_SyncInventoryData_SC = $root.P_SyncInventoryData_SC = (() => {
             case 1: {
                     if (wireType !== 2)
                         break;
-                    message.inventory_data = $root.PB_InventoryData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.inventory_data);
-                    message._inventory_data = "inventory_data";
+                    message.knapsack_data = $root.PB_KnapsackData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.knapsack_data);
+                    message._knapsack_data = "knapsack_data";
                     continue;
                 }
             }
@@ -26065,30 +37141,30 @@ export const P_SyncInventoryData_SC = $root.P_SyncInventoryData_SC = (() => {
     };
 
     /**
-     * Decodes a P_SyncInventoryData_SC message from the specified reader or buffer, length delimited.
+     * Decodes a P_SyncKnapsackData_SC message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_SyncInventoryData_SC & P_SyncInventoryData_SC.$Shape} P_SyncInventoryData_SC
+     * @returns {P_SyncKnapsackData_SC & P_SyncKnapsackData_SC.$Shape} P_SyncKnapsackData_SC
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    P_SyncInventoryData_SC.decodeDelimited = function(reader) {
+    P_SyncKnapsackData_SC.decodeDelimited = function(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a P_SyncInventoryData_SC message.
+     * Verifies a P_SyncKnapsackData_SC message.
      * @function verify
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    P_SyncInventoryData_SC.verify = function (message, _depth) {
+    P_SyncKnapsackData_SC.verify = function (message, _depth) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (_depth === $undefined)
@@ -26096,53 +37172,53 @@ export const P_SyncInventoryData_SC = $root.P_SyncInventoryData_SC = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.inventory_data != null && $Object.hasOwnProperty.call(message, "inventory_data")) {
-            properties._inventory_data = 1;
+        if (message.knapsack_data != null && $Object.hasOwnProperty.call(message, "knapsack_data")) {
+            properties._knapsack_data = 1;
             {
-                let error = $root.PB_InventoryData.verify(message.inventory_data, _depth + 1);
+                let error = $root.PB_KnapsackData.verify(message.knapsack_data, _depth + 1);
                 if (error)
-                    return "inventory_data." + error;
+                    return "knapsack_data." + error;
             }
         }
         return null;
     };
 
     /**
-     * Creates a P_SyncInventoryData_SC message from a plain object. Also converts values to their respective internal types.
+     * Creates a P_SyncKnapsackData_SC message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {P_SyncInventoryData_SC} P_SyncInventoryData_SC
+     * @returns {P_SyncKnapsackData_SC} P_SyncKnapsackData_SC
      */
-    P_SyncInventoryData_SC.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_SyncInventoryData_SC)
+    P_SyncKnapsackData_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_SyncKnapsackData_SC)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".P_SyncInventoryData_SC: object expected");
+            throw $TypeError(".P_SyncKnapsackData_SC: object expected");
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        let message = new $root.P_SyncInventoryData_SC();
-        if (object.inventory_data != null) {
-            if (!$util.isObject(object.inventory_data))
-                throw $TypeError(".P_SyncInventoryData_SC.inventory_data: object expected");
-            message.inventory_data = $root.PB_InventoryData.fromObject(object.inventory_data, _depth + 1);
+        let message = new $root.P_SyncKnapsackData_SC();
+        if (object.knapsack_data != null) {
+            if (!$util.isObject(object.knapsack_data))
+                throw $TypeError(".P_SyncKnapsackData_SC.knapsack_data: object expected");
+            message.knapsack_data = $root.PB_KnapsackData.fromObject(object.knapsack_data, _depth + 1);
         }
         return message;
     };
 
     /**
-     * Creates a plain object from a P_SyncInventoryData_SC message. Also converts values to other types if specified.
+     * Creates a plain object from a P_SyncKnapsackData_SC message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
-     * @param {P_SyncInventoryData_SC} message P_SyncInventoryData_SC
+     * @param {P_SyncKnapsackData_SC} message P_SyncKnapsackData_SC
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    P_SyncInventoryData_SC.toObject = function (message, options, _depth) {
+    P_SyncKnapsackData_SC.toObject = function (message, options, _depth) {
         if (!options)
             options = {};
         if (_depth === $undefined)
@@ -26150,37 +37226,37 @@ export const P_SyncInventoryData_SC = $root.P_SyncInventoryData_SC = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.inventory_data != null && $Object.hasOwnProperty.call(message, "inventory_data"))
-            object.inventory_data = $root.PB_InventoryData.toObject(message.inventory_data, options, _depth + 1);
+        if (message.knapsack_data != null && $Object.hasOwnProperty.call(message, "knapsack_data"))
+            object.knapsack_data = $root.PB_KnapsackData.toObject(message.knapsack_data, options, _depth + 1);
         return object;
     };
 
     /**
-     * Converts this P_SyncInventoryData_SC to JSON.
+     * Converts this P_SyncKnapsackData_SC to JSON.
      * @function toJSON
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    P_SyncInventoryData_SC.prototype.toJSON = function() {
-        return P_SyncInventoryData_SC.toObject(this, $protobuf.util.toJSONOptions);
+    P_SyncKnapsackData_SC.prototype.toJSON = function() {
+        return P_SyncKnapsackData_SC.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for P_SyncInventoryData_SC
+     * Gets the type url for P_SyncKnapsackData_SC
      * @function getTypeUrl
-     * @memberof P_SyncInventoryData_SC
+     * @memberof P_SyncKnapsackData_SC
      * @static
      * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns {string} The type url
      */
-    P_SyncInventoryData_SC.getTypeUrl = function(prefix) {
+    P_SyncKnapsackData_SC.getTypeUrl = function(prefix) {
         if (prefix === $undefined)
             prefix = "type.googleapis.com";
-        return prefix + "/P_SyncInventoryData_SC";
+        return prefix + "/P_SyncKnapsackData_SC";
     };
 
-    return P_SyncInventoryData_SC;
+    return P_SyncKnapsackData_SC;
 })();
 
 export const P_SyncRoleExtraData_SC = $root.P_SyncRoleExtraData_SC = (() => {
@@ -26402,37 +37478,37 @@ export const P_SyncRoleExtraData_SC = $root.P_SyncRoleExtraData_SC = (() => {
     return P_SyncRoleExtraData_SC;
 })();
 
-export const P_SyncQuestData_SC = $root.P_SyncQuestData_SC = (() => {
+export const P_SyncTaskData_SC = $root.P_SyncTaskData_SC = (() => {
 
     /**
-     * Properties of a P_SyncQuestData_SC.
-     * @typedef {Object} P_SyncQuestData_SC.$Properties
-     * @property {PB_QuestData.$Properties|null} [quest_data] P_SyncQuestData_SC quest_data
+     * Properties of a P_SyncTaskData_SC.
+     * @typedef {Object} P_SyncTaskData_SC.$Properties
+     * @property {PB_TaskData.$Properties|null} [task_data] P_SyncTaskData_SC task_data
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
     /**
-     * Properties of a P_SyncQuestData_SC.
-     * @exports IP_SyncQuestData_SC
-     * @interface IP_SyncQuestData_SC
-     * @augments P_SyncQuestData_SC.$Properties
-     * @deprecated Use P_SyncQuestData_SC.$Properties instead.
+     * Properties of a P_SyncTaskData_SC.
+     * @exports IP_SyncTaskData_SC
+     * @interface IP_SyncTaskData_SC
+     * @augments P_SyncTaskData_SC.$Properties
+     * @deprecated Use P_SyncTaskData_SC.$Properties instead.
      */
 
     /**
-     * Shape of a P_SyncQuestData_SC.
-     * @typedef {P_SyncQuestData_SC.$Properties} P_SyncQuestData_SC.$Shape
+     * Shape of a P_SyncTaskData_SC.
+     * @typedef {P_SyncTaskData_SC.$Properties} P_SyncTaskData_SC.$Shape
      */
 
     /**
-     * Constructs a new P_SyncQuestData_SC.
-     * @exports P_SyncQuestData_SC
-     * @classdesc Represents a P_SyncQuestData_SC.
+     * Constructs a new P_SyncTaskData_SC.
+     * @exports P_SyncTaskData_SC
+     * @classdesc Represents a P_SyncTaskData_SC.
      * @constructor
-     * @param {P_SyncQuestData_SC.$Properties=} [properties] Properties to set
+     * @param {P_SyncTaskData_SC.$Properties=} [properties] Properties to set
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
-    const P_SyncQuestData_SC = function (properties) {
+    const P_SyncTaskData_SC = function (properties) {
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -26440,56 +37516,56 @@ export const P_SyncQuestData_SC = $root.P_SyncQuestData_SC = (() => {
     };
 
     /**
-     * P_SyncQuestData_SC quest_data.
-     * @member {PB_QuestData.$Properties|null|undefined} quest_data
-     * @memberof P_SyncQuestData_SC
+     * P_SyncTaskData_SC task_data.
+     * @member {PB_TaskData.$Properties|null|undefined} task_data
+     * @memberof P_SyncTaskData_SC
      * @instance
      */
-    P_SyncQuestData_SC.prototype.quest_data = null;
+    P_SyncTaskData_SC.prototype.task_data = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_SyncQuestData_SC.prototype, "_quest_data", {
-        get: $util.oneOfGetter($oneOfFields = ["quest_data"]),
+    $Object.defineProperty(P_SyncTaskData_SC.prototype, "_task_data", {
+        get: $util.oneOfGetter($oneOfFields = ["task_data"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
     /**
-     * Creates a new P_SyncQuestData_SC instance using the specified properties.
+     * Creates a new P_SyncTaskData_SC instance using the specified properties.
      * @function create
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
-     * @param {P_SyncQuestData_SC.$Properties=} [properties] Properties to set
-     * @returns {P_SyncQuestData_SC} P_SyncQuestData_SC instance
+     * @param {P_SyncTaskData_SC.$Properties=} [properties] Properties to set
+     * @returns {P_SyncTaskData_SC} P_SyncTaskData_SC instance
      * @type {{
-     *   (properties: P_SyncQuestData_SC.$Shape): P_SyncQuestData_SC & P_SyncQuestData_SC.$Shape;
-     *   (properties?: P_SyncQuestData_SC.$Properties): P_SyncQuestData_SC;
+     *   (properties: P_SyncTaskData_SC.$Shape): P_SyncTaskData_SC & P_SyncTaskData_SC.$Shape;
+     *   (properties?: P_SyncTaskData_SC.$Properties): P_SyncTaskData_SC;
      * }}
      */
-    P_SyncQuestData_SC.create = function(properties) {
-        return new P_SyncQuestData_SC(properties);
+    P_SyncTaskData_SC.create = function(properties) {
+        return new P_SyncTaskData_SC(properties);
     };
 
     /**
-     * Encodes the specified P_SyncQuestData_SC message. Does not implicitly {@link P_SyncQuestData_SC.verify|verify} messages.
+     * Encodes the specified P_SyncTaskData_SC message. Does not implicitly {@link P_SyncTaskData_SC.verify|verify} messages.
      * @function encode
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
-     * @param {P_SyncQuestData_SC.$Properties} message P_SyncQuestData_SC message or plain object to encode
+     * @param {P_SyncTaskData_SC.$Properties} message P_SyncTaskData_SC message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    P_SyncQuestData_SC.encode = function (message, writer, _depth) {
+    P_SyncTaskData_SC.encode = function (message, writer, _depth) {
         if (!writer)
             writer = $Writer.create();
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.quest_data != null && $Object.hasOwnProperty.call(message, "quest_data"))
-            $root.PB_QuestData.encode(message.quest_data, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.task_data != null && $Object.hasOwnProperty.call(message, "task_data"))
+            $root.PB_TaskData.encode(message.task_data, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -26497,37 +37573,37 @@ export const P_SyncQuestData_SC = $root.P_SyncQuestData_SC = (() => {
     };
 
     /**
-     * Encodes the specified P_SyncQuestData_SC message, length delimited. Does not implicitly {@link P_SyncQuestData_SC.verify|verify} messages.
+     * Encodes the specified P_SyncTaskData_SC message, length delimited. Does not implicitly {@link P_SyncTaskData_SC.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
-     * @param {P_SyncQuestData_SC.$Properties} message P_SyncQuestData_SC message or plain object to encode
+     * @param {P_SyncTaskData_SC.$Properties} message P_SyncTaskData_SC message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    P_SyncQuestData_SC.encodeDelimited = function(message, writer) {
+    P_SyncTaskData_SC.encodeDelimited = function(message, writer) {
         return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
     };
 
     /**
-     * Decodes a P_SyncQuestData_SC message from the specified reader or buffer.
+     * Decodes a P_SyncTaskData_SC message from the specified reader or buffer.
      * @function decode
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {P_SyncQuestData_SC & P_SyncQuestData_SC.$Shape} P_SyncQuestData_SC
+     * @returns {P_SyncTaskData_SC & P_SyncTaskData_SC.$Shape} P_SyncTaskData_SC
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    P_SyncQuestData_SC.decode = function (reader, length, _end, _depth, _target) {
+    P_SyncTaskData_SC.decode = function (reader, length, _end, _depth, _target) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_SyncQuestData_SC();
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_SyncTaskData_SC();
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -26540,8 +37616,8 @@ export const P_SyncQuestData_SC = $root.P_SyncQuestData_SC = (() => {
             case 1: {
                     if (wireType !== 2)
                         break;
-                    message.quest_data = $root.PB_QuestData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.quest_data);
-                    message._quest_data = "quest_data";
+                    message.task_data = $root.PB_TaskData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.task_data);
+                    message._task_data = "task_data";
                     continue;
                 }
             }
@@ -26557,30 +37633,30 @@ export const P_SyncQuestData_SC = $root.P_SyncQuestData_SC = (() => {
     };
 
     /**
-     * Decodes a P_SyncQuestData_SC message from the specified reader or buffer, length delimited.
+     * Decodes a P_SyncTaskData_SC message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_SyncQuestData_SC & P_SyncQuestData_SC.$Shape} P_SyncQuestData_SC
+     * @returns {P_SyncTaskData_SC & P_SyncTaskData_SC.$Shape} P_SyncTaskData_SC
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    P_SyncQuestData_SC.decodeDelimited = function(reader) {
+    P_SyncTaskData_SC.decodeDelimited = function(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a P_SyncQuestData_SC message.
+     * Verifies a P_SyncTaskData_SC message.
      * @function verify
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    P_SyncQuestData_SC.verify = function (message, _depth) {
+    P_SyncTaskData_SC.verify = function (message, _depth) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (_depth === $undefined)
@@ -26588,53 +37664,53 @@ export const P_SyncQuestData_SC = $root.P_SyncQuestData_SC = (() => {
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
         let properties = {};
-        if (message.quest_data != null && $Object.hasOwnProperty.call(message, "quest_data")) {
-            properties._quest_data = 1;
+        if (message.task_data != null && $Object.hasOwnProperty.call(message, "task_data")) {
+            properties._task_data = 1;
             {
-                let error = $root.PB_QuestData.verify(message.quest_data, _depth + 1);
+                let error = $root.PB_TaskData.verify(message.task_data, _depth + 1);
                 if (error)
-                    return "quest_data." + error;
+                    return "task_data." + error;
             }
         }
         return null;
     };
 
     /**
-     * Creates a P_SyncQuestData_SC message from a plain object. Also converts values to their respective internal types.
+     * Creates a P_SyncTaskData_SC message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {P_SyncQuestData_SC} P_SyncQuestData_SC
+     * @returns {P_SyncTaskData_SC} P_SyncTaskData_SC
      */
-    P_SyncQuestData_SC.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_SyncQuestData_SC)
+    P_SyncTaskData_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_SyncTaskData_SC)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".P_SyncQuestData_SC: object expected");
+            throw $TypeError(".P_SyncTaskData_SC: object expected");
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        let message = new $root.P_SyncQuestData_SC();
-        if (object.quest_data != null) {
-            if (!$util.isObject(object.quest_data))
-                throw $TypeError(".P_SyncQuestData_SC.quest_data: object expected");
-            message.quest_data = $root.PB_QuestData.fromObject(object.quest_data, _depth + 1);
+        let message = new $root.P_SyncTaskData_SC();
+        if (object.task_data != null) {
+            if (!$util.isObject(object.task_data))
+                throw $TypeError(".P_SyncTaskData_SC.task_data: object expected");
+            message.task_data = $root.PB_TaskData.fromObject(object.task_data, _depth + 1);
         }
         return message;
     };
 
     /**
-     * Creates a plain object from a P_SyncQuestData_SC message. Also converts values to other types if specified.
+     * Creates a plain object from a P_SyncTaskData_SC message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
-     * @param {P_SyncQuestData_SC} message P_SyncQuestData_SC
+     * @param {P_SyncTaskData_SC} message P_SyncTaskData_SC
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    P_SyncQuestData_SC.toObject = function (message, options, _depth) {
+    P_SyncTaskData_SC.toObject = function (message, options, _depth) {
         if (!options)
             options = {};
         if (_depth === $undefined)
@@ -26642,37 +37718,37 @@ export const P_SyncQuestData_SC = $root.P_SyncQuestData_SC = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (message.quest_data != null && $Object.hasOwnProperty.call(message, "quest_data"))
-            object.quest_data = $root.PB_QuestData.toObject(message.quest_data, options, _depth + 1);
+        if (message.task_data != null && $Object.hasOwnProperty.call(message, "task_data"))
+            object.task_data = $root.PB_TaskData.toObject(message.task_data, options, _depth + 1);
         return object;
     };
 
     /**
-     * Converts this P_SyncQuestData_SC to JSON.
+     * Converts this P_SyncTaskData_SC to JSON.
      * @function toJSON
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    P_SyncQuestData_SC.prototype.toJSON = function() {
-        return P_SyncQuestData_SC.toObject(this, $protobuf.util.toJSONOptions);
+    P_SyncTaskData_SC.prototype.toJSON = function() {
+        return P_SyncTaskData_SC.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for P_SyncQuestData_SC
+     * Gets the type url for P_SyncTaskData_SC
      * @function getTypeUrl
-     * @memberof P_SyncQuestData_SC
+     * @memberof P_SyncTaskData_SC
      * @static
      * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns {string} The type url
      */
-    P_SyncQuestData_SC.getTypeUrl = function(prefix) {
+    P_SyncTaskData_SC.getTypeUrl = function(prefix) {
         if (prefix === $undefined)
             prefix = "type.googleapis.com";
-        return prefix + "/P_SyncQuestData_SC";
+        return prefix + "/P_SyncTaskData_SC";
     };
 
-    return P_SyncQuestData_SC;
+    return P_SyncTaskData_SC;
 })();
 
 export const P_SyncHeroData_SC = $root.P_SyncHeroData_SC = (() => {
@@ -28423,7 +39499,7 @@ export const PB_ArenaOpponentInfo = $root.PB_ArenaOpponentInfo = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.uid);
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
@@ -28483,7 +39559,7 @@ export const PB_ArenaOpponentInfo = $root.PB_ArenaOpponentInfo = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
@@ -28562,8 +39638,8 @@ export const PB_ArenaOpponentInfo = $root.PB_ArenaOpponentInfo = (() => {
         let properties = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
             properties._name = 1;
@@ -28611,7 +39687,14 @@ export const PB_ArenaOpponentInfo = $root.PB_ArenaOpponentInfo = (() => {
             throw $Error("max depth exceeded");
         let message = new $root.PB_ArenaOpponentInfo();
         if (object.uid != null)
-            message.uid = object.uid | 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.name != null)
             message.name = $String(object.name);
         if (object.user_name != null)
@@ -28651,7 +39734,12 @@ export const PB_ArenaOpponentInfo = $root.PB_ArenaOpponentInfo = (() => {
         if (options.arrays || options.defaults)
             object.heroes = [];
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
@@ -28898,7 +39986,7 @@ export const PB_ArenaBattleLog = $root.PB_ArenaBattleLog = (() => {
             for (let i = 0; i < message.my_heroes.length; ++i)
                 $root.PB_HeroData.encode(message.my_heroes[i], writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
         if (message.opponent_uid != null && $Object.hasOwnProperty.call(message, "opponent_uid"))
-            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.opponent_uid);
+            writer.uint32(/* id 4, wireType 0 =*/32).int64(message.opponent_uid);
         if (message.opponent_name != null && $Object.hasOwnProperty.call(message, "opponent_name"))
             writer.uint32(/* id 5, wireType 2 =*/42).string(message.opponent_name);
         if (message.opponent_heroes != null && message.opponent_heroes.length)
@@ -28982,7 +40070,7 @@ export const PB_ArenaBattleLog = $root.PB_ArenaBattleLog = (() => {
             case 4: {
                     if (wireType !== 0)
                         break;
-                    message.opponent_uid = reader.int32();
+                    message.opponent_uid = reader.int64();
                     message._opponent_uid = "opponent_uid";
                     continue;
                 }
@@ -29087,8 +40175,8 @@ export const PB_ArenaBattleLog = $root.PB_ArenaBattleLog = (() => {
         }
         if (message.opponent_uid != null && $Object.hasOwnProperty.call(message, "opponent_uid")) {
             properties._opponent_uid = 1;
-            if (!$util.isInteger(message.opponent_uid))
-                return "opponent_uid: integer expected";
+            if (!$util.isInteger(message.opponent_uid) && !(message.opponent_uid && $util.isInteger(message.opponent_uid.low) && $util.isInteger(message.opponent_uid.high)))
+                return "opponent_uid: integer|Long expected";
         }
         if (message.opponent_name != null && $Object.hasOwnProperty.call(message, "opponent_name")) {
             properties._opponent_name = 1;
@@ -29162,7 +40250,14 @@ export const PB_ArenaBattleLog = $root.PB_ArenaBattleLog = (() => {
             }
         }
         if (object.opponent_uid != null)
-            message.opponent_uid = object.opponent_uid | 0;
+            if ($util.Long)
+                message.opponent_uid = $util.Long.fromValue(object.opponent_uid, false);
+            else if (typeof object.opponent_uid === "string")
+                message.opponent_uid = $parseInt(object.opponent_uid, 10);
+            else if (typeof object.opponent_uid === "number")
+                message.opponent_uid = object.opponent_uid;
+            else if (typeof object.opponent_uid === "object")
+                message.opponent_uid = new $util.LongBits(object.opponent_uid.low >>> 0, object.opponent_uid.high >>> 0).toNumber();
         if (object.opponent_name != null)
             message.opponent_name = $String(object.opponent_name);
         if (object.opponent_heroes) {
@@ -29220,7 +40315,12 @@ export const PB_ArenaBattleLog = $root.PB_ArenaBattleLog = (() => {
                 object.my_heroes[j] = $root.PB_HeroData.toObject(message.my_heroes[j], options, _depth + 1);
         }
         if (message.opponent_uid != null && $Object.hasOwnProperty.call(message, "opponent_uid"))
-            object.opponent_uid = message.opponent_uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.opponent_uid = typeof message.opponent_uid === "number" ? $BigInt(message.opponent_uid) : $util.Long.fromBits(message.opponent_uid.low >>> 0, message.opponent_uid.high >>> 0, false).toBigInt();
+            else if (typeof message.opponent_uid === "number")
+                object.opponent_uid = options.longs === $String ? $String(message.opponent_uid) : message.opponent_uid;
+            else
+                object.opponent_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.opponent_uid) : options.longs === $Number ? new $util.LongBits(message.opponent_uid.low >>> 0, message.opponent_uid.high >>> 0).toNumber() : message.opponent_uid;
         if (message.opponent_name != null && $Object.hasOwnProperty.call(message, "opponent_name"))
             object.opponent_name = message.opponent_name;
         if (message.opponent_heroes && message.opponent_heroes.length) {
@@ -30292,6 +41392,1395 @@ export const P_ArenaBattleLog_SC = $root.P_ArenaBattleLog_SC = (() => {
     return P_ArenaBattleLog_SC;
 })();
 
+export const P_CrossEnter_CS = $root.P_CrossEnter_CS = (() => {
+
+    /**
+     * Properties of a P_CrossEnter_CS.
+     * @typedef {Object} P_CrossEnter_CS.$Properties
+     * @property {number|null} [cross_type] P_CrossEnter_CS cross_type
+     * @property {number|null} [activity_id] P_CrossEnter_CS activity_id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossEnter_CS.
+     * @exports IP_CrossEnter_CS
+     * @interface IP_CrossEnter_CS
+     * @augments P_CrossEnter_CS.$Properties
+     * @deprecated Use P_CrossEnter_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossEnter_CS.
+     * @typedef {P_CrossEnter_CS.$Properties} P_CrossEnter_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossEnter_CS.
+     * @exports P_CrossEnter_CS
+     * @classdesc Represents a P_CrossEnter_CS.
+     * @constructor
+     * @param {P_CrossEnter_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossEnter_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossEnter_CS cross_type.
+     * @member {number|null|undefined} cross_type
+     * @memberof P_CrossEnter_CS
+     * @instance
+     */
+    P_CrossEnter_CS.prototype.cross_type = null;
+
+    /**
+     * P_CrossEnter_CS activity_id.
+     * @member {number|null|undefined} activity_id
+     * @memberof P_CrossEnter_CS
+     * @instance
+     */
+    P_CrossEnter_CS.prototype.activity_id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_CS.prototype, "_cross_type", {
+        get: $util.oneOfGetter($oneOfFields = ["cross_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_CS.prototype, "_activity_id", {
+        get: $util.oneOfGetter($oneOfFields = ["activity_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossEnter_CS instance using the specified properties.
+     * @function create
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS.$Properties=} [properties] Properties to set
+     * @returns {P_CrossEnter_CS} P_CrossEnter_CS instance
+     * @type {{
+     *   (properties: P_CrossEnter_CS.$Shape): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
+     *   (properties?: P_CrossEnter_CS.$Properties): P_CrossEnter_CS;
+     * }}
+     */
+    P_CrossEnter_CS.create = function(properties) {
+        return new P_CrossEnter_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_CS message. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS.$Properties} message P_CrossEnter_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cross_type);
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.activity_id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_CS message, length delimited. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS.$Properties} message P_CrossEnter_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossEnter_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossEnter_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.cross_type = reader.int32();
+                    message._cross_type = "cross_type";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.activity_id = reader.uint32();
+                    message._activity_id = "activity_id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossEnter_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossEnter_CS message.
+     * @function verify
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossEnter_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type")) {
+            properties._cross_type = 1;
+            if (!$util.isInteger(message.cross_type))
+                return "cross_type: integer expected";
+        }
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id")) {
+            properties._activity_id = 1;
+            if (!$util.isInteger(message.activity_id))
+                return "activity_id: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossEnter_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossEnter_CS} P_CrossEnter_CS
+     */
+    P_CrossEnter_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossEnter_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossEnter_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossEnter_CS();
+        if (object.cross_type != null)
+            message.cross_type = object.cross_type | 0;
+        if (object.activity_id != null)
+            message.activity_id = object.activity_id >>> 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossEnter_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS} message P_CrossEnter_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossEnter_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            object.cross_type = message.cross_type;
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            object.activity_id = message.activity_id;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossEnter_CS to JSON.
+     * @function toJSON
+     * @memberof P_CrossEnter_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossEnter_CS.prototype.toJSON = function() {
+        return P_CrossEnter_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossEnter_CS
+     * @function getTypeUrl
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossEnter_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossEnter_CS";
+    };
+
+    return P_CrossEnter_CS;
+})();
+
+export const P_CrossEnter_SC = $root.P_CrossEnter_SC = (() => {
+
+    /**
+     * Properties of a P_CrossEnter_SC.
+     * @typedef {Object} P_CrossEnter_SC.$Properties
+     * @property {boolean|null} [success] P_CrossEnter_SC success
+     * @property {string|null} [error] P_CrossEnter_SC error
+     * @property {string|null} [scene_ip] P_CrossEnter_SC scene_ip
+     * @property {number|null} [scene_port] P_CrossEnter_SC scene_port
+     * @property {string|null} [token] P_CrossEnter_SC token
+     * @property {number|null} [expire_time] P_CrossEnter_SC expire_time
+     * @property {number|null} [cross_type] P_CrossEnter_SC cross_type
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossEnter_SC.
+     * @exports IP_CrossEnter_SC
+     * @interface IP_CrossEnter_SC
+     * @augments P_CrossEnter_SC.$Properties
+     * @deprecated Use P_CrossEnter_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossEnter_SC.
+     * @typedef {P_CrossEnter_SC.$Properties} P_CrossEnter_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossEnter_SC.
+     * @exports P_CrossEnter_SC
+     * @classdesc Represents a P_CrossEnter_SC.
+     * @constructor
+     * @param {P_CrossEnter_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossEnter_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossEnter_SC success.
+     * @member {boolean|null|undefined} success
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.success = null;
+
+    /**
+     * P_CrossEnter_SC error.
+     * @member {string|null|undefined} error
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.error = null;
+
+    /**
+     * P_CrossEnter_SC scene_ip.
+     * @member {string|null|undefined} scene_ip
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.scene_ip = null;
+
+    /**
+     * P_CrossEnter_SC scene_port.
+     * @member {number|null|undefined} scene_port
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.scene_port = null;
+
+    /**
+     * P_CrossEnter_SC token.
+     * @member {string|null|undefined} token
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.token = null;
+
+    /**
+     * P_CrossEnter_SC expire_time.
+     * @member {number|null|undefined} expire_time
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.expire_time = null;
+
+    /**
+     * P_CrossEnter_SC cross_type.
+     * @member {number|null|undefined} cross_type
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.cross_type = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_success", {
+        get: $util.oneOfGetter($oneOfFields = ["success"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_error", {
+        get: $util.oneOfGetter($oneOfFields = ["error"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_scene_ip", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_ip"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_scene_port", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_port"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_expire_time", {
+        get: $util.oneOfGetter($oneOfFields = ["expire_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_cross_type", {
+        get: $util.oneOfGetter($oneOfFields = ["cross_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossEnter_SC instance using the specified properties.
+     * @function create
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC.$Properties=} [properties] Properties to set
+     * @returns {P_CrossEnter_SC} P_CrossEnter_SC instance
+     * @type {{
+     *   (properties: P_CrossEnter_SC.$Shape): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
+     *   (properties?: P_CrossEnter_SC.$Properties): P_CrossEnter_SC;
+     * }}
+     */
+    P_CrossEnter_SC.create = function(properties) {
+        return new P_CrossEnter_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_SC message. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC.$Properties} message P_CrossEnter_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.error);
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.scene_ip);
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.scene_port);
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 5, wireType 2 =*/42).string(message.token);
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
+            writer.uint32(/* id 6, wireType 0 =*/48).uint64(message.expire_time);
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.cross_type);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_SC message, length delimited. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC.$Properties} message P_CrossEnter_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossEnter_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossEnter_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.success = reader.bool();
+                    message._success = "success";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.error = reader.stringVerify();
+                    message._error = "error";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.scene_ip = reader.stringVerify();
+                    message._scene_ip = "scene_ip";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_port = reader.uint32();
+                    message._scene_port = "scene_port";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.expire_time = reader.uint64();
+                    message._expire_time = "expire_time";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.cross_type = reader.int32();
+                    message._cross_type = "cross_type";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossEnter_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossEnter_SC message.
+     * @function verify
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossEnter_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success")) {
+            properties._success = 1;
+            if (typeof message.success !== "boolean")
+                return "success: boolean expected";
+        }
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error")) {
+            properties._error = 1;
+            if (!$util.isString(message.error))
+                return "error: string expected";
+        }
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip")) {
+            properties._scene_ip = 1;
+            if (!$util.isString(message.scene_ip))
+                return "scene_ip: string expected";
+        }
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port")) {
+            properties._scene_port = 1;
+            if (!$util.isInteger(message.scene_port))
+                return "scene_port: integer expected";
+        }
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time")) {
+            properties._expire_time = 1;
+            if (!$util.isInteger(message.expire_time) && !(message.expire_time && $util.isInteger(message.expire_time.low) && $util.isInteger(message.expire_time.high)))
+                return "expire_time: integer|Long expected";
+        }
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type")) {
+            properties._cross_type = 1;
+            if (!$util.isInteger(message.cross_type))
+                return "cross_type: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossEnter_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossEnter_SC} P_CrossEnter_SC
+     */
+    P_CrossEnter_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossEnter_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossEnter_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossEnter_SC();
+        if (object.success != null)
+            message.success = $Boolean(object.success);
+        if (object.error != null)
+            message.error = $String(object.error);
+        if (object.scene_ip != null)
+            message.scene_ip = $String(object.scene_ip);
+        if (object.scene_port != null)
+            message.scene_port = object.scene_port >>> 0;
+        if (object.token != null)
+            message.token = $String(object.token);
+        if (object.expire_time != null)
+            if ($util.Long)
+                message.expire_time = $util.Long.fromValue(object.expire_time, true);
+            else if (typeof object.expire_time === "string")
+                message.expire_time = $parseInt(object.expire_time, 10);
+            else if (typeof object.expire_time === "number")
+                message.expire_time = object.expire_time;
+            else if (typeof object.expire_time === "object")
+                message.expire_time = new $util.LongBits(object.expire_time.low >>> 0, object.expire_time.high >>> 0).toNumber(true);
+        if (object.cross_type != null)
+            message.cross_type = object.cross_type | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossEnter_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC} message P_CrossEnter_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossEnter_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            object.success = message.success;
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            object.error = message.error;
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            object.scene_ip = message.scene_ip;
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            object.scene_port = message.scene_port;
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.expire_time = typeof message.expire_time === "number" ? $BigInt(message.expire_time) : $util.Long.fromBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0, true).toBigInt();
+            else if (typeof message.expire_time === "number")
+                object.expire_time = options.longs === $String ? $String(message.expire_time) : message.expire_time;
+            else
+                object.expire_time = options.longs === $String ? $util.Long.prototype.toString.call(message.expire_time) : options.longs === $Number ? new $util.LongBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0).toNumber(true) : message.expire_time;
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            object.cross_type = message.cross_type;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossEnter_SC to JSON.
+     * @function toJSON
+     * @memberof P_CrossEnter_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossEnter_SC.prototype.toJSON = function() {
+        return P_CrossEnter_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossEnter_SC
+     * @function getTypeUrl
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossEnter_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossEnter_SC";
+    };
+
+    return P_CrossEnter_SC;
+})();
+
+export const P_CrossAuth_CS = $root.P_CrossAuth_CS = (() => {
+
+    /**
+     * Properties of a P_CrossAuth_CS.
+     * @typedef {Object} P_CrossAuth_CS.$Properties
+     * @property {number|null} [role_uid] P_CrossAuth_CS role_uid
+     * @property {string|null} [token] P_CrossAuth_CS token
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossAuth_CS.
+     * @exports IP_CrossAuth_CS
+     * @interface IP_CrossAuth_CS
+     * @augments P_CrossAuth_CS.$Properties
+     * @deprecated Use P_CrossAuth_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossAuth_CS.
+     * @typedef {P_CrossAuth_CS.$Properties} P_CrossAuth_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossAuth_CS.
+     * @exports P_CrossAuth_CS
+     * @classdesc Represents a P_CrossAuth_CS.
+     * @constructor
+     * @param {P_CrossAuth_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossAuth_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossAuth_CS role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof P_CrossAuth_CS
+     * @instance
+     */
+    P_CrossAuth_CS.prototype.role_uid = null;
+
+    /**
+     * P_CrossAuth_CS token.
+     * @member {string|null|undefined} token
+     * @memberof P_CrossAuth_CS
+     * @instance
+     */
+    P_CrossAuth_CS.prototype.token = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_CS.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_CS.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossAuth_CS instance using the specified properties.
+     * @function create
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS.$Properties=} [properties] Properties to set
+     * @returns {P_CrossAuth_CS} P_CrossAuth_CS instance
+     * @type {{
+     *   (properties: P_CrossAuth_CS.$Shape): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
+     *   (properties?: P_CrossAuth_CS.$Properties): P_CrossAuth_CS;
+     * }}
+     */
+    P_CrossAuth_CS.create = function(properties) {
+        return new P_CrossAuth_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_CS message. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS.$Properties} message P_CrossAuth_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.role_uid);
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_CS message, length delimited. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS.$Properties} message P_CrossAuth_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossAuth_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossAuth_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.uint64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossAuth_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossAuth_CS message.
+     * @function verify
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossAuth_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossAuth_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossAuth_CS} P_CrossAuth_CS
+     */
+    P_CrossAuth_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossAuth_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossAuth_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossAuth_CS();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, true);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber(true);
+        if (object.token != null)
+            message.token = $String(object.token);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossAuth_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS} message P_CrossAuth_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossAuth_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber(true) : message.role_uid;
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossAuth_CS to JSON.
+     * @function toJSON
+     * @memberof P_CrossAuth_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossAuth_CS.prototype.toJSON = function() {
+        return P_CrossAuth_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossAuth_CS
+     * @function getTypeUrl
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossAuth_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossAuth_CS";
+    };
+
+    return P_CrossAuth_CS;
+})();
+
+export const P_CrossAuth_SC = $root.P_CrossAuth_SC = (() => {
+
+    /**
+     * Properties of a P_CrossAuth_SC.
+     * @typedef {Object} P_CrossAuth_SC.$Properties
+     * @property {boolean|null} [success] P_CrossAuth_SC success
+     * @property {string|null} [error] P_CrossAuth_SC error
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossAuth_SC.
+     * @exports IP_CrossAuth_SC
+     * @interface IP_CrossAuth_SC
+     * @augments P_CrossAuth_SC.$Properties
+     * @deprecated Use P_CrossAuth_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossAuth_SC.
+     * @typedef {P_CrossAuth_SC.$Properties} P_CrossAuth_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossAuth_SC.
+     * @exports P_CrossAuth_SC
+     * @classdesc Represents a P_CrossAuth_SC.
+     * @constructor
+     * @param {P_CrossAuth_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossAuth_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossAuth_SC success.
+     * @member {boolean|null|undefined} success
+     * @memberof P_CrossAuth_SC
+     * @instance
+     */
+    P_CrossAuth_SC.prototype.success = null;
+
+    /**
+     * P_CrossAuth_SC error.
+     * @member {string|null|undefined} error
+     * @memberof P_CrossAuth_SC
+     * @instance
+     */
+    P_CrossAuth_SC.prototype.error = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_SC.prototype, "_success", {
+        get: $util.oneOfGetter($oneOfFields = ["success"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_SC.prototype, "_error", {
+        get: $util.oneOfGetter($oneOfFields = ["error"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossAuth_SC instance using the specified properties.
+     * @function create
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC.$Properties=} [properties] Properties to set
+     * @returns {P_CrossAuth_SC} P_CrossAuth_SC instance
+     * @type {{
+     *   (properties: P_CrossAuth_SC.$Shape): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
+     *   (properties?: P_CrossAuth_SC.$Properties): P_CrossAuth_SC;
+     * }}
+     */
+    P_CrossAuth_SC.create = function(properties) {
+        return new P_CrossAuth_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_SC message. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC.$Properties} message P_CrossAuth_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.error);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_SC message, length delimited. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC.$Properties} message P_CrossAuth_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossAuth_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossAuth_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.success = reader.bool();
+                    message._success = "success";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.error = reader.stringVerify();
+                    message._error = "error";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossAuth_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossAuth_SC message.
+     * @function verify
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossAuth_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success")) {
+            properties._success = 1;
+            if (typeof message.success !== "boolean")
+                return "success: boolean expected";
+        }
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error")) {
+            properties._error = 1;
+            if (!$util.isString(message.error))
+                return "error: string expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossAuth_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossAuth_SC} P_CrossAuth_SC
+     */
+    P_CrossAuth_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossAuth_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossAuth_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossAuth_SC();
+        if (object.success != null)
+            message.success = $Boolean(object.success);
+        if (object.error != null)
+            message.error = $String(object.error);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossAuth_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC} message P_CrossAuth_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossAuth_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            object.success = message.success;
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            object.error = message.error;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossAuth_SC to JSON.
+     * @function toJSON
+     * @memberof P_CrossAuth_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossAuth_SC.prototype.toJSON = function() {
+        return P_CrossAuth_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossAuth_SC
+     * @function getTypeUrl
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossAuth_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossAuth_SC";
+    };
+
+    return P_CrossAuth_SC;
+})();
+
 export const P_ArenaRank_SC = $root.P_ArenaRank_SC = (() => {
 
     /**
@@ -30683,6 +43172,9 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
      * @property {number|null} [level] PB_RoleBaseInfo level
      * @property {number|null} [exp] PB_RoleBaseInfo exp
      * @property {number|null} [last_login_time] PB_RoleBaseInfo last_login_time
+     * @property {number|null} [knapsack_max_slots] PB_RoleBaseInfo knapsack_max_slots
+     * @property {number|null} [create_time] PB_RoleBaseInfo create_time
+     * @property {number|null} [hero_id] PB_RoleBaseInfo hero_id
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -30762,6 +43254,30 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
      */
     PB_RoleBaseInfo.prototype.last_login_time = null;
 
+    /**
+     * PB_RoleBaseInfo knapsack_max_slots.
+     * @member {number|null|undefined} knapsack_max_slots
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.knapsack_max_slots = null;
+
+    /**
+     * PB_RoleBaseInfo create_time.
+     * @member {number|null|undefined} create_time
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.create_time = null;
+
+    /**
+     * PB_RoleBaseInfo hero_id.
+     * @member {number|null|undefined} hero_id
+     * @memberof PB_RoleBaseInfo
+     * @instance
+     */
+    PB_RoleBaseInfo.prototype.hero_id = null;
+
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
 
@@ -30801,6 +43317,24 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
         set: $util.oneOfSetter($oneOfFields)
     });
 
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_knapsack_max_slots", {
+        get: $util.oneOfGetter($oneOfFields = ["knapsack_max_slots"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_create_time", {
+        get: $util.oneOfGetter($oneOfFields = ["create_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleBaseInfo.prototype, "_hero_id", {
+        get: $util.oneOfGetter($oneOfFields = ["hero_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
     /**
      * Creates a new PB_RoleBaseInfo instance using the specified properties.
      * @function create
@@ -30834,7 +43368,7 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.uid);
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.uid);
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
@@ -30845,6 +43379,12 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
             writer.uint32(/* id 5, wireType 0 =*/40).int64(message.exp);
         if (message.last_login_time != null && $Object.hasOwnProperty.call(message, "last_login_time"))
             writer.uint32(/* id 6, wireType 0 =*/48).int64(message.last_login_time);
+        if (message.knapsack_max_slots != null && $Object.hasOwnProperty.call(message, "knapsack_max_slots"))
+            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.knapsack_max_slots);
+        if (message.create_time != null && $Object.hasOwnProperty.call(message, "create_time"))
+            writer.uint32(/* id 8, wireType 0 =*/64).int64(message.create_time);
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id"))
+            writer.uint32(/* id 9, wireType 0 =*/72).int32(message.hero_id);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -30895,7 +43435,7 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
             case 1: {
                     if (wireType !== 0)
                         break;
-                    message.uid = reader.int32();
+                    message.uid = reader.int64();
                     message._uid = "uid";
                     continue;
                 }
@@ -30932,6 +43472,27 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
                         break;
                     message.last_login_time = reader.int64();
                     message._last_login_time = "last_login_time";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.knapsack_max_slots = reader.int32();
+                    message._knapsack_max_slots = "knapsack_max_slots";
+                    continue;
+                }
+            case 8: {
+                    if (wireType !== 0)
+                        break;
+                    message.create_time = reader.int64();
+                    message._create_time = "create_time";
+                    continue;
+                }
+            case 9: {
+                    if (wireType !== 0)
+                        break;
+                    message.hero_id = reader.int32();
+                    message._hero_id = "hero_id";
                     continue;
                 }
             }
@@ -30980,8 +43541,8 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
         let properties = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid")) {
             properties._uid = 1;
-            if (!$util.isInteger(message.uid))
-                return "uid: integer expected";
+            if (!$util.isInteger(message.uid) && !(message.uid && $util.isInteger(message.uid.low) && $util.isInteger(message.uid.high)))
+                return "uid: integer|Long expected";
         }
         if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
             properties._name = 1;
@@ -31008,6 +43569,21 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
             if (!$util.isInteger(message.last_login_time) && !(message.last_login_time && $util.isInteger(message.last_login_time.low) && $util.isInteger(message.last_login_time.high)))
                 return "last_login_time: integer|Long expected";
         }
+        if (message.knapsack_max_slots != null && $Object.hasOwnProperty.call(message, "knapsack_max_slots")) {
+            properties._knapsack_max_slots = 1;
+            if (!$util.isInteger(message.knapsack_max_slots))
+                return "knapsack_max_slots: integer expected";
+        }
+        if (message.create_time != null && $Object.hasOwnProperty.call(message, "create_time")) {
+            properties._create_time = 1;
+            if (!$util.isInteger(message.create_time) && !(message.create_time && $util.isInteger(message.create_time.low) && $util.isInteger(message.create_time.high)))
+                return "create_time: integer|Long expected";
+        }
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id")) {
+            properties._hero_id = 1;
+            if (!$util.isInteger(message.hero_id))
+                return "hero_id: integer expected";
+        }
         return null;
     };
 
@@ -31030,7 +43606,14 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
             throw $Error("max depth exceeded");
         let message = new $root.PB_RoleBaseInfo();
         if (object.uid != null)
-            message.uid = object.uid | 0;
+            if ($util.Long)
+                message.uid = $util.Long.fromValue(object.uid, false);
+            else if (typeof object.uid === "string")
+                message.uid = $parseInt(object.uid, 10);
+            else if (typeof object.uid === "number")
+                message.uid = object.uid;
+            else if (typeof object.uid === "object")
+                message.uid = new $util.LongBits(object.uid.low >>> 0, object.uid.high >>> 0).toNumber();
         if (object.name != null)
             message.name = $String(object.name);
         if (object.user_name != null)
@@ -31055,6 +43638,19 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
                 message.last_login_time = object.last_login_time;
             else if (typeof object.last_login_time === "object")
                 message.last_login_time = new $util.LongBits(object.last_login_time.low >>> 0, object.last_login_time.high >>> 0).toNumber();
+        if (object.knapsack_max_slots != null)
+            message.knapsack_max_slots = object.knapsack_max_slots | 0;
+        if (object.create_time != null)
+            if ($util.Long)
+                message.create_time = $util.Long.fromValue(object.create_time, false);
+            else if (typeof object.create_time === "string")
+                message.create_time = $parseInt(object.create_time, 10);
+            else if (typeof object.create_time === "number")
+                message.create_time = object.create_time;
+            else if (typeof object.create_time === "object")
+                message.create_time = new $util.LongBits(object.create_time.low >>> 0, object.create_time.high >>> 0).toNumber();
+        if (object.hero_id != null)
+            message.hero_id = object.hero_id | 0;
         return message;
     };
 
@@ -31076,7 +43672,12 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
             throw $Error("max depth exceeded");
         let object = {};
         if (message.uid != null && $Object.hasOwnProperty.call(message, "uid"))
-            object.uid = message.uid;
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.uid = typeof message.uid === "number" ? $BigInt(message.uid) : $util.Long.fromBits(message.uid.low >>> 0, message.uid.high >>> 0, false).toBigInt();
+            else if (typeof message.uid === "number")
+                object.uid = options.longs === $String ? $String(message.uid) : message.uid;
+            else
+                object.uid = options.longs === $String ? $util.Long.prototype.toString.call(message.uid) : options.longs === $Number ? new $util.LongBits(message.uid.low >>> 0, message.uid.high >>> 0).toNumber() : message.uid;
         if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
             object.name = message.name;
         if (message.user_name != null && $Object.hasOwnProperty.call(message, "user_name"))
@@ -31097,6 +43698,17 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
                 object.last_login_time = options.longs === $String ? $String(message.last_login_time) : message.last_login_time;
             else
                 object.last_login_time = options.longs === $String ? $util.Long.prototype.toString.call(message.last_login_time) : options.longs === $Number ? new $util.LongBits(message.last_login_time.low >>> 0, message.last_login_time.high >>> 0).toNumber() : message.last_login_time;
+        if (message.knapsack_max_slots != null && $Object.hasOwnProperty.call(message, "knapsack_max_slots"))
+            object.knapsack_max_slots = message.knapsack_max_slots;
+        if (message.create_time != null && $Object.hasOwnProperty.call(message, "create_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.create_time = typeof message.create_time === "number" ? $BigInt(message.create_time) : $util.Long.fromBits(message.create_time.low >>> 0, message.create_time.high >>> 0, false).toBigInt();
+            else if (typeof message.create_time === "number")
+                object.create_time = options.longs === $String ? $String(message.create_time) : message.create_time;
+            else
+                object.create_time = options.longs === $String ? $util.Long.prototype.toString.call(message.create_time) : options.longs === $Number ? new $util.LongBits(message.create_time.low >>> 0, message.create_time.high >>> 0).toNumber() : message.create_time;
+        if (message.hero_id != null && $Object.hasOwnProperty.call(message, "hero_id"))
+            object.hero_id = message.hero_id;
         return object;
     };
 
@@ -31128,40 +43740,43 @@ export const PB_RoleBaseInfo = $root.PB_RoleBaseInfo = (() => {
     return PB_RoleBaseInfo;
 })();
 
-export const PB_RoleBag = $root.PB_RoleBag = (() => {
+export const PB_ActivityRoleNode = $root.PB_ActivityRoleNode = (() => {
 
     /**
-     * Properties of a PB_RoleBag.
-     * @typedef {Object} PB_RoleBag.$Properties
-     * @property {Array.<PB_Item.$Properties>|null} [bag] PB_RoleBag bag
-     * @property {Array.<PB_Item.$Properties>|null} [weare_item] PB_RoleBag weare_item
+     * Properties of a PB_ActivityRoleNode.
+     * @typedef {Object} PB_ActivityRoleNode.$Properties
+     * @property {number|null} [activity_id] PB_ActivityRoleNode activity_id
+     * @property {number|null} [round] PB_ActivityRoleNode round
+     * @property {number|null} [count] PB_ActivityRoleNode count
+     * @property {number|null} [score] PB_ActivityRoleNode score
+     * @property {number|null} [last_time] PB_ActivityRoleNode last_time
+     * @property {boolean|null} [rewarded] PB_ActivityRoleNode rewarded
+     * @property {string|null} [extra] PB_ActivityRoleNode extra
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
     /**
-     * Properties of a PB_RoleBag.
-     * @exports IPB_RoleBag
-     * @interface IPB_RoleBag
-     * @augments PB_RoleBag.$Properties
-     * @deprecated Use PB_RoleBag.$Properties instead.
+     * Properties of a PB_ActivityRoleNode.
+     * @exports IPB_ActivityRoleNode
+     * @interface IPB_ActivityRoleNode
+     * @augments PB_ActivityRoleNode.$Properties
+     * @deprecated Use PB_ActivityRoleNode.$Properties instead.
      */
 
     /**
-     * Shape of a PB_RoleBag.
-     * @typedef {PB_RoleBag.$Properties} PB_RoleBag.$Shape
+     * Shape of a PB_ActivityRoleNode.
+     * @typedef {PB_ActivityRoleNode.$Properties} PB_ActivityRoleNode.$Shape
      */
 
     /**
-     * Constructs a new PB_RoleBag.
-     * @exports PB_RoleBag
-     * @classdesc Represents a PB_RoleBag.
+     * Constructs a new PB_ActivityRoleNode.
+     * @exports PB_ActivityRoleNode
+     * @classdesc Represents a PB_ActivityRoleNode.
      * @constructor
-     * @param {PB_RoleBag.$Properties=} [properties] Properties to set
+     * @param {PB_ActivityRoleNode.$Properties=} [properties] Properties to set
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
-    const PB_RoleBag = function (properties) {
-        this.bag = [];
-        this.weare_item = [];
+    const PB_ActivityRoleNode = function (properties) {
         if (properties)
             for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -31169,59 +43784,152 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
     };
 
     /**
-     * PB_RoleBag bag.
-     * @member {Array.<PB_Item.$Properties>} bag
-     * @memberof PB_RoleBag
+     * PB_ActivityRoleNode activity_id.
+     * @member {number|null|undefined} activity_id
+     * @memberof PB_ActivityRoleNode
      * @instance
      */
-    PB_RoleBag.prototype.bag = $util.emptyArray;
+    PB_ActivityRoleNode.prototype.activity_id = null;
 
     /**
-     * PB_RoleBag weare_item.
-     * @member {Array.<PB_Item.$Properties>} weare_item
-     * @memberof PB_RoleBag
+     * PB_ActivityRoleNode round.
+     * @member {number|null|undefined} round
+     * @memberof PB_ActivityRoleNode
      * @instance
      */
-    PB_RoleBag.prototype.weare_item = $util.emptyArray;
+    PB_ActivityRoleNode.prototype.round = null;
 
     /**
-     * Creates a new PB_RoleBag instance using the specified properties.
+     * PB_ActivityRoleNode count.
+     * @member {number|null|undefined} count
+     * @memberof PB_ActivityRoleNode
+     * @instance
+     */
+    PB_ActivityRoleNode.prototype.count = null;
+
+    /**
+     * PB_ActivityRoleNode score.
+     * @member {number|null|undefined} score
+     * @memberof PB_ActivityRoleNode
+     * @instance
+     */
+    PB_ActivityRoleNode.prototype.score = null;
+
+    /**
+     * PB_ActivityRoleNode last_time.
+     * @member {number|null|undefined} last_time
+     * @memberof PB_ActivityRoleNode
+     * @instance
+     */
+    PB_ActivityRoleNode.prototype.last_time = null;
+
+    /**
+     * PB_ActivityRoleNode rewarded.
+     * @member {boolean|null|undefined} rewarded
+     * @memberof PB_ActivityRoleNode
+     * @instance
+     */
+    PB_ActivityRoleNode.prototype.rewarded = null;
+
+    /**
+     * PB_ActivityRoleNode extra.
+     * @member {string|null|undefined} extra
+     * @memberof PB_ActivityRoleNode
+     * @instance
+     */
+    PB_ActivityRoleNode.prototype.extra = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityRoleNode.prototype, "_activity_id", {
+        get: $util.oneOfGetter($oneOfFields = ["activity_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityRoleNode.prototype, "_round", {
+        get: $util.oneOfGetter($oneOfFields = ["round"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityRoleNode.prototype, "_count", {
+        get: $util.oneOfGetter($oneOfFields = ["count"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityRoleNode.prototype, "_score", {
+        get: $util.oneOfGetter($oneOfFields = ["score"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityRoleNode.prototype, "_last_time", {
+        get: $util.oneOfGetter($oneOfFields = ["last_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityRoleNode.prototype, "_rewarded", {
+        get: $util.oneOfGetter($oneOfFields = ["rewarded"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_ActivityRoleNode.prototype, "_extra", {
+        get: $util.oneOfGetter($oneOfFields = ["extra"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new PB_ActivityRoleNode instance using the specified properties.
      * @function create
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
-     * @param {PB_RoleBag.$Properties=} [properties] Properties to set
-     * @returns {PB_RoleBag} PB_RoleBag instance
+     * @param {PB_ActivityRoleNode.$Properties=} [properties] Properties to set
+     * @returns {PB_ActivityRoleNode} PB_ActivityRoleNode instance
      * @type {{
-     *   (properties: PB_RoleBag.$Shape): PB_RoleBag & PB_RoleBag.$Shape;
-     *   (properties?: PB_RoleBag.$Properties): PB_RoleBag;
+     *   (properties: PB_ActivityRoleNode.$Shape): PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape;
+     *   (properties?: PB_ActivityRoleNode.$Properties): PB_ActivityRoleNode;
      * }}
      */
-    PB_RoleBag.create = function(properties) {
-        return new PB_RoleBag(properties);
+    PB_ActivityRoleNode.create = function(properties) {
+        return new PB_ActivityRoleNode(properties);
     };
 
     /**
-     * Encodes the specified PB_RoleBag message. Does not implicitly {@link PB_RoleBag.verify|verify} messages.
+     * Encodes the specified PB_ActivityRoleNode message. Does not implicitly {@link PB_ActivityRoleNode.verify|verify} messages.
      * @function encode
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
-     * @param {PB_RoleBag.$Properties} message PB_RoleBag message or plain object to encode
+     * @param {PB_ActivityRoleNode.$Properties} message PB_ActivityRoleNode message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_RoleBag.encode = function (message, writer, _depth) {
+    PB_ActivityRoleNode.encode = function (message, writer, _depth) {
         if (!writer)
             writer = $Writer.create();
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        if (message.bag != null && message.bag.length)
-            for (let i = 0; i < message.bag.length; ++i)
-                $root.PB_Item.encode(message.bag[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
-        if (message.weare_item != null && message.weare_item.length)
-            for (let i = 0; i < message.weare_item.length; ++i)
-                $root.PB_Item.encode(message.weare_item[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.activity_id);
+        if (message.round != null && $Object.hasOwnProperty.call(message, "round"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.round);
+        if (message.count != null && $Object.hasOwnProperty.call(message, "count"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.count);
+        if (message.score != null && $Object.hasOwnProperty.call(message, "score"))
+            writer.uint32(/* id 4, wireType 0 =*/32).int32(message.score);
+        if (message.last_time != null && $Object.hasOwnProperty.call(message, "last_time"))
+            writer.uint32(/* id 5, wireType 0 =*/40).int64(message.last_time);
+        if (message.rewarded != null && $Object.hasOwnProperty.call(message, "rewarded"))
+            writer.uint32(/* id 6, wireType 0 =*/48).bool(message.rewarded);
+        if (message.extra != null && $Object.hasOwnProperty.call(message, "extra"))
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.extra);
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -31229,37 +43937,37 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
     };
 
     /**
-     * Encodes the specified PB_RoleBag message, length delimited. Does not implicitly {@link PB_RoleBag.verify|verify} messages.
+     * Encodes the specified PB_ActivityRoleNode message, length delimited. Does not implicitly {@link PB_ActivityRoleNode.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
-     * @param {PB_RoleBag.$Properties} message PB_RoleBag message or plain object to encode
+     * @param {PB_ActivityRoleNode.$Properties} message PB_ActivityRoleNode message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    PB_RoleBag.encodeDelimited = function(message, writer) {
+    PB_ActivityRoleNode.encodeDelimited = function(message, writer) {
         return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
     };
 
     /**
-     * Decodes a PB_RoleBag message from the specified reader or buffer.
+     * Decodes a PB_ActivityRoleNode message from the specified reader or buffer.
      * @function decode
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {PB_RoleBag & PB_RoleBag.$Shape} PB_RoleBag
+     * @returns {PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape} PB_ActivityRoleNode
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_RoleBag.decode = function (reader, length, _end, _depth, _target) {
+    PB_ActivityRoleNode.decode = function (reader, length, _end, _depth, _target) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $Reader.recursionLimit)
             throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_RoleBag();
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_ActivityRoleNode();
         while (reader.pos < end) {
             let start = reader.pos;
             let tag = reader.tag();
@@ -31270,19 +43978,52 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
             let wireType = tag & 7;
             switch (tag >>>= 3) {
             case 1: {
-                    if (wireType !== 2)
+                    if (wireType !== 0)
                         break;
-                    if (!(message.bag && message.bag.length))
-                        message.bag = [];
-                    message.bag.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    message.activity_id = reader.uint32();
+                    message._activity_id = "activity_id";
                     continue;
                 }
             case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.round = reader.int32();
+                    message._round = "round";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.count = reader.int32();
+                    message._count = "count";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.score = reader.int32();
+                    message._score = "score";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 0)
+                        break;
+                    message.last_time = reader.int64();
+                    message._last_time = "last_time";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.rewarded = reader.bool();
+                    message._rewarded = "rewarded";
+                    continue;
+                }
+            case 7: {
                     if (wireType !== 2)
                         break;
-                    if (!(message.weare_item && message.weare_item.length))
-                        message.weare_item = [];
-                    message.weare_item.push($root.PB_Item.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    message.extra = reader.stringVerify();
+                    message._extra = "extra";
                     continue;
                 }
             }
@@ -31298,108 +44039,127 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
     };
 
     /**
-     * Decodes a PB_RoleBag message from the specified reader or buffer, length delimited.
+     * Decodes a PB_ActivityRoleNode message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {PB_RoleBag & PB_RoleBag.$Shape} PB_RoleBag
+     * @returns {PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape} PB_ActivityRoleNode
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PB_RoleBag.decodeDelimited = function(reader) {
+    PB_ActivityRoleNode.decodeDelimited = function(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a PB_RoleBag message.
+     * Verifies a PB_ActivityRoleNode message.
      * @function verify
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    PB_RoleBag.verify = function (message, _depth) {
+    PB_ActivityRoleNode.verify = function (message, _depth) {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             return "max depth exceeded";
-        if (message.bag != null && $Object.hasOwnProperty.call(message, "bag")) {
-            if (!$Array.isArray(message.bag))
-                return "bag: array expected";
-            for (let i = 0; i < message.bag.length; ++i) {
-                let error = $root.PB_Item.verify(message.bag[i], _depth + 1);
-                if (error)
-                    return "bag." + error;
-            }
+        let properties = {};
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id")) {
+            properties._activity_id = 1;
+            if (!$util.isInteger(message.activity_id))
+                return "activity_id: integer expected";
         }
-        if (message.weare_item != null && $Object.hasOwnProperty.call(message, "weare_item")) {
-            if (!$Array.isArray(message.weare_item))
-                return "weare_item: array expected";
-            for (let i = 0; i < message.weare_item.length; ++i) {
-                let error = $root.PB_Item.verify(message.weare_item[i], _depth + 1);
-                if (error)
-                    return "weare_item." + error;
-            }
+        if (message.round != null && $Object.hasOwnProperty.call(message, "round")) {
+            properties._round = 1;
+            if (!$util.isInteger(message.round))
+                return "round: integer expected";
+        }
+        if (message.count != null && $Object.hasOwnProperty.call(message, "count")) {
+            properties._count = 1;
+            if (!$util.isInteger(message.count))
+                return "count: integer expected";
+        }
+        if (message.score != null && $Object.hasOwnProperty.call(message, "score")) {
+            properties._score = 1;
+            if (!$util.isInteger(message.score))
+                return "score: integer expected";
+        }
+        if (message.last_time != null && $Object.hasOwnProperty.call(message, "last_time")) {
+            properties._last_time = 1;
+            if (!$util.isInteger(message.last_time) && !(message.last_time && $util.isInteger(message.last_time.low) && $util.isInteger(message.last_time.high)))
+                return "last_time: integer|Long expected";
+        }
+        if (message.rewarded != null && $Object.hasOwnProperty.call(message, "rewarded")) {
+            properties._rewarded = 1;
+            if (typeof message.rewarded !== "boolean")
+                return "rewarded: boolean expected";
+        }
+        if (message.extra != null && $Object.hasOwnProperty.call(message, "extra")) {
+            properties._extra = 1;
+            if (!$util.isString(message.extra))
+                return "extra: string expected";
         }
         return null;
     };
 
     /**
-     * Creates a PB_RoleBag message from a plain object. Also converts values to their respective internal types.
+     * Creates a PB_ActivityRoleNode message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {PB_RoleBag} PB_RoleBag
+     * @returns {PB_ActivityRoleNode} PB_ActivityRoleNode
      */
-    PB_RoleBag.fromObject = function (object, _depth) {
-        if (object instanceof $root.PB_RoleBag)
+    PB_ActivityRoleNode.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_ActivityRoleNode)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".PB_RoleBag: object expected");
+            throw $TypeError(".PB_ActivityRoleNode: object expected");
         if (_depth === $undefined)
             _depth = 0;
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
-        let message = new $root.PB_RoleBag();
-        if (object.bag) {
-            if (!$Array.isArray(object.bag))
-                throw $TypeError(".PB_RoleBag.bag: array expected");
-            message.bag = $Array(object.bag.length);
-            for (let i = 0; i < object.bag.length; ++i) {
-                if (!$util.isObject(object.bag[i]))
-                    throw $TypeError(".PB_RoleBag.bag: object expected");
-                message.bag[i] = $root.PB_Item.fromObject(object.bag[i], _depth + 1);
-            }
-        }
-        if (object.weare_item) {
-            if (!$Array.isArray(object.weare_item))
-                throw $TypeError(".PB_RoleBag.weare_item: array expected");
-            message.weare_item = $Array(object.weare_item.length);
-            for (let i = 0; i < object.weare_item.length; ++i) {
-                if (!$util.isObject(object.weare_item[i]))
-                    throw $TypeError(".PB_RoleBag.weare_item: object expected");
-                message.weare_item[i] = $root.PB_Item.fromObject(object.weare_item[i], _depth + 1);
-            }
-        }
+        let message = new $root.PB_ActivityRoleNode();
+        if (object.activity_id != null)
+            message.activity_id = object.activity_id >>> 0;
+        if (object.round != null)
+            message.round = object.round | 0;
+        if (object.count != null)
+            message.count = object.count | 0;
+        if (object.score != null)
+            message.score = object.score | 0;
+        if (object.last_time != null)
+            if ($util.Long)
+                message.last_time = $util.Long.fromValue(object.last_time, false);
+            else if (typeof object.last_time === "string")
+                message.last_time = $parseInt(object.last_time, 10);
+            else if (typeof object.last_time === "number")
+                message.last_time = object.last_time;
+            else if (typeof object.last_time === "object")
+                message.last_time = new $util.LongBits(object.last_time.low >>> 0, object.last_time.high >>> 0).toNumber();
+        if (object.rewarded != null)
+            message.rewarded = $Boolean(object.rewarded);
+        if (object.extra != null)
+            message.extra = $String(object.extra);
         return message;
     };
 
     /**
-     * Creates a plain object from a PB_RoleBag message. Also converts values to other types if specified.
+     * Creates a plain object from a PB_ActivityRoleNode message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleNode
      * @static
-     * @param {PB_RoleBag} message PB_RoleBag
+     * @param {PB_ActivityRoleNode} message PB_ActivityRoleNode
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    PB_RoleBag.toObject = function (message, options, _depth) {
+    PB_ActivityRoleNode.toObject = function (message, options, _depth) {
         if (!options)
             options = {};
         if (_depth === $undefined)
@@ -31407,49 +44167,331 @@ export const PB_RoleBag = $root.PB_RoleBag = (() => {
         if (_depth > $util.recursionLimit)
             throw $Error("max depth exceeded");
         let object = {};
-        if (options.arrays || options.defaults) {
-            object.bag = [];
-            object.weare_item = [];
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            object.activity_id = message.activity_id;
+        if (message.round != null && $Object.hasOwnProperty.call(message, "round"))
+            object.round = message.round;
+        if (message.count != null && $Object.hasOwnProperty.call(message, "count"))
+            object.count = message.count;
+        if (message.score != null && $Object.hasOwnProperty.call(message, "score"))
+            object.score = message.score;
+        if (message.last_time != null && $Object.hasOwnProperty.call(message, "last_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.last_time = typeof message.last_time === "number" ? $BigInt(message.last_time) : $util.Long.fromBits(message.last_time.low >>> 0, message.last_time.high >>> 0, false).toBigInt();
+            else if (typeof message.last_time === "number")
+                object.last_time = options.longs === $String ? $String(message.last_time) : message.last_time;
+            else
+                object.last_time = options.longs === $String ? $util.Long.prototype.toString.call(message.last_time) : options.longs === $Number ? new $util.LongBits(message.last_time.low >>> 0, message.last_time.high >>> 0).toNumber() : message.last_time;
+        if (message.rewarded != null && $Object.hasOwnProperty.call(message, "rewarded"))
+            object.rewarded = message.rewarded;
+        if (message.extra != null && $Object.hasOwnProperty.call(message, "extra"))
+            object.extra = message.extra;
+        return object;
+    };
+
+    /**
+     * Converts this PB_ActivityRoleNode to JSON.
+     * @function toJSON
+     * @memberof PB_ActivityRoleNode
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    PB_ActivityRoleNode.prototype.toJSON = function() {
+        return PB_ActivityRoleNode.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for PB_ActivityRoleNode
+     * @function getTypeUrl
+     * @memberof PB_ActivityRoleNode
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    PB_ActivityRoleNode.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/PB_ActivityRoleNode";
+    };
+
+    return PB_ActivityRoleNode;
+})();
+
+export const PB_ActivityRoleData = $root.PB_ActivityRoleData = (() => {
+
+    /**
+     * Properties of a PB_ActivityRoleData.
+     * @typedef {Object} PB_ActivityRoleData.$Properties
+     * @property {Array.<PB_ActivityRoleNode.$Properties>|null} [nodes] PB_ActivityRoleData nodes
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a PB_ActivityRoleData.
+     * @exports IPB_ActivityRoleData
+     * @interface IPB_ActivityRoleData
+     * @augments PB_ActivityRoleData.$Properties
+     * @deprecated Use PB_ActivityRoleData.$Properties instead.
+     */
+
+    /**
+     * Shape of a PB_ActivityRoleData.
+     * @typedef {PB_ActivityRoleData.$Properties} PB_ActivityRoleData.$Shape
+     */
+
+    /**
+     * Constructs a new PB_ActivityRoleData.
+     * @exports PB_ActivityRoleData
+     * @classdesc Represents a PB_ActivityRoleData.
+     * @constructor
+     * @param {PB_ActivityRoleData.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const PB_ActivityRoleData = function (properties) {
+        this.nodes = [];
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * PB_ActivityRoleData nodes.
+     * @member {Array.<PB_ActivityRoleNode.$Properties>} nodes
+     * @memberof PB_ActivityRoleData
+     * @instance
+     */
+    PB_ActivityRoleData.prototype.nodes = $util.emptyArray;
+
+    /**
+     * Creates a new PB_ActivityRoleData instance using the specified properties.
+     * @function create
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {PB_ActivityRoleData.$Properties=} [properties] Properties to set
+     * @returns {PB_ActivityRoleData} PB_ActivityRoleData instance
+     * @type {{
+     *   (properties: PB_ActivityRoleData.$Shape): PB_ActivityRoleData & PB_ActivityRoleData.$Shape;
+     *   (properties?: PB_ActivityRoleData.$Properties): PB_ActivityRoleData;
+     * }}
+     */
+    PB_ActivityRoleData.create = function(properties) {
+        return new PB_ActivityRoleData(properties);
+    };
+
+    /**
+     * Encodes the specified PB_ActivityRoleData message. Does not implicitly {@link PB_ActivityRoleData.verify|verify} messages.
+     * @function encode
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {PB_ActivityRoleData.$Properties} message PB_ActivityRoleData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_ActivityRoleData.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.nodes != null && message.nodes.length)
+            for (let i = 0; i < message.nodes.length; ++i)
+                $root.PB_ActivityRoleNode.encode(message.nodes[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified PB_ActivityRoleData message, length delimited. Does not implicitly {@link PB_ActivityRoleData.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {PB_ActivityRoleData.$Properties} message PB_ActivityRoleData message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    PB_ActivityRoleData.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a PB_ActivityRoleData message from the specified reader or buffer.
+     * @function decode
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {PB_ActivityRoleData & PB_ActivityRoleData.$Shape} PB_ActivityRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_ActivityRoleData.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.PB_ActivityRoleData();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    if (!(message.nodes && message.nodes.length))
+                        message.nodes = [];
+                    message.nodes.push($root.PB_ActivityRoleNode.decode(reader, reader.uint32(), $undefined, _depth + 1));
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
         }
-        if (message.bag && message.bag.length) {
-            object.bag = $Array(message.bag.length);
-            for (let j = 0; j < message.bag.length; ++j)
-                object.bag[j] = $root.PB_Item.toObject(message.bag[j], options, _depth + 1);
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a PB_ActivityRoleData message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {PB_ActivityRoleData & PB_ActivityRoleData.$Shape} PB_ActivityRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    PB_ActivityRoleData.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a PB_ActivityRoleData message.
+     * @function verify
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    PB_ActivityRoleData.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        if (message.nodes != null && $Object.hasOwnProperty.call(message, "nodes")) {
+            if (!$Array.isArray(message.nodes))
+                return "nodes: array expected";
+            for (let i = 0; i < message.nodes.length; ++i) {
+                let error = $root.PB_ActivityRoleNode.verify(message.nodes[i], _depth + 1);
+                if (error)
+                    return "nodes." + error;
+            }
         }
-        if (message.weare_item && message.weare_item.length) {
-            object.weare_item = $Array(message.weare_item.length);
-            for (let j = 0; j < message.weare_item.length; ++j)
-                object.weare_item[j] = $root.PB_Item.toObject(message.weare_item[j], options, _depth + 1);
+        return null;
+    };
+
+    /**
+     * Creates a PB_ActivityRoleData message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {PB_ActivityRoleData} PB_ActivityRoleData
+     */
+    PB_ActivityRoleData.fromObject = function (object, _depth) {
+        if (object instanceof $root.PB_ActivityRoleData)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".PB_ActivityRoleData: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.PB_ActivityRoleData();
+        if (object.nodes) {
+            if (!$Array.isArray(object.nodes))
+                throw $TypeError(".PB_ActivityRoleData.nodes: array expected");
+            message.nodes = $Array(object.nodes.length);
+            for (let i = 0; i < object.nodes.length; ++i) {
+                if (!$util.isObject(object.nodes[i]))
+                    throw $TypeError(".PB_ActivityRoleData.nodes: object expected");
+                message.nodes[i] = $root.PB_ActivityRoleNode.fromObject(object.nodes[i], _depth + 1);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a PB_ActivityRoleData message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof PB_ActivityRoleData
+     * @static
+     * @param {PB_ActivityRoleData} message PB_ActivityRoleData
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    PB_ActivityRoleData.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.nodes = [];
+        if (message.nodes && message.nodes.length) {
+            object.nodes = $Array(message.nodes.length);
+            for (let j = 0; j < message.nodes.length; ++j)
+                object.nodes[j] = $root.PB_ActivityRoleNode.toObject(message.nodes[j], options, _depth + 1);
         }
         return object;
     };
 
     /**
-     * Converts this PB_RoleBag to JSON.
+     * Converts this PB_ActivityRoleData to JSON.
      * @function toJSON
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleData
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    PB_RoleBag.prototype.toJSON = function() {
-        return PB_RoleBag.toObject(this, $protobuf.util.toJSONOptions);
+    PB_ActivityRoleData.prototype.toJSON = function() {
+        return PB_ActivityRoleData.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for PB_RoleBag
+     * Gets the type url for PB_ActivityRoleData
      * @function getTypeUrl
-     * @memberof PB_RoleBag
+     * @memberof PB_ActivityRoleData
      * @static
      * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns {string} The type url
      */
-    PB_RoleBag.getTypeUrl = function(prefix) {
+    PB_ActivityRoleData.getTypeUrl = function(prefix) {
         if (prefix === $undefined)
             prefix = "type.googleapis.com";
-        return prefix + "/PB_RoleBag";
+        return prefix + "/PB_ActivityRoleData";
     };
 
-    return PB_RoleBag;
+    return PB_ActivityRoleData;
 })();
 
 export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
@@ -31459,7 +44501,8 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
      * @typedef {Object} PB_RoleGrowthData.$Properties
      * @property {PB_HeroListData.$Properties|null} [hero] PB_RoleGrowthData hero
      * @property {PB_LineupListData.$Properties|null} [lineup] PB_RoleGrowthData lineup
-     * @property {PB_QuestData.$Properties|null} [quest] PB_RoleGrowthData quest
+     * @property {PB_TaskData.$Properties|null} [task] PB_RoleGrowthData task
+     * @property {PB_ActivityRoleData.$Properties|null} [activity] PB_RoleGrowthData activity
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -31508,12 +44551,20 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
     PB_RoleGrowthData.prototype.lineup = null;
 
     /**
-     * PB_RoleGrowthData quest.
-     * @member {PB_QuestData.$Properties|null|undefined} quest
+     * PB_RoleGrowthData task.
+     * @member {PB_TaskData.$Properties|null|undefined} task
      * @memberof PB_RoleGrowthData
      * @instance
      */
-    PB_RoleGrowthData.prototype.quest = null;
+    PB_RoleGrowthData.prototype.task = null;
+
+    /**
+     * PB_RoleGrowthData activity.
+     * @member {PB_ActivityRoleData.$Properties|null|undefined} activity
+     * @memberof PB_RoleGrowthData
+     * @instance
+     */
+    PB_RoleGrowthData.prototype.activity = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
@@ -31531,8 +44582,14 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleGrowthData.prototype, "_quest", {
-        get: $util.oneOfGetter($oneOfFields = ["quest"]),
+    $Object.defineProperty(PB_RoleGrowthData.prototype, "_task", {
+        get: $util.oneOfGetter($oneOfFields = ["task"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(PB_RoleGrowthData.prototype, "_activity", {
+        get: $util.oneOfGetter($oneOfFields = ["activity"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -31572,8 +44629,10 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
             $root.PB_HeroListData.encode(message.hero, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
         if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup"))
             $root.PB_LineupListData.encode(message.lineup, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
-        if (message.quest != null && $Object.hasOwnProperty.call(message, "quest"))
-            $root.PB_QuestData.encode(message.quest, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+        if (message.task != null && $Object.hasOwnProperty.call(message, "task"))
+            $root.PB_TaskData.encode(message.task, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+        if (message.activity != null && $Object.hasOwnProperty.call(message, "activity"))
+            $root.PB_ActivityRoleData.encode(message.activity, writer.uint32(/* id 4, wireType 2 =*/34).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -31638,8 +44697,15 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
             case 3: {
                     if (wireType !== 2)
                         break;
-                    message.quest = $root.PB_QuestData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.quest);
-                    message._quest = "quest";
+                    message.task = $root.PB_TaskData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.task);
+                    message._task = "task";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 2)
+                        break;
+                    message.activity = $root.PB_ActivityRoleData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.activity);
+                    message._activity = "activity";
                     continue;
                 }
             }
@@ -31702,12 +44768,20 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
                     return "lineup." + error;
             }
         }
-        if (message.quest != null && $Object.hasOwnProperty.call(message, "quest")) {
-            properties._quest = 1;
+        if (message.task != null && $Object.hasOwnProperty.call(message, "task")) {
+            properties._task = 1;
             {
-                let error = $root.PB_QuestData.verify(message.quest, _depth + 1);
+                let error = $root.PB_TaskData.verify(message.task, _depth + 1);
                 if (error)
-                    return "quest." + error;
+                    return "task." + error;
+            }
+        }
+        if (message.activity != null && $Object.hasOwnProperty.call(message, "activity")) {
+            properties._activity = 1;
+            {
+                let error = $root.PB_ActivityRoleData.verify(message.activity, _depth + 1);
+                if (error)
+                    return "activity." + error;
             }
         }
         return null;
@@ -31741,10 +44815,15 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
                 throw $TypeError(".PB_RoleGrowthData.lineup: object expected");
             message.lineup = $root.PB_LineupListData.fromObject(object.lineup, _depth + 1);
         }
-        if (object.quest != null) {
-            if (!$util.isObject(object.quest))
-                throw $TypeError(".PB_RoleGrowthData.quest: object expected");
-            message.quest = $root.PB_QuestData.fromObject(object.quest, _depth + 1);
+        if (object.task != null) {
+            if (!$util.isObject(object.task))
+                throw $TypeError(".PB_RoleGrowthData.task: object expected");
+            message.task = $root.PB_TaskData.fromObject(object.task, _depth + 1);
+        }
+        if (object.activity != null) {
+            if (!$util.isObject(object.activity))
+                throw $TypeError(".PB_RoleGrowthData.activity: object expected");
+            message.activity = $root.PB_ActivityRoleData.fromObject(object.activity, _depth + 1);
         }
         return message;
     };
@@ -31770,8 +44849,10 @@ export const PB_RoleGrowthData = $root.PB_RoleGrowthData = (() => {
             object.hero = $root.PB_HeroListData.toObject(message.hero, options, _depth + 1);
         if (message.lineup != null && $Object.hasOwnProperty.call(message, "lineup"))
             object.lineup = $root.PB_LineupListData.toObject(message.lineup, options, _depth + 1);
-        if (message.quest != null && $Object.hasOwnProperty.call(message, "quest"))
-            object.quest = $root.PB_QuestData.toObject(message.quest, options, _depth + 1);
+        if (message.task != null && $Object.hasOwnProperty.call(message, "task"))
+            object.task = $root.PB_TaskData.toObject(message.task, options, _depth + 1);
+        if (message.activity != null && $Object.hasOwnProperty.call(message, "activity"))
+            object.activity = $root.PB_ActivityRoleData.toObject(message.activity, options, _depth + 1);
         return object;
     };
 
@@ -32160,9 +45241,9 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
      * Properties of a PB_RoleData.
      * @typedef {Object} PB_RoleData.$Properties
      * @property {PB_RoleBaseInfo.$Properties|null} [base_info] PB_RoleData base_info
-     * @property {PB_InventoryData.$Properties|null} [inventory] PB_RoleData inventory
+     * @property {PB_KnapsackData.$Properties|null} [knapsack] PB_RoleData knapsack
      * @property {PB_RoleGrowthData.$Properties|null} [growth] PB_RoleData growth
-     * @property {PB_RoleBag.$Properties|null} [role_bag] PB_RoleData role_bag
+     * @property {PB_MmoRoleData.$Properties|null} [mmo] PB_RoleData mmo
      * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
      */
 
@@ -32203,12 +45284,12 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
     PB_RoleData.prototype.base_info = null;
 
     /**
-     * PB_RoleData inventory.
-     * @member {PB_InventoryData.$Properties|null|undefined} inventory
+     * PB_RoleData knapsack.
+     * @member {PB_KnapsackData.$Properties|null|undefined} knapsack
      * @memberof PB_RoleData
      * @instance
      */
-    PB_RoleData.prototype.inventory = null;
+    PB_RoleData.prototype.knapsack = null;
 
     /**
      * PB_RoleData growth.
@@ -32219,12 +45300,12 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
     PB_RoleData.prototype.growth = null;
 
     /**
-     * PB_RoleData role_bag.
-     * @member {PB_RoleBag.$Properties|null|undefined} role_bag
+     * PB_RoleData mmo.
+     * @member {PB_MmoRoleData.$Properties|null|undefined} mmo
      * @memberof PB_RoleData
      * @instance
      */
-    PB_RoleData.prototype.role_bag = null;
+    PB_RoleData.prototype.mmo = null;
 
     // OneOf field names bound to virtual getters and setters
     let $oneOfFields;
@@ -32236,8 +45317,8 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleData.prototype, "_inventory", {
-        get: $util.oneOfGetter($oneOfFields = ["inventory"]),
+    $Object.defineProperty(PB_RoleData.prototype, "_knapsack", {
+        get: $util.oneOfGetter($oneOfFields = ["knapsack"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -32248,8 +45329,8 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
     });
 
     // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(PB_RoleData.prototype, "_role_bag", {
-        get: $util.oneOfGetter($oneOfFields = ["role_bag"]),
+    $Object.defineProperty(PB_RoleData.prototype, "_mmo", {
+        get: $util.oneOfGetter($oneOfFields = ["mmo"]),
         set: $util.oneOfSetter($oneOfFields)
     });
 
@@ -32287,12 +45368,12 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
             throw $Error("max depth exceeded");
         if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
             $root.PB_RoleBaseInfo.encode(message.base_info, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
-        if (message.inventory != null && $Object.hasOwnProperty.call(message, "inventory"))
-            $root.PB_InventoryData.encode(message.inventory, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+        if (message.knapsack != null && $Object.hasOwnProperty.call(message, "knapsack"))
+            $root.PB_KnapsackData.encode(message.knapsack, writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
         if (message.growth != null && $Object.hasOwnProperty.call(message, "growth"))
             $root.PB_RoleGrowthData.encode(message.growth, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
-        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag"))
-            $root.PB_RoleBag.encode(message.role_bag, writer.uint32(/* id 100, wireType 2 =*/802).fork(), _depth + 1).ldelim();
+        if (message.mmo != null && $Object.hasOwnProperty.call(message, "mmo"))
+            $root.PB_MmoRoleData.encode(message.mmo, writer.uint32(/* id 4, wireType 2 =*/34).fork(), _depth + 1).ldelim();
         if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
             for (let i = 0; i < message.$unknowns.length; ++i)
                 writer.raw(message.$unknowns[i]);
@@ -32350,8 +45431,8 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
             case 2: {
                     if (wireType !== 2)
                         break;
-                    message.inventory = $root.PB_InventoryData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.inventory);
-                    message._inventory = "inventory";
+                    message.knapsack = $root.PB_KnapsackData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.knapsack);
+                    message._knapsack = "knapsack";
                     continue;
                 }
             case 3: {
@@ -32361,11 +45442,11 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
                     message._growth = "growth";
                     continue;
                 }
-            case 100: {
+            case 4: {
                     if (wireType !== 2)
                         break;
-                    message.role_bag = $root.PB_RoleBag.decode(reader, reader.uint32(), $undefined, _depth + 1, message.role_bag);
-                    message._role_bag = "role_bag";
+                    message.mmo = $root.PB_MmoRoleData.decode(reader, reader.uint32(), $undefined, _depth + 1, message.mmo);
+                    message._mmo = "mmo";
                     continue;
                 }
             }
@@ -32420,12 +45501,12 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
                     return "base_info." + error;
             }
         }
-        if (message.inventory != null && $Object.hasOwnProperty.call(message, "inventory")) {
-            properties._inventory = 1;
+        if (message.knapsack != null && $Object.hasOwnProperty.call(message, "knapsack")) {
+            properties._knapsack = 1;
             {
-                let error = $root.PB_InventoryData.verify(message.inventory, _depth + 1);
+                let error = $root.PB_KnapsackData.verify(message.knapsack, _depth + 1);
                 if (error)
-                    return "inventory." + error;
+                    return "knapsack." + error;
             }
         }
         if (message.growth != null && $Object.hasOwnProperty.call(message, "growth")) {
@@ -32436,12 +45517,12 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
                     return "growth." + error;
             }
         }
-        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag")) {
-            properties._role_bag = 1;
+        if (message.mmo != null && $Object.hasOwnProperty.call(message, "mmo")) {
+            properties._mmo = 1;
             {
-                let error = $root.PB_RoleBag.verify(message.role_bag, _depth + 1);
+                let error = $root.PB_MmoRoleData.verify(message.mmo, _depth + 1);
                 if (error)
-                    return "role_bag." + error;
+                    return "mmo." + error;
             }
         }
         return null;
@@ -32470,20 +45551,20 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
                 throw $TypeError(".PB_RoleData.base_info: object expected");
             message.base_info = $root.PB_RoleBaseInfo.fromObject(object.base_info, _depth + 1);
         }
-        if (object.inventory != null) {
-            if (!$util.isObject(object.inventory))
-                throw $TypeError(".PB_RoleData.inventory: object expected");
-            message.inventory = $root.PB_InventoryData.fromObject(object.inventory, _depth + 1);
+        if (object.knapsack != null) {
+            if (!$util.isObject(object.knapsack))
+                throw $TypeError(".PB_RoleData.knapsack: object expected");
+            message.knapsack = $root.PB_KnapsackData.fromObject(object.knapsack, _depth + 1);
         }
         if (object.growth != null) {
             if (!$util.isObject(object.growth))
                 throw $TypeError(".PB_RoleData.growth: object expected");
             message.growth = $root.PB_RoleGrowthData.fromObject(object.growth, _depth + 1);
         }
-        if (object.role_bag != null) {
-            if (!$util.isObject(object.role_bag))
-                throw $TypeError(".PB_RoleData.role_bag: object expected");
-            message.role_bag = $root.PB_RoleBag.fromObject(object.role_bag, _depth + 1);
+        if (object.mmo != null) {
+            if (!$util.isObject(object.mmo))
+                throw $TypeError(".PB_RoleData.mmo: object expected");
+            message.mmo = $root.PB_MmoRoleData.fromObject(object.mmo, _depth + 1);
         }
         return message;
     };
@@ -32507,12 +45588,12 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
         let object = {};
         if (message.base_info != null && $Object.hasOwnProperty.call(message, "base_info"))
             object.base_info = $root.PB_RoleBaseInfo.toObject(message.base_info, options, _depth + 1);
-        if (message.inventory != null && $Object.hasOwnProperty.call(message, "inventory"))
-            object.inventory = $root.PB_InventoryData.toObject(message.inventory, options, _depth + 1);
+        if (message.knapsack != null && $Object.hasOwnProperty.call(message, "knapsack"))
+            object.knapsack = $root.PB_KnapsackData.toObject(message.knapsack, options, _depth + 1);
         if (message.growth != null && $Object.hasOwnProperty.call(message, "growth"))
             object.growth = $root.PB_RoleGrowthData.toObject(message.growth, options, _depth + 1);
-        if (message.role_bag != null && $Object.hasOwnProperty.call(message, "role_bag"))
-            object.role_bag = $root.PB_RoleBag.toObject(message.role_bag, options, _depth + 1);
+        if (message.mmo != null && $Object.hasOwnProperty.call(message, "mmo"))
+            object.mmo = $root.PB_MmoRoleData.toObject(message.mmo, options, _depth + 1);
         return object;
     };
 
@@ -32542,6 +45623,339 @@ export const PB_RoleData = $root.PB_RoleData = (() => {
     };
 
     return PB_RoleData;
+})();
+
+export const P_ZoneActivityNotify = $root.P_ZoneActivityNotify = (() => {
+
+    /**
+     * Properties of a P_ZoneActivityNotify.
+     * @typedef {Object} P_ZoneActivityNotify.$Properties
+     * @property {number|null} [activity_id] P_ZoneActivityNotify activity_id
+     * @property {string|null} [name] P_ZoneActivityNotify name
+     * @property {number|null} [zone_id] P_ZoneActivityNotify zone_id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_ZoneActivityNotify.
+     * @exports IP_ZoneActivityNotify
+     * @interface IP_ZoneActivityNotify
+     * @augments P_ZoneActivityNotify.$Properties
+     * @deprecated Use P_ZoneActivityNotify.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_ZoneActivityNotify.
+     * @typedef {P_ZoneActivityNotify.$Properties} P_ZoneActivityNotify.$Shape
+     */
+
+    /**
+     * Constructs a new P_ZoneActivityNotify.
+     * @exports P_ZoneActivityNotify
+     * @classdesc Represents a P_ZoneActivityNotify.
+     * @constructor
+     * @param {P_ZoneActivityNotify.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_ZoneActivityNotify = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_ZoneActivityNotify activity_id.
+     * @member {number|null|undefined} activity_id
+     * @memberof P_ZoneActivityNotify
+     * @instance
+     */
+    P_ZoneActivityNotify.prototype.activity_id = null;
+
+    /**
+     * P_ZoneActivityNotify name.
+     * @member {string|null|undefined} name
+     * @memberof P_ZoneActivityNotify
+     * @instance
+     */
+    P_ZoneActivityNotify.prototype.name = null;
+
+    /**
+     * P_ZoneActivityNotify zone_id.
+     * @member {number|null|undefined} zone_id
+     * @memberof P_ZoneActivityNotify
+     * @instance
+     */
+    P_ZoneActivityNotify.prototype.zone_id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ZoneActivityNotify.prototype, "_activity_id", {
+        get: $util.oneOfGetter($oneOfFields = ["activity_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ZoneActivityNotify.prototype, "_name", {
+        get: $util.oneOfGetter($oneOfFields = ["name"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_ZoneActivityNotify.prototype, "_zone_id", {
+        get: $util.oneOfGetter($oneOfFields = ["zone_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_ZoneActivityNotify instance using the specified properties.
+     * @function create
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {P_ZoneActivityNotify.$Properties=} [properties] Properties to set
+     * @returns {P_ZoneActivityNotify} P_ZoneActivityNotify instance
+     * @type {{
+     *   (properties: P_ZoneActivityNotify.$Shape): P_ZoneActivityNotify & P_ZoneActivityNotify.$Shape;
+     *   (properties?: P_ZoneActivityNotify.$Properties): P_ZoneActivityNotify;
+     * }}
+     */
+    P_ZoneActivityNotify.create = function(properties) {
+        return new P_ZoneActivityNotify(properties);
+    };
+
+    /**
+     * Encodes the specified P_ZoneActivityNotify message. Does not implicitly {@link P_ZoneActivityNotify.verify|verify} messages.
+     * @function encode
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {P_ZoneActivityNotify.$Properties} message P_ZoneActivityNotify message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ZoneActivityNotify.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.activity_id);
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+        if (message.zone_id != null && $Object.hasOwnProperty.call(message, "zone_id"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.zone_id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_ZoneActivityNotify message, length delimited. Does not implicitly {@link P_ZoneActivityNotify.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {P_ZoneActivityNotify.$Properties} message P_ZoneActivityNotify message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_ZoneActivityNotify.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_ZoneActivityNotify message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_ZoneActivityNotify & P_ZoneActivityNotify.$Shape} P_ZoneActivityNotify
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ZoneActivityNotify.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_ZoneActivityNotify();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.activity_id = reader.uint32();
+                    message._activity_id = "activity_id";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.name = reader.stringVerify();
+                    message._name = "name";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 0)
+                        break;
+                    message.zone_id = reader.int32();
+                    message._zone_id = "zone_id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_ZoneActivityNotify message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_ZoneActivityNotify & P_ZoneActivityNotify.$Shape} P_ZoneActivityNotify
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_ZoneActivityNotify.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_ZoneActivityNotify message.
+     * @function verify
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_ZoneActivityNotify.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id")) {
+            properties._activity_id = 1;
+            if (!$util.isInteger(message.activity_id))
+                return "activity_id: integer expected";
+        }
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name")) {
+            properties._name = 1;
+            if (!$util.isString(message.name))
+                return "name: string expected";
+        }
+        if (message.zone_id != null && $Object.hasOwnProperty.call(message, "zone_id")) {
+            properties._zone_id = 1;
+            if (!$util.isInteger(message.zone_id))
+                return "zone_id: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_ZoneActivityNotify message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_ZoneActivityNotify} P_ZoneActivityNotify
+     */
+    P_ZoneActivityNotify.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_ZoneActivityNotify)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_ZoneActivityNotify: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_ZoneActivityNotify();
+        if (object.activity_id != null)
+            message.activity_id = object.activity_id >>> 0;
+        if (object.name != null)
+            message.name = $String(object.name);
+        if (object.zone_id != null)
+            message.zone_id = object.zone_id | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_ZoneActivityNotify message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {P_ZoneActivityNotify} message P_ZoneActivityNotify
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_ZoneActivityNotify.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            object.activity_id = message.activity_id;
+        if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+            object.name = message.name;
+        if (message.zone_id != null && $Object.hasOwnProperty.call(message, "zone_id"))
+            object.zone_id = message.zone_id;
+        return object;
+    };
+
+    /**
+     * Converts this P_ZoneActivityNotify to JSON.
+     * @function toJSON
+     * @memberof P_ZoneActivityNotify
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_ZoneActivityNotify.prototype.toJSON = function() {
+        return P_ZoneActivityNotify.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_ZoneActivityNotify
+     * @function getTypeUrl
+     * @memberof P_ZoneActivityNotify
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_ZoneActivityNotify.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_ZoneActivityNotify";
+    };
+
+    return P_ZoneActivityNotify;
 })();
 
 export {

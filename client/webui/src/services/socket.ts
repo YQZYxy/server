@@ -50,9 +50,19 @@ export enum ConnectionState {
 }
 
 
-class GameSocket {
+export class GameSocket {
   private ws: WebSocket | null = null
   private state: ConnectionState = ConnectionState.Disconnected
+
+  // 指定连接地址(跨服场景服), 为空时使用当前页面地址
+  private baseUrl = ''
+  // 指定上行令牌(跨服票据), 为空时使用登录令牌
+  private tokenOverride = ''
+
+  constructor(baseUrl = '', token = '') {
+    this.baseUrl = baseUrl
+    this.tokenOverride = token
+  }
 
   private listeners = new Map<string, EventCallback[]>()
   private msgHandlers = new Map<number, Set<MsgHandler>>()
@@ -80,7 +90,10 @@ class GameSocket {
     if (this.ws?.readyState === WebSocket.OPEN) return
 
     const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:'
-    const url = `${protocol}//${location.host}/ws`
+    // 指定了地址时直连该网关(跨服场景服), 否则走当前页面地址的代理
+    const url = this.baseUrl
+      ? `${this.baseUrl.replace(/^http/, 'ws')}/ws`
+      : `${protocol}//${location.host}/ws`
     console.log('[WS] 连接:', url)
 
     this.state = ConnectionState.Connecting
@@ -158,7 +171,7 @@ class GameSocket {
     try {
       // 编码消息头
       const headObj: any = { msg_type: msgType }
-      const token = gameStore.getState().token
+      const token = this.tokenOverride || gameStore.getState().token
       if (token) headObj.token = token
       const headBytes = PB_MessageHead.encode(PB_MessageHead.create(headObj)).finish()
 
@@ -360,4 +373,9 @@ class GameSocket {
 }
 
 export const gameSocket = new GameSocket()
+
+// 创建独立连接(跨服场景服等), 不影响归属服连接
+export function createGameSocket(baseUrl = '', token = ''): GameSocket {
+  return new GameSocket(baseUrl, token)
+}
 export default gameSocket

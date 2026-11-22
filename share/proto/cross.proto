@@ -1,0 +1,54 @@
+// 字段必须加 optional 关键字 
+// 结构命名加 PB_ 
+// 协议命名加 P_
+syntax = "proto3";
+
+// =============================跨服数据结构========================================
+
+// 跨服角色快照
+// 场景服只持这份只读数据, 任何持久化修改都必须回归属服
+message PB_CrossRoleSnapshot
+{
+	optional uint64 role_uid		= 1;	// 角色uid
+	optional uint32 home_server_id	= 2;	// 数据归属服id
+	optional uint32 scene_server_id	= 3;	// 当前场景服id
+	optional uint32 activity_id		= 4;	// 关联活动id, 0表示默认场景
+	optional bytes extra			= 5;	// 业务扩展数据
+	optional bytes role_data		= 6;	// 完整角色数据(PB_RoleData序列化), 场景服据此建 RoleModule
+	optional string scene_ip		= 7;	// 场景服客户端入口 ip
+	optional uint32 scene_port		= 8;	// 场景服客户端入口端口
+	optional string token			= 9;	// 客户端连接场景服的认证令牌
+	optional float pos_x			= 10;	// 进场位置x, 场景服据此落点
+	optional float pos_y			= 11;	// 进场位置y
+	optional float pos_z			= 12;	// 进场位置z
+}
+
+// 进场票据, 归属服下发给客户端用于连接场景服
+message PB_CrossTicket
+{
+	optional uint64 role_uid		= 1;	// 角色uid
+	optional uint32 home_server_id	= 2;	// 数据归属服id
+	optional uint32 scene_server_id	= 3;	// 场景服id
+	optional uint64 expire_time		= 4;	// 票据过期时间
+	optional int32 cross_type		= 5;	// 跨服类型, 见 CROSS_TYPE_*
+	optional string scene_ip		= 6;	// 场景服网关对外ip
+	optional uint32 scene_port		= 7;	// 场景服网关对外端口
+	optional string token			= 8;	// 客户端进场令牌
+}
+
+// =============================跨服集群消息========================================
+
+// 归属服 -> 场景服: 离场
+// 使用 CLUSTER_CHANNEL_CROSS 通道, body_type 为 CROSS_MSG_LEAVE
+message P_CrossLeave
+{
+	optional uint64 role_uid	= 1;	// 角色uid
+}
+
+// 任意节点 -> 归属服: 查询角色数据
+// 使用 CLUSTER_CHANNEL_CROSS 通道, body_type 为 CROSS_MSG_QUERY_ROLE
+// 应答 body 为 PB_CrossRoleSnapshot
+message P_CrossQueryRole
+{
+	optional uint64 role_uid	= 1;	// 角色uid
+}

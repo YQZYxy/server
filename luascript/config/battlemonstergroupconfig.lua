@@ -5,14 +5,14 @@
 --[[
 字段结构说明:
 
-  id - 怪物组ID (int)
+  monster_group_id - 怪物组ID (int)
   desc - 描述 (string)
   monster_ids - 怪物条目列表(monster_id,count,level,attr_scale) ((array#sep=;),MonsterGroupEntry)
 --]]
 
 local M = {
     [1] = {
-        id = 1,
+        monster_group_id = 1,
         desc = "1只哥布林",
         monster_ids = {
             {
@@ -25,7 +25,7 @@ local M = {
     },
 
     [2] = {
-        id = 2,
+        monster_group_id = 2,
         desc = "2只哥布林",
         monster_ids = {
             {
@@ -38,7 +38,7 @@ local M = {
     },
 
     [3] = {
-        id = 3,
+        monster_group_id = 3,
         desc = "1只巨魔",
         monster_ids = {
             {
@@ -51,7 +51,7 @@ local M = {
     },
 
     [4] = {
-        id = 4,
+        monster_group_id = 4,
         desc = "冰霜元素",
         monster_ids = {
             {
@@ -64,7 +64,7 @@ local M = {
     },
 
     [5] = {
-        id = 5,
+        monster_group_id = 5,
         desc = "暗影领主",
         monster_ids = {
             {
@@ -77,7 +77,7 @@ local M = {
     },
 
     [6] = {
-        id = 6,
+        monster_group_id = 6,
         desc = "巨魔(强化)+冰霜",
         monster_ids = {
             {
@@ -96,7 +96,7 @@ local M = {
     },
 
     [7] = {
-        id = 7,
+        monster_group_id = 7,
         desc = "2只巨魔",
         monster_ids = {
             {
@@ -109,7 +109,7 @@ local M = {
     },
 
     [8] = {
-        id = 8,
+        monster_group_id = 8,
         desc = "哥布林+冰霜",
         monster_ids = {
             {
@@ -128,7 +128,7 @@ local M = {
     },
 
     [9] = {
-        id = 9,
+        monster_group_id = 9,
         desc = "3只哥布林",
         monster_ids = {
             {
@@ -141,7 +141,7 @@ local M = {
     },
 
     [10] = {
-        id = 10,
+        monster_group_id = 10,
         desc = "哥布林+巨魔",
         monster_ids = {
             {
@@ -160,7 +160,7 @@ local M = {
     },
 
     [11] = {
-        id = 11,
+        monster_group_id = 11,
         desc = "冰霜+巨魔",
         monster_ids = {
             {
@@ -179,7 +179,7 @@ local M = {
     },
 
     [12] = {
-        id = 12,
+        monster_group_id = 12,
         desc = "强化哥布林x3",
         monster_ids = {
             {
@@ -192,7 +192,7 @@ local M = {
     },
 
     [13] = {
-        id = 13,
+        monster_group_id = 13,
         desc = "巨魔+暗影领主",
         monster_ids = {
             {
@@ -211,7 +211,7 @@ local M = {
     },
 
     [14] = {
-        id = 14,
+        monster_group_id = 14,
         desc = "3只巨魔(强化)",
         monster_ids = {
             {
@@ -224,7 +224,7 @@ local M = {
     },
 
     [15] = {
-        id = 15,
+        monster_group_id = 15,
         desc = "冰霜+暗影领主",
         monster_ids = {
             {
@@ -243,7 +243,7 @@ local M = {
     },
 
     [16] = {
-        id = 16,
+        monster_group_id = 16,
         desc = "混合军团",
         monster_ids = {
             {
@@ -268,7 +268,7 @@ local M = {
     },
 
     [17] = {
-        id = 17,
+        monster_group_id = 17,
         desc = "精英哥布林x5",
         monster_ids = {
             {
@@ -281,7 +281,7 @@ local M = {
     },
 
     [18] = {
-        id = 18,
+        monster_group_id = 18,
         desc = "元素大军",
         monster_ids = {
             {
@@ -294,7 +294,7 @@ local M = {
     },
 
     [19] = {
-        id = 19,
+        monster_group_id = 19,
         desc = "暗影护卫队",
         monster_ids = {
             {
@@ -313,7 +313,7 @@ local M = {
     },
 
     [20] = {
-        id = 20,
+        monster_group_id = 20,
         desc = "最终Boss战",
         monster_ids = {
             {

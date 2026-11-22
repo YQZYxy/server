@@ -15,7 +15,7 @@
         <var name="w" type="float"/>
     </bean>
     <bean name="ItemType" sep=",">
-        <var name="id" type="int"/>
+        <var name="item_id" type="int"/>
         <var name="num" type="int"/>
     </bean>
     <bean name="AttrModifierType" sep=",">

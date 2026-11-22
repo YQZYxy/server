@@ -184,23 +184,5 @@ function ArenaUser:UpdateName(name)
     end
 end
 
--- ==================== GM ====================
-
-GLO.Gm.RegisterCommand("arena", "竞技场", function (args, role)
-    if #args < 1 then
-        return false,"用法:arena <req_type>"
-    end
-
-    local uid = role and role:GetUid() or 0
-    local user =  GLO.ArenaManager.GetArenaUser(uid)
-    local req_type = tonumber(args[1])
-    if 1 == req_type and user then
-        user.daily_challenge_count = 0
-        user.daily_refresh_count = 0
-    end
-
-    return true, "成功"
-end)
-
 LOG_INFO(" ArenaUser 加载完成")
 return M

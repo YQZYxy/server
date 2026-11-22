@@ -5,50 +5,50 @@
 --[[
 字段结构说明:
 
-  id - 等级 (int)
+  level - 等级 (int)
   level_rewards - 等级奖励 ((array#sep=;),ItemType)
 --]]
 
 local M = {
     [5] = {
-        id = 5,
+        level = 5,
         level_rewards = {
             {
-                id = 3001,
+                item_id = 3001,
                 num = 1,
             },
             {
-                id = 3003,
+                item_id = 3003,
                 num = 1,
             },
         },
     },
 
     [10] = {
-        id = 10,
+        level = 10,
         level_rewards = {
             {
-                id = 3003,
+                item_id = 3003,
                 num = 1,
             },
         },
     },
 
     [15] = {
-        id = 15,
+        level = 15,
         level_rewards = {
             {
-                id = 3005,
+                item_id = 3005,
                 num = 1,
             },
         },
     },
 
     [20] = {
-        id = 20,
+        level = 20,
         level_rewards = {
             {
-                id = 3005,
+                item_id = 3005,
                 num = 2,
             },
         },

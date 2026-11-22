@@ -8,10 +8,9 @@ if [ $# -gt 0 ]; then
     CONFIG="$1"
 fi
 
-# 验证配置参数
-if [ "$CONFIG" != "debug" ] && [ "$CONFIG" != "release" ]; then
-    echo "错误：配置必须是 'debug' 或 'release'，得到: $CONFIG"
-    exit 1
+# 验证配置参数(支持相对路径与绝对路径)
+if [ ! -d "$CONFIG" ] && [ ! -d "$(dirname "$0")/$CONFIG" ]; then
+    echo "提示：目录不存在，按部署目录处理: $CONFIG"
 fi
 
 echo "使用构建配置: $CONFIG"
@@ -21,9 +20,13 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 echo "SCRIPT_DIR: $SCRIPT_DIR"
 
 # 确定可执行文件目录
-if [ -d "$SCRIPT_DIR/$CONFIG" ]; then
+case "$CONFIG" in
+    /*) CONFIG_DIR="$CONFIG" ;;
+    *)  CONFIG_DIR="$SCRIPT_DIR/$CONFIG" ;;
+esac
+if [ -d "$CONFIG_DIR" ]; then
     # 项目根目录
-    BUILD_DIR="$SCRIPT_DIR/$CONFIG"
+    BUILD_DIR="$CONFIG_DIR"
 else
     # 部署目录
     BUILD_DIR="$SCRIPT_DIR"

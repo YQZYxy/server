@@ -14,7 +14,7 @@ interface ResultPanelProps {
 }
 
 export function ResultPanel({ onClose, data: propData }: ResultPanelProps = {}) {
-  const rawText = (propData?.battle_report as string) || ''
+  const rawText = (propData?.replay_text as string) || ''
   const heroList = rawText ? computeFinalHeroes(rawText) : []
 
   const resultType = (propData?.result_type ?? 0) as BattleResult

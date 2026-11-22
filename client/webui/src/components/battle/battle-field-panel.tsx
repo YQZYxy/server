@@ -1,5 +1,6 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
 import { gameStore } from '@/store/game-store'
+import { Attr } from '@/types'
 import { getPagePanels,registerActivePanel } from '@/components/registry'
 import {
   parseReplayText,
@@ -58,7 +59,7 @@ export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelPro
 
   // ---- 解析战报 ----
   useEffect(() => {
-    const rawText = (result.battle_report as string) || ''
+    const rawText = (result.replay_text as string) || ''
     if (!rawText) return
 
     const events = parseReplayText(rawText)
@@ -154,7 +155,7 @@ export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelPro
           let abilityCfg: { name?: string; cost_attrs?: [number, number][] } | undefined
           try {
             const cfgs = getAbilityConfig()
-            abilityCfg = cfgs?.find(c => c.id === abilityId)
+            abilityCfg = cfgs?.find(c => c.ability_id === abilityId)
             abilityName = abilityCfg?.name || ''
           } catch (_) { /* 配置未加载 */ }
           // 扣除技能消耗的法力值
@@ -162,7 +163,7 @@ export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelPro
           const srcHero = updated.find(h => h.pid === srcPid)
           if (srcHero && abilityCfg?.cost_attrs) {
             for (const [attrId, cost] of abilityCfg.cost_attrs) {
-              if (attrId === 2) {
+              if (attrId === Attr.MANA) {
                 srcHero.mp = Math.max(0, srcHero.mp - cost)
               }
             }
@@ -224,7 +225,7 @@ export default function BattleFieldPanel({ result, onBack }: BattleFieldPanelPro
           const attrId = getField(evt, 'attr_id')
           const newVal = getField(evt, 'new')
           const hero = updated.find(h => h.pid === pid)
-          if (hero && attrId === 8) {
+          if (hero && attrId === Attr.MANA) {
             // 法力回复: 增加MP
             hero.mp = Math.min(hero.maxMp, hero.mp + newVal)
           }

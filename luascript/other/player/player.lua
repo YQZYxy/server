@@ -6,25 +6,21 @@
 local GLO = GLO 
 local M = {}
 local Utils = GLO.Utils
-local Const = GLO.Const
+local PlayerDef = GLO.PlayerDef
 local ConfigManager = GLO.ConfigManager
 
 local Player = GLO.Class:Extend('Player')
 M.Player = Player
 
--- 属性ID列表(不含 NONE=0,用于迭代)
+-- 属性ID列表
 local s_attr_id_list = {}
-do
-    for key, val in pairs(Const.Attr) do
-        if type(val) == 'number' and val ~= 0 then
-            s_attr_id_list[#s_attr_id_list + 1] = val
-        end
-    end
+for attr_id = 0, PlayerDef.ATTR_MAX - 1 do
+    s_attr_id_list[#s_attr_id_list + 1] = attr_id
 end
 
 function Player:Ctor()
-    self.player_id = 0
-    self.player_type = Const.PlayerType.NONE
+    self.obj_id = 0
+    self.obj_type = PlayerDef.ObjType.NONE
     self.name = 'Unknown'
     self.level = 1
     self.attrs = {}
@@ -55,9 +51,11 @@ function M.CalculateAttrsFromConfig(base_map, growth_map, level)
     growth_map = growth_map or {}
     local attrs = {}
     for _, attr_id in ipairs(s_attr_id_list) do
-        local base = tonumber(base_map[attr_id]) or 0
-        local growth = tonumber(growth_map[attr_id]) or 0
-        attrs[attr_id] = base + (level - 1) * growth
+        local base = tonumber(base_map[attr_id] or 0)
+        local growth = tonumber(growth_map[attr_id] or 0)
+        if base and growth then
+            attrs[attr_id] = base + (level - 1) * growth
+        end
     end
     return attrs
 end
@@ -67,11 +65,19 @@ function Player:SetAttr(attr_id, value)
 end
 
 function Player:GetAttr(attr_id)
-    return self.attrs[attr_id] or 0
+    local value = self.attrs[attr_id]
+    if value == nil then
+        return 0
+    end
+    return value
 end
 
 function Player:AddAbility(ability_id, level)
-    self.abilities[ability_id] = {id = ability_id, level = level or 1}
+    if not level or level <= 0 then
+        LOG_ERROR("技能等级无效 ability_id=" .. tostring(ability_id))
+    else
+        self.abilities[ability_id] = {ability_id = ability_id, level = level}
+    end
 end
 
 function Player:GetAbilities()
@@ -79,19 +85,19 @@ function Player:GetAbilities()
 end
 
 function Player:GetHealth()
-    return self.attrs[Const.Attr.HEALTH] or 0
+    return self:GetAttr(PlayerDef.Attr.HEALTH)
 end
 
 function Player:GetMaxHealth()
-    return self.attrs[Const.Attr.MAX_HEALTH] or 0
+    return self:GetAttr(PlayerDef.Attr.MAX_HEALTH)
 end
 
 function Player:GetMana()
-    return self.attrs[Const.Attr.MANA] or 0
+    return self:GetAttr(PlayerDef.Attr.MANA)
 end
 
 function Player:GetMaxMana()
-    return self.attrs[Const.Attr.MAX_MANA] or 0
+    return self:GetAttr(PlayerDef.Attr.MAX_MANA)
 end
 
 function Player:IsAlive()

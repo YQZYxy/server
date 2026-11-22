@@ -61,7 +61,7 @@ message P_ServerlDataDb_S
 
 message PB_GlobalDataDbNode
 {
-	optional string id						= 1;
+	optional string key							= 1;
 	optional string data						= 2;
 } 
 
@@ -113,7 +113,7 @@ message P_ArenaDb_S
 // 排行榜数据库节点
 message PB_RankDbNode
 {
-	optional uint32 uid						= 1;	// 用户uid
+	optional int64 uid						= 1;	// 用户uid
 	optional string name					= 2;	// 名字
 	optional int64 value					= 3;	// 排行榜主值
 	optional int64 param1					= 4;	// 自定义排序参数
@@ -141,6 +141,35 @@ message P_RankDb_S
 	optional int32 rank_type					= 3;	// 排行榜类型
 	repeated PB_RankDbNode datas		= 4;	// 数据列表
 }
+
+// ============================活动状态数据库=======================================
+
+// 活动状态数据库请求类型
+enum PE_ACTIVITY_STATE_DB_REQ_TYPE
+{
+	PE_ACTIVITY_STATE_DB_REQ_LOAD = 0;	// 加载
+	PE_ACTIVITY_STATE_DB_REQ_SAVE = 1;	// 保存
+}
+
+// 活动状态请求
+// MHT_ACTIVITY_STATE_DB_C = 109
+message P_ActivityStateDb_C
+{
+	optional int32 req_type				= 1;	// 0=加载 1=保存
+	optional int32 server_id			= 2;	// 逻辑服id
+	repeated PB_ActivityState states	= 3;	// 活动状态列表
+}
+
+// 活动状态返回
+// MHT_ACTIVITY_STATE_DB_S = 110
+message P_ActivityStateDb_S
+{
+	optional int32 req_type				= 1;	// 0=加载
+	optional int32 ret					= 2;	// 0=失败 1=成功
+	optional int32 server_id			= 3;	// 逻辑服id
+	repeated PB_ActivityState states	= 4;	// 活动状态列表
+}
+
 
 // ============================角色相关数据库=======================================
 
@@ -181,7 +210,7 @@ enum PINITROLEDATA_C{
 message P_InitRoleData_C			
 {
 	optional int32 req_type = 1;
-	optional int32 uid					= 2;
+	optional int64 uid					= 2;
 	
 	// 登录专用
 	optional string user_name				= 3;
@@ -259,74 +288,222 @@ message P_ChatDb_S
 
 
 // ================================================================================ 
-// ============================ UE 战斗服协议==========================================
+// ============================ UE服协议起始10000=================================== 
 // ================================================================================ 
 
-// 战斗服注册
-// MHT_BATTLE_SERVER_REGISTER = 20001
+// UE服注册
+// MHT_BATTLE_SERVER_REGISTER = 10001
 message P_BattleServerRegister
 {
-    optional int32 id					= 1;		// 战斗服id
+    optional int32 ue_id				= 1;		// UE服id
     optional string ip					= 2;
     optional int32 port					= 3;
     optional int32 weight				= 4;
 }
 
-// 战斗服心跳
-// MHT_BATTLE_SERVER_HEARTBEAT = 20002
+// UE服心跳
+// MHT_BATTLE_SERVER_HEARTBEAT = 10002
 message P_BattleServerHeartbeat
 {
-    optional int32 id						= 1;	// 战斗服id
+    optional int32 ue_id					= 1;	
     optional int32 player_count				= 2;
     optional double cpu_usage				= 3;
 }
 
-// 战斗服cmd
-// MHT_BATTLE_SERVER_COMMAND = 20003
+// UE服cmd
+// MHT_BATTLE_SERVER_COMMAND = 10003
 message P_BattleServerCommand
 {
-    optional int32 id				= 1;		// 战斗服id
+    optional int32 ue_id			= 1;		
     optional string command			= 2;
 }
 
-// 战斗服状态
-// MHT_BATTLE_SERVER_STATUS = 20004
+// UE服状态
+// MHT_BATTLE_SERVER_STATUS = 10004
 message P_BattleServerStatus
 {
-    optional int32 id				= 1;		// 战斗服id
+    optional int32 ue_id			= 1;		
     optional bool alive				= 2;
     optional int32 player_count		= 3;
     optional double cpu_usage		= 4;
 }
 
-// 向战斗服注册角色信息
-// MHT_BATTLE_SERVER_REGISTER_TOKEN_AND_ROLE_DATA = 20005
+// 向战UE服注册角色信息
+// MHT_BATTLE_SERVER_REGISTER_TOKEN_AND_ROLE_DATA = 10005
 message P_BattleServerRegisterTokenAndRoleData
 {
-	optional int32 id					= 1;	// 战斗服id
+	optional int32 ue_id				= 1;	
 	optional PB_RoleData role_data		= 2;	// 角色数据
 	optional string token	= 3;
 }
 
-// 战斗服保存角色信息
-// MHT_BATTLE_SAVE_ROLE_DATA = 20006
+// UE服保存角色信息
+// MHT_BATTLE_SAVE_ROLE_DATA = 10006
 message P_BattleServerSaveRoleData
 {
 	optional PB_RoleData role_data		= 1;	// 角色数据
 	optional string token	= 2;
 }
 
-// 战斗服提出玩家
-// MHT_BATTLE_KICK_OUT_ROLE = 20007
+// UE服踢出玩家
+// MHT_BATTLE_KICK_OUT_ROLE = 10007
 message P_BattleServerKickOutRole
 {
-	optional int32 uid		= 1;	// 角色数据
+	optional int64 uid		= 1;	// 角色数据
 	optional string token		= 2; // 角色令牌
 }
 
 // ================================================================================ 
-// ============================外部协议============================================
+// ============================角色相关协议起始20000================================
 // ================================================================================ 
+
+
+// =============================场景与AOI协议========================================
+
+// 进入场景请求
+// MHT_MMO_ENTER_SCENE_CS = 20001
+message P_MmoEnterScene_CS
+{
+	optional uint64 scene_id				= 1;	// 目标场景id
+	optional float x						= 2;	// 出生点x
+	optional float y						= 3;	// 出生点y
+	optional float z						= 4;	// 出生点z
+}
+
+// 离开场景请求
+// MHT_MMO_LEAVE_SCENE_CS = 20002
+message P_MmoLeaveScene_CS
+{
+	optional uint64 scene_id				= 1;	// 场景id, 0表示当前场景
+}
+
+// 移动请求
+// MHT_MMO_MOVE_CS = 20003
+message P_MmoMove_CS
+{
+	optional float x						= 1;	// 目标点x
+	optional float y						= 2;	// 目标点y
+	optional float z						= 3;	// 目标点z
+	optional float speed					= 4;	// 移动速度
+}
+
+// 停止移动请求
+// MHT_MMO_STOP_MOVE_CS = 20004
+message P_MmoStopMove_CS
+{
+	optional float x						= 1;	// 停止点x
+	optional float y						= 2;	// 停止点y
+	optional float z						= 3;	// 停止点z
+}
+
+// 实体进入视野同步
+// MHT_MMO_SYNC_ENTITY_SC = 20005
+message P_MmoSyncEntity_SC
+{
+	optional uint64 obj_id   				= 1;	// 实体id
+	optional uint64 owner_uid				= 2;	// 玩家实体对应的角色uid, 非玩家实体为0
+	optional int32 obj_type					= 3;	// 实体类型
+	optional float x						= 4;	// 位置x
+	optional float y						= 5;	// 位置y
+	optional float z						= 6;	// 位置z
+	optional string role_name				= 7;	// 角色名
+	optional int32 level					= 8;	// 等级
+	optional int32 hp						= 9;	// 当前生命
+	optional int32 max_hp					= 10;	// 最大生命
+	optional bool dead						= 11;	// 是否死亡
+}
+
+// 实体离开视野同步
+// MHT_MMO_SYNC_LEAVE_ENTITY_SC = 20006
+message P_MmoSyncLeaveEntity_SC
+{
+	optional uint64 obj_id   				= 1;	// 实体id
+}
+
+// 实体移动同步
+// MHT_MMO_SYNC_MOVE_SC = 20007
+message P_MmoSyncMove_SC
+{
+	optional uint64 obj_id   				= 1;	// 实体id
+	optional float x						= 2;	// 位置x
+	optional float y						= 3;	// 位置y
+	optional float z						= 4;	// 位置z
+}
+
+// 普通攻击请求
+// MHT_MMO_ATTACK_CS = 20008
+message P_MmoAttack_CS
+{
+	optional uint64 target_obj_id		= 1;	// 目标实体id
+}
+
+// 释放技能请求
+// MHT_MMO_SKILL_CS = 20009
+message P_MmoSkill_CS
+{
+	optional int32 skill_id				= 1;	// 技能id
+	optional uint64 target_obj_id		= 2;	// 目标实体id
+}
+
+// 伤害同步
+// MHT_MMO_DAMAGE_SC = 20010
+message P_MmoDamage_SC
+{
+	optional uint64 obj_id					= 1;	// 受击实体id
+	optional uint64 attacker_uid			= 2;	// 攻击者角色uid
+	optional int32 damage					= 3;	// 本次伤害
+	optional int32 hp						= 4;	// 受击后剩余生命
+	optional bool dead						= 5;	// 是否死亡
+}
+
+// 角色状态同步
+// MHT_MMO_ROLE_STATE_SC = 20011
+message P_MmoRoleState_SC
+{
+	optional uint64 obj_id				= 1;	// 实体id
+	optional uint64 owner_uid			= 2;	// 实体归属角色uid
+	optional int32 hp					= 3;	// 当前生命
+	optional int32 max_hp				= 4;	// 最大生命
+	optional bool dead					= 5;	// 是否死亡
+	optional int32 value				= 6;	// 附加数值(伤害飘字/恢复生命)
+}
+
+// 客户端 -> 归属服: 申请进入跨服玩法
+// MHT_CROSS_ENTER_CS = 20012
+message P_CrossEnter_CS
+{
+	optional int32 cross_type	= 1;	// 1小跨服 2大跨服
+	optional uint32 activity_id	= 2;	// 关联活动, 0表示默认场景
+}
+
+// 归属服 -> 客户端: 跨服进场票据(场景服地址与令牌)
+// MHT_CROSS_ENTER_SC = 20013
+message P_CrossEnter_SC
+{
+	optional bool success		= 1;	// 是否成功
+	optional string error		= 2;	// 失败原因
+	optional string scene_ip	= 3;	// 场景服客户端入口ip
+	optional uint32 scene_port	= 4;	// 场景服客户端入口端口
+	optional string token		= 5;	// 连接场景服的认证令牌
+	optional uint64 expire_time	= 6;	// 票据过期时间
+	optional int32 cross_type	= 7;	// 跨服类型
+}
+
+// 客户端 -> 场景服: 跨服会话认证
+// MHT_CROSS_AUTH_CS = 20014
+message P_CrossAuth_CS
+{
+	optional uint64 role_uid	= 1;	// 角色uid
+	optional string token		= 2;	// 归属服下发的令牌
+}
+
+// 场景服 -> 客户端: 跨服会话认证结果
+// MHT_CROSS_AUTH_SC = 20015
+message P_CrossAuth_SC
+{
+	optional bool success		= 1;	// 是否成功
+	optional string error		= 2;	// 失败原因
+}
 
 // ============================登录=======================================
 
@@ -375,7 +552,7 @@ message P_BattleServer_CS
 // MHT_BATTLE_SERVER_SC = 30006
 message P_BattleServer_SC			
 {
-	optional int32 ret						= 1;
+	optional int32 ret								= 1;
 	optional string server_ip						= 2;	// battle server ip
 	optional int32 server_port						= 3;	// battle server port
 }
@@ -395,7 +572,7 @@ message P_UserHeartbeat
 message P_SyncRoleInfoReq_CS			
 {
 	optional int32 req_type				= 1;
-	optional int32 token					= 2;
+	optional int32 token				= 2;
 	optional string user_name			= 3;
 }
 
@@ -404,7 +581,7 @@ message P_SyncRoleInfoReq_CS
 message P_SyncRoleInfoRet_SC		
 {
 	optional PB_RoleBaseInfo role_base_info		= 1;
-	optional int32 server_id						= 2;
+	optional int32 server_id					= 2;
 }
 
 // ============================聊天=======================================
@@ -415,8 +592,8 @@ message P_Chat_CS
 {
 	optional int32 req_type					= 1;	// 0:set 1:get
 	optional int32 type						= 2;
-	optional string chat_msg					= 3;
-	optional uint64 begin_id					= 4;	// 从那条id开始获取旧数据
+	optional string chat_msg				= 3;
+	optional uint64 begin_id				= 4;	// 从那条id开始获取旧数据
 	optional uint64 get_count				= 5;	// 从id开始获取多少条
 }
 
@@ -436,36 +613,34 @@ message P_Chat_SC
 // MHT_GAS_BATTLE_CS = 30012
 message P_GasBattle_CS
 {
-	optional int32 req_type 		= 1;	// 0=战斗 1=获取战报
-	optional int32 battle_type	= 2;
-	optional int32 id			= 3;	// battle_type 为pve时为关卡id,pvp时为uid
-	optional string battle_report_key	= 4;	// req_type=1时,指定要获取的战报key
-	// 测试的参数
-	optional string params			= 10;
+	optional int32 req_type 			= 1;	// 0=战斗 1=获取战报
+	optional int32 battle_type			= 2;	// 战斗类型(Const.BattleType)
+	optional int64 target_id			= 3;	// 战斗目标(主线=关卡ID,竞技场=对手UID)
+	optional string report_key			= 4;	// req_type=1时,指定要获取的战报key
 }
 
 // gas战斗cmd返回
 // MHT_GAS_BATTLE_SC = 30013
 message P_GasBattle_SC
 {
-	optional int32 ret_type 			= 1;		// 对应 P_GasBattle_CS 的 req_type(0=战斗 1=战报回放)
-	optional int32 battle_type			= 2;	// 战斗类型
-	optional int32 id					= 3;	// 关联id(主线为关卡id,竞技场为对手uid)
+	optional int32 ret_type 				= 1;		// 对应 P_GasBattle_CS 的 req_type(0=战斗 1=战报回放)
+	optional int32 battle_type				= 2;		// 战斗类型
+	optional int64 target_id				= 3;		// 战斗目标(主线=关卡ID,竞技场=对手UID)
 	// 战斗结果
-	optional int32 total_matches		= 4;	// 总场次(1=单场)
-	optional int32 series_result		= 5;	// 总结果(单场即本场结果)
-	optional int32 win_matches			= 6;	// 已获胜场数(单场胜利=1)
-	repeated PB_BattleMatchResult matches	= 7;	// 各场次结果(单场1个,系列N个,战报查询1个)
+	optional int32 total_matches			= 4;		// 总场次(1=单场)
+	optional int32 series_result			= 5;		// 总结果(单场即本场结果)
+	optional int32 win_matches				= 6;		// 已获胜场数(单场胜利=1)
+	repeated PB_BattleMatchResult matches	= 7;		// 各场次结果(单场1个,系列N个,战报查询1个)
 
-	optional int32 score_change			= 8;	// 积分变化(竞技场专用,正为加负为减)
-	optional int32 score_after			= 9;	// 战斗后积分(竞技场专用)
+	optional int32 score_change				= 8;		// 积分变化(竞技场专用,正为加负为减)
+	optional int32 score_after				= 9;		// 战斗后积分(竞技场专用)
 }
 
 // 背包数据同步
-// MHT_SYNC_INVENTORY_DATA_SC = 30014
-message P_SyncInventoryData_SC
+// MHT_SYNC_KNAPSACK_DATA_SC = 30014
+message P_SyncKnapsackData_SC
 {
-	optional PB_InventoryData inventory_data		= 1;	// 背包数据
+	optional PB_KnapsackData knapsack_data		= 1;	// 背包数据
 }
 
 // 角色额外数据同步
@@ -478,10 +653,10 @@ message P_SyncRoleExtraData_SC
 // ============================任务=======================================
 
 // 任务数据同步
-// MHT_SYNC_QUEST_DATA_SC = 30016
-message P_SyncQuestData_SC
+// MHT_SYNC_TASK_DATA_SC = 30016
+message P_SyncTaskData_SC
 {
-	optional PB_QuestData quest_data				= 1;	// 任务数据
+	optional PB_TaskData task_data				= 1;	// 任务数据
 }
 
 // ============================英雄信息=======================================
@@ -517,7 +692,7 @@ message P_SyncLineupUpdate_CS
 // MHT_RANK_CS = 30020
 message P_Rank_CS
 {
-	optional int32 rank_type					= 1;	// 排行榜类型
+	optional int32 rank_type				= 1;	// 排行榜类型
 	optional int32 rank_offset				= 2;	// 偏移(0表示第一页)
 }
 
@@ -525,11 +700,11 @@ message P_Rank_CS
 // MHT_RANK_SC = 30021
 message P_Rank_SC
 {
-	optional int32 rank_type					= 1;	// 排行榜类型
-	optional int32 ret						= 2;	// 1成功 0失败
-	repeated PB_RankNode rank_list	= 3;	// 排行榜列表
-	optional bool has_more					= 4;	// 是否有更多
-	optional int32 total						= 5;	// 总人数
+	optional int32 rank_type			= 1;	// 排行榜类型
+	optional int32 ret					= 2;	// 1成功 0失败
+	repeated PB_RankNode rank_list		= 3;	// 排行榜列表
+	optional bool has_more				= 4;	// 是否有更多
+	optional int32 total				= 5;	// 总人数
 }
 
 // ============================竞技场协议==========================================
@@ -537,10 +712,10 @@ message P_Rank_SC
 // 竞技场对手信息
 message PB_ArenaOpponentInfo
 {
-	optional int32 uid						= 1;	// 对手uid
-	optional string name						= 2;	// 对手名字
-	optional string user_name				= 3;	// 对手用户名
-	optional int32 score						= 4;	// 对手分数
+	optional int64 uid				= 1;	// 对手uid
+	optional string name			= 2;	// 对手名字
+	optional string user_name		= 3;	// 对手用户名
+	optional int32 score			= 4;	// 对手分数
 	repeated PB_HeroData heroes		= 5;	// 对手阵容英雄信息
 }
 
@@ -549,11 +724,11 @@ message PB_ArenaBattleLog
 {
 	optional int64 time						= 1;	// 战斗时间
 	optional string report_key				= 2;	// 战报key
-	repeated PB_HeroData my_heroes	= 3;	// 我方阵容
-	optional int32 opponent_uid				= 4;	// 对方uid
+	repeated PB_HeroData my_heroes			= 3;	// 我方阵容
+	optional int64 opponent_uid				= 4;	// 对方uid
 	optional string opponent_name			= 5;	// 对方名字
-	repeated PB_HeroData opponent_heroes = 6;	// 对方阵容
-	optional bool is_win						= 7;	// 是否胜利
+	repeated PB_HeroData opponent_heroes 	= 6;	// 对方阵容
+	optional bool is_win					= 7;	// 是否胜利
 	optional int32 score_change				= 8;	// 积分变化(正为加,负为减)
 	optional int32 score_after				= 9;	// 战斗后积分
 }
@@ -569,12 +744,12 @@ message P_Arena_CS
 // MHT_ARENA_SC = 30023
 message P_Arena_SC
 {
-	optional int32 req_type					= 1;	// 对应请求类型
-	optional int32 ret						= 2;	// 1成功 0失败
+	optional int32 req_type					= 1;		// 对应请求类型
+	optional int32 ret						= 2;		// 1成功 0失败
 	optional int32 score						= 3;	// 当前分数
 	optional int32 daily_challenge_count		= 4;	// 每日剩余挑战次数
-	optional int32 daily_refresh_count		= 5;	// 每日剩余免费刷新次数
-	repeated PB_ArenaOpponentInfo opponents	= 6;	// 对手列表(req_type=1/2)
+	optional int32 daily_refresh_count		= 5;		// 每日剩余免费刷新次数
+	repeated PB_ArenaOpponentInfo opponents	= 6;		// 对手列表(req_type=1/2)
 }
 
 // ============================竞技场战斗日志协议===================================
@@ -594,7 +769,7 @@ message P_ArenaBattleLog_SC
 message P_ArenaRank_SC
 {
 	optional int32 ret						= 1;	// 1成功 0失败
-	repeated PB_ArenaRankNode rank_list	= 2;	// 排行榜列表
+	repeated PB_ArenaRankNode rank_list		= 2;	// 排行榜列表
 	optional bool has_more					= 3;	// 是否有更多
-	optional int32 total						= 4;	// 总人数
+	optional int32 total					= 4;	// 总人数
 }

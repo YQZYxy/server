@@ -18,7 +18,7 @@ export default function HeroDetailPanel({ hero, onBack }: HeroDetailPanelProps) 
     const arr = getAttrConfig()
     if (!arr) return null
     const map: Record<number, AttrConfig> = {}
-    for (const c of arr) map[c.id] = c
+    for (const c of arr) map[c.attr_id] = c
     return map
   }, [])
 
@@ -31,31 +31,32 @@ export default function HeroDetailPanel({ hero, onBack }: HeroDetailPanelProps) 
   // 英雄名和技能名配置查找
   const heroName = useMemo(() => {
     const configs = getHeroConfig()
-    return configs?.find(c => c.id === hero.hero_id)?.name || `英雄#${hero.hero_id}`
+    return configs?.find(c => c.hero_id === hero.hero_id)?.name || `英雄#${hero.hero_id}`
   }, [hero.hero_id])
 
   const getAbilityName = useCallback((id: number): string => {
     const configs = getAbilityConfig()
-    return configs?.find(c => c.id === id)?.name || `技能#${id}`
+    return configs?.find(c => c.ability_id === id)?.name || `技能#${id}`
   }, [])
 
   const attrPairs = useMemo(() => hero?.attrs?.attrs ?? [], [hero])
   const abilityIds = useMemo(() => hero?.abilities?.ability_ids ?? [], [hero])
   const combatPower = useMemo(() => hero.combat_power ?? 0, [hero])
 
-  // 属性分组
+  // 属性分组(仅决定展示顺序与分组, 百分比与否由配置的 is_per 决定)
   const attrGroups = useMemo(() => {
-    const map: Record<number, number> = {}
-    for (const a of attrPairs) {
-      if (a.attr_id != null && a.value != null) map[a.attr_id] = a.value
-    }
     return [
-      { label: '生命/法力', ids: [Attr.HEALTH, Attr.MANA], format: (v: number) => v.toFixed(0) },
-      { label: '主属性', ids: [Attr.STRENGTH, Attr.AGILITY, Attr.INTELLIGENCE, Attr.VITALITY, Attr.LUCK], format: (v: number) => v.toFixed(0) },
-      { label: '战斗属性', ids: [Attr.CRIT_CHANCE, Attr.CRIT_DAMAGE, Attr.ATTACK_SPEED, Attr.DODGE_CHANCE, Attr.BLOCK_CHANCE, Attr.DAMAGE_MULTIPLIER], format: (v: number) => v < 10 ? `${(v * 100).toFixed(1)}%` : v.toFixed(2) },
-      { label: '护甲', ids: [Attr.ARMOR], format: (v: number) => v.toFixed(0) },
+      { label: '生命/法力', ids: [Attr.HEALTH, Attr.MANA] },
+      { label: '主属性', ids: [Attr.STRENGTH, Attr.AGILITY, Attr.INTELLIGENCE, Attr.VITALITY, Attr.LUCK] },
+      { label: '战斗属性', ids: [Attr.CRIT_CHANCE, Attr.CRIT_DAMAGE, Attr.ATTACK_SPEED, Attr.DODGE_CHANCE, Attr.BLOCK_CHANCE, Attr.DAMAGE_MULTIPLIER] },
+      { label: '护甲', ids: [Attr.ARMOR] },
     ]
-  }, [attrPairs])
+  }, [])
+
+  // 百分比属性按百分比展示, 其余按整数
+  const formatAttrValue = useCallback((id: number, v: number): string => {
+    return attrConfigs?.[id]?.is_per === 1 ? `${(v * 100).toFixed(1)}%` : v.toFixed(0)
+  }, [attrConfigs])
 
   const handleOverlayClick = useCallback((e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onBack()
@@ -110,7 +111,7 @@ export default function HeroDetailPanel({ hero, onBack }: HeroDetailPanelProps) 
                   {items.map(a => (
                     <div key={a.id} className="hero-detail-item">
                       <span className="detail-label">{a.name}</span>
-                      <span className="detail-value">{group.format(a.val)}</span>
+                      <span className="detail-value">{formatAttrValue(a.id, a.val)}</span>
                     </div>
                   ))}
                 </div>

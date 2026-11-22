@@ -16,13 +16,13 @@ const BATTLE_TYPES = BATTLE_TYPE_CONFIGS
 // 获取英雄图标(从配置的角色职业映射)
 function getHeroIcon(heroId: number): string {
   const configs = getHeroConfig()
-  const job = configs?.find(c => c.id === heroId)?.job
+  const job = configs?.find(c => c.hero_id === heroId)?.job
   return JOB_ICONS[(job ?? 0) as Job] ?? DEFAULT_HERO_ICON
 }
 
 function getHeroName(heroId: number): string {
   const configs = getHeroConfig()
-  return configs?.find(c => c.id === heroId)?.name || `英雄#${heroId}`
+  return configs?.find(c => c.hero_id === heroId)?.name || `英雄#${heroId}`
 }
 
 // ---- 可拖拽英雄卡片子组件 ----

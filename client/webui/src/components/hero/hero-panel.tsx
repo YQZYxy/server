@@ -18,13 +18,13 @@ gameSocket.onMsg(MHT.MHT_SYNC_LINEUP_DATA_SC, (body) => gameStore.setState({ lin
 /** 从配置获取英雄名 (同步) */
 function getHeroName(heroId: number): string {
   const configs = getHeroConfig()
-  return configs?.find(c => c.id === heroId)?.name || `英雄#${heroId}`
+  return configs?.find(c => c.hero_id === heroId)?.name || `英雄#${heroId}`
 }
 
 /** 从配置获取英雄图标 (角色职业映射) */
 function getHeroIcon(heroId: number): string {
   const configs = getHeroConfig()
-  const job = configs?.find(c => c.id === heroId)?.job
+  const job = configs?.find(c => c.hero_id === heroId)?.job
   return JOB_ICONS[(job ?? 0) as Job] ?? DEFAULT_HERO_ICON
 }
 

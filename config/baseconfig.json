@@ -1,0 +1,56 @@
+{
+    "gatewayserver": {
+        "ListenIP": "0.0.0.0",
+        "ListenPort": 38001,
+        "ConnectIP": "127.0.0.1",
+        "StaticDir": "dist"
+    },
+    "globalserver": {
+        "ListenIP": "0.0.0.0",
+        "ListenPort": 38030,
+        "ConnectIP": "127.0.0.1"
+    },
+    "logicserver": {
+        "ListenIP": "0.0.0.0",
+        "ListenPort": 38011,
+        "ConnectIP": "127.0.0.1",
+        "BattleListenPort": 38012,
+        "ServerId": 1,
+        "ServerBeginTimestamp": "2025-1-1 0:0:0",
+        "LuaScriptDir": "luascript"
+    },
+    "dbserver": {
+        "ListenIP": "0.0.0.0",
+        "ListenPort": 38021,
+        "ConnectIP": "127.0.0.1",
+        "Counter": {
+            "DBName": "xygame_s1",
+            "UserName": "root",
+            "Password": "123456",
+            "AddrIP": "127.0.0.1"
+        }
+    },
+    "plugin": {
+        "node": {
+            "zone_id": 1,
+            "instance_id": 1
+        },
+        "cluster": {
+            "enabled": false,
+            "listen_ip": "0.0.0.0",
+            "listen_port": 0,
+            "auth_token": "yqzy_cross_2026",
+            "heartbeat_interval": 5,
+            "heartbeat_timeout": 20,
+            "connect_retry_interval": 5,
+            "request_timeout": 10,
+            "max_frame_size": 4194304,
+            "peers": []
+        },
+        "zone": {
+            "enabled": false,
+            "zones": []
+        },
+        "merged_server_ids": []
+    }
+}

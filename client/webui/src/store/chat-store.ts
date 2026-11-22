@@ -111,7 +111,7 @@ export const chatStore = create<ChatState>((set, get) => ({
     set(s => {
       const ch = s.channels[type] || createEmptyChannel()
       const has_more = begin_id > 1
-      const oldest = messages.length > 0 ? (messages[0].id ?? 0) : 0
+      const oldest = messages.length > 0 ? (messages[0].chat_id ?? 0) : 0
       return {
         channels: {
           ...s.channels,
@@ -131,7 +131,7 @@ export const chatStore = create<ChatState>((set, get) => ({
     set(s => {
       const ch = s.channels[type] || createEmptyChannel()
       const has_more = begin_id > 1
-      const oldest = messages.length > 0 ? (messages[0].id ?? 0) : ch.oldest_loaded_id
+      const oldest = messages.length > 0 ? (messages[0].chat_id ?? 0) : ch.oldest_loaded_id
       return {
         channels: {
           ...s.channels,
@@ -177,7 +177,7 @@ gameSocket.onMsg(MHT.MHT_CHAT_SC, (body: any) => {
       const newMsg = msgs[0]
       // 去重 避免请求响应和广播都包含同一条消息
       const ch = state.channels[type]
-      if (ch && ch.messages.some(m => (m.id ?? 0) > 0 && m.id === newMsg.id)) {
+      if (ch && ch.messages.some(m => (m.chat_id ?? 0) > 0 && m.chat_id === newMsg.chat_id)) {
         return
       }
       chatStore.setState(s => {

@@ -33,24 +33,12 @@ build_project()
     # 子项目列表 (提取可执行文件)
     local SUB_PROJECTS="globalserver gatewayserver logicserver dbserver"
 
-    # 同步的资源路径 (源路径 -> 目标路径)
-    # 配置文件
-    local CONFIG_SRC="config/config.json"
-    local CONFIG_DST="config/config.json"
-    local LOGICCONFIG_SRC="config/logicconfig"
-    local LOGICCONFIG_DST="config/logicconfig"
-
-    # Lua 脚本
-    local LUA_SRC="luascript"
-    local LUA_DST="luascript"
-
-    # 启动脚本列表
-    local STARTUP_SCRIPTS="start.sh stop.sh restart.sh"
+    # 启动脚本列表 (会拷贝到每个实例目录)
+    local STARTUP_SCRIPTS="start.sh stop.sh restart.sh taillog.sh"
 
     # 前端构建
     local WEBUI_SRC="client/webui"
     local WEBUI_DIST="client/webui/dist"
-    local WEBUI_DST="dist"
     # =====================================
 
     # 验证参数有效性
@@ -175,20 +163,24 @@ build_project()
         fi
     done
 
-    # 同步配置文件
-    sync_file "${SCRIPT_DIR}/${CONFIG_SRC}" "${TARGET_ABS_PATH}/${CONFIG_DST}" "${CONFIG_SRC}"
-    sync_dir "${SCRIPT_DIR}/${LOGICCONFIG_SRC}" "${TARGET_ABS_PATH}/${LOGICCONFIG_DST}" "${LOGICCONFIG_SRC}/"
-
-    # 同步 Lua 脚本
-    sync_dir "${SCRIPT_DIR}/${LUA_SRC}" "${TARGET_ABS_PATH}/${LUA_DST}" "${LUA_DST}/"
-
-    # 同步启动脚本
-    for script in $STARTUP_SCRIPTS; do
-        if [ -f "${SCRIPT_DIR}/${script}" ]; then
-            rm -f "${TARGET_ABS_PATH}/${script}"
-            cp "${SCRIPT_DIR}/${script}" "${TARGET_ABS_PATH}/"
-        fi
+    # 同步启停脚本到实例目录, 实例内的 config/luascript/dist 由 generate_server.py 提供
+    local instance_count=0
+    for instance_dir in "${TARGET_ABS_PATH}"/*/; do
+        [ -d "${instance_dir}" ] || continue
+        [ -f "${instance_dir}config/config.json" ] || continue
+        for script in $STARTUP_SCRIPTS; do
+            if [ -f "${SCRIPT_DIR}/${script}" ]; then
+                cp "${SCRIPT_DIR}/${script}" "${instance_dir}"
+                chmod +x "${instance_dir}${script}" 2>/dev/null || true
+            fi
+        done
+        instance_count=$((instance_count + 1))
     done
+    if [ "$instance_count" -gt 0 ]; then
+        print_ok "启停脚本已拷贝到 ${instance_count} 个实例目录"
+    else
+        print_warn "未发现实例目录, 请先运行 python generate_server.py 生成实例后再执行 build.sh"
+    fi
 
     # 构建前端并同步
     if [ -d "${SCRIPT_DIR}/${WEBUI_SRC}" ]; then
@@ -221,7 +213,27 @@ build_project()
             printf "\033[31m   前端构建失败 (若提示 tsc/vite 缺失, 请先执行 npm install)\033[0m\n"
             exit 1
         fi
-        sync_dir "${SCRIPT_DIR}/${WEBUI_DIST}" "${TARGET_ABS_PATH}/${WEBUI_DST}" "${WEBUI_DST}/"
+    fi
+
+    # 同步逻辑配置表和前端产物到实例目录
+    local resource_count=0
+    for instance_dir in "${TARGET_ABS_PATH}"/*/; do
+        [ -d "${instance_dir}" ] || continue
+        [ -f "${instance_dir}config/config.json" ] || continue
+        if [ -d "${SCRIPT_DIR}/config/logicconfig" ]; then
+            rm -rf "${instance_dir}config/logicconfig"
+            mkdir -p "${instance_dir}config/logicconfig"
+            cp -r "${SCRIPT_DIR}/config/logicconfig/." "${instance_dir}config/logicconfig/"
+        fi
+        if [ -d "${SCRIPT_DIR}/${WEBUI_DIST}" ]; then
+            rm -rf "${instance_dir}dist"
+            mkdir -p "${instance_dir}dist"
+            cp -r "${SCRIPT_DIR}/${WEBUI_DIST}/." "${instance_dir}dist/"
+        fi
+        resource_count=$((resource_count + 1))
+    done
+    if [ "$resource_count" -gt 0 ]; then
+        print_ok "实例资源已同步到 ${resource_count} 个实例目录"
     fi
 
     # 设置部署目录权限

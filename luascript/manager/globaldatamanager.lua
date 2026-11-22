@@ -49,7 +49,7 @@ function M.LoadRet(msg_data)
     m_data.m_last_save_time = os.time()
 
     for _, node in ipairs(msg_data.datas) do 
-        m_data.m_global_data[node.id] = GLO.Serializer.Simple.Deserialize(node.data)   -- 反序列化数据 字符串转表
+        m_data.m_global_data[node.key] = GLO.Serializer.Simple.Deserialize(node.data)   -- 反序列化数据 字符串转表
     end
 
     LOG_INFO("全局数据加载成功, 数据数量: " .. tostring(M.GetCount()))
@@ -74,7 +74,7 @@ function M.SaveForce()
 
     local datas = {}
     for key, value in pairs(m_data.m_global_data) do
-        table.insert(datas, {id = key, data = GLO.Serializer.Simple.Serialize(value)}) -- 序列化数据 表转字符串
+        table.insert(datas, {key = key, data = GLO.Serializer.Simple.Serialize(value)}) -- 序列化数据 表转字符串
     end
 
     GLO.Protobuf.SendDBMsg(GLO.MHT.MHT_GLOBAL_DATA_DB_C, {

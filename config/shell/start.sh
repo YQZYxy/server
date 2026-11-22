@@ -8,10 +8,11 @@ if [ $# -gt 0 ]; then
     CONFIG="$1"
 fi
 
-# 验证配置参数
-if [ "$CONFIG" != "debug" ] && [ "$CONFIG" != "release" ]; then
-    echo "错误：配置必须是 'debug' 或 'release'，得到: $CONFIG"
-    exit 1
+# 验证配置参数(支持相对路径与绝对路径)
+if [ -d "$CONFIG" ] || [ -d "$(dirname "$0")/$CONFIG" ]; then
+    :
+else
+    echo "提示：目录不存在，按部署目录处理: $CONFIG"
 fi
 
 echo "使用构建配置: $CONFIG"
@@ -26,9 +27,13 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 echo "SCRIPT_DIR: $SCRIPT_DIR"
 
 # 确定可执行文件目录
-if [ -d "$SCRIPT_DIR/$CONFIG" ]; then
-    # 项目根目录: 有 debug/release 子目录
-    BUILD_DIR="$SCRIPT_DIR/$CONFIG"
+case "$CONFIG" in
+    /*) CONFIG_DIR="$CONFIG" ;;
+    *)  CONFIG_DIR="$SCRIPT_DIR/$CONFIG" ;;
+esac
+if [ -d "$CONFIG_DIR" ]; then
+    # 项目根目录: 有 <构建目录> 子目录
+    BUILD_DIR="$CONFIG_DIR"
 else
     # 部署目录: 可执行文件直接在脚本同目录
     BUILD_DIR="$SCRIPT_DIR"
@@ -68,6 +73,11 @@ start_service() {
 	local service_name="$1"
 	local service_args="$2"
 	local service_path="$(pwd)/$service_name"
+
+	if [ ! -x "$service_path" ]; then
+		echo "跳过 $service_name (本实例没有该可执行文件)"
+		return
+	fi
 
 	if is_running "$service_path"; then
 		local pid=$(pgrep -f "$service_path")

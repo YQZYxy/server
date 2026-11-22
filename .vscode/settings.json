@@ -81,33 +81,9 @@
     "terminal.integrated.env.windows": {
         "PYTHONIOENCODING": "utf-8"
     },
-    "Lua.diagnostics.globals": [
-        "LOG_ERROR",
-        "LOG_INFO",
-        "LOG_WARN",
-        "cpp_LoadProtoFiles",
-        "cpp_SendDBMsg",
-        "cpp_SendMsg",
-        "LOG_I",
-        "cpp_GetServerTime",
-        "cpp_GetMonotonicMicros",
-        "RegisterEvent",
-        "TriggerEvent",
-        "UnregisterEvent",
-        "cpp_GetRoleData",
-        "cpp_SaveRoleData",
-        "GLO",
-        "TimerCreate",
-        "TimerRemove",
-        "ProtoGetBodyType",
-        "ProtoEncodeBody",
-        "ProtoDecodeBody",
-        "ProtoEncode",
-        "ProtoDecode",
-        "ProtoListTypes",
-        "ProtoListFields",
-        "cpp_FastSerialize",
-        "cpp_ExecuteBattle"
+    // cpp_ 前缀的全局函数由 C++ 绑定提供
+    "Lua.diagnostics.globalsRegex": [
+        "^cpp_"
     ],
     "C_Cpp.default.compilerPath": "cl.exe",
 

@@ -1,12 +1,12 @@
 [
   {
-    "id": 1001,
+    "monster_id": 1001,
     "name": "哥布林",
     "level": 1,
     "monster_type": 1,
     "base_attr": [
       [
-        1,
+        0,
         50
       ],
       [
@@ -14,13 +14,13 @@
         50
       ],
       [
-        3,
+        4,
         8
       ]
     ],
     "attr_growth": [
       [
-        1,
+        0,
         25
       ],
       [
@@ -58,28 +58,28 @@
     ],
     "loot_table": [
       {
-        "id": 2,
+        "item_id": 2,
         "num": 100
       },
       {
-        "id": 3001,
+        "item_id": 3001,
         "num": 1
       },
       {
-        "id": 3003,
+        "item_id": 3003,
         "num": 1
       }
     ],
     "phase_triggers": []
   },
   {
-    "id": 1002,
+    "monster_id": 1002,
     "name": "巨魔",
     "level": 5,
     "monster_type": 2,
     "base_attr": [
       [
-        1,
+        0,
         100
       ],
       [
@@ -87,13 +87,13 @@
         50
       ],
       [
-        3,
+        4,
         20
       ]
     ],
     "attr_growth": [
       [
-        1,
+        0,
         25
       ],
       [
@@ -141,28 +141,28 @@
     ],
     "loot_table": [
       {
-        "id": 2,
+        "item_id": 2,
         "num": 50
       },
       {
-        "id": 3001,
+        "item_id": 3001,
         "num": 1
       },
       {
-        "id": 3003,
+        "item_id": 3003,
         "num": 1
       }
     ],
     "phase_triggers": []
   },
   {
-    "id": 1003,
+    "monster_id": 1003,
     "name": "暗影领主",
     "level": 10,
     "monster_type": 3,
     "base_attr": [
       [
-        1,
+        0,
         100
       ],
       [
@@ -170,13 +170,13 @@
         50
       ],
       [
-        3,
+        4,
         30
       ]
     ],
     "attr_growth": [
       [
-        1,
+        0,
         50
       ],
       [
@@ -229,15 +229,15 @@
     ],
     "loot_table": [
       {
-        "id": 2,
+        "item_id": 2,
         "num": 200
       },
       {
-        "id": 3001,
+        "item_id": 3001,
         "num": 1
       },
       {
-        "id": 3003,
+        "item_id": 3003,
         "num": 1
       }
     ],
@@ -273,13 +273,13 @@
     ]
   },
   {
-    "id": 1004,
+    "monster_id": 1004,
     "name": "冰霜元素",
     "level": 7,
     "monster_type": 2,
     "base_attr": [
       [
-        1,
+        0,
         100
       ],
       [
@@ -287,13 +287,13 @@
         50
       ],
       [
-        3,
+        4,
         5
       ]
     ],
     "attr_growth": [
       [
-        1,
+        0,
         30
       ],
       [
@@ -346,15 +346,15 @@
     ],
     "loot_table": [
       {
-        "id": 2,
+        "item_id": 2,
         "num": 80
       },
       {
-        "id": 3001,
+        "item_id": 3001,
         "num": 1
       },
       {
-        "id": 3003,
+        "item_id": 3003,
         "num": 1
       }
     ],

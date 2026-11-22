@@ -14,7 +14,9 @@ local MHT = GLO.MHT
 local MsgManager = GLO.MsgManager
 local EventManager = GLO.EventManager
 local TimerManager = GLO.TimerManager
-local Const = GLO.Const
+local BattleDef = GLO.BattleDef
+local RankDef = GLO.RankDef
+local PlayerDef = GLO.PlayerDef
 local Hero = GLO.Hero
 
 -- 对手列表显示数量
@@ -48,7 +50,7 @@ end)
 function M.Init()
 
     -- 注册排行榜类型
-    GLO.RankManager.RegisterRankType(Const.RankType.ARENA, {
+    GLO.RankManager.RegisterRankType(RankDef.RankType.ARENA, {
         page_size = 100,  -- 每页100条
     })
 
@@ -315,13 +317,13 @@ end
 
 -- 从快照构建英雄信息列表
 -- @param snapshot: role_snapshot
--- @param battle_type: Const.BattleType
+-- @param battle_type: BattleDef.BattleType
 -- @return list: 英雄信息列表 {hero_id, level, hp, attack, defense, speed, power, ability_ids}
 function M.BuildHeroInfoListFromSnapshot(snapshot, battle_type)
     if not snapshot then
         return {}
     end
-    local hero_ids = GLO.RoleBattleSnapshot.GetLineupHeroIds(snapshot, battle_type or Const.BattleType.ARENA)
+    local hero_ids = GLO.RoleBattleSnapshot.GetLineupHeroIds(snapshot, battle_type or BattleDef.BattleType.ARENA)
     local list = {}
     for _, hid in ipairs(hero_ids) do
         local hd = GLO.RoleBattleSnapshot.FindHero(snapshot, hid)
@@ -339,10 +341,10 @@ function M.BuildHeroInfoListFromSnapshot(snapshot, battle_type)
             local attr_map, combat_power = Hero.GetAttrsAndPower(snapshot, hid)
             info.power = combat_power or 0
             if attr_map then
-                info.hp = attr_map[Const.Attr.HEALTH] or 0
-                info.attack = attr_map[Const.Attr.STRENGTH] or 0
-                info.defense = attr_map[Const.Attr.VITALITY] or 0
-                info.speed = attr_map[Const.Attr.AGILITY] or 0
+                info.hp = attr_map[PlayerDef.Attr.HEALTH] or 0
+                info.attack = attr_map[PlayerDef.Attr.STRENGTH] or 0
+                info.defense = attr_map[PlayerDef.Attr.VITALITY] or 0
+                info.speed = attr_map[PlayerDef.Attr.AGILITY] or 0
             end
             -- 从快照获取技能id
             if hd.abilities and hd.abilities.ability_ids then
@@ -439,9 +441,9 @@ function M.HandleRegister(role)
     user.role_snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
 
     -- 从快照计算初始战力并同步到排行榜(保证离线展示时也有战力数据)
-    local init_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
+    local init_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, BattleDef.BattleType.ARENA)
     user:UpdatePower(init_power)
-    GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, name, user.score, nil, { power = init_power })
+    GLO.RankManager.UpdateValue(RankDef.RankType.ARENA, uid, name, user.score, nil, { power = init_power })
 
     -- 匹配对手
     local opponent_uids = M.MatchOpponents(uid)
@@ -488,9 +490,9 @@ function M.HandleRefresh(role)
     user.role_snapshot = GLO.RoleBattleSnapshot.Snapshot(role)
 
     -- 从快照重新计算战力并同步到排行榜
-    local refresh_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, Const.BattleType.ARENA)
+    local refresh_power = GLO.RoleBattleSnapshot.CalcTeamPower(user.role_snapshot, BattleDef.BattleType.ARENA)
     user:UpdatePower(refresh_power)
-    GLO.RankManager.UpdateValue(Const.RankType.ARENA, uid, user.name, user.score, nil, { power = refresh_power })
+    GLO.RankManager.UpdateValue(RankDef.RankType.ARENA, uid, user.name, user.score, nil, { power = refresh_power })
 
     local opponents = M.BuildOpponentInfoList(opponent_uids, uid)
 
@@ -509,7 +511,7 @@ end
 -- 竞技场战斗结束回调
 -- @param attacker_uid: 攻击方uid
 -- @param defender_uid: 防守方uid
--- @param battle_result: Const.BattleResultType (VICTORY/DEFEAT等)
+-- @param battle_result: BattleDef.BattleResultType (VICTORY/DEFEAT等)
 -- @param report_key: 战报key
 -- @return arena_result: {is_win, score_change, attacker_score_after, defender_score_after}
 function M.OnArenaBattleEnd(attacker_uid, defender_uid, battle_result, report_key)
@@ -524,7 +526,7 @@ function M.OnArenaBattleEnd(attacker_uid, defender_uid, battle_result, report_ke
     end
 
     -- 判断胜负
-    local is_attacker_win = (battle_result == Const.BattleResultType.VICTORY)
+    local is_attacker_win = (battle_result == BattleDef.BattleResultType.VICTORY)
 
     local attacker_power = attacker.power or 0
     local defender_power = defender.power or 0
@@ -552,16 +554,16 @@ function M.OnArenaBattleEnd(attacker_uid, defender_uid, battle_result, report_ke
     end
 
     -- 更新排行榜(战力一并存入extra_data,以便离线玩家排行榜展示)
-    GLO.RankManager.UpdateValue(Const.RankType.ARENA, attacker_uid, attacker.name or "",
+    GLO.RankManager.UpdateValue(RankDef.RankType.ARENA, attacker_uid, attacker.name or "",
         attacker.score, nil, { power = attacker_power })
-    GLO.RankManager.UpdateValue(Const.RankType.ARENA, defender_uid, defender.name or "",
+    GLO.RankManager.UpdateValue(RankDef.RankType.ARENA, defender_uid, defender.name or "",
         defender.score, nil, { power = defender_power })
 
     -- 从快照构建战斗日志英雄信息
     local attacker_hero_infos = M.BuildHeroInfoListFromSnapshot(
-        attacker.role_snapshot, Const.BattleType.ARENA)
+        attacker.role_snapshot, BattleDef.BattleType.ARENA)
     local defender_hero_infos = M.BuildHeroInfoListFromSnapshot(
-        defender.role_snapshot, Const.BattleType.ARENA)
+        defender.role_snapshot, BattleDef.BattleType.ARENA)
 
     -- 构建战斗日志 攻击方视角
     local log = {
@@ -647,7 +649,7 @@ function M.HandleArenaRankReq(netid, role, rank_offset)
         return
     end
 
-    local rank_type = Const.RankType.ARENA
+    local rank_type = RankDef.RankType.ARENA
 
     -- 确保排行榜已加载
     GLO.RankManager.LoadRank(rank_type)
@@ -664,7 +666,7 @@ function M.HandleArenaRankReq(netid, role, rank_offset)
         local arena_user = LOC.GetOrSetData().m_arena_users[node.uid]
         local heroes = {}
         if arena_user and arena_user.role_snapshot then
-            heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(arena_user.role_snapshot, Const.BattleType.ARENA)
+            heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(arena_user.role_snapshot, BattleDef.BattleType.ARENA)
         end
 
         table.insert(rank_list, {
@@ -696,7 +698,7 @@ function M.BuildOpponentInfoList(opponent_uids, exclude_uid)
             local other_user = LOC.GetOrSetData().m_arena_users[ouid]
             if other_user then
                 -- 从快照构建PBHeroData列表(含属性和战力)
-                local heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(other_user.role_snapshot, Const.BattleType.ARENA)
+                local heroes = GLO.RoleBattleSnapshot.BuildProtoHeroDataList(other_user.role_snapshot, BattleDef.BattleType.ARENA)
 
                 table.insert(list, {
                     uid = ouid,
@@ -740,7 +742,7 @@ end
 -- ==================== 初始化 ====================
 
 -- 注册竞技场排行榜自定义处理器到RankManager
-GLO.RankManager.RegisterRankHandler(Const.RankType.ARENA, M.HandleArenaRankReq)
+GLO.RankManager.RegisterRankHandler(RankDef.RankType.ARENA, M.HandleArenaRankReq)
 
 -- 注册数据库返回处理器
 MsgManager.RegisterMsg(MHT.MHT_ARENA_DB_S, function(netid, role, msg_data)

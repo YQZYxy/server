@@ -5,7 +5,7 @@
 --[[
 字段结构说明:
 
-  id - 能力ID (int)
+  ability_id - 能力ID (int)
   name - 名称 (string)
   description - 描述 (string)
   ability_type - 能力类型 (int)
@@ -35,7 +35,7 @@
 
 local M = {
     [1] = {
-        id = 1,
+        ability_id = 1,
         name = "普通攻击",
         description = "基础物理攻击",
         ability_type = 1,
@@ -50,7 +50,7 @@ local M = {
         can_crit = true,
         base_value = 15.0,
         attr_adds = {
-            [3] = 0.5,
+            [4] = 0.5,
         },
         effect_ids = {},
         extra_params = {},
@@ -66,7 +66,7 @@ local M = {
     },
 
     [2] = {
-        id = 2,
+        ability_id = 2,
         name = "重击",
         description = "强力一击,造成高额伤害",
         ability_type = 1,
@@ -83,7 +83,7 @@ local M = {
         can_crit = true,
         base_value = 35.0,
         attr_adds = {
-            [3] = 1.5,
+            [4] = 1.5,
         },
         effect_ids = {},
         extra_params = {},
@@ -99,7 +99,7 @@ local M = {
     },
 
     [3] = {
-        id = 3,
+        ability_id = 3,
         name = "快速打击",
         description = "敏捷的快速攻击",
         ability_type = 1,
@@ -116,7 +116,7 @@ local M = {
         can_crit = true,
         base_value = 20.0,
         attr_adds = {
-            [4] = 0.8,
+            [5] = 0.8,
         },
         effect_ids = {},
         extra_params = {},
@@ -132,7 +132,7 @@ local M = {
     },
 
     [1001] = {
-        id = 1001,
+        ability_id = 1001,
         name = "治疗术",
         description = "恢复生命值",
         ability_type = 4,
@@ -149,7 +149,7 @@ local M = {
         can_crit = false,
         base_value = 80.0,
         attr_adds = {
-            [5] = 2.0,
+            [6] = 2.0,
         },
         effect_ids = {},
         extra_params = {},
@@ -165,7 +165,7 @@ local M = {
     },
 
     [1002] = {
-        id = 1002,
+        ability_id = 1002,
         name = "战吼",
         description = "提升自身力量",
         ability_type = 5,
@@ -196,7 +196,7 @@ local M = {
     },
 
     [1003] = {
-        id = 1003,
+        ability_id = 1003,
         name = "力量祝福",
         description = "提升力量",
         ability_type = 5,
@@ -227,7 +227,7 @@ local M = {
     },
 
     [2001] = {
-        id = 2001,
+        ability_id = 2001,
         name = "生命汲取",
         description = "吸取目标生命值",
         ability_type = 3,
@@ -244,7 +244,7 @@ local M = {
         can_crit = false,
         base_value = 40.0,
         attr_adds = {
-            [5] = 1.2,
+            [6] = 1.2,
         },
         effect_ids = {},
         extra_params = { 0.5, },
@@ -260,7 +260,7 @@ local M = {
     },
 
     [2002] = {
-        id = 2002,
+        ability_id = 2002,
         name = "暗影箭",
         description = "发射暗影能量",
         ability_type = 2,
@@ -277,8 +277,8 @@ local M = {
         can_crit = false,
         base_value = 30.0,
         attr_adds = {
-            [5] = 1.0,
-            [7] = 0.5,
+            [6] = 1.0,
+            [8] = 0.5,
         },
         effect_ids = {},
         extra_params = {},
@@ -294,7 +294,7 @@ local M = {
     },
 
     [2003] = {
-        id = 2003,
+        ability_id = 2003,
         name = "暗影护盾",
         description = "召唤暗影护盾保护自己",
         ability_type = 5,
@@ -325,7 +325,7 @@ local M = {
     },
 
     [3001] = {
-        id = 3001,
+        ability_id = 3001,
         name = "冰霜箭",
         description = "发射冰霜能量,减速目标",
         ability_type = 7,
@@ -342,7 +342,7 @@ local M = {
         can_crit = false,
         base_value = 25.0,
         attr_adds = {
-            [5] = 1.2,
+            [6] = 1.2,
         },
         effect_ids = { 4, },
         extra_params = {},
@@ -358,7 +358,7 @@ local M = {
     },
 
     [3002] = {
-        id = 3002,
+        ability_id = 3002,
         name = "冰盾",
         description = "冰霜护盾",
         ability_type = 5,
@@ -389,7 +389,7 @@ local M = {
     },
 
     [3003] = {
-        id = 3003,
+        ability_id = 3003,
         name = "暴风雪",
         description = "大范围冰霜伤害",
         ability_type = 2,
@@ -406,7 +406,7 @@ local M = {
         can_crit = false,
         base_value = 50.0,
         attr_adds = {
-            [5] = 1.2,
+            [6] = 1.2,
         },
         effect_ids = { 4, },
         extra_params = {},

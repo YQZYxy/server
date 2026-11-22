@@ -56,6 +56,16 @@ end
 
 -- ===========全局命名空间==============
 
+-- 常量定义
+GLO.GmDef = require("other.gm.gmdef")
+GLO.ItemDef = require("other.knapsack.itemdef")
+GLO.PlayerDef = require("other.player.playerdef")
+GLO.MonsterDef = require("other.player.monsterdef")
+GLO.TaskDef = require("other.task.taskdef")
+GLO.RoleDef = require("other.role.roledef")
+GLO.BattleDef = require("other.battle.battledef")
+GLO.RankDef = require("manager.rankdef")
+
 -- 加载配置
 GLO.ConfigManager = require("config.configmanager")
 
@@ -63,7 +73,6 @@ GLO.ConfigManager = require("config.configmanager")
 GLO.Utils = require("core.utils")
 GLO.DirtyTracker = require("core.dirtytracker")
 GLO.Class = require("core.class")
-GLO.Const = require("core.const")
 GLO.Serializer = require("core.serializer")
 -- 协议
 GLO.Protobuf = require("protocol.protobuf")
@@ -81,25 +90,47 @@ GLO.RankManager = require("manager.rankmanager")
 
 -- ========== 加载游戏模块 ==========
 GLO.Gm = require("other.gm.gm")
-GLO.Item = require("other.inventory.item")
-GLO.Inventory = require("other.inventory.inventory")
-GLO.Quest = require("other.quest.quest")
+GLO.Item = require("other.knapsack.item")
+GLO.Knapsack = require("other.knapsack.knapsack")
+GLO.AutoUseItem = require("other.knapsack.autouseitem")
+GLO.Task = require("other.task.task")
+GLO.TaskObj = require("other.task.taskobj")
+GLO.TaskEvent = require("other.task.taskevent")
+GLO.GmTask = require("other.task.gmtask")
 GLO.Player = require("other.player.player")
 GLO.Hero = require("other.player.hero")
 GLO.HeroModule = require("other.role.heromodule")
+GLO.Lineup = require("other.role.lineup")
 GLO.Role = require("other.role.role")
 GLO.Monster = require("other.player.monster")
 GLO.BattleModule = require("other.battle.battlemodule")
-GLO.MainBattleModule = require("other.battle.mainbattle")
-GLO.GmQuest = require("other.gm.gmquest")
-
+GLO.MainBattleModule = require("other.battle.mainfb.mainbattle")
+GLO.MainBattleRank = require("other.battle.mainfb.mainbattlerank")
 -- 角色数据快照工具
 GLO.RoleBattleSnapshot = require("other.role.rolebattlesnapshot")
-
 -- 竞技场
 GLO.ArenaUser = require("other.arena.arenauser")
 GLO.ArenaManager = require("other.arena.arenamanager")
-GLO.ArenaBattleModule = require("other.battle.arenabattle")
+GLO.ArenaBattleModule = require("other.battle.arena.arenabattle")
+GLO.GmArena = require("other.arena.gmarena")
+-- MMO 世界
+GLO.MmoWorldModule = require("other.mmoworld.mmoworld")
+-- 活动
+GLO.ActivityData = require("other.activity.activitydata")
+GLO.ActivityManager = require("other.activity.activitymanager")
+
+
+
+
+
+-- ============== 初始化 ==============
+
+GLO.AutoUseItem.Init(GLO.Knapsack)
+GLO.TaskObj.Init(GLO.Task)
+GLO.TaskEvent.Init(GLO.Task)
+GLO.Lineup.Init(GLO.HeroModule)
+GLO.MmoWorldModule.Init()
+GLO.ActivityManager.Init()
 
 -- ============== C++调用全局函数 ==============
 
@@ -149,8 +180,9 @@ function LoadGlobalForMysql()
 
     GLO.GlobalDataManager.Load() -- 加载全局数据
 
-    -- 初始化竞技场和排行榜
-    GLO.RankManager.Init()
+    -- 注册各业务的排行榜类型
+    GLO.MainBattleRank.RegisterRankType()
+    -- 初始化竞技场
     GLO.ArenaManager.Init()
 
 end
@@ -169,5 +201,5 @@ end
 
 -- C++协议回调
 function OnMsgCallLogic(netid, msg_type, msg_str, uid)
-    GLO.MsgManager.OnRecv(netid, msg_type, msg_str, uid or 0)
+    GLO.MsgManager.OnRecv(netid, msg_type, msg_str, uid)
 end
