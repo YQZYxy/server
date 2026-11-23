@@ -3,14 +3,14 @@
 """服务器脚本工具统一入口.
 
 用法:
-    python server_tool.py                          Windows 自动打开 GUI, 其它平台进入命令行菜单
-    python server_tool.py --cli                    强制命令行菜单
-    python server_tool.py --gui                    强制 GUI (仅 Windows 可用)
-    python server_tool.py --list                   列出全部模块
-    python server_tool.py --module build --option build_type=release
-    python server_tool.py --module deploy_config
-    python server_tool.py --module validate_config --option instance=s1
-    python server_tool.py --config path/to/config.json
+    python auto.py                          Windows 自动打开 GUI, 其它平台进入命令行菜单
+    python auto.py --cli                    强制命令行菜单
+    python auto.py --gui                    强制 GUI (仅 Windows 可用)
+    python auto.py --list                   列出全部模块
+    python auto.py --module build --option build_type=release
+    python auto.py --module deploy_config
+    python auto.py --module validate_config --option instance=s1
+    python auto.py --config path/to/config.json
 
 新增模块只需要修改 config/script/modules/__init__.py, 入口菜单会自动出现.
 """
@@ -36,7 +36,7 @@ from config.script.modules import create_modules  # noqa: E402
 
 def ParseArgs(argv=None):
     parser = argparse.ArgumentParser(
-        prog="server_tool.py",
+        prog="auto.py",
         description="服务器脚本工具统一入口",
     )
     parser.add_argument("--config", default="", help="配置文件路径, 默认 config/script/config.json")

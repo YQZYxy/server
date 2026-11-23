@@ -50,7 +50,7 @@ def _check_proto_dir(proto_dir):
     if not glob.glob(os.path.join(proto_dir, "*.pb")):
         raise StressStartupError(
             "stress.proto_dir 下没有 .pb 描述符: %s\n"
-            "请运行 python server_tool.py --cli --module protobuf 生成"
+            "请运行 python auto.py --cli --module protobuf 生成"
             % proto_dir
         )
 

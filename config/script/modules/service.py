@@ -318,7 +318,7 @@ class ServiceManager(object):
             self.m_console.Line()
             self.m_console.Success("[service] 服务已在后台启动, 本窗口即将退出")
             self.m_console.Line(
-                "[service] 停止服务请运行: python server_tool.py --cli --module stop --option instance_root=%s"
+                "[service] 停止服务请运行: python auto.py --cli --module stop --option instance_root=%s"
                 % self.m_exe_dir
             )
             return 0
