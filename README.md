@@ -272,6 +272,8 @@ share/plugin        通用框架: 节点身份 / 集群 / 分区 / 跨服 / 场�
 - `PluginHost::Init` 自动装载重定向, 路由与分区查询遇到旧服 id 自动指向主服, 无需改业务代码.
 - 本进程 `node.server_id` 就是主服 id, `merged_server_ids` 只写被合掉的旧服 id.
 - 保留源服 uid: `uid = server_id * 100000 + role_id`, 创角取最大值时按本服 uid 区间查询.
+- 登录查库与账号列落库统一按 `用户名_s服务器id` 拼接(如 `abc_s1`), `role_data.username` / `role_login.user_name` 存带后缀的名字, `base_info.user_name` 与业务逻辑仍用原始账号名.
+- 后缀只能由服务端拼接, 客户端自带 `_s<服务器id>` 的登录/创角请求会被 logicserver 与 dbserver 直接拒绝.
 
 ## 活动框架
 

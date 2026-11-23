@@ -2,7 +2,7 @@
 
 psutil 在 Windows 上遍历全部进程要逐个开句柄, 期间长时间持有 GIL, 会卡住界面。
 所以:
-    1. Windows 用 CreateToolhelp32Snapshot 一次拿到所有进程名(极快)
+    1. Windows 用 CreateToolhelp32Snapshot 一次拿到所有进程名
     2. 只对匹配到的目标进程用 psutil 取 CPU/内存
     3. 采样放后台线程, GUI 只读缓存
 """

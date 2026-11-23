@@ -7,7 +7,7 @@
     stress.report_dir  压测报告输出目录
     stress.state_file  界面状态(地址/端口/历史目标)
 
-所有路径相对 project_root 解析, 与主脚本框架保持一致.
+所有路径相对 project_root 解析
 """
 
 import glob

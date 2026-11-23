@@ -59,6 +59,21 @@ def RemovePidFile(runlog_dir, name):
         pass
 
 
+def _IsPosixZombie(pid):
+    """Linux: 进程已退出但父进程未回收时 /proc 状态为 Z, 不能当成存活"""
+    try:
+        with open("/proc/%d/stat" % pid, "r", encoding="utf-8", errors="replace") as handle:
+            content = handle.read()
+    except (OSError, ValueError):
+        return False
+    # comm 字段可能包含空格和括号, 状态字段在最后一个 ')' 之后
+    parts = content.rsplit(")", 1)
+    if len(parts) != 2:
+        return False
+    fields = parts[1].split()
+    return len(fields) > 0 and fields[0] == "Z"
+
+
 def IsPidAlive(pid):
     """判断 pid 是否存活, Windows 使用 OpenProcess 避免进程号复用"""
     if not pid or pid <= 0:
@@ -87,6 +102,9 @@ def IsPidAlive(pid):
     except PermissionError:
         return True
     except OSError:
+        return False
+    # 僵尸进程 kill(0) 仍然成功, 但实际已经退出, 必须排除
+    if _IsPosixZombie(pid):
         return False
     return True
 
@@ -208,15 +226,29 @@ class ManagedProcess(object):
             return self.m_process.poll() is None
         return IsPidAlive(self.m_pid)
 
+    def BeginStop(self):
+        """发起优雅停止, 返回是否仍有存活进程需要等待
+
+        先批量对所有进程调用本方法, 再逐个 Stop(send_signal=False),
+        可以让多个服务并行走退出流程, 避免串行等待叠加.
+        """
+        if not self.IsAlive():
+            self.Release()
+            return False
+
+        self.m_console.Line("  停止 %s (PID: %d) ..." % (self.m_name, self.m_pid))
+        self.RequestStop()
+        return True
+
     def Stop(self, timeout, send_signal=True):
         """停止进程, 超时强杀, 返回最终是否已退出"""
-        if not self.IsAlive():
+        if send_signal:
+            if not self.BeginStop():
+                return True
+        elif not self.IsAlive():
             self.Release()
             return True
 
-        self.m_console.Line("  停止 %s (PID: %d) ..." % (self.m_name, self.m_pid))
-        if send_signal:
-            self.RequestStop()
         if self.WaitExit(timeout):
             self.Release()
             return True
@@ -249,6 +281,12 @@ class ManagedProcess(object):
                 pass
             return
         self.SignalTarget(signal.SIGKILL)
+        # 进程组信号可能因为进程已脱离原进程组而漏掉, 再对单 pid 补一次
+        if IsPidAlive(self.m_pid):
+            try:
+                os.kill(self.m_pid, signal.SIGKILL)
+            except (ProcessLookupError, OSError):
+                pass
 
     def SignalTarget(self, signal_value):
         """优先对整个进程组发信号, 拿不到安全的进程组时只打单个 pid"""

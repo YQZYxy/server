@@ -4,7 +4,7 @@
 
 替代原来的 gateway.py / start.sh / stop.sh / restart.sh / taillog.sh:
     启服: 勾选实例启动, 可选前台跟随或后台独立日志窗口
-    停服: 按 pid 文件停止勾选实例, 支持一键停全部
+    停服: 按 pid 文件停止勾选实例
     重启: 先停所选实例, 再按启动参数启动
     日志: 跟随指定实例的指定服务日志, 支持正则过滤
 """
@@ -687,11 +687,33 @@ def InstallSignalHandlers(stop_event):
             pass
 
 
+def CollectStopEntries(targets, stop_webui, root_dir):
+    """收集需要停止的进程: (显示名, pid, 工作目录, pid目录, pid文件名)"""
+    entries = []
+    services = (SERVER_GATEWAY, SERVER_LOGIC, SERVER_GLOBAL, SERVER_DB)
+
+    # 前端 Vite 的 pid 写在实例根目录的 runlog 下
+    if stop_webui:
+        webui_runlog = os.path.join(root_dir, "runlog")
+        webui_pid = ReadPidFile(webui_runlog, SERVER_WEBUI)
+        if webui_pid is not None:
+            entries.append((SERVER_WEBUI, webui_pid, root_dir, webui_runlog, SERVER_WEBUI))
+
+    for target in targets:
+        runlog_dir = os.path.join(target.path, "runlog")
+        for service in services:
+            pid = ReadPidFile(runlog_dir, service)
+            if pid is None:
+                continue
+            entries.append(("%s/%s" % (target.name, service), pid, target.path, runlog_dir, service))
+    return entries
+
+
 def StopPid(context, name, pid, working_dir):
-    """停止单个 pid, 返回是否真的处理了存活进程"""
+    """停止单个 pid, 返回进程是否已退出"""
     console = context.console
     if not IsPidAlive(pid):
-        return False
+        return True
 
     console.Line("停止 %s (PID: %d)" % (name, pid))
     if IS_WINDOWS:
@@ -705,13 +727,13 @@ def StopPid(context, name, pid, working_dir):
             )
         except OSError:
             pass
-    else:
-        timeout = float(context.settings.Require("service.stop_timeout"))
-        managed = ManagedProcess(
-            name, None, working_dir, "", reuse_pid=pid, console=console
-        )
-        managed.Stop(timeout)
-    return True
+        return not IsPidAlive(pid)
+
+    timeout = float(context.settings.Require("service.stop_timeout"))
+    managed = ManagedProcess(
+        name, None, working_dir, "", reuse_pid=pid, console=console
+    )
+    return managed.Stop(timeout)
 
 
 def StopServices(context, instance_root, instance_names=None, stop_webui=None):
@@ -729,28 +751,46 @@ def StopServices(context, instance_root, instance_names=None, stop_webui=None):
     if stop_webui is None:
         stop_webui = instance_names is None
 
-    services = (SERVER_GATEWAY, SERVER_LOGIC, SERVER_GLOBAL, SERVER_DB)
+    entries = CollectStopEntries(selected, stop_webui, root_dir)
+    if not entries:
+        console.Success("[service] 没有需要停止的服务进程")
+        return 0
+
     stopped = 0
+    failed = []
 
-    # 前端 Vite 的 pid 写在实例根目录的 runlog 下
-    if stop_webui:
-        webui_runlog = os.path.join(root_dir, "runlog")
-        webui_pid = ReadPidFile(webui_runlog, SERVER_WEBUI)
-        if webui_pid is not None:
-            if StopPid(context, SERVER_WEBUI, webui_pid, root_dir):
+    if IS_WINDOWS:
+        for display_name, pid, working_dir, runlog_dir, pid_name in entries:
+            if StopPid(context, display_name, pid, working_dir):
                 stopped += 1
-            RemovePidFile(webui_runlog, SERVER_WEBUI)
-
-    for target in selected:
-        runlog_dir = os.path.join(target.path, "runlog")
-        for service in services:
-            pid = ReadPidFile(runlog_dir, service)
-            if pid is None:
+                RemovePidFile(runlog_dir, pid_name)
+            elif IsPidAlive(pid):
+                failed.append(display_name)
+    else:
+        # POSIX: 先给全部进程发 SIGTERM, 再逐个等待, 避免串行等待叠加
+        timeout = float(settings.Require("service.stop_timeout"))
+        pending = []
+        for display_name, pid, working_dir, runlog_dir, pid_name in entries:
+            if not IsPidAlive(pid):
+                RemovePidFile(runlog_dir, pid_name)
                 continue
-            if StopPid(context, "%s/%s" % (target.name, service), pid, target.path):
-                stopped += 1
-            RemovePidFile(runlog_dir, service)
+            managed = ManagedProcess(
+                display_name, None, working_dir, "", reuse_pid=pid, console=console
+            )
+            managed.BeginStop()
+            pending.append((managed, display_name, runlog_dir, pid_name))
 
+        for managed, display_name, runlog_dir, pid_name in pending:
+            if managed.Stop(timeout, send_signal=False):
+                stopped += 1
+                RemovePidFile(runlog_dir, pid_name)
+            else:
+                failed.append(display_name)
+
+    if failed:
+        console.Warn(
+            "[service] 警告: %s 仍未退出, pid 文件已保留, 可重试停止" % ", ".join(failed)
+        )
     console.Success("[service] 已停止 %d 个服务进程" % stopped)
     return 0
 

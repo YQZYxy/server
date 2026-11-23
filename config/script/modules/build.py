@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """编译打包模块.
-
-替代原来的 build.sh / rebuild.sh:
-    CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 可选构建前端 -> 同步实例资源
-Windows / Linux / macOS 使用同一份 Python 代码.
+Windows / Linux / macOS 
+CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 可选构建前端 -> 同步实例资源
 """
 
 import os
