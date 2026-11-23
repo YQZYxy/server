@@ -15,12 +15,12 @@ node_modules
 client/webui/dist
 .lnk
 
-# generate_protobuf.py 生成文件, 无需纳入版本管理
+# 协议生成模块输出, 无需纳入版本管理
 share/protocol/
 luascript/proto/
 client/webui/src/types/protobuf/
 
-# generate_mysql_def.py 生成文件, 无需纳入版本管理
+# 数据库表定义模块输出, 无需纳入版本管理
 dbserver/db/mysqltabledef.hpp
 
 

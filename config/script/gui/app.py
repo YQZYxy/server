@@ -1,0 +1,774 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Windows Tkinter GUI.
+
+入口在 Windows 且检测到可用 GUI 时加载本模块.
+GUI 与命令行共用同一套 Module / Option 定义, 新增模块会自动出现在左侧列表.
+"""
+
+import json
+import os
+import queue
+import subprocess
+import sys
+import threading
+import traceback
+
+from ..core.console import COLOR_BLUE, COLOR_GREEN, COLOR_RED, COLOR_YELLOW, StripAnsi
+from ..core.errors import ScriptError
+from ..core.menu import Module, PersistOptionValues  # noqa: F401
+from ..core.platform_utils import (
+    CREATE_NEW_CONSOLE,
+    ConsolePythonExecutable,
+    EnableDpiAwareness,
+    OpenPath,
+)
+from ..core.theme import THEMES, ApplyTkTheme, GetTheme, ThemeListbox, ThemeText
+from .widgets import Checkbox, MultiChoiceBox
+
+
+class GuiConsole(object):
+    """把 Console 接口接到 Tkinter 日志区"""
+
+    def __init__(self, root, text_widget):
+        self.m_root = root
+        self.m_text = text_widget
+        self.m_queue = queue.Queue()
+
+    def Write(self, text):
+        """非线程安全, 只负责入队, 由主线程刷新"""
+        if text:
+            self.m_queue.put((StripAnsi(text), None))
+
+    def Line(self, message="", color=None):
+        tag = self._tag_for_color(color)
+        self.m_queue.put((StripAnsi(message) + "\n", tag))
+
+    def Plain(self, message=""):
+        self.Line(message)
+
+    def Success(self, message=""):
+        self.Line(message, COLOR_GREEN)
+
+    def Warn(self, message=""):
+        self.Line(message, COLOR_YELLOW)
+
+    def Error(self, message=""):
+        self.Line(message, COLOR_RED)
+
+    def Info(self, message=""):
+        self.Line(message, COLOR_BLUE)
+
+    def Title(self, message):
+        self.Line()
+        self.Line("=" * 64, COLOR_BLUE)
+        self.Line(message, COLOR_BLUE)
+        self.Line("=" * 64, COLOR_BLUE)
+
+    def Step(self, message):
+        self.Line()
+        self.Line("[*] %s" % message, COLOR_GREEN)
+
+    def Ask(self, prompt, default=""):
+        from tkinter import simpledialog
+
+        value = self._call_on_main(
+            lambda: simpledialog.askstring(
+                "输入", prompt, initialvalue=default, parent=self.m_root
+            )
+        )
+        if value is None:
+            return default
+        value = value.strip()
+        return default if value == "" else value
+
+    def Confirm(self, prompt, default=False):
+        from tkinter import messagebox
+
+        value = self._call_on_main(
+            lambda: messagebox.askyesno("确认", prompt, parent=self.m_root)
+        )
+        return bool(default if value is None else value)
+
+    def Choose(self, prompt, items, default_value=None):
+        from tkinter import simpledialog
+
+        default_index = 1
+        lines = [prompt]
+        for index, item in enumerate(items, start=1):
+            label, value = item
+            mark = "*" if value == default_value else " "
+            lines.append("%s %d. %s" % (mark, index, label))
+            if value == default_value:
+                default_index = index
+
+        raw = self._call_on_main(
+            lambda: simpledialog.askstring(
+                "请选择", "\n".join(lines), initialvalue=str(default_index),
+                parent=self.m_root,
+            )
+        )
+        if raw is None or raw.strip() == "":
+            return items[default_index - 1][1]
+        try:
+            choice = int(raw.strip())
+        except ValueError:
+            raise ScriptError("请输入列表中的数字")
+        if choice < 1 or choice > len(items):
+            raise ScriptError("选择超出范围: %s" % raw)
+        return items[choice - 1][1]
+
+    def Pause(self, prompt="按 Enter 继续..."):
+        """GUI 不需要暂停"""
+        return
+
+    def SetTitle(self, title):
+        self._call_on_main(lambda: self.m_root.title(title))
+
+    def Drain(self):
+        """主线程定时把队列内容写入日志区"""
+        lines = []
+        while True:
+            try:
+                lines.append(self.m_queue.get_nowait())
+            except queue.Empty:
+                break
+        if not lines:
+            return
+        self.m_text.configure(state="normal")
+        for text, tag in lines:
+            if tag:
+                self.m_text.insert("end", text, tag)
+            else:
+                self.m_text.insert("end", text)
+        self.m_text.see("end")
+        self.m_text.configure(state="disabled")
+
+    def _tag_for_color(self, color):
+        if color == COLOR_RED:
+            return "error"
+        if color == COLOR_YELLOW:
+            return "warn"
+        if color == COLOR_GREEN:
+            return "ok"
+        if color == COLOR_BLUE:
+            return "info"
+        return None
+
+    def _call_on_main(self, func):
+        """从工作线程切换到主线程执行对话框"""
+        done = threading.Event()
+        box = {}
+
+        def wrapper():
+            try:
+                box["value"] = func()
+            except BaseException as error:  # noqa: BLE001
+                box["error"] = error
+            finally:
+                done.set()
+
+        try:
+            self.m_root.after(0, wrapper)
+        except Exception:  # noqa: BLE001
+            return None
+        done.wait()
+        if "error" in box:
+            raise box["error"]
+        return box.get("value")
+
+
+class TeeStream(object):
+    """把模块里的 print 输出转发到 GUI 日志区"""
+
+    def __init__(self, console):
+        self.m_console = console
+
+    def write(self, text):
+        self.m_console.Write(text)
+        return len(text)
+
+    def flush(self):
+        return
+
+    def isatty(self):
+        return False
+
+
+class ToolWindow(object):
+    """主窗口"""
+
+    def __init__(self, root, context, modules):
+        import tkinter as tk
+        from tkinter import scrolledtext, ttk
+
+        self.m_tk = tk
+        self.m_ttk = ttk
+        self.m_root = root
+        self.m_context = context
+        self.m_modules = modules
+        self.m_current = None
+        self.m_option_widgets = []
+        self.m_option_cache = {}
+        self.m_rebuilding_options = False
+        self.m_running = False
+        self.m_theme = GetTheme(context.settings)
+        self.m_deploy_editor = None
+
+        root.title("服务器脚本工具")
+        root.geometry("1120x720")
+        root.minsize(900, 600)
+        ApplyTkTheme(root, self.m_theme)
+
+        self.BuildMenu()
+
+        main = ttk.Frame(root, padding=8)
+        main.pack(fill="both", expand=True)
+
+        left = ttk.Frame(main, width=280)
+        left.pack(side="left", fill="y")
+        left.pack_propagate(False)
+
+        ttk.Label(
+            left, text="模块",
+            font=(self.m_theme["font_family"], self.m_theme["font_size"] + 1, "bold"),
+        ).pack(anchor="w")
+        self.m_listbox = tk.Listbox(
+            left, exportselection=False,
+            font=(self.m_theme["font_family"], self.m_theme["module_list_font_size"]),
+        )
+        ThemeListbox(self.m_listbox, self.m_theme)
+        self.m_listbox.pack(fill="both", expand=True, pady=(4, 0))
+        self.m_listbox.bind("<<ListboxSelect>>", self.OnSelectModule)
+        for index, module in enumerate(self.m_modules, start=1):
+            self.m_listbox.insert("end", "%2d. %s" % (index, module.TITLE))
+
+        right = ttk.Frame(main)
+        right.pack(side="left", fill="both", expand=True, padx=(12, 0))
+        right.rowconfigure(2, weight=3)
+        right.columnconfigure(0, weight=1)
+        self.m_title = ttk.Label(
+            right, text="",
+            font=(self.m_theme["font_family"], self.m_theme["font_size"] + 2, "bold"),
+            foreground=self.m_theme["title_fg"],
+        )
+        self.m_title.grid(row=0, column=0, sticky="w")
+
+        self.m_desc = ttk.Label(
+            right, text="", wraplength=760, justify="left",
+            foreground=self.m_theme["muted"],
+        )
+        self.m_desc.grid(row=1, column=0, sticky="w", pady=(2, 8))
+
+        self.m_option_frame = ttk.LabelFrame(right, text="参数", padding=8)
+        self.m_option_frame.grid(row=2, column=0, sticky="nsew")
+
+        log_frame = ttk.LabelFrame(right, text="输出日志", padding=4)
+        log_frame.grid(row=3, column=0, sticky="nsew", pady=(8, 0))
+        right.rowconfigure(3, weight=0)
+
+        self.m_log = scrolledtext.ScrolledText(
+            log_frame, height=6, state="disabled",
+            font=(self.m_theme["log_font_family"], self.m_theme["log_font_size"]),
+        )
+        ThemeText(self.m_log, self.m_theme)
+        self.m_log.pack(fill="both", expand=True)
+        self.m_log.tag_configure("error", foreground=self.m_theme["error"])
+        self.m_log.tag_configure("warn", foreground=self.m_theme["warning"])
+        self.m_log.tag_configure("ok", foreground=self.m_theme["success"])
+        self.m_log.tag_configure("info", foreground=self.m_theme["info"])
+
+        bottom = ttk.Frame(right)
+        bottom.grid(row=4, column=0, sticky="ew", pady=(8, 0))
+        self.m_run_button = ttk.Button(bottom, text="运行", command=self.RunCurrent)
+        self.m_run_button.pack(side="right")
+        self.m_clear_button = ttk.Button(bottom, text="清空日志", command=self.ClearLog)
+        self.m_clear_button.pack(side="right", padx=(0, 8))
+        self.m_status = ttk.Label(bottom, text="就绪", foreground=self.m_theme["muted"])
+        self.m_status.pack(side="left")
+
+        self.m_console = GuiConsole(root, self.m_log)
+        self.m_context.m_console = self.m_console
+
+        root.protocol("WM_DELETE_WINDOW", self.OnClose)
+        self.m_listbox.selection_set(0)
+        self.OnSelectModule(None)
+        self.PollConsole()
+
+    def BuildMenu(self):
+        menu_bar = self.m_tk.Menu(self.m_root)
+        config_menu = self.m_tk.Menu(menu_bar, tearoff=0)
+        config_menu.add_command(label="编辑配置 (JSON)", command=self.OpenConfigEditor)
+        config_menu.add_command(label="打开配置文件", command=self.OpenConfigFile)
+        config_menu.add_command(label="重新加载配置", command=self.ReloadConfig)
+        config_menu.add_separator()
+        config_menu.add_command(label="部署配置 (baseconfig / crossconfig)", command=self.OpenDeployConfigEditor)
+        config_menu.add_separator()
+
+        theme_menu = self.m_tk.Menu(config_menu, tearoff=0)
+        self.m_theme_var = self.m_tk.StringVar(value=self.m_theme["name"])
+        for name in sorted(THEMES):
+            theme_menu.add_radiobutton(
+                label=name,
+                variable=self.m_theme_var,
+                value=name,
+                command=lambda theme_name=name: self.SwitchTheme(theme_name),
+            )
+        config_menu.add_cascade(label="主题", menu=theme_menu)
+        config_menu.add_separator()
+        config_menu.add_command(label="退出", command=self.OnClose)
+        menu_bar.add_cascade(label="配置", menu=config_menu)
+
+        tools_menu = self.m_tk.Menu(menu_bar, tearoff=0)
+        tools_menu.add_command(label="打开命令行模式", command=self.OpenCli)
+        menu_bar.add_cascade(label="工具", menu=tools_menu)
+        self.m_root.config(menu=menu_bar)
+
+    def CurrentModule(self):
+        selection = self.m_listbox.curselection()
+        if not selection:
+            return None
+        index = int(selection[0])
+        if 0 <= index < len(self.m_modules):
+            return self.m_modules[index]
+        return None
+
+    def OnSelectModule(self, _event):
+        module = self.CurrentModule()
+        if module is None or module is self.m_current:
+            return
+        # 切换模块前保留当前表单值, 避免回来时恢复默认
+        self.CaptureCurrentOptions()
+        self.ShowModule(module)
+
+    def ClearLog(self):
+        """清空输出日志区"""
+        self.m_log.configure(state="normal")
+        self.m_log.delete("1.0", "end")
+        self.m_log.configure(state="disabled")
+
+    def SwitchTheme(self, theme_name):
+        """切换主题并写回 config.json"""
+        if theme_name == self.m_theme["name"]:
+            return
+        try:
+            self.m_context.settings.SetValue("ui.theme", theme_name)
+            self.m_context.settings.Save()
+        except ScriptError as error:
+            self.m_console.Error("[错误] 切换主题失败: %s" % error)
+            self.m_theme_var.set(self.m_theme["name"])
+            return
+        self.RefreshTheme()
+        self.m_console.Success("主题已切换: %s" % theme_name)
+
+    def RefreshTheme(self):
+        """配置里的 ui.* 变化后重新应用主题"""
+        self.m_theme = GetTheme(self.m_context.settings)
+        if hasattr(self, "m_theme_var"):
+            self.m_theme_var.set(self.m_theme["name"])
+        ApplyTkTheme(self.m_root, self.m_theme)
+        ThemeListbox(self.m_listbox, self.m_theme)
+        ThemeText(self.m_log, self.m_theme)
+        self.m_listbox.configure(
+            font=(self.m_theme["font_family"], self.m_theme["module_list_font_size"])
+        )
+        self.m_log.configure(
+            font=(self.m_theme["log_font_family"], self.m_theme["log_font_size"])
+        )
+        self.m_log.tag_configure("error", foreground=self.m_theme["error"])
+        self.m_log.tag_configure("warn", foreground=self.m_theme["warning"])
+        self.m_log.tag_configure("ok", foreground=self.m_theme["success"])
+        self.m_log.tag_configure("info", foreground=self.m_theme["info"])
+        self.m_title.configure(foreground=self.m_theme["title_fg"])
+        self.m_desc.configure(foreground=self.m_theme["muted"])
+        self.m_status.configure(foreground=self.m_theme["muted"])
+        if self.m_current is not None:
+            self.ShowModule(self.m_current)
+
+    def ShowModule(self, module):
+        self.m_current = module
+        self.m_title.configure(text="%s  (%s)" % (module.TITLE, module.ID))
+        self.m_desc.configure(text=module.DESCRIPTION)
+        self.m_rebuilding_options = True
+        try:
+            for child in self.m_option_frame.winfo_children():
+                child.destroy()
+            self.m_option_widgets = []
+
+            if not module.OPTIONS:
+                hint = "点击“运行”打开编辑器" if getattr(module, "GUI_EDITOR", "") else "该模块没有参数"
+                self.m_ttk.Label(self.m_option_frame, text=hint).grid(
+                    row=0, column=0, sticky="w"
+                )
+                return
+
+            cached = self.m_option_cache.get(module.ID, {})
+            for row, option in enumerate(module.OPTIONS):
+                label = self.m_ttk.Label(self.m_option_frame, text=option.title)
+                label.grid(
+                    row=row,
+                    column=0,
+                    sticky="nw" if option.kind == "multi_choice" else "w",
+                    padx=(0, 12),
+                    pady=2,
+                )
+                if option.name in cached:
+                    default = cached[option.name]
+                else:
+                    try:
+                        default = option.Default(self.m_context)
+                    except ScriptError as error:
+                        self.m_console.Error("[配置错误] %s" % error)
+                        default = None
+                try:
+                    widget = self.BuildOptionWidget(option, default, row)
+                except ScriptError as error:
+                    self.m_console.Error("[参数加载失败] %s" % error)
+                    widget = self.m_ttk.Label(
+                        self.m_option_frame,
+                        text="加载失败: %s" % error,
+                        foreground=self.m_theme["error"],
+                    )
+                    widget.grid(row=row, column=1, sticky="w", pady=2)
+                if option.help_text:
+                    self.m_ttk.Label(
+                        self.m_option_frame, text=option.help_text,
+                        foreground=self.m_theme["muted"],
+                    ).grid(row=row, column=2, sticky="w", padx=(12, 0))
+        finally:
+            self.m_rebuilding_options = False
+
+    def BuildCheckbox(self, variable, row):
+        """参数区的布尔选项统一使用打勾复选框"""
+        widget = Checkbox(
+            self.m_option_frame,
+            variable,
+            self.m_theme,
+            command=self.OnOptionChanged,
+        )
+        widget.grid(row=row, column=1, sticky="w", pady=2)
+        return widget
+
+    def BuildOptionWidget(self, option, default, row):
+        if option.kind == "bool":
+            variable = self.m_tk.BooleanVar(value=bool(default))
+            widget = self.BuildCheckbox(variable, row)
+            self.m_option_widgets.append((option, "bool", variable, None))
+            return widget
+
+        if option.kind == "multi_choice":
+            try:
+                groups = option.ResolveGroups(self.m_context)
+                tips = option.ResolveTips(self.m_context)
+            except ScriptError as error:
+                self.m_console.Error("[参数加载失败] %s" % error)
+                groups = []
+                tips = {}
+            widget = MultiChoiceBox(
+                self.m_option_frame,
+                groups,
+                default or [],
+                self.m_theme,
+                command=self.OnOptionChanged,
+                tips=tips,
+            )
+            widget.grid(row=row, column=1, sticky="nw", pady=2)
+            self.m_option_frame.rowconfigure(row, weight=1)
+            self.m_option_frame.columnconfigure(1, weight=1)
+            self.m_option_widgets.append((option, "multi_choice", widget, groups))
+            return widget
+
+        if option.kind == "choice":
+            items = option.ResolveItems(self.m_context)
+            labels = [item[0] for item in items]
+            mapping = {item[0]: item[1] for item in items}
+            label = labels[0] if labels else ""
+            for item_label, item_value in items:
+                if item_value == default:
+                    label = item_label
+                    break
+            variable = self.m_tk.StringVar(value=label)
+            widget = self.m_ttk.Combobox(
+                self.m_option_frame, textvariable=variable, values=labels, state="readonly"
+            )
+            widget.grid(row=row, column=1, sticky="ew", pady=2)
+            widget.bind("<<ComboboxSelected>>", self.OnOptionChanged)
+            self.m_option_frame.columnconfigure(1, weight=1)
+            self.m_option_widgets.append((option, "choice", variable, mapping))
+            return widget
+
+        variable = self.m_tk.StringVar(value="" if default is None else str(default))
+        widget = self.m_ttk.Entry(self.m_option_frame, textvariable=variable)
+        widget.grid(row=row, column=1, sticky="ew", pady=2)
+        widget.bind("<FocusOut>", self.OnOptionChanged)
+        widget.bind("<Return>", self.OnOptionChanged)
+        self.m_option_frame.columnconfigure(1, weight=1)
+        self.m_option_widgets.append((option, "value", variable, None))
+        return widget
+
+    def CollectOptions(self):
+        options = {}
+        for option, kind, variable, mapping in self.m_option_widgets:
+            if kind == "bool":
+                options[option.name] = bool(variable.get())
+            elif kind == "multi_choice":
+                options[option.name] = variable.Values()
+            elif kind == "choice":
+                label = variable.get()
+                if label not in mapping:
+                    raise ScriptError("参数 %s 选择无效: %s" % (option.name, label))
+                options[option.name] = mapping[label]
+            else:
+                options[option.name] = option.Coerce(variable.get())
+        return options
+
+    def CaptureCurrentOptions(self, persist=True):
+        """把当前表单值放入内存缓存, 并尝试写回配置.
+
+        内存缓存保证切换模块再回来时不会恢复默认;
+        配置写回只处理配置支持的选项, 临时开关只在本次运行期间保留.
+        """
+        module = self.m_current
+        if module is None or not self.m_option_widgets or self.m_rebuilding_options:
+            return
+
+        raw = {}
+        for option, kind, variable, mapping in self.m_option_widgets:
+            if kind == "bool":
+                raw[option.name] = bool(variable.get())
+            elif kind == "multi_choice":
+                raw[option.name] = variable.Values()
+            elif kind == "choice":
+                label = variable.get()
+                raw[option.name] = mapping.get(label, label)
+            else:
+                raw[option.name] = variable.get()
+        self.m_option_cache[module.ID] = raw
+
+        if not persist:
+            return
+        try:
+            typed = self.CollectOptions()
+        except ScriptError:
+            # 输入还不合法时只保留在内存缓存, 不写坏配置
+            return
+        try:
+            PersistOptionValues(self.m_context, module, typed, quiet=True)
+        except ScriptError as error:
+            self.m_console.Warn("[配置回写失败] %s" % error)
+
+    def OnOptionChanged(self, _event=None):
+        """控件值变化时立即缓存并写回"""
+        self.CaptureCurrentOptions()
+
+    def RunCurrent(self):
+        if self.m_running:
+            return
+        module = self.m_current
+        if module is None:
+            return
+
+        # 特殊编辑器模块在 GUI 下直接打开独立窗口
+        if getattr(module, "GUI_EDITOR", ""):
+            self.OpenDeployConfigEditor()
+            return
+
+        try:
+            options = self.CollectOptions()
+        except ScriptError as error:
+            self.m_console.Error("[参数错误] %s" % error)
+            return
+
+        # GUI 不能前台跟随, 明确关闭并写回, 避免下次反复提示
+        if module.ID in ("start", "start_all", "restart") and options.get("foreground"):
+            self.m_console.Warn("GUI 模式不支持前台跟随, foreground 已关闭并写回配置")
+            options["foreground"] = False
+
+        # 运行值同时作为下次打开该模块时的表单值
+        self.m_option_cache[module.ID] = dict(options)
+
+        self.m_console.Step("执行模块: %s (%s)" % (module.TITLE, module.ID))
+        try:
+            PersistOptionValues(self.m_context, module, options)
+        except ScriptError as error:
+            self.m_console.Error("[配置写回失败] %s" % error)
+            return
+
+        self.m_running = True
+        self.m_run_button.configure(state="disabled")
+        self.m_status.configure(text="运行中: %s" % module.TITLE)
+        self.m_console.Line()
+        self.m_console.Line("=" * 64, COLOR_BLUE)
+
+        thread = threading.Thread(target=self.RunModuleThread, args=(module, options), daemon=True)
+        thread.start()
+
+    def RunModuleThread(self, module, options):
+        old_stdout = sys.stdout
+        old_stderr = sys.stderr
+        sys.stdout = TeeStream(self.m_console)
+        sys.stderr = TeeStream(self.m_console)
+        try:
+            module.Run(self.m_context, options)
+        except SystemExit as error:
+            code = error.code if isinstance(error.code, int) else 1
+            if code:
+                self.m_console.Error("[退出] 模块返回码: %d" % code)
+        except ScriptError as error:
+            self.m_console.Error("[错误] %s" % error)
+        except BaseException:  # noqa: BLE001
+            self.m_console.Error("[错误] 模块执行异常:")
+            self.m_console.Line(traceback.format_exc())
+        finally:
+            sys.stdout = old_stdout
+            sys.stderr = old_stderr
+            try:
+                self.m_root.after(0, self.OnRunFinished)
+            except Exception:
+                # 窗口已经关闭时不再更新界面
+                pass
+
+    def OnRunFinished(self):
+        self.m_running = False
+        try:
+            self.m_run_button.configure(state="normal")
+            self.m_status.configure(text="就绪")
+        except Exception:  # noqa: BLE001
+            pass
+
+    def PollConsole(self):
+        try:
+            self.m_console.Drain()
+        except Exception:  # noqa: BLE001
+            pass
+        self.m_root.after(80, self.PollConsole)
+
+    def OpenConfigEditor(self):
+        from tkinter import messagebox, scrolledtext
+
+        window = self.m_tk.Toplevel(self.m_root)
+        window.title("编辑配置 - %s" % self.m_context.settings.config_file)
+        window.geometry("900x640")
+        window.configure(background=self.m_theme["window_bg"])
+
+        text = scrolledtext.ScrolledText(
+            window,
+            font=(self.m_theme["log_font_family"], self.m_theme["log_font_size"]),
+        )
+        ThemeText(text, self.m_theme)
+        text.pack(fill="both", expand=True, padx=8, pady=8)
+        content = json.dumps(self.m_context.settings.data, ensure_ascii=False, indent=4)
+        text.insert("1.0", content + "\n")
+
+        def save():
+            try:
+                data = json.loads(text.get("1.0", "end"))
+            except json.JSONDecodeError as error:
+                messagebox.showerror("JSON 错误", str(error), parent=window)
+                return
+            try:
+                self.m_context.settings.SaveData(data)
+            except ScriptError as error:
+                messagebox.showerror("保存失败", str(error), parent=window)
+                return
+            self.m_console.Success("配置已保存并重新加载: %s" % self.m_context.settings.config_file)
+            # 配置被整体替换后以文件内容为准
+            self.m_option_cache.clear()
+            self.RefreshTheme()
+            window.destroy()
+
+        bar = self.m_ttk.Frame(window)
+        bar.pack(fill="x", padx=8, pady=(0, 8))
+        self.m_ttk.Button(bar, text="保存并重载", command=save).pack(side="right")
+        self.m_ttk.Button(bar, text="取消", command=window.destroy).pack(side="right", padx=(0, 8))
+
+    def OpenConfigFile(self):
+        try:
+            OpenPath(self.m_context.settings.config_file)
+        except ScriptError as error:
+            self.m_console.Error("[错误] %s" % error)
+
+    def OpenDeployConfigEditor(self):
+        """打开部署配置编辑器, 已打开时只聚焦"""
+        if self.m_deploy_editor is not None:
+            try:
+                if self.m_deploy_editor.m_window.winfo_exists():
+                    self.m_deploy_editor.Focus()
+                    return
+            except Exception:  # noqa: BLE001
+                pass
+            self.m_deploy_editor = None
+
+        from .deploy_config_editor import OpenDeployConfigEditor
+
+        try:
+            self.m_deploy_editor = OpenDeployConfigEditor(
+                self.m_root,
+                self.m_context,
+                self.m_theme,
+                self.m_console,
+                on_closed=self.OnDeployEditorClosed,
+            )
+        except ScriptError as error:
+            self.m_console.Error("[部署配置] 打开失败: %s" % error)
+        except Exception:  # noqa: BLE001
+            self.m_console.Error("[部署配置] 打开失败:")
+            self.m_console.Line(traceback.format_exc())
+
+    def OnDeployEditorClosed(self, editor):
+        if self.m_deploy_editor is editor:
+            self.m_deploy_editor = None
+
+    def ReloadConfig(self):
+        try:
+            self.m_context.settings.Reload()
+        except ScriptError as error:
+            self.m_console.Error("[错误] %s" % error)
+            return
+        self.m_console.Success("配置已重新加载")
+        # 外部配置优先, 清掉内存里的临时表单值
+        self.m_option_cache.clear()
+        self.RefreshTheme()
+
+    def OpenCli(self):
+        command = [ConsolePythonExecutable(), self.m_context.entry_script, "--cli"]
+        try:
+            subprocess.Popen(
+                command,
+                cwd=self.m_context.project_root,
+                creationflags=CREATE_NEW_CONSOLE,
+            )
+        except OSError as error:
+            self.m_console.Error("[错误] 打开命令行模式失败: %s" % error)
+
+    def OnClose(self):
+        # 关闭前保存当前表单里的有效参数
+        self.CaptureCurrentOptions()
+        if self.m_running:
+            from tkinter import messagebox
+
+            if not messagebox.askyesno("退出", "模块仍在运行, 确定退出吗?", parent=self.m_root):
+                return
+        self.m_root.destroy()
+
+
+def LaunchGui(context, modules):
+    """启动 GUI 主循环"""
+    import tkinter as tk
+    from tkinter import messagebox
+
+    EnableDpiAwareness()
+    root = tk.Tk()
+    root.withdraw()
+    try:
+        ToolWindow(root, context, modules)
+    except BaseException as error:
+        try:
+            messagebox.showerror("服务器脚本工具启动失败", str(error), parent=root)
+        except Exception:
+            pass
+        root.destroy()
+        raise
+    root.deiconify()
+    root.mainloop()
+    return 0

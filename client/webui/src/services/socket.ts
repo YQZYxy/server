@@ -1,6 +1,7 @@
 import { gameStore } from '@/store/game-store'
 import { MHT, PROTO_BODY_TYPE, PB_MessageHead } from '@/types'
 import * as allTypes from '@/types'
+import { getSelectedServer, serverBaseUrl } from './server-list'
 
 // 不打印日志的消息类型 
 const SILENT_MSGTYPES = new Set<number>([
@@ -62,6 +63,13 @@ export class GameSocket {
   constructor(baseUrl = '', token = '') {
     this.baseUrl = baseUrl
     this.tokenOverride = token
+    // 主连接没指定地址时按选服结果连回对应网关
+    if (!baseUrl && !token) {
+      const selected = getSelectedServer()
+      if (selected) {
+        this.baseUrl = serverBaseUrl(selected)
+      }
+    }
   }
 
   private listeners = new Map<string, EventCallback[]>()
@@ -85,6 +93,11 @@ export class GameSocket {
     return this.state >= ConnectionState.GameConnected
   }
 
+  // 切换归属服地址 (选服后调用), 传空表示走当前页面地址
+  setBaseUrl(base_url: string): void {
+    this.baseUrl = base_url
+  }
+
   // 连接到网关 WebSocket 
   connect(): void {
     if (this.ws?.readyState === WebSocket.OPEN) return
@@ -97,6 +110,8 @@ export class GameSocket {
     console.log('[WS] 连接:', url)
 
     this.state = ConnectionState.Connecting
+    // 新连接不受上一次主动断开影响
+    this.intentionalDisconnect = false
     this.ws = new WebSocket(url)
     this.ws.binaryType = 'arraybuffer'
 

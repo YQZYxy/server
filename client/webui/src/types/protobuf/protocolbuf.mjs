@@ -32529,6 +32529,1395 @@ export const P_MmoRoleState_SC = $root.P_MmoRoleState_SC = (() => {
     return P_MmoRoleState_SC;
 })();
 
+export const P_CrossEnter_CS = $root.P_CrossEnter_CS = (() => {
+
+    /**
+     * Properties of a P_CrossEnter_CS.
+     * @typedef {Object} P_CrossEnter_CS.$Properties
+     * @property {number|null} [cross_type] P_CrossEnter_CS cross_type
+     * @property {number|null} [activity_id] P_CrossEnter_CS activity_id
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossEnter_CS.
+     * @exports IP_CrossEnter_CS
+     * @interface IP_CrossEnter_CS
+     * @augments P_CrossEnter_CS.$Properties
+     * @deprecated Use P_CrossEnter_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossEnter_CS.
+     * @typedef {P_CrossEnter_CS.$Properties} P_CrossEnter_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossEnter_CS.
+     * @exports P_CrossEnter_CS
+     * @classdesc Represents a P_CrossEnter_CS.
+     * @constructor
+     * @param {P_CrossEnter_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossEnter_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossEnter_CS cross_type.
+     * @member {number|null|undefined} cross_type
+     * @memberof P_CrossEnter_CS
+     * @instance
+     */
+    P_CrossEnter_CS.prototype.cross_type = null;
+
+    /**
+     * P_CrossEnter_CS activity_id.
+     * @member {number|null|undefined} activity_id
+     * @memberof P_CrossEnter_CS
+     * @instance
+     */
+    P_CrossEnter_CS.prototype.activity_id = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_CS.prototype, "_cross_type", {
+        get: $util.oneOfGetter($oneOfFields = ["cross_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_CS.prototype, "_activity_id", {
+        get: $util.oneOfGetter($oneOfFields = ["activity_id"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossEnter_CS instance using the specified properties.
+     * @function create
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS.$Properties=} [properties] Properties to set
+     * @returns {P_CrossEnter_CS} P_CrossEnter_CS instance
+     * @type {{
+     *   (properties: P_CrossEnter_CS.$Shape): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
+     *   (properties?: P_CrossEnter_CS.$Properties): P_CrossEnter_CS;
+     * }}
+     */
+    P_CrossEnter_CS.create = function(properties) {
+        return new P_CrossEnter_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_CS message. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS.$Properties} message P_CrossEnter_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cross_type);
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.activity_id);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_CS message, length delimited. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS.$Properties} message P_CrossEnter_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossEnter_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossEnter_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.cross_type = reader.int32();
+                    message._cross_type = "cross_type";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    message.activity_id = reader.uint32();
+                    message._activity_id = "activity_id";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossEnter_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossEnter_CS message.
+     * @function verify
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossEnter_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type")) {
+            properties._cross_type = 1;
+            if (!$util.isInteger(message.cross_type))
+                return "cross_type: integer expected";
+        }
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id")) {
+            properties._activity_id = 1;
+            if (!$util.isInteger(message.activity_id))
+                return "activity_id: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossEnter_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossEnter_CS} P_CrossEnter_CS
+     */
+    P_CrossEnter_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossEnter_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossEnter_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossEnter_CS();
+        if (object.cross_type != null)
+            message.cross_type = object.cross_type | 0;
+        if (object.activity_id != null)
+            message.activity_id = object.activity_id >>> 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossEnter_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {P_CrossEnter_CS} message P_CrossEnter_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossEnter_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            object.cross_type = message.cross_type;
+        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
+            object.activity_id = message.activity_id;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossEnter_CS to JSON.
+     * @function toJSON
+     * @memberof P_CrossEnter_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossEnter_CS.prototype.toJSON = function() {
+        return P_CrossEnter_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossEnter_CS
+     * @function getTypeUrl
+     * @memberof P_CrossEnter_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossEnter_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossEnter_CS";
+    };
+
+    return P_CrossEnter_CS;
+})();
+
+export const P_CrossEnter_SC = $root.P_CrossEnter_SC = (() => {
+
+    /**
+     * Properties of a P_CrossEnter_SC.
+     * @typedef {Object} P_CrossEnter_SC.$Properties
+     * @property {boolean|null} [success] P_CrossEnter_SC success
+     * @property {string|null} [error] P_CrossEnter_SC error
+     * @property {string|null} [scene_ip] P_CrossEnter_SC scene_ip
+     * @property {number|null} [scene_port] P_CrossEnter_SC scene_port
+     * @property {string|null} [token] P_CrossEnter_SC token
+     * @property {number|null} [expire_time] P_CrossEnter_SC expire_time
+     * @property {number|null} [cross_type] P_CrossEnter_SC cross_type
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossEnter_SC.
+     * @exports IP_CrossEnter_SC
+     * @interface IP_CrossEnter_SC
+     * @augments P_CrossEnter_SC.$Properties
+     * @deprecated Use P_CrossEnter_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossEnter_SC.
+     * @typedef {P_CrossEnter_SC.$Properties} P_CrossEnter_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossEnter_SC.
+     * @exports P_CrossEnter_SC
+     * @classdesc Represents a P_CrossEnter_SC.
+     * @constructor
+     * @param {P_CrossEnter_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossEnter_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossEnter_SC success.
+     * @member {boolean|null|undefined} success
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.success = null;
+
+    /**
+     * P_CrossEnter_SC error.
+     * @member {string|null|undefined} error
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.error = null;
+
+    /**
+     * P_CrossEnter_SC scene_ip.
+     * @member {string|null|undefined} scene_ip
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.scene_ip = null;
+
+    /**
+     * P_CrossEnter_SC scene_port.
+     * @member {number|null|undefined} scene_port
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.scene_port = null;
+
+    /**
+     * P_CrossEnter_SC token.
+     * @member {string|null|undefined} token
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.token = null;
+
+    /**
+     * P_CrossEnter_SC expire_time.
+     * @member {number|null|undefined} expire_time
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.expire_time = null;
+
+    /**
+     * P_CrossEnter_SC cross_type.
+     * @member {number|null|undefined} cross_type
+     * @memberof P_CrossEnter_SC
+     * @instance
+     */
+    P_CrossEnter_SC.prototype.cross_type = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_success", {
+        get: $util.oneOfGetter($oneOfFields = ["success"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_error", {
+        get: $util.oneOfGetter($oneOfFields = ["error"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_scene_ip", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_ip"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_scene_port", {
+        get: $util.oneOfGetter($oneOfFields = ["scene_port"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_expire_time", {
+        get: $util.oneOfGetter($oneOfFields = ["expire_time"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossEnter_SC.prototype, "_cross_type", {
+        get: $util.oneOfGetter($oneOfFields = ["cross_type"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossEnter_SC instance using the specified properties.
+     * @function create
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC.$Properties=} [properties] Properties to set
+     * @returns {P_CrossEnter_SC} P_CrossEnter_SC instance
+     * @type {{
+     *   (properties: P_CrossEnter_SC.$Shape): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
+     *   (properties?: P_CrossEnter_SC.$Properties): P_CrossEnter_SC;
+     * }}
+     */
+    P_CrossEnter_SC.create = function(properties) {
+        return new P_CrossEnter_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_SC message. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC.$Properties} message P_CrossEnter_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.error);
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            writer.uint32(/* id 3, wireType 2 =*/26).string(message.scene_ip);
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.scene_port);
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 5, wireType 2 =*/42).string(message.token);
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
+            writer.uint32(/* id 6, wireType 0 =*/48).uint64(message.expire_time);
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.cross_type);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossEnter_SC message, length delimited. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC.$Properties} message P_CrossEnter_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossEnter_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossEnter_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossEnter_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.success = reader.bool();
+                    message._success = "success";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.error = reader.stringVerify();
+                    message._error = "error";
+                    continue;
+                }
+            case 3: {
+                    if (wireType !== 2)
+                        break;
+                    message.scene_ip = reader.stringVerify();
+                    message._scene_ip = "scene_ip";
+                    continue;
+                }
+            case 4: {
+                    if (wireType !== 0)
+                        break;
+                    message.scene_port = reader.uint32();
+                    message._scene_port = "scene_port";
+                    continue;
+                }
+            case 5: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
+            case 6: {
+                    if (wireType !== 0)
+                        break;
+                    message.expire_time = reader.uint64();
+                    message._expire_time = "expire_time";
+                    continue;
+                }
+            case 7: {
+                    if (wireType !== 0)
+                        break;
+                    message.cross_type = reader.int32();
+                    message._cross_type = "cross_type";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossEnter_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossEnter_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossEnter_SC message.
+     * @function verify
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossEnter_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success")) {
+            properties._success = 1;
+            if (typeof message.success !== "boolean")
+                return "success: boolean expected";
+        }
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error")) {
+            properties._error = 1;
+            if (!$util.isString(message.error))
+                return "error: string expected";
+        }
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip")) {
+            properties._scene_ip = 1;
+            if (!$util.isString(message.scene_ip))
+                return "scene_ip: string expected";
+        }
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port")) {
+            properties._scene_port = 1;
+            if (!$util.isInteger(message.scene_port))
+                return "scene_port: integer expected";
+        }
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time")) {
+            properties._expire_time = 1;
+            if (!$util.isInteger(message.expire_time) && !(message.expire_time && $util.isInteger(message.expire_time.low) && $util.isInteger(message.expire_time.high)))
+                return "expire_time: integer|Long expected";
+        }
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type")) {
+            properties._cross_type = 1;
+            if (!$util.isInteger(message.cross_type))
+                return "cross_type: integer expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossEnter_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossEnter_SC} P_CrossEnter_SC
+     */
+    P_CrossEnter_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossEnter_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossEnter_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossEnter_SC();
+        if (object.success != null)
+            message.success = $Boolean(object.success);
+        if (object.error != null)
+            message.error = $String(object.error);
+        if (object.scene_ip != null)
+            message.scene_ip = $String(object.scene_ip);
+        if (object.scene_port != null)
+            message.scene_port = object.scene_port >>> 0;
+        if (object.token != null)
+            message.token = $String(object.token);
+        if (object.expire_time != null)
+            if ($util.Long)
+                message.expire_time = $util.Long.fromValue(object.expire_time, true);
+            else if (typeof object.expire_time === "string")
+                message.expire_time = $parseInt(object.expire_time, 10);
+            else if (typeof object.expire_time === "number")
+                message.expire_time = object.expire_time;
+            else if (typeof object.expire_time === "object")
+                message.expire_time = new $util.LongBits(object.expire_time.low >>> 0, object.expire_time.high >>> 0).toNumber(true);
+        if (object.cross_type != null)
+            message.cross_type = object.cross_type | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossEnter_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {P_CrossEnter_SC} message P_CrossEnter_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossEnter_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            object.success = message.success;
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            object.error = message.error;
+        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
+            object.scene_ip = message.scene_ip;
+        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
+            object.scene_port = message.scene_port;
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
+        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.expire_time = typeof message.expire_time === "number" ? $BigInt(message.expire_time) : $util.Long.fromBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0, true).toBigInt();
+            else if (typeof message.expire_time === "number")
+                object.expire_time = options.longs === $String ? $String(message.expire_time) : message.expire_time;
+            else
+                object.expire_time = options.longs === $String ? $util.Long.prototype.toString.call(message.expire_time) : options.longs === $Number ? new $util.LongBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0).toNumber(true) : message.expire_time;
+        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
+            object.cross_type = message.cross_type;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossEnter_SC to JSON.
+     * @function toJSON
+     * @memberof P_CrossEnter_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossEnter_SC.prototype.toJSON = function() {
+        return P_CrossEnter_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossEnter_SC
+     * @function getTypeUrl
+     * @memberof P_CrossEnter_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossEnter_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossEnter_SC";
+    };
+
+    return P_CrossEnter_SC;
+})();
+
+export const P_CrossAuth_CS = $root.P_CrossAuth_CS = (() => {
+
+    /**
+     * Properties of a P_CrossAuth_CS.
+     * @typedef {Object} P_CrossAuth_CS.$Properties
+     * @property {number|null} [role_uid] P_CrossAuth_CS role_uid
+     * @property {string|null} [token] P_CrossAuth_CS token
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossAuth_CS.
+     * @exports IP_CrossAuth_CS
+     * @interface IP_CrossAuth_CS
+     * @augments P_CrossAuth_CS.$Properties
+     * @deprecated Use P_CrossAuth_CS.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossAuth_CS.
+     * @typedef {P_CrossAuth_CS.$Properties} P_CrossAuth_CS.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossAuth_CS.
+     * @exports P_CrossAuth_CS
+     * @classdesc Represents a P_CrossAuth_CS.
+     * @constructor
+     * @param {P_CrossAuth_CS.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossAuth_CS = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossAuth_CS role_uid.
+     * @member {number|null|undefined} role_uid
+     * @memberof P_CrossAuth_CS
+     * @instance
+     */
+    P_CrossAuth_CS.prototype.role_uid = null;
+
+    /**
+     * P_CrossAuth_CS token.
+     * @member {string|null|undefined} token
+     * @memberof P_CrossAuth_CS
+     * @instance
+     */
+    P_CrossAuth_CS.prototype.token = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_CS.prototype, "_role_uid", {
+        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_CS.prototype, "_token", {
+        get: $util.oneOfGetter($oneOfFields = ["token"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossAuth_CS instance using the specified properties.
+     * @function create
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS.$Properties=} [properties] Properties to set
+     * @returns {P_CrossAuth_CS} P_CrossAuth_CS instance
+     * @type {{
+     *   (properties: P_CrossAuth_CS.$Shape): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
+     *   (properties?: P_CrossAuth_CS.$Properties): P_CrossAuth_CS;
+     * }}
+     */
+    P_CrossAuth_CS.create = function(properties) {
+        return new P_CrossAuth_CS(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_CS message. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS.$Properties} message P_CrossAuth_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_CS.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.role_uid);
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_CS message, length delimited. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS.$Properties} message P_CrossAuth_CS message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_CS.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossAuth_CS message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_CS.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossAuth_CS();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.role_uid = reader.uint64();
+                    message._role_uid = "role_uid";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.token = reader.stringVerify();
+                    message._token = "token";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossAuth_CS message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_CS.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossAuth_CS message.
+     * @function verify
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossAuth_CS.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
+            properties._role_uid = 1;
+            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
+                return "role_uid: integer|Long expected";
+        }
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
+            properties._token = 1;
+            if (!$util.isString(message.token))
+                return "token: string expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossAuth_CS message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossAuth_CS} P_CrossAuth_CS
+     */
+    P_CrossAuth_CS.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossAuth_CS)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossAuth_CS: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossAuth_CS();
+        if (object.role_uid != null)
+            if ($util.Long)
+                message.role_uid = $util.Long.fromValue(object.role_uid, true);
+            else if (typeof object.role_uid === "string")
+                message.role_uid = $parseInt(object.role_uid, 10);
+            else if (typeof object.role_uid === "number")
+                message.role_uid = object.role_uid;
+            else if (typeof object.role_uid === "object")
+                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber(true);
+        if (object.token != null)
+            message.token = $String(object.token);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossAuth_CS message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {P_CrossAuth_CS} message P_CrossAuth_CS
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossAuth_CS.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
+            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, true).toBigInt();
+            else if (typeof message.role_uid === "number")
+                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
+            else
+                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber(true) : message.role_uid;
+        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
+            object.token = message.token;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossAuth_CS to JSON.
+     * @function toJSON
+     * @memberof P_CrossAuth_CS
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossAuth_CS.prototype.toJSON = function() {
+        return P_CrossAuth_CS.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossAuth_CS
+     * @function getTypeUrl
+     * @memberof P_CrossAuth_CS
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossAuth_CS.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossAuth_CS";
+    };
+
+    return P_CrossAuth_CS;
+})();
+
+export const P_CrossAuth_SC = $root.P_CrossAuth_SC = (() => {
+
+    /**
+     * Properties of a P_CrossAuth_SC.
+     * @typedef {Object} P_CrossAuth_SC.$Properties
+     * @property {boolean|null} [success] P_CrossAuth_SC success
+     * @property {string|null} [error] P_CrossAuth_SC error
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a P_CrossAuth_SC.
+     * @exports IP_CrossAuth_SC
+     * @interface IP_CrossAuth_SC
+     * @augments P_CrossAuth_SC.$Properties
+     * @deprecated Use P_CrossAuth_SC.$Properties instead.
+     */
+
+    /**
+     * Shape of a P_CrossAuth_SC.
+     * @typedef {P_CrossAuth_SC.$Properties} P_CrossAuth_SC.$Shape
+     */
+
+    /**
+     * Constructs a new P_CrossAuth_SC.
+     * @exports P_CrossAuth_SC
+     * @classdesc Represents a P_CrossAuth_SC.
+     * @constructor
+     * @param {P_CrossAuth_SC.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    const P_CrossAuth_SC = function (properties) {
+        if (properties)
+            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * P_CrossAuth_SC success.
+     * @member {boolean|null|undefined} success
+     * @memberof P_CrossAuth_SC
+     * @instance
+     */
+    P_CrossAuth_SC.prototype.success = null;
+
+    /**
+     * P_CrossAuth_SC error.
+     * @member {string|null|undefined} error
+     * @memberof P_CrossAuth_SC
+     * @instance
+     */
+    P_CrossAuth_SC.prototype.error = null;
+
+    // OneOf field names bound to virtual getters and setters
+    let $oneOfFields;
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_SC.prototype, "_success", {
+        get: $util.oneOfGetter($oneOfFields = ["success"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    // Virtual OneOf for proto3 optional field
+    $Object.defineProperty(P_CrossAuth_SC.prototype, "_error", {
+        get: $util.oneOfGetter($oneOfFields = ["error"]),
+        set: $util.oneOfSetter($oneOfFields)
+    });
+
+    /**
+     * Creates a new P_CrossAuth_SC instance using the specified properties.
+     * @function create
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC.$Properties=} [properties] Properties to set
+     * @returns {P_CrossAuth_SC} P_CrossAuth_SC instance
+     * @type {{
+     *   (properties: P_CrossAuth_SC.$Shape): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
+     *   (properties?: P_CrossAuth_SC.$Properties): P_CrossAuth_SC;
+     * }}
+     */
+    P_CrossAuth_SC.create = function(properties) {
+        return new P_CrossAuth_SC(properties);
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_SC message. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
+     * @function encode
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC.$Properties} message P_CrossAuth_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_SC.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.error);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (let i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified P_CrossAuth_SC message, length delimited. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC.$Properties} message P_CrossAuth_SC message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    P_CrossAuth_SC.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a P_CrossAuth_SC message from the specified reader or buffer.
+     * @function decode
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_SC.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossAuth_SC();
+        while (reader.pos < end) {
+            let start = reader.pos;
+            let tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            let wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 0)
+                        break;
+                    message.success = reader.bool();
+                    message._success = "success";
+                    continue;
+                }
+            case 2: {
+                    if (wireType !== 2)
+                        break;
+                    message.error = reader.stringVerify();
+                    message._error = "error";
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a P_CrossAuth_SC message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    P_CrossAuth_SC.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a P_CrossAuth_SC message.
+     * @function verify
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    P_CrossAuth_SC.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        let properties = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success")) {
+            properties._success = 1;
+            if (typeof message.success !== "boolean")
+                return "success: boolean expected";
+        }
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error")) {
+            properties._error = 1;
+            if (!$util.isString(message.error))
+                return "error: string expected";
+        }
+        return null;
+    };
+
+    /**
+     * Creates a P_CrossAuth_SC message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {P_CrossAuth_SC} P_CrossAuth_SC
+     */
+    P_CrossAuth_SC.fromObject = function (object, _depth) {
+        if (object instanceof $root.P_CrossAuth_SC)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".P_CrossAuth_SC: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let message = new $root.P_CrossAuth_SC();
+        if (object.success != null)
+            message.success = $Boolean(object.success);
+        if (object.error != null)
+            message.error = $String(object.error);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a P_CrossAuth_SC message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {P_CrossAuth_SC} message P_CrossAuth_SC
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    P_CrossAuth_SC.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        let object = {};
+        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
+            object.success = message.success;
+        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
+            object.error = message.error;
+        return object;
+    };
+
+    /**
+     * Converts this P_CrossAuth_SC to JSON.
+     * @function toJSON
+     * @memberof P_CrossAuth_SC
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    P_CrossAuth_SC.prototype.toJSON = function() {
+        return P_CrossAuth_SC.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for P_CrossAuth_SC
+     * @function getTypeUrl
+     * @memberof P_CrossAuth_SC
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    P_CrossAuth_SC.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/P_CrossAuth_SC";
+    };
+
+    return P_CrossAuth_SC;
+})();
+
 export const P_LoginReq_CS = $root.P_LoginReq_CS = (() => {
 
     /**
@@ -41390,1395 +42779,6 @@ export const P_ArenaBattleLog_SC = $root.P_ArenaBattleLog_SC = (() => {
     };
 
     return P_ArenaBattleLog_SC;
-})();
-
-export const P_CrossEnter_CS = $root.P_CrossEnter_CS = (() => {
-
-    /**
-     * Properties of a P_CrossEnter_CS.
-     * @typedef {Object} P_CrossEnter_CS.$Properties
-     * @property {number|null} [cross_type] P_CrossEnter_CS cross_type
-     * @property {number|null} [activity_id] P_CrossEnter_CS activity_id
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_CrossEnter_CS.
-     * @exports IP_CrossEnter_CS
-     * @interface IP_CrossEnter_CS
-     * @augments P_CrossEnter_CS.$Properties
-     * @deprecated Use P_CrossEnter_CS.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_CrossEnter_CS.
-     * @typedef {P_CrossEnter_CS.$Properties} P_CrossEnter_CS.$Shape
-     */
-
-    /**
-     * Constructs a new P_CrossEnter_CS.
-     * @exports P_CrossEnter_CS
-     * @classdesc Represents a P_CrossEnter_CS.
-     * @constructor
-     * @param {P_CrossEnter_CS.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_CrossEnter_CS = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_CrossEnter_CS cross_type.
-     * @member {number|null|undefined} cross_type
-     * @memberof P_CrossEnter_CS
-     * @instance
-     */
-    P_CrossEnter_CS.prototype.cross_type = null;
-
-    /**
-     * P_CrossEnter_CS activity_id.
-     * @member {number|null|undefined} activity_id
-     * @memberof P_CrossEnter_CS
-     * @instance
-     */
-    P_CrossEnter_CS.prototype.activity_id = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_CS.prototype, "_cross_type", {
-        get: $util.oneOfGetter($oneOfFields = ["cross_type"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_CS.prototype, "_activity_id", {
-        get: $util.oneOfGetter($oneOfFields = ["activity_id"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_CrossEnter_CS instance using the specified properties.
-     * @function create
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {P_CrossEnter_CS.$Properties=} [properties] Properties to set
-     * @returns {P_CrossEnter_CS} P_CrossEnter_CS instance
-     * @type {{
-     *   (properties: P_CrossEnter_CS.$Shape): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
-     *   (properties?: P_CrossEnter_CS.$Properties): P_CrossEnter_CS;
-     * }}
-     */
-    P_CrossEnter_CS.create = function(properties) {
-        return new P_CrossEnter_CS(properties);
-    };
-
-    /**
-     * Encodes the specified P_CrossEnter_CS message. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
-     * @function encode
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {P_CrossEnter_CS.$Properties} message P_CrossEnter_CS message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossEnter_CS.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.cross_type);
-        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
-            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.activity_id);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_CrossEnter_CS message, length delimited. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {P_CrossEnter_CS.$Properties} message P_CrossEnter_CS message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossEnter_CS.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_CrossEnter_CS message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossEnter_CS.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossEnter_CS();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.cross_type = reader.int32();
-                    message._cross_type = "cross_type";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 0)
-                        break;
-                    message.activity_id = reader.uint32();
-                    message._activity_id = "activity_id";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_CrossEnter_CS message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossEnter_CS.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_CrossEnter_CS message.
-     * @function verify
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_CrossEnter_CS.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type")) {
-            properties._cross_type = 1;
-            if (!$util.isInteger(message.cross_type))
-                return "cross_type: integer expected";
-        }
-        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id")) {
-            properties._activity_id = 1;
-            if (!$util.isInteger(message.activity_id))
-                return "activity_id: integer expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_CrossEnter_CS message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_CrossEnter_CS} P_CrossEnter_CS
-     */
-    P_CrossEnter_CS.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_CrossEnter_CS)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_CrossEnter_CS: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_CrossEnter_CS();
-        if (object.cross_type != null)
-            message.cross_type = object.cross_type | 0;
-        if (object.activity_id != null)
-            message.activity_id = object.activity_id >>> 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_CrossEnter_CS message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {P_CrossEnter_CS} message P_CrossEnter_CS
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_CrossEnter_CS.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
-            object.cross_type = message.cross_type;
-        if (message.activity_id != null && $Object.hasOwnProperty.call(message, "activity_id"))
-            object.activity_id = message.activity_id;
-        return object;
-    };
-
-    /**
-     * Converts this P_CrossEnter_CS to JSON.
-     * @function toJSON
-     * @memberof P_CrossEnter_CS
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_CrossEnter_CS.prototype.toJSON = function() {
-        return P_CrossEnter_CS.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_CrossEnter_CS
-     * @function getTypeUrl
-     * @memberof P_CrossEnter_CS
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_CrossEnter_CS.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_CrossEnter_CS";
-    };
-
-    return P_CrossEnter_CS;
-})();
-
-export const P_CrossEnter_SC = $root.P_CrossEnter_SC = (() => {
-
-    /**
-     * Properties of a P_CrossEnter_SC.
-     * @typedef {Object} P_CrossEnter_SC.$Properties
-     * @property {boolean|null} [success] P_CrossEnter_SC success
-     * @property {string|null} [error] P_CrossEnter_SC error
-     * @property {string|null} [scene_ip] P_CrossEnter_SC scene_ip
-     * @property {number|null} [scene_port] P_CrossEnter_SC scene_port
-     * @property {string|null} [token] P_CrossEnter_SC token
-     * @property {number|null} [expire_time] P_CrossEnter_SC expire_time
-     * @property {number|null} [cross_type] P_CrossEnter_SC cross_type
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_CrossEnter_SC.
-     * @exports IP_CrossEnter_SC
-     * @interface IP_CrossEnter_SC
-     * @augments P_CrossEnter_SC.$Properties
-     * @deprecated Use P_CrossEnter_SC.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_CrossEnter_SC.
-     * @typedef {P_CrossEnter_SC.$Properties} P_CrossEnter_SC.$Shape
-     */
-
-    /**
-     * Constructs a new P_CrossEnter_SC.
-     * @exports P_CrossEnter_SC
-     * @classdesc Represents a P_CrossEnter_SC.
-     * @constructor
-     * @param {P_CrossEnter_SC.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_CrossEnter_SC = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_CrossEnter_SC success.
-     * @member {boolean|null|undefined} success
-     * @memberof P_CrossEnter_SC
-     * @instance
-     */
-    P_CrossEnter_SC.prototype.success = null;
-
-    /**
-     * P_CrossEnter_SC error.
-     * @member {string|null|undefined} error
-     * @memberof P_CrossEnter_SC
-     * @instance
-     */
-    P_CrossEnter_SC.prototype.error = null;
-
-    /**
-     * P_CrossEnter_SC scene_ip.
-     * @member {string|null|undefined} scene_ip
-     * @memberof P_CrossEnter_SC
-     * @instance
-     */
-    P_CrossEnter_SC.prototype.scene_ip = null;
-
-    /**
-     * P_CrossEnter_SC scene_port.
-     * @member {number|null|undefined} scene_port
-     * @memberof P_CrossEnter_SC
-     * @instance
-     */
-    P_CrossEnter_SC.prototype.scene_port = null;
-
-    /**
-     * P_CrossEnter_SC token.
-     * @member {string|null|undefined} token
-     * @memberof P_CrossEnter_SC
-     * @instance
-     */
-    P_CrossEnter_SC.prototype.token = null;
-
-    /**
-     * P_CrossEnter_SC expire_time.
-     * @member {number|null|undefined} expire_time
-     * @memberof P_CrossEnter_SC
-     * @instance
-     */
-    P_CrossEnter_SC.prototype.expire_time = null;
-
-    /**
-     * P_CrossEnter_SC cross_type.
-     * @member {number|null|undefined} cross_type
-     * @memberof P_CrossEnter_SC
-     * @instance
-     */
-    P_CrossEnter_SC.prototype.cross_type = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_SC.prototype, "_success", {
-        get: $util.oneOfGetter($oneOfFields = ["success"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_SC.prototype, "_error", {
-        get: $util.oneOfGetter($oneOfFields = ["error"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_SC.prototype, "_scene_ip", {
-        get: $util.oneOfGetter($oneOfFields = ["scene_ip"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_SC.prototype, "_scene_port", {
-        get: $util.oneOfGetter($oneOfFields = ["scene_port"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_SC.prototype, "_token", {
-        get: $util.oneOfGetter($oneOfFields = ["token"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_SC.prototype, "_expire_time", {
-        get: $util.oneOfGetter($oneOfFields = ["expire_time"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossEnter_SC.prototype, "_cross_type", {
-        get: $util.oneOfGetter($oneOfFields = ["cross_type"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_CrossEnter_SC instance using the specified properties.
-     * @function create
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {P_CrossEnter_SC.$Properties=} [properties] Properties to set
-     * @returns {P_CrossEnter_SC} P_CrossEnter_SC instance
-     * @type {{
-     *   (properties: P_CrossEnter_SC.$Shape): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
-     *   (properties?: P_CrossEnter_SC.$Properties): P_CrossEnter_SC;
-     * }}
-     */
-    P_CrossEnter_SC.create = function(properties) {
-        return new P_CrossEnter_SC(properties);
-    };
-
-    /**
-     * Encodes the specified P_CrossEnter_SC message. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
-     * @function encode
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {P_CrossEnter_SC.$Properties} message P_CrossEnter_SC message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossEnter_SC.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
-            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
-        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.error);
-        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
-            writer.uint32(/* id 3, wireType 2 =*/26).string(message.scene_ip);
-        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
-            writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.scene_port);
-        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
-            writer.uint32(/* id 5, wireType 2 =*/42).string(message.token);
-        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
-            writer.uint32(/* id 6, wireType 0 =*/48).uint64(message.expire_time);
-        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
-            writer.uint32(/* id 7, wireType 0 =*/56).int32(message.cross_type);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_CrossEnter_SC message, length delimited. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {P_CrossEnter_SC.$Properties} message P_CrossEnter_SC message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossEnter_SC.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_CrossEnter_SC message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossEnter_SC.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossEnter_SC();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.success = reader.bool();
-                    message._success = "success";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.error = reader.stringVerify();
-                    message._error = "error";
-                    continue;
-                }
-            case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.scene_ip = reader.stringVerify();
-                    message._scene_ip = "scene_ip";
-                    continue;
-                }
-            case 4: {
-                    if (wireType !== 0)
-                        break;
-                    message.scene_port = reader.uint32();
-                    message._scene_port = "scene_port";
-                    continue;
-                }
-            case 5: {
-                    if (wireType !== 2)
-                        break;
-                    message.token = reader.stringVerify();
-                    message._token = "token";
-                    continue;
-                }
-            case 6: {
-                    if (wireType !== 0)
-                        break;
-                    message.expire_time = reader.uint64();
-                    message._expire_time = "expire_time";
-                    continue;
-                }
-            case 7: {
-                    if (wireType !== 0)
-                        break;
-                    message.cross_type = reader.int32();
-                    message._cross_type = "cross_type";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_CrossEnter_SC message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossEnter_SC.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_CrossEnter_SC message.
-     * @function verify
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_CrossEnter_SC.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.success != null && $Object.hasOwnProperty.call(message, "success")) {
-            properties._success = 1;
-            if (typeof message.success !== "boolean")
-                return "success: boolean expected";
-        }
-        if (message.error != null && $Object.hasOwnProperty.call(message, "error")) {
-            properties._error = 1;
-            if (!$util.isString(message.error))
-                return "error: string expected";
-        }
-        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip")) {
-            properties._scene_ip = 1;
-            if (!$util.isString(message.scene_ip))
-                return "scene_ip: string expected";
-        }
-        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port")) {
-            properties._scene_port = 1;
-            if (!$util.isInteger(message.scene_port))
-                return "scene_port: integer expected";
-        }
-        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
-            properties._token = 1;
-            if (!$util.isString(message.token))
-                return "token: string expected";
-        }
-        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time")) {
-            properties._expire_time = 1;
-            if (!$util.isInteger(message.expire_time) && !(message.expire_time && $util.isInteger(message.expire_time.low) && $util.isInteger(message.expire_time.high)))
-                return "expire_time: integer|Long expected";
-        }
-        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type")) {
-            properties._cross_type = 1;
-            if (!$util.isInteger(message.cross_type))
-                return "cross_type: integer expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_CrossEnter_SC message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_CrossEnter_SC} P_CrossEnter_SC
-     */
-    P_CrossEnter_SC.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_CrossEnter_SC)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_CrossEnter_SC: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_CrossEnter_SC();
-        if (object.success != null)
-            message.success = $Boolean(object.success);
-        if (object.error != null)
-            message.error = $String(object.error);
-        if (object.scene_ip != null)
-            message.scene_ip = $String(object.scene_ip);
-        if (object.scene_port != null)
-            message.scene_port = object.scene_port >>> 0;
-        if (object.token != null)
-            message.token = $String(object.token);
-        if (object.expire_time != null)
-            if ($util.Long)
-                message.expire_time = $util.Long.fromValue(object.expire_time, true);
-            else if (typeof object.expire_time === "string")
-                message.expire_time = $parseInt(object.expire_time, 10);
-            else if (typeof object.expire_time === "number")
-                message.expire_time = object.expire_time;
-            else if (typeof object.expire_time === "object")
-                message.expire_time = new $util.LongBits(object.expire_time.low >>> 0, object.expire_time.high >>> 0).toNumber(true);
-        if (object.cross_type != null)
-            message.cross_type = object.cross_type | 0;
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_CrossEnter_SC message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {P_CrossEnter_SC} message P_CrossEnter_SC
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_CrossEnter_SC.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
-            object.success = message.success;
-        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
-            object.error = message.error;
-        if (message.scene_ip != null && $Object.hasOwnProperty.call(message, "scene_ip"))
-            object.scene_ip = message.scene_ip;
-        if (message.scene_port != null && $Object.hasOwnProperty.call(message, "scene_port"))
-            object.scene_port = message.scene_port;
-        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
-            object.token = message.token;
-        if (message.expire_time != null && $Object.hasOwnProperty.call(message, "expire_time"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.expire_time = typeof message.expire_time === "number" ? $BigInt(message.expire_time) : $util.Long.fromBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0, true).toBigInt();
-            else if (typeof message.expire_time === "number")
-                object.expire_time = options.longs === $String ? $String(message.expire_time) : message.expire_time;
-            else
-                object.expire_time = options.longs === $String ? $util.Long.prototype.toString.call(message.expire_time) : options.longs === $Number ? new $util.LongBits(message.expire_time.low >>> 0, message.expire_time.high >>> 0).toNumber(true) : message.expire_time;
-        if (message.cross_type != null && $Object.hasOwnProperty.call(message, "cross_type"))
-            object.cross_type = message.cross_type;
-        return object;
-    };
-
-    /**
-     * Converts this P_CrossEnter_SC to JSON.
-     * @function toJSON
-     * @memberof P_CrossEnter_SC
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_CrossEnter_SC.prototype.toJSON = function() {
-        return P_CrossEnter_SC.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_CrossEnter_SC
-     * @function getTypeUrl
-     * @memberof P_CrossEnter_SC
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_CrossEnter_SC.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_CrossEnter_SC";
-    };
-
-    return P_CrossEnter_SC;
-})();
-
-export const P_CrossAuth_CS = $root.P_CrossAuth_CS = (() => {
-
-    /**
-     * Properties of a P_CrossAuth_CS.
-     * @typedef {Object} P_CrossAuth_CS.$Properties
-     * @property {number|null} [role_uid] P_CrossAuth_CS role_uid
-     * @property {string|null} [token] P_CrossAuth_CS token
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_CrossAuth_CS.
-     * @exports IP_CrossAuth_CS
-     * @interface IP_CrossAuth_CS
-     * @augments P_CrossAuth_CS.$Properties
-     * @deprecated Use P_CrossAuth_CS.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_CrossAuth_CS.
-     * @typedef {P_CrossAuth_CS.$Properties} P_CrossAuth_CS.$Shape
-     */
-
-    /**
-     * Constructs a new P_CrossAuth_CS.
-     * @exports P_CrossAuth_CS
-     * @classdesc Represents a P_CrossAuth_CS.
-     * @constructor
-     * @param {P_CrossAuth_CS.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_CrossAuth_CS = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_CrossAuth_CS role_uid.
-     * @member {number|null|undefined} role_uid
-     * @memberof P_CrossAuth_CS
-     * @instance
-     */
-    P_CrossAuth_CS.prototype.role_uid = null;
-
-    /**
-     * P_CrossAuth_CS token.
-     * @member {string|null|undefined} token
-     * @memberof P_CrossAuth_CS
-     * @instance
-     */
-    P_CrossAuth_CS.prototype.token = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossAuth_CS.prototype, "_role_uid", {
-        get: $util.oneOfGetter($oneOfFields = ["role_uid"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossAuth_CS.prototype, "_token", {
-        get: $util.oneOfGetter($oneOfFields = ["token"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_CrossAuth_CS instance using the specified properties.
-     * @function create
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {P_CrossAuth_CS.$Properties=} [properties] Properties to set
-     * @returns {P_CrossAuth_CS} P_CrossAuth_CS instance
-     * @type {{
-     *   (properties: P_CrossAuth_CS.$Shape): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
-     *   (properties?: P_CrossAuth_CS.$Properties): P_CrossAuth_CS;
-     * }}
-     */
-    P_CrossAuth_CS.create = function(properties) {
-        return new P_CrossAuth_CS(properties);
-    };
-
-    /**
-     * Encodes the specified P_CrossAuth_CS message. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
-     * @function encode
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {P_CrossAuth_CS.$Properties} message P_CrossAuth_CS message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossAuth_CS.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
-            writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.role_uid);
-        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_CrossAuth_CS message, length delimited. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {P_CrossAuth_CS.$Properties} message P_CrossAuth_CS message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossAuth_CS.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_CrossAuth_CS message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossAuth_CS.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossAuth_CS();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.role_uid = reader.uint64();
-                    message._role_uid = "role_uid";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.token = reader.stringVerify();
-                    message._token = "token";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_CrossAuth_CS message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossAuth_CS.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_CrossAuth_CS message.
-     * @function verify
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_CrossAuth_CS.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid")) {
-            properties._role_uid = 1;
-            if (!$util.isInteger(message.role_uid) && !(message.role_uid && $util.isInteger(message.role_uid.low) && $util.isInteger(message.role_uid.high)))
-                return "role_uid: integer|Long expected";
-        }
-        if (message.token != null && $Object.hasOwnProperty.call(message, "token")) {
-            properties._token = 1;
-            if (!$util.isString(message.token))
-                return "token: string expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_CrossAuth_CS message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_CrossAuth_CS} P_CrossAuth_CS
-     */
-    P_CrossAuth_CS.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_CrossAuth_CS)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_CrossAuth_CS: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_CrossAuth_CS();
-        if (object.role_uid != null)
-            if ($util.Long)
-                message.role_uid = $util.Long.fromValue(object.role_uid, true);
-            else if (typeof object.role_uid === "string")
-                message.role_uid = $parseInt(object.role_uid, 10);
-            else if (typeof object.role_uid === "number")
-                message.role_uid = object.role_uid;
-            else if (typeof object.role_uid === "object")
-                message.role_uid = new $util.LongBits(object.role_uid.low >>> 0, object.role_uid.high >>> 0).toNumber(true);
-        if (object.token != null)
-            message.token = $String(object.token);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_CrossAuth_CS message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {P_CrossAuth_CS} message P_CrossAuth_CS
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_CrossAuth_CS.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.role_uid != null && $Object.hasOwnProperty.call(message, "role_uid"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.role_uid = typeof message.role_uid === "number" ? $BigInt(message.role_uid) : $util.Long.fromBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0, true).toBigInt();
-            else if (typeof message.role_uid === "number")
-                object.role_uid = options.longs === $String ? $String(message.role_uid) : message.role_uid;
-            else
-                object.role_uid = options.longs === $String ? $util.Long.prototype.toString.call(message.role_uid) : options.longs === $Number ? new $util.LongBits(message.role_uid.low >>> 0, message.role_uid.high >>> 0).toNumber(true) : message.role_uid;
-        if (message.token != null && $Object.hasOwnProperty.call(message, "token"))
-            object.token = message.token;
-        return object;
-    };
-
-    /**
-     * Converts this P_CrossAuth_CS to JSON.
-     * @function toJSON
-     * @memberof P_CrossAuth_CS
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_CrossAuth_CS.prototype.toJSON = function() {
-        return P_CrossAuth_CS.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_CrossAuth_CS
-     * @function getTypeUrl
-     * @memberof P_CrossAuth_CS
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_CrossAuth_CS.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_CrossAuth_CS";
-    };
-
-    return P_CrossAuth_CS;
-})();
-
-export const P_CrossAuth_SC = $root.P_CrossAuth_SC = (() => {
-
-    /**
-     * Properties of a P_CrossAuth_SC.
-     * @typedef {Object} P_CrossAuth_SC.$Properties
-     * @property {boolean|null} [success] P_CrossAuth_SC success
-     * @property {string|null} [error] P_CrossAuth_SC error
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a P_CrossAuth_SC.
-     * @exports IP_CrossAuth_SC
-     * @interface IP_CrossAuth_SC
-     * @augments P_CrossAuth_SC.$Properties
-     * @deprecated Use P_CrossAuth_SC.$Properties instead.
-     */
-
-    /**
-     * Shape of a P_CrossAuth_SC.
-     * @typedef {P_CrossAuth_SC.$Properties} P_CrossAuth_SC.$Shape
-     */
-
-    /**
-     * Constructs a new P_CrossAuth_SC.
-     * @exports P_CrossAuth_SC
-     * @classdesc Represents a P_CrossAuth_SC.
-     * @constructor
-     * @param {P_CrossAuth_SC.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-    const P_CrossAuth_SC = function (properties) {
-        if (properties)
-            for (let keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                    this[keys[i]] = properties[keys[i]];
-    };
-
-    /**
-     * P_CrossAuth_SC success.
-     * @member {boolean|null|undefined} success
-     * @memberof P_CrossAuth_SC
-     * @instance
-     */
-    P_CrossAuth_SC.prototype.success = null;
-
-    /**
-     * P_CrossAuth_SC error.
-     * @member {string|null|undefined} error
-     * @memberof P_CrossAuth_SC
-     * @instance
-     */
-    P_CrossAuth_SC.prototype.error = null;
-
-    // OneOf field names bound to virtual getters and setters
-    let $oneOfFields;
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossAuth_SC.prototype, "_success", {
-        get: $util.oneOfGetter($oneOfFields = ["success"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    // Virtual OneOf for proto3 optional field
-    $Object.defineProperty(P_CrossAuth_SC.prototype, "_error", {
-        get: $util.oneOfGetter($oneOfFields = ["error"]),
-        set: $util.oneOfSetter($oneOfFields)
-    });
-
-    /**
-     * Creates a new P_CrossAuth_SC instance using the specified properties.
-     * @function create
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {P_CrossAuth_SC.$Properties=} [properties] Properties to set
-     * @returns {P_CrossAuth_SC} P_CrossAuth_SC instance
-     * @type {{
-     *   (properties: P_CrossAuth_SC.$Shape): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
-     *   (properties?: P_CrossAuth_SC.$Properties): P_CrossAuth_SC;
-     * }}
-     */
-    P_CrossAuth_SC.create = function(properties) {
-        return new P_CrossAuth_SC(properties);
-    };
-
-    /**
-     * Encodes the specified P_CrossAuth_SC message. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
-     * @function encode
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {P_CrossAuth_SC.$Properties} message P_CrossAuth_SC message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossAuth_SC.encode = function (message, writer, _depth) {
-        if (!writer)
-            writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
-            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.success);
-        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.error);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (let i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified P_CrossAuth_SC message, length delimited. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {P_CrossAuth_SC.$Properties} message P_CrossAuth_SC message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    P_CrossAuth_SC.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
-    };
-
-    /**
-     * Decodes a P_CrossAuth_SC message from the specified reader or buffer.
-     * @function decode
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossAuth_SC.decode = function (reader, length, _end, _depth, _target) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        let end = length === $undefined ? reader.len : reader.pos + length, message = _target || new $root.P_CrossAuth_SC();
-        while (reader.pos < end) {
-            let start = reader.pos;
-            let tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
-                break;
-            }
-            let wireType = tag & 7;
-            switch (tag >>>= 3) {
-            case 1: {
-                    if (wireType !== 0)
-                        break;
-                    message.success = reader.bool();
-                    message._success = "success";
-                    continue;
-                }
-            case 2: {
-                    if (wireType !== 2)
-                        break;
-                    message.error = reader.stringVerify();
-                    message._error = "error";
-                    continue;
-                }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
-            }
-        }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
-        return message;
-    };
-
-    /**
-     * Decodes a P_CrossAuth_SC message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    P_CrossAuth_SC.decodeDelimited = function(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a P_CrossAuth_SC message.
-     * @function verify
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    P_CrossAuth_SC.verify = function (message, _depth) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        let properties = {};
-        if (message.success != null && $Object.hasOwnProperty.call(message, "success")) {
-            properties._success = 1;
-            if (typeof message.success !== "boolean")
-                return "success: boolean expected";
-        }
-        if (message.error != null && $Object.hasOwnProperty.call(message, "error")) {
-            properties._error = 1;
-            if (!$util.isString(message.error))
-                return "error: string expected";
-        }
-        return null;
-    };
-
-    /**
-     * Creates a P_CrossAuth_SC message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {P_CrossAuth_SC} P_CrossAuth_SC
-     */
-    P_CrossAuth_SC.fromObject = function (object, _depth) {
-        if (object instanceof $root.P_CrossAuth_SC)
-            return object;
-        if (!$util.isObject(object))
-            throw $TypeError(".P_CrossAuth_SC: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let message = new $root.P_CrossAuth_SC();
-        if (object.success != null)
-            message.success = $Boolean(object.success);
-        if (object.error != null)
-            message.error = $String(object.error);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a P_CrossAuth_SC message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {P_CrossAuth_SC} message P_CrossAuth_SC
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    P_CrossAuth_SC.toObject = function (message, options, _depth) {
-        if (!options)
-            options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        let object = {};
-        if (message.success != null && $Object.hasOwnProperty.call(message, "success"))
-            object.success = message.success;
-        if (message.error != null && $Object.hasOwnProperty.call(message, "error"))
-            object.error = message.error;
-        return object;
-    };
-
-    /**
-     * Converts this P_CrossAuth_SC to JSON.
-     * @function toJSON
-     * @memberof P_CrossAuth_SC
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    P_CrossAuth_SC.prototype.toJSON = function() {
-        return P_CrossAuth_SC.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    /**
-     * Gets the type url for P_CrossAuth_SC
-     * @function getTypeUrl
-     * @memberof P_CrossAuth_SC
-     * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
-     */
-    P_CrossAuth_SC.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/P_CrossAuth_SC";
-    };
-
-    return P_CrossAuth_SC;
 })();
 
 export const P_ArenaRank_SC = $root.P_ArenaRank_SC = (() => {

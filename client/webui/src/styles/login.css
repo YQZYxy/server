@@ -66,6 +66,50 @@
   min-height: 20px;
 }
 .login-divider { height: 1px; background: var(--border); margin: 4px 0; }
+
+/* 当前服务器 */
+.login-server {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+.login-server-label { color: var(--text-secondary); }
+.login-server-name {
+  font-weight: 600;
+  color: var(--primary-light);
+}
+.login-server-addr {
+  flex: 1;
+  color: var(--text-secondary);
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.login-box .login-server-switch {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: inherit;
+  box-shadow: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.login-box .login-server-switch:hover {
+  background: var(--bg-card-hover);
+  color: var(--text);
+  border-color: var(--primary);
+  box-shadow: none;
+}
 .login-box .btn-agent {
   padding: 12px;
   border: 1px solid var(--border);

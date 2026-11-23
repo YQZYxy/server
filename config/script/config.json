@@ -1,0 +1,166 @@
+{
+    "config_version": 1,
+    "project_root": "../..",
+    "ui": {
+        "theme": "vscode-light",
+        "font_family": "Microsoft YaHei UI",
+        "font_size": 10,
+        "module_list_font_size": 12,
+        "log_font_family": "Consolas",
+        "log_font_size": 9
+    },
+    "paths": {
+        "blueprint": "config/crossconfig.json",
+        "baseconfig": "config/baseconfig.json",
+        "mysql_schema": "sql/xygame.sql",
+        "logic_config_dir": "config/logicconfig",
+        "luascript_dir": "luascript",
+        "webui_dir": "client/webui",
+        "webui_dist": "client/webui/dist",
+        "runtime_lib_dir": "lib"
+    },
+    "build": {
+        "build_root": "build",
+        "output_root": ".",
+        "default_type": "debug",
+        "default_mode": "incremental",
+        "cmake_executable": "cmake",
+        "cmake_generator": "",
+        "windows_arch": "x64",
+        "jobs": 0,
+        "sub_projects": [
+            "globalserver",
+            "gatewayserver",
+            "logicserver",
+            "dbserver"
+        ],
+        "webui_enabled": false,
+        "webui_install_on_clean": true,
+        "sync_instances": true
+    },
+    "deploy": {
+        "default_variant": "auto",
+        "instances": [
+            "hub",
+            "cross",
+            "big_cross",
+            "s1",
+            "s2"
+        ],
+        "link": false,
+        "skip_existing": true,
+        "copy_pdb": true,
+        "create_database": true,
+        "mysql_executable": "mysql",
+        "mysql_port": 3306,
+        "mysql_character_set": "utf8mb4",
+        "windows_mysql_search_versions": [
+            "8.0",
+            "8.4",
+            "9.0"
+        ]
+    },
+    "reset_db": {
+        "instances": []
+    },
+    "service": {
+        "default_instance_root": "D:\\YQZY\\Server\\server_a\\debug",
+        "zone_group_size": 5,
+        "start_instances": [
+            "hub",
+            "cross",
+            "s1",
+            "s2"
+        ],
+        "stop_instances": [],
+        "stop_webui": true,
+        "start_delay": 0.0,
+        "stop_timeout": 30.0,
+        "tail_lines": 0,
+        "log_view_lines": 0,
+        "webui_enabled": false,
+        "foreground": false,
+        "follow": true,
+        "open_log_windows": true,
+        "default_log_service": "logicserver",
+        "default_log_instance": "s2",
+        "log_auto_close": true,
+        "default_clear_scope": "log",
+        "default_validate_instance": "s1",
+        "default_validate_exe_dir": "debug",
+        "validate_work_root": "debug/.validate",
+        "validate_timeout": 30,
+        "validate_show_lines": 40,
+        "validate_keep_workdir": false
+    },
+    "protobuf": {
+        "protoc_executable": "share/proto/protoc",
+        "source_dir": "share/proto",
+        "cpp_output_dir": "share/protocol",
+        "cpp_mht_header": "share/protocol/protobufmht.hpp",
+        "cpp_register_source": "share/protocol/protobufregister.cpp",
+        "cpp_msg_map_header": "share/protocol/protobufmsgmap.hpp",
+        "cpp_template_header": "share/protocol/protobuftemplate.hpp",
+        "lua_mht_file": "luascript/proto/protobufmht.lua",
+        "lua_output_dir": "luascript/proto",
+        "frontend_enabled": true,
+        "frontend_output_dir": "client/webui/src/types/protobuf",
+        "frontend_module_file": "protocolbuf.mjs",
+        "frontend_types_file": "protocolbuf.d.ts",
+        "frontend_protobuf_runtime_version": "8.7.1",
+        "frontend_protobuf_cli_version": "2.6.1",
+        "copy_enabled": false,
+        "copy_source": "share/proto",
+        "copy_target": "",
+        "copy_patterns": [
+            "*.proto"
+        ]
+    },
+    "lua_bindings": {
+        "define_file": "luascript/cppbindings.lua",
+        "scan_dirs": [
+            "share/lua",
+            "logicserver/luaext"
+        ],
+        "exclude_dirs": [
+            "lua-5.4",
+            "lua-protobuf"
+        ]
+    },
+    "mysql_def": {
+        "source_config": "config/baseconfig.json",
+        "counter_path": "dbserver.Counter",
+        "database": "xygame_s1",
+        "port": 3306,
+        "character_set": "utf8mb4",
+        "output_header": "dbserver/db/mysqltabledef.hpp",
+        "namespace": "tbdef",
+        "db_version": "3.7.2.3"
+    },
+    "config_table": {
+        "dotnet": "dotnet",
+        "luban_dll": "config/配置表/luban/Luban.dll",
+        "conf_file": "config/配置表/__luban__.conf",
+        "outputs": [
+            {
+                "type": "data",
+                "target": "lua",
+                "path": "luascript/config",
+                "output_key": "outputDataDir",
+                "gen_loader": true
+            },
+            {
+                "type": "data",
+                "target": "json",
+                "path": "config/logicconfig",
+                "output_key": "outputDataDir",
+                "gen_loader": false
+            }
+        ]
+    },
+    "stress": {
+        "proto_dir": "luascript/proto",
+        "report_dir": "debug/stress_reports",
+        "state_file": "debug/stress_gui.json"
+    }
+}

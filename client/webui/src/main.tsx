@@ -7,6 +7,7 @@ import './styles/layout.css'
 import './styles/overlay.css'
 // 页面
 import './styles/login.css'
+import './styles/server-select.css'
 import './styles/hall.css'
 import './styles/chat.css'
 import './styles/battle.css'

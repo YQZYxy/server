@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Layout from '@/components/layout'
 import LoginPage from '@/pages/login-page'
+import ServerSelectPage from '@/pages/server-select-page'
 import HallPage from '@/pages/hall-page'
 import ChatPage from '@/pages/chat-page'
 import BattlePage from '@/pages/battle-page'
@@ -27,6 +28,8 @@ function AppContent() {
       <Toast />
       <LoadingOverlay />
       <Routes>
+        <Route path="/servers" element={<ServerSelectPage />} />
+        <Route path="/" element={<Navigate to="/servers" replace />} />
         <Route path="/login" element={<LoginPage />} />
         <Route element={<Layout />}>
           <Route path="/hall" element={<HallPage />} />
@@ -38,7 +41,7 @@ function AppContent() {
           <Route path="/mmo" element={<MmoPage />} />
         </Route>
         <Route path="/battle-field" element={<BattleFieldPage />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/servers" replace />} />
       </Routes>
     </>
   )

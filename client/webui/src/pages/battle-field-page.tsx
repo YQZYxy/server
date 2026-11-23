@@ -27,7 +27,7 @@ export default function BattleFieldPage() {
 
   // 没有单场战斗数据时跳回
   if (!result) {
-    navigate('/', { replace: true })
+    navigate('/login', { replace: true })
     return null
   }
 

@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { gameStore } from '@/store/game-store'
 import gameSocket from '@/services/socket'
+import { getSelectedServer } from '@/services/server-list'
 import { MHT } from '@/types'
 
 export default function LoginPage() {
@@ -16,12 +17,19 @@ export default function LoginPage() {
   const navigate = useNavigate()
   const store = gameStore()
   const isLoggingInRef = useRef(false)
+  // 进入登录页时的目标服, 未选服时跳回选服列表
+  const [selectedServer] = useState(() => getSelectedServer())
 
   // 恢复上次登录的用户名
   useEffect(() => {
     const saved = localStorage.getItem('login_username_storage')
     if (saved) setUsername(saved)
   }, [])
+
+  // 没选服不允许登录
+  useEffect(() => {
+    if (!selectedServer) navigate('/servers', { replace: true })
+  }, [selectedServer, navigate])
 
   // 网关在 WS 连接后自动创建 TCP, 等待连接结果后发登录
   const doLogin = useCallback(() => {
@@ -97,6 +105,16 @@ export default function LoginPage() {
     <div className="login-page">
       <div className="login-box">
         <h1>我的小鱼</h1>
+        <div className="login-server">
+          <span className="login-server-label">当前服务器</span>
+          <span className="login-server-name">{selectedServer?.name ?? ''}</span>
+          <span className="login-server-addr">
+            {selectedServer ? `${selectedServer.ip}:${selectedServer.port}` : ''}
+          </span>
+          <button className="login-server-switch" onClick={() => navigate('/servers')}>
+            切换
+          </button>
+        </div>
         <input
           id="login-username"
           type="text"

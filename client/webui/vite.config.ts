@@ -21,6 +21,11 @@ export default defineConfig({
         target: gatewayTarget,
         changeOrigin: true,
       },
+      // 选服列表接口代理到网关
+      '/api': {
+        target: gatewayTarget,
+        changeOrigin: true,
+      },
       // WebSocket 代理到网关
       '/ws': {
         target: gatewayWsTarget,

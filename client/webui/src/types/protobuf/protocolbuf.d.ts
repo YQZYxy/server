@@ -11718,6 +11718,528 @@ export namespace P_MmoRoleState_SC {
 }
 
 /**
+ * Properties of a P_CrossEnter_CS.
+ * @deprecated Use P_CrossEnter_CS.$Properties instead.
+ */
+export interface IP_CrossEnter_CS extends P_CrossEnter_CS.$Properties {
+}
+
+/** Represents a P_CrossEnter_CS. */
+export class P_CrossEnter_CS {
+
+    /**
+     * Constructs a new P_CrossEnter_CS.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: P_CrossEnter_CS.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** P_CrossEnter_CS cross_type. */
+    cross_type?: (number|null);
+
+    /** P_CrossEnter_CS activity_id. */
+    activity_id?: (number|null);
+
+    /**
+     * Creates a new P_CrossEnter_CS instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns P_CrossEnter_CS instance
+     */
+    static create(properties: P_CrossEnter_CS.$Shape): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
+    static create(properties?: P_CrossEnter_CS.$Properties): P_CrossEnter_CS;
+
+    /**
+     * Encodes the specified P_CrossEnter_CS message. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
+     * @param message P_CrossEnter_CS message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: P_CrossEnter_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified P_CrossEnter_CS message, length delimited. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
+     * @param message P_CrossEnter_CS message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: P_CrossEnter_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a P_CrossEnter_CS message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
+
+    /**
+     * Decodes a P_CrossEnter_CS message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
+
+    /**
+     * Verifies a P_CrossEnter_CS message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a P_CrossEnter_CS message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns P_CrossEnter_CS
+     */
+    static fromObject(object: { [k: string]: any }): P_CrossEnter_CS;
+
+    /**
+     * Creates a plain object from a P_CrossEnter_CS message. Also converts values to other types if specified.
+     * @param message P_CrossEnter_CS
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: P_CrossEnter_CS, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this P_CrossEnter_CS to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for P_CrossEnter_CS
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace P_CrossEnter_CS {
+
+    /** Properties of a P_CrossEnter_CS. */
+    interface $Properties {
+
+        /** P_CrossEnter_CS cross_type */
+        cross_type?: (number|null);
+
+        /** P_CrossEnter_CS activity_id */
+        activity_id?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a P_CrossEnter_CS. */
+    type $Shape = P_CrossEnter_CS.$Properties;
+}
+
+/**
+ * Properties of a P_CrossEnter_SC.
+ * @deprecated Use P_CrossEnter_SC.$Properties instead.
+ */
+export interface IP_CrossEnter_SC extends P_CrossEnter_SC.$Properties {
+}
+
+/** Represents a P_CrossEnter_SC. */
+export class P_CrossEnter_SC {
+
+    /**
+     * Constructs a new P_CrossEnter_SC.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: P_CrossEnter_SC.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** P_CrossEnter_SC success. */
+    success?: (boolean|null);
+
+    /** P_CrossEnter_SC error. */
+    error?: (string|null);
+
+    /** P_CrossEnter_SC scene_ip. */
+    scene_ip?: (string|null);
+
+    /** P_CrossEnter_SC scene_port. */
+    scene_port?: (number|null);
+
+    /** P_CrossEnter_SC token. */
+    token?: (string|null);
+
+    /** P_CrossEnter_SC expire_time. */
+    expire_time?: (number|null);
+
+    /** P_CrossEnter_SC cross_type. */
+    cross_type?: (number|null);
+
+    /**
+     * Creates a new P_CrossEnter_SC instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns P_CrossEnter_SC instance
+     */
+    static create(properties: P_CrossEnter_SC.$Shape): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
+    static create(properties?: P_CrossEnter_SC.$Properties): P_CrossEnter_SC;
+
+    /**
+     * Encodes the specified P_CrossEnter_SC message. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
+     * @param message P_CrossEnter_SC message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: P_CrossEnter_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified P_CrossEnter_SC message, length delimited. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
+     * @param message P_CrossEnter_SC message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: P_CrossEnter_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a P_CrossEnter_SC message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
+
+    /**
+     * Decodes a P_CrossEnter_SC message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
+
+    /**
+     * Verifies a P_CrossEnter_SC message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a P_CrossEnter_SC message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns P_CrossEnter_SC
+     */
+    static fromObject(object: { [k: string]: any }): P_CrossEnter_SC;
+
+    /**
+     * Creates a plain object from a P_CrossEnter_SC message. Also converts values to other types if specified.
+     * @param message P_CrossEnter_SC
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: P_CrossEnter_SC, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this P_CrossEnter_SC to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for P_CrossEnter_SC
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace P_CrossEnter_SC {
+
+    /** Properties of a P_CrossEnter_SC. */
+    interface $Properties {
+
+        /** P_CrossEnter_SC success */
+        success?: (boolean|null);
+
+        /** P_CrossEnter_SC error */
+        error?: (string|null);
+
+        /** P_CrossEnter_SC scene_ip */
+        scene_ip?: (string|null);
+
+        /** P_CrossEnter_SC scene_port */
+        scene_port?: (number|null);
+
+        /** P_CrossEnter_SC token */
+        token?: (string|null);
+
+        /** P_CrossEnter_SC expire_time */
+        expire_time?: (number|null);
+
+        /** P_CrossEnter_SC cross_type */
+        cross_type?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a P_CrossEnter_SC. */
+    type $Shape = P_CrossEnter_SC.$Properties;
+}
+
+/**
+ * Properties of a P_CrossAuth_CS.
+ * @deprecated Use P_CrossAuth_CS.$Properties instead.
+ */
+export interface IP_CrossAuth_CS extends P_CrossAuth_CS.$Properties {
+}
+
+/** Represents a P_CrossAuth_CS. */
+export class P_CrossAuth_CS {
+
+    /**
+     * Constructs a new P_CrossAuth_CS.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: P_CrossAuth_CS.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** P_CrossAuth_CS role_uid. */
+    role_uid?: (number|null);
+
+    /** P_CrossAuth_CS token. */
+    token?: (string|null);
+
+    /**
+     * Creates a new P_CrossAuth_CS instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns P_CrossAuth_CS instance
+     */
+    static create(properties: P_CrossAuth_CS.$Shape): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
+    static create(properties?: P_CrossAuth_CS.$Properties): P_CrossAuth_CS;
+
+    /**
+     * Encodes the specified P_CrossAuth_CS message. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
+     * @param message P_CrossAuth_CS message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: P_CrossAuth_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified P_CrossAuth_CS message, length delimited. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
+     * @param message P_CrossAuth_CS message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: P_CrossAuth_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a P_CrossAuth_CS message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
+
+    /**
+     * Decodes a P_CrossAuth_CS message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
+
+    /**
+     * Verifies a P_CrossAuth_CS message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a P_CrossAuth_CS message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns P_CrossAuth_CS
+     */
+    static fromObject(object: { [k: string]: any }): P_CrossAuth_CS;
+
+    /**
+     * Creates a plain object from a P_CrossAuth_CS message. Also converts values to other types if specified.
+     * @param message P_CrossAuth_CS
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: P_CrossAuth_CS, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this P_CrossAuth_CS to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for P_CrossAuth_CS
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace P_CrossAuth_CS {
+
+    /** Properties of a P_CrossAuth_CS. */
+    interface $Properties {
+
+        /** P_CrossAuth_CS role_uid */
+        role_uid?: (number|null);
+
+        /** P_CrossAuth_CS token */
+        token?: (string|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a P_CrossAuth_CS. */
+    type $Shape = P_CrossAuth_CS.$Properties;
+}
+
+/**
+ * Properties of a P_CrossAuth_SC.
+ * @deprecated Use P_CrossAuth_SC.$Properties instead.
+ */
+export interface IP_CrossAuth_SC extends P_CrossAuth_SC.$Properties {
+}
+
+/** Represents a P_CrossAuth_SC. */
+export class P_CrossAuth_SC {
+
+    /**
+     * Constructs a new P_CrossAuth_SC.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: P_CrossAuth_SC.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** P_CrossAuth_SC success. */
+    success?: (boolean|null);
+
+    /** P_CrossAuth_SC error. */
+    error?: (string|null);
+
+    /**
+     * Creates a new P_CrossAuth_SC instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns P_CrossAuth_SC instance
+     */
+    static create(properties: P_CrossAuth_SC.$Shape): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
+    static create(properties?: P_CrossAuth_SC.$Properties): P_CrossAuth_SC;
+
+    /**
+     * Encodes the specified P_CrossAuth_SC message. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
+     * @param message P_CrossAuth_SC message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: P_CrossAuth_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified P_CrossAuth_SC message, length delimited. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
+     * @param message P_CrossAuth_SC message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: P_CrossAuth_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a P_CrossAuth_SC message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
+
+    /**
+     * Decodes a P_CrossAuth_SC message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
+
+    /**
+     * Verifies a P_CrossAuth_SC message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a P_CrossAuth_SC message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns P_CrossAuth_SC
+     */
+    static fromObject(object: { [k: string]: any }): P_CrossAuth_SC;
+
+    /**
+     * Creates a plain object from a P_CrossAuth_SC message. Also converts values to other types if specified.
+     * @param message P_CrossAuth_SC
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: P_CrossAuth_SC, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this P_CrossAuth_SC to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for P_CrossAuth_SC
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace P_CrossAuth_SC {
+
+    /** Properties of a P_CrossAuth_SC. */
+    interface $Properties {
+
+        /** P_CrossAuth_SC success */
+        success?: (boolean|null);
+
+        /** P_CrossAuth_SC error */
+        error?: (string|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a P_CrossAuth_SC. */
+    type $Shape = P_CrossAuth_SC.$Properties;
+}
+
+/**
  * Properties of a P_LoginReq_CS.
  * @deprecated Use P_LoginReq_CS.$Properties instead.
  */
@@ -15057,528 +15579,6 @@ export namespace P_ArenaBattleLog_SC {
 
     /** Shape of a P_ArenaBattleLog_SC. */
     type $Shape = P_ArenaBattleLog_SC.$Properties;
-}
-
-/**
- * Properties of a P_CrossEnter_CS.
- * @deprecated Use P_CrossEnter_CS.$Properties instead.
- */
-export interface IP_CrossEnter_CS extends P_CrossEnter_CS.$Properties {
-}
-
-/** Represents a P_CrossEnter_CS. */
-export class P_CrossEnter_CS {
-
-    /**
-     * Constructs a new P_CrossEnter_CS.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: P_CrossEnter_CS.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** P_CrossEnter_CS cross_type. */
-    cross_type?: (number|null);
-
-    /** P_CrossEnter_CS activity_id. */
-    activity_id?: (number|null);
-
-    /**
-     * Creates a new P_CrossEnter_CS instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns P_CrossEnter_CS instance
-     */
-    static create(properties: P_CrossEnter_CS.$Shape): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
-    static create(properties?: P_CrossEnter_CS.$Properties): P_CrossEnter_CS;
-
-    /**
-     * Encodes the specified P_CrossEnter_CS message. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
-     * @param message P_CrossEnter_CS message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: P_CrossEnter_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified P_CrossEnter_CS message, length delimited. Does not implicitly {@link P_CrossEnter_CS.verify|verify} messages.
-     * @param message P_CrossEnter_CS message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: P_CrossEnter_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a P_CrossEnter_CS message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
-
-    /**
-     * Decodes a P_CrossEnter_CS message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {P_CrossEnter_CS & P_CrossEnter_CS.$Shape} P_CrossEnter_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossEnter_CS & P_CrossEnter_CS.$Shape;
-
-    /**
-     * Verifies a P_CrossEnter_CS message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a P_CrossEnter_CS message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns P_CrossEnter_CS
-     */
-    static fromObject(object: { [k: string]: any }): P_CrossEnter_CS;
-
-    /**
-     * Creates a plain object from a P_CrossEnter_CS message. Also converts values to other types if specified.
-     * @param message P_CrossEnter_CS
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: P_CrossEnter_CS, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this P_CrossEnter_CS to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for P_CrossEnter_CS
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace P_CrossEnter_CS {
-
-    /** Properties of a P_CrossEnter_CS. */
-    interface $Properties {
-
-        /** P_CrossEnter_CS cross_type */
-        cross_type?: (number|null);
-
-        /** P_CrossEnter_CS activity_id */
-        activity_id?: (number|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a P_CrossEnter_CS. */
-    type $Shape = P_CrossEnter_CS.$Properties;
-}
-
-/**
- * Properties of a P_CrossEnter_SC.
- * @deprecated Use P_CrossEnter_SC.$Properties instead.
- */
-export interface IP_CrossEnter_SC extends P_CrossEnter_SC.$Properties {
-}
-
-/** Represents a P_CrossEnter_SC. */
-export class P_CrossEnter_SC {
-
-    /**
-     * Constructs a new P_CrossEnter_SC.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: P_CrossEnter_SC.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** P_CrossEnter_SC success. */
-    success?: (boolean|null);
-
-    /** P_CrossEnter_SC error. */
-    error?: (string|null);
-
-    /** P_CrossEnter_SC scene_ip. */
-    scene_ip?: (string|null);
-
-    /** P_CrossEnter_SC scene_port. */
-    scene_port?: (number|null);
-
-    /** P_CrossEnter_SC token. */
-    token?: (string|null);
-
-    /** P_CrossEnter_SC expire_time. */
-    expire_time?: (number|null);
-
-    /** P_CrossEnter_SC cross_type. */
-    cross_type?: (number|null);
-
-    /**
-     * Creates a new P_CrossEnter_SC instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns P_CrossEnter_SC instance
-     */
-    static create(properties: P_CrossEnter_SC.$Shape): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
-    static create(properties?: P_CrossEnter_SC.$Properties): P_CrossEnter_SC;
-
-    /**
-     * Encodes the specified P_CrossEnter_SC message. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
-     * @param message P_CrossEnter_SC message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: P_CrossEnter_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified P_CrossEnter_SC message, length delimited. Does not implicitly {@link P_CrossEnter_SC.verify|verify} messages.
-     * @param message P_CrossEnter_SC message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: P_CrossEnter_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a P_CrossEnter_SC message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
-
-    /**
-     * Decodes a P_CrossEnter_SC message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {P_CrossEnter_SC & P_CrossEnter_SC.$Shape} P_CrossEnter_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossEnter_SC & P_CrossEnter_SC.$Shape;
-
-    /**
-     * Verifies a P_CrossEnter_SC message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a P_CrossEnter_SC message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns P_CrossEnter_SC
-     */
-    static fromObject(object: { [k: string]: any }): P_CrossEnter_SC;
-
-    /**
-     * Creates a plain object from a P_CrossEnter_SC message. Also converts values to other types if specified.
-     * @param message P_CrossEnter_SC
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: P_CrossEnter_SC, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this P_CrossEnter_SC to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for P_CrossEnter_SC
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace P_CrossEnter_SC {
-
-    /** Properties of a P_CrossEnter_SC. */
-    interface $Properties {
-
-        /** P_CrossEnter_SC success */
-        success?: (boolean|null);
-
-        /** P_CrossEnter_SC error */
-        error?: (string|null);
-
-        /** P_CrossEnter_SC scene_ip */
-        scene_ip?: (string|null);
-
-        /** P_CrossEnter_SC scene_port */
-        scene_port?: (number|null);
-
-        /** P_CrossEnter_SC token */
-        token?: (string|null);
-
-        /** P_CrossEnter_SC expire_time */
-        expire_time?: (number|null);
-
-        /** P_CrossEnter_SC cross_type */
-        cross_type?: (number|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a P_CrossEnter_SC. */
-    type $Shape = P_CrossEnter_SC.$Properties;
-}
-
-/**
- * Properties of a P_CrossAuth_CS.
- * @deprecated Use P_CrossAuth_CS.$Properties instead.
- */
-export interface IP_CrossAuth_CS extends P_CrossAuth_CS.$Properties {
-}
-
-/** Represents a P_CrossAuth_CS. */
-export class P_CrossAuth_CS {
-
-    /**
-     * Constructs a new P_CrossAuth_CS.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: P_CrossAuth_CS.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** P_CrossAuth_CS role_uid. */
-    role_uid?: (number|null);
-
-    /** P_CrossAuth_CS token. */
-    token?: (string|null);
-
-    /**
-     * Creates a new P_CrossAuth_CS instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns P_CrossAuth_CS instance
-     */
-    static create(properties: P_CrossAuth_CS.$Shape): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
-    static create(properties?: P_CrossAuth_CS.$Properties): P_CrossAuth_CS;
-
-    /**
-     * Encodes the specified P_CrossAuth_CS message. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
-     * @param message P_CrossAuth_CS message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: P_CrossAuth_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified P_CrossAuth_CS message, length delimited. Does not implicitly {@link P_CrossAuth_CS.verify|verify} messages.
-     * @param message P_CrossAuth_CS message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: P_CrossAuth_CS.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a P_CrossAuth_CS message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
-
-    /**
-     * Decodes a P_CrossAuth_CS message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {P_CrossAuth_CS & P_CrossAuth_CS.$Shape} P_CrossAuth_CS
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossAuth_CS & P_CrossAuth_CS.$Shape;
-
-    /**
-     * Verifies a P_CrossAuth_CS message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a P_CrossAuth_CS message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns P_CrossAuth_CS
-     */
-    static fromObject(object: { [k: string]: any }): P_CrossAuth_CS;
-
-    /**
-     * Creates a plain object from a P_CrossAuth_CS message. Also converts values to other types if specified.
-     * @param message P_CrossAuth_CS
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: P_CrossAuth_CS, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this P_CrossAuth_CS to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for P_CrossAuth_CS
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace P_CrossAuth_CS {
-
-    /** Properties of a P_CrossAuth_CS. */
-    interface $Properties {
-
-        /** P_CrossAuth_CS role_uid */
-        role_uid?: (number|null);
-
-        /** P_CrossAuth_CS token */
-        token?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a P_CrossAuth_CS. */
-    type $Shape = P_CrossAuth_CS.$Properties;
-}
-
-/**
- * Properties of a P_CrossAuth_SC.
- * @deprecated Use P_CrossAuth_SC.$Properties instead.
- */
-export interface IP_CrossAuth_SC extends P_CrossAuth_SC.$Properties {
-}
-
-/** Represents a P_CrossAuth_SC. */
-export class P_CrossAuth_SC {
-
-    /**
-     * Constructs a new P_CrossAuth_SC.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: P_CrossAuth_SC.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** P_CrossAuth_SC success. */
-    success?: (boolean|null);
-
-    /** P_CrossAuth_SC error. */
-    error?: (string|null);
-
-    /**
-     * Creates a new P_CrossAuth_SC instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns P_CrossAuth_SC instance
-     */
-    static create(properties: P_CrossAuth_SC.$Shape): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
-    static create(properties?: P_CrossAuth_SC.$Properties): P_CrossAuth_SC;
-
-    /**
-     * Encodes the specified P_CrossAuth_SC message. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
-     * @param message P_CrossAuth_SC message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: P_CrossAuth_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified P_CrossAuth_SC message, length delimited. Does not implicitly {@link P_CrossAuth_SC.verify|verify} messages.
-     * @param message P_CrossAuth_SC message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: P_CrossAuth_SC.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a P_CrossAuth_SC message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
-
-    /**
-     * Decodes a P_CrossAuth_SC message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {P_CrossAuth_SC & P_CrossAuth_SC.$Shape} P_CrossAuth_SC
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossAuth_SC & P_CrossAuth_SC.$Shape;
-
-    /**
-     * Verifies a P_CrossAuth_SC message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a P_CrossAuth_SC message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns P_CrossAuth_SC
-     */
-    static fromObject(object: { [k: string]: any }): P_CrossAuth_SC;
-
-    /**
-     * Creates a plain object from a P_CrossAuth_SC message. Also converts values to other types if specified.
-     * @param message P_CrossAuth_SC
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: P_CrossAuth_SC, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this P_CrossAuth_SC to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for P_CrossAuth_SC
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace P_CrossAuth_SC {
-
-    /** Properties of a P_CrossAuth_SC. */
-    interface $Properties {
-
-        /** P_CrossAuth_SC success */
-        success?: (boolean|null);
-
-        /** P_CrossAuth_SC error */
-        error?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a P_CrossAuth_SC. */
-    type $Shape = P_CrossAuth_SC.$Properties;
 }
 
 /**
