@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 """部署配置读写与校验.
 
-统一管理两份部署配置:
-    config/baseconfig.json   公共配置
-    config/crossconfig.json  实例清单
+统一管理两份部署配置副本(部署目录, 默认 debug):
+    <deploy_dir>/baseconfig.json   公共配置
+    <deploy_dir>/crossconfig.json  实例清单
 
+仓库里的 config/baseconfig.json, config/crossconfig.json 只作为默认模板.
 GUI 编辑器和命令行向导共用这里的字段定义与校验规则, 避免两套逻辑漂移.
 """
 

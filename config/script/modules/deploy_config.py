@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 """部署配置模块.
 
-提供一个专门编辑两份部署配置的入口:
-    config/baseconfig.json   公共配置
-    config/crossconfig.json  实例清单
+提供一个专门编辑两份部署配置副本的入口(部署目录, 默认 debug):
+    <deploy_dir>/baseconfig.json   公共配置
+    <deploy_dir>/crossconfig.json  实例清单
 
+仓库里的 config/baseconfig.json, config/crossconfig.json 只作为默认模板.
 GUI 模式打开独立编辑器, 命令行模式使用分步向导; 两者共用同一份字段定义与校验规则.
 """
 

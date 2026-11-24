@@ -349,7 +349,7 @@ class MenuRunner(object):
         """交互菜单, 直到用户选择退出"""
         while True:
             self.PrintMenu()
-            raw = self.m_context.console.Ask("请选择", "0")
+            raw = self.AskSelection()
             if raw in ("0", "q", "quit", "exit"):
                 return 0
             try:
@@ -367,6 +367,23 @@ class MenuRunner(object):
                 self.m_context.console.Error("[错误] 模块执行异常:")
                 self.m_context.console.Line(traceback.format_exc())
             self.m_context.console.Pause()
+
+    def AskSelection(self):
+        """读取主菜单选择
+
+        直接回车只是换行, 不会选中默认项; 只有显式输入 0 才退出.
+        Ctrl+C / EOF 按退出处理, 避免管道输入结束后死循环.
+        """
+        console = self.m_context.console
+        while True:
+            try:
+                raw = console.ReadLine("请选择 (0=退出): ").strip()
+            except (EOFError, KeyboardInterrupt, RuntimeError):
+                console.Line()
+                return "0"
+            if raw:
+                return raw
+            console.Line()
 
     def PromptOptions(self, module):
         """逐项询问模块参数.

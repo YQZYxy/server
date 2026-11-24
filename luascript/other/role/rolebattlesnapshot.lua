@@ -10,7 +10,7 @@ local BattleDef = GLO.BattleDef
 
 -- 从在线角色创建战斗快照
 -- @param role: 在线Role实例
--- @return snapshot: PB_RoleBattleSnapshot结构 {base_info, hero={heroes=...}, lineup={lineups=...}}
+-- @return snapshot: 形状同 PB_RoleData 的子集 {base_info, hero={heroes=...}, lineup={lineups=...}}
 function M.Snapshot(role)
     if not role then
         LOG_ERROR("RoleBattleSnapshot: role为空")

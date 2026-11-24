@@ -21,10 +21,51 @@ from ..core.platform_utils import (
     CREATE_NEW_CONSOLE,
     ConsolePythonExecutable,
     EnableDpiAwareness,
+    HideOwnConsoleWindow,
     OpenPath,
 )
 from ..core.theme import THEMES, ApplyTkTheme, GetTheme, ThemeListbox, ThemeText
 from .widgets import Checkbox, MultiChoiceBox
+
+# 默认窗口尺寸与最小尺寸, 启动时保持原有比例
+DEFAULT_WINDOW_WIDTH = 1120
+DEFAULT_WINDOW_HEIGHT = 720
+DEFAULT_MIN_WIDTH = 760
+DEFAULT_MIN_HEIGHT = 480
+
+# 预留标题栏与任务栏, 避免初始窗口超出屏幕后边框拖不到
+SCREEN_MARGIN_WIDTH = 32
+SCREEN_MARGIN_HEIGHT = 96
+
+# 屏幕再小也保留的最小可用尺寸
+WINDOW_FLOOR_WIDTH = 480
+WINDOW_FLOOR_HEIGHT = 360
+
+# 分隔条宽度与最小可拖范围
+SPLITTER_WIDTH = 6
+SPLITTER_MIN_LEFT = 180
+SPLITTER_MIN_RIGHT = 480
+SPLITTER_MIN_OPTIONS = 120
+SPLITTER_MIN_LOG = 80
+
+
+def ScreenMargin(root):
+    """标题栏与任务栏的预留尺寸, 按 DPI 缩放换算"""
+    scale = float(root.tk.call("tk", "scaling")) / (96.0 / 72.0)
+    return int(SCREEN_MARGIN_WIDTH * scale), int(SCREEN_MARGIN_HEIGHT * scale)
+
+
+def InitialWindowSize(root):
+    """计算初始窗口尺寸与最小尺寸, 屏幕放不下时收窄到可见区域
+
+    返回 (宽, 高, 最小宽, 最小高)
+    """
+    margin_width, margin_height = ScreenMargin(root)
+    max_width = max(root.winfo_screenwidth() - margin_width, WINDOW_FLOOR_WIDTH)
+    max_height = max(root.winfo_screenheight() - margin_height, WINDOW_FLOOR_HEIGHT)
+    width = min(DEFAULT_WINDOW_WIDTH, max_width)
+    height = min(DEFAULT_WINDOW_HEIGHT, max_height)
+    return width, height, min(DEFAULT_MIN_WIDTH, width), min(DEFAULT_MIN_HEIGHT, height)
 
 
 class GuiConsole(object):
@@ -216,8 +257,10 @@ class ToolWindow(object):
         self.m_deploy_editor = None
 
         root.title("服务器脚本工具")
-        root.geometry("1120x720")
-        root.minsize(900, 600)
+        width, height, min_width, min_height = InitialWindowSize(root)
+        root.geometry("%dx%d" % (width, height))
+        root.minsize(min_width, min_height)
+        root.resizable(True, True)
         ApplyTkTheme(root, self.m_theme)
 
         self.BuildMenu()
@@ -225,9 +268,18 @@ class ToolWindow(object):
         main = ttk.Frame(root, padding=8)
         main.pack(fill="both", expand=True)
 
-        left = ttk.Frame(main, width=280)
-        left.pack(side="left", fill="y")
+        # 左侧模块列表与右侧内容之间用分隔条, 可以拖动调整宽度
+        self.m_split_h = tk.PanedWindow(
+            main, orient="horizontal",
+            sashwidth=SPLITTER_WIDTH, sashrelief="flat",
+            sashcursor="sb_h_double_arrow", opaqueresize=True, bd=0,
+            background=self.m_theme["border"],
+        )
+        self.m_split_h.pack(fill="both", expand=True)
+
+        left = ttk.Frame(self.m_split_h, width=280)
         left.pack_propagate(False)
+        self.m_split_h.add(left, minsize=SPLITTER_MIN_LEFT, stretch="never")
 
         ttk.Label(
             left, text="模块",
@@ -243,10 +295,10 @@ class ToolWindow(object):
         for index, module in enumerate(self.m_modules, start=1):
             self.m_listbox.insert("end", "%2d. %s" % (index, module.TITLE))
 
-        right = ttk.Frame(main)
-        right.pack(side="left", fill="both", expand=True, padx=(12, 0))
-        right.rowconfigure(2, weight=3)
+        right = ttk.Frame(self.m_split_h)
+        self.m_split_h.add(right, minsize=SPLITTER_MIN_RIGHT, stretch="always")
         right.columnconfigure(0, weight=1)
+        right.rowconfigure(2, weight=1)
         self.m_title = ttk.Label(
             right, text="",
             font=(self.m_theme["font_family"], self.m_theme["font_size"] + 2, "bold"),
@@ -260,12 +312,19 @@ class ToolWindow(object):
         )
         self.m_desc.grid(row=1, column=0, sticky="w", pady=(2, 8))
 
-        self.m_option_frame = ttk.LabelFrame(right, text="参数", padding=8)
-        self.m_option_frame.grid(row=2, column=0, sticky="nsew")
+        # 参数区与日志区之间同样用分隔条, 可以拖动调整日志高度
+        self.m_split_v = tk.PanedWindow(
+            right, orient="vertical",
+            sashwidth=SPLITTER_WIDTH, sashrelief="flat",
+            sashcursor="sb_v_double_arrow", opaqueresize=True, bd=0,
+            background=self.m_theme["border"],
+        )
+        self.m_split_v.grid(row=2, column=0, sticky="nsew")
 
-        log_frame = ttk.LabelFrame(right, text="输出日志", padding=4)
-        log_frame.grid(row=3, column=0, sticky="nsew", pady=(8, 0))
-        right.rowconfigure(3, weight=0)
+        self.m_option_frame = ttk.LabelFrame(self.m_split_v, text="参数", padding=8)
+        log_frame = ttk.LabelFrame(self.m_split_v, text="输出日志", padding=4)
+        self.m_split_v.add(self.m_option_frame, minsize=SPLITTER_MIN_OPTIONS, stretch="always")
+        self.m_split_v.add(log_frame, minsize=SPLITTER_MIN_LOG, stretch="never")
 
         self.m_log = scrolledtext.ScrolledText(
             log_frame, height=6, state="disabled",
@@ -279,7 +338,7 @@ class ToolWindow(object):
         self.m_log.tag_configure("info", foreground=self.m_theme["info"])
 
         bottom = ttk.Frame(right)
-        bottom.grid(row=4, column=0, sticky="ew", pady=(8, 0))
+        bottom.grid(row=3, column=0, sticky="ew", pady=(8, 0))
         self.m_run_button = ttk.Button(bottom, text="运行", command=self.RunCurrent)
         self.m_run_button.pack(side="right")
         self.m_clear_button = ttk.Button(bottom, text="清空日志", command=self.ClearLog)
@@ -369,6 +428,8 @@ class ToolWindow(object):
         ApplyTkTheme(self.m_root, self.m_theme)
         ThemeListbox(self.m_listbox, self.m_theme)
         ThemeText(self.m_log, self.m_theme)
+        for split in (self.m_split_h, self.m_split_v):
+            split.configure(background=self.m_theme["border"])
         self.m_listbox.configure(
             font=(self.m_theme["font_family"], self.m_theme["module_list_font_size"])
         )
@@ -758,6 +819,8 @@ def LaunchGui(context, modules):
     from tkinter import messagebox
 
     EnableDpiAwareness()
+    # 双击启动时先藏掉脚本自带的控制台, 只留 GUI 窗口
+    HideOwnConsoleWindow()
     root = tk.Tk()
     root.withdraw()
     try:

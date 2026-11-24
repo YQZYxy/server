@@ -2,7 +2,7 @@
 
 C++17 多进程游戏服务器框架: CMake 构建, Python 统一脚本入口, Lua 业务脚本, Protobuf 协议, 配套 Web 管理面板与 Python AI Agent.
 
-## 技术栈
+## 部署环境
 
 | 项 | 说明 |
 |---|---|
@@ -12,23 +12,23 @@ C++17 多进程游戏服务器框架: CMake 构建, Python 统一脚本入口, L
 | 存储 | MySQL, 统一由 dbserver 访问 |
 | 工具 | Python 3, `auto.py` |
 | 前端 | React + TypeScript + Vite |
-| 第三方 | protobuf, abseil, sol2, nlohmann/json, cpp-httplib, tinyxml, zlib |
+| 第三方库 | protobuf, abseil, sol2, nlohmann/json, cpp-httplib, tinyxml, zlib |
 
 ## 进程架构
 
 | 进程 | 职责 |
 |---|---|
-| `gatewayserver` | 客户端入口: HTTP/WebSocket, 静态页面与 `/api/servers` 选服, 消息转发 |
-| `logicserver` | 业务主服: 角色/背包/任务/活动/战斗/场景, 运行 Lua 玩法 |
+| `gatewayserver` | 客户端入口: HTTP/WebSocket, 静态页面与消息转发 |
+| `logicserver` | 业务主服: 运行 Lua |
 | `dbserver` | 数据服: MySQL 连接池, 数据缓存与落库 |
-| `globalserver` | 全局服: 集群中心 hub, 跨服数据与心跳 |
-| 跨服场景服 | 独立 `logicserver` 实例, 按 `server_id` 分段识别, 可不连数据库 |
+| `globalserver` | 全局服: 集群中心 hub, 跨服数据 |
+| 跨服 | 独立 `logicserver` 实例, 按 `server_id` 分段识别, 可不连数据库 |
 
 ```
 客户端 --HTTP/WS--> gatewayserver --内部协议--> logicserver --SQL--> dbserver --> MySQL
                                                   |
                                       集群(星型) --+--> globalserver(hub)
-                                                  +--> 跨服场景服 logicserver
+                                                  +--> 跨服 logicserver
 ```
 
 - `server_id` 分段: `1~42000` 普通服, `42001~42500` 小跨服, `42501~42949` 大跨服.
@@ -40,13 +40,12 @@ C++17 多进程游戏服务器框架: CMake 构建, Python 统一脚本入口, L
 ```text
 CMakeLists.txt            根构建脚本
 CMakePresets.json         CMake 预设
-auto.py            统一脚本入口 (命令行/调试)
-auto.pyw           Windows GUI 入口 (双击无控制台)
+auto.py                   统一脚本入口 (命令行/调试)
 
 globalserver/             全局服
 gatewayserver/            网关服
-logicserver/              逻辑服 (role/battle/other/config/luaext/protocol)
-dbserver/                 数据服 (db/dbcache/mysqlconnector/protocol)
+logicserver/              逻辑服 
+dbserver/                 数据服 
 
 share/
   module/                 基础设施: 模块/网络/日志/定时器/线程池/排行榜/WebSocket
@@ -54,16 +53,16 @@ share/
   proto/                  .proto 定义与 protoc
   protocol/               生成的 C++ 协议代码
   lua/                    Lua 运行时与 sol2 封装
-  config/                 四进程共用的 ServerConfig
+  config/                 四服务器共用的 ServerConfig
   protobuf/ abseil/ ...   第三方库
 
-luascript/                Lua 业务脚本 (core/manager/other/proto)
+luascript/                Lua 业务脚本
 client/webui/             Web 管理面板 (React + TS + Vite)
 client/agent/             Python AI Agent
 
 config/                   baseconfig / crossconfig / logicconfig / 配置表
-config/script/            脚本框架 (core / modules / gui / stress)
-sql/                      数据库 SQL
+config/script/            自动化部署脚本
+sql/                      数据库导SQL
 lib/ include/             预编译库与第三方头文件
 build/ debug/ release/    构建输出与部署实例
 ```
@@ -79,7 +78,7 @@ python auto.py --gui        # 强制 GUI (仅 Windows)
 python auto.py --list       # 列出全部模块
 ```
 
-Windows 下双击 [auto.pyw](auto.pyw) 可无控制台启动; 命令行执行单个模块:
+命令行执行单个模块:
 
 ```bash
 python auto.py --cli --module build --option build_type=debug --option build_mode=incremental
@@ -100,6 +99,7 @@ python auto.py --cli --module protobuf
 | 节点 | 说明 |
 |---|---|
 | `project_root` | 仓库根目录, 相对 `config/script` 解析 |
+| `paths.deploy_dir` | 部署目录(默认 `debug`), 存放基础配置副本 |
 | `paths.*` | 实例清单、公共配置、SQL、逻辑配置、Lua、前端、运行库路径 |
 | `build.*` | CMake 路径/生成器、构建目录、并行任务、前端开关 |
 | `deploy.*` | 构建目录、实例列表、链接/覆盖策略、数据库初始化 |
@@ -107,10 +107,8 @@ python auto.py --cli --module protobuf
 | `protobuf.*` | protoc 路径与 C++/Lua/TS 输出路径 |
 | `lua_bindings.*` `mysql_def.*` `config_table.*` | 各类代码生成路径 |
 | `stress.*` | 压测协议、报告与界面状态文件 |
-| `ui.*` | 主题与字体, 支持 `vscode-dark` / `vscode-light` |
+| `ui.*` | 主题与字体 |
 
-- 配置字段缺失直接报错, 不做默认值兜底.
-- 模块运行参数会自动写回 `config.json`, 一次性参数 (`force` / `dry_run` / `server_id`) 除外.
 - 扩展模块: 在 [config/script/modules](config/script/modules) 新建模块类, 注册到 `create_modules()` 即可.
 
 ## 构建
@@ -121,7 +119,7 @@ python auto.py --cli --module build --option build_type=release --option build_m
 python auto.py --cli --module build --option webui_only=true   # 只构建前端
 ```
 
-流程: CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 可选前端构建 -> 同步实例资源到 `debug/` 或 `release/`.
+流程: CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 前端构建 -> 同步实例资源到 `debug/` 或 `release/`.
 
 ## 部署与启停
 
@@ -157,7 +155,7 @@ debug/s1/
   log/                        # 按天轮转日志
 ```
 
-- 实例清单: `s1` / `s2` (归属服+网关+数据服), `hub` (全局服), `cross` / `big_cross` (跨服场景服).
+- 实例清单: `s1` / `s2` (归属服+网关+数据服), `hub` (全局服), `cross` / `big_cross` (跨服).
 - 已存在目录默认跳过; 数据库初始化只创建不存在的库, 清库使用 `reset_db`.
 - 启动前自动同步可执行文件、`.pdb`、`lib/*.dll`、`config/logicconfig`、`luascript`、`client/webui/dist`.
 - 普通服分区大小由 `service.zone_group_size` 控制, 默认 5.
@@ -176,6 +174,8 @@ share/proto/*.proto
 ```
 
 改完 `.proto` 必须重新生成协议号常量与各语言代码.
+
+存库数据,角色持久化数据,复用数据应尽量使用Protobuf结构.
 
 ### 配置表 (Luban)
 
@@ -199,8 +199,8 @@ sql/sql_change.sql   表结构变更 (新增/修改表写这里)
 ### Lua
 
 - [share/lua](share/lua): 通用 Lua 框架与 sol2 封装.
-- [luascript](luascript): 业务脚本, 入口 `main.lua`, 全局导出在 `cppbindings.lua`.
-- C++ 暴露新接口后执行 `python auto.py --cli --module lua_bindings` 更新绑定声明.
+- [luascript](luascript): 业务脚本, 入口 `main.lua`
+- C++  sol2 封装新接口后执行 `python auto.py --cli --module lua_bindings` 更新绑定声明, C++绑定函数全局导出在 `cppbindings.lua`.
 
 ## 配置体系
 
@@ -208,7 +208,6 @@ sql/sql_change.sql   表结构变更 (新增/修改表写这里)
 - 实例配置用 `extends` 继承骨架, 对象递归合并, 数组和标量整体覆盖, 支持 `"extends": ["a.json","b.json"]`.
 - `plugin.service` 声明进程身份后, 平铺的 `node/cluster/zone` 即该服务配置; 与 `services` 同时存在时 `services` 优先.
 - `ListenIP` 为本进程监听标识, `ConnectIP` 为其它进程连接本进程的地址, 单机部署两者一致.
-- `LogPath` 可选, 默认落在运行目录 `log/<服务名>`.
 - 部署配置可在 GUI 或 `--module deploy_config` 中编辑, 保存前校验端口、`server_id`、库名与必填字段.
 
 ```json
@@ -234,8 +233,8 @@ sql/sql_change.sql   表结构变更 (新增/修改表写这里)
 ## 框架分层
 
 ```text
-share/module        基础设施: 日志 / 配置 / 定时器 / 网络 / WebSocket / 线程池 / 排行榜 / 模块生命周期
-share/plugin        通用框架: 节点身份 / 集群 / 分区 / 跨服 / 场景AOI / 活动
+share/module       基础设施: 日志 / 配置 / 定时器 / 网络 / WebSocket / 线程池 / 排行榜 / 模块生命周期
+share/plugin       通用框架: 节点身份 / 集群 / 分区 / 跨服 / 场景AOI / 活动
 各服务器目录         业务实现: 网关 / 数据 / 全局 / 逻辑 / 战斗
 ```
 
@@ -251,8 +250,7 @@ share/plugin        通用框架: 节点身份 / 集群 / 分区 / 跨服 / 场�
 
 - 节点身份: `PluginNodeId{zone_id, server_id, node_type, instance_id}`, 全局角色 id 为 `zone(16) | server(16) | role(32)`.
 - `ClusterManager` 负责连接、握手、心跳、路由转发与 RPC; `ClusterRouter` 负责直连/中心转发/按分区选节点; `ZoneManager` 负责分区拓扑与跨服节点选择.
-- 跨服组件: `CrossManager` (归属服打包快照、申请进场、下发票据、结算)、`CrossSceneService` (场景服分配场景、保存只读快照、回传结算)、`CrossDataQuery` (按 uid 中的归属服 RPC 查询).
-- 跨服包体统一写入 `share/proto` (`cluster.proto` / `zone.proto` / `cross.proto`), 不手写二进制或 JSON.
+- 跨服组件: `CrossManager` (归属服打包快照、申请进场、下发票据、结算)、`CrossSceneService` (跨服分配场景、保存只读快照、回传结算)、`CrossDataQuery` (按 uid 中的归属服 RPC 查询).
 
 权威边界:
 
@@ -261,47 +259,44 @@ share/plugin        通用框架: 节点身份 / 集群 / 分区 / 跨服 / 场�
 | 客户端连接与转发 | 网关 | - |
 | 角色持久数据 (等级/背包/装备/货币) | 归属服 | 归属服 |
 | 进跨服校验、快照、票据 | 归属服 | 归属服 |
-| 场景位置/移动/AOI/伤害/技能结算 | 场景服 | 场景服 |
+| 场景位置/移动/AOI/伤害/技能结算 | 跨服 | 跨服 |
 | 掉落/奖励/扣道具落库 | 归属服 | 归属服 |
 
-进场流程: 归属服校验资格 -> RPC 向场景服申请名额 -> 场景服分配实例并返回票据 -> 归属服推送只读快照并冻结本地写入 -> 客户端带 token 直连场景服 -> 离场结算回归属服落库.
+进场流程: 归属服校验资格 -> RPC 向跨服申请名额 -> 跨服分配实例并返回票据 -> 归属服推送只读快照并冻结本地写入 -> 客户端带 token 直连跨服 -> 离场结算回归属服落库.
 
 合服:
 
 - 流程: 停服 -> 外部工具把源服数据导入目标库 -> 把旧服 id 写入 `plugin.merged_server_ids` -> 启动目标服.
-- `PluginHost::Init` 自动装载重定向, 路由与分区查询遇到旧服 id 自动指向主服, 无需改业务代码.
+- `PluginHost::Init` 自动装载重定向, 路由与分区查询遇到旧服 id 自动指向主服.
 - 本进程 `node.server_id` 就是主服 id, `merged_server_ids` 只写被合掉的旧服 id.
 - 保留源服 uid: `uid = server_id * 100000 + role_id`, 创角取最大值时按本服 uid 区间查询.
 - 登录查库与账号列落库统一按 `用户名_s服务器id` 拼接(如 `abc_s1`), `role_data.username` / `role_login.user_name` 存带后缀的名字, `base_info.user_name` 与业务逻辑仍用原始账号名.
-- 后缀只能由服务端拼接, 客户端自带 `_s<服务器id>` 的登录/创角请求会被 logicserver 与 dbserver 直接拒绝.
 
-## 活动框架
+## 活动
 
-`share/plugin/activity` 只负责活动开关, 具体玩法由 `IActivity` 实现.
+`share/plugin/activity` 只负责活动开关, 具体玩法由继承 `IActivity` 实现.
 
 - 状态机: `CLOSED -> PREPARE -> RUNNING -> SETTLE -> FINISHED`.
 - 时间模式: `MANUAL` / `ABSOLUTE` / `OPEN_DAY` / `DAILY` / `WEEKLY` / `MONTHLY` / `WEEKDAY_RANGE`, 跨服活动只允许 `ABSOLUTE` 或循环模式.
-- 参与限制: `min_level` / `max_level` / `min_role_days` / `max_role_days`, `0` 表示不限.
 - 持久化: 状态存 `activity_state` 表 (`server_id + config_id` 唯一), 变化后按间隔批量落库, 重启按 `config_id` 恢复.
 - 配置表: `config/配置表/活动开关.xlsx` 导出 `activityconfig.json` 与 `activitytimeconfig.json`.
 - 个人进度挂在 `PB_RoleData.growth.activity`, C++ 侧管理全局表与状态, Lua 侧 `GLO.ActivityData` 读写个人数据.
 
 ## 场景 / MMO / 战斗
 
-- `SceneManager` / `Scene` / `AoiGrid`: 场景创建、实体归属、移动推进、九宫格视野, 不含玩法语义.
-- 场景协议 `30100~30110` 定义在 `share/proto/protocol.proto` 场景段, 上行由 Lua 分发, 下行由业务组包.
+- `SceneManager` / `Scene` / `AoiGrid`: 场景创建、实体归属、移动推进、九宫格视野, 不含玩法.
 - `MmoWorld`: 场景内角色状态、移动推进、攻击与技能流程、死亡判定, 不写库; 数据以 `RoleModule` 为准.
 - `GasBattleBridge`: 伤害计算交给 GAS (`AbilityManager` + `abilityconfig.json`), MMO 只负责扣血、死亡与广播.
 - `ComputeModule`: 独立工作线程, 提供 A* 寻路、AOI 范围查询、AI 预算; 输入必须是只读快照, 结果通过 `PostMsg` 回主线程.
-- 回合制按 `lineup` 出战, MMO 按 `base_info.hero_id` 出战, 两套互不影响.
+- 回合制按 `lineup` 出战, MMO 按 `base_info.hero_id` 出战
 
-## 运行流程
+## 启动流程
 
 ```text
 启动: main -> ModuleManager 注册 (Log/Timer/Network/Compute/ServerModule) -> Init -> Start -> RunMainLoop
 初始化: ConfigManager -> PluginHost (装载合服重定向, 创建 Cluster/Zone/Scene) -> Lua 与数据库准备 -> Listen -> 连接 DB/Global
 网络: IO 线程按 endpoint_id 分发 -> 客户端走 Server/MsgManager, 集群走 ClusterManager (握手/心跳/RPC)
-关闭: Server.Stop 保存数据 -> PluginHost.Stop -> Cluster.Stop -> ModuleManager 停止工作线程
+关闭: Server.Stop -> ServerDataManager 落库 -> PluginHost.Stop -> Cluster.Stop -> LuaRuntime 关闭 -> ModuleManager 停止工作线程
 ```
 
 ## 编码规范
@@ -311,4 +306,4 @@ share/plugin        通用框架: 节点身份 / 集群 / 分区 / 跨服 / 场�
 - 枚举使用裸 `enum`, 不用 `enum class`, 成员名自带类型前缀.
 - 大括号另起新行 (Allman 风格), 注释统一 `//`.
 - 中文注释使用英文标点.
-- 读配置字段缺失直接报错, 不做兜底.
+- 存库数据,角色持久化数据,复用数据,协议结构应尽量使用Protobuf结构.

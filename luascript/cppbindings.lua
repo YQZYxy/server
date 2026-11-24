@@ -174,9 +174,8 @@ function cpp_ComputeCancel(request_id) end
 ---@param role_uid integer
 ---@param cross_type integer
 ---@param activity_id integer
----@param hero_table table
 ---@return boolean
-function cpp_CrossApplyEnter(role_uid, cross_type, activity_id, hero_table) end
+function cpp_CrossApplyEnter(role_uid, cross_type, activity_id) end
 
 ---@param role_uid integer
 function cpp_CrossApplyLeave(role_uid) end
@@ -206,8 +205,8 @@ function cpp_IsLocalActive(role_uid) end
 function cpp_CrossSceneServerId(role_uid) end
 
 ---@param role_uid integer
----@return boolean
-function cpp_CrossReenterWorld(role_uid) end
+---@return any
+function cpp_CrossEnterInfo(role_uid) end
 
 ---@param lua_uid integer
 ---@param item_id integer

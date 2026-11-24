@@ -50,7 +50,7 @@ def _log(msg):
 
 
 def BuildConfig(settings):
-    """从 config/script/config.json 生成运行时配置"""
+    """从配置副本生成运行时配置"""
     root = settings.project_root
     copy_target = settings.OptionalPath("protobuf.copy_target")
     return {
@@ -120,7 +120,7 @@ def _check_protoc():
 
     if not protoc_path:
         raise ModuleError(
-            "未找到 protoc 编译器\n  已尝试: %s\n  请修改 config/script/config.json 的 protobuf.protoc_executable"
+            "未找到 protoc 编译器\n  已尝试: %s\n  请修改部署目录中 config.json 副本的 protobuf.protoc_executable"
             % ", ".join(searched)
         )
 

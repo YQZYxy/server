@@ -7,7 +7,6 @@ local GLO = GLO
 local M = {}
 local LOC = M
 local ArenaUser = GLO.ArenaUser
-local Serializer = GLO.Serializer
 local Utils = GLO.Utils
 local Protobuf = GLO.Protobuf
 local MHT = GLO.MHT
@@ -89,19 +88,10 @@ function M.LoadRet(msg_data)
 
     local load_count = 0
     for _, node in ipairs(datas) do
-        local arena_data = Serializer.Simple.Deserialize(node.data)
-        if arena_data then
-            local user = ArenaUser.ArenaUser:New()
-            user:Deserialize(arena_data)
-
-            -- 数据库中的score覆盖
-            if node.score and node.score ~= 0 then
-                user.score = node.score
-            end
-            
-            m_data.m_arena_users[user.uid] = user
-            load_count = load_count + 1
-        end
+        local user = ArenaUser.ArenaUser:New()
+        user:Deserialize(node)
+        m_data.m_arena_users[user.uid] = user
+        load_count = load_count + 1
     end
 
     m_data.m_is_loaded = true
@@ -368,15 +358,9 @@ function M.MarkDirty(uid)
         return
     end
     -- 单个保存到MySQL arena表
-    local serialized = user:Serialize()
-    local data_bytes = Serializer.Simple.Serialize(serialized)
     GLO.Protobuf.SendDBMsg(MHT.MHT_ARENA_DB_C, {
         req_type = 3,   -- 保存单个
-        datas = {{
-            uid = uid,
-            score = user.score,
-            data = data_bytes,
-        }},
+        datas = { user:Serialize() },
     })
 end
 
@@ -723,13 +707,7 @@ function M.SaveAllToDB()
     -- 收集所有用户数据
     local datas = {}
     for uid, user in pairs(m_data.m_arena_users) do
-        local serialized = user:Serialize()
-        local data_bytes = Serializer.Simple.Serialize(serialized)
-        table.insert(datas, {
-            uid = uid,
-            score = user.score,
-            data = data_bytes,
-        })
+        table.insert(datas, user:Serialize())
     end
 
     -- 通过PArenaDb消息保存到MySQL arena表

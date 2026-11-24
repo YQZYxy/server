@@ -53,6 +53,7 @@ class Doctor(object):
         self.m_console.Line("  [OK] 平台: %s" % PlatformName())
         self.m_console.Line("  [OK] 项目根目录: %s" % self.m_settings.project_root)
         self.m_console.Line("  [OK] 配置文件: %s" % self.m_settings.config_file)
+        self.m_console.Line("  [OK] 部署目录: %s" % self.m_settings.deploy_dir)
 
         self.m_console.Step("配置路径")
         self.CheckPath("paths.blueprint", "实例清单")

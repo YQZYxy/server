@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """压测工具路径配置.
 
-统一读取 config/script/config.json 的 stress 节点:
+统一读取配置副本(部署目录里的 config.json) 的 stress 节点:
     stress.proto_dir   protoc 生成的 .pb 描述符目录
     stress.report_dir  压测报告输出目录
     stress.state_file  界面状态(地址/端口/历史目标)
@@ -14,9 +14,9 @@ import glob
 import os
 
 from ..core.errors import ConfigError, ScriptError
-from ..core.settings import Settings, package_config_path
+from ..core.settings import open_settings, package_config_path
 
-# 主配置文件: config/script/config.json
+# 基础配置文件: config/script/config.json (运行时使用部署目录里的副本)
 _CONFIG_FILE = package_config_path()
 
 # 解析结果缓存, 一次进程只读一次
@@ -28,14 +28,23 @@ class StressStartupError(ScriptError):
 
 
 def config_path():
-    """主配置文件完整路径, 供错误提示使用"""
+    """主配置文件完整路径, 供错误提示使用
+
+    配置已加载时返回部署副本, 否则返回基础配置.
+    """
+    if _CONFIG_CACHE is not None:
+        return _CONFIG_CACHE["settings"].config_file
     return _CONFIG_FILE
 
 
 def _load_settings():
-    """加载主配置, 配置错误统一转成 StressStartupError"""
+    """加载主配置, 配置错误统一转成 StressStartupError
+
+    与 auto.py 一致, 读取部署目录里的配置副本.
+    """
     try:
-        return Settings(_CONFIG_FILE)
+        settings, _created = open_settings(_CONFIG_FILE)
+        return settings
     except ConfigError as error:
         raise StressStartupError("读取压测配置失败: %s" % error) from error
 

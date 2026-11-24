@@ -65,6 +65,7 @@ GLO.TaskDef = require("other.task.taskdef")
 GLO.RoleDef = require("other.role.roledef")
 GLO.BattleDef = require("other.battle.battledef")
 GLO.RankDef = require("manager.rankdef")
+GLO.MmoWorldDef = require("other.mmoworld.mmoworlddef")
 
 -- 加载配置
 GLO.ConfigManager = require("config.configmanager")
@@ -115,6 +116,7 @@ GLO.ArenaBattleModule = require("other.battle.arena.arenabattle")
 GLO.GmArena = require("other.arena.gmarena")
 -- MMO 世界
 GLO.MmoWorldModule = require("other.mmoworld.mmoworld")
+GLO.MmoWorldRole = require("other.mmoworld.mmoworldrole")
 -- 活动
 GLO.ActivityData = require("other.activity.activitydata")
 GLO.ActivityManager = require("other.activity.activitymanager")
@@ -130,6 +132,7 @@ GLO.TaskObj.Init(GLO.Task)
 GLO.TaskEvent.Init(GLO.Task)
 GLO.Lineup.Init(GLO.HeroModule)
 GLO.MmoWorldModule.Init()
+GLO.MmoWorldRole.Init()
 GLO.ActivityManager.Init()
 
 -- ============== C++调用全局函数 ==============

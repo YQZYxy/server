@@ -13,6 +13,9 @@
     python auto.py --config path/to/config.json
 
 新增模块只需要修改 config/script/modules/__init__.py, 入口菜单会自动出现.
+
+仓库里的 config/script/config.json, config/baseconfig.json, config/crossconfig.json
+只作为默认模板: 启动时先复制到部署目录(默认 debug), 之后所有修改都落在副本上.
 """
 
 import argparse
@@ -30,7 +33,7 @@ from config.script.core.context import Context  # noqa: E402
 from config.script.core.errors import ScriptError  # noqa: E402
 from config.script.core.menu import MenuRunner  # noqa: E402
 from config.script.core.platform_utils import IS_WINDOWS, IsGuiAvailable  # noqa: E402
-from config.script.core.settings import Settings, default_config_path  # noqa: E402
+from config.script.core.settings import default_config_path, open_settings  # noqa: E402
 from config.script.modules import create_modules  # noqa: E402
 
 
@@ -74,8 +77,11 @@ def PrintModules(modules):
 
 def RunMain(args):
     config_file = args.config.strip() or default_config_path(__file__)
-    settings = Settings(config_file)
+    # 先准备部署目录副本, 后续读写都针对副本
+    settings, created_copies = open_settings(config_file)
     console = Console()
+    for path in created_copies:
+        console.Line("  已生成部署配置副本: %s" % path)
     context = Context(settings, console, True, os.path.abspath(__file__))
     modules = create_modules()
 

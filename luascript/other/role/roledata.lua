@@ -46,7 +46,7 @@ local m_binds = {
     Hero      = { path = "growth.hero",   type = "PB_HeroListData" },
     Lineup    = { path = "growth.lineup", type = "PB_LineupListData" },
     Task     = { path = "growth.task",  type = "PB_TaskData" },
-    Mmo      = { path = "mmo",          type = "PB_MmoRoleData" },
+    Mmo      = { path = "mmo",          type = "PB_ScenePos" },
 }
 
 -- 字段路径 -> name, 供点号访问用

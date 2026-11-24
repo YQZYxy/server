@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """部署配置图形编辑器.
 
-一个独立窗口同时编辑:
+一个独立窗口同时编辑部署目录中的配置副本:
     baseconfig.json   基础配置
     crossconfig.json  实例清单
 

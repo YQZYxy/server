@@ -1,1721 +1,511 @@
 import * as $protobuf from "protobufjs";
 import Long = require("long");
 
-/** PB_Attr enum. */
-export enum PB_Attr {
-
-    /** ATTR_HEALTH value */
-    ATTR_HEALTH = 0,
-
-    /** ATTR_MAX_HEALTH value */
-    ATTR_MAX_HEALTH = 1,
-
-    /** ATTR_MANA value */
-    ATTR_MANA = 2,
-
-    /** ATTR_MAX_MANA value */
-    ATTR_MAX_MANA = 3,
-
-    /** ATTR_STRENGTH value */
-    ATTR_STRENGTH = 4,
-
-    /** ATTR_AGILITY value */
-    ATTR_AGILITY = 5,
-
-    /** ATTR_INTELLIGENCE value */
-    ATTR_INTELLIGENCE = 6,
-
-    /** ATTR_VITALITY value */
-    ATTR_VITALITY = 7,
-
-    /** ATTR_LUCK value */
-    ATTR_LUCK = 8,
-
-    /** ATTR_ARMOR value */
-    ATTR_ARMOR = 9,
-
-    /** ATTR_CRIT_CHANCE value */
-    ATTR_CRIT_CHANCE = 10,
-
-    /** ATTR_CRIT_DAMAGE value */
-    ATTR_CRIT_DAMAGE = 11,
-
-    /** ATTR_ATTACK_SPEED value */
-    ATTR_ATTACK_SPEED = 12,
-
-    /** ATTR_DODGE_CHANCE value */
-    ATTR_DODGE_CHANCE = 13,
-
-    /** ATTR_BLOCK_CHANCE value */
-    ATTR_BLOCK_CHANCE = 14,
-
-    /** ATTR_DAMAGE_MULTIPLIER value */
-    ATTR_DAMAGE_MULTIPLIER = 15,
-
-    /** ATTR_MAX value */
-    ATTR_MAX = 16
-}
-
-/** BattleEventType enum. */
-export enum BattleEventType {
-
-    /** BATTLE_EVENT_TYPE_NONE value */
-    BATTLE_EVENT_TYPE_NONE = 0,
-
-    /** BATTLE_EVENT_TYPE_BATTLE value */
-    BATTLE_EVENT_TYPE_BATTLE = 1,
-
-    /** BATTLE_EVENT_TYPE_TURN value */
-    BATTLE_EVENT_TYPE_TURN = 10,
-
-    /** BATTLE_EVENT_TYPE_ABILITY_ACTIVATE value */
-    BATTLE_EVENT_TYPE_ABILITY_ACTIVATE = 20,
-
-    /** BATTLE_EVENT_TYPE_DAMAGE value */
-    BATTLE_EVENT_TYPE_DAMAGE = 30,
-
-    /** BATTLE_EVENT_TYPE_HEAL value */
-    BATTLE_EVENT_TYPE_HEAL = 31,
-
-    /** BATTLE_EVENT_TYPE_EFFECT_APPLIED value */
-    BATTLE_EVENT_TYPE_EFFECT_APPLIED = 40,
-
-    /** BATTLE_EVENT_TYPE_EFFECT_REMOVED value */
-    BATTLE_EVENT_TYPE_EFFECT_REMOVED = 41,
-
-    /** BATTLE_EVENT_TYPE_EFFECT_TICK value */
-    BATTLE_EVENT_TYPE_EFFECT_TICK = 42,
-
-    /** BATTLE_EVENT_TYPE_DEATH value */
-    BATTLE_EVENT_TYPE_DEATH = 50,
-
-    /** BATTLE_EVENT_TYPE_STATUS_CHANGE value */
-    BATTLE_EVENT_TYPE_STATUS_CHANGE = 60,
-
-    /** BATTLE_EVENT_TYPE_ATTR_CHANGE value */
-    BATTLE_EVENT_TYPE_ATTR_CHANGE = 61,
-
-    /** BATTLE_EVENT_TYPE_CUSTOM value */
-    BATTLE_EVENT_TYPE_CUSTOM = 100
-}
-
-/** PB_BattleMode enum. */
-export enum PB_BattleMode {
-
-    /** BATTLE_MODE_NONE value */
-    BATTLE_MODE_NONE = 0,
-
-    /** BATTLE_MODE_TURN_BASED value */
-    BATTLE_MODE_TURN_BASED = 1,
-
-    /** BATTLE_MODE_REALTIME value */
-    BATTLE_MODE_REALTIME = 2
-}
-
-/** PB_ObjType enum. */
-export enum PB_ObjType {
-
-    /** OBJ_TYPE_NONE value */
-    OBJ_TYPE_NONE = 0,
-
-    /** OBJ_TYPE_HERO value */
-    OBJ_TYPE_HERO = 1,
-
-    /** OBJ_TYPE_MONSTER value */
-    OBJ_TYPE_MONSTER = 2
-}
-
-/** PB_BattlePhase enum. */
-export enum PB_BattlePhase {
-
-    /** BATTLE_PHASE_NONE value */
-    BATTLE_PHASE_NONE = 0,
-
-    /** BATTLE_PHASE_PREPARING value */
-    BATTLE_PHASE_PREPARING = 1,
-
-    /** BATTLE_PHASE_STARTED value */
-    BATTLE_PHASE_STARTED = 2,
-
-    /** BATTLE_PHASE_ENDING value */
-    BATTLE_PHASE_ENDING = 3,
-
-    /** BATTLE_PHASE_FINISHED value */
-    BATTLE_PHASE_FINISHED = 4
-}
-
-/** PB_TeamSide enum. */
-export enum PB_TeamSide {
-
-    /** TEAM_SIDE_NONE value */
-    TEAM_SIDE_NONE = 0,
-
-    /** TEAM_SIDE_ATTACKER value */
-    TEAM_SIDE_ATTACKER = 1,
-
-    /** TEAM_SIDE_DEFENDER value */
-    TEAM_SIDE_DEFENDER = 2,
-
-    /** TEAM_SIDE_NEUTRAL value */
-    TEAM_SIDE_NEUTRAL = 3
-}
-
-/** PB_VictoryCondition enum. */
-export enum PB_VictoryCondition {
-
-    /** VICTORY_COND_NONE value */
-    VICTORY_COND_NONE = 0,
-
-    /** VICTORY_COND_DEFENDER_DEATH value */
-    VICTORY_COND_DEFENDER_DEATH = 1,
-
-    /** VICTORY_COND_ATTACKER_DEATH value */
-    VICTORY_COND_ATTACKER_DEATH = 2,
-
-    /** VICTORY_COND_ELIMINATE_ALL value */
-    VICTORY_COND_ELIMINATE_ALL = 3,
-
-    /** VICTORY_COND_SURVIVE_TIME value */
-    VICTORY_COND_SURVIVE_TIME = 4,
-
-    /** VICTORY_COND_KILL_TARGET value */
-    VICTORY_COND_KILL_TARGET = 5,
-
-    /** VICTORY_COND_SCORE_LIMIT value */
-    VICTORY_COND_SCORE_LIMIT = 6,
-
-    /** VICTORY_COND_CUSTOM value */
-    VICTORY_COND_CUSTOM = 99
-}
-
-/** PB_BattleResultType enum. */
-export enum PB_BattleResultType {
-
-    /** BATTLE_RESULT_NONE value */
-    BATTLE_RESULT_NONE = 0,
-
-    /** BATTLE_RESULT_VICTORY value */
-    BATTLE_RESULT_VICTORY = 1,
-
-    /** BATTLE_RESULT_DEFEAT value */
-    BATTLE_RESULT_DEFEAT = 2,
-
-    /** BATTLE_RESULT_TIME_OUT value */
-    BATTLE_RESULT_TIME_OUT = 3,
-
-    /** BATTLE_RESULT_DRAW value */
-    BATTLE_RESULT_DRAW = 4,
-
-    /** BATTLE_RESULT_CANCELLED value */
-    BATTLE_RESULT_CANCELLED = 5
-}
-
-/** PB_AbilityTargetType enum. */
-export enum PB_AbilityTargetType {
-
-    /** ABILITY_TARGET_NONE value */
-    ABILITY_TARGET_NONE = 0,
-
-    /** ABILITY_TARGET_SELF value */
-    ABILITY_TARGET_SELF = 1,
-
-    /** ABILITY_TARGET_ENEMY_SINGLE value */
-    ABILITY_TARGET_ENEMY_SINGLE = 2,
-
-    /** ABILITY_TARGET_FRIEND_SINGLE value */
-    ABILITY_TARGET_FRIEND_SINGLE = 3,
-
-    /** ABILITY_TARGET_ENEMY_AOE value */
-    ABILITY_TARGET_ENEMY_AOE = 4,
-
-    /** ABILITY_TARGET_FRIEND_AOE value */
-    ABILITY_TARGET_FRIEND_AOE = 5,
-
-    /** ABILITY_TARGET_ALL value */
-    ABILITY_TARGET_ALL = 6,
-
-    /** ABILITY_TARGET_LOCATION_AOE value */
-    ABILITY_TARGET_LOCATION_AOE = 7
-}
-
-/** PB_AbilityType enum. */
-export enum PB_AbilityType {
-
-    /** ABILITY_TYPE_NONE value */
-    ABILITY_TYPE_NONE = 0,
-
-    /** ABILITY_TYPE_PHYSICAL_ATTACK value */
-    ABILITY_TYPE_PHYSICAL_ATTACK = 1,
-
-    /** ABILITY_TYPE_MAGIC_ATTACK value */
-    ABILITY_TYPE_MAGIC_ATTACK = 2,
-
-    /** ABILITY_TYPE_LIFESTEAL_ATTACK value */
-    ABILITY_TYPE_LIFESTEAL_ATTACK = 3,
-
-    /** ABILITY_TYPE_HEAL value */
-    ABILITY_TYPE_HEAL = 4,
-
-    /** ABILITY_TYPE_SELF_BUFF value */
-    ABILITY_TYPE_SELF_BUFF = 5,
-
-    /** ABILITY_TYPE_TARGET_BUFF value */
-    ABILITY_TYPE_TARGET_BUFF = 6,
-
-    /** ABILITY_TYPE_MAGIC_ATTACK_WITH_BUFF value */
-    ABILITY_TYPE_MAGIC_ATTACK_WITH_BUFF = 7,
-
-    /** ABILITY_TYPE_CUSTOM value */
-    ABILITY_TYPE_CUSTOM = 99
-}
-
-/** PB_DamageType enum. */
-export enum PB_DamageType {
-
-    /** DAMAGE_TYPE_NONE value */
-    DAMAGE_TYPE_NONE = 0,
-
-    /** DAMAGE_TYPE_ATTACK value */
-    DAMAGE_TYPE_ATTACK = 1,
-
-    /** DAMAGE_TYPE_SKILL value */
-    DAMAGE_TYPE_SKILL = 2,
-
-    /** DAMAGE_TYPE_BUFF value */
-    DAMAGE_TYPE_BUFF = 3
-}
-
-/** PB_DurationPolicy enum. */
-export enum PB_DurationPolicy {
-
-    /** DURATION_POLICY_NONE value */
-    DURATION_POLICY_NONE = 0,
-
-    /** DURATION_POLICY_INSTANT value */
-    DURATION_POLICY_INSTANT = 1,
-
-    /** DURATION_POLICY_DURATION value */
-    DURATION_POLICY_DURATION = 2,
-
-    /** DURATION_POLICY_INFINITE value */
-    DURATION_POLICY_INFINITE = 3
-}
-
-/** PB_StackingPolicy enum. */
-export enum PB_StackingPolicy {
-
-    /** STACKING_POLICY_NONE value */
-    STACKING_POLICY_NONE = 0,
-
-    /** STACKING_POLICY_AGGREGATE_BY_SOURCE value */
-    STACKING_POLICY_AGGREGATE_BY_SOURCE = 1,
-
-    /** STACKING_POLICY_AGGREGATE_BY_TARGET value */
-    STACKING_POLICY_AGGREGATE_BY_TARGET = 2
-}
-
-/** PB_StackDurationRefreshPolicy enum. */
-export enum PB_StackDurationRefreshPolicy {
-
-    /** STACK_DURATION_REFRESH_POLICY_NONE value */
-    STACK_DURATION_REFRESH_POLICY_NONE = 0,
-
-    /** STACK_DURATION_REFRESH_POLICY_REFRESH_ON_APPLICATION value */
-    STACK_DURATION_REFRESH_POLICY_REFRESH_ON_APPLICATION = 1,
-
-    /** STACK_DURATION_REFRESH_POLICY_NEVER_REFRESH value */
-    STACK_DURATION_REFRESH_POLICY_NEVER_REFRESH = 2,
-
-    /** STACK_DURATION_REFRESH_POLICY_REFRESH_ON_MAX_STACK value */
-    STACK_DURATION_REFRESH_POLICY_REFRESH_ON_MAX_STACK = 3
-}
-
-/** PB_PeriodicPolicy enum. */
-export enum PB_PeriodicPolicy {
-
-    /** PERIODIC_POLICY_NONE value */
-    PERIODIC_POLICY_NONE = 0,
-
-    /** PERIODIC_POLICY_EXECUTE_ON_APPLICATION value */
-    PERIODIC_POLICY_EXECUTE_ON_APPLICATION = 1,
-
-    /** PERIODIC_POLICY_EXECUTE_ON_INTERVAL value */
-    PERIODIC_POLICY_EXECUTE_ON_INTERVAL = 2
-}
-
-/** PB_ModifierOperation enum. */
-export enum PB_ModifierOperation {
-
-    /** MODIFIER_OPERATION_NONE value */
-    MODIFIER_OPERATION_NONE = 0,
-
-    /** MODIFIER_OPERATION_ADD value */
-    MODIFIER_OPERATION_ADD = 1,
-
-    /** MODIFIER_OPERATION_MULTIPLY value */
-    MODIFIER_OPERATION_MULTIPLY = 2,
-
-    /** MODIFIER_OPERATION_OVERRIDE value */
-    MODIFIER_OPERATION_OVERRIDE = 3
-}
-
-/** PB_AbilityActivationPolicy enum. */
-export enum PB_AbilityActivationPolicy {
-
-    /** ABILITY_ACTIVATION_POLICY_NONE value */
-    ABILITY_ACTIVATION_POLICY_NONE = 0,
-
-    /** ABILITY_ACTIVATION_POLICY_ON_INPUT_TRIGGERED value */
-    ABILITY_ACTIVATION_POLICY_ON_INPUT_TRIGGERED = 1,
-
-    /** ABILITY_ACTIVATION_POLICY_WHILE_INPUT_ACTIVE value */
-    ABILITY_ACTIVATION_POLICY_WHILE_INPUT_ACTIVE = 2,
-
-    /** ABILITY_ACTIVATION_POLICY_ON_SPAWN value */
-    ABILITY_ACTIVATION_POLICY_ON_SPAWN = 3
-}
-
-/** PB_AbilityNetPolicy enum. */
-export enum PB_AbilityNetPolicy {
-
-    /** ABILITY_NET_POLICY_NONE value */
-    ABILITY_NET_POLICY_NONE = 0,
-
-    /** ABILITY_NET_POLICY_LOCAL_PREDICTED value */
-    ABILITY_NET_POLICY_LOCAL_PREDICTED = 1,
-
-    /** ABILITY_NET_POLICY_LOCAL_ONLY value */
-    ABILITY_NET_POLICY_LOCAL_ONLY = 2,
-
-    /** ABILITY_NET_POLICY_SERVER_INITIATED value */
-    ABILITY_NET_POLICY_SERVER_INITIATED = 3,
-
-    /** ABILITY_NET_POLICY_SERVER_ONLY value */
-    ABILITY_NET_POLICY_SERVER_ONLY = 4
-}
-
-/** PB_CancelAbilityPolicy enum. */
-export enum PB_CancelAbilityPolicy {
-
-    /** CANCEL_ABILITY_POLICY_NONE value */
-    CANCEL_ABILITY_POLICY_NONE = 0,
-
-    /** CANCEL_ABILITY_POLICY_CANCEL_ABILITY value */
-    CANCEL_ABILITY_POLICY_CANCEL_ABILITY = 1,
-
-    /** CANCEL_ABILITY_POLICY_IGNORE_ABILITY value */
-    CANCEL_ABILITY_POLICY_IGNORE_ABILITY = 2
-}
-
 /**
- * Properties of a PB_AbilitySpec.
- * @deprecated Use PB_AbilitySpec.$Properties instead.
+ * Properties of a PB_ArenaOpponentInfo.
+ * @deprecated Use PB_ArenaOpponentInfo.$Properties instead.
  */
-export interface IPB_AbilitySpec extends PB_AbilitySpec.$Properties {
+export interface IPB_ArenaOpponentInfo extends PB_ArenaOpponentInfo.$Properties {
 }
 
-/** Represents a PB_AbilitySpec. */
-export class PB_AbilitySpec {
+/** Represents a PB_ArenaOpponentInfo. */
+export class PB_ArenaOpponentInfo {
 
     /**
-     * Constructs a new PB_AbilitySpec.
+     * Constructs a new PB_ArenaOpponentInfo.
      * @param [properties] Properties to set
      */
-    constructor(properties?: PB_AbilitySpec.$Properties);
+    constructor(properties?: PB_ArenaOpponentInfo.$Properties);
 
     /** Unknown fields preserved while decoding when enabled */
     $unknowns?: Uint8Array[];
 
-    /** PB_AbilitySpec ability_id. */
-    ability_id?: (number|null);
-
-    /** PB_AbilitySpec level. */
-    level?: (number|null);
-
-    /**
-     * Creates a new PB_AbilitySpec instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_AbilitySpec instance
-     */
-    static create(properties: PB_AbilitySpec.$Shape): PB_AbilitySpec & PB_AbilitySpec.$Shape;
-    static create(properties?: PB_AbilitySpec.$Properties): PB_AbilitySpec;
-
-    /**
-     * Encodes the specified PB_AbilitySpec message. Does not implicitly {@link PB_AbilitySpec.verify|verify} messages.
-     * @param message PB_AbilitySpec message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_AbilitySpec.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_AbilitySpec message, length delimited. Does not implicitly {@link PB_AbilitySpec.verify|verify} messages.
-     * @param message PB_AbilitySpec message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_AbilitySpec.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_AbilitySpec message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_AbilitySpec & PB_AbilitySpec.$Shape} PB_AbilitySpec
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_AbilitySpec & PB_AbilitySpec.$Shape;
-
-    /**
-     * Decodes a PB_AbilitySpec message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_AbilitySpec & PB_AbilitySpec.$Shape} PB_AbilitySpec
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_AbilitySpec & PB_AbilitySpec.$Shape;
-
-    /**
-     * Verifies a PB_AbilitySpec message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_AbilitySpec message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_AbilitySpec
-     */
-    static fromObject(object: { [k: string]: any }): PB_AbilitySpec;
-
-    /**
-     * Creates a plain object from a PB_AbilitySpec message. Also converts values to other types if specified.
-     * @param message PB_AbilitySpec
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_AbilitySpec, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_AbilitySpec to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_AbilitySpec
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_AbilitySpec {
-
-    /** Properties of a PB_AbilitySpec. */
-    interface $Properties {
-
-        /** PB_AbilitySpec ability_id */
-        ability_id?: (number|null);
-
-        /** PB_AbilitySpec level */
-        level?: (number|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_AbilitySpec. */
-    type $Shape = PB_AbilitySpec.$Properties;
-}
-
-/**
- * Properties of a PB_BattleParticipant.
- * @deprecated Use PB_BattleParticipant.$Properties instead.
- */
-export interface IPB_BattleParticipant extends PB_BattleParticipant.$Properties {
-}
-
-/** Represents a PB_BattleParticipant. */
-export class PB_BattleParticipant {
-
-    /**
-     * Constructs a new PB_BattleParticipant.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleParticipant.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleParticipant obj_id. */
-    obj_id?: (number|null);
-
-    /** PB_BattleParticipant obj_type. */
-    obj_type?: (PB_ObjType|null);
-
-    /** PB_BattleParticipant name. */
-    name?: (string|null);
-
-    /** PB_BattleParticipant level. */
-    level?: (number|null);
-
-    /** PB_BattleParticipant attrs. */
-    attrs: PB_AttrPair.$Properties[];
-
-    /** PB_BattleParticipant abilities. */
-    abilities: PB_AbilitySpec.$Properties[];
-
-    /** PB_BattleParticipant tags. */
-    tags: string[];
-
-    /**
-     * Creates a new PB_BattleParticipant instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_BattleParticipant instance
-     */
-    static create(properties: PB_BattleParticipant.$Shape): PB_BattleParticipant & PB_BattleParticipant.$Shape;
-    static create(properties?: PB_BattleParticipant.$Properties): PB_BattleParticipant;
-
-    /**
-     * Encodes the specified PB_BattleParticipant message. Does not implicitly {@link PB_BattleParticipant.verify|verify} messages.
-     * @param message PB_BattleParticipant message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_BattleParticipant.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_BattleParticipant message, length delimited. Does not implicitly {@link PB_BattleParticipant.verify|verify} messages.
-     * @param message PB_BattleParticipant message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_BattleParticipant.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_BattleParticipant message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_BattleParticipant & PB_BattleParticipant.$Shape} PB_BattleParticipant
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleParticipant & PB_BattleParticipant.$Shape;
-
-    /**
-     * Decodes a PB_BattleParticipant message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleParticipant & PB_BattleParticipant.$Shape} PB_BattleParticipant
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleParticipant & PB_BattleParticipant.$Shape;
-
-    /**
-     * Verifies a PB_BattleParticipant message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_BattleParticipant message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_BattleParticipant
-     */
-    static fromObject(object: { [k: string]: any }): PB_BattleParticipant;
-
-    /**
-     * Creates a plain object from a PB_BattleParticipant message. Also converts values to other types if specified.
-     * @param message PB_BattleParticipant
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_BattleParticipant, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_BattleParticipant to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_BattleParticipant
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_BattleParticipant {
-
-    /** Properties of a PB_BattleParticipant. */
-    interface $Properties {
-
-        /** PB_BattleParticipant obj_id */
-        obj_id?: (number|null);
-
-        /** PB_BattleParticipant obj_type */
-        obj_type?: (PB_ObjType|null);
-
-        /** PB_BattleParticipant name */
-        name?: (string|null);
-
-        /** PB_BattleParticipant level */
-        level?: (number|null);
-
-        /** PB_BattleParticipant attrs */
-        attrs?: (PB_AttrPair.$Properties[]|null);
-
-        /** PB_BattleParticipant abilities */
-        abilities?: (PB_AbilitySpec.$Properties[]|null);
-
-        /** PB_BattleParticipant tags */
-        tags?: (string[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_BattleParticipant. */
-    type $Shape = PB_BattleParticipant.$Properties;
-}
-
-/**
- * Properties of a PB_BattleTeam.
- * @deprecated Use PB_BattleTeam.$Properties instead.
- */
-export interface IPB_BattleTeam extends PB_BattleTeam.$Properties {
-}
-
-/** Represents a PB_BattleTeam. */
-export class PB_BattleTeam {
-
-    /**
-     * Constructs a new PB_BattleTeam.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleTeam.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleTeam team_id. */
-    team_id?: (number|null);
-
-    /** PB_BattleTeam team_name. */
-    team_name?: (string|null);
-
-    /** PB_BattleTeam side. */
-    side?: (PB_TeamSide|null);
-
-    /** PB_BattleTeam members. */
-    members: PB_BattleParticipant.$Properties[];
-
-    /**
-     * Creates a new PB_BattleTeam instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_BattleTeam instance
-     */
-    static create(properties: PB_BattleTeam.$Shape): PB_BattleTeam & PB_BattleTeam.$Shape;
-    static create(properties?: PB_BattleTeam.$Properties): PB_BattleTeam;
-
-    /**
-     * Encodes the specified PB_BattleTeam message. Does not implicitly {@link PB_BattleTeam.verify|verify} messages.
-     * @param message PB_BattleTeam message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_BattleTeam.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_BattleTeam message, length delimited. Does not implicitly {@link PB_BattleTeam.verify|verify} messages.
-     * @param message PB_BattleTeam message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_BattleTeam.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_BattleTeam message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_BattleTeam & PB_BattleTeam.$Shape} PB_BattleTeam
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleTeam & PB_BattleTeam.$Shape;
-
-    /**
-     * Decodes a PB_BattleTeam message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleTeam & PB_BattleTeam.$Shape} PB_BattleTeam
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleTeam & PB_BattleTeam.$Shape;
-
-    /**
-     * Verifies a PB_BattleTeam message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_BattleTeam message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_BattleTeam
-     */
-    static fromObject(object: { [k: string]: any }): PB_BattleTeam;
-
-    /**
-     * Creates a plain object from a PB_BattleTeam message. Also converts values to other types if specified.
-     * @param message PB_BattleTeam
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_BattleTeam, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_BattleTeam to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_BattleTeam
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_BattleTeam {
-
-    /** Properties of a PB_BattleTeam. */
-    interface $Properties {
-
-        /** PB_BattleTeam team_id */
-        team_id?: (number|null);
-
-        /** PB_BattleTeam team_name */
-        team_name?: (string|null);
-
-        /** PB_BattleTeam side */
-        side?: (PB_TeamSide|null);
-
-        /** PB_BattleTeam members */
-        members?: (PB_BattleParticipant.$Properties[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_BattleTeam. */
-    type $Shape = PB_BattleTeam.$Properties;
-}
-
-/**
- * Properties of a PB_BattleRules.
- * @deprecated Use PB_BattleRules.$Properties instead.
- */
-export interface IPB_BattleRules extends PB_BattleRules.$Properties {
-}
-
-/** Represents a PB_BattleRules. */
-export class PB_BattleRules {
-
-    /**
-     * Constructs a new PB_BattleRules.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleRules.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleRules victory_condition. */
-    victory_condition?: (PB_VictoryCondition|null);
-
-    /** PB_BattleRules max_turns. */
-    max_turns?: (number|null);
-
-    /** PB_BattleRules max_duration_sec. */
-    max_duration_sec?: (number|null);
-
-    /** PB_BattleRules allow_flee. */
-    allow_flee?: (boolean|null);
-
-    /** PB_BattleRules score_limit. */
-    score_limit?: (number|null);
-
-    /** PB_BattleRules target_member_id. */
-    target_member_id?: (number|null);
-
-    /**
-     * Creates a new PB_BattleRules instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_BattleRules instance
-     */
-    static create(properties: PB_BattleRules.$Shape): PB_BattleRules & PB_BattleRules.$Shape;
-    static create(properties?: PB_BattleRules.$Properties): PB_BattleRules;
-
-    /**
-     * Encodes the specified PB_BattleRules message. Does not implicitly {@link PB_BattleRules.verify|verify} messages.
-     * @param message PB_BattleRules message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_BattleRules.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_BattleRules message, length delimited. Does not implicitly {@link PB_BattleRules.verify|verify} messages.
-     * @param message PB_BattleRules message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_BattleRules.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_BattleRules message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_BattleRules & PB_BattleRules.$Shape} PB_BattleRules
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleRules & PB_BattleRules.$Shape;
-
-    /**
-     * Decodes a PB_BattleRules message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleRules & PB_BattleRules.$Shape} PB_BattleRules
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleRules & PB_BattleRules.$Shape;
-
-    /**
-     * Verifies a PB_BattleRules message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_BattleRules message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_BattleRules
-     */
-    static fromObject(object: { [k: string]: any }): PB_BattleRules;
-
-    /**
-     * Creates a plain object from a PB_BattleRules message. Also converts values to other types if specified.
-     * @param message PB_BattleRules
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_BattleRules, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_BattleRules to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_BattleRules
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_BattleRules {
-
-    /** Properties of a PB_BattleRules. */
-    interface $Properties {
-
-        /** PB_BattleRules victory_condition */
-        victory_condition?: (PB_VictoryCondition|null);
-
-        /** PB_BattleRules max_turns */
-        max_turns?: (number|null);
-
-        /** PB_BattleRules max_duration_sec */
-        max_duration_sec?: (number|null);
-
-        /** PB_BattleRules allow_flee */
-        allow_flee?: (boolean|null);
-
-        /** PB_BattleRules score_limit */
-        score_limit?: (number|null);
-
-        /** PB_BattleRules target_member_id */
-        target_member_id?: (number|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_BattleRules. */
-    type $Shape = PB_BattleRules.$Properties;
-}
-
-/**
- * Properties of a PB_BattleReq.
- * @deprecated Use PB_BattleReq.$Properties instead.
- */
-export interface IPB_BattleReq extends PB_BattleReq.$Properties {
-}
-
-/** Represents a PB_BattleReq. */
-export class PB_BattleReq {
-
-    /**
-     * Constructs a new PB_BattleReq.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleReq.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleReq battle_id. */
-    battle_id?: (number|null);
-
-    /** PB_BattleReq mode. */
-    mode?: (PB_BattleMode|null);
-
-    /** PB_BattleReq battle_type. */
-    battle_type?: (number|null);
-
-    /** PB_BattleReq target_id. */
-    target_id?: (number|null);
-
-    /** PB_BattleReq random_seed. */
-    random_seed?: (number|null);
-
-    /** PB_BattleReq rules. */
-    rules?: (PB_BattleRules.$Properties|null);
-
-    /** PB_BattleReq teams. */
-    teams: PB_BattleTeam.$Properties[];
-
-    /**
-     * Creates a new PB_BattleReq instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_BattleReq instance
-     */
-    static create(properties: PB_BattleReq.$Shape): PB_BattleReq & PB_BattleReq.$Shape;
-    static create(properties?: PB_BattleReq.$Properties): PB_BattleReq;
-
-    /**
-     * Encodes the specified PB_BattleReq message. Does not implicitly {@link PB_BattleReq.verify|verify} messages.
-     * @param message PB_BattleReq message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_BattleReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_BattleReq message, length delimited. Does not implicitly {@link PB_BattleReq.verify|verify} messages.
-     * @param message PB_BattleReq message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_BattleReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_BattleReq message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_BattleReq & PB_BattleReq.$Shape} PB_BattleReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleReq & PB_BattleReq.$Shape;
-
-    /**
-     * Decodes a PB_BattleReq message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleReq & PB_BattleReq.$Shape} PB_BattleReq
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleReq & PB_BattleReq.$Shape;
-
-    /**
-     * Verifies a PB_BattleReq message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_BattleReq message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_BattleReq
-     */
-    static fromObject(object: { [k: string]: any }): PB_BattleReq;
-
-    /**
-     * Creates a plain object from a PB_BattleReq message. Also converts values to other types if specified.
-     * @param message PB_BattleReq
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_BattleReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_BattleReq to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_BattleReq
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_BattleReq {
-
-    /** Properties of a PB_BattleReq. */
-    interface $Properties {
-
-        /** PB_BattleReq battle_id */
-        battle_id?: (number|null);
-
-        /** PB_BattleReq mode */
-        mode?: (PB_BattleMode|null);
-
-        /** PB_BattleReq battle_type */
-        battle_type?: (number|null);
-
-        /** PB_BattleReq target_id */
-        target_id?: (number|null);
-
-        /** PB_BattleReq random_seed */
-        random_seed?: (number|null);
-
-        /** PB_BattleReq rules */
-        rules?: (PB_BattleRules.$Properties|null);
-
-        /** PB_BattleReq teams */
-        teams?: (PB_BattleTeam.$Properties[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_BattleReq. */
-    type $Shape = PB_BattleReq.$Properties;
-}
-
-/**
- * Properties of a PB_BattleEntityState.
- * @deprecated Use PB_BattleEntityState.$Properties instead.
- */
-export interface IPB_BattleEntityState extends PB_BattleEntityState.$Properties {
-}
-
-/** Represents a PB_BattleEntityState. */
-export class PB_BattleEntityState {
-
-    /**
-     * Constructs a new PB_BattleEntityState.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleEntityState.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleEntityState pid. */
-    pid?: (number|null);
-
-    /** PB_BattleEntityState obj_id. */
-    obj_id?: (number|null);
-
-    /** PB_BattleEntityState obj_type. */
-    obj_type?: (PB_ObjType|null);
-
-    /** PB_BattleEntityState name. */
-    name?: (string|null);
-
-    /** PB_BattleEntityState level. */
-    level?: (number|null);
-
-    /** PB_BattleEntityState team_id. */
-    team_id?: (number|null);
-
-    /** PB_BattleEntityState alive. */
-    alive?: (boolean|null);
-
-    /** PB_BattleEntityState attrs. */
-    attrs: PB_AttrPair.$Properties[];
-
-    /**
-     * Creates a new PB_BattleEntityState instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_BattleEntityState instance
-     */
-    static create(properties: PB_BattleEntityState.$Shape): PB_BattleEntityState & PB_BattleEntityState.$Shape;
-    static create(properties?: PB_BattleEntityState.$Properties): PB_BattleEntityState;
-
-    /**
-     * Encodes the specified PB_BattleEntityState message. Does not implicitly {@link PB_BattleEntityState.verify|verify} messages.
-     * @param message PB_BattleEntityState message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_BattleEntityState.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_BattleEntityState message, length delimited. Does not implicitly {@link PB_BattleEntityState.verify|verify} messages.
-     * @param message PB_BattleEntityState message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_BattleEntityState.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_BattleEntityState message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_BattleEntityState & PB_BattleEntityState.$Shape} PB_BattleEntityState
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleEntityState & PB_BattleEntityState.$Shape;
-
-    /**
-     * Decodes a PB_BattleEntityState message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleEntityState & PB_BattleEntityState.$Shape} PB_BattleEntityState
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleEntityState & PB_BattleEntityState.$Shape;
-
-    /**
-     * Verifies a PB_BattleEntityState message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_BattleEntityState message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_BattleEntityState
-     */
-    static fromObject(object: { [k: string]: any }): PB_BattleEntityState;
-
-    /**
-     * Creates a plain object from a PB_BattleEntityState message. Also converts values to other types if specified.
-     * @param message PB_BattleEntityState
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_BattleEntityState, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_BattleEntityState to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_BattleEntityState
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_BattleEntityState {
-
-    /** Properties of a PB_BattleEntityState. */
-    interface $Properties {
-
-        /** PB_BattleEntityState pid */
-        pid?: (number|null);
-
-        /** PB_BattleEntityState obj_id */
-        obj_id?: (number|null);
-
-        /** PB_BattleEntityState obj_type */
-        obj_type?: (PB_ObjType|null);
-
-        /** PB_BattleEntityState name */
-        name?: (string|null);
-
-        /** PB_BattleEntityState level */
-        level?: (number|null);
-
-        /** PB_BattleEntityState team_id */
-        team_id?: (number|null);
-
-        /** PB_BattleEntityState alive */
-        alive?: (boolean|null);
-
-        /** PB_BattleEntityState attrs */
-        attrs?: (PB_AttrPair.$Properties[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_BattleEntityState. */
-    type $Shape = PB_BattleEntityState.$Properties;
-}
-
-/**
- * Properties of a PB_BattleResult.
- * @deprecated Use PB_BattleResult.$Properties instead.
- */
-export interface IPB_BattleResult extends PB_BattleResult.$Properties {
-}
-
-/** Represents a PB_BattleResult. */
-export class PB_BattleResult {
-
-    /**
-     * Constructs a new PB_BattleResult.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleResult.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleResult battle_id. */
-    battle_id?: (number|null);
-
-    /** PB_BattleResult result_type. */
-    result_type?: (PB_BattleResultType|null);
-
-    /** PB_BattleResult winner_team_id. */
-    winner_team_id?: (number|null);
-
-    /** PB_BattleResult total_turns. */
-    total_turns?: (number|null);
-
-    /** PB_BattleResult duration_ms. */
-    duration_ms?: (number|null);
-
-    /** PB_BattleResult replay_text. */
-    replay_text?: (string|null);
-
-    /** PB_BattleResult report_key. */
-    report_key?: (string|null);
-
-    /** PB_BattleResult final_states. */
-    final_states: PB_BattleEntityState.$Properties[];
-
-    /**
-     * Creates a new PB_BattleResult instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_BattleResult instance
-     */
-    static create(properties: PB_BattleResult.$Shape): PB_BattleResult & PB_BattleResult.$Shape;
-    static create(properties?: PB_BattleResult.$Properties): PB_BattleResult;
-
-    /**
-     * Encodes the specified PB_BattleResult message. Does not implicitly {@link PB_BattleResult.verify|verify} messages.
-     * @param message PB_BattleResult message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_BattleResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_BattleResult message, length delimited. Does not implicitly {@link PB_BattleResult.verify|verify} messages.
-     * @param message PB_BattleResult message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_BattleResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_BattleResult message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_BattleResult & PB_BattleResult.$Shape} PB_BattleResult
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleResult & PB_BattleResult.$Shape;
-
-    /**
-     * Decodes a PB_BattleResult message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleResult & PB_BattleResult.$Shape} PB_BattleResult
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleResult & PB_BattleResult.$Shape;
-
-    /**
-     * Verifies a PB_BattleResult message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_BattleResult message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_BattleResult
-     */
-    static fromObject(object: { [k: string]: any }): PB_BattleResult;
-
-    /**
-     * Creates a plain object from a PB_BattleResult message. Also converts values to other types if specified.
-     * @param message PB_BattleResult
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_BattleResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_BattleResult to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_BattleResult
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_BattleResult {
-
-    /** Properties of a PB_BattleResult. */
-    interface $Properties {
-
-        /** PB_BattleResult battle_id */
-        battle_id?: (number|null);
-
-        /** PB_BattleResult result_type */
-        result_type?: (PB_BattleResultType|null);
-
-        /** PB_BattleResult winner_team_id */
-        winner_team_id?: (number|null);
-
-        /** PB_BattleResult total_turns */
-        total_turns?: (number|null);
-
-        /** PB_BattleResult duration_ms */
-        duration_ms?: (number|null);
-
-        /** PB_BattleResult replay_text */
-        replay_text?: (string|null);
-
-        /** PB_BattleResult report_key */
-        report_key?: (string|null);
-
-        /** PB_BattleResult final_states */
-        final_states?: (PB_BattleEntityState.$Properties[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_BattleResult. */
-    type $Shape = PB_BattleResult.$Properties;
-}
-
-/**
- * Properties of a PB_BattleMatchResult.
- * @deprecated Use PB_BattleMatchResult.$Properties instead.
- */
-export interface IPB_BattleMatchResult extends PB_BattleMatchResult.$Properties {
-}
-
-/** Represents a PB_BattleMatchResult. */
-export class PB_BattleMatchResult {
-
-    /**
-     * Constructs a new PB_BattleMatchResult.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleMatchResult.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleMatchResult match_index. */
-    match_index?: (number|null);
-
-    /** PB_BattleMatchResult result_type. */
-    result_type?: (PB_BattleResultType|null);
-
-    /** PB_BattleMatchResult battle_type. */
-    battle_type?: (number|null);
-
-    /** PB_BattleMatchResult report_key. */
-    report_key?: (string|null);
-
-    /** PB_BattleMatchResult replay_text. */
-    replay_text?: (string|null);
-
-    /**
-     * Creates a new PB_BattleMatchResult instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_BattleMatchResult instance
-     */
-    static create(properties: PB_BattleMatchResult.$Shape): PB_BattleMatchResult & PB_BattleMatchResult.$Shape;
-    static create(properties?: PB_BattleMatchResult.$Properties): PB_BattleMatchResult;
-
-    /**
-     * Encodes the specified PB_BattleMatchResult message. Does not implicitly {@link PB_BattleMatchResult.verify|verify} messages.
-     * @param message PB_BattleMatchResult message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_BattleMatchResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_BattleMatchResult message, length delimited. Does not implicitly {@link PB_BattleMatchResult.verify|verify} messages.
-     * @param message PB_BattleMatchResult message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_BattleMatchResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_BattleMatchResult message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_BattleMatchResult & PB_BattleMatchResult.$Shape} PB_BattleMatchResult
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleMatchResult & PB_BattleMatchResult.$Shape;
-
-    /**
-     * Decodes a PB_BattleMatchResult message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleMatchResult & PB_BattleMatchResult.$Shape} PB_BattleMatchResult
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleMatchResult & PB_BattleMatchResult.$Shape;
-
-    /**
-     * Verifies a PB_BattleMatchResult message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_BattleMatchResult message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_BattleMatchResult
-     */
-    static fromObject(object: { [k: string]: any }): PB_BattleMatchResult;
-
-    /**
-     * Creates a plain object from a PB_BattleMatchResult message. Also converts values to other types if specified.
-     * @param message PB_BattleMatchResult
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_BattleMatchResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_BattleMatchResult to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_BattleMatchResult
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_BattleMatchResult {
-
-    /** Properties of a PB_BattleMatchResult. */
-    interface $Properties {
-
-        /** PB_BattleMatchResult match_index */
-        match_index?: (number|null);
-
-        /** PB_BattleMatchResult result_type */
-        result_type?: (PB_BattleResultType|null);
-
-        /** PB_BattleMatchResult battle_type */
-        battle_type?: (number|null);
-
-        /** PB_BattleMatchResult report_key */
-        report_key?: (string|null);
-
-        /** PB_BattleMatchResult replay_text */
-        replay_text?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_BattleMatchResult. */
-    type $Shape = PB_BattleMatchResult.$Properties;
-}
-
-/**
- * Properties of a PB_BattleExecuteReq.
- * @deprecated Use PB_BattleExecuteReq.$Properties instead.
- */
-export interface IPB_BattleExecuteReq extends PB_BattleExecuteReq.$Properties {
-}
-
-/** Represents a PB_BattleExecuteReq. */
-export class PB_BattleExecuteReq {
-
-    /**
-     * Constructs a new PB_BattleExecuteReq.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_BattleExecuteReq.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_BattleExecuteReq battle_req. */
-    battle_req?: (PB_BattleReq.$Properties|null);
-
-    /** PB_BattleExecuteReq report_key. */
-    report_key?: (string|null);
-
-    /** PB_BattleExecuteReq uid. */
+    /** PB_ArenaOpponentInfo uid. */
     uid?: (number|null);
 
-    /** PB_BattleExecuteReq match_index. */
-    match_index?: (number|null);
+    /** PB_ArenaOpponentInfo name. */
+    name?: (string|null);
 
-    /** PB_BattleExecuteReq total_matches. */
-    total_matches?: (number|null);
+    /** PB_ArenaOpponentInfo user_name. */
+    user_name?: (string|null);
+
+    /** PB_ArenaOpponentInfo score. */
+    score?: (number|null);
+
+    /** PB_ArenaOpponentInfo heroes. */
+    heroes: PB_HeroData.$Properties[];
 
     /**
-     * Creates a new PB_BattleExecuteReq instance using the specified properties.
+     * Creates a new PB_ArenaOpponentInfo instance using the specified properties.
      * @param [properties] Properties to set
-     * @returns PB_BattleExecuteReq instance
+     * @returns PB_ArenaOpponentInfo instance
      */
-    static create(properties: PB_BattleExecuteReq.$Shape): PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape;
-    static create(properties?: PB_BattleExecuteReq.$Properties): PB_BattleExecuteReq;
+    static create(properties: PB_ArenaOpponentInfo.$Shape): PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape;
+    static create(properties?: PB_ArenaOpponentInfo.$Properties): PB_ArenaOpponentInfo;
 
     /**
-     * Encodes the specified PB_BattleExecuteReq message. Does not implicitly {@link PB_BattleExecuteReq.verify|verify} messages.
-     * @param message PB_BattleExecuteReq message or plain object to encode
+     * Encodes the specified PB_ArenaOpponentInfo message. Does not implicitly {@link PB_ArenaOpponentInfo.verify|verify} messages.
+     * @param message PB_ArenaOpponentInfo message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    static encode(message: PB_BattleExecuteReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+    static encode(message: PB_ArenaOpponentInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Encodes the specified PB_BattleExecuteReq message, length delimited. Does not implicitly {@link PB_BattleExecuteReq.verify|verify} messages.
-     * @param message PB_BattleExecuteReq message or plain object to encode
+     * Encodes the specified PB_ArenaOpponentInfo message, length delimited. Does not implicitly {@link PB_ArenaOpponentInfo.verify|verify} messages.
+     * @param message PB_ArenaOpponentInfo message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    static encodeDelimited(message: PB_BattleExecuteReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+    static encodeDelimited(message: PB_ArenaOpponentInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Decodes a PB_BattleExecuteReq message from the specified reader or buffer.
+     * Decodes a PB_ArenaOpponentInfo message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
      * @param [length] Message length if known beforehand
-     * @returns {PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape} PB_BattleExecuteReq
+     * @returns {PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape} PB_ArenaOpponentInfo
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape;
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape;
 
     /**
-     * Decodes a PB_BattleExecuteReq message from the specified reader or buffer, length delimited.
+     * Decodes a PB_ArenaOpponentInfo message from the specified reader or buffer, length delimited.
      * @param reader Reader or buffer to decode from
-     * @returns {PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape} PB_BattleExecuteReq
+     * @returns {PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape} PB_ArenaOpponentInfo
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape;
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape;
 
     /**
-     * Verifies a PB_BattleExecuteReq message.
+     * Verifies a PB_ArenaOpponentInfo message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
     static verify(message: { [k: string]: any }): (string|null);
 
     /**
-     * Creates a PB_BattleExecuteReq message from a plain object. Also converts values to their respective internal types.
+     * Creates a PB_ArenaOpponentInfo message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
-     * @returns PB_BattleExecuteReq
+     * @returns PB_ArenaOpponentInfo
      */
-    static fromObject(object: { [k: string]: any }): PB_BattleExecuteReq;
+    static fromObject(object: { [k: string]: any }): PB_ArenaOpponentInfo;
 
     /**
-     * Creates a plain object from a PB_BattleExecuteReq message. Also converts values to other types if specified.
-     * @param message PB_BattleExecuteReq
+     * Creates a plain object from a PB_ArenaOpponentInfo message. Also converts values to other types if specified.
+     * @param message PB_ArenaOpponentInfo
      * @param [options] Conversion options
      * @returns Plain object
      */
-    static toObject(message: PB_BattleExecuteReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
+    static toObject(message: PB_ArenaOpponentInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
-     * Converts this PB_BattleExecuteReq to JSON.
+     * Converts this PB_ArenaOpponentInfo to JSON.
      * @returns JSON object
      */
     toJSON(): { [k: string]: any };
 
     /**
-     * Gets the type url for PB_BattleExecuteReq
+     * Gets the type url for PB_ArenaOpponentInfo
      * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns The type url
      */
     static getTypeUrl(prefix?: string): string;
 }
 
-export namespace PB_BattleExecuteReq {
+export namespace PB_ArenaOpponentInfo {
 
-    /** Properties of a PB_BattleExecuteReq. */
+    /** Properties of a PB_ArenaOpponentInfo. */
     interface $Properties {
 
-        /** PB_BattleExecuteReq battle_req */
-        battle_req?: (PB_BattleReq.$Properties|null);
-
-        /** PB_BattleExecuteReq report_key */
-        report_key?: (string|null);
-
-        /** PB_BattleExecuteReq uid */
+        /** PB_ArenaOpponentInfo uid */
         uid?: (number|null);
 
-        /** PB_BattleExecuteReq match_index */
-        match_index?: (number|null);
+        /** PB_ArenaOpponentInfo name */
+        name?: (string|null);
 
-        /** PB_BattleExecuteReq total_matches */
-        total_matches?: (number|null);
+        /** PB_ArenaOpponentInfo user_name */
+        user_name?: (string|null);
+
+        /** PB_ArenaOpponentInfo score */
+        score?: (number|null);
+
+        /** PB_ArenaOpponentInfo heroes */
+        heroes?: (PB_HeroData.$Properties[]|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
     }
 
-    /** Shape of a PB_BattleExecuteReq. */
-    type $Shape = PB_BattleExecuteReq.$Properties;
+    /** Shape of a PB_ArenaOpponentInfo. */
+    type $Shape = PB_ArenaOpponentInfo.$Properties;
+}
+
+/**
+ * Properties of a PB_ArenaBattleLog.
+ * @deprecated Use PB_ArenaBattleLog.$Properties instead.
+ */
+export interface IPB_ArenaBattleLog extends PB_ArenaBattleLog.$Properties {
+}
+
+/** Represents a PB_ArenaBattleLog. */
+export class PB_ArenaBattleLog {
+
+    /**
+     * Constructs a new PB_ArenaBattleLog.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_ArenaBattleLog.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_ArenaBattleLog time. */
+    time?: (number|null);
+
+    /** PB_ArenaBattleLog report_key. */
+    report_key?: (string|null);
+
+    /** PB_ArenaBattleLog my_heroes. */
+    my_heroes: PB_HeroData.$Properties[];
+
+    /** PB_ArenaBattleLog opponent_uid. */
+    opponent_uid?: (number|null);
+
+    /** PB_ArenaBattleLog opponent_name. */
+    opponent_name?: (string|null);
+
+    /** PB_ArenaBattleLog opponent_heroes. */
+    opponent_heroes: PB_HeroData.$Properties[];
+
+    /** PB_ArenaBattleLog is_win. */
+    is_win?: (boolean|null);
+
+    /** PB_ArenaBattleLog score_change. */
+    score_change?: (number|null);
+
+    /** PB_ArenaBattleLog score_after. */
+    score_after?: (number|null);
+
+    /**
+     * Creates a new PB_ArenaBattleLog instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_ArenaBattleLog instance
+     */
+    static create(properties: PB_ArenaBattleLog.$Shape): PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape;
+    static create(properties?: PB_ArenaBattleLog.$Properties): PB_ArenaBattleLog;
+
+    /**
+     * Encodes the specified PB_ArenaBattleLog message. Does not implicitly {@link PB_ArenaBattleLog.verify|verify} messages.
+     * @param message PB_ArenaBattleLog message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_ArenaBattleLog.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_ArenaBattleLog message, length delimited. Does not implicitly {@link PB_ArenaBattleLog.verify|verify} messages.
+     * @param message PB_ArenaBattleLog message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_ArenaBattleLog.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_ArenaBattleLog message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape} PB_ArenaBattleLog
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape;
+
+    /**
+     * Decodes a PB_ArenaBattleLog message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape} PB_ArenaBattleLog
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape;
+
+    /**
+     * Verifies a PB_ArenaBattleLog message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_ArenaBattleLog message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_ArenaBattleLog
+     */
+    static fromObject(object: { [k: string]: any }): PB_ArenaBattleLog;
+
+    /**
+     * Creates a plain object from a PB_ArenaBattleLog message. Also converts values to other types if specified.
+     * @param message PB_ArenaBattleLog
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_ArenaBattleLog, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_ArenaBattleLog to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_ArenaBattleLog
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_ArenaBattleLog {
+
+    /** Properties of a PB_ArenaBattleLog. */
+    interface $Properties {
+
+        /** PB_ArenaBattleLog time */
+        time?: (number|null);
+
+        /** PB_ArenaBattleLog report_key */
+        report_key?: (string|null);
+
+        /** PB_ArenaBattleLog my_heroes */
+        my_heroes?: (PB_HeroData.$Properties[]|null);
+
+        /** PB_ArenaBattleLog opponent_uid */
+        opponent_uid?: (number|null);
+
+        /** PB_ArenaBattleLog opponent_name */
+        opponent_name?: (string|null);
+
+        /** PB_ArenaBattleLog opponent_heroes */
+        opponent_heroes?: (PB_HeroData.$Properties[]|null);
+
+        /** PB_ArenaBattleLog is_win */
+        is_win?: (boolean|null);
+
+        /** PB_ArenaBattleLog score_change */
+        score_change?: (number|null);
+
+        /** PB_ArenaBattleLog score_after */
+        score_after?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_ArenaBattleLog. */
+    type $Shape = PB_ArenaBattleLog.$Properties;
+}
+
+/**
+ * Properties of a PB_ArenaUserData.
+ * @deprecated Use PB_ArenaUserData.$Properties instead.
+ */
+export interface IPB_ArenaUserData extends PB_ArenaUserData.$Properties {
+}
+
+/** Represents a PB_ArenaUserData. */
+export class PB_ArenaUserData {
+
+    /**
+     * Constructs a new PB_ArenaUserData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_ArenaUserData.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_ArenaUserData uid. */
+    uid?: (number|null);
+
+    /** PB_ArenaUserData name. */
+    name?: (string|null);
+
+    /** PB_ArenaUserData user_name. */
+    user_name?: (string|null);
+
+    /** PB_ArenaUserData score. */
+    score?: (number|null);
+
+    /** PB_ArenaUserData power. */
+    power?: (number|null);
+
+    /** PB_ArenaUserData role_snapshot. */
+    role_snapshot?: (PB_RoleData.$Properties|null);
+
+    /** PB_ArenaUserData daily_challenge_count. */
+    daily_challenge_count?: (number|null);
+
+    /** PB_ArenaUserData daily_refresh_count. */
+    daily_refresh_count?: (number|null);
+
+    /** PB_ArenaUserData last_day_id. */
+    last_day_id?: (number|null);
+
+    /** PB_ArenaUserData max_daily_challenge. */
+    max_daily_challenge?: (number|null);
+
+    /** PB_ArenaUserData max_daily_free_refresh. */
+    max_daily_free_refresh?: (number|null);
+
+    /** PB_ArenaUserData opponent_uids. */
+    opponent_uids: number[];
+
+    /** PB_ArenaUserData last_match_time. */
+    last_match_time?: (number|null);
+
+    /** PB_ArenaUserData battle_logs. */
+    battle_logs: PB_ArenaBattleLog.$Properties[];
+
+    /** PB_ArenaUserData is_registered. */
+    is_registered?: (boolean|null);
+
+    /**
+     * Creates a new PB_ArenaUserData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_ArenaUserData instance
+     */
+    static create(properties: PB_ArenaUserData.$Shape): PB_ArenaUserData & PB_ArenaUserData.$Shape;
+    static create(properties?: PB_ArenaUserData.$Properties): PB_ArenaUserData;
+
+    /**
+     * Encodes the specified PB_ArenaUserData message. Does not implicitly {@link PB_ArenaUserData.verify|verify} messages.
+     * @param message PB_ArenaUserData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_ArenaUserData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_ArenaUserData message, length delimited. Does not implicitly {@link PB_ArenaUserData.verify|verify} messages.
+     * @param message PB_ArenaUserData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_ArenaUserData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_ArenaUserData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_ArenaUserData & PB_ArenaUserData.$Shape} PB_ArenaUserData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ArenaUserData & PB_ArenaUserData.$Shape;
+
+    /**
+     * Decodes a PB_ArenaUserData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_ArenaUserData & PB_ArenaUserData.$Shape} PB_ArenaUserData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ArenaUserData & PB_ArenaUserData.$Shape;
+
+    /**
+     * Verifies a PB_ArenaUserData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_ArenaUserData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_ArenaUserData
+     */
+    static fromObject(object: { [k: string]: any }): PB_ArenaUserData;
+
+    /**
+     * Creates a plain object from a PB_ArenaUserData message. Also converts values to other types if specified.
+     * @param message PB_ArenaUserData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_ArenaUserData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_ArenaUserData to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_ArenaUserData
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_ArenaUserData {
+
+    /** Properties of a PB_ArenaUserData. */
+    interface $Properties {
+
+        /** PB_ArenaUserData uid */
+        uid?: (number|null);
+
+        /** PB_ArenaUserData name */
+        name?: (string|null);
+
+        /** PB_ArenaUserData user_name */
+        user_name?: (string|null);
+
+        /** PB_ArenaUserData score */
+        score?: (number|null);
+
+        /** PB_ArenaUserData power */
+        power?: (number|null);
+
+        /** PB_ArenaUserData role_snapshot */
+        role_snapshot?: (PB_RoleData.$Properties|null);
+
+        /** PB_ArenaUserData daily_challenge_count */
+        daily_challenge_count?: (number|null);
+
+        /** PB_ArenaUserData daily_refresh_count */
+        daily_refresh_count?: (number|null);
+
+        /** PB_ArenaUserData last_day_id */
+        last_day_id?: (number|null);
+
+        /** PB_ArenaUserData max_daily_challenge */
+        max_daily_challenge?: (number|null);
+
+        /** PB_ArenaUserData max_daily_free_refresh */
+        max_daily_free_refresh?: (number|null);
+
+        /** PB_ArenaUserData opponent_uids */
+        opponent_uids?: (number[]|null);
+
+        /** PB_ArenaUserData last_match_time */
+        last_match_time?: (number|null);
+
+        /** PB_ArenaUserData battle_logs */
+        battle_logs?: (PB_ArenaBattleLog.$Properties[]|null);
+
+        /** PB_ArenaUserData is_registered */
+        is_registered?: (boolean|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_ArenaUserData. */
+    type $Shape = PB_ArenaUserData.$Properties;
 }
 
 /**
@@ -3972,6 +2762,3049 @@ export namespace PB_ArenaRankNode {
 }
 
 /**
+ * Properties of a PB_Vector3.
+ * @deprecated Use PB_Vector3.$Properties instead.
+ */
+export interface IPB_Vector3 extends PB_Vector3.$Properties {
+}
+
+/** Represents a PB_Vector3. */
+export class PB_Vector3 {
+
+    /**
+     * Constructs a new PB_Vector3.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_Vector3.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_Vector3 x. */
+    x?: (number|null);
+
+    /** PB_Vector3 y. */
+    y?: (number|null);
+
+    /** PB_Vector3 z. */
+    z?: (number|null);
+
+    /**
+     * Creates a new PB_Vector3 instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_Vector3 instance
+     */
+    static create(properties: PB_Vector3.$Shape): PB_Vector3 & PB_Vector3.$Shape;
+    static create(properties?: PB_Vector3.$Properties): PB_Vector3;
+
+    /**
+     * Encodes the specified PB_Vector3 message. Does not implicitly {@link PB_Vector3.verify|verify} messages.
+     * @param message PB_Vector3 message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_Vector3.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_Vector3 message, length delimited. Does not implicitly {@link PB_Vector3.verify|verify} messages.
+     * @param message PB_Vector3 message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_Vector3.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_Vector3 message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_Vector3 & PB_Vector3.$Shape} PB_Vector3
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_Vector3 & PB_Vector3.$Shape;
+
+    /**
+     * Decodes a PB_Vector3 message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_Vector3 & PB_Vector3.$Shape} PB_Vector3
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_Vector3 & PB_Vector3.$Shape;
+
+    /**
+     * Verifies a PB_Vector3 message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_Vector3 message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_Vector3
+     */
+    static fromObject(object: { [k: string]: any }): PB_Vector3;
+
+    /**
+     * Creates a plain object from a PB_Vector3 message. Also converts values to other types if specified.
+     * @param message PB_Vector3
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_Vector3, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_Vector3 to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_Vector3
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_Vector3 {
+
+    /** Properties of a PB_Vector3. */
+    interface $Properties {
+
+        /** PB_Vector3 x */
+        x?: (number|null);
+
+        /** PB_Vector3 y */
+        y?: (number|null);
+
+        /** PB_Vector3 z */
+        z?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_Vector3. */
+    type $Shape = PB_Vector3.$Properties;
+}
+
+/**
+ * Properties of a PB_ScenePos.
+ * @deprecated Use PB_ScenePos.$Properties instead.
+ */
+export interface IPB_ScenePos extends PB_ScenePos.$Properties {
+}
+
+/** Represents a PB_ScenePos. */
+export class PB_ScenePos {
+
+    /**
+     * Constructs a new PB_ScenePos.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_ScenePos.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_ScenePos scene_id. */
+    scene_id?: (number|null);
+
+    /** PB_ScenePos pos. */
+    pos?: (PB_Vector3.$Properties|null);
+
+    /**
+     * Creates a new PB_ScenePos instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_ScenePos instance
+     */
+    static create(properties: PB_ScenePos.$Shape): PB_ScenePos & PB_ScenePos.$Shape;
+    static create(properties?: PB_ScenePos.$Properties): PB_ScenePos;
+
+    /**
+     * Encodes the specified PB_ScenePos message. Does not implicitly {@link PB_ScenePos.verify|verify} messages.
+     * @param message PB_ScenePos message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_ScenePos.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_ScenePos message, length delimited. Does not implicitly {@link PB_ScenePos.verify|verify} messages.
+     * @param message PB_ScenePos message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_ScenePos.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_ScenePos message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_ScenePos & PB_ScenePos.$Shape} PB_ScenePos
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ScenePos & PB_ScenePos.$Shape;
+
+    /**
+     * Decodes a PB_ScenePos message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_ScenePos & PB_ScenePos.$Shape} PB_ScenePos
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ScenePos & PB_ScenePos.$Shape;
+
+    /**
+     * Verifies a PB_ScenePos message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_ScenePos message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_ScenePos
+     */
+    static fromObject(object: { [k: string]: any }): PB_ScenePos;
+
+    /**
+     * Creates a plain object from a PB_ScenePos message. Also converts values to other types if specified.
+     * @param message PB_ScenePos
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_ScenePos, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_ScenePos to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_ScenePos
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_ScenePos {
+
+    /** Properties of a PB_ScenePos. */
+    interface $Properties {
+
+        /** PB_ScenePos scene_id */
+        scene_id?: (number|null);
+
+        /** PB_ScenePos pos */
+        pos?: (PB_Vector3.$Properties|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_ScenePos. */
+    type $Shape = PB_ScenePos.$Properties;
+}
+
+/**
+ * Properties of a PB_MessageHead.
+ * @deprecated Use PB_MessageHead.$Properties instead.
+ */
+export interface IPB_MessageHead extends PB_MessageHead.$Properties {
+}
+
+/** Represents a PB_MessageHead. */
+export class PB_MessageHead {
+
+    /**
+     * Constructs a new PB_MessageHead.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_MessageHead.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_MessageHead msg_type. */
+    msg_type?: (number|null);
+
+    /** PB_MessageHead param. */
+    param: number[];
+
+    /** PB_MessageHead token. */
+    token?: (string|null);
+
+    /**
+     * Creates a new PB_MessageHead instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_MessageHead instance
+     */
+    static create(properties: PB_MessageHead.$Shape): PB_MessageHead & PB_MessageHead.$Shape;
+    static create(properties?: PB_MessageHead.$Properties): PB_MessageHead;
+
+    /**
+     * Encodes the specified PB_MessageHead message. Does not implicitly {@link PB_MessageHead.verify|verify} messages.
+     * @param message PB_MessageHead message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_MessageHead.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_MessageHead message, length delimited. Does not implicitly {@link PB_MessageHead.verify|verify} messages.
+     * @param message PB_MessageHead message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_MessageHead.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_MessageHead message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_MessageHead & PB_MessageHead.$Shape} PB_MessageHead
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_MessageHead & PB_MessageHead.$Shape;
+
+    /**
+     * Decodes a PB_MessageHead message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_MessageHead & PB_MessageHead.$Shape} PB_MessageHead
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_MessageHead & PB_MessageHead.$Shape;
+
+    /**
+     * Verifies a PB_MessageHead message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_MessageHead message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_MessageHead
+     */
+    static fromObject(object: { [k: string]: any }): PB_MessageHead;
+
+    /**
+     * Creates a plain object from a PB_MessageHead message. Also converts values to other types if specified.
+     * @param message PB_MessageHead
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_MessageHead, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_MessageHead to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_MessageHead
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_MessageHead {
+
+    /** Properties of a PB_MessageHead. */
+    interface $Properties {
+
+        /** PB_MessageHead msg_type */
+        msg_type?: (number|null);
+
+        /** PB_MessageHead param */
+        param?: (number[]|null);
+
+        /** PB_MessageHead token */
+        token?: (string|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_MessageHead. */
+    type $Shape = PB_MessageHead.$Properties;
+}
+
+/**
+ * Properties of a PB_GlobalDataDbNode.
+ * @deprecated Use PB_GlobalDataDbNode.$Properties instead.
+ */
+export interface IPB_GlobalDataDbNode extends PB_GlobalDataDbNode.$Properties {
+}
+
+/** Represents a PB_GlobalDataDbNode. */
+export class PB_GlobalDataDbNode {
+
+    /**
+     * Constructs a new PB_GlobalDataDbNode.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_GlobalDataDbNode.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_GlobalDataDbNode key. */
+    key?: (string|null);
+
+    /** PB_GlobalDataDbNode data. */
+    data?: (string|null);
+
+    /**
+     * Creates a new PB_GlobalDataDbNode instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_GlobalDataDbNode instance
+     */
+    static create(properties: PB_GlobalDataDbNode.$Shape): PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape;
+    static create(properties?: PB_GlobalDataDbNode.$Properties): PB_GlobalDataDbNode;
+
+    /**
+     * Encodes the specified PB_GlobalDataDbNode message. Does not implicitly {@link PB_GlobalDataDbNode.verify|verify} messages.
+     * @param message PB_GlobalDataDbNode message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_GlobalDataDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_GlobalDataDbNode message, length delimited. Does not implicitly {@link PB_GlobalDataDbNode.verify|verify} messages.
+     * @param message PB_GlobalDataDbNode message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_GlobalDataDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_GlobalDataDbNode message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape} PB_GlobalDataDbNode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape;
+
+    /**
+     * Decodes a PB_GlobalDataDbNode message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape} PB_GlobalDataDbNode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape;
+
+    /**
+     * Verifies a PB_GlobalDataDbNode message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_GlobalDataDbNode message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_GlobalDataDbNode
+     */
+    static fromObject(object: { [k: string]: any }): PB_GlobalDataDbNode;
+
+    /**
+     * Creates a plain object from a PB_GlobalDataDbNode message. Also converts values to other types if specified.
+     * @param message PB_GlobalDataDbNode
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_GlobalDataDbNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_GlobalDataDbNode to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_GlobalDataDbNode
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_GlobalDataDbNode {
+
+    /** Properties of a PB_GlobalDataDbNode. */
+    interface $Properties {
+
+        /** PB_GlobalDataDbNode key */
+        key?: (string|null);
+
+        /** PB_GlobalDataDbNode data */
+        data?: (string|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_GlobalDataDbNode. */
+    type $Shape = PB_GlobalDataDbNode.$Properties;
+}
+
+/**
+ * Properties of a PB_InnerChatMap.
+ * @deprecated Use PB_InnerChatMap.$Properties instead.
+ */
+export interface IPB_InnerChatMap extends PB_InnerChatMap.$Properties {
+}
+
+/** Represents a PB_InnerChatMap. */
+export class PB_InnerChatMap {
+
+    /**
+     * Constructs a new PB_InnerChatMap.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_InnerChatMap.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_InnerChatMap chats. */
+    chats: { [k: string]: PB_ChatData.$Properties };
+
+    /**
+     * Creates a new PB_InnerChatMap instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_InnerChatMap instance
+     */
+    static create(properties: PB_InnerChatMap.$Shape): PB_InnerChatMap & PB_InnerChatMap.$Shape;
+    static create(properties?: PB_InnerChatMap.$Properties): PB_InnerChatMap;
+
+    /**
+     * Encodes the specified PB_InnerChatMap message. Does not implicitly {@link PB_InnerChatMap.verify|verify} messages.
+     * @param message PB_InnerChatMap message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_InnerChatMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_InnerChatMap message, length delimited. Does not implicitly {@link PB_InnerChatMap.verify|verify} messages.
+     * @param message PB_InnerChatMap message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_InnerChatMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_InnerChatMap message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_InnerChatMap & PB_InnerChatMap.$Shape} PB_InnerChatMap
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_InnerChatMap & PB_InnerChatMap.$Shape;
+
+    /**
+     * Decodes a PB_InnerChatMap message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_InnerChatMap & PB_InnerChatMap.$Shape} PB_InnerChatMap
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_InnerChatMap & PB_InnerChatMap.$Shape;
+
+    /**
+     * Verifies a PB_InnerChatMap message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_InnerChatMap message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_InnerChatMap
+     */
+    static fromObject(object: { [k: string]: any }): PB_InnerChatMap;
+
+    /**
+     * Creates a plain object from a PB_InnerChatMap message. Also converts values to other types if specified.
+     * @param message PB_InnerChatMap
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_InnerChatMap, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_InnerChatMap to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_InnerChatMap
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_InnerChatMap {
+
+    /** Properties of a PB_InnerChatMap. */
+    interface $Properties {
+
+        /** PB_InnerChatMap chats */
+        chats?: ({ [k: string]: PB_ChatData.$Properties }|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_InnerChatMap. */
+    type $Shape = PB_InnerChatMap.$Properties;
+}
+
+/**
+ * Properties of a PB_RoleBaseInfo.
+ * @deprecated Use PB_RoleBaseInfo.$Properties instead.
+ */
+export interface IPB_RoleBaseInfo extends PB_RoleBaseInfo.$Properties {
+}
+
+/** Represents a PB_RoleBaseInfo. */
+export class PB_RoleBaseInfo {
+
+    /**
+     * Constructs a new PB_RoleBaseInfo.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_RoleBaseInfo.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_RoleBaseInfo uid. */
+    uid?: (number|null);
+
+    /** PB_RoleBaseInfo name. */
+    name?: (string|null);
+
+    /** PB_RoleBaseInfo user_name. */
+    user_name?: (string|null);
+
+    /** PB_RoleBaseInfo level. */
+    level?: (number|null);
+
+    /** PB_RoleBaseInfo exp. */
+    exp?: (number|null);
+
+    /** PB_RoleBaseInfo last_login_time. */
+    last_login_time?: (number|null);
+
+    /** PB_RoleBaseInfo knapsack_max_slots. */
+    knapsack_max_slots?: (number|null);
+
+    /** PB_RoleBaseInfo create_time. */
+    create_time?: (number|null);
+
+    /** PB_RoleBaseInfo hero_id. */
+    hero_id?: (number|null);
+
+    /**
+     * Creates a new PB_RoleBaseInfo instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_RoleBaseInfo instance
+     */
+    static create(properties: PB_RoleBaseInfo.$Shape): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
+    static create(properties?: PB_RoleBaseInfo.$Properties): PB_RoleBaseInfo;
+
+    /**
+     * Encodes the specified PB_RoleBaseInfo message. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
+     * @param message PB_RoleBaseInfo message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_RoleBaseInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_RoleBaseInfo message, length delimited. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
+     * @param message PB_RoleBaseInfo message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_RoleBaseInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
+
+    /**
+     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
+
+    /**
+     * Verifies a PB_RoleBaseInfo message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_RoleBaseInfo message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_RoleBaseInfo
+     */
+    static fromObject(object: { [k: string]: any }): PB_RoleBaseInfo;
+
+    /**
+     * Creates a plain object from a PB_RoleBaseInfo message. Also converts values to other types if specified.
+     * @param message PB_RoleBaseInfo
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_RoleBaseInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_RoleBaseInfo to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_RoleBaseInfo
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_RoleBaseInfo {
+
+    /** Properties of a PB_RoleBaseInfo. */
+    interface $Properties {
+
+        /** PB_RoleBaseInfo uid */
+        uid?: (number|null);
+
+        /** PB_RoleBaseInfo name */
+        name?: (string|null);
+
+        /** PB_RoleBaseInfo user_name */
+        user_name?: (string|null);
+
+        /** PB_RoleBaseInfo level */
+        level?: (number|null);
+
+        /** PB_RoleBaseInfo exp */
+        exp?: (number|null);
+
+        /** PB_RoleBaseInfo last_login_time */
+        last_login_time?: (number|null);
+
+        /** PB_RoleBaseInfo knapsack_max_slots */
+        knapsack_max_slots?: (number|null);
+
+        /** PB_RoleBaseInfo create_time */
+        create_time?: (number|null);
+
+        /** PB_RoleBaseInfo hero_id */
+        hero_id?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_RoleBaseInfo. */
+    type $Shape = PB_RoleBaseInfo.$Properties;
+}
+
+/**
+ * Properties of a PB_ActivityRoleNode.
+ * @deprecated Use PB_ActivityRoleNode.$Properties instead.
+ */
+export interface IPB_ActivityRoleNode extends PB_ActivityRoleNode.$Properties {
+}
+
+/** Represents a PB_ActivityRoleNode. */
+export class PB_ActivityRoleNode {
+
+    /**
+     * Constructs a new PB_ActivityRoleNode.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_ActivityRoleNode.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_ActivityRoleNode activity_id. */
+    activity_id?: (number|null);
+
+    /** PB_ActivityRoleNode round. */
+    round?: (number|null);
+
+    /** PB_ActivityRoleNode count. */
+    count?: (number|null);
+
+    /** PB_ActivityRoleNode score. */
+    score?: (number|null);
+
+    /** PB_ActivityRoleNode last_time. */
+    last_time?: (number|null);
+
+    /** PB_ActivityRoleNode rewarded. */
+    rewarded?: (boolean|null);
+
+    /** PB_ActivityRoleNode extra. */
+    extra?: (string|null);
+
+    /**
+     * Creates a new PB_ActivityRoleNode instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_ActivityRoleNode instance
+     */
+    static create(properties: PB_ActivityRoleNode.$Shape): PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape;
+    static create(properties?: PB_ActivityRoleNode.$Properties): PB_ActivityRoleNode;
+
+    /**
+     * Encodes the specified PB_ActivityRoleNode message. Does not implicitly {@link PB_ActivityRoleNode.verify|verify} messages.
+     * @param message PB_ActivityRoleNode message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_ActivityRoleNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_ActivityRoleNode message, length delimited. Does not implicitly {@link PB_ActivityRoleNode.verify|verify} messages.
+     * @param message PB_ActivityRoleNode message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_ActivityRoleNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_ActivityRoleNode message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape} PB_ActivityRoleNode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape;
+
+    /**
+     * Decodes a PB_ActivityRoleNode message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape} PB_ActivityRoleNode
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape;
+
+    /**
+     * Verifies a PB_ActivityRoleNode message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_ActivityRoleNode message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_ActivityRoleNode
+     */
+    static fromObject(object: { [k: string]: any }): PB_ActivityRoleNode;
+
+    /**
+     * Creates a plain object from a PB_ActivityRoleNode message. Also converts values to other types if specified.
+     * @param message PB_ActivityRoleNode
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_ActivityRoleNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_ActivityRoleNode to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_ActivityRoleNode
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_ActivityRoleNode {
+
+    /** Properties of a PB_ActivityRoleNode. */
+    interface $Properties {
+
+        /** PB_ActivityRoleNode activity_id */
+        activity_id?: (number|null);
+
+        /** PB_ActivityRoleNode round */
+        round?: (number|null);
+
+        /** PB_ActivityRoleNode count */
+        count?: (number|null);
+
+        /** PB_ActivityRoleNode score */
+        score?: (number|null);
+
+        /** PB_ActivityRoleNode last_time */
+        last_time?: (number|null);
+
+        /** PB_ActivityRoleNode rewarded */
+        rewarded?: (boolean|null);
+
+        /** PB_ActivityRoleNode extra */
+        extra?: (string|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_ActivityRoleNode. */
+    type $Shape = PB_ActivityRoleNode.$Properties;
+}
+
+/**
+ * Properties of a PB_ActivityRoleData.
+ * @deprecated Use PB_ActivityRoleData.$Properties instead.
+ */
+export interface IPB_ActivityRoleData extends PB_ActivityRoleData.$Properties {
+}
+
+/** Represents a PB_ActivityRoleData. */
+export class PB_ActivityRoleData {
+
+    /**
+     * Constructs a new PB_ActivityRoleData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_ActivityRoleData.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_ActivityRoleData nodes. */
+    nodes: PB_ActivityRoleNode.$Properties[];
+
+    /**
+     * Creates a new PB_ActivityRoleData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_ActivityRoleData instance
+     */
+    static create(properties: PB_ActivityRoleData.$Shape): PB_ActivityRoleData & PB_ActivityRoleData.$Shape;
+    static create(properties?: PB_ActivityRoleData.$Properties): PB_ActivityRoleData;
+
+    /**
+     * Encodes the specified PB_ActivityRoleData message. Does not implicitly {@link PB_ActivityRoleData.verify|verify} messages.
+     * @param message PB_ActivityRoleData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_ActivityRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_ActivityRoleData message, length delimited. Does not implicitly {@link PB_ActivityRoleData.verify|verify} messages.
+     * @param message PB_ActivityRoleData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_ActivityRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_ActivityRoleData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_ActivityRoleData & PB_ActivityRoleData.$Shape} PB_ActivityRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ActivityRoleData & PB_ActivityRoleData.$Shape;
+
+    /**
+     * Decodes a PB_ActivityRoleData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_ActivityRoleData & PB_ActivityRoleData.$Shape} PB_ActivityRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ActivityRoleData & PB_ActivityRoleData.$Shape;
+
+    /**
+     * Verifies a PB_ActivityRoleData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_ActivityRoleData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_ActivityRoleData
+     */
+    static fromObject(object: { [k: string]: any }): PB_ActivityRoleData;
+
+    /**
+     * Creates a plain object from a PB_ActivityRoleData message. Also converts values to other types if specified.
+     * @param message PB_ActivityRoleData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_ActivityRoleData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_ActivityRoleData to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_ActivityRoleData
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_ActivityRoleData {
+
+    /** Properties of a PB_ActivityRoleData. */
+    interface $Properties {
+
+        /** PB_ActivityRoleData nodes */
+        nodes?: (PB_ActivityRoleNode.$Properties[]|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_ActivityRoleData. */
+    type $Shape = PB_ActivityRoleData.$Properties;
+}
+
+/**
+ * Properties of a PB_RoleGrowthData.
+ * @deprecated Use PB_RoleGrowthData.$Properties instead.
+ */
+export interface IPB_RoleGrowthData extends PB_RoleGrowthData.$Properties {
+}
+
+/** Represents a PB_RoleGrowthData. */
+export class PB_RoleGrowthData {
+
+    /**
+     * Constructs a new PB_RoleGrowthData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_RoleGrowthData.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_RoleGrowthData hero. */
+    hero?: (PB_HeroListData.$Properties|null);
+
+    /** PB_RoleGrowthData lineup. */
+    lineup?: (PB_LineupListData.$Properties|null);
+
+    /** PB_RoleGrowthData task. */
+    task?: (PB_TaskData.$Properties|null);
+
+    /** PB_RoleGrowthData activity. */
+    activity?: (PB_ActivityRoleData.$Properties|null);
+
+    /**
+     * Creates a new PB_RoleGrowthData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_RoleGrowthData instance
+     */
+    static create(properties: PB_RoleGrowthData.$Shape): PB_RoleGrowthData & PB_RoleGrowthData.$Shape;
+    static create(properties?: PB_RoleGrowthData.$Properties): PB_RoleGrowthData;
+
+    /**
+     * Encodes the specified PB_RoleGrowthData message. Does not implicitly {@link PB_RoleGrowthData.verify|verify} messages.
+     * @param message PB_RoleGrowthData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_RoleGrowthData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_RoleGrowthData message, length delimited. Does not implicitly {@link PB_RoleGrowthData.verify|verify} messages.
+     * @param message PB_RoleGrowthData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_RoleGrowthData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_RoleGrowthData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_RoleGrowthData & PB_RoleGrowthData.$Shape} PB_RoleGrowthData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleGrowthData & PB_RoleGrowthData.$Shape;
+
+    /**
+     * Decodes a PB_RoleGrowthData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_RoleGrowthData & PB_RoleGrowthData.$Shape} PB_RoleGrowthData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleGrowthData & PB_RoleGrowthData.$Shape;
+
+    /**
+     * Verifies a PB_RoleGrowthData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_RoleGrowthData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_RoleGrowthData
+     */
+    static fromObject(object: { [k: string]: any }): PB_RoleGrowthData;
+
+    /**
+     * Creates a plain object from a PB_RoleGrowthData message. Also converts values to other types if specified.
+     * @param message PB_RoleGrowthData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_RoleGrowthData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_RoleGrowthData to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_RoleGrowthData
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_RoleGrowthData {
+
+    /** Properties of a PB_RoleGrowthData. */
+    interface $Properties {
+
+        /** PB_RoleGrowthData hero */
+        hero?: (PB_HeroListData.$Properties|null);
+
+        /** PB_RoleGrowthData lineup */
+        lineup?: (PB_LineupListData.$Properties|null);
+
+        /** PB_RoleGrowthData task */
+        task?: (PB_TaskData.$Properties|null);
+
+        /** PB_RoleGrowthData activity */
+        activity?: (PB_ActivityRoleData.$Properties|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_RoleGrowthData. */
+    type $Shape = PB_RoleGrowthData.$Properties;
+}
+
+/**
+ * Properties of a PB_RoleData.
+ * @deprecated Use PB_RoleData.$Properties instead.
+ */
+export interface IPB_RoleData extends PB_RoleData.$Properties {
+}
+
+/** Represents a PB_RoleData. */
+export class PB_RoleData {
+
+    /**
+     * Constructs a new PB_RoleData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_RoleData.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_RoleData base_info. */
+    base_info?: (PB_RoleBaseInfo.$Properties|null);
+
+    /** PB_RoleData knapsack. */
+    knapsack?: (PB_KnapsackData.$Properties|null);
+
+    /** PB_RoleData growth. */
+    growth?: (PB_RoleGrowthData.$Properties|null);
+
+    /** PB_RoleData mmo. */
+    mmo?: (PB_ScenePos.$Properties|null);
+
+    /**
+     * Creates a new PB_RoleData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_RoleData instance
+     */
+    static create(properties: PB_RoleData.$Shape): PB_RoleData & PB_RoleData.$Shape;
+    static create(properties?: PB_RoleData.$Properties): PB_RoleData;
+
+    /**
+     * Encodes the specified PB_RoleData message. Does not implicitly {@link PB_RoleData.verify|verify} messages.
+     * @param message PB_RoleData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_RoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_RoleData message, length delimited. Does not implicitly {@link PB_RoleData.verify|verify} messages.
+     * @param message PB_RoleData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_RoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_RoleData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleData & PB_RoleData.$Shape;
+
+    /**
+     * Decodes a PB_RoleData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleData & PB_RoleData.$Shape;
+
+    /**
+     * Verifies a PB_RoleData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_RoleData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_RoleData
+     */
+    static fromObject(object: { [k: string]: any }): PB_RoleData;
+
+    /**
+     * Creates a plain object from a PB_RoleData message. Also converts values to other types if specified.
+     * @param message PB_RoleData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_RoleData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_RoleData to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_RoleData
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_RoleData {
+
+    /** Properties of a PB_RoleData. */
+    interface $Properties {
+
+        /** PB_RoleData base_info */
+        base_info?: (PB_RoleBaseInfo.$Properties|null);
+
+        /** PB_RoleData knapsack */
+        knapsack?: (PB_KnapsackData.$Properties|null);
+
+        /** PB_RoleData growth */
+        growth?: (PB_RoleGrowthData.$Properties|null);
+
+        /** PB_RoleData mmo */
+        mmo?: (PB_ScenePos.$Properties|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_RoleData. */
+    type $Shape = PB_RoleData.$Properties;
+}
+
+/** PB_Attr enum. */
+export enum PB_Attr {
+
+    /** ATTR_HEALTH value */
+    ATTR_HEALTH = 0,
+
+    /** ATTR_MAX_HEALTH value */
+    ATTR_MAX_HEALTH = 1,
+
+    /** ATTR_MANA value */
+    ATTR_MANA = 2,
+
+    /** ATTR_MAX_MANA value */
+    ATTR_MAX_MANA = 3,
+
+    /** ATTR_STRENGTH value */
+    ATTR_STRENGTH = 4,
+
+    /** ATTR_AGILITY value */
+    ATTR_AGILITY = 5,
+
+    /** ATTR_INTELLIGENCE value */
+    ATTR_INTELLIGENCE = 6,
+
+    /** ATTR_VITALITY value */
+    ATTR_VITALITY = 7,
+
+    /** ATTR_LUCK value */
+    ATTR_LUCK = 8,
+
+    /** ATTR_ARMOR value */
+    ATTR_ARMOR = 9,
+
+    /** ATTR_CRIT_CHANCE value */
+    ATTR_CRIT_CHANCE = 10,
+
+    /** ATTR_CRIT_DAMAGE value */
+    ATTR_CRIT_DAMAGE = 11,
+
+    /** ATTR_ATTACK_SPEED value */
+    ATTR_ATTACK_SPEED = 12,
+
+    /** ATTR_DODGE_CHANCE value */
+    ATTR_DODGE_CHANCE = 13,
+
+    /** ATTR_BLOCK_CHANCE value */
+    ATTR_BLOCK_CHANCE = 14,
+
+    /** ATTR_DAMAGE_MULTIPLIER value */
+    ATTR_DAMAGE_MULTIPLIER = 15,
+
+    /** ATTR_MAX value */
+    ATTR_MAX = 16
+}
+
+/** BattleEventType enum. */
+export enum BattleEventType {
+
+    /** BATTLE_EVENT_TYPE_NONE value */
+    BATTLE_EVENT_TYPE_NONE = 0,
+
+    /** BATTLE_EVENT_TYPE_BATTLE value */
+    BATTLE_EVENT_TYPE_BATTLE = 1,
+
+    /** BATTLE_EVENT_TYPE_TURN value */
+    BATTLE_EVENT_TYPE_TURN = 10,
+
+    /** BATTLE_EVENT_TYPE_ABILITY_ACTIVATE value */
+    BATTLE_EVENT_TYPE_ABILITY_ACTIVATE = 20,
+
+    /** BATTLE_EVENT_TYPE_DAMAGE value */
+    BATTLE_EVENT_TYPE_DAMAGE = 30,
+
+    /** BATTLE_EVENT_TYPE_HEAL value */
+    BATTLE_EVENT_TYPE_HEAL = 31,
+
+    /** BATTLE_EVENT_TYPE_EFFECT_APPLIED value */
+    BATTLE_EVENT_TYPE_EFFECT_APPLIED = 40,
+
+    /** BATTLE_EVENT_TYPE_EFFECT_REMOVED value */
+    BATTLE_EVENT_TYPE_EFFECT_REMOVED = 41,
+
+    /** BATTLE_EVENT_TYPE_EFFECT_TICK value */
+    BATTLE_EVENT_TYPE_EFFECT_TICK = 42,
+
+    /** BATTLE_EVENT_TYPE_DEATH value */
+    BATTLE_EVENT_TYPE_DEATH = 50,
+
+    /** BATTLE_EVENT_TYPE_STATUS_CHANGE value */
+    BATTLE_EVENT_TYPE_STATUS_CHANGE = 60,
+
+    /** BATTLE_EVENT_TYPE_ATTR_CHANGE value */
+    BATTLE_EVENT_TYPE_ATTR_CHANGE = 61,
+
+    /** BATTLE_EVENT_TYPE_CUSTOM value */
+    BATTLE_EVENT_TYPE_CUSTOM = 100
+}
+
+/** PB_BattleMode enum. */
+export enum PB_BattleMode {
+
+    /** BATTLE_MODE_NONE value */
+    BATTLE_MODE_NONE = 0,
+
+    /** BATTLE_MODE_TURN_BASED value */
+    BATTLE_MODE_TURN_BASED = 1,
+
+    /** BATTLE_MODE_REALTIME value */
+    BATTLE_MODE_REALTIME = 2
+}
+
+/** PB_ObjType enum. */
+export enum PB_ObjType {
+
+    /** OBJ_TYPE_NONE value */
+    OBJ_TYPE_NONE = 0,
+
+    /** OBJ_TYPE_HERO value */
+    OBJ_TYPE_HERO = 1,
+
+    /** OBJ_TYPE_MONSTER value */
+    OBJ_TYPE_MONSTER = 2
+}
+
+/** PB_BattlePhase enum. */
+export enum PB_BattlePhase {
+
+    /** BATTLE_PHASE_NONE value */
+    BATTLE_PHASE_NONE = 0,
+
+    /** BATTLE_PHASE_PREPARING value */
+    BATTLE_PHASE_PREPARING = 1,
+
+    /** BATTLE_PHASE_STARTED value */
+    BATTLE_PHASE_STARTED = 2,
+
+    /** BATTLE_PHASE_ENDING value */
+    BATTLE_PHASE_ENDING = 3,
+
+    /** BATTLE_PHASE_FINISHED value */
+    BATTLE_PHASE_FINISHED = 4
+}
+
+/** PB_TeamSide enum. */
+export enum PB_TeamSide {
+
+    /** TEAM_SIDE_NONE value */
+    TEAM_SIDE_NONE = 0,
+
+    /** TEAM_SIDE_ATTACKER value */
+    TEAM_SIDE_ATTACKER = 1,
+
+    /** TEAM_SIDE_DEFENDER value */
+    TEAM_SIDE_DEFENDER = 2,
+
+    /** TEAM_SIDE_NEUTRAL value */
+    TEAM_SIDE_NEUTRAL = 3
+}
+
+/** PB_VictoryCondition enum. */
+export enum PB_VictoryCondition {
+
+    /** VICTORY_COND_NONE value */
+    VICTORY_COND_NONE = 0,
+
+    /** VICTORY_COND_DEFENDER_DEATH value */
+    VICTORY_COND_DEFENDER_DEATH = 1,
+
+    /** VICTORY_COND_ATTACKER_DEATH value */
+    VICTORY_COND_ATTACKER_DEATH = 2,
+
+    /** VICTORY_COND_ELIMINATE_ALL value */
+    VICTORY_COND_ELIMINATE_ALL = 3,
+
+    /** VICTORY_COND_SURVIVE_TIME value */
+    VICTORY_COND_SURVIVE_TIME = 4,
+
+    /** VICTORY_COND_KILL_TARGET value */
+    VICTORY_COND_KILL_TARGET = 5,
+
+    /** VICTORY_COND_SCORE_LIMIT value */
+    VICTORY_COND_SCORE_LIMIT = 6,
+
+    /** VICTORY_COND_CUSTOM value */
+    VICTORY_COND_CUSTOM = 99
+}
+
+/** PB_BattleResultType enum. */
+export enum PB_BattleResultType {
+
+    /** BATTLE_RESULT_NONE value */
+    BATTLE_RESULT_NONE = 0,
+
+    /** BATTLE_RESULT_VICTORY value */
+    BATTLE_RESULT_VICTORY = 1,
+
+    /** BATTLE_RESULT_DEFEAT value */
+    BATTLE_RESULT_DEFEAT = 2,
+
+    /** BATTLE_RESULT_TIME_OUT value */
+    BATTLE_RESULT_TIME_OUT = 3,
+
+    /** BATTLE_RESULT_DRAW value */
+    BATTLE_RESULT_DRAW = 4,
+
+    /** BATTLE_RESULT_CANCELLED value */
+    BATTLE_RESULT_CANCELLED = 5
+}
+
+/** PB_AbilityTargetType enum. */
+export enum PB_AbilityTargetType {
+
+    /** ABILITY_TARGET_NONE value */
+    ABILITY_TARGET_NONE = 0,
+
+    /** ABILITY_TARGET_SELF value */
+    ABILITY_TARGET_SELF = 1,
+
+    /** ABILITY_TARGET_ENEMY_SINGLE value */
+    ABILITY_TARGET_ENEMY_SINGLE = 2,
+
+    /** ABILITY_TARGET_FRIEND_SINGLE value */
+    ABILITY_TARGET_FRIEND_SINGLE = 3,
+
+    /** ABILITY_TARGET_ENEMY_AOE value */
+    ABILITY_TARGET_ENEMY_AOE = 4,
+
+    /** ABILITY_TARGET_FRIEND_AOE value */
+    ABILITY_TARGET_FRIEND_AOE = 5,
+
+    /** ABILITY_TARGET_ALL value */
+    ABILITY_TARGET_ALL = 6,
+
+    /** ABILITY_TARGET_LOCATION_AOE value */
+    ABILITY_TARGET_LOCATION_AOE = 7
+}
+
+/** PB_AbilityType enum. */
+export enum PB_AbilityType {
+
+    /** ABILITY_TYPE_NONE value */
+    ABILITY_TYPE_NONE = 0,
+
+    /** ABILITY_TYPE_PHYSICAL_ATTACK value */
+    ABILITY_TYPE_PHYSICAL_ATTACK = 1,
+
+    /** ABILITY_TYPE_MAGIC_ATTACK value */
+    ABILITY_TYPE_MAGIC_ATTACK = 2,
+
+    /** ABILITY_TYPE_LIFESTEAL_ATTACK value */
+    ABILITY_TYPE_LIFESTEAL_ATTACK = 3,
+
+    /** ABILITY_TYPE_HEAL value */
+    ABILITY_TYPE_HEAL = 4,
+
+    /** ABILITY_TYPE_SELF_BUFF value */
+    ABILITY_TYPE_SELF_BUFF = 5,
+
+    /** ABILITY_TYPE_TARGET_BUFF value */
+    ABILITY_TYPE_TARGET_BUFF = 6,
+
+    /** ABILITY_TYPE_MAGIC_ATTACK_WITH_BUFF value */
+    ABILITY_TYPE_MAGIC_ATTACK_WITH_BUFF = 7,
+
+    /** ABILITY_TYPE_CUSTOM value */
+    ABILITY_TYPE_CUSTOM = 99
+}
+
+/** PB_DamageType enum. */
+export enum PB_DamageType {
+
+    /** DAMAGE_TYPE_NONE value */
+    DAMAGE_TYPE_NONE = 0,
+
+    /** DAMAGE_TYPE_ATTACK value */
+    DAMAGE_TYPE_ATTACK = 1,
+
+    /** DAMAGE_TYPE_SKILL value */
+    DAMAGE_TYPE_SKILL = 2,
+
+    /** DAMAGE_TYPE_BUFF value */
+    DAMAGE_TYPE_BUFF = 3
+}
+
+/** PB_DurationPolicy enum. */
+export enum PB_DurationPolicy {
+
+    /** DURATION_POLICY_NONE value */
+    DURATION_POLICY_NONE = 0,
+
+    /** DURATION_POLICY_INSTANT value */
+    DURATION_POLICY_INSTANT = 1,
+
+    /** DURATION_POLICY_DURATION value */
+    DURATION_POLICY_DURATION = 2,
+
+    /** DURATION_POLICY_INFINITE value */
+    DURATION_POLICY_INFINITE = 3
+}
+
+/** PB_StackingPolicy enum. */
+export enum PB_StackingPolicy {
+
+    /** STACKING_POLICY_NONE value */
+    STACKING_POLICY_NONE = 0,
+
+    /** STACKING_POLICY_AGGREGATE_BY_SOURCE value */
+    STACKING_POLICY_AGGREGATE_BY_SOURCE = 1,
+
+    /** STACKING_POLICY_AGGREGATE_BY_TARGET value */
+    STACKING_POLICY_AGGREGATE_BY_TARGET = 2
+}
+
+/** PB_StackDurationRefreshPolicy enum. */
+export enum PB_StackDurationRefreshPolicy {
+
+    /** STACK_DURATION_REFRESH_POLICY_NONE value */
+    STACK_DURATION_REFRESH_POLICY_NONE = 0,
+
+    /** STACK_DURATION_REFRESH_POLICY_REFRESH_ON_APPLICATION value */
+    STACK_DURATION_REFRESH_POLICY_REFRESH_ON_APPLICATION = 1,
+
+    /** STACK_DURATION_REFRESH_POLICY_NEVER_REFRESH value */
+    STACK_DURATION_REFRESH_POLICY_NEVER_REFRESH = 2,
+
+    /** STACK_DURATION_REFRESH_POLICY_REFRESH_ON_MAX_STACK value */
+    STACK_DURATION_REFRESH_POLICY_REFRESH_ON_MAX_STACK = 3
+}
+
+/** PB_PeriodicPolicy enum. */
+export enum PB_PeriodicPolicy {
+
+    /** PERIODIC_POLICY_NONE value */
+    PERIODIC_POLICY_NONE = 0,
+
+    /** PERIODIC_POLICY_EXECUTE_ON_APPLICATION value */
+    PERIODIC_POLICY_EXECUTE_ON_APPLICATION = 1,
+
+    /** PERIODIC_POLICY_EXECUTE_ON_INTERVAL value */
+    PERIODIC_POLICY_EXECUTE_ON_INTERVAL = 2
+}
+
+/** PB_ModifierOperation enum. */
+export enum PB_ModifierOperation {
+
+    /** MODIFIER_OPERATION_NONE value */
+    MODIFIER_OPERATION_NONE = 0,
+
+    /** MODIFIER_OPERATION_ADD value */
+    MODIFIER_OPERATION_ADD = 1,
+
+    /** MODIFIER_OPERATION_MULTIPLY value */
+    MODIFIER_OPERATION_MULTIPLY = 2,
+
+    /** MODIFIER_OPERATION_OVERRIDE value */
+    MODIFIER_OPERATION_OVERRIDE = 3
+}
+
+/** PB_AbilityActivationPolicy enum. */
+export enum PB_AbilityActivationPolicy {
+
+    /** ABILITY_ACTIVATION_POLICY_NONE value */
+    ABILITY_ACTIVATION_POLICY_NONE = 0,
+
+    /** ABILITY_ACTIVATION_POLICY_ON_INPUT_TRIGGERED value */
+    ABILITY_ACTIVATION_POLICY_ON_INPUT_TRIGGERED = 1,
+
+    /** ABILITY_ACTIVATION_POLICY_WHILE_INPUT_ACTIVE value */
+    ABILITY_ACTIVATION_POLICY_WHILE_INPUT_ACTIVE = 2,
+
+    /** ABILITY_ACTIVATION_POLICY_ON_SPAWN value */
+    ABILITY_ACTIVATION_POLICY_ON_SPAWN = 3
+}
+
+/** PB_AbilityNetPolicy enum. */
+export enum PB_AbilityNetPolicy {
+
+    /** ABILITY_NET_POLICY_NONE value */
+    ABILITY_NET_POLICY_NONE = 0,
+
+    /** ABILITY_NET_POLICY_LOCAL_PREDICTED value */
+    ABILITY_NET_POLICY_LOCAL_PREDICTED = 1,
+
+    /** ABILITY_NET_POLICY_LOCAL_ONLY value */
+    ABILITY_NET_POLICY_LOCAL_ONLY = 2,
+
+    /** ABILITY_NET_POLICY_SERVER_INITIATED value */
+    ABILITY_NET_POLICY_SERVER_INITIATED = 3,
+
+    /** ABILITY_NET_POLICY_SERVER_ONLY value */
+    ABILITY_NET_POLICY_SERVER_ONLY = 4
+}
+
+/** PB_CancelAbilityPolicy enum. */
+export enum PB_CancelAbilityPolicy {
+
+    /** CANCEL_ABILITY_POLICY_NONE value */
+    CANCEL_ABILITY_POLICY_NONE = 0,
+
+    /** CANCEL_ABILITY_POLICY_CANCEL_ABILITY value */
+    CANCEL_ABILITY_POLICY_CANCEL_ABILITY = 1,
+
+    /** CANCEL_ABILITY_POLICY_IGNORE_ABILITY value */
+    CANCEL_ABILITY_POLICY_IGNORE_ABILITY = 2
+}
+
+/**
+ * Properties of a PB_AbilitySpec.
+ * @deprecated Use PB_AbilitySpec.$Properties instead.
+ */
+export interface IPB_AbilitySpec extends PB_AbilitySpec.$Properties {
+}
+
+/** Represents a PB_AbilitySpec. */
+export class PB_AbilitySpec {
+
+    /**
+     * Constructs a new PB_AbilitySpec.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_AbilitySpec.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_AbilitySpec ability_id. */
+    ability_id?: (number|null);
+
+    /** PB_AbilitySpec level. */
+    level?: (number|null);
+
+    /**
+     * Creates a new PB_AbilitySpec instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_AbilitySpec instance
+     */
+    static create(properties: PB_AbilitySpec.$Shape): PB_AbilitySpec & PB_AbilitySpec.$Shape;
+    static create(properties?: PB_AbilitySpec.$Properties): PB_AbilitySpec;
+
+    /**
+     * Encodes the specified PB_AbilitySpec message. Does not implicitly {@link PB_AbilitySpec.verify|verify} messages.
+     * @param message PB_AbilitySpec message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_AbilitySpec.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_AbilitySpec message, length delimited. Does not implicitly {@link PB_AbilitySpec.verify|verify} messages.
+     * @param message PB_AbilitySpec message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_AbilitySpec.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_AbilitySpec message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_AbilitySpec & PB_AbilitySpec.$Shape} PB_AbilitySpec
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_AbilitySpec & PB_AbilitySpec.$Shape;
+
+    /**
+     * Decodes a PB_AbilitySpec message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_AbilitySpec & PB_AbilitySpec.$Shape} PB_AbilitySpec
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_AbilitySpec & PB_AbilitySpec.$Shape;
+
+    /**
+     * Verifies a PB_AbilitySpec message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_AbilitySpec message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_AbilitySpec
+     */
+    static fromObject(object: { [k: string]: any }): PB_AbilitySpec;
+
+    /**
+     * Creates a plain object from a PB_AbilitySpec message. Also converts values to other types if specified.
+     * @param message PB_AbilitySpec
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_AbilitySpec, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_AbilitySpec to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_AbilitySpec
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_AbilitySpec {
+
+    /** Properties of a PB_AbilitySpec. */
+    interface $Properties {
+
+        /** PB_AbilitySpec ability_id */
+        ability_id?: (number|null);
+
+        /** PB_AbilitySpec level */
+        level?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_AbilitySpec. */
+    type $Shape = PB_AbilitySpec.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleParticipant.
+ * @deprecated Use PB_BattleParticipant.$Properties instead.
+ */
+export interface IPB_BattleParticipant extends PB_BattleParticipant.$Properties {
+}
+
+/** Represents a PB_BattleParticipant. */
+export class PB_BattleParticipant {
+
+    /**
+     * Constructs a new PB_BattleParticipant.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleParticipant.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleParticipant obj_id. */
+    obj_id?: (number|null);
+
+    /** PB_BattleParticipant obj_type. */
+    obj_type?: (PB_ObjType|null);
+
+    /** PB_BattleParticipant name. */
+    name?: (string|null);
+
+    /** PB_BattleParticipant level. */
+    level?: (number|null);
+
+    /** PB_BattleParticipant attrs. */
+    attrs: PB_AttrPair.$Properties[];
+
+    /** PB_BattleParticipant abilities. */
+    abilities: PB_AbilitySpec.$Properties[];
+
+    /** PB_BattleParticipant tags. */
+    tags: string[];
+
+    /**
+     * Creates a new PB_BattleParticipant instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleParticipant instance
+     */
+    static create(properties: PB_BattleParticipant.$Shape): PB_BattleParticipant & PB_BattleParticipant.$Shape;
+    static create(properties?: PB_BattleParticipant.$Properties): PB_BattleParticipant;
+
+    /**
+     * Encodes the specified PB_BattleParticipant message. Does not implicitly {@link PB_BattleParticipant.verify|verify} messages.
+     * @param message PB_BattleParticipant message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleParticipant.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleParticipant message, length delimited. Does not implicitly {@link PB_BattleParticipant.verify|verify} messages.
+     * @param message PB_BattleParticipant message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleParticipant.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleParticipant message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleParticipant & PB_BattleParticipant.$Shape} PB_BattleParticipant
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleParticipant & PB_BattleParticipant.$Shape;
+
+    /**
+     * Decodes a PB_BattleParticipant message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleParticipant & PB_BattleParticipant.$Shape} PB_BattleParticipant
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleParticipant & PB_BattleParticipant.$Shape;
+
+    /**
+     * Verifies a PB_BattleParticipant message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleParticipant message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleParticipant
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleParticipant;
+
+    /**
+     * Creates a plain object from a PB_BattleParticipant message. Also converts values to other types if specified.
+     * @param message PB_BattleParticipant
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleParticipant, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleParticipant to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleParticipant
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleParticipant {
+
+    /** Properties of a PB_BattleParticipant. */
+    interface $Properties {
+
+        /** PB_BattleParticipant obj_id */
+        obj_id?: (number|null);
+
+        /** PB_BattleParticipant obj_type */
+        obj_type?: (PB_ObjType|null);
+
+        /** PB_BattleParticipant name */
+        name?: (string|null);
+
+        /** PB_BattleParticipant level */
+        level?: (number|null);
+
+        /** PB_BattleParticipant attrs */
+        attrs?: (PB_AttrPair.$Properties[]|null);
+
+        /** PB_BattleParticipant abilities */
+        abilities?: (PB_AbilitySpec.$Properties[]|null);
+
+        /** PB_BattleParticipant tags */
+        tags?: (string[]|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleParticipant. */
+    type $Shape = PB_BattleParticipant.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleTeam.
+ * @deprecated Use PB_BattleTeam.$Properties instead.
+ */
+export interface IPB_BattleTeam extends PB_BattleTeam.$Properties {
+}
+
+/** Represents a PB_BattleTeam. */
+export class PB_BattleTeam {
+
+    /**
+     * Constructs a new PB_BattleTeam.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleTeam.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleTeam team_id. */
+    team_id?: (number|null);
+
+    /** PB_BattleTeam team_name. */
+    team_name?: (string|null);
+
+    /** PB_BattleTeam side. */
+    side?: (PB_TeamSide|null);
+
+    /** PB_BattleTeam members. */
+    members: PB_BattleParticipant.$Properties[];
+
+    /**
+     * Creates a new PB_BattleTeam instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleTeam instance
+     */
+    static create(properties: PB_BattleTeam.$Shape): PB_BattleTeam & PB_BattleTeam.$Shape;
+    static create(properties?: PB_BattleTeam.$Properties): PB_BattleTeam;
+
+    /**
+     * Encodes the specified PB_BattleTeam message. Does not implicitly {@link PB_BattleTeam.verify|verify} messages.
+     * @param message PB_BattleTeam message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleTeam.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleTeam message, length delimited. Does not implicitly {@link PB_BattleTeam.verify|verify} messages.
+     * @param message PB_BattleTeam message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleTeam.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleTeam message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleTeam & PB_BattleTeam.$Shape} PB_BattleTeam
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleTeam & PB_BattleTeam.$Shape;
+
+    /**
+     * Decodes a PB_BattleTeam message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleTeam & PB_BattleTeam.$Shape} PB_BattleTeam
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleTeam & PB_BattleTeam.$Shape;
+
+    /**
+     * Verifies a PB_BattleTeam message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleTeam message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleTeam
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleTeam;
+
+    /**
+     * Creates a plain object from a PB_BattleTeam message. Also converts values to other types if specified.
+     * @param message PB_BattleTeam
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleTeam, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleTeam to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleTeam
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleTeam {
+
+    /** Properties of a PB_BattleTeam. */
+    interface $Properties {
+
+        /** PB_BattleTeam team_id */
+        team_id?: (number|null);
+
+        /** PB_BattleTeam team_name */
+        team_name?: (string|null);
+
+        /** PB_BattleTeam side */
+        side?: (PB_TeamSide|null);
+
+        /** PB_BattleTeam members */
+        members?: (PB_BattleParticipant.$Properties[]|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleTeam. */
+    type $Shape = PB_BattleTeam.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleRules.
+ * @deprecated Use PB_BattleRules.$Properties instead.
+ */
+export interface IPB_BattleRules extends PB_BattleRules.$Properties {
+}
+
+/** Represents a PB_BattleRules. */
+export class PB_BattleRules {
+
+    /**
+     * Constructs a new PB_BattleRules.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleRules.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleRules victory_condition. */
+    victory_condition?: (PB_VictoryCondition|null);
+
+    /** PB_BattleRules max_turns. */
+    max_turns?: (number|null);
+
+    /** PB_BattleRules max_duration_sec. */
+    max_duration_sec?: (number|null);
+
+    /** PB_BattleRules allow_flee. */
+    allow_flee?: (boolean|null);
+
+    /** PB_BattleRules score_limit. */
+    score_limit?: (number|null);
+
+    /** PB_BattleRules target_member_id. */
+    target_member_id?: (number|null);
+
+    /**
+     * Creates a new PB_BattleRules instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleRules instance
+     */
+    static create(properties: PB_BattleRules.$Shape): PB_BattleRules & PB_BattleRules.$Shape;
+    static create(properties?: PB_BattleRules.$Properties): PB_BattleRules;
+
+    /**
+     * Encodes the specified PB_BattleRules message. Does not implicitly {@link PB_BattleRules.verify|verify} messages.
+     * @param message PB_BattleRules message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleRules.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleRules message, length delimited. Does not implicitly {@link PB_BattleRules.verify|verify} messages.
+     * @param message PB_BattleRules message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleRules.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleRules message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleRules & PB_BattleRules.$Shape} PB_BattleRules
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleRules & PB_BattleRules.$Shape;
+
+    /**
+     * Decodes a PB_BattleRules message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleRules & PB_BattleRules.$Shape} PB_BattleRules
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleRules & PB_BattleRules.$Shape;
+
+    /**
+     * Verifies a PB_BattleRules message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleRules message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleRules
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleRules;
+
+    /**
+     * Creates a plain object from a PB_BattleRules message. Also converts values to other types if specified.
+     * @param message PB_BattleRules
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleRules, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleRules to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleRules
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleRules {
+
+    /** Properties of a PB_BattleRules. */
+    interface $Properties {
+
+        /** PB_BattleRules victory_condition */
+        victory_condition?: (PB_VictoryCondition|null);
+
+        /** PB_BattleRules max_turns */
+        max_turns?: (number|null);
+
+        /** PB_BattleRules max_duration_sec */
+        max_duration_sec?: (number|null);
+
+        /** PB_BattleRules allow_flee */
+        allow_flee?: (boolean|null);
+
+        /** PB_BattleRules score_limit */
+        score_limit?: (number|null);
+
+        /** PB_BattleRules target_member_id */
+        target_member_id?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleRules. */
+    type $Shape = PB_BattleRules.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleReq.
+ * @deprecated Use PB_BattleReq.$Properties instead.
+ */
+export interface IPB_BattleReq extends PB_BattleReq.$Properties {
+}
+
+/** Represents a PB_BattleReq. */
+export class PB_BattleReq {
+
+    /**
+     * Constructs a new PB_BattleReq.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleReq.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleReq battle_id. */
+    battle_id?: (number|null);
+
+    /** PB_BattleReq mode. */
+    mode?: (PB_BattleMode|null);
+
+    /** PB_BattleReq battle_type. */
+    battle_type?: (number|null);
+
+    /** PB_BattleReq target_id. */
+    target_id?: (number|null);
+
+    /** PB_BattleReq random_seed. */
+    random_seed?: (number|null);
+
+    /** PB_BattleReq rules. */
+    rules?: (PB_BattleRules.$Properties|null);
+
+    /** PB_BattleReq teams. */
+    teams: PB_BattleTeam.$Properties[];
+
+    /**
+     * Creates a new PB_BattleReq instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleReq instance
+     */
+    static create(properties: PB_BattleReq.$Shape): PB_BattleReq & PB_BattleReq.$Shape;
+    static create(properties?: PB_BattleReq.$Properties): PB_BattleReq;
+
+    /**
+     * Encodes the specified PB_BattleReq message. Does not implicitly {@link PB_BattleReq.verify|verify} messages.
+     * @param message PB_BattleReq message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleReq message, length delimited. Does not implicitly {@link PB_BattleReq.verify|verify} messages.
+     * @param message PB_BattleReq message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleReq message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleReq & PB_BattleReq.$Shape} PB_BattleReq
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleReq & PB_BattleReq.$Shape;
+
+    /**
+     * Decodes a PB_BattleReq message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleReq & PB_BattleReq.$Shape} PB_BattleReq
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleReq & PB_BattleReq.$Shape;
+
+    /**
+     * Verifies a PB_BattleReq message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleReq message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleReq
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleReq;
+
+    /**
+     * Creates a plain object from a PB_BattleReq message. Also converts values to other types if specified.
+     * @param message PB_BattleReq
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleReq to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleReq
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleReq {
+
+    /** Properties of a PB_BattleReq. */
+    interface $Properties {
+
+        /** PB_BattleReq battle_id */
+        battle_id?: (number|null);
+
+        /** PB_BattleReq mode */
+        mode?: (PB_BattleMode|null);
+
+        /** PB_BattleReq battle_type */
+        battle_type?: (number|null);
+
+        /** PB_BattleReq target_id */
+        target_id?: (number|null);
+
+        /** PB_BattleReq random_seed */
+        random_seed?: (number|null);
+
+        /** PB_BattleReq rules */
+        rules?: (PB_BattleRules.$Properties|null);
+
+        /** PB_BattleReq teams */
+        teams?: (PB_BattleTeam.$Properties[]|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleReq. */
+    type $Shape = PB_BattleReq.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleEntityState.
+ * @deprecated Use PB_BattleEntityState.$Properties instead.
+ */
+export interface IPB_BattleEntityState extends PB_BattleEntityState.$Properties {
+}
+
+/** Represents a PB_BattleEntityState. */
+export class PB_BattleEntityState {
+
+    /**
+     * Constructs a new PB_BattleEntityState.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleEntityState.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleEntityState pid. */
+    pid?: (number|null);
+
+    /** PB_BattleEntityState obj_id. */
+    obj_id?: (number|null);
+
+    /** PB_BattleEntityState obj_type. */
+    obj_type?: (PB_ObjType|null);
+
+    /** PB_BattleEntityState name. */
+    name?: (string|null);
+
+    /** PB_BattleEntityState level. */
+    level?: (number|null);
+
+    /** PB_BattleEntityState team_id. */
+    team_id?: (number|null);
+
+    /** PB_BattleEntityState alive. */
+    alive?: (boolean|null);
+
+    /** PB_BattleEntityState attrs. */
+    attrs: PB_AttrPair.$Properties[];
+
+    /**
+     * Creates a new PB_BattleEntityState instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleEntityState instance
+     */
+    static create(properties: PB_BattleEntityState.$Shape): PB_BattleEntityState & PB_BattleEntityState.$Shape;
+    static create(properties?: PB_BattleEntityState.$Properties): PB_BattleEntityState;
+
+    /**
+     * Encodes the specified PB_BattleEntityState message. Does not implicitly {@link PB_BattleEntityState.verify|verify} messages.
+     * @param message PB_BattleEntityState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleEntityState.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleEntityState message, length delimited. Does not implicitly {@link PB_BattleEntityState.verify|verify} messages.
+     * @param message PB_BattleEntityState message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleEntityState.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleEntityState message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleEntityState & PB_BattleEntityState.$Shape} PB_BattleEntityState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleEntityState & PB_BattleEntityState.$Shape;
+
+    /**
+     * Decodes a PB_BattleEntityState message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleEntityState & PB_BattleEntityState.$Shape} PB_BattleEntityState
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleEntityState & PB_BattleEntityState.$Shape;
+
+    /**
+     * Verifies a PB_BattleEntityState message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleEntityState message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleEntityState
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleEntityState;
+
+    /**
+     * Creates a plain object from a PB_BattleEntityState message. Also converts values to other types if specified.
+     * @param message PB_BattleEntityState
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleEntityState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleEntityState to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleEntityState
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleEntityState {
+
+    /** Properties of a PB_BattleEntityState. */
+    interface $Properties {
+
+        /** PB_BattleEntityState pid */
+        pid?: (number|null);
+
+        /** PB_BattleEntityState obj_id */
+        obj_id?: (number|null);
+
+        /** PB_BattleEntityState obj_type */
+        obj_type?: (PB_ObjType|null);
+
+        /** PB_BattleEntityState name */
+        name?: (string|null);
+
+        /** PB_BattleEntityState level */
+        level?: (number|null);
+
+        /** PB_BattleEntityState team_id */
+        team_id?: (number|null);
+
+        /** PB_BattleEntityState alive */
+        alive?: (boolean|null);
+
+        /** PB_BattleEntityState attrs */
+        attrs?: (PB_AttrPair.$Properties[]|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleEntityState. */
+    type $Shape = PB_BattleEntityState.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleResult.
+ * @deprecated Use PB_BattleResult.$Properties instead.
+ */
+export interface IPB_BattleResult extends PB_BattleResult.$Properties {
+}
+
+/** Represents a PB_BattleResult. */
+export class PB_BattleResult {
+
+    /**
+     * Constructs a new PB_BattleResult.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleResult.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleResult battle_id. */
+    battle_id?: (number|null);
+
+    /** PB_BattleResult result_type. */
+    result_type?: (PB_BattleResultType|null);
+
+    /** PB_BattleResult winner_team_id. */
+    winner_team_id?: (number|null);
+
+    /** PB_BattleResult total_turns. */
+    total_turns?: (number|null);
+
+    /** PB_BattleResult duration_ms. */
+    duration_ms?: (number|null);
+
+    /** PB_BattleResult replay_text. */
+    replay_text?: (string|null);
+
+    /** PB_BattleResult report_key. */
+    report_key?: (string|null);
+
+    /** PB_BattleResult final_states. */
+    final_states: PB_BattleEntityState.$Properties[];
+
+    /**
+     * Creates a new PB_BattleResult instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleResult instance
+     */
+    static create(properties: PB_BattleResult.$Shape): PB_BattleResult & PB_BattleResult.$Shape;
+    static create(properties?: PB_BattleResult.$Properties): PB_BattleResult;
+
+    /**
+     * Encodes the specified PB_BattleResult message. Does not implicitly {@link PB_BattleResult.verify|verify} messages.
+     * @param message PB_BattleResult message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleResult message, length delimited. Does not implicitly {@link PB_BattleResult.verify|verify} messages.
+     * @param message PB_BattleResult message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleResult message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleResult & PB_BattleResult.$Shape} PB_BattleResult
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleResult & PB_BattleResult.$Shape;
+
+    /**
+     * Decodes a PB_BattleResult message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleResult & PB_BattleResult.$Shape} PB_BattleResult
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleResult & PB_BattleResult.$Shape;
+
+    /**
+     * Verifies a PB_BattleResult message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleResult message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleResult
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleResult;
+
+    /**
+     * Creates a plain object from a PB_BattleResult message. Also converts values to other types if specified.
+     * @param message PB_BattleResult
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleResult to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleResult
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleResult {
+
+    /** Properties of a PB_BattleResult. */
+    interface $Properties {
+
+        /** PB_BattleResult battle_id */
+        battle_id?: (number|null);
+
+        /** PB_BattleResult result_type */
+        result_type?: (PB_BattleResultType|null);
+
+        /** PB_BattleResult winner_team_id */
+        winner_team_id?: (number|null);
+
+        /** PB_BattleResult total_turns */
+        total_turns?: (number|null);
+
+        /** PB_BattleResult duration_ms */
+        duration_ms?: (number|null);
+
+        /** PB_BattleResult replay_text */
+        replay_text?: (string|null);
+
+        /** PB_BattleResult report_key */
+        report_key?: (string|null);
+
+        /** PB_BattleResult final_states */
+        final_states?: (PB_BattleEntityState.$Properties[]|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleResult. */
+    type $Shape = PB_BattleResult.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleMatchResult.
+ * @deprecated Use PB_BattleMatchResult.$Properties instead.
+ */
+export interface IPB_BattleMatchResult extends PB_BattleMatchResult.$Properties {
+}
+
+/** Represents a PB_BattleMatchResult. */
+export class PB_BattleMatchResult {
+
+    /**
+     * Constructs a new PB_BattleMatchResult.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleMatchResult.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleMatchResult match_index. */
+    match_index?: (number|null);
+
+    /** PB_BattleMatchResult result_type. */
+    result_type?: (PB_BattleResultType|null);
+
+    /** PB_BattleMatchResult battle_type. */
+    battle_type?: (number|null);
+
+    /** PB_BattleMatchResult report_key. */
+    report_key?: (string|null);
+
+    /** PB_BattleMatchResult replay_text. */
+    replay_text?: (string|null);
+
+    /**
+     * Creates a new PB_BattleMatchResult instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleMatchResult instance
+     */
+    static create(properties: PB_BattleMatchResult.$Shape): PB_BattleMatchResult & PB_BattleMatchResult.$Shape;
+    static create(properties?: PB_BattleMatchResult.$Properties): PB_BattleMatchResult;
+
+    /**
+     * Encodes the specified PB_BattleMatchResult message. Does not implicitly {@link PB_BattleMatchResult.verify|verify} messages.
+     * @param message PB_BattleMatchResult message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleMatchResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleMatchResult message, length delimited. Does not implicitly {@link PB_BattleMatchResult.verify|verify} messages.
+     * @param message PB_BattleMatchResult message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleMatchResult.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleMatchResult message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleMatchResult & PB_BattleMatchResult.$Shape} PB_BattleMatchResult
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleMatchResult & PB_BattleMatchResult.$Shape;
+
+    /**
+     * Decodes a PB_BattleMatchResult message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleMatchResult & PB_BattleMatchResult.$Shape} PB_BattleMatchResult
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleMatchResult & PB_BattleMatchResult.$Shape;
+
+    /**
+     * Verifies a PB_BattleMatchResult message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleMatchResult message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleMatchResult
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleMatchResult;
+
+    /**
+     * Creates a plain object from a PB_BattleMatchResult message. Also converts values to other types if specified.
+     * @param message PB_BattleMatchResult
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleMatchResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleMatchResult to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleMatchResult
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleMatchResult {
+
+    /** Properties of a PB_BattleMatchResult. */
+    interface $Properties {
+
+        /** PB_BattleMatchResult match_index */
+        match_index?: (number|null);
+
+        /** PB_BattleMatchResult result_type */
+        result_type?: (PB_BattleResultType|null);
+
+        /** PB_BattleMatchResult battle_type */
+        battle_type?: (number|null);
+
+        /** PB_BattleMatchResult report_key */
+        report_key?: (string|null);
+
+        /** PB_BattleMatchResult replay_text */
+        replay_text?: (string|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleMatchResult. */
+    type $Shape = PB_BattleMatchResult.$Properties;
+}
+
+/**
+ * Properties of a PB_BattleExecuteReq.
+ * @deprecated Use PB_BattleExecuteReq.$Properties instead.
+ */
+export interface IPB_BattleExecuteReq extends PB_BattleExecuteReq.$Properties {
+}
+
+/** Represents a PB_BattleExecuteReq. */
+export class PB_BattleExecuteReq {
+
+    /**
+     * Constructs a new PB_BattleExecuteReq.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_BattleExecuteReq.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_BattleExecuteReq battle_req. */
+    battle_req?: (PB_BattleReq.$Properties|null);
+
+    /** PB_BattleExecuteReq report_key. */
+    report_key?: (string|null);
+
+    /** PB_BattleExecuteReq uid. */
+    uid?: (number|null);
+
+    /** PB_BattleExecuteReq match_index. */
+    match_index?: (number|null);
+
+    /** PB_BattleExecuteReq total_matches. */
+    total_matches?: (number|null);
+
+    /**
+     * Creates a new PB_BattleExecuteReq instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_BattleExecuteReq instance
+     */
+    static create(properties: PB_BattleExecuteReq.$Shape): PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape;
+    static create(properties?: PB_BattleExecuteReq.$Properties): PB_BattleExecuteReq;
+
+    /**
+     * Encodes the specified PB_BattleExecuteReq message. Does not implicitly {@link PB_BattleExecuteReq.verify|verify} messages.
+     * @param message PB_BattleExecuteReq message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_BattleExecuteReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_BattleExecuteReq message, length delimited. Does not implicitly {@link PB_BattleExecuteReq.verify|verify} messages.
+     * @param message PB_BattleExecuteReq message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_BattleExecuteReq.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_BattleExecuteReq message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape} PB_BattleExecuteReq
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape;
+
+    /**
+     * Decodes a PB_BattleExecuteReq message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape} PB_BattleExecuteReq
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_BattleExecuteReq & PB_BattleExecuteReq.$Shape;
+
+    /**
+     * Verifies a PB_BattleExecuteReq message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_BattleExecuteReq message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_BattleExecuteReq
+     */
+    static fromObject(object: { [k: string]: any }): PB_BattleExecuteReq;
+
+    /**
+     * Creates a plain object from a PB_BattleExecuteReq message. Also converts values to other types if specified.
+     * @param message PB_BattleExecuteReq
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_BattleExecuteReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_BattleExecuteReq to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_BattleExecuteReq
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_BattleExecuteReq {
+
+    /** Properties of a PB_BattleExecuteReq. */
+    interface $Properties {
+
+        /** PB_BattleExecuteReq battle_req */
+        battle_req?: (PB_BattleReq.$Properties|null);
+
+        /** PB_BattleExecuteReq report_key */
+        report_key?: (string|null);
+
+        /** PB_BattleExecuteReq uid */
+        uid?: (number|null);
+
+        /** PB_BattleExecuteReq match_index */
+        match_index?: (number|null);
+
+        /** PB_BattleExecuteReq total_matches */
+        total_matches?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_BattleExecuteReq. */
+    type $Shape = PB_BattleExecuteReq.$Properties;
+}
+
+/**
  * Properties of a P_ClusterHello.
  * @deprecated Use P_ClusterHello.$Properties instead.
  */
@@ -4599,189 +6432,6 @@ export namespace P_ClusterRpcReply {
 }
 
 /**
- * Properties of a PB_CrossRoleSnapshot.
- * @deprecated Use PB_CrossRoleSnapshot.$Properties instead.
- */
-export interface IPB_CrossRoleSnapshot extends PB_CrossRoleSnapshot.$Properties {
-}
-
-/** Represents a PB_CrossRoleSnapshot. */
-export class PB_CrossRoleSnapshot {
-
-    /**
-     * Constructs a new PB_CrossRoleSnapshot.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_CrossRoleSnapshot.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_CrossRoleSnapshot role_uid. */
-    role_uid?: (number|null);
-
-    /** PB_CrossRoleSnapshot home_server_id. */
-    home_server_id?: (number|null);
-
-    /** PB_CrossRoleSnapshot scene_server_id. */
-    scene_server_id?: (number|null);
-
-    /** PB_CrossRoleSnapshot activity_id. */
-    activity_id?: (number|null);
-
-    /** PB_CrossRoleSnapshot extra. */
-    extra?: (Uint8Array|null);
-
-    /** PB_CrossRoleSnapshot role_data. */
-    role_data?: (Uint8Array|null);
-
-    /** PB_CrossRoleSnapshot scene_ip. */
-    scene_ip?: (string|null);
-
-    /** PB_CrossRoleSnapshot scene_port. */
-    scene_port?: (number|null);
-
-    /** PB_CrossRoleSnapshot token. */
-    token?: (string|null);
-
-    /** PB_CrossRoleSnapshot pos_x. */
-    pos_x?: (number|null);
-
-    /** PB_CrossRoleSnapshot pos_y. */
-    pos_y?: (number|null);
-
-    /** PB_CrossRoleSnapshot pos_z. */
-    pos_z?: (number|null);
-
-    /**
-     * Creates a new PB_CrossRoleSnapshot instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_CrossRoleSnapshot instance
-     */
-    static create(properties: PB_CrossRoleSnapshot.$Shape): PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape;
-    static create(properties?: PB_CrossRoleSnapshot.$Properties): PB_CrossRoleSnapshot;
-
-    /**
-     * Encodes the specified PB_CrossRoleSnapshot message. Does not implicitly {@link PB_CrossRoleSnapshot.verify|verify} messages.
-     * @param message PB_CrossRoleSnapshot message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_CrossRoleSnapshot.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_CrossRoleSnapshot message, length delimited. Does not implicitly {@link PB_CrossRoleSnapshot.verify|verify} messages.
-     * @param message PB_CrossRoleSnapshot message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_CrossRoleSnapshot.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_CrossRoleSnapshot message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape} PB_CrossRoleSnapshot
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape;
-
-    /**
-     * Decodes a PB_CrossRoleSnapshot message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape} PB_CrossRoleSnapshot
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_CrossRoleSnapshot & PB_CrossRoleSnapshot.$Shape;
-
-    /**
-     * Verifies a PB_CrossRoleSnapshot message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_CrossRoleSnapshot message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_CrossRoleSnapshot
-     */
-    static fromObject(object: { [k: string]: any }): PB_CrossRoleSnapshot;
-
-    /**
-     * Creates a plain object from a PB_CrossRoleSnapshot message. Also converts values to other types if specified.
-     * @param message PB_CrossRoleSnapshot
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_CrossRoleSnapshot, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_CrossRoleSnapshot to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_CrossRoleSnapshot
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_CrossRoleSnapshot {
-
-    /** Properties of a PB_CrossRoleSnapshot. */
-    interface $Properties {
-
-        /** PB_CrossRoleSnapshot role_uid */
-        role_uid?: (number|null);
-
-        /** PB_CrossRoleSnapshot home_server_id */
-        home_server_id?: (number|null);
-
-        /** PB_CrossRoleSnapshot scene_server_id */
-        scene_server_id?: (number|null);
-
-        /** PB_CrossRoleSnapshot activity_id */
-        activity_id?: (number|null);
-
-        /** PB_CrossRoleSnapshot extra */
-        extra?: (Uint8Array|null);
-
-        /** PB_CrossRoleSnapshot role_data */
-        role_data?: (Uint8Array|null);
-
-        /** PB_CrossRoleSnapshot scene_ip */
-        scene_ip?: (string|null);
-
-        /** PB_CrossRoleSnapshot scene_port */
-        scene_port?: (number|null);
-
-        /** PB_CrossRoleSnapshot token */
-        token?: (string|null);
-
-        /** PB_CrossRoleSnapshot pos_x */
-        pos_x?: (number|null);
-
-        /** PB_CrossRoleSnapshot pos_y */
-        pos_y?: (number|null);
-
-        /** PB_CrossRoleSnapshot pos_z */
-        pos_z?: (number|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_CrossRoleSnapshot. */
-    type $Shape = PB_CrossRoleSnapshot.$Properties;
-}
-
-/**
  * Properties of a PB_CrossTicket.
  * @deprecated Use PB_CrossTicket.$Properties instead.
  */
@@ -4938,6 +6588,387 @@ export namespace PB_CrossTicket {
 
     /** Shape of a PB_CrossTicket. */
     type $Shape = PB_CrossTicket.$Properties;
+}
+
+/**
+ * Properties of a PB_CrossRoleData.
+ * @deprecated Use PB_CrossRoleData.$Properties instead.
+ */
+export interface IPB_CrossRoleData extends PB_CrossRoleData.$Properties {
+}
+
+/** Represents a PB_CrossRoleData. */
+export class PB_CrossRoleData {
+
+    /**
+     * Constructs a new PB_CrossRoleData.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: PB_CrossRoleData.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** PB_CrossRoleData role_uid. */
+    role_uid?: (number|null);
+
+    /** PB_CrossRoleData home_server_id. */
+    home_server_id?: (number|null);
+
+    /** PB_CrossRoleData role_data. */
+    role_data?: (PB_RoleData.$Properties|null);
+
+    /**
+     * Creates a new PB_CrossRoleData instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns PB_CrossRoleData instance
+     */
+    static create(properties: PB_CrossRoleData.$Shape): PB_CrossRoleData & PB_CrossRoleData.$Shape;
+    static create(properties?: PB_CrossRoleData.$Properties): PB_CrossRoleData;
+
+    /**
+     * Encodes the specified PB_CrossRoleData message. Does not implicitly {@link PB_CrossRoleData.verify|verify} messages.
+     * @param message PB_CrossRoleData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: PB_CrossRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified PB_CrossRoleData message, length delimited. Does not implicitly {@link PB_CrossRoleData.verify|verify} messages.
+     * @param message PB_CrossRoleData message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: PB_CrossRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a PB_CrossRoleData message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {PB_CrossRoleData & PB_CrossRoleData.$Shape} PB_CrossRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_CrossRoleData & PB_CrossRoleData.$Shape;
+
+    /**
+     * Decodes a PB_CrossRoleData message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {PB_CrossRoleData & PB_CrossRoleData.$Shape} PB_CrossRoleData
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_CrossRoleData & PB_CrossRoleData.$Shape;
+
+    /**
+     * Verifies a PB_CrossRoleData message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a PB_CrossRoleData message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns PB_CrossRoleData
+     */
+    static fromObject(object: { [k: string]: any }): PB_CrossRoleData;
+
+    /**
+     * Creates a plain object from a PB_CrossRoleData message. Also converts values to other types if specified.
+     * @param message PB_CrossRoleData
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: PB_CrossRoleData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this PB_CrossRoleData to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for PB_CrossRoleData
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace PB_CrossRoleData {
+
+    /** Properties of a PB_CrossRoleData. */
+    interface $Properties {
+
+        /** PB_CrossRoleData role_uid */
+        role_uid?: (number|null);
+
+        /** PB_CrossRoleData home_server_id */
+        home_server_id?: (number|null);
+
+        /** PB_CrossRoleData role_data */
+        role_data?: (PB_RoleData.$Properties|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a PB_CrossRoleData. */
+    type $Shape = PB_CrossRoleData.$Properties;
+}
+
+/**
+ * Properties of a P_CrossEnterApply.
+ * @deprecated Use P_CrossEnterApply.$Properties instead.
+ */
+export interface IP_CrossEnterApply extends P_CrossEnterApply.$Properties {
+}
+
+/** Represents a P_CrossEnterApply. */
+export class P_CrossEnterApply {
+
+    /**
+     * Constructs a new P_CrossEnterApply.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: P_CrossEnterApply.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** P_CrossEnterApply role. */
+    role?: (PB_CrossRoleData.$Properties|null);
+
+    /** P_CrossEnterApply activity_id. */
+    activity_id?: (number|null);
+
+    /** P_CrossEnterApply pos. */
+    pos?: (PB_Vector3.$Properties|null);
+
+    /**
+     * Creates a new P_CrossEnterApply instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns P_CrossEnterApply instance
+     */
+    static create(properties: P_CrossEnterApply.$Shape): P_CrossEnterApply & P_CrossEnterApply.$Shape;
+    static create(properties?: P_CrossEnterApply.$Properties): P_CrossEnterApply;
+
+    /**
+     * Encodes the specified P_CrossEnterApply message. Does not implicitly {@link P_CrossEnterApply.verify|verify} messages.
+     * @param message P_CrossEnterApply message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: P_CrossEnterApply.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified P_CrossEnterApply message, length delimited. Does not implicitly {@link P_CrossEnterApply.verify|verify} messages.
+     * @param message P_CrossEnterApply message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: P_CrossEnterApply.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a P_CrossEnterApply message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {P_CrossEnterApply & P_CrossEnterApply.$Shape} P_CrossEnterApply
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossEnterApply & P_CrossEnterApply.$Shape;
+
+    /**
+     * Decodes a P_CrossEnterApply message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {P_CrossEnterApply & P_CrossEnterApply.$Shape} P_CrossEnterApply
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossEnterApply & P_CrossEnterApply.$Shape;
+
+    /**
+     * Verifies a P_CrossEnterApply message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a P_CrossEnterApply message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns P_CrossEnterApply
+     */
+    static fromObject(object: { [k: string]: any }): P_CrossEnterApply;
+
+    /**
+     * Creates a plain object from a P_CrossEnterApply message. Also converts values to other types if specified.
+     * @param message P_CrossEnterApply
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: P_CrossEnterApply, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this P_CrossEnterApply to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for P_CrossEnterApply
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace P_CrossEnterApply {
+
+    /** Properties of a P_CrossEnterApply. */
+    interface $Properties {
+
+        /** P_CrossEnterApply role */
+        role?: (PB_CrossRoleData.$Properties|null);
+
+        /** P_CrossEnterApply activity_id */
+        activity_id?: (number|null);
+
+        /** P_CrossEnterApply pos */
+        pos?: (PB_Vector3.$Properties|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a P_CrossEnterApply. */
+    type $Shape = P_CrossEnterApply.$Properties;
+}
+
+/**
+ * Properties of a P_CrossSettle.
+ * @deprecated Use P_CrossSettle.$Properties instead.
+ */
+export interface IP_CrossSettle extends P_CrossSettle.$Properties {
+}
+
+/** Represents a P_CrossSettle. */
+export class P_CrossSettle {
+
+    /**
+     * Constructs a new P_CrossSettle.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: P_CrossSettle.$Properties);
+
+    /** Unknown fields preserved while decoding when enabled */
+    $unknowns?: Uint8Array[];
+
+    /** P_CrossSettle role. */
+    role?: (PB_CrossRoleData.$Properties|null);
+
+    /** P_CrossSettle activity_id. */
+    activity_id?: (number|null);
+
+    /**
+     * Creates a new P_CrossSettle instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns P_CrossSettle instance
+     */
+    static create(properties: P_CrossSettle.$Shape): P_CrossSettle & P_CrossSettle.$Shape;
+    static create(properties?: P_CrossSettle.$Properties): P_CrossSettle;
+
+    /**
+     * Encodes the specified P_CrossSettle message. Does not implicitly {@link P_CrossSettle.verify|verify} messages.
+     * @param message P_CrossSettle message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encode(message: P_CrossSettle.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified P_CrossSettle message, length delimited. Does not implicitly {@link P_CrossSettle.verify|verify} messages.
+     * @param message P_CrossSettle message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    static encodeDelimited(message: P_CrossSettle.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a P_CrossSettle message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns {P_CrossSettle & P_CrossSettle.$Shape} P_CrossSettle
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossSettle & P_CrossSettle.$Shape;
+
+    /**
+     * Decodes a P_CrossSettle message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns {P_CrossSettle & P_CrossSettle.$Shape} P_CrossSettle
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossSettle & P_CrossSettle.$Shape;
+
+    /**
+     * Verifies a P_CrossSettle message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a P_CrossSettle message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns P_CrossSettle
+     */
+    static fromObject(object: { [k: string]: any }): P_CrossSettle;
+
+    /**
+     * Creates a plain object from a P_CrossSettle message. Also converts values to other types if specified.
+     * @param message P_CrossSettle
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    static toObject(message: P_CrossSettle, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this P_CrossSettle to JSON.
+     * @returns JSON object
+     */
+    toJSON(): { [k: string]: any };
+
+    /**
+     * Gets the type url for P_CrossSettle
+     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns The type url
+     */
+    static getTypeUrl(prefix?: string): string;
+}
+
+export namespace P_CrossSettle {
+
+    /** Properties of a P_CrossSettle. */
+    interface $Properties {
+
+        /** P_CrossSettle role */
+        role?: (PB_CrossRoleData.$Properties|null);
+
+        /** P_CrossSettle activity_id */
+        activity_id?: (number|null);
+
+        /** Unknown fields preserved while decoding when enabled */
+        $unknowns?: Uint8Array[];
+    }
+
+    /** Shape of a P_CrossSettle. */
+    type $Shape = P_CrossSettle.$Properties;
 }
 
 /**
@@ -5175,138 +7206,120 @@ export namespace P_CrossQueryRole {
 }
 
 /**
- * Properties of a PB_MmoRoleData.
- * @deprecated Use PB_MmoRoleData.$Properties instead.
+ * Properties of a P_CrossQueryRoleRet.
+ * @deprecated Use P_CrossQueryRoleRet.$Properties instead.
  */
-export interface IPB_MmoRoleData extends PB_MmoRoleData.$Properties {
+export interface IP_CrossQueryRoleRet extends P_CrossQueryRoleRet.$Properties {
 }
 
-/** Represents a PB_MmoRoleData. */
-export class PB_MmoRoleData {
+/** Represents a P_CrossQueryRoleRet. */
+export class P_CrossQueryRoleRet {
 
     /**
-     * Constructs a new PB_MmoRoleData.
+     * Constructs a new P_CrossQueryRoleRet.
      * @param [properties] Properties to set
      */
-    constructor(properties?: PB_MmoRoleData.$Properties);
+    constructor(properties?: P_CrossQueryRoleRet.$Properties);
 
     /** Unknown fields preserved while decoding when enabled */
     $unknowns?: Uint8Array[];
 
-    /** PB_MmoRoleData scene_id. */
-    scene_id?: (number|null);
-
-    /** PB_MmoRoleData x. */
-    x?: (number|null);
-
-    /** PB_MmoRoleData y. */
-    y?: (number|null);
-
-    /** PB_MmoRoleData z. */
-    z?: (number|null);
+    /** P_CrossQueryRoleRet role. */
+    role?: (PB_CrossRoleData.$Properties|null);
 
     /**
-     * Creates a new PB_MmoRoleData instance using the specified properties.
+     * Creates a new P_CrossQueryRoleRet instance using the specified properties.
      * @param [properties] Properties to set
-     * @returns PB_MmoRoleData instance
+     * @returns P_CrossQueryRoleRet instance
      */
-    static create(properties: PB_MmoRoleData.$Shape): PB_MmoRoleData & PB_MmoRoleData.$Shape;
-    static create(properties?: PB_MmoRoleData.$Properties): PB_MmoRoleData;
+    static create(properties: P_CrossQueryRoleRet.$Shape): P_CrossQueryRoleRet & P_CrossQueryRoleRet.$Shape;
+    static create(properties?: P_CrossQueryRoleRet.$Properties): P_CrossQueryRoleRet;
 
     /**
-     * Encodes the specified PB_MmoRoleData message. Does not implicitly {@link PB_MmoRoleData.verify|verify} messages.
-     * @param message PB_MmoRoleData message or plain object to encode
+     * Encodes the specified P_CrossQueryRoleRet message. Does not implicitly {@link P_CrossQueryRoleRet.verify|verify} messages.
+     * @param message P_CrossQueryRoleRet message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    static encode(message: PB_MmoRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+    static encode(message: P_CrossQueryRoleRet.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Encodes the specified PB_MmoRoleData message, length delimited. Does not implicitly {@link PB_MmoRoleData.verify|verify} messages.
-     * @param message PB_MmoRoleData message or plain object to encode
+     * Encodes the specified P_CrossQueryRoleRet message, length delimited. Does not implicitly {@link P_CrossQueryRoleRet.verify|verify} messages.
+     * @param message P_CrossQueryRoleRet message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    static encodeDelimited(message: PB_MmoRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
+    static encodeDelimited(message: P_CrossQueryRoleRet.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Decodes a PB_MmoRoleData message from the specified reader or buffer.
+     * Decodes a P_CrossQueryRoleRet message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
      * @param [length] Message length if known beforehand
-     * @returns {PB_MmoRoleData & PB_MmoRoleData.$Shape} PB_MmoRoleData
+     * @returns {P_CrossQueryRoleRet & P_CrossQueryRoleRet.$Shape} P_CrossQueryRoleRet
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_MmoRoleData & PB_MmoRoleData.$Shape;
+    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): P_CrossQueryRoleRet & P_CrossQueryRoleRet.$Shape;
 
     /**
-     * Decodes a PB_MmoRoleData message from the specified reader or buffer, length delimited.
+     * Decodes a P_CrossQueryRoleRet message from the specified reader or buffer, length delimited.
      * @param reader Reader or buffer to decode from
-     * @returns {PB_MmoRoleData & PB_MmoRoleData.$Shape} PB_MmoRoleData
+     * @returns {P_CrossQueryRoleRet & P_CrossQueryRoleRet.$Shape} P_CrossQueryRoleRet
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_MmoRoleData & PB_MmoRoleData.$Shape;
+    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): P_CrossQueryRoleRet & P_CrossQueryRoleRet.$Shape;
 
     /**
-     * Verifies a PB_MmoRoleData message.
+     * Verifies a P_CrossQueryRoleRet message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
     static verify(message: { [k: string]: any }): (string|null);
 
     /**
-     * Creates a PB_MmoRoleData message from a plain object. Also converts values to their respective internal types.
+     * Creates a P_CrossQueryRoleRet message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
-     * @returns PB_MmoRoleData
+     * @returns P_CrossQueryRoleRet
      */
-    static fromObject(object: { [k: string]: any }): PB_MmoRoleData;
+    static fromObject(object: { [k: string]: any }): P_CrossQueryRoleRet;
 
     /**
-     * Creates a plain object from a PB_MmoRoleData message. Also converts values to other types if specified.
-     * @param message PB_MmoRoleData
+     * Creates a plain object from a P_CrossQueryRoleRet message. Also converts values to other types if specified.
+     * @param message P_CrossQueryRoleRet
      * @param [options] Conversion options
      * @returns Plain object
      */
-    static toObject(message: PB_MmoRoleData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+    static toObject(message: P_CrossQueryRoleRet, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
-     * Converts this PB_MmoRoleData to JSON.
+     * Converts this P_CrossQueryRoleRet to JSON.
      * @returns JSON object
      */
     toJSON(): { [k: string]: any };
 
     /**
-     * Gets the type url for PB_MmoRoleData
+     * Gets the type url for P_CrossQueryRoleRet
      * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
      * @returns The type url
      */
     static getTypeUrl(prefix?: string): string;
 }
 
-export namespace PB_MmoRoleData {
+export namespace P_CrossQueryRoleRet {
 
-    /** Properties of a PB_MmoRoleData. */
+    /** Properties of a P_CrossQueryRoleRet. */
     interface $Properties {
 
-        /** PB_MmoRoleData scene_id */
-        scene_id?: (number|null);
-
-        /** PB_MmoRoleData x */
-        x?: (number|null);
-
-        /** PB_MmoRoleData y */
-        y?: (number|null);
-
-        /** PB_MmoRoleData z */
-        z?: (number|null);
+        /** P_CrossQueryRoleRet role */
+        role?: (PB_CrossRoleData.$Properties|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
     }
 
-    /** Shape of a PB_MmoRoleData. */
-    type $Shape = PB_MmoRoleData.$Properties;
+    /** Shape of a P_CrossQueryRoleRet. */
+    type $Shape = P_CrossQueryRoleRet.$Properties;
 }
 
 /**
@@ -5331,20 +7344,11 @@ export class PB_MmoRoleInit {
     /** PB_MmoRoleInit role_uid. */
     role_uid?: (number|null);
 
-    /** PB_MmoRoleInit scene_id. */
-    scene_id?: (number|null);
-
     /** PB_MmoRoleInit role_name. */
     role_name?: (string|null);
 
-    /** PB_MmoRoleInit x. */
-    x?: (number|null);
-
-    /** PB_MmoRoleInit y. */
-    y?: (number|null);
-
-    /** PB_MmoRoleInit z. */
-    z?: (number|null);
+    /** PB_MmoRoleInit place. */
+    place?: (PB_ScenePos.$Properties|null);
 
     /** PB_MmoRoleInit hero. */
     hero?: (PB_HeroData.$Properties|null);
@@ -5436,20 +7440,11 @@ export namespace PB_MmoRoleInit {
         /** PB_MmoRoleInit role_uid */
         role_uid?: (number|null);
 
-        /** PB_MmoRoleInit scene_id */
-        scene_id?: (number|null);
-
         /** PB_MmoRoleInit role_name */
         role_name?: (string|null);
 
-        /** PB_MmoRoleInit x */
-        x?: (number|null);
-
-        /** PB_MmoRoleInit y */
-        y?: (number|null);
-
-        /** PB_MmoRoleInit z */
-        z?: (number|null);
+        /** PB_MmoRoleInit place */
+        place?: (PB_ScenePos.$Properties|null);
 
         /** PB_MmoRoleInit hero */
         hero?: (PB_HeroData.$Properties|null);
@@ -5649,47 +7644,17 @@ export class PB_MmoEvent {
     /** PB_MmoEvent type. */
     type?: (number|null);
 
-    /** PB_MmoEvent role_uid. */
-    role_uid?: (number|null);
+    /** PB_MmoEvent state. */
+    state?: (PB_MmoRoleState.$Properties|null);
 
     /** PB_MmoEvent target_uid. */
     target_uid?: (number|null);
 
-    /** PB_MmoEvent obj_id. */
-    obj_id?: (number|null);
-
-    /** PB_MmoEvent scene_id. */
-    scene_id?: (number|null);
-
-    /** PB_MmoEvent hero_id. */
-    hero_id?: (number|null);
-
-    /** PB_MmoEvent role_name. */
-    role_name?: (string|null);
-
-    /** PB_MmoEvent x. */
-    x?: (number|null);
-
-    /** PB_MmoEvent y. */
-    y?: (number|null);
-
-    /** PB_MmoEvent z. */
-    z?: (number|null);
+    /** PB_MmoEvent pos. */
+    pos?: (PB_Vector3.$Properties|null);
 
     /** PB_MmoEvent value. */
     value?: (number|null);
-
-    /** PB_MmoEvent hp. */
-    hp?: (number|null);
-
-    /** PB_MmoEvent max_hp. */
-    max_hp?: (number|null);
-
-    /** PB_MmoEvent level. */
-    level?: (number|null);
-
-    /** PB_MmoEvent dead. */
-    dead?: (boolean|null);
 
     /** PB_MmoEvent viewers. */
     viewers: number[];
@@ -5781,47 +7746,17 @@ export namespace PB_MmoEvent {
         /** PB_MmoEvent type */
         type?: (number|null);
 
-        /** PB_MmoEvent role_uid */
-        role_uid?: (number|null);
+        /** PB_MmoEvent state */
+        state?: (PB_MmoRoleState.$Properties|null);
 
         /** PB_MmoEvent target_uid */
         target_uid?: (number|null);
 
-        /** PB_MmoEvent obj_id */
-        obj_id?: (number|null);
-
-        /** PB_MmoEvent scene_id */
-        scene_id?: (number|null);
-
-        /** PB_MmoEvent hero_id */
-        hero_id?: (number|null);
-
-        /** PB_MmoEvent role_name */
-        role_name?: (string|null);
-
-        /** PB_MmoEvent x */
-        x?: (number|null);
-
-        /** PB_MmoEvent y */
-        y?: (number|null);
-
-        /** PB_MmoEvent z */
-        z?: (number|null);
+        /** PB_MmoEvent pos */
+        pos?: (PB_Vector3.$Properties|null);
 
         /** PB_MmoEvent value */
         value?: (number|null);
-
-        /** PB_MmoEvent hp */
-        hp?: (number|null);
-
-        /** PB_MmoEvent max_hp */
-        max_hp?: (number|null);
-
-        /** PB_MmoEvent level */
-        level?: (number|null);
-
-        /** PB_MmoEvent dead */
-        dead?: (boolean|null);
 
         /** PB_MmoEvent viewers */
         viewers?: (number[]|null);
@@ -5832,135 +7767,6 @@ export namespace PB_MmoEvent {
 
     /** Shape of a PB_MmoEvent. */
     type $Shape = PB_MmoEvent.$Properties;
-}
-
-/**
- * Properties of a PB_MessageHead.
- * @deprecated Use PB_MessageHead.$Properties instead.
- */
-export interface IPB_MessageHead extends PB_MessageHead.$Properties {
-}
-
-/** Represents a PB_MessageHead. */
-export class PB_MessageHead {
-
-    /**
-     * Constructs a new PB_MessageHead.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_MessageHead.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_MessageHead msg_type. */
-    msg_type?: (number|null);
-
-    /** PB_MessageHead param. */
-    param: number[];
-
-    /** PB_MessageHead token. */
-    token?: (string|null);
-
-    /**
-     * Creates a new PB_MessageHead instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_MessageHead instance
-     */
-    static create(properties: PB_MessageHead.$Shape): PB_MessageHead & PB_MessageHead.$Shape;
-    static create(properties?: PB_MessageHead.$Properties): PB_MessageHead;
-
-    /**
-     * Encodes the specified PB_MessageHead message. Does not implicitly {@link PB_MessageHead.verify|verify} messages.
-     * @param message PB_MessageHead message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_MessageHead.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_MessageHead message, length delimited. Does not implicitly {@link PB_MessageHead.verify|verify} messages.
-     * @param message PB_MessageHead message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_MessageHead.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_MessageHead message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_MessageHead & PB_MessageHead.$Shape} PB_MessageHead
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_MessageHead & PB_MessageHead.$Shape;
-
-    /**
-     * Decodes a PB_MessageHead message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_MessageHead & PB_MessageHead.$Shape} PB_MessageHead
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_MessageHead & PB_MessageHead.$Shape;
-
-    /**
-     * Verifies a PB_MessageHead message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_MessageHead message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_MessageHead
-     */
-    static fromObject(object: { [k: string]: any }): PB_MessageHead;
-
-    /**
-     * Creates a plain object from a PB_MessageHead message. Also converts values to other types if specified.
-     * @param message PB_MessageHead
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_MessageHead, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_MessageHead to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_MessageHead
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_MessageHead {
-
-    /** Properties of a PB_MessageHead. */
-    interface $Properties {
-
-        /** PB_MessageHead msg_type */
-        msg_type?: (number|null);
-
-        /** PB_MessageHead param */
-        param?: (number[]|null);
-
-        /** PB_MessageHead token */
-        token?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_MessageHead. */
-    type $Shape = PB_MessageHead.$Properties;
 }
 
 /**
@@ -6468,129 +8274,6 @@ export namespace P_ServerlDataDb_S {
 }
 
 /**
- * Properties of a PB_GlobalDataDbNode.
- * @deprecated Use PB_GlobalDataDbNode.$Properties instead.
- */
-export interface IPB_GlobalDataDbNode extends PB_GlobalDataDbNode.$Properties {
-}
-
-/** Represents a PB_GlobalDataDbNode. */
-export class PB_GlobalDataDbNode {
-
-    /**
-     * Constructs a new PB_GlobalDataDbNode.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_GlobalDataDbNode.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_GlobalDataDbNode key. */
-    key?: (string|null);
-
-    /** PB_GlobalDataDbNode data. */
-    data?: (string|null);
-
-    /**
-     * Creates a new PB_GlobalDataDbNode instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_GlobalDataDbNode instance
-     */
-    static create(properties: PB_GlobalDataDbNode.$Shape): PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape;
-    static create(properties?: PB_GlobalDataDbNode.$Properties): PB_GlobalDataDbNode;
-
-    /**
-     * Encodes the specified PB_GlobalDataDbNode message. Does not implicitly {@link PB_GlobalDataDbNode.verify|verify} messages.
-     * @param message PB_GlobalDataDbNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_GlobalDataDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_GlobalDataDbNode message, length delimited. Does not implicitly {@link PB_GlobalDataDbNode.verify|verify} messages.
-     * @param message PB_GlobalDataDbNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_GlobalDataDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_GlobalDataDbNode message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape} PB_GlobalDataDbNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape;
-
-    /**
-     * Decodes a PB_GlobalDataDbNode message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape} PB_GlobalDataDbNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_GlobalDataDbNode & PB_GlobalDataDbNode.$Shape;
-
-    /**
-     * Verifies a PB_GlobalDataDbNode message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_GlobalDataDbNode message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_GlobalDataDbNode
-     */
-    static fromObject(object: { [k: string]: any }): PB_GlobalDataDbNode;
-
-    /**
-     * Creates a plain object from a PB_GlobalDataDbNode message. Also converts values to other types if specified.
-     * @param message PB_GlobalDataDbNode
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_GlobalDataDbNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_GlobalDataDbNode to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_GlobalDataDbNode
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_GlobalDataDbNode {
-
-    /** Properties of a PB_GlobalDataDbNode. */
-    interface $Properties {
-
-        /** PB_GlobalDataDbNode key */
-        key?: (string|null);
-
-        /** PB_GlobalDataDbNode data */
-        data?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_GlobalDataDbNode. */
-    type $Shape = PB_GlobalDataDbNode.$Properties;
-}
-
-/**
  * Properties of a P_GlobalDataDb_C.
  * @deprecated Use P_GlobalDataDb_C.$Properties instead.
  */
@@ -6837,135 +8520,6 @@ export namespace P_GlobalDataDb_S {
 }
 
 /**
- * Properties of a PB_ArenaDbNode.
- * @deprecated Use PB_ArenaDbNode.$Properties instead.
- */
-export interface IPB_ArenaDbNode extends PB_ArenaDbNode.$Properties {
-}
-
-/** Represents a PB_ArenaDbNode. */
-export class PB_ArenaDbNode {
-
-    /**
-     * Constructs a new PB_ArenaDbNode.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_ArenaDbNode.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_ArenaDbNode uid. */
-    uid?: (number|null);
-
-    /** PB_ArenaDbNode score. */
-    score?: (number|null);
-
-    /** PB_ArenaDbNode data. */
-    data?: (string|null);
-
-    /**
-     * Creates a new PB_ArenaDbNode instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_ArenaDbNode instance
-     */
-    static create(properties: PB_ArenaDbNode.$Shape): PB_ArenaDbNode & PB_ArenaDbNode.$Shape;
-    static create(properties?: PB_ArenaDbNode.$Properties): PB_ArenaDbNode;
-
-    /**
-     * Encodes the specified PB_ArenaDbNode message. Does not implicitly {@link PB_ArenaDbNode.verify|verify} messages.
-     * @param message PB_ArenaDbNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_ArenaDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_ArenaDbNode message, length delimited. Does not implicitly {@link PB_ArenaDbNode.verify|verify} messages.
-     * @param message PB_ArenaDbNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_ArenaDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_ArenaDbNode message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_ArenaDbNode & PB_ArenaDbNode.$Shape} PB_ArenaDbNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ArenaDbNode & PB_ArenaDbNode.$Shape;
-
-    /**
-     * Decodes a PB_ArenaDbNode message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_ArenaDbNode & PB_ArenaDbNode.$Shape} PB_ArenaDbNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ArenaDbNode & PB_ArenaDbNode.$Shape;
-
-    /**
-     * Verifies a PB_ArenaDbNode message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_ArenaDbNode message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_ArenaDbNode
-     */
-    static fromObject(object: { [k: string]: any }): PB_ArenaDbNode;
-
-    /**
-     * Creates a plain object from a PB_ArenaDbNode message. Also converts values to other types if specified.
-     * @param message PB_ArenaDbNode
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_ArenaDbNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_ArenaDbNode to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_ArenaDbNode
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_ArenaDbNode {
-
-    /** Properties of a PB_ArenaDbNode. */
-    interface $Properties {
-
-        /** PB_ArenaDbNode uid */
-        uid?: (number|null);
-
-        /** PB_ArenaDbNode score */
-        score?: (number|null);
-
-        /** PB_ArenaDbNode data */
-        data?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_ArenaDbNode. */
-    type $Shape = PB_ArenaDbNode.$Properties;
-}
-
-/**
  * Properties of a P_ArenaDb_C.
  * @deprecated Use P_ArenaDb_C.$Properties instead.
  */
@@ -6988,7 +8542,7 @@ export class P_ArenaDb_C {
     req_type?: (number|null);
 
     /** P_ArenaDb_C datas. */
-    datas: PB_ArenaDbNode.$Properties[];
+    datas: PB_ArenaUserData.$Properties[];
 
     /**
      * Creates a new P_ArenaDb_C instance using the specified properties.
@@ -7078,7 +8632,7 @@ export namespace P_ArenaDb_C {
         req_type?: (number|null);
 
         /** P_ArenaDb_C datas */
-        datas?: (PB_ArenaDbNode.$Properties[]|null);
+        datas?: (PB_ArenaUserData.$Properties[]|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -7114,7 +8668,7 @@ export class P_ArenaDb_S {
     save_ret?: (number|null);
 
     /** P_ArenaDb_S datas. */
-    datas: PB_ArenaDbNode.$Properties[];
+    datas: PB_ArenaUserData.$Properties[];
 
     /**
      * Creates a new P_ArenaDb_S instance using the specified properties.
@@ -7207,7 +8761,7 @@ export namespace P_ArenaDb_S {
         save_ret?: (number|null);
 
         /** P_ArenaDb_S datas */
-        datas?: (PB_ArenaDbNode.$Properties[]|null);
+        datas?: (PB_ArenaUserData.$Properties[]|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -7215,165 +8769,6 @@ export namespace P_ArenaDb_S {
 
     /** Shape of a P_ArenaDb_S. */
     type $Shape = P_ArenaDb_S.$Properties;
-}
-
-/**
- * Properties of a PB_RankDbNode.
- * @deprecated Use PB_RankDbNode.$Properties instead.
- */
-export interface IPB_RankDbNode extends PB_RankDbNode.$Properties {
-}
-
-/** Represents a PB_RankDbNode. */
-export class PB_RankDbNode {
-
-    /**
-     * Constructs a new PB_RankDbNode.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_RankDbNode.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_RankDbNode uid. */
-    uid?: (number|null);
-
-    /** PB_RankDbNode name. */
-    name?: (string|null);
-
-    /** PB_RankDbNode value. */
-    value?: (number|null);
-
-    /** PB_RankDbNode param1. */
-    param1?: (number|null);
-
-    /** PB_RankDbNode param2. */
-    param2?: (number|null);
-
-    /** PB_RankDbNode param3. */
-    param3?: (number|null);
-
-    /** PB_RankDbNode update_time. */
-    update_time?: (number|null);
-
-    /** PB_RankDbNode data. */
-    data?: (string|null);
-
-    /**
-     * Creates a new PB_RankDbNode instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_RankDbNode instance
-     */
-    static create(properties: PB_RankDbNode.$Shape): PB_RankDbNode & PB_RankDbNode.$Shape;
-    static create(properties?: PB_RankDbNode.$Properties): PB_RankDbNode;
-
-    /**
-     * Encodes the specified PB_RankDbNode message. Does not implicitly {@link PB_RankDbNode.verify|verify} messages.
-     * @param message PB_RankDbNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_RankDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_RankDbNode message, length delimited. Does not implicitly {@link PB_RankDbNode.verify|verify} messages.
-     * @param message PB_RankDbNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_RankDbNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_RankDbNode message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_RankDbNode & PB_RankDbNode.$Shape} PB_RankDbNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RankDbNode & PB_RankDbNode.$Shape;
-
-    /**
-     * Decodes a PB_RankDbNode message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_RankDbNode & PB_RankDbNode.$Shape} PB_RankDbNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RankDbNode & PB_RankDbNode.$Shape;
-
-    /**
-     * Verifies a PB_RankDbNode message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_RankDbNode message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_RankDbNode
-     */
-    static fromObject(object: { [k: string]: any }): PB_RankDbNode;
-
-    /**
-     * Creates a plain object from a PB_RankDbNode message. Also converts values to other types if specified.
-     * @param message PB_RankDbNode
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_RankDbNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_RankDbNode to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_RankDbNode
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_RankDbNode {
-
-    /** Properties of a PB_RankDbNode. */
-    interface $Properties {
-
-        /** PB_RankDbNode uid */
-        uid?: (number|null);
-
-        /** PB_RankDbNode name */
-        name?: (string|null);
-
-        /** PB_RankDbNode value */
-        value?: (number|null);
-
-        /** PB_RankDbNode param1 */
-        param1?: (number|null);
-
-        /** PB_RankDbNode param2 */
-        param2?: (number|null);
-
-        /** PB_RankDbNode param3 */
-        param3?: (number|null);
-
-        /** PB_RankDbNode update_time */
-        update_time?: (number|null);
-
-        /** PB_RankDbNode data */
-        data?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_RankDbNode. */
-    type $Shape = PB_RankDbNode.$Properties;
 }
 
 /**
@@ -7402,7 +8797,7 @@ export class P_RankDb_C {
     rank_type?: (number|null);
 
     /** P_RankDb_C datas. */
-    datas: PB_RankDbNode.$Properties[];
+    datas: PB_RankNode.$Properties[];
 
     /**
      * Creates a new P_RankDb_C instance using the specified properties.
@@ -7495,7 +8890,7 @@ export namespace P_RankDb_C {
         rank_type?: (number|null);
 
         /** P_RankDb_C datas */
-        datas?: (PB_RankDbNode.$Properties[]|null);
+        datas?: (PB_RankNode.$Properties[]|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -7534,7 +8929,7 @@ export class P_RankDb_S {
     rank_type?: (number|null);
 
     /** P_RankDb_S datas. */
-    datas: PB_RankDbNode.$Properties[];
+    datas: PB_RankNode.$Properties[];
 
     /**
      * Creates a new P_RankDb_S instance using the specified properties.
@@ -7630,7 +9025,7 @@ export namespace P_RankDb_S {
         rank_type?: (number|null);
 
         /** P_RankDb_S datas */
-        datas?: (PB_RankDbNode.$Properties[]|null);
+        datas?: (PB_RankNode.$Properties[]|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -8979,123 +10374,6 @@ export namespace P_InitMultipleRoleData_S {
 }
 
 /**
- * Properties of a PB_InnerChatMap.
- * @deprecated Use PB_InnerChatMap.$Properties instead.
- */
-export interface IPB_InnerChatMap extends PB_InnerChatMap.$Properties {
-}
-
-/** Represents a PB_InnerChatMap. */
-export class PB_InnerChatMap {
-
-    /**
-     * Constructs a new PB_InnerChatMap.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_InnerChatMap.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_InnerChatMap chats. */
-    chats: { [k: string]: PB_ChatData.$Properties };
-
-    /**
-     * Creates a new PB_InnerChatMap instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_InnerChatMap instance
-     */
-    static create(properties: PB_InnerChatMap.$Shape): PB_InnerChatMap & PB_InnerChatMap.$Shape;
-    static create(properties?: PB_InnerChatMap.$Properties): PB_InnerChatMap;
-
-    /**
-     * Encodes the specified PB_InnerChatMap message. Does not implicitly {@link PB_InnerChatMap.verify|verify} messages.
-     * @param message PB_InnerChatMap message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_InnerChatMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_InnerChatMap message, length delimited. Does not implicitly {@link PB_InnerChatMap.verify|verify} messages.
-     * @param message PB_InnerChatMap message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_InnerChatMap.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_InnerChatMap message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_InnerChatMap & PB_InnerChatMap.$Shape} PB_InnerChatMap
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_InnerChatMap & PB_InnerChatMap.$Shape;
-
-    /**
-     * Decodes a PB_InnerChatMap message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_InnerChatMap & PB_InnerChatMap.$Shape} PB_InnerChatMap
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_InnerChatMap & PB_InnerChatMap.$Shape;
-
-    /**
-     * Verifies a PB_InnerChatMap message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_InnerChatMap message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_InnerChatMap
-     */
-    static fromObject(object: { [k: string]: any }): PB_InnerChatMap;
-
-    /**
-     * Creates a plain object from a PB_InnerChatMap message. Also converts values to other types if specified.
-     * @param message PB_InnerChatMap
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_InnerChatMap, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_InnerChatMap to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_InnerChatMap
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_InnerChatMap {
-
-    /** Properties of a PB_InnerChatMap. */
-    interface $Properties {
-
-        /** PB_InnerChatMap chats */
-        chats?: ({ [k: string]: PB_ChatData.$Properties }|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_InnerChatMap. */
-    type $Shape = PB_InnerChatMap.$Properties;
-}
-
-/**
  * Properties of a P_ChatDb_C.
  * @deprecated Use P_ChatDb_C.$Properties instead.
  */
@@ -10263,17 +11541,8 @@ export class P_MmoEnterScene_CS {
     /** Unknown fields preserved while decoding when enabled */
     $unknowns?: Uint8Array[];
 
-    /** P_MmoEnterScene_CS scene_id. */
-    scene_id?: (number|null);
-
-    /** P_MmoEnterScene_CS x. */
-    x?: (number|null);
-
-    /** P_MmoEnterScene_CS y. */
-    y?: (number|null);
-
-    /** P_MmoEnterScene_CS z. */
-    z?: (number|null);
+    /** P_MmoEnterScene_CS place. */
+    place?: (PB_ScenePos.$Properties|null);
 
     /**
      * Creates a new P_MmoEnterScene_CS instance using the specified properties.
@@ -10359,17 +11628,8 @@ export namespace P_MmoEnterScene_CS {
     /** Properties of a P_MmoEnterScene_CS. */
     interface $Properties {
 
-        /** P_MmoEnterScene_CS scene_id */
-        scene_id?: (number|null);
-
-        /** P_MmoEnterScene_CS x */
-        x?: (number|null);
-
-        /** P_MmoEnterScene_CS y */
-        y?: (number|null);
-
-        /** P_MmoEnterScene_CS z */
-        z?: (number|null);
+        /** P_MmoEnterScene_CS place */
+        place?: (PB_ScenePos.$Properties|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -10515,14 +11775,8 @@ export class P_MmoMove_CS {
     /** Unknown fields preserved while decoding when enabled */
     $unknowns?: Uint8Array[];
 
-    /** P_MmoMove_CS x. */
-    x?: (number|null);
-
-    /** P_MmoMove_CS y. */
-    y?: (number|null);
-
-    /** P_MmoMove_CS z. */
-    z?: (number|null);
+    /** P_MmoMove_CS pos. */
+    pos?: (PB_Vector3.$Properties|null);
 
     /** P_MmoMove_CS speed. */
     speed?: (number|null);
@@ -10611,14 +11865,8 @@ export namespace P_MmoMove_CS {
     /** Properties of a P_MmoMove_CS. */
     interface $Properties {
 
-        /** P_MmoMove_CS x */
-        x?: (number|null);
-
-        /** P_MmoMove_CS y */
-        y?: (number|null);
-
-        /** P_MmoMove_CS z */
-        z?: (number|null);
+        /** P_MmoMove_CS pos */
+        pos?: (PB_Vector3.$Properties|null);
 
         /** P_MmoMove_CS speed */
         speed?: (number|null);
@@ -10650,14 +11898,8 @@ export class P_MmoStopMove_CS {
     /** Unknown fields preserved while decoding when enabled */
     $unknowns?: Uint8Array[];
 
-    /** P_MmoStopMove_CS x. */
-    x?: (number|null);
-
-    /** P_MmoStopMove_CS y. */
-    y?: (number|null);
-
-    /** P_MmoStopMove_CS z. */
-    z?: (number|null);
+    /** P_MmoStopMove_CS pos. */
+    pos?: (PB_Vector3.$Properties|null);
 
     /**
      * Creates a new P_MmoStopMove_CS instance using the specified properties.
@@ -10743,14 +11985,8 @@ export namespace P_MmoStopMove_CS {
     /** Properties of a P_MmoStopMove_CS. */
     interface $Properties {
 
-        /** P_MmoStopMove_CS x */
-        x?: (number|null);
-
-        /** P_MmoStopMove_CS y */
-        y?: (number|null);
-
-        /** P_MmoStopMove_CS z */
-        z?: (number|null);
+        /** P_MmoStopMove_CS pos */
+        pos?: (PB_Vector3.$Properties|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -10788,14 +12024,8 @@ export class P_MmoSyncEntity_SC {
     /** P_MmoSyncEntity_SC obj_type. */
     obj_type?: (number|null);
 
-    /** P_MmoSyncEntity_SC x. */
-    x?: (number|null);
-
-    /** P_MmoSyncEntity_SC y. */
-    y?: (number|null);
-
-    /** P_MmoSyncEntity_SC z. */
-    z?: (number|null);
+    /** P_MmoSyncEntity_SC pos. */
+    pos?: (PB_Vector3.$Properties|null);
 
     /** P_MmoSyncEntity_SC role_name. */
     role_name?: (string|null);
@@ -10905,14 +12135,8 @@ export namespace P_MmoSyncEntity_SC {
         /** P_MmoSyncEntity_SC obj_type */
         obj_type?: (number|null);
 
-        /** P_MmoSyncEntity_SC x */
-        x?: (number|null);
-
-        /** P_MmoSyncEntity_SC y */
-        y?: (number|null);
-
-        /** P_MmoSyncEntity_SC z */
-        z?: (number|null);
+        /** P_MmoSyncEntity_SC pos */
+        pos?: (PB_Vector3.$Properties|null);
 
         /** P_MmoSyncEntity_SC role_name */
         role_name?: (string|null);
@@ -11076,14 +12300,8 @@ export class P_MmoSyncMove_SC {
     /** P_MmoSyncMove_SC obj_id. */
     obj_id?: (number|null);
 
-    /** P_MmoSyncMove_SC x. */
-    x?: (number|null);
-
-    /** P_MmoSyncMove_SC y. */
-    y?: (number|null);
-
-    /** P_MmoSyncMove_SC z. */
-    z?: (number|null);
+    /** P_MmoSyncMove_SC pos. */
+    pos?: (PB_Vector3.$Properties|null);
 
     /**
      * Creates a new P_MmoSyncMove_SC instance using the specified properties.
@@ -11172,14 +12390,8 @@ export namespace P_MmoSyncMove_SC {
         /** P_MmoSyncMove_SC obj_id */
         obj_id?: (number|null);
 
-        /** P_MmoSyncMove_SC x */
-        x?: (number|null);
-
-        /** P_MmoSyncMove_SC y */
-        y?: (number|null);
-
-        /** P_MmoSyncMove_SC z */
-        z?: (number|null);
+        /** P_MmoSyncMove_SC pos */
+        pos?: (PB_Vector3.$Properties|null);
 
         /** Unknown fields preserved while decoding when enabled */
         $unknowns?: Uint8Array[];
@@ -14889,312 +16101,6 @@ export namespace P_Rank_SC {
 }
 
 /**
- * Properties of a PB_ArenaOpponentInfo.
- * @deprecated Use PB_ArenaOpponentInfo.$Properties instead.
- */
-export interface IPB_ArenaOpponentInfo extends PB_ArenaOpponentInfo.$Properties {
-}
-
-/** Represents a PB_ArenaOpponentInfo. */
-export class PB_ArenaOpponentInfo {
-
-    /**
-     * Constructs a new PB_ArenaOpponentInfo.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_ArenaOpponentInfo.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_ArenaOpponentInfo uid. */
-    uid?: (number|null);
-
-    /** PB_ArenaOpponentInfo name. */
-    name?: (string|null);
-
-    /** PB_ArenaOpponentInfo user_name. */
-    user_name?: (string|null);
-
-    /** PB_ArenaOpponentInfo score. */
-    score?: (number|null);
-
-    /** PB_ArenaOpponentInfo heroes. */
-    heroes: PB_HeroData.$Properties[];
-
-    /**
-     * Creates a new PB_ArenaOpponentInfo instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_ArenaOpponentInfo instance
-     */
-    static create(properties: PB_ArenaOpponentInfo.$Shape): PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape;
-    static create(properties?: PB_ArenaOpponentInfo.$Properties): PB_ArenaOpponentInfo;
-
-    /**
-     * Encodes the specified PB_ArenaOpponentInfo message. Does not implicitly {@link PB_ArenaOpponentInfo.verify|verify} messages.
-     * @param message PB_ArenaOpponentInfo message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_ArenaOpponentInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_ArenaOpponentInfo message, length delimited. Does not implicitly {@link PB_ArenaOpponentInfo.verify|verify} messages.
-     * @param message PB_ArenaOpponentInfo message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_ArenaOpponentInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_ArenaOpponentInfo message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape} PB_ArenaOpponentInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape;
-
-    /**
-     * Decodes a PB_ArenaOpponentInfo message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape} PB_ArenaOpponentInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ArenaOpponentInfo & PB_ArenaOpponentInfo.$Shape;
-
-    /**
-     * Verifies a PB_ArenaOpponentInfo message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_ArenaOpponentInfo message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_ArenaOpponentInfo
-     */
-    static fromObject(object: { [k: string]: any }): PB_ArenaOpponentInfo;
-
-    /**
-     * Creates a plain object from a PB_ArenaOpponentInfo message. Also converts values to other types if specified.
-     * @param message PB_ArenaOpponentInfo
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_ArenaOpponentInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_ArenaOpponentInfo to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_ArenaOpponentInfo
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_ArenaOpponentInfo {
-
-    /** Properties of a PB_ArenaOpponentInfo. */
-    interface $Properties {
-
-        /** PB_ArenaOpponentInfo uid */
-        uid?: (number|null);
-
-        /** PB_ArenaOpponentInfo name */
-        name?: (string|null);
-
-        /** PB_ArenaOpponentInfo user_name */
-        user_name?: (string|null);
-
-        /** PB_ArenaOpponentInfo score */
-        score?: (number|null);
-
-        /** PB_ArenaOpponentInfo heroes */
-        heroes?: (PB_HeroData.$Properties[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_ArenaOpponentInfo. */
-    type $Shape = PB_ArenaOpponentInfo.$Properties;
-}
-
-/**
- * Properties of a PB_ArenaBattleLog.
- * @deprecated Use PB_ArenaBattleLog.$Properties instead.
- */
-export interface IPB_ArenaBattleLog extends PB_ArenaBattleLog.$Properties {
-}
-
-/** Represents a PB_ArenaBattleLog. */
-export class PB_ArenaBattleLog {
-
-    /**
-     * Constructs a new PB_ArenaBattleLog.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_ArenaBattleLog.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_ArenaBattleLog time. */
-    time?: (number|null);
-
-    /** PB_ArenaBattleLog report_key. */
-    report_key?: (string|null);
-
-    /** PB_ArenaBattleLog my_heroes. */
-    my_heroes: PB_HeroData.$Properties[];
-
-    /** PB_ArenaBattleLog opponent_uid. */
-    opponent_uid?: (number|null);
-
-    /** PB_ArenaBattleLog opponent_name. */
-    opponent_name?: (string|null);
-
-    /** PB_ArenaBattleLog opponent_heroes. */
-    opponent_heroes: PB_HeroData.$Properties[];
-
-    /** PB_ArenaBattleLog is_win. */
-    is_win?: (boolean|null);
-
-    /** PB_ArenaBattleLog score_change. */
-    score_change?: (number|null);
-
-    /** PB_ArenaBattleLog score_after. */
-    score_after?: (number|null);
-
-    /**
-     * Creates a new PB_ArenaBattleLog instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_ArenaBattleLog instance
-     */
-    static create(properties: PB_ArenaBattleLog.$Shape): PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape;
-    static create(properties?: PB_ArenaBattleLog.$Properties): PB_ArenaBattleLog;
-
-    /**
-     * Encodes the specified PB_ArenaBattleLog message. Does not implicitly {@link PB_ArenaBattleLog.verify|verify} messages.
-     * @param message PB_ArenaBattleLog message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_ArenaBattleLog.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_ArenaBattleLog message, length delimited. Does not implicitly {@link PB_ArenaBattleLog.verify|verify} messages.
-     * @param message PB_ArenaBattleLog message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_ArenaBattleLog.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_ArenaBattleLog message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape} PB_ArenaBattleLog
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape;
-
-    /**
-     * Decodes a PB_ArenaBattleLog message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape} PB_ArenaBattleLog
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ArenaBattleLog & PB_ArenaBattleLog.$Shape;
-
-    /**
-     * Verifies a PB_ArenaBattleLog message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_ArenaBattleLog message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_ArenaBattleLog
-     */
-    static fromObject(object: { [k: string]: any }): PB_ArenaBattleLog;
-
-    /**
-     * Creates a plain object from a PB_ArenaBattleLog message. Also converts values to other types if specified.
-     * @param message PB_ArenaBattleLog
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_ArenaBattleLog, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_ArenaBattleLog to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_ArenaBattleLog
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_ArenaBattleLog {
-
-    /** Properties of a PB_ArenaBattleLog. */
-    interface $Properties {
-
-        /** PB_ArenaBattleLog time */
-        time?: (number|null);
-
-        /** PB_ArenaBattleLog report_key */
-        report_key?: (string|null);
-
-        /** PB_ArenaBattleLog my_heroes */
-        my_heroes?: (PB_HeroData.$Properties[]|null);
-
-        /** PB_ArenaBattleLog opponent_uid */
-        opponent_uid?: (number|null);
-
-        /** PB_ArenaBattleLog opponent_name */
-        opponent_name?: (string|null);
-
-        /** PB_ArenaBattleLog opponent_heroes */
-        opponent_heroes?: (PB_HeroData.$Properties[]|null);
-
-        /** PB_ArenaBattleLog is_win */
-        is_win?: (boolean|null);
-
-        /** PB_ArenaBattleLog score_change */
-        score_change?: (number|null);
-
-        /** PB_ArenaBattleLog score_after */
-        score_after?: (number|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_ArenaBattleLog. */
-    type $Shape = PB_ArenaBattleLog.$Properties;
-}
-
-/**
  * Properties of a P_Arena_CS.
  * @deprecated Use P_Arena_CS.$Properties instead.
  */
@@ -15714,840 +16620,6 @@ export namespace P_ArenaRank_SC {
 
     /** Shape of a P_ArenaRank_SC. */
     type $Shape = P_ArenaRank_SC.$Properties;
-}
-
-/**
- * Properties of a PB_RoleBaseInfo.
- * @deprecated Use PB_RoleBaseInfo.$Properties instead.
- */
-export interface IPB_RoleBaseInfo extends PB_RoleBaseInfo.$Properties {
-}
-
-/** Represents a PB_RoleBaseInfo. */
-export class PB_RoleBaseInfo {
-
-    /**
-     * Constructs a new PB_RoleBaseInfo.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_RoleBaseInfo.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_RoleBaseInfo uid. */
-    uid?: (number|null);
-
-    /** PB_RoleBaseInfo name. */
-    name?: (string|null);
-
-    /** PB_RoleBaseInfo user_name. */
-    user_name?: (string|null);
-
-    /** PB_RoleBaseInfo level. */
-    level?: (number|null);
-
-    /** PB_RoleBaseInfo exp. */
-    exp?: (number|null);
-
-    /** PB_RoleBaseInfo last_login_time. */
-    last_login_time?: (number|null);
-
-    /** PB_RoleBaseInfo knapsack_max_slots. */
-    knapsack_max_slots?: (number|null);
-
-    /** PB_RoleBaseInfo create_time. */
-    create_time?: (number|null);
-
-    /** PB_RoleBaseInfo hero_id. */
-    hero_id?: (number|null);
-
-    /**
-     * Creates a new PB_RoleBaseInfo instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_RoleBaseInfo instance
-     */
-    static create(properties: PB_RoleBaseInfo.$Shape): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
-    static create(properties?: PB_RoleBaseInfo.$Properties): PB_RoleBaseInfo;
-
-    /**
-     * Encodes the specified PB_RoleBaseInfo message. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
-     * @param message PB_RoleBaseInfo message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_RoleBaseInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_RoleBaseInfo message, length delimited. Does not implicitly {@link PB_RoleBaseInfo.verify|verify} messages.
-     * @param message PB_RoleBaseInfo message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_RoleBaseInfo.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
-
-    /**
-     * Decodes a PB_RoleBaseInfo message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape} PB_RoleBaseInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleBaseInfo & PB_RoleBaseInfo.$Shape;
-
-    /**
-     * Verifies a PB_RoleBaseInfo message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_RoleBaseInfo message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_RoleBaseInfo
-     */
-    static fromObject(object: { [k: string]: any }): PB_RoleBaseInfo;
-
-    /**
-     * Creates a plain object from a PB_RoleBaseInfo message. Also converts values to other types if specified.
-     * @param message PB_RoleBaseInfo
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_RoleBaseInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_RoleBaseInfo to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_RoleBaseInfo
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_RoleBaseInfo {
-
-    /** Properties of a PB_RoleBaseInfo. */
-    interface $Properties {
-
-        /** PB_RoleBaseInfo uid */
-        uid?: (number|null);
-
-        /** PB_RoleBaseInfo name */
-        name?: (string|null);
-
-        /** PB_RoleBaseInfo user_name */
-        user_name?: (string|null);
-
-        /** PB_RoleBaseInfo level */
-        level?: (number|null);
-
-        /** PB_RoleBaseInfo exp */
-        exp?: (number|null);
-
-        /** PB_RoleBaseInfo last_login_time */
-        last_login_time?: (number|null);
-
-        /** PB_RoleBaseInfo knapsack_max_slots */
-        knapsack_max_slots?: (number|null);
-
-        /** PB_RoleBaseInfo create_time */
-        create_time?: (number|null);
-
-        /** PB_RoleBaseInfo hero_id */
-        hero_id?: (number|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_RoleBaseInfo. */
-    type $Shape = PB_RoleBaseInfo.$Properties;
-}
-
-/**
- * Properties of a PB_ActivityRoleNode.
- * @deprecated Use PB_ActivityRoleNode.$Properties instead.
- */
-export interface IPB_ActivityRoleNode extends PB_ActivityRoleNode.$Properties {
-}
-
-/** Represents a PB_ActivityRoleNode. */
-export class PB_ActivityRoleNode {
-
-    /**
-     * Constructs a new PB_ActivityRoleNode.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_ActivityRoleNode.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_ActivityRoleNode activity_id. */
-    activity_id?: (number|null);
-
-    /** PB_ActivityRoleNode round. */
-    round?: (number|null);
-
-    /** PB_ActivityRoleNode count. */
-    count?: (number|null);
-
-    /** PB_ActivityRoleNode score. */
-    score?: (number|null);
-
-    /** PB_ActivityRoleNode last_time. */
-    last_time?: (number|null);
-
-    /** PB_ActivityRoleNode rewarded. */
-    rewarded?: (boolean|null);
-
-    /** PB_ActivityRoleNode extra. */
-    extra?: (string|null);
-
-    /**
-     * Creates a new PB_ActivityRoleNode instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_ActivityRoleNode instance
-     */
-    static create(properties: PB_ActivityRoleNode.$Shape): PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape;
-    static create(properties?: PB_ActivityRoleNode.$Properties): PB_ActivityRoleNode;
-
-    /**
-     * Encodes the specified PB_ActivityRoleNode message. Does not implicitly {@link PB_ActivityRoleNode.verify|verify} messages.
-     * @param message PB_ActivityRoleNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_ActivityRoleNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_ActivityRoleNode message, length delimited. Does not implicitly {@link PB_ActivityRoleNode.verify|verify} messages.
-     * @param message PB_ActivityRoleNode message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_ActivityRoleNode.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_ActivityRoleNode message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape} PB_ActivityRoleNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape;
-
-    /**
-     * Decodes a PB_ActivityRoleNode message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape} PB_ActivityRoleNode
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ActivityRoleNode & PB_ActivityRoleNode.$Shape;
-
-    /**
-     * Verifies a PB_ActivityRoleNode message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_ActivityRoleNode message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_ActivityRoleNode
-     */
-    static fromObject(object: { [k: string]: any }): PB_ActivityRoleNode;
-
-    /**
-     * Creates a plain object from a PB_ActivityRoleNode message. Also converts values to other types if specified.
-     * @param message PB_ActivityRoleNode
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_ActivityRoleNode, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_ActivityRoleNode to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_ActivityRoleNode
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_ActivityRoleNode {
-
-    /** Properties of a PB_ActivityRoleNode. */
-    interface $Properties {
-
-        /** PB_ActivityRoleNode activity_id */
-        activity_id?: (number|null);
-
-        /** PB_ActivityRoleNode round */
-        round?: (number|null);
-
-        /** PB_ActivityRoleNode count */
-        count?: (number|null);
-
-        /** PB_ActivityRoleNode score */
-        score?: (number|null);
-
-        /** PB_ActivityRoleNode last_time */
-        last_time?: (number|null);
-
-        /** PB_ActivityRoleNode rewarded */
-        rewarded?: (boolean|null);
-
-        /** PB_ActivityRoleNode extra */
-        extra?: (string|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_ActivityRoleNode. */
-    type $Shape = PB_ActivityRoleNode.$Properties;
-}
-
-/**
- * Properties of a PB_ActivityRoleData.
- * @deprecated Use PB_ActivityRoleData.$Properties instead.
- */
-export interface IPB_ActivityRoleData extends PB_ActivityRoleData.$Properties {
-}
-
-/** Represents a PB_ActivityRoleData. */
-export class PB_ActivityRoleData {
-
-    /**
-     * Constructs a new PB_ActivityRoleData.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_ActivityRoleData.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_ActivityRoleData nodes. */
-    nodes: PB_ActivityRoleNode.$Properties[];
-
-    /**
-     * Creates a new PB_ActivityRoleData instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_ActivityRoleData instance
-     */
-    static create(properties: PB_ActivityRoleData.$Shape): PB_ActivityRoleData & PB_ActivityRoleData.$Shape;
-    static create(properties?: PB_ActivityRoleData.$Properties): PB_ActivityRoleData;
-
-    /**
-     * Encodes the specified PB_ActivityRoleData message. Does not implicitly {@link PB_ActivityRoleData.verify|verify} messages.
-     * @param message PB_ActivityRoleData message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_ActivityRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_ActivityRoleData message, length delimited. Does not implicitly {@link PB_ActivityRoleData.verify|verify} messages.
-     * @param message PB_ActivityRoleData message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_ActivityRoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_ActivityRoleData message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_ActivityRoleData & PB_ActivityRoleData.$Shape} PB_ActivityRoleData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_ActivityRoleData & PB_ActivityRoleData.$Shape;
-
-    /**
-     * Decodes a PB_ActivityRoleData message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_ActivityRoleData & PB_ActivityRoleData.$Shape} PB_ActivityRoleData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_ActivityRoleData & PB_ActivityRoleData.$Shape;
-
-    /**
-     * Verifies a PB_ActivityRoleData message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_ActivityRoleData message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_ActivityRoleData
-     */
-    static fromObject(object: { [k: string]: any }): PB_ActivityRoleData;
-
-    /**
-     * Creates a plain object from a PB_ActivityRoleData message. Also converts values to other types if specified.
-     * @param message PB_ActivityRoleData
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_ActivityRoleData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_ActivityRoleData to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_ActivityRoleData
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_ActivityRoleData {
-
-    /** Properties of a PB_ActivityRoleData. */
-    interface $Properties {
-
-        /** PB_ActivityRoleData nodes */
-        nodes?: (PB_ActivityRoleNode.$Properties[]|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_ActivityRoleData. */
-    type $Shape = PB_ActivityRoleData.$Properties;
-}
-
-/**
- * Properties of a PB_RoleGrowthData.
- * @deprecated Use PB_RoleGrowthData.$Properties instead.
- */
-export interface IPB_RoleGrowthData extends PB_RoleGrowthData.$Properties {
-}
-
-/** Represents a PB_RoleGrowthData. */
-export class PB_RoleGrowthData {
-
-    /**
-     * Constructs a new PB_RoleGrowthData.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_RoleGrowthData.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_RoleGrowthData hero. */
-    hero?: (PB_HeroListData.$Properties|null);
-
-    /** PB_RoleGrowthData lineup. */
-    lineup?: (PB_LineupListData.$Properties|null);
-
-    /** PB_RoleGrowthData task. */
-    task?: (PB_TaskData.$Properties|null);
-
-    /** PB_RoleGrowthData activity. */
-    activity?: (PB_ActivityRoleData.$Properties|null);
-
-    /**
-     * Creates a new PB_RoleGrowthData instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_RoleGrowthData instance
-     */
-    static create(properties: PB_RoleGrowthData.$Shape): PB_RoleGrowthData & PB_RoleGrowthData.$Shape;
-    static create(properties?: PB_RoleGrowthData.$Properties): PB_RoleGrowthData;
-
-    /**
-     * Encodes the specified PB_RoleGrowthData message. Does not implicitly {@link PB_RoleGrowthData.verify|verify} messages.
-     * @param message PB_RoleGrowthData message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_RoleGrowthData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_RoleGrowthData message, length delimited. Does not implicitly {@link PB_RoleGrowthData.verify|verify} messages.
-     * @param message PB_RoleGrowthData message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_RoleGrowthData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_RoleGrowthData message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_RoleGrowthData & PB_RoleGrowthData.$Shape} PB_RoleGrowthData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleGrowthData & PB_RoleGrowthData.$Shape;
-
-    /**
-     * Decodes a PB_RoleGrowthData message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_RoleGrowthData & PB_RoleGrowthData.$Shape} PB_RoleGrowthData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleGrowthData & PB_RoleGrowthData.$Shape;
-
-    /**
-     * Verifies a PB_RoleGrowthData message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_RoleGrowthData message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_RoleGrowthData
-     */
-    static fromObject(object: { [k: string]: any }): PB_RoleGrowthData;
-
-    /**
-     * Creates a plain object from a PB_RoleGrowthData message. Also converts values to other types if specified.
-     * @param message PB_RoleGrowthData
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_RoleGrowthData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_RoleGrowthData to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_RoleGrowthData
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_RoleGrowthData {
-
-    /** Properties of a PB_RoleGrowthData. */
-    interface $Properties {
-
-        /** PB_RoleGrowthData hero */
-        hero?: (PB_HeroListData.$Properties|null);
-
-        /** PB_RoleGrowthData lineup */
-        lineup?: (PB_LineupListData.$Properties|null);
-
-        /** PB_RoleGrowthData task */
-        task?: (PB_TaskData.$Properties|null);
-
-        /** PB_RoleGrowthData activity */
-        activity?: (PB_ActivityRoleData.$Properties|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_RoleGrowthData. */
-    type $Shape = PB_RoleGrowthData.$Properties;
-}
-
-/**
- * Properties of a PB_RoleBattleSnapshot.
- * @deprecated Use PB_RoleBattleSnapshot.$Properties instead.
- */
-export interface IPB_RoleBattleSnapshot extends PB_RoleBattleSnapshot.$Properties {
-}
-
-/** Represents a PB_RoleBattleSnapshot. */
-export class PB_RoleBattleSnapshot {
-
-    /**
-     * Constructs a new PB_RoleBattleSnapshot.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_RoleBattleSnapshot.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_RoleBattleSnapshot base_info. */
-    base_info?: (PB_RoleBaseInfo.$Properties|null);
-
-    /** PB_RoleBattleSnapshot hero. */
-    hero?: (PB_HeroListData.$Properties|null);
-
-    /** PB_RoleBattleSnapshot lineup. */
-    lineup?: (PB_LineupListData.$Properties|null);
-
-    /**
-     * Creates a new PB_RoleBattleSnapshot instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_RoleBattleSnapshot instance
-     */
-    static create(properties: PB_RoleBattleSnapshot.$Shape): PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape;
-    static create(properties?: PB_RoleBattleSnapshot.$Properties): PB_RoleBattleSnapshot;
-
-    /**
-     * Encodes the specified PB_RoleBattleSnapshot message. Does not implicitly {@link PB_RoleBattleSnapshot.verify|verify} messages.
-     * @param message PB_RoleBattleSnapshot message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_RoleBattleSnapshot.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_RoleBattleSnapshot message, length delimited. Does not implicitly {@link PB_RoleBattleSnapshot.verify|verify} messages.
-     * @param message PB_RoleBattleSnapshot message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_RoleBattleSnapshot.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_RoleBattleSnapshot message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape} PB_RoleBattleSnapshot
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape;
-
-    /**
-     * Decodes a PB_RoleBattleSnapshot message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape} PB_RoleBattleSnapshot
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleBattleSnapshot & PB_RoleBattleSnapshot.$Shape;
-
-    /**
-     * Verifies a PB_RoleBattleSnapshot message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_RoleBattleSnapshot message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_RoleBattleSnapshot
-     */
-    static fromObject(object: { [k: string]: any }): PB_RoleBattleSnapshot;
-
-    /**
-     * Creates a plain object from a PB_RoleBattleSnapshot message. Also converts values to other types if specified.
-     * @param message PB_RoleBattleSnapshot
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_RoleBattleSnapshot, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_RoleBattleSnapshot to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_RoleBattleSnapshot
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_RoleBattleSnapshot {
-
-    /** Properties of a PB_RoleBattleSnapshot. */
-    interface $Properties {
-
-        /** PB_RoleBattleSnapshot base_info */
-        base_info?: (PB_RoleBaseInfo.$Properties|null);
-
-        /** PB_RoleBattleSnapshot hero */
-        hero?: (PB_HeroListData.$Properties|null);
-
-        /** PB_RoleBattleSnapshot lineup */
-        lineup?: (PB_LineupListData.$Properties|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_RoleBattleSnapshot. */
-    type $Shape = PB_RoleBattleSnapshot.$Properties;
-}
-
-/**
- * Properties of a PB_RoleData.
- * @deprecated Use PB_RoleData.$Properties instead.
- */
-export interface IPB_RoleData extends PB_RoleData.$Properties {
-}
-
-/** Represents a PB_RoleData. */
-export class PB_RoleData {
-
-    /**
-     * Constructs a new PB_RoleData.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: PB_RoleData.$Properties);
-
-    /** Unknown fields preserved while decoding when enabled */
-    $unknowns?: Uint8Array[];
-
-    /** PB_RoleData base_info. */
-    base_info?: (PB_RoleBaseInfo.$Properties|null);
-
-    /** PB_RoleData knapsack. */
-    knapsack?: (PB_KnapsackData.$Properties|null);
-
-    /** PB_RoleData growth. */
-    growth?: (PB_RoleGrowthData.$Properties|null);
-
-    /** PB_RoleData mmo. */
-    mmo?: (PB_MmoRoleData.$Properties|null);
-
-    /**
-     * Creates a new PB_RoleData instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns PB_RoleData instance
-     */
-    static create(properties: PB_RoleData.$Shape): PB_RoleData & PB_RoleData.$Shape;
-    static create(properties?: PB_RoleData.$Properties): PB_RoleData;
-
-    /**
-     * Encodes the specified PB_RoleData message. Does not implicitly {@link PB_RoleData.verify|verify} messages.
-     * @param message PB_RoleData message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encode(message: PB_RoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified PB_RoleData message, length delimited. Does not implicitly {@link PB_RoleData.verify|verify} messages.
-     * @param message PB_RoleData message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    static encodeDelimited(message: PB_RoleData.$Properties, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a PB_RoleData message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): PB_RoleData & PB_RoleData.$Shape;
-
-    /**
-     * Decodes a PB_RoleData message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns {PB_RoleData & PB_RoleData.$Shape} PB_RoleData
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): PB_RoleData & PB_RoleData.$Shape;
-
-    /**
-     * Verifies a PB_RoleData message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a PB_RoleData message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns PB_RoleData
-     */
-    static fromObject(object: { [k: string]: any }): PB_RoleData;
-
-    /**
-     * Creates a plain object from a PB_RoleData message. Also converts values to other types if specified.
-     * @param message PB_RoleData
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    static toObject(message: PB_RoleData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this PB_RoleData to JSON.
-     * @returns JSON object
-     */
-    toJSON(): { [k: string]: any };
-
-    /**
-     * Gets the type url for PB_RoleData
-     * @param [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns The type url
-     */
-    static getTypeUrl(prefix?: string): string;
-}
-
-export namespace PB_RoleData {
-
-    /** Properties of a PB_RoleData. */
-    interface $Properties {
-
-        /** PB_RoleData base_info */
-        base_info?: (PB_RoleBaseInfo.$Properties|null);
-
-        /** PB_RoleData knapsack */
-        knapsack?: (PB_KnapsackData.$Properties|null);
-
-        /** PB_RoleData growth */
-        growth?: (PB_RoleGrowthData.$Properties|null);
-
-        /** PB_RoleData mmo */
-        mmo?: (PB_MmoRoleData.$Properties|null);
-
-        /** Unknown fields preserved while decoding when enabled */
-        $unknowns?: Uint8Array[];
-    }
-
-    /** Shape of a PB_RoleData. */
-    type $Shape = PB_RoleData.$Properties;
 }
 
 /**

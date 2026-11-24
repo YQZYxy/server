@@ -1,6 +1,34 @@
 // 字段必须加 optional 关键字 
 syntax = "proto3";
 
+// ==================== 通用协议结构 ====================
+
+// 消息头
+message PB_MessageHead
+{
+	optional int32 msg_type					= 1;	// 消息类型
+	repeated int32 param					= 2;	// 扩展参数
+	optional string token					= 3;	// 外部访问令牌
+}
+
+// ==================== 通用位置结构 ====================
+
+// 三维坐标
+message PB_Vector3
+{
+	optional float x						= 1;	// 坐标x
+	optional float y						= 2;	// 坐标y
+	optional float z						= 3;	// 坐标z
+}
+
+// 场景内位置: 场景id + 坐标
+message PB_ScenePos
+{
+	optional uint64 scene_id				= 1;	// 场景id
+	optional PB_Vector3 pos					= 2;	// 场景内坐标
+}
+
+
 // 活动开关存库状态
 message PB_ActivityState
 {
@@ -146,6 +174,19 @@ message PB_RankNode
 message PB_ArenaRankNode
 {
 	optional PB_RankNode base					= 1;	
+}
+
+// lua全局数据节点, 通用键值存储, 内容由业务自定义
+message PB_GlobalDataDbNode
+{
+	optional string key						= 1;	// 数据键
+	optional string data					= 2;	// 序列化后的lua数据
+}
+
+// 聊天数据映射, 按频道打包多条聊天
+message PB_InnerChatMap
+{
+	map<int64, PB_ChatData> chats			= 1;	// chat_id -> 聊天内容
 }
 
 

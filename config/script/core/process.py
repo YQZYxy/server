@@ -19,6 +19,7 @@ from .platform_utils import (
     CREATE_NEW_PROCESS_GROUP,
     DETACHED_PROCESS,
     IS_WINDOWS,
+    RunHidden,
 )
 
 # Windows 进程查询常量
@@ -271,12 +272,8 @@ class ManagedProcess(object):
             return
         if IS_WINDOWS:
             try:
-                subprocess.run(
-                    ["taskkill", "/F", "/T", "/PID", str(self.m_pid)],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                    check=False,
-                )
+                # 用 RunHidden 避免无控制台的 GUI 模式下闪窗口
+                RunHidden(["taskkill", "/F", "/T", "/PID", str(self.m_pid)])
             except OSError:
                 pass
             return

@@ -39,7 +39,7 @@
             "enabled": false,
             "listen_ip": "0.0.0.0",
             "listen_port": 0,
-            "auth_token": "yqzy_cross_2026",
+            "auth_token": "yqzy",
             "heartbeat_interval": 5,
             "heartbeat_timeout": 20,
             "connect_retry_interval": 5,

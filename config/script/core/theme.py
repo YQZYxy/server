@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Tkinter 主题.
 
-主题由 config/script/config.json 的 ui 节点选择:
+主题由部署目录中 config.json 副本的 ui 节点选择:
     ui.theme             vscode-dark / vscode-light
     ui.font_family       界面字体
     ui.font_size         界面字号

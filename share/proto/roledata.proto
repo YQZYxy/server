@@ -2,7 +2,6 @@
 syntax = "proto3";
 
 import "data.proto";
-import "mmo.proto";
 
 // ==================== 角色基础数据 ====================
 
@@ -49,20 +48,12 @@ message PB_RoleGrowthData
 	optional PB_ActivityRoleData activity	= 4;	// 活动个人数据
 }
 
-// ==================== 角色战斗快照(战斗需要的结构) ====================
-
-message PB_RoleBattleSnapshot
-{
-	optional PB_RoleBaseInfo base_info		= 1;	// 角色基础信息
-	optional PB_HeroListData hero			= 2;	// 英雄
-	optional PB_LineupListData lineup		= 3;	// 阵容
-}
-
 // ==================== 角色数据 ====================
 
-message PB_RoleData {
+message PB_RoleData
+ {
 	optional PB_RoleBaseInfo base_info = 1;		// 角色基础信息
 	optional PB_KnapsackData knapsack = 2;		// 背包数据
 	optional PB_RoleGrowthData growth = 3;		// 养成模块
-	optional PB_MmoRoleData mmo = 4;			// MMO 场景状态
+	optional PB_ScenePos mmo = 4;				// MMO 最后所在场景与坐标
 }

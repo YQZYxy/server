@@ -135,7 +135,7 @@ class StressApp:
         # 和 "normal" 比较恒为 False, 会导致按钮永远恢复不了)
         self._ui_running = False
         self.targets = []       # 历史目标 [(host, port), ...], 最近的在前
-        # 报告目录与界面状态文件路径来自 config/script/config.json 的 stress 节点
+        # 报告目录与界面状态文件路径来自部署目录 config.json 副本的 stress 节点
         config = load_config()
         self.theme = GetTheme(config["settings"])
         self.report_dir = config["report_dir"]

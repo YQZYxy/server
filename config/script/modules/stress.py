@@ -7,7 +7,7 @@
     config/script/stress/scenarios.py 场景注册
     config/script/stress/runner.py    运行器
 
-配置统一来自 config/script/config.json 的 stress 节点.
+配置统一来自部署目录中 config.json 副本的 stress 节点.
 """
 
 import os

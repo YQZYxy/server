@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """编译打包模块.
 Windows / Linux / macOS 
-CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 可选构建前端 -> 同步实例资源
+CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 构建前端 -> 同步实例资源
 """
 
 import os
@@ -36,8 +36,6 @@ class BuildModule(Module):
                default_from="build.default_mode",
                items=[("增量编译", "incremental"), ("完全重编", "clean")]),
         Option("webui_only", "只构建前端 (跳过服务端编译)", "bool", default=False),
-        Option("build_webui", "全部构建时同时构建前端", "bool",
-               default_from="build.webui_enabled"),
         Option("jobs", "并行任务数 (0=自动)", "int",
                default_from="build.jobs"),
     )
@@ -80,10 +78,8 @@ class BuildRunner(object):
         self.Compile(build_dir)
         self.Package(output_dir)
 
-        if self.m_options["build_webui"]:
-            self.BuildWebui(output_dir)
-        else:
-            console.Line("  跳过前端构建")
+        # 完整构建默认包含前端, 只有 webui_only 才跳过服务端编译
+        self.BuildWebui(output_dir)
 
         if self.m_settings.Require("build.sync_instances"):
             self.SyncInstances(output_dir)

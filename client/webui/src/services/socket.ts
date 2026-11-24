@@ -55,7 +55,7 @@ export class GameSocket {
   private ws: WebSocket | null = null
   private state: ConnectionState = ConnectionState.Disconnected
 
-  // 指定连接地址(跨服场景服), 为空时使用当前页面地址
+  // 指定连接地址(跨服), 为空时使用当前页面地址
   private baseUrl = ''
   // 指定上行令牌(跨服票据), 为空时使用登录令牌
   private tokenOverride = ''
@@ -103,7 +103,7 @@ export class GameSocket {
     if (this.ws?.readyState === WebSocket.OPEN) return
 
     const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:'
-    // 指定了地址时直连该网关(跨服场景服), 否则走当前页面地址的代理
+    // 指定了地址时直连该网关(跨服), 否则走当前页面地址的代理
     const url = this.baseUrl
       ? `${this.baseUrl.replace(/^http/, 'ws')}/ws`
       : `${protocol}//${location.host}/ws`
@@ -389,7 +389,7 @@ export class GameSocket {
 
 export const gameSocket = new GameSocket()
 
-// 创建独立连接(跨服场景服等), 不影响归属服连接
+// 创建独立连接(跨服等), 不影响归属服连接
 export function createGameSocket(baseUrl = '', token = ''): GameSocket {
   return new GameSocket(baseUrl, token)
 }

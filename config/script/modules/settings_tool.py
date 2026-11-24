@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """配置查看与修改模块.
 
-支持在命令行窗口里直接修改 config/script/config.json:
+支持在命令行窗口里直接修改部署目录中的配置副本(基础配置 config/script/config.json 的副本):
     修改后立即写回并重新校验, 校验失败会恢复原配置.
 """
 
@@ -18,7 +18,7 @@ class SettingsModule(Module):
 
     ID = "settings"
     TITLE = "配置管理"
-    DESCRIPTION = "查看/修改 config/script/config.json, 支持路径热调整"
+    DESCRIPTION = "查看/修改部署目录中的配置副本, 支持路径热调整"
 
     OPTIONS = ()
 
@@ -65,6 +65,9 @@ class SettingsEditor(object):
 
     def PrintItems(self):
         self.m_console.Step("当前配置")
+        if self.m_settings.deploy_dir:
+            self.m_console.Line("  部署目录: %s" % self.m_settings.deploy_dir)
+            self.m_console.Line("  paths.deploy_dir 只能在基础配置 config/script/config.json 中修改")
         for key, value in self.m_settings.FlatItems():
             text = json.dumps(value, ensure_ascii=False)
             self.m_console.Line("  %-48s = %s" % (key, text))

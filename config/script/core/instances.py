@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """服务器实例清单与资源同步.
 
-实例清单来自 config/crossconfig.json, 启服/部署/日志模块共用:
+实例清单来自部署目录中的 crossconfig.json 副本, 启服/部署/日志模块共用:
     读取实例清单
     按勾选过滤实例
     启动前同步可执行文件, 运行库与资源目录
@@ -22,7 +22,7 @@ SERVER_LOGIC = "logicserver"
 SERVER_GATEWAY = "gatewayserver"
 SERVER_WEBUI = "webui"
 
-# 跨服场景服 server_id 分段, 与 share/share.hpp 保持一致
+# 跨服 server_id 分段, 与 share/share.hpp 保持一致
 SMALL_CROSS_BEGIN = 42001
 SMALL_CROSS_END = 42500
 LARGE_CROSS_BEGIN = 42501

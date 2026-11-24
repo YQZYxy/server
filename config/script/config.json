@@ -10,6 +10,7 @@
         "log_font_size": 9
     },
     "paths": {
+        "deploy_dir": "debug",
         "blueprint": "config/crossconfig.json",
         "baseconfig": "config/baseconfig.json",
         "mysql_schema": "sql/xygame.sql",
@@ -34,7 +35,6 @@
             "logicserver",
             "dbserver"
         ],
-        "webui_enabled": false,
         "webui_install_on_clean": true,
         "sync_instances": true
     },
@@ -64,7 +64,7 @@
         "instances": []
     },
     "service": {
-        "default_instance_root": "D:\\YQZY\\Server\\server_a\\debug",
+        "default_instance_root": "debug",
         "zone_group_size": 5,
         "start_instances": [
             "hub",

@@ -1,5 +1,5 @@
 // ====================================================================
-//  跨服场景服连接管理
+//  跨服连接管理
 // ====================================================================
 
 import { gameSocket, createGameSocket } from './socket'
@@ -17,7 +17,7 @@ export interface CrossTicket
   crossType: number
 }
 
-// 当前跨服场景服连接, 为空表示仍在归属服
+// 当前跨服跨服连接, 为空表示仍在归属服
 let crossSocket: GameSocket | null = null
 
 // 申请进入跨服, 等待归属服回票据
@@ -52,7 +52,7 @@ export function applyCrossEnter(crossType: number, activityId: number, timeoutMs
   })
 }
 
-// 连接场景服并完成令牌认证
+// 连接跨服并完成令牌认证
 export function authCrossServer(ticket: CrossTicket, roleUid = 0, timeoutMs = 8000): Promise<GameSocket>
 {
   return new Promise((resolve, reject) =>
@@ -111,7 +111,7 @@ export function authCrossServer(ticket: CrossTicket, roleUid = 0, timeoutMs = 80
   })
 }
 
-// MMO 使用的连接: 优先跨服场景服, 否则归属服
+// MMO 使用的连接: 优先跨服, 否则归属服
 export function getMmoSocket(): GameSocket
 {
   return crossSocket ?? gameSocket
@@ -123,7 +123,7 @@ export function isInCross(): boolean
   return crossSocket !== null
 }
 
-// 退出跨服, 释放场景服连接
+// 退出跨服, 释放跨服连接
 export function leaveCross(): void
 {
   if (!crossSocket) return
@@ -131,7 +131,7 @@ export function leaveCross(): void
   crossSocket = null
 }
 
-// 一键进入跨服: 申请票据 + 连接场景服
+// 一键进入跨服: 申请票据 + 连接跨服
 export async function enterCross(crossType: number, activityId: number, roleUid = 0): Promise<GameSocket>
 {
   const ticket = await applyCrossEnter(crossType, activityId)

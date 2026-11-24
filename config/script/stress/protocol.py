@@ -29,7 +29,7 @@ class ProtocolCodec:
         if proto_dir:
             self.proto_dir = proto_dir
         else:
-            # 协议目录统一以 config/script/config.json 的 stress.proto_dir 为准
+            # 协议目录统一以部署目录 config.json 副本的 stress.proto_dir 为准
             self.proto_dir = config["proto_dir"]
         self.mht_lua_path = mht_lua_path or os.path.join(self.proto_dir, "protobufmht.lua")
 

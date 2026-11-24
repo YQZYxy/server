@@ -35,6 +35,7 @@ from ..core.platform_utils import (
     LinkDir,
     LinkFile,
     ResolvePathFromRoot,
+    RunHidden,
     RuntimeLibFiles,
 )
 from ..core.settings import write_json
@@ -335,9 +336,9 @@ class ValidateConfigRunner(object):
         if not os.path.isfile(self.m_exe_path):
             raise ModuleError(
                 "找不到 logicserver 可执行文件: %s\n"
-                "  请先编译, 或在 config/script/config.json 的 "
+                "  请先编译, 或在 %s 的 "
                 "service.default_validate_exe_dir 配置可执行文件目录"
-                % self.m_exe_path
+                % (self.m_exe_path, self.m_settings.config_file)
             )
 
         count = 0
@@ -593,12 +594,8 @@ class ValidateConfigRunner(object):
             return
         if IS_WINDOWS:
             try:
-                subprocess.run(
-                    ["taskkill", "/F", "/T", "/PID", str(self.m_process.pid)],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                    check=False,
-                )
+                # 无控制台的 GUI 模式下 taskkill 会闪窗口, 统一走静默执行
+                RunHidden(["taskkill", "/F", "/T", "/PID", str(self.m_process.pid)])
             except OSError:
                 pass
             return

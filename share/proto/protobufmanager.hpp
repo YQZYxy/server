@@ -14,6 +14,7 @@
 #include "protocol/roledata.pb.h"
 #include "protocol/mmo.pb.h"
 #include "protocol/battledata.pb.h"
+#include "protocol/arena.pb.h"
 
 typedef google::protobuf::Message ProtoMsg;
 

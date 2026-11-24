@@ -23,14 +23,14 @@ export type PB_ActivityState = _proto.PB_ActivityState.$Properties
 export const PB_ArenaBattleLog = _proto.PB_ArenaBattleLog
 export type PB_ArenaBattleLog = _proto.PB_ArenaBattleLog.$Properties
 
-export const PB_ArenaDbNode = _proto.PB_ArenaDbNode
-export type PB_ArenaDbNode = _proto.PB_ArenaDbNode.$Properties
-
 export const PB_ArenaOpponentInfo = _proto.PB_ArenaOpponentInfo
 export type PB_ArenaOpponentInfo = _proto.PB_ArenaOpponentInfo.$Properties
 
 export const PB_ArenaRankNode = _proto.PB_ArenaRankNode
 export type PB_ArenaRankNode = _proto.PB_ArenaRankNode.$Properties
+
+export const PB_ArenaUserData = _proto.PB_ArenaUserData
+export type PB_ArenaUserData = _proto.PB_ArenaUserData.$Properties
 
 export const PB_AttrData = _proto.PB_AttrData
 export type PB_AttrData = _proto.PB_AttrData.$Properties
@@ -65,8 +65,8 @@ export type PB_BattleTeam = _proto.PB_BattleTeam.$Properties
 export const PB_ChatData = _proto.PB_ChatData
 export type PB_ChatData = _proto.PB_ChatData.$Properties
 
-export const PB_CrossRoleSnapshot = _proto.PB_CrossRoleSnapshot
-export type PB_CrossRoleSnapshot = _proto.PB_CrossRoleSnapshot.$Properties
+export const PB_CrossRoleData = _proto.PB_CrossRoleData
+export type PB_CrossRoleData = _proto.PB_CrossRoleData.$Properties
 
 export const PB_CrossTicket = _proto.PB_CrossTicket
 export type PB_CrossTicket = _proto.PB_CrossTicket.$Properties
@@ -101,17 +101,11 @@ export type PB_MessageHead = _proto.PB_MessageHead.$Properties
 export const PB_MmoEvent = _proto.PB_MmoEvent
 export type PB_MmoEvent = _proto.PB_MmoEvent.$Properties
 
-export const PB_MmoRoleData = _proto.PB_MmoRoleData
-export type PB_MmoRoleData = _proto.PB_MmoRoleData.$Properties
-
 export const PB_MmoRoleInit = _proto.PB_MmoRoleInit
 export type PB_MmoRoleInit = _proto.PB_MmoRoleInit.$Properties
 
 export const PB_MmoRoleState = _proto.PB_MmoRoleState
 export type PB_MmoRoleState = _proto.PB_MmoRoleState.$Properties
-
-export const PB_RankDbNode = _proto.PB_RankDbNode
-export type PB_RankDbNode = _proto.PB_RankDbNode.$Properties
 
 export const PB_RankNode = _proto.PB_RankNode
 export type PB_RankNode = _proto.PB_RankNode.$Properties
@@ -119,14 +113,14 @@ export type PB_RankNode = _proto.PB_RankNode.$Properties
 export const PB_RoleBaseInfo = _proto.PB_RoleBaseInfo
 export type PB_RoleBaseInfo = _proto.PB_RoleBaseInfo.$Properties
 
-export const PB_RoleBattleSnapshot = _proto.PB_RoleBattleSnapshot
-export type PB_RoleBattleSnapshot = _proto.PB_RoleBattleSnapshot.$Properties
-
 export const PB_RoleData = _proto.PB_RoleData
 export type PB_RoleData = _proto.PB_RoleData.$Properties
 
 export const PB_RoleGrowthData = _proto.PB_RoleGrowthData
 export type PB_RoleGrowthData = _proto.PB_RoleGrowthData.$Properties
+
+export const PB_ScenePos = _proto.PB_ScenePos
+export type PB_ScenePos = _proto.PB_ScenePos.$Properties
 
 export const PB_ServerGlobalData = _proto.PB_ServerGlobalData
 export type PB_ServerGlobalData = _proto.PB_ServerGlobalData.$Properties
@@ -139,6 +133,9 @@ export type PB_TaskObjectiveData = _proto.PB_TaskObjectiveData.$Properties
 
 export const PB_TaskSaveData = _proto.PB_TaskSaveData
 export type PB_TaskSaveData = _proto.PB_TaskSaveData.$Properties
+
+export const PB_Vector3 = _proto.PB_Vector3
+export type PB_Vector3 = _proto.PB_Vector3.$Properties
 
 export const P_ActivityStateDb_C = _proto.P_ActivityStateDb_C
 export type P_ActivityStateDb_C = _proto.P_ActivityStateDb_C.$Properties
@@ -224,6 +221,9 @@ export type P_CrossAuth_CS = _proto.P_CrossAuth_CS.$Properties
 export const P_CrossAuth_SC = _proto.P_CrossAuth_SC
 export type P_CrossAuth_SC = _proto.P_CrossAuth_SC.$Properties
 
+export const P_CrossEnterApply = _proto.P_CrossEnterApply
+export type P_CrossEnterApply = _proto.P_CrossEnterApply.$Properties
+
 export const P_CrossEnter_CS = _proto.P_CrossEnter_CS
 export type P_CrossEnter_CS = _proto.P_CrossEnter_CS.$Properties
 
@@ -235,6 +235,12 @@ export type P_CrossLeave = _proto.P_CrossLeave.$Properties
 
 export const P_CrossQueryRole = _proto.P_CrossQueryRole
 export type P_CrossQueryRole = _proto.P_CrossQueryRole.$Properties
+
+export const P_CrossQueryRoleRet = _proto.P_CrossQueryRoleRet
+export type P_CrossQueryRoleRet = _proto.P_CrossQueryRoleRet.$Properties
+
+export const P_CrossSettle = _proto.P_CrossSettle
+export type P_CrossSettle = _proto.P_CrossSettle.$Properties
 
 export const P_DBHeartbeat = _proto.P_DBHeartbeat
 export type P_DBHeartbeat = _proto.P_DBHeartbeat.$Properties

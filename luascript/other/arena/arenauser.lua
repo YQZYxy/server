@@ -58,7 +58,35 @@ end
 
 -- ==================== 序列化/反序列化 ====================
 
--- 序列化到table(用于存储到MySQL)
+-- 运行时快照是平铺结构 {base_info, hero, lineup}
+-- 落库用 PB_RoleData 承载, 英雄与阵容挂在 growth 下
+local function SnapshotToProto(snapshot)
+    if not snapshot then
+        return nil
+    end
+    return {
+        base_info = snapshot.base_info,
+        growth = {
+            hero = snapshot.hero,
+            lineup = snapshot.lineup,
+        },
+    }
+end
+
+-- PB_RoleData 结构还原成运行时平铺快照
+local function SnapshotFromProto(role_data)
+    if not role_data then
+        return nil
+    end
+    local growth = role_data.growth or {}
+    return {
+        base_info = role_data.base_info,
+        hero = growth.hero,
+        lineup = growth.lineup,
+    }
+end
+
+-- 序列化成 PB_ArenaUserData 结构(直接用于落库)
 function ArenaUser:Serialize()
     return {
         uid = self.uid,
@@ -66,7 +94,7 @@ function ArenaUser:Serialize()
         user_name = self.user_name,
         score = self.score,
         power = self.power,
-        role_snapshot = self.role_snapshot,
+        role_snapshot = SnapshotToProto(self.role_snapshot),
         daily_challenge_count = self.daily_challenge_count,
         daily_refresh_count = self.daily_refresh_count,
         last_day_id = self.last_day_id,
@@ -79,8 +107,8 @@ function ArenaUser:Serialize()
     }
 end
 
--- 反序列化(从MySQL加载)
--- @param data_table: 从数据库反序列化的table
+-- 反序列化(从数据库加载)
+-- @param data_table: PB_ArenaUserData 结构
 function ArenaUser:Deserialize(data_table)
     if not data_table then
         return
@@ -90,7 +118,7 @@ function ArenaUser:Deserialize(data_table)
     self.user_name = data_table.user_name or self.user_name
     self.score = data_table.score or 1000
     self.power = data_table.power or 0
-    self.role_snapshot = data_table.role_snapshot
+    self.role_snapshot = SnapshotFromProto(data_table.role_snapshot)
     self.daily_challenge_count = data_table.daily_challenge_count or 0
     self.daily_refresh_count = data_table.daily_refresh_count or 0
     self.last_day_id = data_table.last_day_id or 0

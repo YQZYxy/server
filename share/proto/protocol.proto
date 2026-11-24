@@ -1,19 +1,12 @@
 // 字段必须加 optional 关键字 
-// 结构命名加 PB_ 
+// 本文件只放 P_ 协议
 // 协议命名加 P_
 syntax = "proto3";
 
 import "data.proto";
 import "roledata.proto";
 import "battledata.proto";
-
-// 消息头
-message PB_MessageHead
-{
-	optional int32 msg_type	= 1;	
-	repeated int32 param 	= 2;	
-	optional string token	= 3;	//外部才需要
-}
+import "arena.proto";
 
 // ================================================================================ 
 // =============================网关控制协议======================================
@@ -59,12 +52,6 @@ message P_ServerlDataDb_S
 
 // ============================lua全局数据数据库=======================================
 
-message PB_GlobalDataDbNode
-{
-	optional string key							= 1;
-	optional string data						= 2;
-} 
-
 // lua全局数据请求
 // MHT_GLOBAL_DATA_DB_C = 103
 message P_GlobalDataDb_C 			
@@ -83,20 +70,12 @@ message P_GlobalDataDb_S
 
 // ============================竞技场数据库=======================================
 
-// 竞技场数据库节点
-message PB_ArenaDbNode
-{
-	optional int64 uid						= 1;	// 用户uid
-	optional int32 score						= 2;	// 积分
-	optional string data						= 3;	// 序列化的lua数据
-}
-
 // 竞技场数据库请求
 // MHT_ARENA_DB_C = 105
 message P_ArenaDb_C
 {
 	optional int32 req_type					= 1;	// 1=加载所有 2=保存所有 3=保存单个
-	repeated PB_ArenaDbNode datas		= 2;	// 数据列表
+	repeated PB_ArenaUserData datas		= 2;	// 数据列表
 }
 
 // 竞技场数据库返回
@@ -105,23 +84,10 @@ message P_ArenaDb_S
 {
 	optional int32 req_type					= 1;	
 	optional int32 save_ret					= 2;	// 保存结果
-	repeated PB_ArenaDbNode datas		= 3;	// 数据列表
+	repeated PB_ArenaUserData datas		= 3;	// 数据列表
 }
 
 // ============================排行榜数据库=======================================
-
-// 排行榜数据库节点
-message PB_RankDbNode
-{
-	optional int64 uid						= 1;	// 用户uid
-	optional string name					= 2;	// 名字
-	optional int64 value					= 3;	// 排行榜主值
-	optional int64 param1					= 4;	// 自定义排序参数
-	optional int64 param2					= 5;	// 自定义排序参数
-	optional int64 param3					= 6;	// 自定义排序参数
-	optional int64 update_time				= 7;	// 更新时间戳(毫秒)
-	optional string data					= 8;	// 序列化的lua数据
-}
 
 // 排行榜数据库请求
 // MHT_RANK_DB_C = 107
@@ -129,7 +95,7 @@ message P_RankDb_C
 {
 	optional int32 req_type					= 1;	// 1=按类型加载 2=按类型保存 3=保存单个
 	optional int32 rank_type					= 2;	// 排行榜类型
-	repeated PB_RankDbNode datas		= 3;	// 数据列表
+	repeated PB_RankNode datas		= 3;	// 数据列表, 业务扩展数据走 power/heroes
 }
 
 // 排行榜数据库返回
@@ -139,7 +105,7 @@ message P_RankDb_S
 	optional int32 req_type					= 1;
 	optional int32 save_ret					= 2;	// 保存结果
 	optional int32 rank_type					= 3;	// 排行榜类型
-	repeated PB_RankDbNode datas		= 4;	// 数据列表
+	repeated PB_RankNode datas		= 4;	// 数据列表
 }
 
 // ============================活动状态数据库=======================================
@@ -263,10 +229,6 @@ message P_InitMultipleRoleData_S
 
 // ============================聊天数据库=======================================
 
-message PB_InnerChatMap {
-  map<int64, PB_ChatData> chats = 1;
-}
-
 // 聊天数据库请求
 // MHT_CHAT_DB_C = 1008
 message P_ChatDb_C			
@@ -364,10 +326,7 @@ message P_BattleServerKickOutRole
 // MHT_MMO_ENTER_SCENE_CS = 20001
 message P_MmoEnterScene_CS
 {
-	optional uint64 scene_id				= 1;	// 目标场景id
-	optional float x						= 2;	// 出生点x
-	optional float y						= 3;	// 出生点y
-	optional float z						= 4;	// 出生点z
+	optional PB_ScenePos place				= 1;	// 目标场景与出生点
 }
 
 // 离开场景请求
@@ -381,19 +340,15 @@ message P_MmoLeaveScene_CS
 // MHT_MMO_MOVE_CS = 20003
 message P_MmoMove_CS
 {
-	optional float x						= 1;	// 目标点x
-	optional float y						= 2;	// 目标点y
-	optional float z						= 3;	// 目标点z
-	optional float speed					= 4;	// 移动速度
+	optional PB_Vector3 pos					= 1;	// 目标点
+	optional float speed					= 2;	// 移动速度
 }
 
 // 停止移动请求
 // MHT_MMO_STOP_MOVE_CS = 20004
 message P_MmoStopMove_CS
 {
-	optional float x						= 1;	// 停止点x
-	optional float y						= 2;	// 停止点y
-	optional float z						= 3;	// 停止点z
+	optional PB_Vector3 pos					= 1;	// 停止点
 }
 
 // 实体进入视野同步
@@ -403,14 +358,12 @@ message P_MmoSyncEntity_SC
 	optional uint64 obj_id   				= 1;	// 实体id
 	optional uint64 owner_uid				= 2;	// 玩家实体对应的角色uid, 非玩家实体为0
 	optional int32 obj_type					= 3;	// 实体类型
-	optional float x						= 4;	// 位置x
-	optional float y						= 5;	// 位置y
-	optional float z						= 6;	// 位置z
-	optional string role_name				= 7;	// 角色名
-	optional int32 level					= 8;	// 等级
-	optional int32 hp						= 9;	// 当前生命
-	optional int32 max_hp					= 10;	// 最大生命
-	optional bool dead						= 11;	// 是否死亡
+	optional PB_Vector3 pos					= 4;	// 位置
+	optional string role_name				= 5;	// 角色名
+	optional int32 level					= 6;	// 等级
+	optional int32 hp						= 7;	// 当前生命
+	optional int32 max_hp					= 8;	// 最大生命
+	optional bool dead						= 9;	// 是否死亡
 }
 
 // 实体离开视野同步
@@ -425,9 +378,7 @@ message P_MmoSyncLeaveEntity_SC
 message P_MmoSyncMove_SC
 {
 	optional uint64 obj_id   				= 1;	// 实体id
-	optional float x						= 2;	// 位置x
-	optional float y						= 3;	// 位置y
-	optional float z						= 4;	// 位置z
+	optional PB_Vector3 pos					= 2;	// 位置
 }
 
 // 普通攻击请求
@@ -476,20 +427,20 @@ message P_CrossEnter_CS
 	optional uint32 activity_id	= 2;	// 关联活动, 0表示默认场景
 }
 
-// 归属服 -> 客户端: 跨服进场票据(场景服地址与令牌)
+// 归属服 -> 客户端: 跨服进场票据(跨服地址与令牌)
 // MHT_CROSS_ENTER_SC = 20013
 message P_CrossEnter_SC
 {
 	optional bool success		= 1;	// 是否成功
 	optional string error		= 2;	// 失败原因
-	optional string scene_ip	= 3;	// 场景服客户端入口ip
-	optional uint32 scene_port	= 4;	// 场景服客户端入口端口
-	optional string token		= 5;	// 连接场景服的认证令牌
+	optional string scene_ip	= 3;	// 跨服客户端入口ip
+	optional uint32 scene_port	= 4;	// 跨服客户端入口端口
+	optional string token		= 5;	// 连接跨服的认证令牌
 	optional uint64 expire_time	= 6;	// 票据过期时间
 	optional int32 cross_type	= 7;	// 跨服类型
 }
 
-// 客户端 -> 场景服: 跨服会话认证
+// 客户端 -> 跨服: 会话认证
 // MHT_CROSS_AUTH_CS = 20014
 message P_CrossAuth_CS
 {
@@ -497,7 +448,7 @@ message P_CrossAuth_CS
 	optional string token		= 2;	// 归属服下发的令牌
 }
 
-// 场景服 -> 客户端: 跨服会话认证结果
+// 跨服 -> 客户端: 跨服会话认证结果
 // MHT_CROSS_AUTH_SC = 20015
 message P_CrossAuth_SC
 {
@@ -708,30 +659,6 @@ message P_Rank_SC
 }
 
 // ============================竞技场协议==========================================
-
-// 竞技场对手信息
-message PB_ArenaOpponentInfo
-{
-	optional int64 uid				= 1;	// 对手uid
-	optional string name			= 2;	// 对手名字
-	optional string user_name		= 3;	// 对手用户名
-	optional int32 score			= 4;	// 对手分数
-	repeated PB_HeroData heroes		= 5;	// 对手阵容英雄信息
-}
-
-// 竞技场战斗记录
-message PB_ArenaBattleLog
-{
-	optional int64 time						= 1;	// 战斗时间
-	optional string report_key				= 2;	// 战报key
-	repeated PB_HeroData my_heroes			= 3;	// 我方阵容
-	optional int64 opponent_uid				= 4;	// 对方uid
-	optional string opponent_name			= 5;	// 对方名字
-	repeated PB_HeroData opponent_heroes 	= 6;	// 对方阵容
-	optional bool is_win					= 7;	// 是否胜利
-	optional int32 score_change				= 8;	// 积分变化(正为加,负为减)
-	optional int32 score_after				= 9;	// 战斗后积分
-}
 
 // 竞技场请求
 // MHT_ARENA_CS = 30022

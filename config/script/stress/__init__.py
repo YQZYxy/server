@@ -8,7 +8,7 @@
 
 Windows 下由主工具的“压测工具”模块用 pythonw 启动, 不会出现控制台黑框.
 
-配置: config/script/config.json 的 stress 节点
+配置: 部署目录中 config.json 副本的 stress 节点
 扩展场景: 在 stress/scenarios.py 里用 @register_scenario 注册新类, 界面自动识别
 """
 

@@ -3,52 +3,68 @@
 // 协议命名加 P_
 syntax = "proto3";
 
+import "data.proto";
+import "roledata.proto";
+
 // =============================跨服数据结构========================================
 
-// 跨服角色快照
-// 场景服只持这份只读数据, 任何持久化修改都必须回归属服
-message PB_CrossRoleSnapshot
-{
-	optional uint64 role_uid		= 1;	// 角色uid
-	optional uint32 home_server_id	= 2;	// 数据归属服id
-	optional uint32 scene_server_id	= 3;	// 当前场景服id
-	optional uint32 activity_id		= 4;	// 关联活动id, 0表示默认场景
-	optional bytes extra			= 5;	// 业务扩展数据
-	optional bytes role_data		= 6;	// 完整角色数据(PB_RoleData序列化), 场景服据此建 RoleModule
-	optional string scene_ip		= 7;	// 场景服客户端入口 ip
-	optional uint32 scene_port		= 8;	// 场景服客户端入口端口
-	optional string token			= 9;	// 客户端连接场景服的认证令牌
-	optional float pos_x			= 10;	// 进场位置x, 场景服据此落点
-	optional float pos_y			= 11;	// 进场位置y
-	optional float pos_z			= 12;	// 进场位置z
-}
-
-// 进场票据, 归属服下发给客户端用于连接场景服
+// 进场票据, 归属服下发给客户端用于连接跨服
 message PB_CrossTicket
 {
 	optional uint64 role_uid		= 1;	// 角色uid
 	optional uint32 home_server_id	= 2;	// 数据归属服id
-	optional uint32 scene_server_id	= 3;	// 场景服id
+	optional uint32 scene_server_id	= 3;	// 跨服id
 	optional uint64 expire_time		= 4;	// 票据过期时间
 	optional int32 cross_type		= 5;	// 跨服类型, 见 CROSS_TYPE_*
-	optional string scene_ip		= 6;	// 场景服网关对外ip
-	optional uint32 scene_port		= 7;	// 场景服网关对外端口
+	optional string scene_ip		= 6;	// 跨服网关对外ip
+	optional uint32 scene_port		= 7;	// 跨服网关对外端口
 	optional string token			= 8;	// 客户端进场令牌
 }
 
 // =============================跨服集群消息========================================
 
-// 归属服 -> 场景服: 离场
+// 跨服角色数据
+message PB_CrossRoleData
+{
+	optional int64 role_uid			= 1;	// 角色uid
+	optional uint32 home_server_id	= 2;	// 数据归属服id(合服后已归一到主服)
+	optional PB_RoleData role_data	= 3;	// 完整角色数据
+}
+
+// 归属服 -> 跨服: 进场申请
+// 使用 CLUSTER_CHANNEL_CROSS 通道, body_type 为 CROSS_MSG_ENTER_APPLY
+// 跨服只持有这份只读副本, 任何持久化修改都必须回传归属服
+message P_CrossEnterApply
+{
+	optional PB_CrossRoleData role	= 1;	// 角色数据
+	optional uint32 activity_id		= 2;	// 关联活动id, 决定跨服场景
+	optional PB_Vector3 pos			= 3;	// 进场实时坐标
+}
+
+// 跨服 -> 归属服: 结算回传
+// 使用 CLUSTER_CHANNEL_CROSS 通道, body_type 为 CROSS_MSG_SETTLE
+message P_CrossSettle
+{
+	optional PB_CrossRoleData role	= 1;	// 跨服上的最新角色数据
+	optional uint32 activity_id		= 2;	// 关联活动id
+}
+
+// 归属服 -> 跨服: 离场
 // 使用 CLUSTER_CHANNEL_CROSS 通道, body_type 为 CROSS_MSG_LEAVE
 message P_CrossLeave
 {
-	optional uint64 role_uid	= 1;	// 角色uid
+	optional int64 role_uid	= 1;	// 角色uid
 }
 
 // 任意节点 -> 归属服: 查询角色数据
 // 使用 CLUSTER_CHANNEL_CROSS 通道, body_type 为 CROSS_MSG_QUERY_ROLE
-// 应答 body 为 PB_CrossRoleSnapshot
 message P_CrossQueryRole
 {
-	optional uint64 role_uid	= 1;	// 角色uid
+	optional int64 role_uid	= 1;	// 角色uid
+}
+
+// 归属服 -> 发起查询的节点: 查询角色数据应答
+message P_CrossQueryRoleRet
+{
+	optional PB_CrossRoleData role	= 1;	// 角色数据
 }

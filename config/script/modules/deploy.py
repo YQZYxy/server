@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*-
 """服务器实例生成与部署模块.
 
-读取配置:
-  config/crossconfig.json  实例清单(实例名/进程/端口/数据库/集群端口)
-  config/baseconfig.json   公共配置骨架
-  config/script/config.json 脚本框架路径与默认参数
+读取配置副本(部署目录, 默认 debug):
+  <deploy_dir>/crossconfig.json  实例清单(实例名/进程/端口/数据库/集群端口)
+  <deploy_dir>/baseconfig.json   公共配置骨架
+  <deploy_dir>/config.json       脚本框架路径与默认参数
+
+仓库里的 config/crossconfig.json, config/baseconfig.json, config/script/config.json
+只作为默认模板, 不参与后续读写.
 
 在部署目录下生成实例目录:
   <variant>/<name>/
@@ -294,9 +297,6 @@ def merge_json(base, overlay):
 def validate_merged(merged, node):
     errors = []
     name = node["name"]
-
-    if "LogPath" in merged:
-        errors.append(f"{name}: 不应再出现 LogPath")
 
     for section in ("gatewayserver", "globalserver", "logicserver", "dbserver"):
         if not isinstance(merged.get(section), dict):

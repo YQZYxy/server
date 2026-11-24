@@ -285,7 +285,7 @@ export default function MmoPage() {
   const myUid = Number((roleInfo as any)?.role_base_info?.uid ?? 0)
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  // MMO 使用的连接, 进入跨服后切换为场景服连接
+  // MMO 使用的连接, 进入跨服后切换为跨服连接
   const [socket, setSocket] = useState(() => getMmoSocket())
   const [crossBusy, setCrossBusy] = useState(false)
   const [remotes, setRemotes] = useState<Record<number, RemoteRole>>({})
@@ -352,10 +352,14 @@ export default function MmoPage() {
 
     const enterScene = () => {
       sendMsg(MMO.MHT_MMO_ENTER_SCENE_CS, {
-        scene_id: sceneId,
-        x: posRef.current.x * TILE_SIZE,
-        y: posRef.current.y * TILE_SIZE,
-        z: 0,
+        place: {
+          scene_id: sceneId,
+          pos: {
+            x: posRef.current.x * TILE_SIZE,
+            y: posRef.current.y * TILE_SIZE,
+            z: 0,
+          },
+        },
       })
 
       // 服务端成功进入会回自己的 ROLE_STATE, 拿不到就说明上行丢了, 补发几次
@@ -396,8 +400,8 @@ export default function MmoPage() {
       // 自己的实体不放进远端表, 本地已经有一份
       if (ownerUid !== 0 && ownerUid === myUidRef.current) return
 
-      const worldX = Number(body.x ?? 0)
-      const worldY = Number(body.y ?? 0)
+      const worldX = Number(body.pos?.x ?? 0)
+      const worldY = Number(body.pos?.y ?? 0)
       setRemotes((prev) => {
         const exist = prev[objId]
         return {
@@ -434,8 +438,8 @@ export default function MmoPage() {
     const onSyncMove = (body: any) => {
       const objId = Number(body?.obj_id ?? 0)
       if (!objId) return
-      const worldX = Number(body.x ?? 0)
-      const worldY = Number(body.y ?? 0)
+      const worldX = Number(body.pos?.x ?? 0)
+      const worldY = Number(body.pos?.y ?? 0)
       setRemotes((prev) => {
         const role = prev[objId]
         if (!role) return prev
@@ -633,9 +637,11 @@ export default function MmoPage() {
         lastReportRef.current = now
         lastReportedPosRef.current = { x: selfPos.x, y: selfPos.y }
         sendMsg(MMO.MHT_MMO_MOVE_CS, {
-          x: selfPos.x * TILE_SIZE,
-          y: selfPos.y * TILE_SIZE,
-          z: 0,
+          pos: {
+            x: selfPos.x * TILE_SIZE,
+            y: selfPos.y * TILE_SIZE,
+            z: 0,
+          },
           speed: MOVE_TILES_PER_SEC * TILE_SIZE,
         })
       }
@@ -754,7 +760,7 @@ export default function MmoPage() {
     return () => cancelAnimationFrame(raf)
   }, [grid, sendMsg, username])
 
-  /** 进入跨服场景(类型 1 为 MMO), 成功后 MMO 改用场景服连接 */
+  /** 进入跨服场景(类型 1 为 MMO), 成功后 MMO 改用跨服连接 */
   const HandleCrossEnter = useCallback(async () => {
     if (crossBusy) return
     setCrossBusy(true)

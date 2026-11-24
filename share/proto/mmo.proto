@@ -3,29 +3,15 @@ syntax = "proto3";
 
 import "data.proto";
 
-// ==================== MMO 存档 ====================
-
-// MMO 场景状态
-message PB_MmoRoleData
-{
-	optional uint64 scene_id		= 1;	// 最后所在场景id
-	optional float x				= 2;	// 最后位置x
-	optional float y				= 3;	// 最后位置y
-	optional float z				= 4;	// 最后位置z
-}
-
 // ==================== MMO 进场参数 ====================
 
 // MMO 进入世界参数
 message PB_MmoRoleInit
 {
 	optional int64 role_uid			= 1;	// 角色uid(场景实体归属)
-	optional uint64 scene_id		= 2;	// 场景id
-	optional string role_name		= 3;	// 角色名
-	optional float x				= 4;	// 出生点x
-	optional float y				= 5;	// 出生点y
-	optional float z				= 6;	// 出生点z
-	optional PB_HeroData hero		= 7;	// 出战英雄, 含属性与已学能力
+	optional string role_name		= 2;	// 角色名
+	optional PB_ScenePos place		= 3;	// 出生场景与坐标
+	optional PB_HeroData hero		= 4;	// 出战英雄, 含属性与已学能力
 }
 
 // ==================== MMO 运行时状态 ====================
@@ -50,19 +36,9 @@ message PB_MmoRoleState
 message PB_MmoEvent
 {
 	optional int32 type				= 1;	// 事件类型, 见 MMO_EVENT_*
-	optional int64 role_uid			= 2;	// 事件归属角色
+	optional PB_MmoRoleState state	= 2;	// 事件归属角色的场景内状态
 	optional int64 target_uid		= 3;	// 目标角色
-	optional uint64 obj_id			= 4;	// 场景实体id
-	optional uint64 scene_id		= 5;	// 场景id
-	optional int32 hero_id			= 6;	// 事件归属角色的出战英雄id
-	optional string role_name		= 7;	// 归属角色名
-	optional float x				= 8;	// 坐标x
-	optional float y				= 9;	// 坐标y
-	optional float z				= 10;	// 坐标z
-	optional int32 value			= 11;	// 伤害值或当前生命
-	optional int32 hp				= 12;	// 事件后当前生命
-	optional int32 max_hp			= 13;	// 最大生命
-	optional int32 level			= 14;	// 出战英雄等级
-	optional bool dead				= 15;	// 是否死亡
-	repeated uint64 viewers			= 16;	// 需要收到该事件的角色列表
+	optional PB_Vector3 pos			= 4;	// 事件发生坐标
+	optional int32 value			= 5;	// 伤害值或当前生命
+	repeated uint64 viewers			= 6;	// 需要收到该事件的角色列表
 }

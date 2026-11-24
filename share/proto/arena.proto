@@ -1,0 +1,52 @@
+// 字段必须加 optional 关键字 
+// 结构命名加 PB_ 
+syntax = "proto3";
+
+import "data.proto";
+import "roledata.proto";
+
+// ==================== 竞技场数据结构 ====================
+
+// 竞技场对手信息
+message PB_ArenaOpponentInfo
+{
+	optional int64 uid				= 1;	// 对手uid
+	optional string name			= 2;	// 对手名字
+	optional string user_name		= 3;	// 对手用户名
+	optional int32 score			= 4;	// 对手分数
+	repeated PB_HeroData heroes		= 5;	// 对手阵容英雄信息
+}
+
+// 竞技场战斗记录
+message PB_ArenaBattleLog
+{
+	optional int64 time						= 1;	// 战斗时间
+	optional string report_key				= 2;	// 战报key
+	repeated PB_HeroData my_heroes			= 3;	// 我方阵容
+	optional int64 opponent_uid				= 4;	// 对方uid
+	optional string opponent_name			= 5;	// 对方名字
+	repeated PB_HeroData opponent_heroes 	= 6;	// 对方阵容
+	optional bool is_win					= 7;	// 是否胜利
+	optional int32 score_change				= 8;	// 积分变化(正为加,负为减)
+	optional int32 score_after				= 9;	// 战斗后积分
+}
+
+// 竞技场用户存档
+message PB_ArenaUserData
+{
+	optional int64 uid						= 1;	// 用户uid
+	optional string name					= 2;	// 角色名
+	optional string user_name				= 3;	// 账号名
+	optional int32 score					= 4;	// 积分
+	optional int64 power					= 5;	// 阵容战力
+	optional PB_RoleData role_snapshot		= 6;	// 战斗快照, 只用到 base_info 与 growth 的英雄/阵容
+	optional int32 daily_challenge_count	= 7;	// 今日已挑战次数
+	optional int32 daily_refresh_count		= 8;	// 今日已刷新次数
+	optional int32 last_day_id				= 9;	// 上次跨天重置的dayid
+	optional int32 max_daily_challenge		= 10;	// 每日最大挑战次数
+	optional int32 max_daily_free_refresh	= 11;	// 每日免费刷新次数
+	repeated int64 opponent_uids			= 12;	// 当前对手列表
+	optional int64 last_match_time			= 13;	// 上次匹配时间戳
+	repeated PB_ArenaBattleLog battle_logs	= 14;	// 战斗日志
+	optional bool is_registered				= 15;	// 是否已注册
+}

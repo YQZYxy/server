@@ -42,6 +42,7 @@ from ..core.platform_utils import (
     IS_WINDOWS,
     EntryCommand,
     ResolveTool,
+    RunHidden,
     SetProcessTitle,
 )
 from ..core.process import (
@@ -719,12 +720,8 @@ def StopPid(context, name, pid, working_dir):
     if IS_WINDOWS:
         # Windows 直接结束进程树, 避免服务端不响应控制台事件时长时间等待
         try:
-            subprocess.run(
-                ["taskkill", "/F", "/T", "/PID", str(pid)],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                check=False,
-            )
+            # RunHidden 保证 GUI 无控制台时不会为每个 taskkill 闪一个窗口
+            RunHidden(["taskkill", "/F", "/T", "/PID", str(pid)])
         except OSError:
             pass
         return not IsPidAlive(pid)

@@ -31,6 +31,9 @@ DETACHED_PROCESS = 0x00000008
 CREATE_NEW_PROCESS_GROUP = 0x00000200
 CREATE_NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
+# ShowWindow 隐藏窗口
+SW_HIDE = 0
+
 
 def PlatformName():
     """可读的平台名称"""
@@ -97,8 +100,8 @@ def ResolveTool(settings, raw_value, extra_candidates=None):
             return item
 
     raise ModuleError(
-        "找不到可执行工具: %s\n  已尝试: %s\n  请检查 config/script/config.json 中的配置"
-        % (value, ", ".join(searched))
+        "找不到可执行工具: %s\n  已尝试: %s\n  请检查 %s 中的配置"
+        % (value, ", ".join(searched), settings.config_file)
     )
 
 
@@ -185,12 +188,7 @@ def CreateDirLink(link_path, target_path):
     """建目录链接: Windows 用 junction, 其它平台用符号链接"""
     if IS_WINDOWS:
         try:
-            result = subprocess.run(
-                ["cmd", "/c", "mklink", "/J", link_path, target_path],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                check=False,
-            )
+            result = RunHidden(["cmd", "/c", "mklink", "/J", link_path, target_path])
         except OSError:
             return False
         return result.returncode == 0
@@ -234,6 +232,39 @@ def EnableDpiAwareness():
         ctypes.windll.shcore.SetProcessDpiAwareness(1)
     except (AttributeError, OSError):
         pass
+
+
+def HideOwnConsoleWindow():
+    """GUI 启动后隐藏脚本自带的控制台窗口.
+
+    双击 auto.py 时 python.exe 会独占一个控制台窗口, GUI 起来后窗口会一直
+    停在窗口后面; pythonw 启动时连控制台都没有, 子进程会各自弹出窗口.
+    这里统一保证当前进程有一个隐藏的控制台:
+        已有且独占: 直接隐藏
+        已有但与 shell 共享: 不处理, 隐藏会连带隐藏用户终端
+        没有: 分配一个隐藏控制台, 让后续子进程共用
+    返回是否隐藏了控制台.
+    """
+    if not IS_WINDOWS:
+        return False
+    try:
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        console = kernel32.GetConsoleWindow()
+        if console:
+            # 缓冲区只要区分 1 个和多个进程, 数量超过容量时返回所需数量
+            process_list = (ctypes.c_ulong * 2)()
+            if kernel32.GetConsoleProcessList(process_list, 2) > 1:
+                return False
+        else:
+            if not kernel32.AllocConsole():
+                return False
+            console = kernel32.GetConsoleWindow()
+            if not console:
+                return False
+        user32 = ctypes.WinDLL("user32", use_last_error=True)
+        return bool(user32.ShowWindow(console, SW_HIDE))
+    except (AttributeError, OSError):
+        return False
 
 
 def IsGuiAvailable():
@@ -327,6 +358,26 @@ def RunCaptured(command, cwd, env=None, timeout=None):
     if isinstance(output, bytes):
         output = output.decode("utf-8", errors="replace")
     return result.returncode, output
+
+
+def RunHidden(command, cwd=None):
+    """执行短命辅助命令, 输出丢弃.
+
+    GUI 由 pythonw 启动时当前进程没有控制台, 直接 spawn taskkill / cmd 这类
+    控制台程序会让每个子进程各弹一个窗口; Windows 下统一加 CREATE_NO_WINDOW,
+    """
+    popen_kwargs = {}
+    if IS_WINDOWS:
+        popen_kwargs["creationflags"] = CREATE_NO_WINDOW
+    return subprocess.run(
+        command,
+        cwd=cwd,
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+        **popen_kwargs,
+    )
 
 
 def ConsolePythonExecutable():

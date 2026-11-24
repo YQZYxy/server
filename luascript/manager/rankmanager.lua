@@ -116,10 +116,14 @@ function M.LoadRet(msg_data)
 
     local load_count = 0
     for _, node in ipairs(msg_data.datas or {}) do
-        -- 加载走专用入口
+        -- 落库时扩展数据存在 power/heroes, 这里还原成通用排行榜组件使用的字符串
+        local extra_data = {
+            power = node.power or 0,
+            heroes = node.heroes or {},
+        }
         local rank = cpp_RankLoadNode(rank_type, node.uid, node.name or "",
             node.value or 0, node.param1 or 0, node.param2 or 0, node.param3 or 0,
-            node.update_time or 0, node.data or "")
+            node.update_time or 0, Serializer.Simple.Serialize(extra_data))
         if not rank or rank <= 0 then
             LOG_ERROR("RankManager: 加载排行榜节点失败 rank_type=%d uid=%s",
                 rank_type, tostring(node.uid))
@@ -349,6 +353,22 @@ end
 
 -- ==================== 保存到数据库 ====================
 
+-- 把 cpp_Rank* 返回的节点转成落库结构 PB_RankNode
+function LOC.BuildDbNode(rank_type, entry)
+    local extra_data = LOC.DecodeExtraData(rank_type, entry)
+    return {
+        uid = entry.uid,
+        name = entry.name or "",
+        value = entry.value or 0,
+        param1 = entry.param1 or 0,
+        param2 = entry.param2 or 0,
+        param3 = entry.param3 or 0,
+        update_time = entry.time or 0,
+        power = extra_data.power or 0,
+        heroes = extra_data.heroes or {},
+    }
+end
+
 -- 保存指定类型的排行榜
 function M.SaveRank(rank_type)
     local m_data = LOC.GetOrSetData()
@@ -364,16 +384,7 @@ function M.SaveRank(rank_type)
 
     local datas = {}
     for _, entry in ipairs(cpp_RankGetAll(rank_type) or {}) do
-        table.insert(datas, {
-            uid = entry.uid,
-            name = entry.name or "",
-            value = entry.value or 0,
-            param1 = entry.param1 or 0,
-            param2 = entry.param2 or 0,
-            param3 = entry.param3 or 0,
-            update_time = entry.time or 0,
-            data = entry.data or "",
-        })
+        table.insert(datas, LOC.BuildDbNode(rank_type, entry))
     end
 
     GLO.Protobuf.SendDBMsg(MHT.MHT_RANK_DB_C, {
@@ -423,16 +434,7 @@ function M.SaveSingleNode(rank_type, node)
     GLO.Protobuf.SendDBMsg(MHT.MHT_RANK_DB_C, {
         req_type = 3,   -- 保存单个
         rank_type = rank_type,
-        datas = {{
-            uid = entry.uid,
-            name = entry.name or "",
-            value = entry.value or 0,
-            param1 = entry.param1 or 0,
-            param2 = entry.param2 or 0,
-            param3 = entry.param3 or 0,
-            update_time = entry.time or 0,
-            data = entry.data or "",
-        }},
+        datas = { LOC.BuildDbNode(rank_type, entry) },
     })
 end
 
