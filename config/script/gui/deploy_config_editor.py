@@ -22,6 +22,7 @@ from ..core.deploy_config import (
     SetValue,
 )
 from ..core.errors import ConfigError
+from ..core.platform_utils import ApplyDarkTitleBar
 from ..core.theme import ThemeListbox
 from .widgets import Checkbox
 
@@ -147,6 +148,12 @@ class DeployConfigEditor(object):
         self.m_window.geometry("%dx%d+%d+%d" % (width, height, left, top))
         self.m_window.minsize(min(900, width), min(600, height))
         self.m_window.configure(background=theme["window_bg"])
+        ApplyDarkTitleBar(self.m_window, bool(theme.get("dark")))
+        self.m_window.bind(
+            "<Map>",
+            lambda _event: ApplyDarkTitleBar(self.m_window, bool(self.m_theme.get("dark"))),
+            add="+",
+        )
         self.m_window.transient(parent)
         self.m_window.protocol("WM_DELETE_WINDOW", self.Close)
 

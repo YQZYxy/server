@@ -19,6 +19,7 @@ from ..core.errors import ScriptError
 from ..core.menu import Module, PersistOptionValues  # noqa: F401
 from ..core.platform_utils import (
     CREATE_NEW_CONSOLE,
+    ApplyDarkTitleBar,
     ConsolePythonExecutable,
     EnableDpiAwareness,
     HideOwnConsoleWindow,
@@ -263,7 +264,7 @@ class ToolWindow(object):
 
     def __init__(self, root, context, modules):
         import tkinter as tk
-        from tkinter import scrolledtext, ttk
+        from tkinter import ttk
 
         self.m_tk = tk
         self.m_ttk = ttk
@@ -280,6 +281,8 @@ class ToolWindow(object):
         self.m_theme = GetTheme(context.settings)
         self.m_deploy_editor = None
         self.m_list_settle_job = None
+        self.m_menus = []
+        self.m_menu_buttons = []
 
         root.title("服务器脚本工具")
         width, height, min_width, min_height = InitialWindowSize(root)
@@ -351,12 +354,7 @@ class ToolWindow(object):
         self.m_split_v.add(self.m_option_frame, minsize=SPLITTER_MIN_OPTIONS, stretch="always")
         self.m_split_v.add(log_frame, minsize=SPLITTER_MIN_LOG, stretch="never")
 
-        self.m_log = scrolledtext.ScrolledText(
-            log_frame, height=6, state="disabled",
-            font=(self.m_theme["log_font_family"], self.m_theme["log_font_size"]),
-        )
-        ThemeText(self.m_log, self.m_theme)
-        self.m_log.pack(fill="both", expand=True)
+        self.m_log = self.CreateLogText(log_frame)
         self.m_log.tag_configure("error", foreground=self.m_theme["error"])
         self.m_log.tag_configure("warn", foreground=self.m_theme["warning"])
         self.m_log.tag_configure("ok", foreground=self.m_theme["success"])
@@ -376,13 +374,60 @@ class ToolWindow(object):
 
         root.protocol("WM_DELETE_WINDOW", self.OnClose)
         root.bind("<Configure>", self.OnWindowConfigure, add="+")
+        root.bind("<Map>", self.OnWindowMapped, add="+")
+        self.ApplyWindowTheme()
         self.m_listbox.selection_set(0)
         self.OnSelectModule(None)
         self.PollConsole()
 
+    def CreateLogText(self, parent, height=6):
+        """带 ttk 滚动条的文本区.
+
+        Windows 下经典 tk.Scrollbar 由系统绘制, 深色主题会露出浅色滚动条,
+        所以日志和配置编辑统一使用 ttk 滚动条.
+        """
+        text = self.m_tk.Text(
+            parent, height=height, state="disabled",
+            font=(self.m_theme["log_font_family"], self.m_theme["log_font_size"]),
+        )
+        vbar = self.m_ttk.Scrollbar(parent, orient="vertical", command=text.yview)
+        text.configure(yscrollcommand=vbar.set)
+        ThemeText(text, self.m_theme)
+        text.pack(side="left", fill="both", expand=True)
+        vbar.pack(side="right", fill="y")
+        return text
+
+    def ApplyWindowTheme(self):
+        """系统标题栏跟随主题, 只在 Windows 生效"""
+        ApplyDarkTitleBar(self.m_root, bool(self.m_theme.get("dark")))
+
+    def ApplyDialogTheme(self, window):
+        """独立窗口的标题栏同样跟随主题, 映射后再应用一次"""
+        dark = bool(self.m_theme.get("dark"))
+        ApplyDarkTitleBar(window, dark)
+        window.bind(
+            "<Map>",
+            lambda _event: ApplyDarkTitleBar(window, bool(self.m_theme.get("dark"))),
+            add="+",
+        )
+
+    def OnWindowMapped(self, event):
+        """窗口显示后再应用一次, 避免标题栏属性丢在未映射的窗口上"""
+        if event.widget is not self.m_root:
+            return
+        self.ApplyWindowTheme()
+
     def BuildMenu(self):
-        menu_bar = self.m_tk.Menu(self.m_root)
-        config_menu = self.m_tk.Menu(menu_bar, tearoff=0)
+        """自绘菜单栏: Windows 原生菜单栏不跟随深色主题, 这里用 Tk 控件画"""
+        self.m_menu_bar = self.m_tk.Frame(
+            self.m_root,
+            background=self.m_theme["menu_bg"],
+            bd=0,
+            highlightthickness=0,
+        )
+        self.m_menu_bar.pack(fill="x", side="top")
+
+        config_menu = self.CreateMenu(self.m_menu_bar, tearoff=0)
         config_menu.add_command(label="编辑配置 (JSON)", command=self.OpenConfigEditor)
         config_menu.add_command(label="打开配置文件", command=self.OpenConfigFile)
         config_menu.add_command(label="重新加载配置", command=self.ReloadConfig)
@@ -390,7 +435,7 @@ class ToolWindow(object):
         config_menu.add_command(label="部署配置 (baseconfig / crossconfig)", command=self.OpenDeployConfigEditor)
         config_menu.add_separator()
 
-        theme_menu = self.m_tk.Menu(config_menu, tearoff=0)
+        theme_menu = self.CreateMenu(config_menu, tearoff=0)
         self.m_theme_var = self.m_tk.StringVar(value=self.m_theme["name"])
         for name in sorted(THEMES):
             theme_menu.add_radiobutton(
@@ -402,12 +447,73 @@ class ToolWindow(object):
         config_menu.add_cascade(label="主题", menu=theme_menu)
         config_menu.add_separator()
         config_menu.add_command(label="退出", command=self.OnClose)
-        menu_bar.add_cascade(label="配置", menu=config_menu)
+        self.CreateMenuButton(self.m_menu_bar, "配置", config_menu)
 
-        tools_menu = self.m_tk.Menu(menu_bar, tearoff=0)
+        tools_menu = self.CreateMenu(self.m_menu_bar, tearoff=0)
         tools_menu.add_command(label="打开命令行模式", command=self.OpenCli)
-        menu_bar.add_cascade(label="工具", menu=tools_menu)
-        self.m_root.config(menu=menu_bar)
+        self.CreateMenuButton(self.m_menu_bar, "工具", tools_menu)
+
+    def CreateMenu(self, parent, **kwargs):
+        """菜单配色跟随主题, 主题切换时统一刷新"""
+        menu = self.m_tk.Menu(
+            parent,
+            background=self.m_theme["menu_bg"],
+            foreground=self.m_theme["menu_fg"],
+            activebackground=self.m_theme["selection_bg"],
+            activeforeground=self.m_theme["selection_fg"],
+            bd=0,
+            **kwargs
+        )
+        self.m_menus.append(menu)
+        return menu
+
+    def CreateMenuButton(self, parent, text, menu):
+        """菜单栏按钮: 自己处理点击弹出, 避免 Menubutton 在部分环境下点不开"""
+        button = self.m_tk.Label(
+            parent,
+            text=text,
+            background=self.m_theme["menu_bg"],
+            foreground=self.m_theme["menu_fg"],
+            padx=12,
+            pady=3,
+            bd=0,
+            cursor="hand2",
+        )
+        button.pack(side="left")
+        button.bind(
+            "<Button-1>",
+            lambda _event, target=menu, widget=button: self.PostMenu(target, widget),
+        )
+        button.bind("<Enter>", lambda _event, widget=button: self.HighlightMenuButton(widget))
+        button.bind("<Leave>", lambda _event, widget=button: self.ResetMenuButton(widget))
+        self.m_menu_buttons.append(button)
+        return button
+
+    def PostMenu(self, menu, button):
+        """在按钮下方弹出菜单"""
+        self.HighlightMenuButton(button)
+        try:
+            menu.tk_popup(
+                button.winfo_rootx(),
+                button.winfo_rooty() + button.winfo_height(),
+            )
+        finally:
+            menu.grab_release()
+            self.ResetMenuButton(button)
+
+    def HighlightMenuButton(self, button):
+        if button in self.m_menu_buttons:
+            button.configure(
+                background=self.m_theme["selection_bg"],
+                foreground=self.m_theme["selection_fg"],
+            )
+
+    def ResetMenuButton(self, button):
+        if button in self.m_menu_buttons:
+            button.configure(
+                background=self.m_theme["menu_bg"],
+                foreground=self.m_theme["menu_fg"],
+            )
 
     def CurrentModule(self):
         selection = self.m_listbox.curselection()
@@ -469,8 +575,27 @@ class ToolWindow(object):
         self.m_title.configure(foreground=self.m_theme["title_fg"])
         self.m_desc.configure(foreground=self.m_theme["muted"])
         self.m_status.configure(foreground=self.m_theme["muted"])
+        self.RefreshMenuTheme()
+        self.ApplyWindowTheme()
         if self.m_current is not None:
             self.ShowModule(self.m_current)
+
+    def RefreshMenuTheme(self):
+        """自绘菜单栏与弹出菜单跟随主题"""
+        if getattr(self, "m_menu_bar", None) is not None:
+            self.m_menu_bar.configure(background=self.m_theme["menu_bg"])
+        for button in self.m_menu_buttons:
+            button.configure(
+                background=self.m_theme["menu_bg"],
+                foreground=self.m_theme["menu_fg"],
+            )
+        for menu in self.m_menus:
+            menu.configure(
+                background=self.m_theme["menu_bg"],
+                foreground=self.m_theme["menu_fg"],
+                activebackground=self.m_theme["selection_bg"],
+                activeforeground=self.m_theme["selection_fg"],
+            )
 
     def ShowModule(self, module):
         self.m_current = module
@@ -869,12 +994,13 @@ class ToolWindow(object):
         self.m_root.after(80, self.PollConsole)
 
     def OpenConfigEditor(self):
-        from tkinter import messagebox, scrolledtext
+        from tkinter import messagebox
 
         window = self.m_tk.Toplevel(self.m_root)
         window.title("编辑配置 - %s" % self.m_context.settings.config_file)
         window.geometry("900x640")
         window.configure(background=self.m_theme["window_bg"])
+        self.ApplyDialogTheme(window)
 
         self.m_ttk.Label(
             window,
@@ -882,12 +1008,10 @@ class ToolWindow(object):
             foreground=self.m_theme["muted"],
         ).pack(anchor="w", padx=8, pady=(8, 0))
 
-        text = scrolledtext.ScrolledText(
-            window,
-            font=(self.m_theme["log_font_family"], self.m_theme["log_font_size"]),
-        )
-        ThemeText(text, self.m_theme)
-        text.pack(fill="both", expand=True, padx=8, pady=8)
+        editor = self.m_ttk.Frame(window)
+        editor.pack(fill="both", expand=True, padx=8, pady=8)
+        text = self.CreateLogText(editor, height=20)
+        text.configure(state="normal")
         content = json.dumps(self.m_context.settings.data, ensure_ascii=False, indent=4)
         text.insert("1.0", content + "\n")
 
@@ -993,8 +1117,9 @@ def LaunchGui(context, modules):
     HideOwnConsoleWindow()
     root = tk.Tk()
     root.withdraw()
+    window = None
     try:
-        ToolWindow(root, context, modules)
+        window = ToolWindow(root, context, modules)
     except BaseException as error:
         try:
             messagebox.showerror("服务器脚本工具启动失败", str(error), parent=root)
@@ -1003,5 +1128,8 @@ def LaunchGui(context, modules):
         root.destroy()
         raise
     root.deiconify()
+    # 窗口映射后系统标题栏才稳定, 这里再应用一次深色标题栏
+    if window is not None:
+        window.ApplyWindowTheme()
     root.mainloop()
     return 0

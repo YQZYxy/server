@@ -16,6 +16,7 @@ from .errors import ConfigError
 
 # VS Code Dark+ 配色
 VSCODE_DARK = {
+    "dark": True,
     "window_bg": "#1e1e1e",
     "panel_bg": "#252526",
     "editor_bg": "#1e1e1e",
@@ -46,6 +47,7 @@ VSCODE_DARK = {
 
 # VS Code Light+ 配色
 VSCODE_LIGHT = {
+    "dark": False,
     "window_bg": "#ffffff",
     "panel_bg": "#f3f3f3",
     "editor_bg": "#ffffff",
@@ -172,7 +174,13 @@ def ApplyTkTheme(root, theme):
                     bordercolor=theme["border"])
     style.configure("TScrollbar", background=theme["button_bg"],
                     troughcolor=theme["panel_bg"], bordercolor=theme["border"],
-                    arrowcolor=theme["fg"])
+                    arrowcolor=theme["fg"], gripcount=0, arrowsize=12)
+    style.map(
+        "TScrollbar",
+        background=[("pressed", theme["accent"]), ("active", theme["button_active"])],
+        arrowcolor=[("pressed", theme["selection_fg"]), ("active", theme["fg"])],
+        bordercolor=[("active", theme["border"])],
+    )
     style.configure("TNotebook", background=theme["window_bg"],
                     bordercolor=theme["border"])
     style.configure("TNotebook.Tab", background=theme["button_bg"],
@@ -197,6 +205,8 @@ def ApplyTkTheme(root, theme):
 
 def ThemeText(widget, theme):
     """给 tk.Text / ScrolledText 应用编辑器配色"""
+    import tkinter as tk
+
     widget.configure(
         background=theme["log_bg"],
         foreground=theme["log_fg"],
@@ -208,6 +218,14 @@ def ThemeText(widget, theme):
         highlightcolor=theme["accent"],
         relief="flat",
     )
+    # ScrolledText 的容器是经典 Frame, 不配色会在深色主题下露出系统浅色
+    container = getattr(widget, "frame", None)
+    if container is not None:
+        try:
+            container.configure(background=theme["window_bg"])
+        except tk.TclError:
+            pass
+    # 经典 tk.Scrollbar 在 Windows 由系统绘制, 这里仍按主题配色, X11 下生效
     vbar = getattr(widget, "vbar", None)
     if vbar is not None:
         vbar.configure(

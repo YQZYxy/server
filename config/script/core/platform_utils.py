@@ -42,6 +42,76 @@ CREATE_NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 # ShowWindow 隐藏窗口
 SW_HIDE = 0
 
+# Windows 深色标题栏属性, 20 需要 Win10 20H1+, 19 兼容更早版本
+DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+DWMWA_USE_IMMERSIVE_DARK_MODE_FALLBACK = 19
+
+# SetWindowPos 标志
+SWP_NOMOVE = 0x0002
+SWP_NOZORDER = 0x0004
+SWP_NOACTIVATE = 0x0010
+SWP_NOOWNERZORDER = 0x0200
+
+
+class WindowRect(ctypes.Structure):
+    """Win32 RECT"""
+
+    _fields_ = [
+        ("left", ctypes.c_long),
+        ("top", ctypes.c_long),
+        ("right", ctypes.c_long),
+        ("bottom", ctypes.c_long),
+    ]
+
+
+def RefreshWindowFrame(hwnd):
+    """改一次窗口高度再改回来, 让 DWM 重画非客户区
+
+    Win10 上只设置 DWM 属性不会重画标题栏, 必须有真实的尺寸变化.
+    """
+    user32 = ctypes.windll.user32
+    if user32.IsZoomed(hwnd):
+        return
+    rect = WindowRect()
+    if not user32.GetWindowRect(hwnd, ctypes.byref(rect)):
+        return
+    width = rect.right - rect.left
+    height = rect.bottom - rect.top
+    if width <= 0 or height <= 0:
+        return
+    flags = SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER
+    user32.SetWindowPos(hwnd, 0, 0, 0, width, height + 1, flags)
+    user32.SetWindowPos(hwnd, 0, 0, 0, width, height, flags)
+
+
+def ApplyDarkTitleBar(window, dark=True):
+    """Windows 下让系统标题栏跟随主题, 其它平台直接忽略
+
+    非客户区由系统绘制, 只能通过 DWM 属性切换; 调用失败不影响界面本身.
+    """
+    if not IS_WINDOWS:
+        return False
+    try:
+        hwnd = ctypes.windll.user32.GetParent(window.winfo_id())
+        if not hwnd:
+            return False
+        value = ctypes.c_int(1 if dark else 0)
+        size = ctypes.sizeof(value)
+        applied = False
+        for attribute in (DWMWA_USE_IMMERSIVE_DARK_MODE, DWMWA_USE_IMMERSIVE_DARK_MODE_FALLBACK):
+            if ctypes.windll.dwmapi.DwmSetWindowAttribute(
+                hwnd, attribute, ctypes.byref(value), size
+            ) == 0:
+                applied = True
+                break
+        if not applied:
+            return False
+        if window.winfo_viewable():
+            RefreshWindowFrame(hwnd)
+        return True
+    except (AttributeError, OSError, ValueError):
+        return False
+
 
 def PlatformName():
     """可读的平台名称"""
