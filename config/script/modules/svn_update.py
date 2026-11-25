@@ -1,0 +1,442 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""SVN 更新模块.
+
+默认更新当前项目根路径, 也可以选择 SVN 工作副本根路径或自定义目录.
+更新前打印工作副本信息, 更新后打印版本变化与冲突文件.
+"""
+
+import os
+from xml.etree import ElementTree
+
+from ..core.errors import ModuleError
+from ..core.menu import Module, Option
+from ..core.platform_utils import (
+    IS_WINDOWS,
+    IsInteractiveStdin,
+    ResolveTool,
+    RunCaptured,
+    RunStreaming,
+)
+
+# 默认 svn 命令, 可在 config.json 的 svn.executable 覆盖
+DEFAULT_SVN_EXECUTABLE = "svn"
+
+# SVN 凭据环境变量, 避免把密码写进配置或命令行
+SVN_USERNAME_ENV = "SVN_USERNAME"
+SVN_PASSWORD_ENV = "SVN_PASSWORD"
+
+# svn 1.10 起支持 --password-from-stdin, 老版本只能回退到 --password
+PASSWORD_STDIN_MIN_VERSION = (1, 10)
+
+# 认证/证书失败的关键字, 用于失败后给出对应处理提示
+AUTH_ERROR_KEYWORDS = (
+    "authentication failed",
+    "could not authenticate",
+    "authorization failed",
+    "e170013",
+    "e215004",
+    "e230001",
+    "certificate verification failed",
+)
+
+# 进程内凭据缓存: svn 未开启凭据保存时, 同一次运行里不用反复输入
+# 键为仓库 URL, 值为 {"username": ..., "password": ...}
+CREDENTIAL_CACHE = {}
+
+# svn 是否支持 --password-from-stdin, 按可执行文件缓存, 避免每次重试都查版本
+PASSWORD_STDIN_SUPPORT = {}
+
+# Windows 常见 svn 命令行安装位置
+WINDOWS_SVN_CANDIDATES = (
+    r"C:\Program Files\TortoiseSVN\bin\svn.exe",
+    r"C:\Program Files (x86)\TortoiseSVN\bin\svn.exe",
+    r"C:\Program Files\SlikSvn\bin\svn.exe",
+)
+
+# Linux/macOS 常见 svn 命令行安装位置, PATH 找不到时兜底
+POSIX_SVN_CANDIDATES = (
+    "/usr/bin/svn",
+    "/usr/local/bin/svn",
+    "/opt/homebrew/bin/svn",
+)
+
+# 更新范围
+SCOPE_PROJECT = "project"
+SCOPE_WC_ROOT = "wc_root"
+SCOPE_CUSTOM = "custom"
+
+# 更新范围选项: (显示名, 标识)
+SCOPE_CHOICES = (
+    ("当前项目根路径", SCOPE_PROJECT),
+    ("SVN 工作副本根路径", SCOPE_WC_ROOT),
+    ("自定义路径", SCOPE_CUSTOM),
+)
+
+# 冲突状态: C=内容冲突, !=文件缺失
+CONFLICT_STATUS = ("C", "!")
+
+# 冲突列表最多打印多少行
+MAX_CONFLICT_LINES = 20
+
+
+def FindSvn(settings):
+    """查找 svn 命令行: 配置优先, 其次 PATH, 再查各平台常见安装位置"""
+    configured = ""
+    section = settings.data.get("svn")
+    if isinstance(section, dict):
+        configured = str(section.get("executable") or "").strip()
+
+    candidates = list(WINDOWS_SVN_CANDIDATES if IS_WINDOWS else POSIX_SVN_CANDIDATES)
+    try:
+        return ResolveTool(settings, configured or DEFAULT_SVN_EXECUTABLE, candidates)
+    except ModuleError as error:
+        raise ModuleError(
+            "%s\n  请安装 SVN 命令行, 或在 config.json 里配置 svn.executable" % error
+        ) from error
+
+
+def SvnSetting(settings, key):
+    """读取可选的配置项 svn.<key>, 缺省返回空字符串
+
+    svn 节点是可选的, 老部署目录的配置副本里可能没有, 这里不做强制校验.
+    """
+    section = settings.data.get("svn")
+    if not isinstance(section, dict) or key not in section:
+        return ""
+    value = section.get(key)
+    return "" if value is None else str(value).strip()
+
+
+def SupportsPasswordFromStdin(svn):
+    """svn 1.10 起支持 --password-from-stdin, 密码不必出现在命令行里"""
+    cached = PASSWORD_STDIN_SUPPORT.get(svn)
+    if cached is not None:
+        return cached
+
+    supported = False
+    code, output = RunCaptured([svn, "--version", "--quiet"])
+    if code == 0:
+        for token in output.split():
+            parts = token.strip().lstrip("vV").split(".")
+            if len(parts) >= 2 and parts[0].isdigit() and parts[1].isdigit():
+                supported = (int(parts[0]), int(parts[1])) >= PASSWORD_STDIN_MIN_VERSION
+                break
+    PASSWORD_STDIN_SUPPORT[svn] = supported
+    return supported
+
+
+def ParseInfoXml(output):
+    """解析 svn info --xml 输出, 兼容不支持 --show-item 的旧版 svn"""
+    try:
+        root = ElementTree.fromstring(output)
+    except ElementTree.ParseError:
+        return {}
+
+    entry = root.find("entry")
+    if entry is None:
+        return {}
+
+    result = {"revision": entry.get("revision", "")}
+    wc_info = entry.find("wc-info")
+    if wc_info is not None:
+        node = wc_info.find("wcroot-abspath")
+        if node is not None and node.text:
+            result["wc-root"] = node.text.strip()
+    for item in ("relative-url", "url"):
+        node = entry.find(item)
+        if node is not None and node.text:
+            result[item] = node.text.strip()
+    return result
+
+
+class SvnUpdateModule(Module):
+    """更新 SVN 工作副本"""
+
+    ID = "svn_update"
+    TITLE = "SVN 更新"
+    DESCRIPTION = "更新当前根路径或指定目录的 SVN 工作副本, 输出版本变化与冲突"
+
+    OPTIONS = (
+        Option("scope", "更新范围", "choice", default=SCOPE_PROJECT, items=SCOPE_CHOICES),
+        Option(
+            "path", "自定义路径", "string",
+            default="",
+            help_text="更新范围为自定义路径时生效, 相对路径按项目根解析",
+        ),
+        Option(
+            "revision", "目标版本", "string",
+            default="HEAD",
+            help_text="HEAD 表示更新到最新, 也可填具体版本号",
+        ),
+        Option(
+            "username", "SVN 用户名", "string",
+            default="",
+            help_text="留空则读环境变量 %s, 其次 config.json 的 svn.username" % SVN_USERNAME_ENV,
+        ),
+        Option(
+            "password", "SVN 密码", "string",
+            default="",
+            persist=False,
+            secret=True,
+            help_text="留空则读环境变量 %s (存在即生效, 空值表示空密码), 不写入配置" % SVN_PASSWORD_ENV,
+        ),
+        Option(
+            "interactive", "允许 svn 交互提示 (证书等)", "bool",
+            default=False,
+            help_text="仅命令行终端有效; 账号密码由工具询问, 这里用于接受自签证书等提示",
+        ),
+    )
+
+    def Run(self, context, options):
+        return SvnUpdateRunner(context, options).Run()
+
+
+class SvnUpdateRunner(object):
+    """执行 svn info / svn update / svn status"""
+
+    def __init__(self, context, options):
+        self.m_context = context
+        self.m_settings = context.settings
+        self.m_console = context.console
+        self.m_options = options
+        self.m_svn = ""
+        self.m_info_cache = {}
+        self.m_stdin_text = None
+        self.m_interactive = False
+
+    def Run(self):
+        self.m_svn = FindSvn(self.m_settings)
+        path = self.ResolveTarget()
+        if not os.path.isdir(path):
+            raise ModuleError("更新路径不存在: %s" % path)
+
+        wc_root = self.WorkingCopyRoot(path)
+        if not wc_root:
+            raise ModuleError("该路径不是 SVN 工作副本: %s" % path)
+
+        before_revision = self.QueryInfo("revision", path)
+        relative_url = self.QueryInfo("relative-url", path)
+        key = self.CredentialKey(path)
+
+        self.m_console.Step("SVN 更新")
+        self.m_console.Line("  更新路径: %s" % path)
+        self.m_console.Line("  工作副本根: %s" % wc_root)
+        if relative_url:
+            self.m_console.Line("  相对地址: %s" % relative_url)
+        self.m_console.Line("  当前版本: %s" % (before_revision or "未知"))
+        self.m_console.Line()
+
+        command = self.BuildCommand(path, key)
+        output_lines = []
+        code = self.RunUpdate(command, output_lines)
+        # 认证失败时问一次账号密码, 密码不回显, 成功后本次运行内复用
+        if code != 0 and self.IsAuthFailure(output_lines) and self.CanAskCredentials():
+            if self.AskCredentials(key):
+                self.m_console.Line()
+                command = self.BuildCommand(path, key)
+                code = self.RunUpdate(command, output_lines)
+        if code != 0:
+            if self.IsAuthFailure(output_lines):
+                self.ReportAuthHint()
+            raise ModuleError("svn update 失败, 退出码 %d" % code)
+
+        after_revision = self.QueryInfo("revision", path)
+        self.m_console.Line()
+        self.m_console.Success(
+            "SVN 更新完成: %s -> %s"
+            % (before_revision or "未知", after_revision or "未知")
+        )
+        self.ReportConflicts(path)
+        return 0
+
+    def RunUpdate(self, command, output_lines):
+        """执行 svn update, 输出行同时写入 output_lines 便于失败后判断"""
+        del output_lines[:]
+        return RunStreaming(
+            command,
+            self.m_settings.project_root,
+            self.m_console,
+            stdin_text=self.m_stdin_text,
+            interactive=self.m_interactive,
+            capture_lines=output_lines,
+        )
+
+    def CanAskCredentials(self):
+        """GUI 用掩码弹窗询问, 命令行必须在真实终端下才问, 避免脚本卡住"""
+        if self.m_context.is_cli:
+            return IsInteractiveStdin()
+        return True
+
+    def CredentialKey(self, path):
+        """凭据按仓库 URL 缓存, 拿不到 URL 时退回工作副本根"""
+        return self.QueryInfo("url", path) or self.WorkingCopyRoot(path) or path
+
+    def AskCredentials(self, key):
+        """询问账号密码, 密码不回显, 成功后本次运行内复用"""
+        current = self.ResolveCredentials(key)[0]
+        self.m_console.Warn("  需要 SVN 账号密码, 用户名为空则跳过本次重试")
+        username = str(self.m_console.Ask("SVN 用户名", current) or "").strip()
+        if not username:
+            return False
+        password = self.m_console.AskSecret("SVN 密码 (%s, 空密码直接回车)" % username)
+        if password is None:
+            return False
+        CREDENTIAL_CACHE[key] = {"username": username, "password": password}
+        return True
+
+    def BuildCommand(self, path, key=""):
+        """拼装 svn update 命令, 按凭据与交互设置决定认证参数"""
+        username, password = self.ResolveCredentials(key)
+        self.m_interactive = self.ResolveInteractive()
+        command = [self.m_svn, "update"]
+        if not self.m_interactive:
+            command.append("--non-interactive")
+        if username:
+            command.extend(["--username", username])
+
+        # 密码走标准输入, 不出现在命令行和日志里; 空密码或老版本 svn 直接传参
+        self.m_stdin_text = None
+        if password is not None:
+            if password == "" or not SupportsPasswordFromStdin(self.m_svn):
+                command.extend(["--password", password])
+            else:
+                command.append("--password-from-stdin")
+                self.m_stdin_text = password
+
+        revision = str(self.m_options.get("revision") or "").strip()
+        if revision and revision.upper() != "HEAD":
+            command.extend(["-r", revision])
+        command.append(path)
+        return command
+
+    def ResolveCredentials(self, key=""):
+        """参数优先, 其次配置 svn.username 与环境变量, 最后用本次运行缓存的凭据
+
+        password 为 None 表示没有提供, 空字符串表示显式使用空密码.
+        """
+        cached = CREDENTIAL_CACHE.get(key, {})
+        username = str(self.m_options.get("username") or "").strip()
+        if not username:
+            username = str(os.environ.get(SVN_USERNAME_ENV) or "").strip()
+        if not username:
+            username = SvnSetting(self.m_settings, "username")
+        if not username:
+            username = cached.get("username", "")
+
+        password = str(self.m_options.get("password") or "")
+        if password:
+            return username, password
+
+        # 环境变量存在即视为显式提供, 允许空值表示空密码
+        env_password = os.environ.get(SVN_PASSWORD_ENV)
+        if env_password is not None:
+            return username, env_password
+
+        if cached.get("username", "") == username and "password" in cached:
+            return username, cached["password"]
+        return username, None
+
+    def ResolveInteractive(self):
+        """交互输入只在命令行终端下有效, GUI 里 svn 等不到输入"""
+        if not self.m_options.get("interactive"):
+            return False
+        if not self.m_context.is_cli or not IsInteractiveStdin():
+            self.m_console.Warn(
+                "  当前环境无法交互输入账号密码, 已改用 --non-interactive"
+            )
+            return False
+        return True
+
+    def IsAuthFailure(self, lines):
+        """从 svn 输出里识别认证或证书失败"""
+        for line in lines:
+            lowered = line.lower()
+            for keyword in AUTH_ERROR_KEYWORDS:
+                if keyword in lowered:
+                    return True
+        return False
+
+    def ReportAuthHint(self):
+        """认证失败时给出可操作的解决方式"""
+        self.m_console.Warn("  认证/证书校验未通过, 可选处理方式:")
+        self.m_console.Line("    1. 重跑时按提示输入账号密码, 本次运行内会记住")
+        self.m_console.Line(
+            "    2. 设置环境变量 %s / %s (存在即生效, 空值表示空密码)"
+            % (SVN_USERNAME_ENV, SVN_PASSWORD_ENV)
+        )
+        self.m_console.Line(
+            "    3. 让 svn 自己保存凭据: ~/.subversion/config 的 store-auth-creds / store-passwords 需为 yes"
+        )
+        self.m_console.Line("    4. 需要接受自签证书时, 命令行勾选“允许 svn 交互提示 (证书等)”")
+
+    def ResolveTarget(self):
+        """按更新范围解析出要更新的目录"""
+        scope = str(self.m_options.get("scope") or SCOPE_PROJECT)
+        if scope == SCOPE_PROJECT:
+            return self.m_settings.project_root
+        if scope == SCOPE_WC_ROOT:
+            wc_root = self.WorkingCopyRoot(self.m_settings.project_root)
+            if not wc_root:
+                raise ModuleError(
+                    "当前项目根路径不在 SVN 工作副本中: %s" % self.m_settings.project_root
+                )
+            return wc_root
+        if scope != SCOPE_CUSTOM:
+            raise ModuleError("未知的更新范围: %s" % scope)
+
+        raw = str(self.m_options.get("path") or "").strip()
+        if not raw:
+            raise ModuleError("更新范围为自定义路径时, 必须填写 path")
+        if not os.path.isabs(raw):
+            raw = os.path.join(self.m_settings.project_root, raw)
+        return os.path.normpath(raw)
+
+    def WorkingCopyRoot(self, path):
+        """读取工作副本根目录, 不是工作副本时返回空字符串"""
+        value = self.QueryInfo("wc-root", path)
+        return os.path.normpath(value) if value else ""
+
+    def QueryInfo(self, item, path):
+        """读取 svn info 的单个字段, 失败返回空字符串
+
+        优先用 svn 1.9+ 的 --show-item, 老版本回退到 --xml,
+        兼容 Linux 发行版自带的 svn 1.7/1.8.
+        """
+        code, output = RunCaptured(
+            [self.m_svn, "info", "--show-item", item, path],
+            cwd=path,
+        )
+        if code == 0:
+            lines = [line.strip() for line in output.splitlines() if line.strip()]
+            if lines:
+                return lines[-1]
+        return self.InfoFromXml(item, path)
+
+    def InfoFromXml(self, item, path):
+        """解析 svn info --xml 结果, 同一路径只查一次"""
+        cached = self.m_info_cache.get(path)
+        if cached is None:
+            code, output = RunCaptured([self.m_svn, "info", "--xml", path], cwd=path)
+            cached = ParseInfoXml(output) if code == 0 else {}
+            self.m_info_cache[path] = cached
+        return cached.get(item, "")
+
+    def ReportConflicts(self, path):
+        """更新后检查状态, 有冲突或缺失文件时提示用户处理"""
+        code, output = RunCaptured([self.m_svn, "status", path], cwd=path)
+        if code != 0:
+            return
+
+        conflicts = [
+            line for line in output.splitlines()
+            if line[:1] in CONFLICT_STATUS
+        ]
+        if not conflicts:
+            return
+
+        self.m_console.Warn("  以下文件存在冲突或缺失, 请手动处理:")
+        for line in conflicts[:MAX_CONFLICT_LINES]:
+            self.m_console.Line("    %s" % line)
+        if len(conflicts) > MAX_CONFLICT_LINES:
+            self.m_console.Warn("    ... 其余 %d 项省略" % (len(conflicts) - MAX_CONFLICT_LINES))

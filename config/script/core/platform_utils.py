@@ -13,6 +13,8 @@ import shutil
 import subprocess
 import sys
 
+from .console import COLOR_RED, COLOR_YELLOW
+from .diagnostics import AUTO_LINE_WIDTH, MAX_LINE_WIDTH, WrapDisplayLine
 from .errors import ModuleError
 
 # 平台标识
@@ -22,6 +24,12 @@ IS_LINUX = sys.platform.startswith("linux")
 
 # 可执行文件后缀
 EXE_SUFFIX = ".exe" if IS_WINDOWS else ""
+
+# 过滤器返回的级别 -> 输出颜色
+FILTERED_LINE_COLORS = {
+    "warning": COLOR_YELLOW,
+    "error": COLOR_RED,
+}
 
 # Windows 创建独立控制台窗口
 CREATE_NEW_CONSOLE = getattr(subprocess, "CREATE_NEW_CONSOLE", 0)
@@ -302,15 +310,55 @@ def OpenPath(path):
         raise ModuleError("打开路径失败: %s (%s)" % (path, error)) from error
 
 
-def RunStreaming(command, cwd, console, env=None):
+def TerminalColumns():
+    """折行宽度: 跟随终端列宽, 但不超过 AUTO_LINE_WIDTH, 拿不到时用该上限"""
+    if MAX_LINE_WIDTH > 0:
+        return MAX_LINE_WIDTH
+    try:
+        size = shutil.get_terminal_size(fallback=(0, 0))
+        columns = size.columns
+    except (OSError, ValueError):
+        columns = 0
+    if columns <= 0:
+        columns = AUTO_LINE_WIDTH
+    return min(columns, AUTO_LINE_WIDTH)
+
+
+def IsInteractiveStdin():
+    """判断标准输入是否是终端, 管道和 GUI 下都无法交互输入"""
+    checker = getattr(sys.stdin, "isatty", None)
+    if checker is None:
+        return False
+    try:
+        return bool(checker())
+    except (AttributeError, OSError, ValueError):
+        return False
+
+
+def RunStreaming(command, cwd, console, env=None, line_filter=None,
+                 stdin_text=None, interactive=False, capture_lines=None):
     """执行外部命令并逐行输出, 返回退出码.
 
     逐行读取可以同时兼容命令行和 GUI 的日志收集.
+    line_filter 可选, 传入带 Feed(text) 与 Flush() 的对象, 用于压缩工具的多行诊断输出.
+    stdin_text 给子进程写入一行标准输入(例如密码), 不落命令行;
+    interactive=True 时把终端完整交给子进程, 允许账号密码/证书提示正常显示;
+    capture_lines 传入列表时顺带收集原始输出行, 便于失败后判断错误原因.
     """
     console.Line("  > %s" % " ".join(command))
     process_env = os.environ.copy()
     if env:
         process_env.update(env)
+
+    # 交互模式必须直接占用终端, 提示语写进管道看不到
+    if interactive and stdin_text is None:
+        try:
+            result = subprocess.run(command, cwd=cwd, env=process_env, check=False)
+        except OSError as error:
+            raise ModuleError("执行命令失败: %s (%s)" % (" ".join(command), error)) from error
+        return result.returncode
+
+    process_stdin = subprocess.PIPE if stdin_text is not None else subprocess.DEVNULL
 
     try:
         process = subprocess.Popen(
@@ -322,18 +370,48 @@ def RunStreaming(command, cwd, console, env=None):
             text=True,
             encoding="utf-8",
             errors="replace",
-            stdin=subprocess.DEVNULL,
+            stdin=process_stdin,
         )
     except OSError as error:
         raise ModuleError("执行命令失败: %s (%s)" % (" ".join(command), error)) from error
 
+    # 密码很短, 直接写入并关闭, 不会填满管道
+    if stdin_text is not None and process.stdin is not None:
+        try:
+            process.stdin.write(stdin_text + "\n")
+            process.stdin.flush()
+        except OSError:
+            pass
+        finally:
+            try:
+                process.stdin.close()
+            except OSError:
+                pass
+
+    # 终端宽度减一, 避免刚好顶到最后一列触发终端自己的折行
+    wrap_width = TerminalColumns() - 1 if line_filter is not None else 0
     if process.stdout is not None:
         for line in process.stdout:
-            console.Line("  " + line.rstrip("\r\n"))
-    return process.wait()
+            text = line.rstrip("\r\n")
+            if capture_lines is not None:
+                capture_lines.append(text)
+            if line_filter is None:
+                console.Line("  " + text)
+                continue
+            for level, output in line_filter.Feed(text):
+                for chunk in WrapDisplayLine("  " + output, wrap_width):
+                    console.Line(chunk, FILTERED_LINE_COLORS.get(level))
+
+    code = process.wait()
+    # 进程结束后补齐被过滤器暂存的内容, 避免最后一条诊断丢失
+    if line_filter is not None:
+        for level, output in line_filter.Flush():
+            for chunk in WrapDisplayLine("  " + output, wrap_width):
+                console.Line(chunk, FILTERED_LINE_COLORS.get(level))
+    return code
 
 
-def RunCaptured(command, cwd, env=None, timeout=None):
+def RunCaptured(command, cwd=None, env=None, timeout=None):
     """执行外部命令并返回 (退出码, 合并输出)"""
     process_env = os.environ.copy()
     if env:

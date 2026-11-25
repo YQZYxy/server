@@ -34,7 +34,6 @@ from ..core.platform_utils import (
     IsRuntimeLib,
     LinkDir,
     LinkFile,
-    ResolvePathFromRoot,
     RunHidden,
     RuntimeLibFiles,
 )
@@ -173,12 +172,8 @@ class ValidateConfigModule(Module):
     DESCRIPTION = "隔离拉起 logicserver 启动验证, 失败输出错误日志"
 
     OPTIONS = (
-        Option("instance_root", "实例根目录", "string",
-               default_from="service.default_instance_root"),
         Option("instance", "验证实例", "string",
                default_from="service.default_validate_instance"),
-        Option("exe_dir", "可执行文件目录", "string",
-               default_from="service.default_validate_exe_dir"),
         Option("timeout", "启动超时 (秒)", "int",
                default_from="service.validate_timeout"),
         Option("show_lines", "失败时显示日志行数", "int",
@@ -244,9 +239,7 @@ class ValidateConfigRunner(object):
     def PickTarget(self):
         """按名称挑选验证实例, 未指定时选第一个逻辑服"""
         names = []
-        targets, _root, _blueprint = LoadTargets(
-            self.m_settings, self.m_options["instance_root"]
-        )
+        targets, _root, _blueprint = LoadTargets(self.m_settings)
         for target in targets:
             if SERVER_LOGIC in target.services:
                 names.append(target.name)
@@ -329,16 +322,15 @@ class ValidateConfigRunner(object):
         self.m_luascript_dir = self.m_settings.Path(
             "paths.luascript_dir", must_exist=True
         )
-        self.m_exe_dir = ResolvePathFromRoot(
-            self.m_settings, self.m_options["exe_dir"]
-        )
+        self.m_exe_dir = self.m_settings.deploy_dir
+        if not self.m_exe_dir:
+            raise ModuleError("尚未选择部署目录, 请先运行 python auto.py 选择")
         self.m_exe_path = self.FindExecutable(self.m_exe_dir, "logicserver")
         if not os.path.isfile(self.m_exe_path):
             raise ModuleError(
                 "找不到 logicserver 可执行文件: %s\n"
-                "  请先编译, 或在 %s 的 "
-                "service.default_validate_exe_dir 配置可执行文件目录"
-                % (self.m_exe_path, self.m_settings.config_file)
+                "  请先运行编译打包模块, 把可执行文件打包到部署目录"
+                % self.m_exe_path
             )
 
         count = 0
@@ -364,8 +356,8 @@ class ValidateConfigRunner(object):
 
     def PrepareWorkDir(self, target):
         """创建独立验证目录, 不占用实例目录"""
-        work_root = ResolvePathFromRoot(
-            self.m_settings, self.m_settings.Require("service.validate_work_root")
+        work_root = self.m_settings.DeployPath(
+            self.m_settings.Require("service.validate_work_dir")
         )
         stamp = time.strftime("%Y%m%d_%H%M%S")
         name = "%s_%s_%d" % (target.name, stamp, os.getpid())

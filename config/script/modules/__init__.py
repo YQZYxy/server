@@ -12,7 +12,9 @@ from .build import BuildModule
 from .config_table import ConfigTableModule
 from .deploy import DeployModule, ResetDatabaseModule
 from .deploy_config import DeployConfigModule
+from .deploy_dir import DeployDirModule
 from .doctor import DoctorModule
+from .hot_update import HotUpdateModule
 from .lua_bindings import LuaBindingsModule
 from .mysql_def import MysqlDefModule
 from .protobuf import ProtobufModule
@@ -27,12 +29,15 @@ from .service import (
 )
 from .settings_tool import SettingsModule
 from .stress import StressModule
+from .svn_update import SvnUpdateModule
 from .validate_config import ValidateConfigModule
 
 
 def create_modules():
     """返回按菜单顺序排列的模块"""
     return [
+        DeployDirModule(),
+        SvnUpdateModule(),
         BuildModule(),
         DeployConfigModule(),
         DeployModule(),
@@ -42,6 +47,7 @@ def create_modules():
         StopModule(),
         StopAllModule(),
         RestartModule(),
+        HotUpdateModule(),
         ValidateConfigModule(),
         LogsModule(),
         ClearLogsModule(),

@@ -9,10 +9,9 @@
     {
       "name": "base",
       "hidden": true,
-      "description": "生成 VS工程到 build 目录",
+      "description": "生成 VS工程到 build 目录, 各预设使用独立子目录",
       "generator": "Visual Studio 18 2026",
       "architecture": "x64",
-      "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_CXX_STANDARD": "17",
         "CMAKE_CXX_STANDARD_REQUIRED": "ON",
@@ -25,8 +24,10 @@
       "displayName": "x64 Debug",
       "description": "Debug 配置",
       "inherits": "base",
+      "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_BUILD_TYPE": "Debug",
+        "SERVER_DEPLOY_DIR": "${sourceDir}/debug"
       }
     },
     {
@@ -34,8 +35,10 @@
       "displayName": "x64 Release",
       "description": "Release 配置",
       "inherits": "base",
+      "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+        "CMAKE_BUILD_TYPE": "Release",
+        "SERVER_DEPLOY_DIR": "${sourceDir}/release"
       }
     }
   ],

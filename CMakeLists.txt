@@ -107,22 +107,46 @@ link_directories(
 # 动态/静态链接选项
 option(BUILD_SHARED_LIBS "使用动态链接库 (DLL)，OFF 则为静态链接" OFF)
 
+# 可执行文件输出目录: 留空时输出到 <构建目录>/bin, 由脚本打包复制到部署目录
+set(SERVER_OUTPUT_DIR "" CACHE PATH "可执行文件输出目录, 留空使用 <构建目录>/bin")
+# 服务器运行目录: 留空时 Debug/Release 分别使用源码目录下的 debug/release
+set(SERVER_DEPLOY_DIR "" CACHE PATH "服务器运行目录(VS 调试工作目录), 留空按配置使用 debug/release")
+
+# 随程序分发的运行库
+file(GLOB SERVER_RUNTIME_LIBS CONFIGURE_DEPENDS
+    "${CMAKE_SOURCE_DIR}/lib/*.dll"
+    "${CMAKE_SOURCE_DIR}/lib/*.so"
+    "${CMAKE_SOURCE_DIR}/lib/*.dylib"
+)
+
 # 设置可执行文件输出目录
 function(set_output_directory target_name)
-    if(WIN32)
-        set_target_properties(${target_name} PROPERTIES
-            RUNTIME_OUTPUT_DIRECTORY_DEBUG   ${CMAKE_CURRENT_SOURCE_DIR}/../debug
-            RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/../release
+    if(SERVER_OUTPUT_DIR)
+        set(output_dir "${SERVER_OUTPUT_DIR}")
+    else()
+        set(output_dir "${CMAKE_BINARY_DIR}/bin")
+    endif()
+    # 各配置统一输出到同一目录, 避免多配置生成器再追加 Debug/Release 子目录
+    set_target_properties(${target_name} PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${output_dir}"
+        RUNTIME_OUTPUT_DIRECTORY_DEBUG "${output_dir}"
+        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${output_dir}"
+    )
+    if(SERVER_RUNTIME_LIBS)
+        add_custom_command(TARGET ${target_name} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                ${SERVER_RUNTIME_LIBS}
+                "$<TARGET_FILE_DIR:${target_name}>"
         )
-        if(MSVC)
-            set_target_properties(${target_name} PROPERTIES
-                VS_DEBUGGER_WORKING_DIRECTORY "$<IF:$<CONFIG:Debug>,${CMAKE_SOURCE_DIR}/debug,${CMAKE_SOURCE_DIR}/release>"
-            )
+    endif()
+    if(MSVC)
+        if(SERVER_DEPLOY_DIR)
+            set(debugger_dir "${SERVER_DEPLOY_DIR}")
+        else()
+            set(debugger_dir "$<IF:$<CONFIG:Debug>,${CMAKE_SOURCE_DIR}/debug,${CMAKE_SOURCE_DIR}/release>")
         endif()
-    elseif(UNIX)
-        string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE_LOWER)
         set_target_properties(${target_name} PROPERTIES
-            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../${BUILD_TYPE_LOWER}
+            VS_DEBUGGER_WORKING_DIRECTORY "${debugger_dir}"
         )
     endif()
 endfunction()

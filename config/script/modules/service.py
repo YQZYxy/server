@@ -83,9 +83,9 @@ def FilterTargets(context, targets, instance_names):
     return selected
 
 
-def SelectedTargets(context, instance_root, instance_names, all_instances=False):
-    """读取实例清单并按勾选结果返回目标"""
-    targets, root_dir, _blueprint = LoadTargets(context.settings, instance_root)
+def SelectedTargets(context, instance_names, all_instances=False):
+    """读取实例清单并按勾选结果返回目标, 实例根目录统一使用部署目录"""
+    targets, root_dir, _blueprint = LoadTargets(context.settings)
     if all_instances:
         return targets, root_dir
     return FilterTargets(context, targets, instance_names), root_dir
@@ -99,8 +99,6 @@ class StartModule(Module):
     DESCRIPTION = "勾选要启动的服务器, 支持 Vite 开发服, 跟随日志和独立日志窗口"
 
     OPTIONS = (
-        Option("instance_root", "实例根目录", "string",
-               default_from="service.default_instance_root"),
         Option("webui", "启动前端 Vite 开发服务器", "bool",
                default_from="service.webui_enabled"),
         Option("foreground", "前台管理服务 (Ctrl+C 停止全部)", "bool",
@@ -112,7 +110,8 @@ class StartModule(Module):
         Option("instances", "启动服务器", "multi_choice",
                default_from="service.start_instances",
                groups=InstanceChoiceGroups,
-               item_tips=InstanceChoiceTips),
+               item_tips=InstanceChoiceTips,
+               layout="list"),
     )
 
     def Run(self, context, options):
@@ -142,20 +141,18 @@ class StopModule(Module):
     DESCRIPTION = "勾选要停止的服务器, 按 pid 文件精确停止, 可同时停止前端 Vite"
 
     OPTIONS = (
-        Option("instance_root", "实例根目录", "string",
-               default_from="service.default_instance_root"),
         Option("webui", "同时停止前端 Vite 开发服务器", "bool",
                default_from="service.stop_webui"),
         Option("instances", "停止服务器", "multi_choice",
                default_from="service.stop_instances",
                groups=InstanceChoiceGroups,
-               item_tips=InstanceChoiceTips),
+               item_tips=InstanceChoiceTips,
+               layout="list"),
     )
 
     def Run(self, context, options):
         return StopServices(
             context,
-            options["instance_root"],
             options["instances"],
             stop_webui=bool(options["webui"]),
         )
@@ -168,13 +165,10 @@ class StopAllModule(Module):
     TITLE = "停止全部服务器"
     DESCRIPTION = "一键停止实例清单中的全部服务器和前端 Vite 开发服"
 
-    OPTIONS = (
-        Option("instance_root", "实例根目录", "string",
-               default_from="service.default_instance_root"),
-    )
+    OPTIONS = ()
 
     def Run(self, context, options):
-        return StopServices(context, options["instance_root"], None, True)
+        return StopServices(context, None, True)
 
 
 class RestartModule(Module):
@@ -189,7 +183,6 @@ class RestartModule(Module):
     def Run(self, context, options):
         StopServices(
             context,
-            options["instance_root"],
             options["instances"],
             stop_webui=bool(options["webui"]),
         )
@@ -204,8 +197,6 @@ class ClearLogsModule(Module):
     DESCRIPTION = "删除实例 log/runlog 下的日志文件, 保留 pid 与目录结构"
 
     OPTIONS = (
-        Option("instance_root", "实例根目录", "string",
-               default_from="service.default_instance_root"),
         Option("scope", "清理范围", "choice",
                default_from="service.default_clear_scope",
                items=[
@@ -228,8 +219,6 @@ class LogsModule(Module):
     DESCRIPTION = "跟随实例日志, 支持服务类型与正则过滤"
 
     OPTIONS = (
-        Option("instance_root", "实例根目录", "string",
-               default_from="service.default_instance_root"),
         Option("instance", "实例名 (空=第一个逻辑服)", "string",
                default_from="service.default_log_instance"),
         Option("service", "服务名", "choice",
@@ -267,7 +256,6 @@ class StartRunner(object):
     def Run(self):
         self.m_targets, self.m_exe_dir = SelectedTargets(
             self.m_context,
-            self.m_options["instance_root"],
             self.m_options.get("instances"),
             self.m_all_instances,
         )
@@ -319,8 +307,7 @@ class ServiceManager(object):
             self.m_console.Line()
             self.m_console.Success("[service] 服务已在后台启动, 本窗口即将退出")
             self.m_console.Line(
-                "[service] 停止服务请运行: python auto.py --cli --module stop --option instance_root=%s"
-                % self.m_exe_dir
+                "[service] 停止服务请运行: python auto.py --cli --module stop"
             )
             return 0
 
@@ -342,8 +329,7 @@ class ServiceManager(object):
         """检查实例目录并同步资源"""
         if not os.path.isdir(self.m_exe_dir):
             raise ModuleError(
-                "找不到实例根目录 %s\n  请先运行创建服务器模块, 或在配置中修改 service.default_instance_root"
-                % self.m_exe_dir
+                "找不到部署目录 %s\n  请先运行创建服务器模块" % self.m_exe_dir
             )
 
         missing = [target.name for target in self.m_targets if not os.path.isdir(target.path)]
@@ -355,7 +341,7 @@ class ServiceManager(object):
         os.makedirs(self.m_runlog_dir, exist_ok=True)
         self.SyncResources()
 
-        self.m_console.Line("[service] 实例根目录: %s" % self.m_exe_dir)
+        self.m_console.Line("[service] 部署目录: %s" % self.m_exe_dir)
         for target in self.m_targets:
             self.m_console.Line(
                 "[service] 实例: %-10s %s" % (target.name, ", ".join(target.services))
@@ -435,7 +421,6 @@ class ServiceManager(object):
     def OpenLogWindow(self, target, service):
         """启动独立控制台窗口跟随指定实例日志"""
         options = {
-            "instance_root": self.m_exe_dir,
             "instance": target.name,
             "service": service,
             "lines": str(self.m_settings.Require("service.tail_lines")),
@@ -693,7 +678,7 @@ def CollectStopEntries(targets, stop_webui, root_dir):
     entries = []
     services = (SERVER_GATEWAY, SERVER_LOGIC, SERVER_GLOBAL, SERVER_DB)
 
-    # 前端 Vite 的 pid 写在实例根目录的 runlog 下
+    # 前端 Vite 的 pid 写在部署目录的 runlog 下
     if stop_webui:
         webui_runlog = os.path.join(root_dir, "runlog")
         webui_pid = ReadPidFile(webui_runlog, SERVER_WEBUI)
@@ -733,14 +718,14 @@ def StopPid(context, name, pid, working_dir):
     return managed.Stop(timeout)
 
 
-def StopServices(context, instance_root, instance_names=None, stop_webui=None):
+def StopServices(context, instance_names=None, stop_webui=None):
     """停止勾选的实例服务并清理 pid 文件.
 
     instance_names 为 None 时表示全部实例; stop_webui 默认只在停止全部时关闭 Vite.
     """
     settings = context.settings
     console = context.console
-    targets, root_dir, _blueprint = LoadTargets(settings, instance_root)
+    targets, root_dir, _blueprint = LoadTargets(settings)
     if instance_names is None:
         selected = targets
     else:
@@ -827,9 +812,7 @@ class ClearLogsRunner(object):
         self.m_options = options
 
     def Run(self):
-        targets, root_dir, _blueprint = LoadTargets(
-            self.m_settings, self.m_options["instance_root"]
-        )
+        targets, root_dir, _blueprint = LoadTargets(self.m_settings)
         scope = self.m_options["scope"]
         files = []
 
@@ -896,9 +879,7 @@ class LogsRunner(object):
         self.m_options = options
 
     def Run(self):
-        targets, _root, _blueprint = LoadTargets(
-            self.m_settings, self.m_options["instance_root"]
-        )
+        targets, _root, _blueprint = LoadTargets(self.m_settings)
         service = self.m_options["service"]
         instance_name = str(self.m_options["instance"]).strip()
         target = None

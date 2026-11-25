@@ -69,7 +69,7 @@ build/ debug/ release/    构建输出与部署实例
 
 ## 统一脚本入口
 
-所有构建、部署、启停、协议生成、Lua 绑定、数据库表定义、配置表导出都走同一入口:
+所有构建、部署、启停、协议生成、Lua 绑定、数据库表定义、配置表导出、SVN 更新与热更都走同一入口:
 
 ```bash
 python auto.py              # Windows 打开 GUI, Linux/macOS 进入命令行
@@ -90,7 +90,7 @@ python auto.py --cli --module protobuf
 | 分类 | 模块 |
 |---|---|
 | 构建 | `build` |
-| 部署运维 | `deploy_config` `deploy` `reset_db` `start` `start_all` `stop` `stop_all` `restart` `validate_config` `logs` `clean_logs` |
+| 部署运维 | `deploy_config` `deploy` `reset_db` `start` `start_all` `stop` `stop_all` `restart` `hot_update` `validate_config` `logs` `clean_logs` |
 | 代码生成 | `protobuf` `lua_bindings` `mysql_def` `config_table` |
 | 测试环境 | `stress` `doctor` `settings` |
 
@@ -101,9 +101,9 @@ python auto.py --cli --module protobuf
 | `project_root` | 仓库根目录, 相对 `config/script` 解析 |
 | `paths.deploy_dir` | 部署目录(默认 `debug`), 存放基础配置副本 |
 | `paths.*` | 实例清单、公共配置、SQL、逻辑配置、Lua、前端、运行库路径 |
-| `build.*` | CMake 路径/生成器、构建目录、并行任务、前端开关 |
-| `deploy.*` | 构建目录、实例列表、链接/覆盖策略、数据库初始化 |
-| `service.*` | 实例根目录、启停列表、超时、日志、配置验证参数 |
+| `build.*` | CMake 路径/生成器、构建根目录 (`build/<类型>`)、默认类型、并行任务、前端开关 |
+| `deploy.*` | 实例列表、链接/覆盖策略、数据库初始化 |
+| `service.*` | 启停列表、超时、日志、配置验证参数 |
 | `protobuf.*` | protoc 路径与 C++/Lua/TS 输出路径 |
 | `lua_bindings.*` `mysql_def.*` `config_table.*` | 各类代码生成路径 |
 | `stress.*` | 压测协议、报告与界面状态文件 |
@@ -126,7 +126,7 @@ python auto.py --cli --module build --option webui_only=true   # 只构建前端
 ```bash
 # 创建实例目录 + 配置 + 数据库
 python auto.py --cli --module deploy
-python auto.py --cli --module deploy --option instances=s2 --option variant=debug
+python auto.py --cli --module deploy --option instances=s2
 python auto.py --cli --module deploy --option force=true          # 删除重建
 python auto.py --cli --module deploy --option update_config=true  # 只更新配置
 
@@ -144,7 +144,7 @@ python auto.py --cli --module reset_db --option instances=s2 --option assume_yes
 实例目录结构 (以 s1 为例):
 
 ```text
-debug/s1/
+<deploy_dir>/s1/
   gatewayserver.exe  logicserver.exe  dbserver.exe
   config/config.json          # 本实例差异, extends baseconfig.json
   config/baseconfig.json      # 公共骨架
@@ -160,7 +160,7 @@ debug/s1/
 - 启动前自动同步可执行文件、`.pdb`、`lib/*.dll`、`config/logicconfig`、`luascript`、`client/webui/dist`.
 - 普通服分区大小由 `service.zone_group_size` 控制, 默认 5.
 - `stop` 默认同时关闭 Vite, 可用 `--option webui=false` 保留.
-- 配置验证: `python auto.py --cli --module validate_config --option instance=s1`, 在 `debug/.validate/` 隔离启动一次 logicserver.
+- 配置验证: `python auto.py --cli --module validate_config --option instance=s1`, 在 `<部署目录>/.validate/` 隔离启动一次 logicserver.
 - 压测: `python auto.py --cli --module stress`, 场景在 [config/script/stress/scenarios.py](config/script/stress/scenarios.py) 注册.
 
 ## 开发工作流

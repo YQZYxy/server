@@ -11,7 +11,7 @@
 只作为默认模板, 不参与后续读写.
 
 在部署目录下生成实例目录:
-  <variant>/<name>/
+  <deploy_dir>/<name>/
     <exe>                    按 executables 复制或链接
     config/config.json       只保留本实例差异, extends baseconfig.json
     config/baseconfig.json   公共骨架
@@ -52,7 +52,6 @@ BASECONFIG_PATH = None
 MYSQL_SCHEMA_PATH = None
 RUNTIME_LIBS_DIR = None
 SETTINGS = None
-DEFAULT_VARIANT = ""
 MYSQL_PORT = 3306
 MYSQL_CHARSET = "utf8mb4"
 MYSQL_SEARCH_VERSIONS = []
@@ -81,7 +80,7 @@ SERVICE_RESOURCES = {}
 def ConfigurePaths(settings):
     """把配置中的路径注入到本模块"""
     global ROOT_DIR, BLUEPRINT_PATH, BASECONFIG_PATH, MYSQL_SCHEMA_PATH
-    global RUNTIME_LIBS_DIR, SETTINGS, DEFAULT_VARIANT, MYSQL_PORT, MYSQL_CHARSET
+    global RUNTIME_LIBS_DIR, SETTINGS, MYSQL_PORT, MYSQL_CHARSET
     global MYSQL_SEARCH_VERSIONS, SERVICE_RESOURCES
 
     SETTINGS = settings
@@ -90,7 +89,6 @@ def ConfigurePaths(settings):
     BASECONFIG_PATH = Path(settings.Path("paths.baseconfig", must_exist=True))
     MYSQL_SCHEMA_PATH = Path(settings.Path("paths.mysql_schema", must_exist=True))
     RUNTIME_LIBS_DIR = Path(settings.Path("paths.runtime_lib_dir", must_exist=True))
-    DEFAULT_VARIANT = str(settings.Require("deploy.default_variant"))
     MYSQL_PORT = int(settings.Require("deploy.mysql_port"))
     MYSQL_CHARSET = str(settings.Require("deploy.mysql_character_set"))
     MYSQL_SEARCH_VERSIONS = list(settings.Get("deploy.windows_mysql_search_versions", list))
@@ -337,36 +335,22 @@ def validate_merged(merged, node):
     return errors
 
 
-def resolve_build_dir(name_or_path):
-    """把构建目录解析成绝对路径, 相对路径按仓库根目录解析"""
-    candidate = Path(str(name_or_path))
-    if not candidate.is_absolute():
-        candidate = ROOT_DIR / candidate
-    return candidate
+def resolve_deploy_dir(settings):
+    """返回 (部署目录, 错误说明)"""
+    raw = str(settings.deploy_dir or "").strip()
+    if not raw:
+        return None, "尚未选择部署目录"
+    deploy_dir = Path(raw)
+    if not deploy_dir.is_dir():
+        return None, "%s 目录不存在" % deploy_dir
 
-
-def resolve_variant(blueprint, cli_variant):
-    """返回 (variant_dir, error), 找不到可执行文件时 variant_dir 为 None
-
-    支持配置成任意目录(相对仓库根或绝对路径), 例如 build/debug、out/x64/Release
-    """
-    notes = []
-    selected = str(cli_variant or DEFAULT_VARIANT).strip()
-    if selected and selected != "auto":
-        candidates = [selected]
-    else:
-        candidates = ["release", "debug"]
-
-    for name in candidates:
-        variant_dir = resolve_build_dir(name)
-        if not variant_dir.is_dir():
-            notes.append(f"{variant_dir} 目录不存在")
-            continue
-        if any(variant_dir.glob("*" + EXE_EXT)):
-            return variant_dir, ""
-        notes.append(f"{variant_dir} 目录里没有可执行文件")
-
-    return None, ", ".join(notes)
+    # 按构建产物清单检查, 避免 Linux 下 glob("*") 把配置目录误认为可执行文件
+    sub_projects = settings.Get("build.sub_projects", list)
+    if not sub_projects:
+        return None, "build.sub_projects 必须是非空数组"
+    if not any((deploy_dir / (str(name) + EXE_EXT)).is_file() for name in sub_projects):
+        return None, "%s 目录里没有可执行文件" % deploy_dir
+    return deploy_dir, ""
 
 
 def remove_path(path):
@@ -599,8 +583,6 @@ class DeployModule(Module):
     DESCRIPTION = "勾选服务器并按实例清单生成目录/配置, 并初始化不存在的数据库"
 
     OPTIONS = (
-        Option("variant", "构建目录 (auto 或相对仓库根/绝对路径)", "string",
-               default_from="deploy.default_variant"),
         Option("link", "可执行文件与资源目录使用链接", "bool",
                default_from="deploy.link"),
         Option("force", "实例目录已存在时删除重建", "bool", default=False),
@@ -611,7 +593,8 @@ class DeployModule(Module):
         Option("instances", "创建服务器", "multi_choice",
                default_from="deploy.instances",
                groups=InstanceChoiceGroups,
-               item_tips=InstanceChoiceTips),
+               item_tips=InstanceChoiceTips,
+               layout="list"),
     )
 
     def Run(self, context, options):
@@ -630,7 +613,8 @@ class ResetDatabaseModule(Module):
         Option("instances", "重置数据库", "multi_choice",
                default_from="reset_db.instances",
                groups=DatabaseChoiceGroups,
-               item_tips=InstanceChoiceTips),
+               item_tips=InstanceChoiceTips,
+               layout="list"),
     )
 
     def Run(self, context, options):
@@ -657,10 +641,13 @@ class DeployRunner(object):
         if errors:
             raise ModuleError("实例清单校验失败:\n  " + "\n  ".join(errors))
 
-        variant_dir, resolve_error = resolve_variant(blueprint, self.m_options["variant"])
-        if variant_dir is None:
+        deploy_dir, resolve_error = resolve_deploy_dir(self.m_context.settings)
+        if deploy_dir is None:
             raise ModuleError(
-                "找不到服务器可执行文件 (%s), 请先运行编译打包模块" % resolve_error
+                "部署目录不可用 (%s)\n"
+                "  当前项目根目录: %s\n"
+                "  请确认编译打包与创建服务器在同一个仓库目录/运行环境下执行"
+                % (resolve_error, self.m_context.settings.project_root)
             )
 
         selected_nodes = filter_nodes(
@@ -686,14 +673,14 @@ class DeployRunner(object):
 
         self.m_console.Line("  实例清单: %s" % BLUEPRINT_PATH)
         self.m_console.Line(
-            "  目标目录: %s (link=%s, force=%s, dry_run=%s)"
-            % (variant_dir, use_link, self.m_options["force"], dry_run)
+            "  部署目录: %s (link=%s, force=%s, dry_run=%s)"
+            % (deploy_dir, use_link, self.m_options["force"], dry_run)
         )
 
         created = 0
         skipped = 0
         for node, instance_config in plans:
-            instance_dir = variant_dir / node["name"]
+            instance_dir = deploy_dir / node["name"]
             if instance_dir.exists() and skip_existing:
                 if self.m_options["update_config"] and not dry_run and (instance_dir / "config").is_dir():
                     write_json(instance_dir / "config" / "config.json", instance_config)
@@ -714,7 +701,7 @@ class DeployRunner(object):
                 remove_path(instance_dir)
             instance_dir.mkdir(parents=True, exist_ok=True)
 
-            exe_paths = [variant_dir / (exe + EXE_EXT) for exe in node["executables"]]
+            exe_paths = [deploy_dir / (exe + EXE_EXT) for exe in node["executables"]]
             missing = [path.name for path in exe_paths if not path.is_file()]
             if missing:
                 raise ModuleError("%s: 缺少可执行文件 %s" % (node["name"], ", ".join(missing)))
@@ -722,9 +709,9 @@ class DeployRunner(object):
             pdb_paths = []
             if copy_pdb:
                 pdb_paths = [
-                    variant_dir / (exe + ".pdb")
+                    deploy_dir / (exe + ".pdb")
                     for exe in node["executables"]
-                    if (variant_dir / (exe + ".pdb")).is_file()
+                    if (deploy_dir / (exe + ".pdb")).is_file()
                 ]
 
             for name, mode_text in deploy_files(exe_paths + pdb_paths, instance_dir, use_link):

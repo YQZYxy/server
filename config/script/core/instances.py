@@ -65,11 +65,13 @@ class InstanceTarget(object):
         return "normal"
 
 
-def ResolveInstanceRoot(settings, raw_value):
-    """实例根目录, 支持相对仓库根或绝对路径"""
+def ResolveInstanceRoot(settings, raw_value=""):
+    """实例根目录, 未指定时使用统一的部署目录"""
     value = str(raw_value or "").strip()
     if not value:
-        raise ModuleError("实例根目录不能为空")
+        if not settings.deploy_dir:
+            raise ModuleError("尚未选择部署目录, 请先运行 python auto.py 选择")
+        return settings.deploy_dir
     if not os.path.isabs(value):
         value = os.path.join(settings.project_root, value)
     return os.path.normpath(value)
@@ -92,7 +94,7 @@ def LoadBlueprint(settings):
     return blueprint
 
 
-def LoadTargets(settings, instance_root_raw):
+def LoadTargets(settings, instance_root_raw=""):
     """读取实例清单并解析出实例目录"""
     blueprint = LoadBlueprint(settings)
     instance_root = ResolveInstanceRoot(settings, instance_root_raw)
@@ -117,9 +119,7 @@ def LoadTargets(settings, instance_root_raw):
 
 def BuildChoiceGroups(context, database_only=False):
     """按中心服/跨服/大跨服/分区生成服务器分组"""
-    targets, _root, blueprint = LoadTargets(
-        context.settings, context.settings.Require("service.default_instance_root")
-    )
+    targets, _root, blueprint = LoadTargets(context.settings)
     nodes = {
         str(node.get("name")): node
         for node in blueprint["nodes"]
@@ -191,9 +191,7 @@ def DatabaseChoiceItems(context):
 
 def InstanceChoiceTips(context):
     """服务器多选列表的鼠标提示: 显示该实例的部署配置"""
-    targets, _root, blueprint = LoadTargets(
-        context.settings, context.settings.Require("service.default_instance_root")
-    )
+    targets, _root, blueprint = LoadTargets(context.settings)
     target_paths = {target.name: target.path for target in targets}
     tips = {}
     for node in blueprint["nodes"]:
@@ -286,13 +284,36 @@ def SyncFileIfChanged(src, dst):
     return True
 
 
-def SyncDirIfChanged(src_dir, dst_dir):
-    """递归同步目录, 不删除目标多余文件"""
+def SyncDirIfChanged(src_dir, dst_dir, exclude=None):
+    """递归同步目录, 不删除目标多余文件
+
+    exclude 为相对源目录的路径(文件或目录), 命中的条目不参与同步.
+    """
+    exclude_items = [
+        os.path.normpath(str(item))
+        for item in (exclude or ())
+        if str(item).strip()
+    ]
+
+    def IsExcluded(rel_path):
+        normalized = os.path.normpath(rel_path)
+        for item in exclude_items:
+            if normalized == item or normalized.startswith(item + os.sep):
+                return True
+        return False
+
     changed = False
-    for root, _dirs, files in os.walk(src_dir):
+    for root, dirs, files in os.walk(src_dir):
         rel = os.path.relpath(root, src_dir)
+        # 被排除的目录整棵剪掉, 避免继续往下遍历
+        dirs[:] = [
+            name for name in dirs
+            if not IsExcluded(name if rel == "." else os.path.join(rel, name))
+        ]
         target_root = dst_dir if rel == "." else os.path.join(dst_dir, rel)
         for name in files:
+            if IsExcluded(name if rel == "." else os.path.join(rel, name)):
+                continue
             src = os.path.join(root, name)
             dst = os.path.join(target_root, name)
             if SyncFileIfChanged(src, dst):

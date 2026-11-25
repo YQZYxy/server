@@ -67,7 +67,7 @@ class SettingsEditor(object):
         self.m_console.Step("当前配置")
         if self.m_settings.deploy_dir:
             self.m_console.Line("  部署目录: %s" % self.m_settings.deploy_dir)
-            self.m_console.Line("  paths.deploy_dir 只能在基础配置 config/script/config.json 中修改")
+            self.m_console.Line("  切换部署目录请使用“部署目录”模块, 全部模块统一以它为准")
         for key, value in self.m_settings.FlatItems():
             text = json.dumps(value, ensure_ascii=False)
             self.m_console.Line("  %-48s = %s" % (key, text))
@@ -76,6 +76,10 @@ class SettingsEditor(object):
         key = key.strip()
         if not key:
             return
+        if key == "paths.deploy_dir":
+            raise ModuleError(
+                "paths.deploy_dir 由“部署目录”模块维护, 请在那里切换部署目录"
+            )
         try:
             current = self.m_settings.Require(key)
         except ConfigError as error:

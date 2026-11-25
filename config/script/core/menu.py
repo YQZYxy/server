@@ -19,7 +19,7 @@ class Option(object):
 
     def __init__(self, name, title, kind, default_from=None, default=None,
                  items=None, help_text="", required=False, persist=True,
-                 item_tips=None, groups=None):
+                 item_tips=None, groups=None, layout="auto", secret=False):
         self.m_name = name
         self.m_title = title
         self.m_kind = kind
@@ -31,6 +31,8 @@ class Option(object):
         self.m_persist = persist
         self.m_item_tips = item_tips
         self.m_groups = groups
+        self.m_layout = layout
+        self.m_secret = secret
 
     @property
     def name(self):
@@ -89,6 +91,21 @@ class Option(object):
     @property
     def help_text(self):
         return self.m_help_text
+
+    @property
+    def layout(self):
+        """GUI 参数区布局: auto 自动判断 / row 固定参数行 / list 独立列表区"""
+        return self.m_layout
+
+    @property
+    def has_groups(self):
+        """是否配置了分组, 服务器清单类的多选按分组渲染"""
+        return self.m_groups is not None
+
+    @property
+    def secret(self):
+        """密码类参数, GUI 输入框用掩码显示"""
+        return self.m_secret
 
     @property
     def required(self):
@@ -339,6 +356,7 @@ class MenuRunner(object):
         console = context.console
         console.Title("服务器脚本工具  (%s)" % PlatformName())
         console.Line("  工作目录: %s" % context.project_root)
+        console.Line("  部署目录: %s" % (context.settings.deploy_dir or "未设置"))
         console.Line("  配置文件: %s" % context.settings.config_file)
         console.Line()
         for index, module in enumerate(self.m_modules, start=1):

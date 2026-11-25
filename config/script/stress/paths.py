@@ -7,7 +7,7 @@
     stress.report_dir  压测报告输出目录
     stress.state_file  界面状态(地址/端口/历史目标)
 
-所有路径相对 project_root 解析
+proto_dir 相对仓库根解析, report_dir/state_file 相对统一部署目录解析
 """
 
 import glob
@@ -77,8 +77,9 @@ def load_config():
     config = {
         "project_root": settings.project_root,
         "proto_dir": proto_dir,
-        "report_dir": settings.Path("stress.report_dir"),
-        "state_file": settings.Path("stress.state_file"),
+        # 压测报告与界面状态都放在统一部署目录下
+        "report_dir": settings.DeployPath(settings.Require("stress.report_dir")),
+        "state_file": settings.DeployPath(settings.Require("stress.state_file")),
         # 界面主题等模块直接复用主配置对象
         "settings": settings,
     }

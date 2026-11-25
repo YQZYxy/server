@@ -54,6 +54,9 @@ config/model
 # python缓存
 __pycache__
 
+# 脚本本地记录 部署目录选择
+config/script/local.json
+
 
 #files
 

@@ -8,6 +8,7 @@ CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 构建前端 -> �
 import os
 import shutil
 
+from ..core.diagnostics import GccDiagnosticFilter
 from ..core.errors import ModuleError
 from ..core.menu import Module, Option
 from ..core.platform_utils import (
@@ -63,9 +64,11 @@ class BuildRunner(object):
 
         build_root = self.m_settings.Path("build.build_root")
         build_dir = os.path.join(build_root, self.m_build_type)
-        output_root = self.m_settings.Path("build.output_root")
-        output_dir = os.path.join(output_root, self.m_build_type)
+        output_dir = self.m_settings.deploy_dir
+        if not output_dir:
+            raise ModuleError("尚未选择部署目录, 请先运行 python auto.py 选择")
 
+        console.Line("  项目根目录: %s" % self.m_root)
         console.Line("  部署目录: %s" % output_dir)
 
         if bool(self.m_options["webui_only"]):
@@ -74,9 +77,9 @@ class BuildRunner(object):
 
         console.Line("  构建目录: %s" % build_dir)
         self.PrepareBuildDir(build_dir)
-        self.Configure(build_dir)
+        self.Configure(build_dir, output_dir)
         self.Compile(build_dir)
-        self.Package(output_dir)
+        self.Package(output_dir, build_dir)
 
         # 完整构建默认包含前端, 只有 webui_only 才跳过服务端编译
         self.BuildWebui(output_dir)
@@ -107,7 +110,7 @@ class BuildRunner(object):
             RemovePath(build_dir)
         os.makedirs(build_dir, exist_ok=True)
 
-    def Configure(self, build_dir):
+    def Configure(self, build_dir, output_dir):
         """执行 CMake 配置"""
         self.m_console.Step("配置项目")
         cmake = FindCMake(
@@ -120,6 +123,8 @@ class BuildRunner(object):
             "-S", self.m_root,
             "-B", build_dir,
             "-DCMAKE_BUILD_TYPE=%s" % build_type,
+            # VS 调试工作目录跟随脚本选择的部署目录
+            "-DSERVER_DEPLOY_DIR=%s" % output_dir,
         ]
 
         generator = str(self.m_settings.Require("build.cmake_generator") or "").strip()
@@ -151,12 +156,16 @@ class BuildRunner(object):
             "--parallel", str(jobs),
         ]
         self.m_console.Line("  使用 %d 个并行任务" % jobs)
-        code = RunStreaming(command, self.m_root, self.m_console)
+        # 非 Windows 平台是 GCC / Clang, 一条警告会展开成十几行, 这里压缩
+        line_filter = None if IS_WINDOWS else GccDiagnosticFilter()
+        code = RunStreaming(
+            command, self.m_root, self.m_console, line_filter=line_filter
+        )
         if code != 0:
             raise ModuleError("编译失败 (退出码 %d)" % code)
 
-    def Package(self, output_dir):
-        """复制可执行文件与运行库到部署目录"""
+    def Package(self, output_dir, build_dir):
+        """从构建目录复制可执行文件与运行库到部署目录"""
         self.m_console.Step("打包可执行文件")
         os.makedirs(output_dir, exist_ok=True)
 
@@ -168,7 +177,7 @@ class BuildRunner(object):
         copied = 0
         missing = []
         for project in sub_projects:
-            source = self.FindExecutable(output_dir, str(project))
+            source = self.FindExecutable(build_dir, str(project))
             if source is None:
                 missing.append(str(project))
                 continue
@@ -188,23 +197,33 @@ class BuildRunner(object):
                         shutil.copy2(pdb_source, pdb_target)
 
         if missing:
-            self.m_console.Warn("  警告: 未找到可执行文件: %s" % ", ".join(missing))
+            self.m_console.Warn("  警告: 构建目录里未找到可执行文件: %s" % ", ".join(missing))
 
         self.CopyRuntimeLibs(output_dir)
         self.m_console.Success("  已处理 %d 个可执行文件" % copied)
 
-    def FindExecutable(self, output_dir, project):
-        """兼容 CMake 输出到子目录或根目录两种情况"""
-        candidates = [
-            os.path.join(output_dir, project, project + EXE_SUFFIX),
-            os.path.join(output_dir, project, project),
-            os.path.join(output_dir, project + EXE_SUFFIX),
-            os.path.join(output_dir, project),
-        ]
+    def FindExecutable(self, build_dir, project):
+        """在构建目录里查找可执行文件, 兼容多配置与自定义输出目录"""
+        build_type = "Debug" if self.m_build_type == "debug" else "Release"
+        names = (project + EXE_SUFFIX, project)
+        candidates = []
+        for root in (os.path.join(build_dir, "bin", build_type), os.path.join(build_dir, "bin")):
+            for name in names:
+                candidates.append(os.path.join(root, name))
         for candidate in candidates:
             if os.path.isfile(candidate):
                 return candidate
-        return None
+
+        # 兜底: 递归查找, 兼容 CMake 默认的多配置输出布局
+        found = []
+        for root, _dirs, files in os.walk(build_dir):
+            for name in names:
+                if name in files:
+                    found.append(os.path.join(root, name))
+        if not found:
+            return None
+        found.sort(key=lambda path: os.path.getmtime(path), reverse=True)
+        return found[0]
 
     def CopyRuntimeLibs(self, output_dir):
         """复制 lib 下的动态库"""
@@ -282,7 +301,9 @@ class BuildRunner(object):
         if count:
             self.m_console.Success("  实例资源已同步: %d 个" % count)
         else:
-            self.m_console.Warn("  警告: 未发现实例目录, 请先运行创建服务器模块")
+            self.m_console.Warn(
+                "  提示: 未发现实例目录, 首次部署请在打包后运行创建服务器模块"
+            )
 
     def MirrorDirectory(self, source, target):
         """先删除目标再复制, 与源目录保持一致"""

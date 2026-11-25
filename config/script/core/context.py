@@ -22,6 +22,10 @@ class Context(object):
     def settings(self):
         return self.m_settings
 
+    def SetSettings(self, settings):
+        """切换部署目录后替换配置对象, 后续模块立即使用新目录"""
+        self.m_settings = settings
+
     @property
     def console(self):
         return self.m_console

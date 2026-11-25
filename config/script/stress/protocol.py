@@ -25,11 +25,12 @@ class ProtocolCodec:
     """proto 描述符加载与消息打包"""
 
     def __init__(self, proto_dir=None, mht_lua_path=None):
-        config = load_config()
         if proto_dir:
+            # 调用方显式指定协议目录时不需要读取压测配置
             self.proto_dir = proto_dir
         else:
             # 协议目录统一以部署目录 config.json 副本的 stress.proto_dir 为准
+            config = load_config()
             self.proto_dir = config["proto_dir"]
         self.mht_lua_path = mht_lua_path or os.path.join(self.proto_dir, "protobufmht.lua")
 

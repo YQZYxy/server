@@ -1,6 +1,5 @@
 {
     "deploy": {
-        "variant": "auto",
         "link": false,
         "skip_existing": true,
         "copy_pdb": true

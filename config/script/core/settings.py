@@ -9,7 +9,7 @@
     2. 读取不到配置直接抛 ConfigError, 不做任何默认值兜底.
     3. 修改配置后调用 Save(), 写回文件并重新加载.
     4. 仓库里的 config/script/config.json, config/baseconfig.json, config/crossconfig.json
-       只作为默认模板. 运行脚本时先复制到部署目录(由基础配置 paths.deploy_dir 决定),
+       只作为默认模板. 运行脚本时先复制到部署目录(由部署目录选择决定),
        之后读写都针对副本, 原始默认配置不会被修改.
 """
 
@@ -21,7 +21,16 @@ import shutil
 from .errors import ConfigError
 
 # 支持的配置文件版本, 结构变化时同步修改
-CONFIG_VERSION = 1
+CONFIG_VERSION = 2
+
+# 部署目录常用预设, 仅用于启动时的交互选择
+DEPLOY_DIR_PRESETS = (
+    ("开发环境 (debug)", "debug"),
+    ("生产环境 (release)", "release"),
+)
+
+# 本地记录文件
+LOCAL_STATE_FILE_NAME = "local.json"
 
 # 配置文件固定名称
 CONFIG_FILE_NAME = "config.json"
@@ -102,6 +111,11 @@ class Settings(object):
         return self.m_config_file
 
     @property
+    def base_config_file(self):
+        """解析 project_root 的基准配置, 通常是仓库内的 config/script/config.json"""
+        return self.m_project_root_file
+
+    @property
     def config_dir(self):
         return self.m_config_dir
 
@@ -131,9 +145,10 @@ class Settings(object):
         if not isinstance(version, int):
             raise ConfigError("配置缺少整数字段 config_version: %s" % self.m_config_file)
         if version != CONFIG_VERSION:
+            hint = "请删除该部署目录后重新创建" if self.m_deploy_dir else "请更新配置模板"
             raise ConfigError(
-                "配置版本不支持: 期望 %d, 实际 %d, 请更新 %s"
-                % (CONFIG_VERSION, version, self.m_config_file)
+                "配置版本不支持: 期望 %d, 实际 %d, %s: %s"
+                % (CONFIG_VERSION, version, hint, self.m_config_file)
             )
 
         raw_root = data.get("project_root")
@@ -204,6 +219,33 @@ class Settings(object):
             return ""
         return self.Path(key_path)
 
+    def GetDeployDirRaw(self):
+        """读取部署目录: config/script/local.json 记录优先, 其次模板里的 paths.deploy_dir"""
+        local_path = LocalStatePath(self.m_config_file)
+        if os.path.isfile(local_path):
+            state = load_json(local_path)
+            if isinstance(state, dict):
+                value = state.get("deploy_dir")
+                if isinstance(value, str) and value.strip():
+                    return value.strip()
+
+        paths = self.m_data.get("paths")
+        if not isinstance(paths, dict):
+            return ""
+        value = paths.get("deploy_dir")
+        return value.strip() if isinstance(value, str) else ""
+
+    def DeployPath(self, relative):
+        """把相对部署目录的路径解析成绝对路径, 绝对路径原样返回"""
+        if not self.m_deploy_dir:
+            raise ConfigError("尚未选择部署目录: %s" % self.m_config_file)
+        value = str(relative or "").strip()
+        if not value:
+            raise ConfigError("部署目录内的相对路径不能为空")
+        if os.path.isabs(value):
+            return os.path.normpath(value)
+        return os.path.normpath(os.path.join(self.m_deploy_dir, value))
+
     def FlatItems(self):
         """展开全部叶子字段, 供配置编辑界面使用"""
         result = []
@@ -271,12 +313,139 @@ def package_config_path():
     return os.path.join(script_dir, CONFIG_FILE_NAME)
 
 
-def prepare_deploy_copies(base_settings):
+def ResolveDeployDir(settings, raw_value):
+    """把部署目录解析成绝对路径, 相对路径按仓库根解析"""
+    value = str(raw_value or "").strip()
+    if not value:
+        raise ConfigError("部署目录不能为空")
+    if not os.path.isabs(value):
+        value = os.path.join(settings.project_root, value)
+    return os.path.normpath(value)
+
+
+def DeriveBuildType(raw_value):
+    """部署目录名为 debug/release 时用它作为默认构建类型"""
+    name = os.path.basename(os.path.normpath(str(raw_value or "").strip())).lower()
+    if name in ("debug", "release"):
+        return name
+    return ""
+
+
+def LocalStatePath(base_config_file):
+    """本地记录文件路径: config/script/local.json"""
+    return os.path.join(
+        os.path.dirname(os.path.abspath(base_config_file)), LOCAL_STATE_FILE_NAME
+    )
+
+
+def LoadLocalState(base_config_file):
+    """读取本地记录, 文件不存在时返回空字典"""
+    path = LocalStatePath(base_config_file)
+    if not os.path.isfile(path):
+        return {}
+    data = load_json(path)
+    if not isinstance(data, dict):
+        raise ConfigError("本地记录文件顶层必须是 JSON 对象: %s" % path)
+    return data
+
+
+def _ApplyDeploySelection(base_settings, settings, configured):
+    """把当前选择同步到副本, 并消费一次性的默认构建类型记录"""
+    state = LoadLocalState(base_settings.config_file)
+    pending = str(state.get("build_type") or "").strip()
+    changed = False
+
+    # 副本里的 paths.deploy_dir 仅用于展示, 保持与当前选择一致
+    if settings.GetDeployDirRaw() != configured:
+        settings.SetValue("paths.deploy_dir", configured)
+        changed = True
+    if pending and settings.Require("build.default_type") != pending:
+        settings.SetValue("build.default_type", pending)
+        changed = True
+    if changed:
+        settings.Save()
+
+    if pending:
+        state.pop("build_type", None)
+        write_json(LocalStatePath(base_settings.config_file), state)
+
+
+def ApplyDeployDir(base_settings, raw_value):
+    """把部署目录选择写到 config/script/local.json, 不改动基础配置"""
+    value = str(raw_value or "").strip()
+    if not value:
+        raise ConfigError("部署目录不能为空")
+
+    state = LoadLocalState(base_settings.config_file)
+    if state.get("deploy_dir") == value:
+        return value
+
+    state["deploy_dir"] = value
+    build_type = DeriveBuildType(value)
+    if build_type:
+        state["build_type"] = build_type
+    else:
+        state.pop("build_type", None)
+    write_json(LocalStatePath(base_settings.config_file), state)
+    return value
+
+
+def _ReadDeployDirChoice(console, prompt, default_text):
+    """读取选择编号, 命令行下要求真实输入, EOF 视为取消"""
+    reader = getattr(console, "ReadLine", None)
+    if reader is None:
+        # GUI 控制台没有行读取, 退化为对话框输入
+        return console.Ask(prompt, default_text)
+    try:
+        return reader("%s [%s]: " % (prompt, default_text))
+    except (EOFError, KeyboardInterrupt, RuntimeError):
+        raise ConfigError("未选择部署目录, 已取消") from None
+
+
+def PromptDeployDir(base_settings, console):
+    """启动时选择部署目录, 返回用户输入的原始值"""
+    current = base_settings.GetDeployDirRaw()
+    console.Step("选择部署目录")
+    console.Line("  部署目录存放脚本配置副本与全部服务器实例, 构建/部署/启停等模块共用该目录")
+    console.Line("  当前: %s" % (current or "未设置"))
+
+    items = list(DEPLOY_DIR_PRESETS) + [("自定义目录", "custom")]
+    for index, (label, _value) in enumerate(items, start=1):
+        console.Line("  %d. %s" % (index, label))
+
+    default_index = 1
+    if current == "release":
+        default_index = 2
+    elif current and current not in ("debug", "release"):
+        default_index = len(items)
+
+    while True:
+        raw = _ReadDeployDirChoice(console, "请选择部署目录", str(default_index))
+        text = str(raw).strip()
+        try:
+            index = int(text) if text else default_index
+        except ValueError:
+            console.Error("  请输入列表中的数字")
+            continue
+        if 1 <= index <= len(items):
+            break
+        console.Error("  选择超出范围: %s" % text)
+
+    value = items[index - 1][1]
+    if value != "custom":
+        return value
+
+    raw = _ReadDeployDirChoice(
+        console, "部署目录 (相对仓库根或绝对路径)", current or "debug"
+    )
+    return str(raw).strip() or current or "debug"
+
+
+def prepare_deploy_copies(base_settings, deploy_dir):
     """把仓库内的基础配置复制到部署目录, 已存在的副本不覆盖
 
-    返回 (部署目录, 本次新建的副本列表)
+    返回本次新建的副本列表
     """
-    deploy_dir = base_settings.Path("paths.deploy_dir")
     try:
         os.makedirs(deploy_dir, exist_ok=True)
     except OSError as error:
@@ -304,29 +473,34 @@ def prepare_deploy_copies(base_settings):
                 os.unlink(temp_path)
             raise ConfigError("复制部署配置副本失败: %s -> %s (%s)" % (source, target, error)) from error
         created.append(target)
-    return deploy_dir, created
+    return created
 
 
-def open_settings(config_file):
+def open_settings(config_file, deploy_dir=""):
     """准备部署目录副本, 返回 (指向副本的 Settings, 新建副本列表)
 
     仓库内的基础配置只当模板, 之后所有读写都针对部署目录里的副本.
-    部署目录由基础配置的 paths.deploy_dir 决定, 修改副本里的这个字段不会生效.
+    部署目录选择记录在 config/script/local.json, 不修改基础配置.
+    deploy_dir 非空时先更新本地记录, 再准备副本.
     """
     base_settings = Settings(config_file)
-    deploy_dir, created = prepare_deploy_copies(base_settings)
-    settings = Settings(
-        os.path.join(deploy_dir, DEPLOY_SCRIPT_CONFIG_NAME),
-        project_root_file=base_settings.config_file,
-        deploy_dir=deploy_dir,
-    )
+    override = str(deploy_dir or "").strip()
+    if override:
+        ApplyDeployDir(base_settings, override)
 
-    # 副本里的部署目录改不了实际位置, 直接报错避免误解
-    base_value = str(base_settings.Require("paths.deploy_dir")).strip()
-    copy_value = str(settings.Require("paths.deploy_dir")).strip()
-    if base_value != copy_value:
+    configured = base_settings.GetDeployDirRaw()
+    if not configured:
         raise ConfigError(
-            "部署目录只能在基础配置中修改: 基础配置为 %s, 部署副本为 %s (%s)"
-            % (base_value, copy_value, settings.config_file)
+            "尚未选择部署目录.\n"
+            "  请运行 python auto.py 选择部署目录, 或使用 --deploy-dir 指定 (例如 debug / release)"
         )
+
+    deploy_dir_path = ResolveDeployDir(base_settings, configured)
+    created = prepare_deploy_copies(base_settings, deploy_dir_path)
+    settings = Settings(
+        os.path.join(deploy_dir_path, DEPLOY_SCRIPT_CONFIG_NAME),
+        project_root_file=base_settings.config_file,
+        deploy_dir=deploy_dir_path,
+    )
+    _ApplyDeploySelection(base_settings, settings, configured)
     return settings, created

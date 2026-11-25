@@ -8,6 +8,7 @@
 """
 
 import ctypes
+import getpass
 import locale
 import os
 import re
@@ -282,6 +283,15 @@ class Console(object):
             return default
         value = value.strip()
         return default if value == "" else value
+
+    def AskSecret(self, prompt):
+        """密码输入, 不回显; 返回 None 表示取消, 空字符串表示空密码"""
+        try:
+            RestoreTerminalInput()
+            return getpass.getpass("%s: " % prompt).strip()
+        except (EOFError, KeyboardInterrupt, RuntimeError):
+            self.Line()
+            return None
 
     def Confirm(self, prompt, default=False):
         """是否确认, 直接回车使用默认值"""

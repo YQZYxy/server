@@ -141,8 +141,6 @@ BASE_TABS = (
 
 # 实例清单全局字段
 CROSS_GENERAL_FIELDS = (
-    ConfigField("deploy.variant", "默认构建目录", "string",
-                help_text="auto / debug / release, 也可以填构建目录路径"),
     ConfigField("deploy.link", "部署时使用链接", "bool"),
     ConfigField("deploy.skip_existing", "跳过已存在文件", "bool"),
     ConfigField("deploy.copy_pdb", "复制 PDB 文件", "bool"),

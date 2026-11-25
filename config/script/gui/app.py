@@ -25,7 +25,7 @@ from ..core.platform_utils import (
     OpenPath,
 )
 from ..core.theme import THEMES, ApplyTkTheme, GetTheme, ThemeListbox, ThemeText
-from .widgets import Checkbox, MultiChoiceBox
+from .widgets import Checkbox, MultiChoiceBox, ShortHelp, ToolTip
 
 # 默认窗口尺寸与最小尺寸, 启动时保持原有比例
 DEFAULT_WINDOW_WIDTH = 1120
@@ -47,6 +47,15 @@ SPLITTER_MIN_LEFT = 180
 SPLITTER_MIN_RIGHT = 480
 SPLITTER_MIN_OPTIONS = 120
 SPLITTER_MIN_LOG = 80
+
+# 固定参数行的上下间距, 尽量紧凑
+PARAM_ROW_PADDING = 1
+
+# 服务器列表区域最小可见高度
+LIST_MIN_HEIGHT = 90
+
+# 窗口停止缩放多久后重新校准列表区域
+LIST_SETTLE_DELAY = 120
 
 
 def ScreenMargin(root):
@@ -122,6 +131,19 @@ class GuiConsole(object):
             return default
         value = value.strip()
         return default if value == "" else value
+
+    def AskSecret(self, prompt):
+        """密码输入, 用掩码输入框; 返回 None 表示取消, 空字符串表示空密码"""
+        from tkinter import simpledialog
+
+        value = self._call_on_main(
+            lambda: simpledialog.askstring(
+                "输入", prompt, show="*", parent=self.m_root
+            )
+        )
+        if value is None:
+            return None
+        return value.strip()
 
     def Confirm(self, prompt, default=False):
         from tkinter import messagebox
@@ -251,10 +273,13 @@ class ToolWindow(object):
         self.m_current = None
         self.m_option_widgets = []
         self.m_option_cache = {}
+        self.m_param_frame = None
+        self.m_list_frame = None
         self.m_rebuilding_options = False
         self.m_running = False
         self.m_theme = GetTheme(context.settings)
         self.m_deploy_editor = None
+        self.m_list_settle_job = None
 
         root.title("服务器脚本工具")
         width, height, min_width, min_height = InitialWindowSize(root)
@@ -321,7 +346,7 @@ class ToolWindow(object):
         )
         self.m_split_v.grid(row=2, column=0, sticky="nsew")
 
-        self.m_option_frame = ttk.LabelFrame(self.m_split_v, text="参数", padding=8)
+        self.m_option_frame = ttk.Frame(self.m_split_v, padding=8)
         log_frame = ttk.LabelFrame(self.m_split_v, text="输出日志", padding=4)
         self.m_split_v.add(self.m_option_frame, minsize=SPLITTER_MIN_OPTIONS, stretch="always")
         self.m_split_v.add(log_frame, minsize=SPLITTER_MIN_LOG, stretch="never")
@@ -350,6 +375,7 @@ class ToolWindow(object):
         self.m_context.m_console = self.m_console
 
         root.protocol("WM_DELETE_WINDOW", self.OnClose)
+        root.bind("<Configure>", self.OnWindowConfigure, add="+")
         self.m_listbox.selection_set(0)
         self.OnSelectModule(None)
         self.PollConsole()
@@ -455,65 +481,200 @@ class ToolWindow(object):
             for child in self.m_option_frame.winfo_children():
                 child.destroy()
             self.m_option_widgets = []
+            self.m_param_frame = None
+            self.m_list_frame = None
 
             if not module.OPTIONS:
                 hint = "点击“运行”打开编辑器" if getattr(module, "GUI_EDITOR", "") else "该模块没有参数"
-                self.m_ttk.Label(self.m_option_frame, text=hint).grid(
-                    row=0, column=0, sticky="w"
-                )
+                self.m_ttk.Label(self.m_option_frame, text=hint).pack(anchor="w")
                 return
 
             cached = self.m_option_cache.get(module.ID, {})
-            for row, option in enumerate(module.OPTIONS):
-                label = self.m_ttk.Label(self.m_option_frame, text=option.title)
-                label.grid(
-                    row=row,
-                    column=0,
-                    sticky="nw" if option.kind == "multi_choice" else "w",
-                    padx=(0, 12),
-                    pady=2,
-                )
-                if option.name in cached:
-                    default = cached[option.name]
+            row_options = []
+            list_options = []
+            for option in module.OPTIONS:
+                if self.OptionUsesListArea(option):
+                    list_options.append(option)
                 else:
-                    try:
-                        default = option.Default(self.m_context)
-                    except ScriptError as error:
-                        self.m_console.Error("[配置错误] %s" % error)
-                        default = None
-                try:
-                    widget = self.BuildOptionWidget(option, default, row)
-                except ScriptError as error:
-                    self.m_console.Error("[参数加载失败] %s" % error)
-                    widget = self.m_ttk.Label(
-                        self.m_option_frame,
-                        text="加载失败: %s" % error,
-                        foreground=self.m_theme["error"],
-                    )
-                    widget.grid(row=row, column=1, sticky="w", pady=2)
-                if option.help_text:
-                    self.m_ttk.Label(
-                        self.m_option_frame, text=option.help_text,
-                        foreground=self.m_theme["muted"],
-                    ).grid(row=row, column=2, sticky="w", padx=(12, 0))
+                    row_options.append(option)
+
+            # 固定参数固定在最上面, 服务器列表独占下方空间
+            self.m_param_frame = self.m_ttk.Frame(self.m_option_frame)
+            self.m_param_frame.pack(fill="x", anchor="nw")
+            self.m_param_frame.columnconfigure(1, weight=1)
+            for row, option in enumerate(row_options):
+                self.BuildParamRow(option, cached, row)
+
+            if list_options:
+                self.m_list_frame = self.m_ttk.Frame(self.m_option_frame)
+                self.m_list_frame.pack(fill="both", expand=True, anchor="nw", pady=(4, 0))
+                self.m_list_frame.columnconfigure(0, weight=1)
+                for index, option in enumerate(list_options):
+                    self.BuildListSection(option, cached, index)
+                self.ScheduleListSettle()
         finally:
             self.m_rebuilding_options = False
 
-    def BuildCheckbox(self, variable, row):
-        """参数区的布尔选项统一使用打勾复选框"""
-        widget = Checkbox(
-            self.m_option_frame,
-            variable,
+    def ScheduleListSettle(self):
+        """等布局稳定后再检查列表可见高度"""
+        if self.m_list_settle_job is not None:
+            try:
+                self.m_root.after_cancel(self.m_list_settle_job)
+            except self.m_tk.TclError:
+                pass
+        self.m_list_settle_job = self.m_root.after(LIST_SETTLE_DELAY, self.EnsureListVisible)
+
+    def OnWindowConfigure(self, event):
+        """窗口尺寸变化后重新确认服务器列表的可见高度"""
+        if event.widget is not self.m_root:
+            return
+        self.ScheduleListSettle()
+
+    def EnsureListVisible(self):
+        """列表被日志区挤到看不清时, 把分隔条往上提一点"""
+        self.m_list_settle_job = None
+        if self.m_list_frame is None or not self.m_list_frame.winfo_exists():
+            return
+        try:
+            total_height = self.m_split_v.winfo_height()
+            sash_x, sash_y = self.m_split_v.sash_coord(0)
+            list_height = self.m_list_frame.winfo_height()
+        except self.m_tk.TclError:
+            return
+        # 布局尚未完成时不做调整, 避免把日志区一次压到底
+        if total_height <= 1 or list_height <= 1:
+            return
+        if list_height >= LIST_MIN_HEIGHT:
+            return
+
+        log_height = total_height - sash_y - SPLITTER_WIDTH
+        movable = max(0, log_height - SPLITTER_MIN_LOG)
+        move = min(LIST_MIN_HEIGHT - list_height, movable)
+        if move <= 0:
+            return
+        self.m_split_v.sash_place(0, sash_x, sash_y + move)
+
+    @staticmethod
+    def OptionUsesListArea(option):
+        """服务器清单这类参数独占下方滚动区域, 其余参数留在固定参数区"""
+        layout = getattr(option, "layout", "auto")
+        if layout == "list":
+            return True
+        if layout == "row":
+            return False
+        return option.kind == "multi_choice" and option.has_groups
+
+    def CreateOptionLabel(self, parent, option):
+        """标题 + 摘要说明, 省略的详细说明由悬停提示补全, 返回可挂提示的控件"""
+        title = self.m_ttk.Label(parent, text=option.title)
+        title.pack(side="left", anchor="w")
+        labels = [title]
+        summary = ShortHelp(option.help_text)
+        if summary:
+            summary_label = self.m_ttk.Label(
+                parent,
+                text=summary,
+                foreground=self.m_theme["muted"],
+                font=(self.m_theme["font_family"], max(8, self.m_theme["font_size"] - 1)),
+            )
+            summary_label.pack(side="left", anchor="w", padx=(6, 0))
+            labels.append(summary_label)
+        return labels
+
+    def AttachOptionTip(self, option, widgets):
+        """完整参数说明挂到标题上, 鼠标悬停时显示"""
+        text = option.help_text
+        if not text:
+            return
+        for widget in widgets:
+            if widget is not None:
+                ToolTip(widget, text, self.m_theme)
+
+    def ResolveOptionDefault(self, option, cached):
+        """表单缓存优先, 否则读取配置默认值"""
+        if option.name in cached:
+            return cached[option.name]
+        try:
+            return option.Default(self.m_context)
+        except ScriptError as error:
+            self.m_console.Error("[配置错误] %s" % error)
+            return None
+
+    def BuildParamRow(self, option, cached, row):
+        """固定参数行: 左侧标题与摘要, 右侧控件"""
+        label_box = self.m_ttk.Frame(self.m_param_frame)
+        label_box.grid(row=row, column=0, sticky="w", padx=(0, 10), pady=PARAM_ROW_PADDING)
+        label_widgets = self.CreateOptionLabel(label_box, option)
+
+        default = self.ResolveOptionDefault(option, cached)
+        try:
+            widget = self.BuildOptionWidget(option, default, row)
+        except ScriptError as error:
+            self.m_console.Error("[参数加载失败] %s" % error)
+            widget = self.m_ttk.Label(
+                self.m_param_frame,
+                text="加载失败: %s" % error,
+                foreground=self.m_theme["error"],
+            )
+            widget.grid(row=row, column=1, sticky="w", pady=PARAM_ROW_PADDING)
+        # 多选列表的每个条目有自己的悬停提示, 这里只给标题挂参数说明
+        if option.kind != "multi_choice":
+            self.AttachOptionTip(option, label_widgets + [widget])
+        else:
+            self.AttachOptionTip(option, label_widgets)
+
+    def BuildListSection(self, option, cached, index):
+        """服务器列表块: 标题一行, 列表占满剩余空间并支持上下左右滚动"""
+        header = self.m_ttk.Frame(self.m_list_frame)
+        header.grid(row=index * 2, column=0, sticky="w", pady=(0, 2))
+        label_widgets = self.CreateOptionLabel(header, option)
+        self.AttachOptionTip(option, label_widgets)
+
+        # 列表单独加一圈边框, 和上面的固定参数区分开
+        border = self.m_tk.Frame(
+            self.m_list_frame,
+            background=self.m_theme["window_bg"],
+            highlightthickness=1,
+            highlightbackground=self.m_theme["border"],
+            bd=0,
+        )
+        border.grid(row=index * 2 + 1, column=0, sticky="nsew")
+
+        default = self.ResolveOptionDefault(option, cached)
+        try:
+            groups = option.ResolveGroups(self.m_context)
+            tips = option.ResolveTips(self.m_context)
+        except ScriptError as error:
+            self.m_console.Error("[参数加载失败] %s" % error)
+            groups = []
+            tips = {}
+
+        widget = MultiChoiceBox(
+            border,
+            groups,
+            default or [],
             self.m_theme,
             command=self.OnOptionChanged,
+            tips=tips,
+            option_tip=option.help_text,
+            expand=True,
+            compact=True,
         )
-        widget.grid(row=row, column=1, sticky="w", pady=2)
-        return widget
+        widget.pack(fill="both", expand=True, padx=1, pady=1)
+        self.m_list_frame.rowconfigure(index * 2 + 1, weight=1)
+        self.m_option_widgets.append((option, "multi_choice", widget, groups))
 
     def BuildOptionWidget(self, option, default, row):
+        """在固定参数区创建控件"""
         if option.kind == "bool":
             variable = self.m_tk.BooleanVar(value=bool(default))
-            widget = self.BuildCheckbox(variable, row)
+            widget = Checkbox(
+                self.m_param_frame,
+                variable,
+                self.m_theme,
+                command=self.OnOptionChanged,
+            )
+            widget.grid(row=row, column=1, sticky="w", pady=PARAM_ROW_PADDING)
             self.m_option_widgets.append((option, "bool", variable, None))
             return widget
 
@@ -526,16 +687,17 @@ class ToolWindow(object):
                 groups = []
                 tips = {}
             widget = MultiChoiceBox(
-                self.m_option_frame,
+                self.m_param_frame,
                 groups,
                 default or [],
                 self.m_theme,
                 command=self.OnOptionChanged,
                 tips=tips,
+                option_tip=option.help_text,
+                visible_rows=6,
+                compact=True,
             )
-            widget.grid(row=row, column=1, sticky="nw", pady=2)
-            self.m_option_frame.rowconfigure(row, weight=1)
-            self.m_option_frame.columnconfigure(1, weight=1)
+            widget.grid(row=row, column=1, sticky="w", pady=PARAM_ROW_PADDING)
             self.m_option_widgets.append((option, "multi_choice", widget, groups))
             return widget
 
@@ -550,20 +712,22 @@ class ToolWindow(object):
                     break
             variable = self.m_tk.StringVar(value=label)
             widget = self.m_ttk.Combobox(
-                self.m_option_frame, textvariable=variable, values=labels, state="readonly"
+                self.m_param_frame, textvariable=variable, values=labels, state="readonly"
             )
-            widget.grid(row=row, column=1, sticky="ew", pady=2)
+            widget.grid(row=row, column=1, sticky="ew", pady=PARAM_ROW_PADDING)
             widget.bind("<<ComboboxSelected>>", self.OnOptionChanged)
-            self.m_option_frame.columnconfigure(1, weight=1)
             self.m_option_widgets.append((option, "choice", variable, mapping))
             return widget
 
         variable = self.m_tk.StringVar(value="" if default is None else str(default))
-        widget = self.m_ttk.Entry(self.m_option_frame, textvariable=variable)
-        widget.grid(row=row, column=1, sticky="ew", pady=2)
+        widget = self.m_ttk.Entry(
+            self.m_param_frame,
+            textvariable=variable,
+            show="*" if option.secret else "",
+        )
+        widget.grid(row=row, column=1, sticky="ew", pady=PARAM_ROW_PADDING)
         widget.bind("<FocusOut>", self.OnOptionChanged)
         widget.bind("<Return>", self.OnOptionChanged)
-        self.m_option_frame.columnconfigure(1, weight=1)
         self.m_option_widgets.append((option, "value", variable, None))
         return widget
 
@@ -711,6 +875,12 @@ class ToolWindow(object):
         window.title("编辑配置 - %s" % self.m_context.settings.config_file)
         window.geometry("900x640")
         window.configure(background=self.m_theme["window_bg"])
+
+        self.m_ttk.Label(
+            window,
+            text="部署目录请使用「部署目录」模块切换, 这里修改 paths.deploy_dir 不会生效",
+            foreground=self.m_theme["muted"],
+        ).pack(anchor="w", padx=8, pady=(8, 0))
 
         text = scrolledtext.ScrolledText(
             window,

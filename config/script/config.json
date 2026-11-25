@@ -1,5 +1,5 @@
 {
-    "config_version": 1,
+    "config_version": 2,
     "project_root": "../..",
     "ui": {
         "theme": "vscode-light",
@@ -10,7 +10,7 @@
         "log_font_size": 9
     },
     "paths": {
-        "deploy_dir": "debug",
+        "deploy_dir": "",
         "blueprint": "config/crossconfig.json",
         "baseconfig": "config/baseconfig.json",
         "mysql_schema": "sql/xygame.sql",
@@ -22,7 +22,6 @@
     },
     "build": {
         "build_root": "build",
-        "output_root": ".",
         "default_type": "debug",
         "default_mode": "incremental",
         "cmake_executable": "cmake",
@@ -39,7 +38,6 @@
         "sync_instances": true
     },
     "deploy": {
-        "default_variant": "auto",
         "instances": [
             "hub",
             "cross",
@@ -64,7 +62,6 @@
         "instances": []
     },
     "service": {
-        "default_instance_root": "debug",
         "zone_group_size": 5,
         "start_instances": [
             "hub",
@@ -87,8 +84,7 @@
         "log_auto_close": true,
         "default_clear_scope": "log",
         "default_validate_instance": "s1",
-        "default_validate_exe_dir": "debug",
-        "validate_work_root": "debug/.validate",
+        "validate_work_dir": ".validate",
         "validate_timeout": 30,
         "validate_show_lines": 40,
         "validate_keep_workdir": false
@@ -160,7 +156,7 @@
     },
     "stress": {
         "proto_dir": "luascript/proto",
-        "report_dir": "debug/stress_reports",
-        "state_file": "debug/stress_gui.json"
+        "report_dir": "stress_reports",
+        "state_file": "stress_gui.json"
     }
 }

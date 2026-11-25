@@ -9,7 +9,26 @@ ttk clam 主题的复选框选中时显示叉号, 这里统一用 Canvas 自绘�
 """
 
 import tkinter as tk
+from tkinter import font as tkfont
 from tkinter import ttk
+
+# 帮助文本摘要默认长度, 超过后截断, 完整说明放到悬停提示
+HELP_SUMMARY_LIMIT = 16
+
+# 摘要截断时优先断开的标点
+HELP_BREAK_CHARS = ",;，。;:： 、"
+
+
+def ShortHelp(text, limit=HELP_SUMMARY_LIMIT):
+    """把帮助文本压缩成一行摘要, 完整内容由悬停提示展示"""
+    value = " ".join(str(text or "").split())
+    if not value or len(value) <= limit:
+        return value
+    head = value[:limit]
+    for index in range(len(head) - 1, 4, -1):
+        if head[index] in HELP_BREAK_CHARS:
+            return value[:index].rstrip() + "…"
+    return head.rstrip() + "…"
 
 
 class ToolTip(object):
@@ -25,6 +44,7 @@ class ToolTip(object):
         widget.bind("<Enter>", self.Schedule, add="+")
         widget.bind("<Leave>", self.Hide, add="+")
         widget.bind("<ButtonPress>", self.Hide, add="+")
+        widget.bind("<Destroy>", self.Hide, add="+")
 
     def Schedule(self, _event=None):
         self.Cancel()
@@ -81,13 +101,24 @@ class ToolTip(object):
 
 
 class MultiChoiceBox(tk.Frame):
-    """可滚动的分组复选框列表"""
+    """可滚动的分组复选框列表.
 
-    ROW_HEIGHT = 26
-    GROUP_COLUMNS = 5
+    expand=True 时跟随容器拉伸, 用满父级剩余空间;
+    compact=True 时压缩行高与字体, 适合服务器清单这类条目较多的列表.
+    内容超出高度或宽度时自动出现对应的滚动条.
+    """
+
+    # 单元格之间的水平间距
+    CELL_PAD_X = 8
+    # 单个分组最多排几列, 避免条目很少时拉得过散
+    MAX_GROUP_COLUMNS = 8
+    # 非拉伸模式下的尺寸上限
+    MAX_WIDTH = 560
+    MAX_HEIGHT = 420
 
     def __init__(self, parent, groups, selected, theme, command=None,
-                 tips=None, visible_rows=3, width=300, **kwargs):
+                 tips=None, visible_rows=3, width=300, expand=False,
+                 compact=False, option_tip="", **kwargs):
         super().__init__(parent, background=theme["window_bg"], **kwargs)
         self.m_groups = self.NormalizeGroups(groups)
         self.m_items = [
@@ -98,36 +129,55 @@ class MultiChoiceBox(tk.Frame):
         self.m_theme = theme
         self.m_command = command
         self.m_tips = tips or {}
+        self.m_option_tip = str(option_tip or "")
         self.m_variables = {}
         self.m_tooltips = []
+        self.m_grid_groups = []
+        self.m_expand = bool(expand)
+        self.m_compact = bool(compact)
+        self.m_layout_job = None
+
+        # 紧凑模式使用小一号字体和更小的勾选框
+        font_size = theme["font_size"]
+        self.m_item_font = (
+            theme["font_family"],
+            max(8, font_size - 2) if self.m_compact else max(8, font_size - 1),
+        )
+        self.m_header_font = (theme["font_family"], max(8, font_size - 2), "bold")
+        self.m_checkbox_size = 15 if self.m_compact else 18
+        self.m_row_height = self.MeasureRowHeight()
 
         total_rows = sum(
-            (1 if title else 0) + max(1, (len(items) + self.GROUP_COLUMNS - 1) // self.GROUP_COLUMNS)
+            (1 if title else 0)
+            + max(1, (len(items) + self.MAX_GROUP_COLUMNS - 1) // self.MAX_GROUP_COLUMNS)
             for title, items in self.m_groups
         )
         rows = max(1, min(total_rows or 1, visible_rows))
-        self.m_canvas = tk.Canvas(
-            self,
-            width=width,
-            height=rows * self.ROW_HEIGHT,
-            background=theme["window_bg"],
-            highlightthickness=0,
-            bd=0,
-        )
-        self.m_scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.m_canvas.yview)
-        self.m_canvas.configure(yscrollcommand=self.m_scrollbar.set)
+        canvas_options = {
+            "background": theme["window_bg"],
+            "highlightthickness": 0,
+            "bd": 0,
+        }
+        if not self.m_expand:
+            canvas_options["width"] = width
+            canvas_options["height"] = rows * self.m_row_height
+        self.m_canvas = tk.Canvas(self, **canvas_options)
+        self.m_vbar = ttk.Scrollbar(self, orient="vertical", command=self.m_canvas.yview)
+        self.m_hbar = ttk.Scrollbar(self, orient="horizontal", command=self.m_canvas.xview)
+        self.m_canvas.configure(yscrollcommand=self.m_vbar.set, xscrollcommand=self.m_hbar.set)
         self.m_canvas.grid(row=0, column=0, sticky="nsew")
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
         self.m_body = ttk.Frame(self.m_canvas)
         self.m_window_id = self.m_canvas.create_window((0, 0), window=self.m_body, anchor="nw")
-        self.m_body.bind("<Configure>", self.OnBodyConfigure)
-        self.m_canvas.bind("<Configure>", self.OnCanvasConfigure)
-        self.m_canvas.bind("<MouseWheel>", self.OnWheel)
-        self.bind("<MouseWheel>", self.OnWheel, add="+")
-        self.m_body.bind("<MouseWheel>", self.OnWheel, add="+")
-        self.m_scrollbar.bind("<MouseWheel>", self.OnWheel, add="+")
+        self.m_body.bind("<Configure>", self.OnBodyConfigure, add="+")
+        self.m_canvas.bind("<Configure>", self.OnCanvasConfigure, add="+")
+        self.BindWheel(self)
+        self.BindWheel(self.m_canvas)
+        self.BindWheel(self.m_body)
+        self.BindWheel(self.m_vbar)
+        self.BindWheel(self.m_hbar)
 
         selected_values = set(selected or [])
         if not self.m_items:
@@ -135,8 +185,10 @@ class MultiChoiceBox(tk.Frame):
                 self.m_body,
                 text="没有可选项",
                 foreground=theme["muted"],
+                font=self.m_item_font,
             )
-            self.m_empty_label.pack(anchor="w", padx=4, pady=6)
+            self.m_empty_label.pack(anchor="w", padx=4)
+            self.BindWheel(self.m_empty_label)
 
         for title, group_items in self.m_groups:
             if title:
@@ -144,40 +196,53 @@ class MultiChoiceBox(tk.Frame):
                     self.m_body,
                     text=title,
                     foreground=theme["accent"],
-                    font=(theme["font_family"], max(8, theme["font_size"] - 2), "bold"),
+                    font=self.m_header_font,
                 )
-                header.pack(anchor="w", padx=4, pady=0)
-                header.bind("<MouseWheel>", self.OnWheel, add="+")
+                header.pack(anchor="w", padx=2, pady=0)
+                self.BindWheel(header)
             grid_frame = ttk.Frame(self.m_body)
-            grid_frame.pack(fill="x", anchor="w", padx=2, pady=0)
-            grid_frame.bind("<MouseWheel>", self.OnWheel, add="+")
-            for index, (label_text, value) in enumerate(group_items):
+            grid_frame.pack(fill="x", anchor="w", padx=0, pady=0)
+            self.BindWheel(grid_frame)
+            cells = []
+            for label_text, value in group_items:
                 cell = ttk.Frame(grid_frame)
-                cell.grid(
-                    row=index // self.GROUP_COLUMNS,
-                    column=index % self.GROUP_COLUMNS,
-                    sticky="w",
-                    padx=(0, 8),
-                    pady=0,
-                )
                 variable = tk.BooleanVar(value=value in selected_values)
                 self.m_variables[value] = variable
-                checkbox = Checkbox(cell, variable, theme, command=self.OnChanged)
-                checkbox.pack(side="left", padx=(2, 5), pady=0)
-                label = ttk.Label(
+                checkbox = Checkbox(
                     cell,
-                    text=label_text,
-                    font=(theme["font_family"], max(8, theme["font_size"] - 1)),
+                    variable,
+                    theme,
+                    command=self.OnChanged,
+                    size=self.m_checkbox_size,
                 )
+                checkbox.pack(side="left", padx=(0, 3), pady=0)
+                label = ttk.Label(cell, text=label_text, font=self.m_item_font)
                 label.pack(side="left", anchor="w", pady=0)
-                tip_text = self.m_tips.get(value, "")
+                tip_text = self.m_tips.get(value, "") or self.m_option_tip
                 if tip_text:
                     self.m_tooltips.append(ToolTip(checkbox, tip_text, theme))
                     self.m_tooltips.append(ToolTip(label, tip_text, theme))
                 for widget in (cell, checkbox, label):
-                    widget.bind("<MouseWheel>", self.OnWheel, add="+")
+                    self.BindWheel(widget)
+                cells.append(cell)
+            self.m_grid_groups.append({"frame": grid_frame, "cells": cells, "columns": 0})
 
-        self.after_idle(self.UpdateLayout)
+        self.after_idle(self.Relayout)
+
+    def MeasureRowHeight(self):
+        """按字体行高计算单元格高度, 紧凑模式收紧留白"""
+        try:
+            item_font = tkfont.Font(root=self, font=self.m_item_font)
+            linespace = int(item_font.metrics("linespace"))
+        except tk.TclError:
+            linespace = self.m_theme["font_size"] + 6
+        padding = 1 if self.m_compact else 4
+        return max(linespace, self.m_checkbox_size) + padding
+
+    def BindWheel(self, widget):
+        """列表内所有控件都响应滚轮与 Shift+滚轮"""
+        widget.bind("<MouseWheel>", self.OnWheel, add="+")
+        widget.bind("<Shift-MouseWheel>", self.OnShiftWheel, add="+")
 
     @staticmethod
     def NormalizeGroups(groups):
@@ -194,45 +259,145 @@ class MultiChoiceBox(tk.Frame):
         self.m_canvas.configure(scrollregion=self.m_canvas.bbox("all"))
         self.UpdateLayout()
 
-    def OnCanvasConfigure(self, event):
-        self.m_canvas.itemconfigure(self.m_window_id, width=event.width)
-        self.UpdateLayout()
+    def OnCanvasConfigure(self, _event=None):
+        """画布尺寸变化时重新分配列数, 让列表保持密集"""
+        self.Relayout()
 
-    def UpdateLayout(self):
-        """按实际内容调整宽度和滚动条, 避免多余留白"""
+    def Relayout(self):
+        """按可用宽度重新计算每组列数并刷新滚动区域"""
         if not self.winfo_exists():
             return
-        body_height = self.m_body.winfo_reqheight()
-        canvas_height = self.m_canvas.winfo_height()
-        need_scroll = body_height > canvas_height + 6
-        if need_scroll:
-            if not self.m_scrollbar.winfo_manager():
-                self.m_scrollbar.grid(row=0, column=1, sticky="ns")
-        elif self.m_scrollbar.winfo_manager():
-            self.m_scrollbar.grid_remove()
+        available_width = self.LayoutWidth()
+        for group in self.m_grid_groups:
+            columns = self.CalcColumns(group["cells"], available_width)
+            if columns == group["columns"]:
+                continue
+            group["columns"] = columns
+            self.GridCells(group["frame"], group["cells"], columns)
+        self.m_canvas.configure(scrollregion=self.m_canvas.bbox("all"))
+        self.UpdateLayout()
 
+    def LayoutWidth(self):
+        """计算列数使用的宽度: 拉伸模式跟随画布, 否则按宽度上限排成紧凑的几行"""
+        if self.m_expand:
+            return self.AvailableWidth()
+        return self.MAX_WIDTH
+
+    def RecheckLayout(self):
+        """滚动条显隐后重新校准尺寸"""
+        self.m_layout_job = None
+        self.UpdateLayout()
+
+    def AvailableWidth(self):
+        """画布当前可用宽度, 尚未完成布局时用配置宽度兜底"""
+        try:
+            width = self.m_canvas.winfo_width()
+            if width <= 1:
+                width = int(self.m_canvas.cget("width") or 0)
+        except (tk.TclError, TypeError, ValueError):
+            width = 0
+        return width
+
+    def CalcColumns(self, cells, available_width):
+        """按单元格自然宽度决定每行排几列, 尽量排满一行"""
+        if not cells or available_width <= 1:
+            return 1
+        try:
+            cell_width = max(cell.winfo_reqwidth() for cell in cells) + self.CELL_PAD_X
+        except tk.TclError:
+            return 1
+        if cell_width <= self.CELL_PAD_X:
+            cell_width = 80 + self.CELL_PAD_X
+        columns = int(available_width // cell_width)
+        return max(1, min(columns, len(cells), self.MAX_GROUP_COLUMNS))
+
+    def GridCells(self, grid_frame, cells, columns):
+        """按列数重新摆放单元格"""
+        for index, cell in enumerate(cells):
+            cell.grid(
+                row=index // columns,
+                column=index % columns,
+                sticky="w",
+                padx=(0, self.CELL_PAD_X),
+                pady=0,
+            )
+
+    def UpdateLayout(self):
+        """同步内容宽度并按需要显示横竖滚动条"""
+        if not self.winfo_exists():
+            return
         body_width = self.m_body.winfo_reqwidth()
-        target_width = max(140, min(300, body_width + 12))
+        body_height = self.m_body.winfo_reqheight()
+        canvas_width = self.m_canvas.winfo_width()
+        canvas_height = self.m_canvas.winfo_height()
+
+        # 内容比画布窄时铺满, 比画布宽时保持自然宽度以支持横向滚动
+        target_width = max(canvas_width, body_width)
+        try:
+            current_width = int(float(self.m_canvas.itemcget(self.m_window_id, "width") or 0))
+        except (tk.TclError, TypeError, ValueError):
+            current_width = 0
+        if target_width > 0 and abs(current_width - target_width) > 1:
+            self.m_canvas.itemconfigure(self.m_window_id, width=target_width)
+
+        need_vscroll = body_height > canvas_height + 2
+        need_hscroll = body_width > canvas_width + 2
+        changed = False
+        if need_vscroll != bool(self.m_vbar.winfo_manager()):
+            if need_vscroll:
+                self.m_vbar.grid(row=0, column=1, sticky="ns")
+            else:
+                self.m_vbar.grid_remove()
+            changed = True
+        if need_hscroll != bool(self.m_hbar.winfo_manager()):
+            if need_hscroll:
+                self.m_hbar.grid(row=1, column=0, sticky="ew")
+            else:
+                self.m_hbar.grid_remove()
+            changed = True
+        # 滚动条显隐会改变画布可用空间, 空闲时再校准一次
+        if changed and self.m_layout_job is None:
+            self.m_layout_job = self.after_idle(self.RecheckLayout)
+
+        if self.m_expand:
+            return
+
+        # 非拉伸模式: 尺寸贴合内容, 避免出现大片空白
         try:
             current_width = int(self.m_canvas.cget("width"))
         except (TypeError, ValueError):
             current_width = 0
+        target_width = max(160, min(self.MAX_WIDTH, body_width + 12))
         if abs(current_width - target_width) > 2:
             self.m_canvas.configure(width=target_width)
+            return
 
-        target_height = max(90, min(240, body_height + 8))
         try:
             current_height = int(self.m_canvas.cget("height"))
         except (TypeError, ValueError):
             current_height = 0
+        target_height = max(self.m_row_height, min(self.MAX_HEIGHT, body_height + 4))
         if abs(current_height - target_height) > 2:
             self.m_canvas.configure(height=target_height)
 
     def OnWheel(self, event):
-        if self.m_canvas.yview() == (0.0, 1.0):
+        """滚轮纵向滚动, Shift+滚轮交给横向滚动"""
+        if event.state & 0x0001:
+            return self.OnShiftWheel(event)
+        first, last = self.m_canvas.yview()
+        if first <= 0.0 and last >= 1.0:
             return "break"
         step = -1 if event.delta > 0 else 1
         self.m_canvas.yview_scroll(step, "units")
+        return "break"
+
+    def OnShiftWheel(self, event):
+        """Shift+滚轮横向滚动"""
+        first, last = self.m_canvas.xview()
+        if first <= 0.0 and last >= 1.0:
+            return "break"
+        step = -1 if event.delta > 0 else 1
+        self.m_canvas.xview_scroll(step, "units")
         return "break"
 
     def OnChanged(self):
@@ -254,12 +419,13 @@ class MultiChoiceBox(tk.Frame):
 class Checkbox(tk.Canvas):
     """带打勾样式的复选框"""
 
-    def __init__(self, parent, variable, theme, command=None, **kwargs):
+    def __init__(self, parent, variable, theme, command=None, size=None, **kwargs):
         self.m_variable = variable
         self.m_theme = theme
         self.m_command = command
         scale = max(parent.winfo_fpixels("1i") / 96.0, 1.0)
-        self.m_size = max(18, int(18 * scale))
+        base_size = 18 if size is None else int(size)
+        self.m_size = max(base_size, int(base_size * scale))
         self.m_pad = max(2, int(2 * scale))
         self.m_line_width = max(2, int(2 * scale))
 
