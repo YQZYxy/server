@@ -213,5 +213,13 @@ add_subdirectory(globalserver)
 add_subdirectory(logicserver)
 add_subdirectory(gatewayserver)
 
+if(CMAKE_GENERATOR MATCHES "Visual Studio")
+    add_custom_target(ALL
+        DEPENDS dbserver globalserver logicserver gatewayserver
+    )
+    # 与 ALL_BUILD / ZERO_CHECK 归入同一解决方案文件夹
+    set_target_properties(ALL PROPERTIES FOLDER "CMakePredefinedTargets")
+endif()
+
 # 启用解决方案文件夹, CMake 标准目标 (ALL_BUILD/ZERO_CHECK/INSTALL) 自动收进 CMakePredefinedTargets
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)

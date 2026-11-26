@@ -46,8 +46,7 @@ class DeployDirRunner(object):
         console.Step("部署目录")
         console.Line("  当前部署目录: %s" % (self.m_settings.deploy_dir or "未设置"))
         console.Line("  基础配置: %s" % self.m_settings.base_config_file)
-        console.Line("  切换后构建输出仍写入 %s, 由编译打包模块复制到新目录"
-                     % self.m_settings.Path("build.build_root"))
+        console.Line("  切换后构建会重新生成 CMakePresets.json, 可执行文件直接输出到新部署目录")
 
         if not console.Confirm("是否切换部署目录", False):
             return 0

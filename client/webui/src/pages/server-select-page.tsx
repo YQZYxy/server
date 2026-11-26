@@ -81,7 +81,6 @@ export default function ServerSelectPage()
               >
                 <span className="server-item-name">{server.name}</span>
                 <span className="server-item-id">服ID {server.server_id}</span>
-                <span className="server-item-addr">{server.ip}:{server.port}</span>
               </button>
             ))}
           </div>

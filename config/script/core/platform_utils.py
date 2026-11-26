@@ -217,6 +217,28 @@ def FindCMake(settings, configured):
     return ResolveTool(settings, configured, extra)
 
 
+def DetectDefaultGenerator(cmake):
+    """探测 CMake 默认生成器.
+
+    cmake --help 的生成器列表里带 * 的那一项就是当前平台的默认生成器,
+    探测不到返回空串.
+    """
+    code, output = RunCaptured([cmake, "--help"])
+    if code != 0:
+        return ""
+    in_generators = False
+    for line in output.splitlines():
+        stripped = line.strip()
+        if stripped == "Generators":
+            in_generators = True
+            continue
+        if not in_generators:
+            continue
+        if stripped.startswith("* "):
+            return stripped[2:].split("=")[0].strip()
+    return ""
+
+
 def IsRuntimeLib(name):
     """是否为需要随可执行文件分发的运行库"""
     lower = name.lower()

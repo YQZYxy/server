@@ -108,9 +108,6 @@ export default function LoginPage() {
         <div className="login-server">
           <span className="login-server-label">当前服务器</span>
           <span className="login-server-name">{selectedServer?.name ?? ''}</span>
-          <span className="login-server-addr">
-            {selectedServer ? `${selectedServer.ip}:${selectedServer.port}` : ''}
-          </span>
           <button className="login-server-switch" onClick={() => navigate('/servers')}>
             切换
           </button>

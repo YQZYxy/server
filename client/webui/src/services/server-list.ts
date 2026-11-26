@@ -31,10 +31,20 @@ export async function fetchServerList(): Promise<ServerInfo[]>
   return data.servers as ServerInfo[]
 }
 
+// 服务端可能下发集群内部或回环地址(127.0.0.1 / 0.0.0.0), 局域网设备拿去连会连到它自己
+// 这类地址统一换成当前页面使用的主机名
+export function resolveReachableHost(ip: string): string
+{
+  const host = (ip || '').trim()
+  const isLocalOnly = !host || host === '0.0.0.0' || host === 'localhost'
+    || host === '::1' || host.startsWith('127.')
+  return isLocalOnly ? (location.hostname || '127.0.0.1') : host
+}
+
 // 网关地址, 选服后 WebSocket 直连该网关
 export function serverBaseUrl(server: ServerInfo): string
 {
-  return `http://${server.ip}:${server.port}`
+  return `http://${resolveReachableHost(server.ip)}:${server.port}`
 }
 
 // 保存选中的服务器, 页面刷新后仍连回同一台服

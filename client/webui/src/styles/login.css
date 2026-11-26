@@ -83,16 +83,8 @@
   font-weight: 600;
   color: var(--primary-light);
 }
-.login-server-addr {
-  flex: 1;
-  color: var(--text-secondary);
-  font-family: Consolas, monospace;
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 .login-box .login-server-switch {
+  margin-left: auto;
   padding: 4px 10px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);

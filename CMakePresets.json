@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 16,
@@ -9,36 +9,36 @@
     {
       "name": "base",
       "hidden": true,
-      "description": "生成 VS工程到 build 目录, 各预设使用独立子目录",
+      "description": "由 auto.py 生成, 请勿手工修改",
       "generator": "Visual Studio 18 2026",
-      "architecture": "x64",
       "cacheVariables": {
         "CMAKE_CXX_STANDARD": "17",
         "CMAKE_CXX_STANDARD_REQUIRED": "ON",
         "CMAKE_C_STANDARD": "11",
         "CMAKE_C_STANDARD_REQUIRED": "ON"
-      }
+      },
+      "architecture": "x64"
     },
     {
       "name": "debug",
-      "displayName": "x64 Debug",
-      "description": "Debug 配置",
+      "displayName": "Debug 配置",
       "inherits": "base",
       "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "SERVER_OUTPUT_DIR": "${sourceDir}/debug",
         "SERVER_DEPLOY_DIR": "${sourceDir}/debug"
       }
     },
     {
       "name": "release",
-      "displayName": "x64 Release",
-      "description": "Release 配置",
+      "displayName": "Release 配置",
       "inherits": "base",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "SERVER_DEPLOY_DIR": "${sourceDir}/release"
+        "SERVER_OUTPUT_DIR": "${sourceDir}/debug",
+        "SERVER_DEPLOY_DIR": "${sourceDir}/debug"
       }
     }
   ],
@@ -46,12 +46,20 @@
     {
       "name": "debug",
       "displayName": "构建 Debug",
-      "configurePreset": "debug"
+      "configurePreset": "debug",
+      "configuration": "Debug",
+      "targets": [
+        "ALL_BUILD"
+      ]
     },
     {
       "name": "release",
       "displayName": "构建 Release",
-      "configurePreset": "release"
+      "configurePreset": "release",
+      "configuration": "Release",
+      "targets": [
+        "ALL_BUILD"
+      ]
     }
   ]
 }

@@ -9,7 +9,7 @@
 import os
 from xml.etree import ElementTree
 
-from ..core.errors import ModuleError
+from ..core.errors import ConfigError, ModuleError
 from ..core.menu import Module, Option
 from ..core.platform_utils import (
     IS_WINDOWS,
@@ -18,6 +18,7 @@ from ..core.platform_utils import (
     RunCaptured,
     RunStreaming,
 )
+from ..core.settings import LoadLocalState, LocalStatePath, write_json
 
 # 默认 svn 命令, 可在 config.json 的 svn.executable 覆盖
 DEFAULT_SVN_EXECUTABLE = "svn"
@@ -28,6 +29,22 @@ SVN_PASSWORD_ENV = "SVN_PASSWORD"
 
 # svn 1.10 起支持 --password-from-stdin, 老版本只能回退到 --password
 PASSWORD_STDIN_MIN_VERSION = (1, 10)
+
+# svn 1.5 起支持 --config-option 临时覆盖配置项
+CONFIG_OPTION_MIN_VERSION = (1, 5)
+
+# svn --version --verbose 中表示可用凭据缓存后端的关键字
+AUTH_CACHE_MARKERS = (
+    "plaintext",
+    "gnome keyring",
+    "kwallet",
+    "gpg-agent",
+    "credential manager",
+    "wincrypt",
+)
+
+# local.json 中保存 svn 凭据的节点名, 仅在 svn 自身缓存不可用时使用
+LOCAL_SVN_AUTH_KEY = "svn_auth"
 
 # 认证/证书失败的关键字, 用于失败后给出对应处理提示
 AUTH_ERROR_KEYWORDS = (
@@ -46,6 +63,12 @@ CREDENTIAL_CACHE = {}
 
 # svn 是否支持 --password-from-stdin, 按可执行文件缓存, 避免每次重试都查版本
 PASSWORD_STDIN_SUPPORT = {}
+
+# svn 版本号缓存, 键为可执行文件路径, 值为 (major, minor)
+SVN_VERSION_CACHE = {}
+
+# svn --version --verbose 输出缓存, 用于判断可用的凭据缓存后端
+AUTH_CACHE_DETAIL = {}
 
 # Windows 常见 svn 命令行安装位置
 WINDOWS_SVN_CANDIDATES = (
@@ -108,22 +131,156 @@ def SvnSetting(settings, key):
     return "" if value is None else str(value).strip()
 
 
+def SvnVersion(svn):
+    """解析 svn 版本号为 (major, minor), 解析失败返回空元组"""
+    cached = SVN_VERSION_CACHE.get(svn)
+    if cached is not None:
+        return cached
+
+    version = ()
+    code, output = RunCaptured([svn, "--version", "--quiet"])
+    if code == 0:
+        for token in output.split():
+            parts = token.strip().lstrip("vV").split(".")
+            if len(parts) >= 2 and parts[0].isdigit() and parts[1].isdigit():
+                version = (int(parts[0]), int(parts[1]))
+                break
+    SVN_VERSION_CACHE[svn] = version
+    return version
+
+
 def SupportsPasswordFromStdin(svn):
     """svn 1.10 起支持 --password-from-stdin, 密码不必出现在命令行里"""
     cached = PASSWORD_STDIN_SUPPORT.get(svn)
     if cached is not None:
         return cached
 
-    supported = False
-    code, output = RunCaptured([svn, "--version", "--quiet"])
-    if code == 0:
-        for token in output.split():
-            parts = token.strip().lstrip("vV").split(".")
-            if len(parts) >= 2 and parts[0].isdigit() and parts[1].isdigit():
-                supported = (int(parts[0]), int(parts[1])) >= PASSWORD_STDIN_MIN_VERSION
-                break
+    supported = SvnVersion(svn) >= PASSWORD_STDIN_MIN_VERSION
     PASSWORD_STDIN_SUPPORT[svn] = supported
     return supported
+
+
+def AuthCacheDetail(svn):
+    """读取 svn --version --verbose 的输出, 判断具体可用的缓存后端"""
+    cached = AUTH_CACHE_DETAIL.get(svn)
+    if cached is not None:
+        return cached
+
+    # 固定输出, 避免本地化文案导致关键字匹配失效
+    env = dict(os.environ)
+    env["LC_ALL"] = "C"
+    env["LANG"] = "C"
+    code, output = RunCaptured([svn, "--version", "--verbose"], env=env)
+    detail = output.lower() if code == 0 else ""
+    AUTH_CACHE_DETAIL[svn] = detail
+    return detail
+
+
+def SupportsAuthCache(svn):
+    """svn 是否具备可用的凭据缓存后端, 决定能否依赖 svn 自己保存密码"""
+    if SvnVersion(svn) < CONFIG_OPTION_MIN_VERSION:
+        return False
+    detail = AuthCacheDetail(svn)
+    return any(marker in detail for marker in AUTH_CACHE_MARKERS)
+
+
+def AuthCacheOptions(svn):
+    """返回让 svn 自己保存凭据的 --config-option 参数, 不支持时返回空列表"""
+    if not SupportsAuthCache(svn):
+        return []
+
+    # --config-option 必须带配置文件名前缀, config 指 ~/.subversion/config
+    args = ["--config-option", "config:auth:store-auth-creds=yes"]
+    if "plaintext" not in AuthCacheDetail(svn):
+        # 只有加密后端时不强行指定, 交给 svn 自己的默认配置
+        return args
+
+    # 非交互模式下 svn 不会询问是否保存明文密码, 必须显式允许
+    args.extend([
+        "--config-option", "config:auth:store-plaintext-passwords=yes",
+        "--config-option", "config:auth:password-stores=plaintext",
+    ])
+    return args
+
+
+def LocalAuthPath(settings):
+    """local.json 路径, 固定跟随基础配置, 不落到部署目录副本里"""
+    return LocalStatePath(settings.base_config_file)
+
+
+def LoadLocalSvnAuth(settings, key):
+    """读取 local.json 中缓存的 svn 凭据, 没有记录时返回空字典"""
+    if not key:
+        return {}
+    try:
+        state = LoadLocalState(settings.base_config_file)
+    except ConfigError:
+        return {}
+
+    node = state.get(LOCAL_SVN_AUTH_KEY)
+    if not isinstance(node, dict):
+        return {}
+    entry = node.get(key)
+    return entry if isinstance(entry, dict) else {}
+
+
+def SaveLocalSvnAuth(settings, key, username, password):
+    """把凭据写入 local.json, 仅在 svn 自身缓存不可用时调用"""
+    if not key or not username:
+        return False
+
+    try:
+        state = LoadLocalState(settings.base_config_file)
+        node = state.get(LOCAL_SVN_AUTH_KEY)
+        if not isinstance(node, dict):
+            node = {}
+
+        entry = {"username": username, "password": password}
+        if node.get(key) == entry:
+            return True
+
+        node[key] = entry
+        state[LOCAL_SVN_AUTH_KEY] = node
+        path = LocalAuthPath(settings)
+        write_json(path, state)
+        RestrictFileMode(path)
+        return True
+    except (ConfigError, OSError):
+        return False
+
+
+def RemoveLocalSvnAuth(settings, key):
+    """删除 local.json 中的旧凭据, svn 缓存生效后不再需要这份副本"""
+    if not key:
+        return
+    try:
+        state = LoadLocalState(settings.base_config_file)
+    except ConfigError:
+        return
+
+    node = state.get(LOCAL_SVN_AUTH_KEY)
+    if not isinstance(node, dict) or key not in node:
+        return
+
+    node.pop(key, None)
+    if node:
+        state[LOCAL_SVN_AUTH_KEY] = node
+    else:
+        state.pop(LOCAL_SVN_AUTH_KEY, None)
+    try:
+        write_json(LocalAuthPath(settings), state)
+    except OSError:
+        pass
+
+
+def RestrictFileMode(path):
+    """local.json 可能含有明文密码, 类 Unix 下收紧到仅本人可读写"""
+    if IS_WINDOWS:
+        return
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
 
 
 def ParseInfoXml(output):
@@ -247,8 +404,46 @@ class SvnUpdateRunner(object):
             "SVN 更新完成: %s -> %s"
             % (before_revision or "未知", after_revision or "未知")
         )
+        self.RememberCredentials(key, path)
         self.ReportConflicts(path)
         return 0
+
+    def RememberCredentials(self, key, path):
+        """认证成功后处理凭据: svn 自己能缓存就不落文件, 否则写 local.json"""
+        username, password = self.ResolveCredentials(key)
+        if not username or password is None:
+            # 没有显式凭据, 说明仓库本身允许匿名访问, 不需要保存
+            return
+
+        saved = LoadLocalSvnAuth(self.m_settings, key)
+        # 已有同样记录说明 svn 缓存不可用, 不必每次成功都重复探测
+        if saved == {"username": username, "password": password}:
+            return
+
+        if self.AuthCacheVerified(path):
+            # svn 缓存已生效, 清掉可能过期的 local.json 副本
+            RemoveLocalSvnAuth(self.m_settings, key)
+            return
+
+        if SaveLocalSvnAuth(self.m_settings, key, username, password):
+            self.m_console.Line(
+                "  凭据已保存到 %s (svn 未启用有效的凭据缓存)"
+                % LocalAuthPath(self.m_settings)
+            )
+
+    def AuthCacheVerified(self, path):
+        """确认 svn 已经保存了本次账号
+
+        工作副本上的 svn info 只读本地记录, 不访问仓库, 必须带 -r HEAD 才会
+        真正连服务器; 不带凭据也能成功才说明缓存已经生效.
+        """
+        if not SupportsAuthCache(self.m_svn):
+            return False
+        code, _ = RunCaptured(
+            [self.m_svn, "info", "--non-interactive", "-r", "HEAD", path],
+            cwd=path,
+        )
+        return code == 0
 
     def RunUpdate(self, command, output_lines):
         """执行 svn update, 输出行同时写入 output_lines 便于失败后判断"""
@@ -292,6 +487,8 @@ class SvnUpdateRunner(object):
         command = [self.m_svn, "update"]
         if not self.m_interactive:
             command.append("--non-interactive")
+            # 非交互下 svn 不会询问是否保存密码, 显式打开凭据缓存
+            command.extend(AuthCacheOptions(self.m_svn))
         if username:
             command.extend(["--username", username])
 
@@ -311,16 +508,19 @@ class SvnUpdateRunner(object):
         return command
 
     def ResolveCredentials(self, key=""):
-        """参数优先, 其次配置 svn.username 与环境变量, 最后用本次运行缓存的凭据
+        """参数优先, 其次环境变量与配置, 再用 local.json 兜底, 最后本次运行缓存
 
         password 为 None 表示没有提供, 空字符串表示显式使用空密码.
         """
         cached = CREDENTIAL_CACHE.get(key, {})
+        local = LoadLocalSvnAuth(self.m_settings, key)
         username = str(self.m_options.get("username") or "").strip()
         if not username:
             username = str(os.environ.get(SVN_USERNAME_ENV) or "").strip()
         if not username:
             username = SvnSetting(self.m_settings, "username")
+        if not username:
+            username = str(local.get("username") or "").strip()
         if not username:
             username = cached.get("username", "")
 
@@ -332,6 +532,10 @@ class SvnUpdateRunner(object):
         env_password = os.environ.get(SVN_PASSWORD_ENV)
         if env_password is not None:
             return username, env_password
+
+        # local.json 记录的密码跟随其用户名, 换账号后不沿用旧密码
+        if "password" in local and str(local.get("username") or "") == username:
+            return username, str(local.get("password") or "")
 
         if cached.get("username", "") == username and "password" in cached:
             return username, cached["password"]
@@ -366,7 +570,8 @@ class SvnUpdateRunner(object):
             % (SVN_USERNAME_ENV, SVN_PASSWORD_ENV)
         )
         self.m_console.Line(
-            "    3. 让 svn 自己保存凭据: ~/.subversion/config 的 store-auth-creds / store-passwords 需为 yes"
+            "    3. 认证成功后工具会自动保存凭据: 优先交给 svn 缓存 (~/.subversion),"
+            " 不支持时写入 config/script/local.json"
         )
         self.m_console.Line("    4. 需要接受自签证书时, 命令行勾选“允许 svn 交互提示 (证书等)”")
 

@@ -39,7 +39,7 @@ C++17 多进程游戏服务器框架: CMake 构建, Python 统一脚本入口, L
 
 ```text
 CMakeLists.txt            根构建脚本
-CMakePresets.json         CMake 预设
+CMakePresets.json         由 auto.py 生成
 auto.py                   统一脚本入口 (命令行/调试)
 
 globalserver/             全局服
@@ -64,7 +64,7 @@ config/                   baseconfig / crossconfig / logicconfig / 配置表
 config/script/            自动化部署脚本
 sql/                      数据库导SQL
 lib/ include/             预编译库与第三方头文件
-build/ debug/ release/    构建输出与部署实例
+build/ debug/ release/    构建中间产物与部署目录
 ```
 
 ## 统一脚本入口

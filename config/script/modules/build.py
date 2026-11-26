@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 """编译打包模块.
 Windows / Linux / macOS 
-CMake 配置 -> 编译 -> 打包可执行文件与运行库 -> 构建前端 -> 同步实例资源
+CMake 配置 -> 编译 -> 校验部署目录产物 -> 构建前端 -> 同步实例资源
 """
 
+import filecmp
+import json
 import os
 import shutil
 
@@ -12,6 +14,7 @@ from ..core.diagnostics import GccDiagnosticFilter
 from ..core.errors import ModuleError
 from ..core.menu import Module, Option
 from ..core.platform_utils import (
+    DetectDefaultGenerator,
     EXE_SUFFIX,
     FindCMake,
     IS_WINDOWS,
@@ -27,7 +30,7 @@ class BuildModule(Module):
 
     ID = "build"
     TITLE = "编译打包"
-    DESCRIPTION = "CMake 配置/编译, 打包可执行文件, 运行库与前端资源"
+    DESCRIPTION = "CMake 配置/编译, 校验部署目录产物, 构建前端资源"
 
     OPTIONS = (
         Option("build_type", "构建类型 (debug/release)", "choice",
@@ -76,9 +79,10 @@ class BuildRunner(object):
             return 0
 
         console.Line("  构建目录: %s" % build_dir)
+        self.SyncPresets()
         self.PrepareBuildDir(build_dir)
-        self.Configure(build_dir, output_dir)
-        self.Compile(build_dir)
+        self.Configure(output_dir)
+        self.Compile()
         self.Package(output_dir, build_dir)
 
         # 完整构建默认包含前端, 只有 webui_only 才跳过服务端编译
@@ -103,6 +107,112 @@ class BuildRunner(object):
         self.m_console.Success("  前端构建完成: %s" % output_dir)
         return 0
 
+    def SyncPresets(self):
+        """按当前配置生成 CMakePresets.json
+
+        presets 是派生文件, 唯一来源是 config.json 里的构建配置与 local.json 里的
+        部署目录; 生成后 VS / VS Code / 脚本共用同一份, 保证构建目录与输出目录一致.
+        """
+        cmake = FindCMake(
+            self.m_settings, str(self.m_settings.Require("build.cmake_executable"))
+        )
+        generator = str(
+            self.m_settings.Require("build.cmake_generator") or ""
+        ).strip()
+        if not generator:
+            generator = DetectDefaultGenerator(cmake)
+        if not generator:
+            raise ModuleError(
+                "无法确定 CMake 生成器, 请在 config.json 的 build.cmake_generator 中指定"
+            )
+
+        build_root = self.m_settings.Path("build.build_root")
+        output_dir = self.m_settings.deploy_dir
+
+        base = {
+            "name": "base",
+            "hidden": True,
+            "description": "由 auto.py 生成, 请勿手工修改",
+            "generator": generator,
+            "cacheVariables": {
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+                "CMAKE_C_STANDARD": "11",
+                "CMAKE_C_STANDARD_REQUIRED": "ON",
+            },
+        }
+        # Visual Studio 生成器需要显式指定架构, 其它生成器由工具自行决定
+        if IS_WINDOWS and "Visual Studio" in generator:
+            base["architecture"] = self.m_settings.Require("build.windows_arch")
+
+        # 全量构建目标的名字随生成器不同: Visual Studio / Xcode 是 ALL_BUILD, 其它是 all;
+        # 显式写进 build preset, 避免 CMake Tools 的生成任务在未记录构建目标时回落到 all,
+        all_target_name = None
+        if "Visual Studio" in generator or "Xcode" in generator:
+            all_target_name = "ALL_BUILD"
+
+        configure_presets = [base]
+        build_presets = []
+        for build_type, configuration in (("debug", "Debug"), ("release", "Release")):
+            configure_presets.append(
+                {
+                    "name": build_type,
+                    "displayName": "%s 配置" % configuration,
+                    "inherits": "base",
+                    "binaryDir": self.PresetPath(os.path.join(build_root, build_type)),
+                    "cacheVariables": {
+                        "CMAKE_BUILD_TYPE": configuration,
+                        # 可执行文件直接输出到部署目录
+                        "SERVER_OUTPUT_DIR": self.PresetPath(output_dir),
+                        "SERVER_DEPLOY_DIR": self.PresetPath(output_dir),
+                    },
+                }
+            )
+            build_preset = {
+                "name": build_type,
+                "displayName": "构建 %s" % configuration,
+                "configurePreset": build_type,
+                "configuration": configuration,
+            }
+            if all_target_name:
+                build_preset["targets"] = [all_target_name]
+            build_presets.append(build_preset)
+
+        presets = {
+            "version": 3,
+            "cmakeMinimumRequired": {"major": 3, "minor": 16, "patch": 0},
+            "configurePresets": configure_presets,
+            "buildPresets": build_presets,
+        }
+        self.WriteFileIfChanged(
+            os.path.join(self.m_root, "CMakePresets.json"),
+            json.dumps(presets, indent=2, ensure_ascii=False) + "\n",
+        )
+
+    def PresetPath(self, path):
+        """把路径转成 presets 里的写法, 项目内用 sourceDir 相对路径"""
+        path = os.path.abspath(path)
+        root = os.path.abspath(self.m_root)
+        try:
+            relative = os.path.relpath(path, root)
+        except ValueError:
+            relative = ""
+        if relative and not relative.startswith(".."):
+            return "${sourceDir}/" + relative.replace("\\", "/")
+        return path.replace("\\", "/")
+
+    def WriteFileIfChanged(self, path, text):
+        """内容有变化才写文件, 避免每次构建都刷新时间戳"""
+        old = ""
+        if os.path.isfile(path):
+            with open(path, "r", encoding="utf-8") as handle:
+                old = handle.read()
+        if old == text:
+            return
+        with open(path, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(text)
+        self.m_console.Line("  已更新 %s" % os.path.basename(path))
+
     def PrepareBuildDir(self, build_dir):
         """按构建模式准备目录"""
         if self.m_build_mode == "clean" and os.path.isdir(build_dir):
@@ -110,49 +220,39 @@ class BuildRunner(object):
             RemovePath(build_dir)
         os.makedirs(build_dir, exist_ok=True)
 
-    def Configure(self, build_dir, output_dir):
-        """执行 CMake 配置"""
+    def Configure(self, output_dir):
+        """执行 CMake 配置
+
+        走脚本生成的 CMakePresets.json, 与 VS Code / VS 共用同一份生成器, 架构与
+        构建目录; 部署目录再传一次, 保证 cache 始终跟随当前选择.
+        """
         self.m_console.Step("配置项目")
         cmake = FindCMake(
             self.m_settings, str(self.m_settings.Require("build.cmake_executable"))
         )
-        build_type = "Debug" if self.m_build_type == "debug" else "Release"
 
         command = [
             cmake,
-            "-S", self.m_root,
-            "-B", build_dir,
-            "-DCMAKE_BUILD_TYPE=%s" % build_type,
-            # VS 调试工作目录跟随脚本选择的部署目录
+            "--preset", self.m_build_type,
+            "-DSERVER_OUTPUT_DIR=%s" % output_dir,
+            # VS 调试工作目录跟随部署目录
             "-DSERVER_DEPLOY_DIR=%s" % output_dir,
         ]
-
-        generator = str(self.m_settings.Require("build.cmake_generator") or "").strip()
-        env_generator = os.environ.get("CMAKE_GENERATOR", "").strip()
-        if generator:
-            command.extend(["-G", generator])
-        if IS_WINDOWS:
-            # Visual Studio 生成器需要指定架构; 其它生成器由环境自行决定
-            effective_generator = generator or env_generator
-            if effective_generator == "" or "Visual Studio" in effective_generator:
-                command.extend(["-A", self.m_settings.Require("build.windows_arch")])
 
         code = RunStreaming(command, self.m_root, self.m_console)
         if code != 0:
             raise ModuleError("CMake 配置失败 (退出码 %d)" % code)
 
-    def Compile(self, build_dir):
+    def Compile(self):
         """执行编译"""
         self.m_console.Step("编译项目")
         cmake = FindCMake(
             self.m_settings, str(self.m_settings.Require("build.cmake_executable"))
         )
         jobs = ProcessorCount(self.m_options["jobs"])
-        build_type = "Debug" if self.m_build_type == "debug" else "Release"
         command = [
             cmake,
-            "--build", build_dir,
-            "--config", build_type,
+            "--build", "--preset", self.m_build_type,
             "--parallel", str(jobs),
         ]
         self.m_console.Line("  使用 %d 个并行任务" % jobs)
@@ -165,8 +265,12 @@ class BuildRunner(object):
             raise ModuleError("编译失败 (退出码 %d)" % code)
 
     def Package(self, output_dir, build_dir):
-        """从构建目录复制可执行文件与运行库到部署目录"""
-        self.m_console.Step("打包可执行文件")
+        """校验部署目录里的可执行文件与运行库
+
+        可执行文件由 CMake 直接输出到部署目录 (SERVER_OUTPUT_DIR), 正常情况下这里
+        只做校验; 遇到未设置输出目录的旧构建则回退为从构建目录复制一次.
+        """
+        self.m_console.Step("检查打包产物")
         os.makedirs(output_dir, exist_ok=True)
 
         sub_projects = self.m_settings.Get("build.sub_projects", list)
@@ -174,33 +278,54 @@ class BuildRunner(object):
             raise ModuleError("build.sub_projects 必须是非空数组")
 
         copy_pdb = bool(self.m_settings.Require("deploy.copy_pdb"))
-        copied = 0
+        ready = 0
         missing = []
         for project in sub_projects:
-            source = self.FindExecutable(build_dir, str(project))
-            if source is None:
-                missing.append(str(project))
+            name = str(project)
+            target = os.path.join(output_dir, name + EXE_SUFFIX)
+            if os.path.isfile(target):
+                self.m_console.Line("  %-24s ok" % os.path.basename(target))
+                ready += 1
                 continue
-            target = os.path.join(output_dir, os.path.basename(source))
-            if os.path.abspath(source) != os.path.abspath(target):
-                shutil.copy2(source, target)
-                self.m_console.Line("  %-24s copy" % os.path.basename(source))
-                copied += 1
-            else:
-                self.m_console.Line("  %-24s ok" % os.path.basename(source))
 
+            # 兜底: 构建目录里还有产物时补拷一次, 兼容未走 CMakePresets 的旧构建
+            source = self.FindExecutable(build_dir, name)
+            if source is None:
+                missing.append(name)
+                continue
+            self.m_console.Warn(
+                "  %s 不在输出目录, 从构建目录补拷 (请检查 SERVER_OUTPUT_DIR)"
+                % os.path.basename(target)
+            )
+            shutil.copy2(source, target)
             if copy_pdb:
                 pdb_source = os.path.splitext(source)[0] + ".pdb"
                 if os.path.isfile(pdb_source):
-                    pdb_target = os.path.join(output_dir, os.path.basename(pdb_source))
-                    if os.path.abspath(pdb_source) != os.path.abspath(pdb_target):
-                        shutil.copy2(pdb_source, pdb_target)
+                    shutil.copy2(pdb_source, os.path.splitext(target)[0] + ".pdb")
+            ready += 1
 
         if missing:
-            self.m_console.Warn("  警告: 构建目录里未找到可执行文件: %s" % ", ".join(missing))
+            self.m_console.Warn("  警告: 未找到可执行文件: %s" % ", ".join(missing))
 
         self.CopyRuntimeLibs(output_dir)
-        self.m_console.Success("  已处理 %d 个可执行文件" % copied)
+        self.WarnLegacyOutput(build_dir)
+        self.m_console.Success("  已就绪 %d 个可执行文件" % ready)
+
+    def WarnLegacyOutput(self, build_dir):
+        """提示旧的输出目录 (build/<类型>/bin) 仍有可执行文件副本"""
+        legacy_dir = os.path.join(build_dir, "bin")
+        if not os.path.isdir(legacy_dir):
+            return
+        sub_projects = self.m_settings.Get("build.sub_projects", list) or []
+        left = [
+            str(name) for name in sub_projects
+            if os.path.isfile(os.path.join(legacy_dir, str(name) + EXE_SUFFIX))
+        ]
+        if left:
+            self.m_console.Warn(
+                "  提示: 旧输出目录仍有产物 (%s), 可删除: %s"
+                % (", ".join(left), legacy_dir)
+            )
 
     def FindExecutable(self, build_dir, project):
         """在构建目录里查找可执行文件, 兼容多配置与自定义输出目录"""
@@ -226,7 +351,10 @@ class BuildRunner(object):
         return found[0]
 
     def CopyRuntimeLibs(self, output_dir):
-        """复制 lib 下的动态库"""
+        """补齐 lib 下的动态库
+
+        CMake 编译后会通过 POST_BUILD 复制到输出目录, 这里是兜底, 内容一致就跳过.
+        """
         lib_dir = self.m_settings.Path("paths.runtime_lib_dir", must_exist=True)
         if not os.path.isdir(lib_dir):
             return
@@ -243,9 +371,12 @@ class BuildRunner(object):
             ):
                 continue
             target = os.path.join(output_dir, name)
-            if os.path.abspath(source) != os.path.abspath(target):
-                shutil.copy2(source, target)
-                self.m_console.Line("  %-24s copy" % name)
+            if os.path.abspath(source) == os.path.abspath(target):
+                continue
+            if os.path.isfile(target) and filecmp.cmp(source, target, shallow=True):
+                continue
+            shutil.copy2(source, target)
+            self.m_console.Line("  %-24s copy" % name)
 
     def BuildWebui(self, output_dir):
         """构建前端并同步到实例目录"""

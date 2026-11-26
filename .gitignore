@@ -146,3 +146,6 @@ config/model/custom_weights.bin
 config/model/pytorch_model.bin
 lib/libmysql.dll
 lib/libmysql.lib
+
+# 由 auto.py 生成的 CMake 预设, 构建目录与输出目录跟随本地配置
+CMakePresets.json

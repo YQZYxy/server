@@ -4,6 +4,7 @@
 
 import { gameSocket, createGameSocket } from './socket'
 import type { GameSocket } from './socket'
+import { resolveReachableHost } from './server-list'
 import { MHT } from '@/types'
 
 // 跨服进场票据, 由归属服下发
@@ -57,7 +58,8 @@ export function authCrossServer(ticket: CrossTicket, roleUid = 0, timeoutMs = 80
 {
   return new Promise((resolve, reject) =>
   {
-    const socket = createGameSocket(`ws://${ticket.sceneIp}:${ticket.scenePort}`, ticket.token)
+    // 跨服票据里的地址也可能是回环地址, 统一换成当前页面能连到的主机
+    const socket = createGameSocket(`ws://${resolveReachableHost(ticket.sceneIp)}:${ticket.scenePort}`, ticket.token)
     let timeoutTimer: number | null = null
     let retryTimer: number | null = null
     let retryCount = 0

@@ -61,18 +61,35 @@ def RemovePidFile(runlog_dir, name):
 
 
 def _IsPosixZombie(pid):
-    """Linux: 进程已退出但父进程未回收时 /proc 状态为 Z, 不能当成存活"""
+    """POSIX: 进程已退出但父进程未回收时状态为 Z, 不能当成存活
+
+    Linux 读 /proc 最快; macOS/BSD 没有 /proc, 退回 ps 取状态位.
+    否则优雅退出的子进程会一直是僵尸, kill(pid, 0) 永远成功, 停服会白等超时再强杀.
+    """
     try:
         with open("/proc/%d/stat" % pid, "r", encoding="utf-8", errors="replace") as handle:
             content = handle.read()
+        # comm 字段可能包含空格和括号, 状态字段在最后一个 ')' 之后
+        parts = content.rsplit(")", 1)
+        if len(parts) == 2:
+            fields = parts[1].split()
+            return len(fields) > 0 and fields[0] == "Z"
+        return False
     except (OSError, ValueError):
+        pass
+
+    # 无 /proc 的平台(如 macOS): stat 首字符为 Z 表示僵尸
+    try:
+        result = subprocess.run(
+            ["ps", "-p", str(pid), "-o", "stat="],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+    except OSError:
         return False
-    # comm 字段可能包含空格和括号, 状态字段在最后一个 ')' 之后
-    parts = content.rsplit(")", 1)
-    if len(parts) != 2:
-        return False
-    fields = parts[1].split()
-    return len(fields) > 0 and fields[0] == "Z"
+    state = result.stdout.decode("utf-8", errors="replace").strip()
+    return state.startswith("Z")
 
 
 def IsPidAlive(pid):

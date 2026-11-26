@@ -12,7 +12,9 @@ import getpass
 import locale
 import os
 import re
+import select
 import sys
+import unicodedata
 
 # 平台判断
 IS_WINDOWS = os.name == "nt"
@@ -45,6 +47,22 @@ LOG_LEVEL_PATTERN = re.compile(r"^\[[^\]]*\]\[([DICWEF])\]")
 
 # ANSI 转义
 ANSI_ESCAPE_PATTERN = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
+
+# 终端行编辑按键码
+KEY_CTRL_C = 0x03
+KEY_CTRL_D = 0x04
+KEY_BACKSPACE = 0x08
+KEY_ENTER_LF = 0x0A
+KEY_ENTER_CR = 0x0D
+KEY_CTRL_U = 0x15
+KEY_ESCAPE = 0x1B
+KEY_DELETE = 0x7F
+
+# 单个 UTF-8 字符最多占用的字节数
+UTF8_MAX_BYTES = 4
+
+# 等待转义序列后续字节的超时, 用来区分单独的 Esc 键
+ESCAPE_SEQUENCE_TIMEOUT = 0.05
 
 # 当前输出端是否支持颜色
 _color_enabled = False
@@ -132,6 +150,160 @@ def ConfigurePosixLocale():
             return
         except (locale.Error, OSError):
             continue
+
+
+def IsTtyInput():
+    """stdin 是否连接真实终端, 管道和重定向下不能自己做行编辑"""
+    try:
+        return os.isatty(sys.stdin.fileno())
+    except (AttributeError, OSError, ValueError):
+        return False
+
+
+def WriteRaw(text):
+    """行编辑期间直接写 stdout, 按字符节奏立即刷新"""
+    stream = sys.stdout
+    if stream is None or not text:
+        return
+    try:
+        stream.write(text)
+        stream.flush()
+    except (AttributeError, OSError, ValueError):
+        pass
+
+
+def CharDisplayWidth(char):
+    """估算字符占用的终端列数, 中日韩等宽字符按 2 列, 组合符不占位"""
+    if unicodedata.combining(char):
+        return 0
+    return 2 if unicodedata.east_asian_width(char) in ("W", "F") else 1
+
+
+def EraseText(text):
+    """按显示宽度擦除已经回显出去的文本"""
+    width = sum(CharDisplayWidth(char) for char in text)
+    if width <= 0:
+        return
+    WriteRaw("\b" * width + " " * width + "\b" * width)
+
+
+def ReadByteWithTimeout(fd):
+    """有后续输入时读一个字节, 超时或流结束返回 None"""
+    try:
+        ready = select.select([fd], [], [], ESCAPE_SEQUENCE_TIMEOUT)[0]
+    except (OSError, ValueError):
+        return None
+    if not ready:
+        return None
+    chunk = os.read(fd, 1)
+    return chunk[0] if chunk else None
+
+
+def SkipEscapeSequence(fd):
+    """丢弃方向键等转义序列, 避免控制字节被当成输入内容
+
+    单独按 Esc 时后面没有更多字节, 用 select 超时判断, 不会卡住输入.
+    """
+    first = ReadByteWithTimeout(fd)
+    if first is None:
+        return
+    # 只有 CSI(ESC [) 与 SS3(ESC O) 后面还有参数字节
+    if first not in (0x5B, 0x4F):
+        return
+    while True:
+        byte = ReadByteWithTimeout(fd)
+        if byte is None or 0x40 <= byte <= 0x7E:
+            return
+
+
+def ReadTtyLine(prompt, secret=False):
+    """POSIX 终端下接管行编辑, 同时兼容 0x08 与 0x7f 两种退格键
+
+    部分 SSH 终端的退格键发送 0x08, 而 Linux 默认 VERASE 是 0x7f, 内核行编辑
+    会把 0x08 当成普通字符回显成 ^H. 这里关闭规范模式, 退格与回显都自己处理.
+    返回 None 表示当前环境不支持, 由调用方回退到 input/getpass.
+    """
+    if not IsTtyInput():
+        return None
+    try:
+        import termios
+    except ImportError:
+        return None
+
+    try:
+        fd = sys.stdin.fileno()
+        old_attrs = termios.tcgetattr(fd)
+    except (AttributeError, OSError, ValueError, termios.error):
+        return None
+
+    new_attrs = termios.tcgetattr(fd)
+    # 关闭规范模式与回显, 保留 ISIG 让 Ctrl+C 仍能中断程序
+    new_attrs[3] &= ~(termios.ICANON | termios.ECHO | termios.ECHOE)
+    new_attrs[3] &= ~getattr(termios, "ECHOCTL", 0)
+    new_attrs[3] &= ~termios.IEXTEN
+    new_attrs[6][termios.VMIN] = 1
+    new_attrs[6][termios.VTIME] = 0
+    try:
+        termios.tcsetattr(fd, termios.TCSADRAIN, new_attrs)
+    except (OSError, termios.error):
+        return None
+
+    text = ""
+    # 未凑满一个完整 UTF-8 字符的字节
+    pending = b""
+    WriteRaw(prompt)
+    try:
+        while True:
+            chunk = os.read(fd, 1)
+            if not chunk:
+                raise EOFError
+            byte = chunk[0]
+
+            if byte in (KEY_ENTER_CR, KEY_ENTER_LF):
+                WriteRaw("\n")
+                return text
+            if byte == KEY_CTRL_C:
+                raise KeyboardInterrupt
+            if byte == KEY_CTRL_D:
+                if not text and not pending:
+                    raise EOFError
+                continue
+            if byte == KEY_ESCAPE:
+                pending = b""
+                SkipEscapeSequence(fd)
+                continue
+            if byte in (KEY_BACKSPACE, KEY_DELETE):
+                pending = b""
+                if text:
+                    if not secret:
+                        EraseText(text[-1])
+                    text = text[:-1]
+                continue
+            if byte == KEY_CTRL_U:
+                pending = b""
+                if not secret:
+                    EraseText(text)
+                text = ""
+                continue
+
+            pending += chunk
+            try:
+                char = pending.decode("utf-8")
+            except UnicodeDecodeError as error:
+                # 多字节字符还没收满时继续读后续字节
+                if error.reason == "unexpected end of data" and len(pending) < UTF8_MAX_BYTES:
+                    continue
+                pending = b""
+                continue
+            pending = b""
+            text += char
+            if not secret:
+                WriteRaw(char)
+    finally:
+        try:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_attrs)
+        except (OSError, termios.error):
+            pass
 
 
 def RestoreTerminalInput():
@@ -269,7 +441,10 @@ class Console(object):
         self.Line("[*] %s" % message, COLOR_GREEN)
 
     def ReadLine(self, prompt):
-        """读取一行输入: POSIX 下先恢复终端规范模式, 保证回退键正常"""
+        """读取一行输入: 终端下自己做行编辑, 兼容 0x08 与 0x7f 两种退格键"""
+        value = ReadTtyLine(prompt)
+        if value is not None:
+            return value
         RestoreTerminalInput()
         return input(prompt)
 
@@ -287,9 +462,12 @@ class Console(object):
     def AskSecret(self, prompt):
         """密码输入, 不回显; 返回 None 表示取消, 空字符串表示空密码"""
         try:
-            RestoreTerminalInput()
-            return getpass.getpass("%s: " % prompt).strip()
-        except (EOFError, KeyboardInterrupt, RuntimeError):
+            value = ReadTtyLine("%s: " % prompt, secret=True)
+            if value is None:
+                RestoreTerminalInput()
+                value = getpass.getpass("%s: " % prompt)
+            return value.strip()
+        except (EOFError, KeyboardInterrupt, OSError, RuntimeError):
             self.Line()
             return None
 
