@@ -33,6 +33,7 @@ from ..core.instances import (
     DatabaseChoiceGroups,
     InstanceChoiceGroups,
     InstanceChoiceTips,
+    LARGE_CROSS_END,
 )
 from ..core.menu import Module, Option
 from ..core.platform_utils import (
@@ -105,9 +106,6 @@ def ConfigurePaths(settings):
 # 不参与集群的进程, 避免同一实例目录多进程抢占同一个集群端口
 CLUSTER_DISABLED_SERVICES = ("gatewayserver", "dbserver")
 
-# server_id 分段, 与 share/share.hpp 保持一致
-SERVER_ID_CROSS_LARGE_END = 42800
-
 PORT_KEYS = ("gateway_port", "logic_port", "battle_port", "db_port", "global_port", "cluster_port")
 UNIQUE_PORT_KEYS = ("gateway_port", "logic_port", "battle_port", "db_port", "cluster_port")
 
@@ -170,7 +168,7 @@ def validate_blueprint(blueprint):
             identities.add(identity)
 
         server_id = node.get("server_id")
-        if not isinstance(server_id, int) or server_id <= 0 or server_id > SERVER_ID_CROSS_LARGE_END:
+        if not isinstance(server_id, int) or server_id <= 0 or server_id > LARGE_CROSS_END:
             errors.append(f"{name}: server_id 非法或超出分段范围 {server_id}")
 
         db_name = node.get("db_name")

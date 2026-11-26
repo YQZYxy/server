@@ -22,10 +22,11 @@ SERVER_LOGIC = "logicserver"
 SERVER_GATEWAY = "gatewayserver"
 SERVER_WEBUI = "webui"
 
-# 跨服 server_id 分段, 与 share/share.hpp 保持一致
-SMALL_CROSS_BEGIN = 42001
-SMALL_CROSS_END = 42500
-LARGE_CROSS_BEGIN = 42501
+# server_id 分段, 与 share/share.hpp 保持一致
+NORMAL_MAX = 40000
+SMALL_CROSS_BEGIN = 40001
+SMALL_CROSS_END = 42000
+LARGE_CROSS_BEGIN = 42001
 LARGE_CROSS_END = 42800
 
 

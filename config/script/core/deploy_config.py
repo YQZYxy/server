@@ -15,7 +15,7 @@ import json
 import os
 
 from .errors import ConfigError
-from .instances import LARGE_CROSS_END
+from .instances import LARGE_CROSS_END, NORMAL_MAX
 from .settings import write_json
 
 # 实例可选的进程
@@ -477,9 +477,9 @@ def NextServerId(nodes):
         if isinstance(value, int) and not isinstance(value, bool):
             used.add(value)
     candidate = 1
-    while candidate in used and candidate <= 42000:
+    while candidate in used and candidate <= NORMAL_MAX:
         candidate += 1
-    if candidate > 42000:
+    if candidate > NORMAL_MAX:
         raise ConfigError("普通服 server_id 已用尽, 请手工调整")
     return candidate
 

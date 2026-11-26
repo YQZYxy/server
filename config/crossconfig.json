@@ -48,7 +48,7 @@
         },
         {
             "name": "cross",
-            "server_id": 42001,
+            "server_id": 40001,
             "executables": ["gatewayserver", "logicserver", "dbserver"],
             "gateway_port": 38004,
             "logic_port": 38017,
@@ -61,7 +61,7 @@
         },
         {
             "name": "big_cross",
-            "server_id": 42501,
+            "server_id": 42001,
             "executables": ["gatewayserver", "logicserver", "dbserver"],
             "gateway_port": 38005,
             "logic_port": 38019,
